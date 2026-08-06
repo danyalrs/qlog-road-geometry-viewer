@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B-MOTION Manual Evidence Review</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>B-MOTION Manual Evidence Review</h1>
+    <p class="subtitle">Rule-derived labels are hidden until you submit a decision.</p>
+  </header>
+
+  <section class="setup" id="setupPanel">
+    <label>Reviewer ID <input type="text" id="reviewerId" placeholder="reviewer-1" /></label>
+    <label>Batch
+      <select id="batchSelect"></select>
+    </label>
+    <button id="btnStart">Start / Resume Review</button>
+  </section>
+
+  <section class="progress-bar" id="progressPanel" hidden>
+    <div id="progressText">Progress: 0 / 220</div>
+    <div class="meter"><div id="progressFill"></div></div>
+  </section>
+
+  <main id="reviewPanel" hidden>
+    <div class="pair-header">
+      <h2 id="pairId">—</h2>
+      <span id="evidenceStatus" class="badge">—</span>
+    </div>
+    <p id="pairIdentityLine" class="identity-line">—</p>
+
+    <div class="metrics grid">
+      <div><strong>Pair ID</strong><span id="reviewPairId">—</span></div>
+      <div><strong>Segment</strong><span id="segmentId">—</span></div>
+      <div><strong>Observation A</strong><span id="obsA">—</span></div>
+      <div><strong>Observation B</strong><span id="obsB">—</span></div>
+      <div><strong>Lane / slot A</strong><span id="slotA">—</span></div>
+      <div><strong>Lane / slot B</strong><span id="slotB">—</span></div>
+      <div><strong>Time A</strong><span id="timeA">—</span></div>
+      <div><strong>Time B</strong><span id="timeB">—</span></div>
+      <div><strong>Δt (s)</strong><span id="deltaTime">—</span></div>
+      <div><strong>Displacement (m)</strong><span id="spatialM">—</span></div>
+      <div><strong>Speed (m/s)</strong><span id="speedMps">—</span></div>
+      <div><strong>Heading Δ (°)</strong><span id="headingDiff">—</span></div>
+      <div><strong>Chunk A/B</strong><span id="chunkIds">—</span></div>
+      <div><strong>Pass A/B</strong><span id="passIds">—</span></div>
+      <div><strong>Pose section A/B</strong><span id="poseSections">—</span></div>
+    </div>
+
+    <section class="playback">
+      <h3>Qlog Playback</h3>
+      <p id="qlogRef">—</p>
+      <div class="legend" id="playbackLegend">
+        <span class="legend-item"><i class="swatch target"></i> Target observation divider</span>
+        <span class="legend-item"><i class="swatch muted"></i> Other lane dividers</span>
+        <span class="legend-item"><i class="swatch edge"></i> Road edges</span>
+      </div>
+      <div class="btn-row">
+        <button id="btnLoadQlog">Load qlog segment</button>
+        <button id="btnFrameA">Go to frame A</button>
+        <button id="btnFrameB">Go to frame B</button>
+        <button id="btnPrev">◀ Prev</button>
+        <button id="btnNext">Next ▶</button>
+      </div>
+      <p id="frameInfo">Frame: —</p>
+      <p id="targetInfo" class="status">Target: —</p>
+      <p id="renderStatus" class="status">Playback not loaded</p>
+      <div id="errorBanner"></div>
+      <canvas id="frameCanvas" width="960" height="540"></canvas>
+    </section>
+
+    <section class="decision">
+      <h3>Reviewer Decision</h3>
+      <label>Evidence mode
+        <select id="evidenceMode">
+          <option value="qlog_playback">qlog_playback</option>
+          <option value="video">video</option>
+          <option value="combined">combined</option>
+          <option value="insufficient">insufficient</option>
+        </select>
+      </label>
+      <label>Notes <textarea id="reviewerNotes" rows="3" placeholder="What did you observe?"></textarea></label>
+      <div class="btn-row decision-buttons">
+        <button class="positive" id="btnPositive">positive_continuation</button>
+        <button class="negative" id="btnNegative">negative_non_continuation</button>
+        <button class="neutral" id="btnUnresolved">unresolved</button>
+      </div>
+      <p id="submitStatus" class="status"></p>
+      <div id="revealPanel" class="reveal" hidden>
+        <h4>Post-review rule-derived reference (not ground truth)</h4>
+        <pre id="revealText"></pre>
+      </div>
+    </section>
+  </main>
+
+  <script src="/playback-helpers.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

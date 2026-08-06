@@ -1,0 +1,187 @@
+{
+  "generatedAt": "2026-08-04T05:33:57.301Z",
+  "segment": "qlog_f449c_2.bz2",
+  "falseVisualBridgeDetected": false,
+  "rendererCorrectionRequired": false,
+  "rendererCorrectionApplied": false,
+  "logicalCleanedRunCount": 28,
+  "drawableSubpathCount": 32,
+  "mode5FragmentCount": 28,
+  "mode7FragmentCount": 35,
+  "fusedFragmentCount": 33,
+  "crossingCount": 0,
+  "stationaryChecksumUnique": true,
+  "roadSurfacePolygonsMode5": 0,
+  "gapReports": [
+    {
+      "gapId": "CD-10",
+      "expectedOpenM": 1.466,
+      "measuredOpenM": 1.4657434773982345,
+      "precedingRunId": 11,
+      "followingRunId": 6,
+      "shareOneCanvasPath": false,
+      "rendererIssuesSegment": false
+    },
+    {
+      "gapId": "CD-12",
+      "expectedOpenM": 1.64,
+      "measuredOpenM": 1.6394653378521298,
+      "precedingRunId": 13,
+      "followingRunId": 9,
+      "shareOneCanvasPath": false,
+      "rendererIssuesSegment": false
+    },
+    {
+      "gapId": "CD-18",
+      "expectedOpenM": 1.476,
+      "measuredOpenM": 1.4754773189197294,
+      "precedingRunId": 0,
+      "followingRunId": 1,
+      "shareOneCanvasPath": false,
+      "rendererIssuesSegment": false
+    }
+  ],
+  "interRunBreaks": [
+    {
+      "gapId": "CD-10",
+      "physicalBoundaryId": "PB1",
+      "laneTrackId": 2,
+      "precedingRunId": 11,
+      "followingRunId": 6,
+      "precedingComponentId": "11:last",
+      "followingComponentId": "6:0",
+      "openIntervalStartS": 428.7557621001464,
+      "openIntervalEndS": 430.22150557754463,
+      "openLengthM": 1.4657434773982345,
+      "routeSDistanceM": 1.4657434773982345,
+      "euclideanDistanceM": 1.4657619530258617,
+      "labelEast": -51.52002632366036,
+      "labelNorth": 22.657949026429936,
+      "shareOneCanvasPath": false,
+      "rendererWouldBridge": false,
+      "breakReason": "unsupportedSourcePolylineGap",
+      "breakBefore": true
+    },
+    {
+      "gapId": "CD-12",
+      "physicalBoundaryId": "PB1",
+      "laneTrackId": 2,
+      "precedingRunId": 13,
+      "followingRunId": 9,
+      "precedingComponentId": "13:last",
+      "followingComponentId": "9:0",
+      "openIntervalStartS": 498.48122518574536,
+      "openIntervalEndS": 500.1206905235975,
+      "openLengthM": 1.6394653378521298,
+      "routeSDistanceM": 1.6394653378521298,
+      "euclideanDistanceM": 1.6369891257716205,
+      "labelEast": -54.62457758463428,
+      "labelNorth": 92.39963108466448,
+      "shareOneCanvasPath": false,
+      "rendererWouldBridge": false,
+      "breakReason": "unsupportedSourcePolylineGap",
+      "breakBefore": true
+    },
+    {
+      "gapId": "CD-18",
+      "physicalBoundaryId": "PB2",
+      "laneTrackId": 3,
+      "precedingRunId": 0,
+      "followingRunId": 1,
+      "precedingComponentId": "0:last",
+      "followingComponentId": "1:0",
+      "openIntervalStartS": 428.7570377828136,
+      "openIntervalEndS": 430.2325151017333,
+      "openLengthM": 1.4754773189197294,
+      "routeSDistanceM": 1.4754773189197294,
+      "euclideanDistanceM": 1.4755770535402666,
+      "labelEast": -54.353738304860585,
+      "labelNorth": 22.52980769858805,
+      "shareOneCanvasPath": false,
+      "rendererWouldBridge": false,
+      "breakReason": "unsupportedSourcePolylineGap",
+      "breakBefore": true
+    }
+  ],
+  "rendererViolations": [],
+  "coverageReporting": {
+    "acceptedFusedPerBoundarySpanSumM": 457.51339860272174,
+    "d12PreservedPerBoundarySpanSumM": 106.93270458474751,
+    "naiveComponentSpanSumM": 564.4461031874692,
+    "displayMergedRunSpanSumM": 564.8791079633407,
+    "displayMergeBoundaryDifferenceM": 0.43300477587149544,
+    "d12PreservedIntervalUnionM": 65.68276240918715,
+    "combinedSupportedRouteSUnionM": 319.8831622291069,
+    "acceptedFusedPolylineArcM": 462.8244860280378,
+    "d12PreservedPolylineArcM": 106.94200713911992,
+    "displayCleanedPolylineArcM": 570.3743463819775,
+    "exactRemainingD12OpenLengthM": 4.58,
+    "unionVsSpanSumNote": "Per-boundary span sums count parallel PBs separately; route-s union removes overlap between boundaries on a single s-axis."
+  },
+  "drawableComponentsByGap": [
+    {
+      "gapId": "CD-10",
+      "physicalBoundaryId": "PB1",
+      "trackId": 2,
+      "precedingRunId": 11,
+      "followingRunId": 6,
+      "lastPointPreceding": {
+        "east": -51.4890097492575,
+        "north": 21.925724677034985
+      },
+      "firstPointFollowing": {
+        "east": -51.55104289806322,
+        "north": 23.390173375824887
+      },
+      "openIntervalStartS": 428.7557621001464,
+      "openIntervalEndS": 430.22150557754463,
+      "openLengthM": 1.4657434773982345,
+      "euclideanDistanceM": 1.4657619530258617,
+      "shareOneCanvasPath": false
+    },
+    {
+      "gapId": "CD-12",
+      "physicalBoundaryId": "PB1",
+      "trackId": 2,
+      "precedingRunId": 13,
+      "followingRunId": 9,
+      "lastPointPreceding": {
+        "east": -54.491869997205654,
+        "north": 91.59196652204426
+      },
+      "firstPointFollowing": {
+        "s": 500.1206905235975,
+        "d": 1.130739343279151,
+        "frameCount": 2,
+        "binKey": 250,
+        "east": -54.7572851720629,
+        "north": 93.2072956472847
+      },
+      "openIntervalStartS": 498.48122518574536,
+      "openIntervalEndS": 500.1206905235975,
+      "openLengthM": 1.6394653378521298,
+      "euclideanDistanceM": 1.6369891257716205,
+      "shareOneCanvasPath": false
+    },
+    {
+      "gapId": "CD-18",
+      "physicalBoundaryId": "PB2",
+      "trackId": 3,
+      "precedingRunId": 0,
+      "followingRunId": 1,
+      "lastPointPreceding": {
+        "east": -54.31024745142154,
+        "north": 21.793302127732822
+      },
+      "firstPointFollowing": {
+        "east": -54.39722915829964,
+        "north": 23.26631326944328
+      },
+      "openIntervalStartS": 428.7570377828136,
+      "openIntervalEndS": 430.2325151017333,
+      "openLengthM": 1.4754773189197294,
+      "euclideanDistanceM": 1.4755770535402666,
+      "shareOneCanvasPath": false
+    }
+  ]
+}

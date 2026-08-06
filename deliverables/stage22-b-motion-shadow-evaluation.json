@@ -1,0 +1,1997 @@
+{
+  "generatedAt": "2026-07-30T07:56:49.682Z",
+  "stage": "stage22-b-motion-shadow-evaluation",
+  "terminology": "Development-set shadow evaluation — not final model performance",
+  "productionUnchanged": {
+    "residualCapM": 12,
+    "note": "Production 12 m cap not modified; offline sweeps are analysis-only"
+  },
+  "inputIntegrity": {
+    "ok": true,
+    "hashes": {
+      "manualReviews": "326e81dd0a22a6c3cb8af681bccffdbddaa7b91d271998b78478981d789d01df",
+      "automaticManifest": "4b5adefe8e1ae42ad3caeeb68785203c2568e10bc6478f55fbf722b2429c6131",
+      "baselineComparison": "db2d3f9ae3c8e49aa5d2e6b88fab147e4f3145a71daf68e1202872437b8d7c9d",
+      "baselineDisagreements": "70f8d4303a75e34a30e7760dd8fdf40d8d5959523a0eb0bd0a5764b42d7d1df1",
+      "stage21ErrorAnalysis": "c2c5261358e6d469a11a3ffc9373b2acf3a02e2424ccdeffd8b2437f4a8990f3",
+      "stage21RecheckList": "9c9994197bd9d0323020ce24b40319f3b2331c04cf6bd0a87a6a8473b17b9d76"
+    },
+    "paths": {
+      "manualReviews": "deliverables\\stage20-b-motion-manual-reviews-qc-v1.json",
+      "automaticManifest": "deliverables\\stage20-b-motion-evidence-review-manifest.json",
+      "baselineComparison": "deliverables\\stage20-b-motion-baseline-comparison.json",
+      "baselineDisagreements": "deliverables\\stage20-b-motion-baseline-disagreements.json",
+      "stage21ErrorAnalysis": "deliverables\\stage21-b-motion-error-analysis.json",
+      "stage21RecheckList": "deliverables\\stage21-b-motion-manual-recheck-list.json"
+    },
+    "resolvedCount": 175,
+    "joinSummary": {
+      "unmatchedManual": [],
+      "unmatchedAutomatic": [],
+      "duplicateManualPairIds": [],
+      "duplicateAutomaticPairIds": []
+    },
+    "manualFilePreserved": true
+  },
+  "vectorCompensation": {
+    "oppositeDirectionCount": 0,
+    "inferredPoseVectorCount": 0,
+    "vectorUnavailableCount": 0,
+    "formula": "poseCompensatedTarget = targetAnchorB - targetAnchorA - (poseB - poseA); euclidean residual = |poseCompensatedTarget|",
+    "frames": "east/north metres",
+    "note": "Scalar abs(spatialM - poseDisplacementM) can hide opposite vector directions when magnitudes are similar"
+  },
+  "coordinateFrameFindings": {
+    "oppositeDirectionCount": 0,
+    "inferredPoseVectorCount": 0,
+    "vectorUnavailableCount": 0,
+    "formula": "poseCompensatedTarget = targetAnchorB - targetAnchorA - (poseB - poseA); euclidean residual = |poseCompensatedTarget|",
+    "frames": "east/north metres",
+    "note": "Scalar abs(spatialM - poseDisplacementM) can hide opposite vector directions when magnitudes are similar"
+  },
+  "candidateConfigurations": [
+    {
+      "id": "A",
+      "name": "existing_baseline_rule",
+      "description": "Production shadow: boundary gates + scalar residualAfterPoseM <= 12 m"
+    },
+    {
+      "id": "B",
+      "name": "vector_pose_compensated_anchor_only",
+      "description": "Boundary gates + Euclidean pose-compensated anchor residual <= 12 m"
+    },
+    {
+      "id": "C",
+      "name": "baseline_plus_strong_crossing",
+      "description": "Baseline accept AND NOT strong crossing evidence"
+    },
+    {
+      "id": "D",
+      "name": "vector_plus_strong_crossing",
+      "description": "Config B accept AND NOT strong crossing evidence"
+    },
+    {
+      "id": "E",
+      "name": "vector_plus_side_swap",
+      "description": "Config B accept AND NOT strong side-swap evidence"
+    },
+    {
+      "id": "F",
+      "name": "vector_plus_rank_soft",
+      "description": "Config B accept unless rank unstable AND vector residual <= 12 m (soft, not unconditional)"
+    },
+    {
+      "id": "G",
+      "name": "multi_signal_candidate",
+      "description": "Vector residual + crossing + side + soft rank + road-edge association (no unconditional rank reject)"
+    }
+  ],
+  "configResultsPrimary": [
+    {
+      "configId": "A",
+      "confusionMatrix": {
+        "tp": 142,
+        "tn": 0,
+        "fp": 11,
+        "fn": 22
+      },
+      "accuracy": {
+        "rate": 0.8114,
+        "numerator": 142,
+        "denominator": 175
+      },
+      "positivePrecision": {
+        "rate": 0.9281,
+        "numerator": 142,
+        "denominator": 153
+      },
+      "positiveRecall": {
+        "rate": 0.8659,
+        "numerator": 142,
+        "denominator": 164
+      },
+      "positiveF1": {
+        "rate": 0.8959
+      },
+      "negativePrecision": {
+        "rate": 0,
+        "numerator": 0,
+        "denominator": 22
+      },
+      "negativeRecall": {
+        "rate": 0,
+        "numerator": 0,
+        "denominator": 11
+      },
+      "negativeF1": {
+        "rate": 0
+      },
+      "balancedAccuracy": {
+        "rate": 0.4329
+      },
+      "macroF1": {
+        "rate": 0.4479
+      },
+      "classSupport": {
+        "manualPositive": 164,
+        "manualNegative": 11,
+        "totalResolved": 175
+      },
+      "metricConvention": "zero_division_equals_zero",
+      "deltaFromBaseline": {
+        "tp": 0,
+        "tn": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "correctedRecordIndices": [],
+      "newlyDamagedRecordIndices": [],
+      "truePositiveProtection": {
+        "baselineTpRetained": 142,
+        "baselineTpTotal": 142,
+        "allManualPositiveRetained": 142,
+        "allManualPositiveTotal": 164
+      }
+    },
+    {
+      "configId": "B",
+      "confusionMatrix": {
+        "tp": 158,
+        "tn": 1,
+        "fp": 10,
+        "fn": 6
+      },
+      "accuracy": {
+        "rate": 0.9086,
+        "numerator": 159,
+        "denominator": 175
+      },
+      "positivePrecision": {
+        "rate": 0.9405,
+        "numerator": 158,
+        "denominator": 168
+      },
+      "positiveRecall": {
+        "rate": 0.9634,
+        "numerator": 158,
+        "denominator": 164
+      },
+      "positiveF1": {
+        "rate": 0.9518
+      },
+      "negativePrecision": {
+        "rate": 0.1429,
+        "numerator": 1,
+        "denominator": 7
+      },
+      "negativeRecall": {
+        "rate": 0.0909,
+        "numerator": 1,
+        "denominator": 11
+      },
+      "negativeF1": {
+        "rate": 0.1111
+      },
+      "balancedAccuracy": {
+        "rate": 0.5272
+      },
+      "macroF1": {
+        "rate": 0.5315
+      },
+      "classSupport": {
+        "manualPositive": 164,
+        "manualNegative": 11,
+        "totalResolved": 175
+      },
+      "metricConvention": "zero_division_equals_zero",
+      "deltaFromBaseline": {
+        "tp": 16,
+        "tn": 1,
+        "fp": -1,
+        "fn": -16
+      },
+      "correctedRecordIndices": [
+        0,
+        1,
+        2,
+        3,
+        121,
+        123,
+        124,
+        125,
+        126,
+        128,
+        129,
+        131,
+        139,
+        140,
+        142,
+        145,
+        186,
+        187,
+        206,
+        207,
+        210
+      ],
+      "newlyDamagedRecordIndices": [
+        111,
+        112,
+        120,
+        191
+      ],
+      "truePositiveProtection": {
+        "baselineTpRetained": 138,
+        "baselineTpTotal": 142,
+        "allManualPositiveRetained": 158,
+        "allManualPositiveTotal": 164
+      }
+    },
+    {
+      "configId": "C",
+      "confusionMatrix": {
+        "tp": 142,
+        "tn": 0,
+        "fp": 11,
+        "fn": 22
+      },
+      "accuracy": {
+        "rate": 0.8114,
+        "numerator": 142,
+        "denominator": 175
+      },
+      "positivePrecision": {
+        "rate": 0.9281,
+        "numerator": 142,
+        "denominator": 153
+      },
+      "positiveRecall": {
+        "rate": 0.8659,
+        "numerator": 142,
+        "denominator": 164
+      },
+      "positiveF1": {
+        "rate": 0.8959
+      },
+      "negativePrecision": {
+        "rate": 0,
+        "numerator": 0,
+        "denominator": 22
+      },
+      "negativeRecall": {
+        "rate": 0,
+        "numerator": 0,
+        "denominator": 11
+      },
+      "negativeF1": {
+        "rate": 0
+      },
+      "balancedAccuracy": {
+        "rate": 0.4329
+      },
+      "macroF1": {
+        "rate": 0.4479
+      },
+      "classSupport": {
+        "manualPositive": 164,
+        "manualNegative": 11,
+        "totalResolved": 175
+      },
+      "metricConvention": "zero_division_equals_zero",
+      "deltaFromBaseline": {
+        "tp": 0,
+        "tn": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "correctedRecordIndices": [],
+      "newlyDamagedRecordIndices": [],
+      "truePositiveProtection": {
+        "baselineTpRetained": 142,
+        "baselineTpTotal": 142,
+        "allManualPositiveRetained": 142,
+        "allManualPositiveTotal": 164
+      }
+    },
+    {
+      "configId": "D",
+      "confusionMatrix": {
+        "tp": 158,
+        "tn": 1,
+        "fp": 10,
+        "fn": 6
+      },
+      "accuracy": {
+        "rate": 0.9086,
+        "numerator": 159,
+        "denominator": 175
+      },
+      "positivePrecision": {
+        "rate": 0.9405,
+        "numerator": 158,
+        "denominator": 168
+      },
+      "positiveRecall": {
+        "rate": 0.9634,
+        "numerator": 158,
+        "denominator": 164
+      },
+      "positiveF1": {
+        "rate": 0.9518
+      },
+      "negativePrecision": {
+        "rate": 0.1429,
+        "numerator": 1,
+        "denominator": 7
+      },
+      "negativeRecall": {
+        "rate": 0.0909,
+        "numerator": 1,
+        "denominator": 11
+      },
+      "negativeF1": {
+        "rate": 0.1111
+      },
+      "balancedAccuracy": {
+        "rate": 0.5272
+      },
+      "macroF1": {
+        "rate": 0.5315
+      },
+      "classSupport": {
+        "manualPositive": 164,
+        "manualNegative": 11,
+        "totalResolved": 175
+      },
+      "metricConvention": "zero_division_equals_zero",
+      "deltaFromBaseline": {
+        "tp": 16,
+        "tn": 1,
+        "fp": -1,
+        "fn": -16
+      },
+      "correctedRecordIndices": [
+        0,
+        1,
+        2,
+        3,
+        121,
+        123,
+        124,
+        125,
+        126,
+        128,
+        129,
+        131,
+        139,
+        140,
+        142,
+        145,
+        186,
+        187,
+        206,
+        207,
+        210
+      ],
+      "newlyDamagedRecordIndices": [
+        111,
+        112,
+        120,
+        191
+      ],
+      "truePositiveProtection": {
+        "baselineTpRetained": 138,
+        "baselineTpTotal": 142,
+        "allManualPositiveRetained": 158,
+        "allManualPositiveTotal": 164
+      }
+    },
+    {
+      "configId": "E",
+      "confusionMatrix": {
+        "tp": 158,
+        "tn": 1,
+        "fp": 10,
+        "fn": 6
+      },
+      "accuracy": {
+        "rate": 0.9086,
+        "numerator": 159,
+        "denominator": 175
+      },
+      "positivePrecision": {
+        "rate": 0.9405,
+        "numerator": 158,
+        "denominator": 168
+      },
+      "positiveRecall": {
+        "rate": 0.9634,
+        "numerator": 158,
+        "denominator": 164
+      },
+      "positiveF1": {
+        "rate": 0.9518
+      },
+      "negativePrecision": {
+        "rate": 0.1429,
+        "numerator": 1,
+        "denominator": 7
+      },
+      "negativeRecall": {
+        "rate": 0.0909,
+        "numerator": 1,
+        "denominator": 11
+      },
+      "negativeF1": {
+        "rate": 0.1111
+      },
+      "balancedAccuracy": {
+        "rate": 0.5272
+      },
+      "macroF1": {
+        "rate": 0.5315
+      },
+      "classSupport": {
+        "manualPositive": 164,
+        "manualNegative": 11,
+        "totalResolved": 175
+      },
+      "metricConvention": "zero_division_equals_zero",
+      "deltaFromBaseline": {
+        "tp": 16,
+        "tn": 1,
+        "fp": -1,
+        "fn": -16
+      },
+      "correctedRecordIndices": [
+        0,
+        1,
+        2,
+        3,
+        121,
+        123,
+        124,
+        125,
+        126,
+        128,
+        129,
+        131,
+        139,
+        140,
+        142,
+        145,
+        186,
+        187,
+        206,
+        207,
+        210
+      ],
+      "newlyDamagedRecordIndices": [
+        111,
+        112,
+        120,
+        191
+      ],
+      "truePositiveProtection": {
+        "baselineTpRetained": 138,
+        "baselineTpTotal": 142,
+        "allManualPositiveRetained": 158,
+        "allManualPositiveTotal": 164
+      }
+    },
+    {
+      "configId": "F",
+      "confusionMatrix": {
+        "tp": 127,
+        "tn": 10,
+        "fp": 1,
+        "fn": 37
+      },
+      "accuracy": {
+        "rate": 0.7829,
+        "numerator": 137,
+        "denominator": 175
+      },
+      "positivePrecision": {
+        "rate": 0.9922,
+        "numerator": 127,
+        "denominator": 128
+      },
+      "positiveRecall": {
+        "rate": 0.7744,
+        "numerator": 127,
+        "denominator": 164
+      },
+      "positiveF1": {
+        "rate": 0.8699
+      },
+      "negativePrecision": {
+        "rate": 0.2128,
+        "numerator": 10,
+        "denominator": 47
+      },
+      "negativeRecall": {
+        "rate": 0.9091,
+        "numerator": 10,
+        "denominator": 11
+      },
+      "negativeF1": {
+        "rate": 0.3448
+      },
+      "balancedAccuracy": {
+        "rate": 0.8417
+      },
+      "macroF1": {
+        "rate": 0.6073
+      },
+      "classSupport": {
+        "manualPositive": 164,
+        "manualNegative": 11,
+        "totalResolved": 175
+      },
+      "metricConvention": "zero_division_equals_zero",
+      "deltaFromBaseline": {
+        "tp": -15,
+        "tn": 10,
+        "fp": -10,
+        "fn": 15
+      },
+      "correctedRecordIndices": [
+        0,
+        1,
+        2,
+        3,
+        22,
+        25,
+        56,
+        75,
+        92,
+        98,
+        121,
+        123,
+        124,
+        125,
+        126,
+        128,
+        129,
+        131,
+        132,
+        142,
+        145,
+        170,
+        174,
+        206,
+        210
+      ],
+      "newlyDamagedRecordIndices": [
+        8,
+        9,
+        10,
+        15,
+        16,
+        30,
+        34,
+        35,
+        36,
+        38,
+        40,
+        67,
+        72,
+        76,
+        102,
+        111,
+        112,
+        113,
+        114,
+        117,
+        119,
+        120,
+        172,
+        173,
+        191,
+        193,
+        194,
+        198,
+        203,
+        205
+      ],
+      "truePositiveProtection": {
+        "baselineTpRetained": 112,
+        "baselineTpTotal": 142,
+        "allManualPositiveRetained": 127,
+        "allManualPositiveTotal": 164
+      }
+    },
+    {
+      "configId": "G",
+      "confusionMatrix": {
+        "tp": 127,
+        "tn": 10,
+        "fp": 1,
+        "fn": 37
+      },
+      "accuracy": {
+        "rate": 0.7829,
+        "numerator": 137,
+        "denominator": 175
+      },
+      "positivePrecision": {
+        "rate": 0.9922,
+        "numerator": 127,
+        "denominator": 128
+      },
+      "positiveRecall": {
+        "rate": 0.7744,
+        "numerator": 127,
+        "denominator": 164
+      },
+      "positiveF1": {
+        "rate": 0.8699
+      },
+      "negativePrecision": {
+        "rate": 0.2128,
+        "numerator": 10,
+        "denominator": 47
+      },
+      "negativeRecall": {
+        "rate": 0.9091,
+        "numerator": 10,
+        "denominator": 11
+      },
+      "negativeF1": {
+        "rate": 0.3448
+      },
+      "balancedAccuracy": {
+        "rate": 0.8417
+      },
+      "macroF1": {
+        "rate": 0.6073
+      },
+      "classSupport": {
+        "manualPositive": 164,
+        "manualNegative": 11,
+        "totalResolved": 175
+      },
+      "metricConvention": "zero_division_equals_zero",
+      "deltaFromBaseline": {
+        "tp": -15,
+        "tn": 10,
+        "fp": -10,
+        "fn": 15
+      },
+      "correctedRecordIndices": [
+        0,
+        1,
+        2,
+        3,
+        22,
+        25,
+        56,
+        75,
+        92,
+        98,
+        121,
+        123,
+        124,
+        125,
+        126,
+        128,
+        129,
+        131,
+        132,
+        142,
+        145,
+        170,
+        174,
+        206,
+        210
+      ],
+      "newlyDamagedRecordIndices": [
+        8,
+        9,
+        10,
+        15,
+        16,
+        30,
+        34,
+        35,
+        36,
+        38,
+        40,
+        67,
+        72,
+        76,
+        102,
+        111,
+        112,
+        113,
+        114,
+        117,
+        119,
+        120,
+        172,
+        173,
+        191,
+        193,
+        194,
+        198,
+        203,
+        205
+      ],
+      "truePositiveProtection": {
+        "baselineTpRetained": 112,
+        "baselineTpTotal": 142,
+        "allManualPositiveRetained": 127,
+        "allManualPositiveTotal": 164
+      }
+    }
+  ],
+  "configResultsExcludingRecord207": [
+    {
+      "configId": "A",
+      "confusionMatrix": {
+        "tp": 142,
+        "tn": 0,
+        "fp": 11,
+        "fn": 21
+      },
+      "accuracy": {
+        "rate": 0.8161,
+        "numerator": 142,
+        "denominator": 174
+      },
+      "positivePrecision": {
+        "rate": 0.9281,
+        "numerator": 142,
+        "denominator": 153
+      },
+      "positiveRecall": {
+        "rate": 0.8712,
+        "numerator": 142,
+        "denominator": 163
+      },
+      "positiveF1": {
+        "rate": 0.8987
+      },
+      "negativePrecision": {
+        "rate": 0,
+        "numerator": 0,
+        "denominator": 21
+      },
+      "negativeRecall": {
+        "rate": 0,
+        "numerator": 0,
+        "denominator": 11
+      },
+      "negativeF1": {
+        "rate": 0
+      },
+      "balancedAccuracy": {
+        "rate": 0.4356
+      },
+      "macroF1": {
+        "rate": 0.4494
+      },
+      "classSupport": {
+        "manualPositive": 163,
+        "manualNegative": 11,
+        "totalResolved": 174
+      },
+      "metricConvention": "zero_division_equals_zero",
+      "deltaFromBaseline": {
+        "tp": 0,
+        "tn": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "correctedRecordIndices": [],
+      "newlyDamagedRecordIndices": [],
+      "truePositiveProtection": {
+        "baselineTpRetained": 142,
+        "baselineTpTotal": 142,
+        "allManualPositiveRetained": 142,
+        "allManualPositiveTotal": 163
+      }
+    },
+    {
+      "configId": "B",
+      "confusionMatrix": {
+        "tp": 157,
+        "tn": 1,
+        "fp": 10,
+        "fn": 6
+      },
+      "accuracy": {
+        "rate": 0.908,
+        "numerator": 158,
+        "denominator": 174
+      },
+      "positivePrecision": {
+        "rate": 0.9401,
+        "numerator": 157,
+        "denominator": 167
+      },
+      "positiveRecall": {
+        "rate": 0.9632,
+        "numerator": 157,
+        "denominator": 163
+      },
+      "positiveF1": {
+        "rate": 0.9515
+      },
+      "negativePrecision": {
+        "rate": 0.1429,
+        "numerator": 1,
+        "denominator": 7
+      },
+      "negativeRecall": {
+        "rate": 0.0909,
+        "numerator": 1,
+        "denominator": 11
+      },
+      "negativeF1": {
+        "rate": 0.1111
+      },
+      "balancedAccuracy": {
+        "rate": 0.527
+      },
+      "macroF1": {
+        "rate": 0.5313
+      },
+      "classSupport": {
+        "manualPositive": 163,
+        "manualNegative": 11,
+        "totalResolved": 174
+      },
+      "metricConvention": "zero_division_equals_zero",
+      "deltaFromBaseline": {
+        "tp": 15,
+        "tn": 1,
+        "fp": -1,
+        "fn": -15
+      },
+      "correctedRecordIndices": [
+        0,
+        1,
+        2,
+        3,
+        121,
+        123,
+        124,
+        125,
+        126,
+        128,
+        129,
+        131,
+        139,
+        140,
+        142,
+        145,
+        186,
+        187,
+        206,
+        210
+      ],
+      "newlyDamagedRecordIndices": [
+        111,
+        112,
+        120,
+        191
+      ],
+      "truePositiveProtection": {
+        "baselineTpRetained": 138,
+        "baselineTpTotal": 142,
+        "allManualPositiveRetained": 157,
+        "allManualPositiveTotal": 163
+      }
+    },
+    {
+      "configId": "C",
+      "confusionMatrix": {
+        "tp": 142,
+        "tn": 0,
+        "fp": 11,
+        "fn": 21
+      },
+      "accuracy": {
+        "rate": 0.8161,
+        "numerator": 142,
+        "denominator": 174
+      },
+      "positivePrecision": {
+        "rate": 0.9281,
+        "numerator": 142,
+        "denominator": 153
+      },
+      "positiveRecall": {
+        "rate": 0.8712,
+        "numerator": 142,
+        "denominator": 163
+      },
+      "positiveF1": {
+        "rate": 0.8987
+      },
+      "negativePrecision": {
+        "rate": 0,
+        "numerator": 0,
+        "denominator": 21
+      },
+      "negativeRecall": {
+        "rate": 0,
+        "numerator": 0,
+        "denominator": 11
+      },
+      "negativeF1": {
+        "rate": 0
+      },
+      "balancedAccuracy": {
+        "rate": 0.4356
+      },
+      "macroF1": {
+        "rate": 0.4494
+      },
+      "classSupport": {
+        "manualPositive": 163,
+        "manualNegative": 11,
+        "totalResolved": 174
+      },
+      "metricConvention": "zero_division_equals_zero",
+      "deltaFromBaseline": {
+        "tp": 0,
+        "tn": 0,
+        "fp": 0,
+        "fn": 0
+      },
+      "correctedRecordIndices": [],
+      "newlyDamagedRecordIndices": [],
+      "truePositiveProtection": {
+        "baselineTpRetained": 142,
+        "baselineTpTotal": 142,
+        "allManualPositiveRetained": 142,
+        "allManualPositiveTotal": 163
+      }
+    },
+    {
+      "configId": "D",
+      "confusionMatrix": {
+        "tp": 157,
+        "tn": 1,
+        "fp": 10,
+        "fn": 6
+      },
+      "accuracy": {
+        "rate": 0.908,
+        "numerator": 158,
+        "denominator": 174
+      },
+      "positivePrecision": {
+        "rate": 0.9401,
+        "numerator": 157,
+        "denominator": 167
+      },
+      "positiveRecall": {
+        "rate": 0.9632,
+        "numerator": 157,
+        "denominator": 163
+      },
+      "positiveF1": {
+        "rate": 0.9515
+      },
+      "negativePrecision": {
+        "rate": 0.1429,
+        "numerator": 1,
+        "denominator": 7
+      },
+      "negativeRecall": {
+        "rate": 0.0909,
+        "numerator": 1,
+        "denominator": 11
+      },
+      "negativeF1": {
+        "rate": 0.1111
+      },
+      "balancedAccuracy": {
+        "rate": 0.527
+      },
+      "macroF1": {
+        "rate": 0.5313
+      },
+      "classSupport": {
+        "manualPositive": 163,
+        "manualNegative": 11,
+        "totalResolved": 174
+      },
+      "metricConvention": "zero_division_equals_zero",
+      "deltaFromBaseline": {
+        "tp": 15,
+        "tn": 1,
+        "fp": -1,
+        "fn": -15
+      },
+      "correctedRecordIndices": [
+        0,
+        1,
+        2,
+        3,
+        121,
+        123,
+        124,
+        125,
+        126,
+        128,
+        129,
+        131,
+        139,
+        140,
+        142,
+        145,
+        186,
+        187,
+        206,
+        210
+      ],
+      "newlyDamagedRecordIndices": [
+        111,
+        112,
+        120,
+        191
+      ],
+      "truePositiveProtection": {
+        "baselineTpRetained": 138,
+        "baselineTpTotal": 142,
+        "allManualPositiveRetained": 157,
+        "allManualPositiveTotal": 163
+      }
+    },
+    {
+      "configId": "E",
+      "confusionMatrix": {
+        "tp": 157,
+        "tn": 1,
+        "fp": 10,
+        "fn": 6
+      },
+      "accuracy": {
+        "rate": 0.908,
+        "numerator": 158,
+        "denominator": 174
+      },
+      "positivePrecision": {
+        "rate": 0.9401,
+        "numerator": 157,
+        "denominator": 167
+      },
+      "positiveRecall": {
+        "rate": 0.9632,
+        "numerator": 157,
+        "denominator": 163
+      },
+      "positiveF1": {
+        "rate": 0.9515
+      },
+      "negativePrecision": {
+        "rate": 0.1429,
+        "numerator": 1,
+        "denominator": 7
+      },
+      "negativeRecall": {
+        "rate": 0.0909,
+        "numerator": 1,
+        "denominator": 11
+      },
+      "negativeF1": {
+        "rate": 0.1111
+      },
+      "balancedAccuracy": {
+        "rate": 0.527
+      },
+      "macroF1": {
+        "rate": 0.5313
+      },
+      "classSupport": {
+        "manualPositive": 163,
+        "manualNegative": 11,
+        "totalResolved": 174
+      },
+      "metricConvention": "zero_division_equals_zero",
+      "deltaFromBaseline": {
+        "tp": 15,
+        "tn": 1,
+        "fp": -1,
+        "fn": -15
+      },
+      "correctedRecordIndices": [
+        0,
+        1,
+        2,
+        3,
+        121,
+        123,
+        124,
+        125,
+        126,
+        128,
+        129,
+        131,
+        139,
+        140,
+        142,
+        145,
+        186,
+        187,
+        206,
+        210
+      ],
+      "newlyDamagedRecordIndices": [
+        111,
+        112,
+        120,
+        191
+      ],
+      "truePositiveProtection": {
+        "baselineTpRetained": 138,
+        "baselineTpTotal": 142,
+        "allManualPositiveRetained": 157,
+        "allManualPositiveTotal": 163
+      }
+    },
+    {
+      "configId": "F",
+      "confusionMatrix": {
+        "tp": 127,
+        "tn": 10,
+        "fp": 1,
+        "fn": 36
+      },
+      "accuracy": {
+        "rate": 0.7874,
+        "numerator": 137,
+        "denominator": 174
+      },
+      "positivePrecision": {
+        "rate": 0.9922,
+        "numerator": 127,
+        "denominator": 128
+      },
+      "positiveRecall": {
+        "rate": 0.7791,
+        "numerator": 127,
+        "denominator": 163
+      },
+      "positiveF1": {
+        "rate": 0.8729
+      },
+      "negativePrecision": {
+        "rate": 0.2174,
+        "numerator": 10,
+        "denominator": 46
+      },
+      "negativeRecall": {
+        "rate": 0.9091,
+        "numerator": 10,
+        "denominator": 11
+      },
+      "negativeF1": {
+        "rate": 0.3509
+      },
+      "balancedAccuracy": {
+        "rate": 0.8441
+      },
+      "macroF1": {
+        "rate": 0.6119
+      },
+      "classSupport": {
+        "manualPositive": 163,
+        "manualNegative": 11,
+        "totalResolved": 174
+      },
+      "metricConvention": "zero_division_equals_zero",
+      "deltaFromBaseline": {
+        "tp": -15,
+        "tn": 10,
+        "fp": -10,
+        "fn": 15
+      },
+      "correctedRecordIndices": [
+        0,
+        1,
+        2,
+        3,
+        22,
+        25,
+        56,
+        75,
+        92,
+        98,
+        121,
+        123,
+        124,
+        125,
+        126,
+        128,
+        129,
+        131,
+        132,
+        142,
+        145,
+        170,
+        174,
+        206,
+        210
+      ],
+      "newlyDamagedRecordIndices": [
+        8,
+        9,
+        10,
+        15,
+        16,
+        30,
+        34,
+        35,
+        36,
+        38,
+        40,
+        67,
+        72,
+        76,
+        102,
+        111,
+        112,
+        113,
+        114,
+        117,
+        119,
+        120,
+        172,
+        173,
+        191,
+        193,
+        194,
+        198,
+        203,
+        205
+      ],
+      "truePositiveProtection": {
+        "baselineTpRetained": 112,
+        "baselineTpTotal": 142,
+        "allManualPositiveRetained": 127,
+        "allManualPositiveTotal": 163
+      }
+    },
+    {
+      "configId": "G",
+      "confusionMatrix": {
+        "tp": 127,
+        "tn": 10,
+        "fp": 1,
+        "fn": 36
+      },
+      "accuracy": {
+        "rate": 0.7874,
+        "numerator": 137,
+        "denominator": 174
+      },
+      "positivePrecision": {
+        "rate": 0.9922,
+        "numerator": 127,
+        "denominator": 128
+      },
+      "positiveRecall": {
+        "rate": 0.7791,
+        "numerator": 127,
+        "denominator": 163
+      },
+      "positiveF1": {
+        "rate": 0.8729
+      },
+      "negativePrecision": {
+        "rate": 0.2174,
+        "numerator": 10,
+        "denominator": 46
+      },
+      "negativeRecall": {
+        "rate": 0.9091,
+        "numerator": 10,
+        "denominator": 11
+      },
+      "negativeF1": {
+        "rate": 0.3509
+      },
+      "balancedAccuracy": {
+        "rate": 0.8441
+      },
+      "macroF1": {
+        "rate": 0.6119
+      },
+      "classSupport": {
+        "manualPositive": 163,
+        "manualNegative": 11,
+        "totalResolved": 174
+      },
+      "metricConvention": "zero_division_equals_zero",
+      "deltaFromBaseline": {
+        "tp": -15,
+        "tn": 10,
+        "fp": -10,
+        "fn": 15
+      },
+      "correctedRecordIndices": [
+        0,
+        1,
+        2,
+        3,
+        22,
+        25,
+        56,
+        75,
+        92,
+        98,
+        121,
+        123,
+        124,
+        125,
+        126,
+        128,
+        129,
+        131,
+        132,
+        142,
+        145,
+        170,
+        174,
+        206,
+        210
+      ],
+      "newlyDamagedRecordIndices": [
+        8,
+        9,
+        10,
+        15,
+        16,
+        30,
+        34,
+        35,
+        36,
+        38,
+        40,
+        67,
+        72,
+        76,
+        102,
+        111,
+        112,
+        113,
+        114,
+        117,
+        119,
+        120,
+        172,
+        173,
+        191,
+        193,
+        194,
+        198,
+        203,
+        205
+      ],
+      "truePositiveProtection": {
+        "baselineTpRetained": 112,
+        "baselineTpTotal": 142,
+        "allManualPositiveRetained": 127,
+        "allManualPositiveTotal": 163
+      }
+    }
+  ],
+  "record207Sensitivity": {
+    "recordIndex": 207,
+    "includedInPrimary": true,
+    "excludedFromSensitivity": false,
+    "metricDelta": {
+      "A": {
+        "accuracyDelta": 0.0047,
+        "macroF1Delta": 0.0015,
+        "correctedCountDelta": 0,
+        "damagedCountDelta": 0
+      },
+      "B": {
+        "accuracyDelta": -0.0006,
+        "macroF1Delta": -0.0002,
+        "correctedCountDelta": -1,
+        "damagedCountDelta": 0
+      },
+      "C": {
+        "accuracyDelta": 0.0047,
+        "macroF1Delta": 0.0015,
+        "correctedCountDelta": 0,
+        "damagedCountDelta": 0
+      },
+      "D": {
+        "accuracyDelta": -0.0006,
+        "macroF1Delta": -0.0002,
+        "correctedCountDelta": -1,
+        "damagedCountDelta": 0
+      },
+      "E": {
+        "accuracyDelta": -0.0006,
+        "macroF1Delta": -0.0002,
+        "correctedCountDelta": -1,
+        "damagedCountDelta": 0
+      },
+      "F": {
+        "accuracyDelta": 0.0045,
+        "macroF1Delta": 0.0046,
+        "correctedCountDelta": 0,
+        "damagedCountDelta": 0
+      },
+      "G": {
+        "accuracyDelta": 0.0045,
+        "macroF1Delta": 0.0046,
+        "correctedCountDelta": 0,
+        "damagedCountDelta": 0
+      }
+    },
+    "labelUnchanged": true
+  },
+  "offlineThresholdSweep": {
+    "testedValuesM": [
+      3,
+      5,
+      8,
+      10,
+      12,
+      15,
+      20
+    ],
+    "notApproved": true,
+    "results": [
+      {
+        "thresholdM": 3,
+        "metrics": {
+          "confusionMatrix": {
+            "tp": 151,
+            "tn": 9,
+            "fp": 2,
+            "fn": 13
+          },
+          "accuracy": {
+            "rate": 0.9143,
+            "numerator": 160,
+            "denominator": 175
+          },
+          "positivePrecision": {
+            "rate": 0.9869,
+            "numerator": 151,
+            "denominator": 153
+          },
+          "positiveRecall": {
+            "rate": 0.9207,
+            "numerator": 151,
+            "denominator": 164
+          },
+          "positiveF1": {
+            "rate": 0.9527
+          },
+          "negativePrecision": {
+            "rate": 0.4091,
+            "numerator": 9,
+            "denominator": 22
+          },
+          "negativeRecall": {
+            "rate": 0.8182,
+            "numerator": 9,
+            "denominator": 11
+          },
+          "negativeF1": {
+            "rate": 0.5455
+          },
+          "balancedAccuracy": {
+            "rate": 0.8695
+          },
+          "macroF1": {
+            "rate": 0.7491
+          },
+          "classSupport": {
+            "manualPositive": 164,
+            "manualNegative": 11,
+            "totalResolved": 175
+          },
+          "metricConvention": "zero_division_equals_zero"
+        },
+        "notApproved": true
+      },
+      {
+        "thresholdM": 5,
+        "metrics": {
+          "confusionMatrix": {
+            "tp": 158,
+            "tn": 1,
+            "fp": 10,
+            "fn": 6
+          },
+          "accuracy": {
+            "rate": 0.9086,
+            "numerator": 159,
+            "denominator": 175
+          },
+          "positivePrecision": {
+            "rate": 0.9405,
+            "numerator": 158,
+            "denominator": 168
+          },
+          "positiveRecall": {
+            "rate": 0.9634,
+            "numerator": 158,
+            "denominator": 164
+          },
+          "positiveF1": {
+            "rate": 0.9518
+          },
+          "negativePrecision": {
+            "rate": 0.1429,
+            "numerator": 1,
+            "denominator": 7
+          },
+          "negativeRecall": {
+            "rate": 0.0909,
+            "numerator": 1,
+            "denominator": 11
+          },
+          "negativeF1": {
+            "rate": 0.1111
+          },
+          "balancedAccuracy": {
+            "rate": 0.5272
+          },
+          "macroF1": {
+            "rate": 0.5315
+          },
+          "classSupport": {
+            "manualPositive": 164,
+            "manualNegative": 11,
+            "totalResolved": 175
+          },
+          "metricConvention": "zero_division_equals_zero"
+        },
+        "notApproved": true
+      },
+      {
+        "thresholdM": 8,
+        "metrics": {
+          "confusionMatrix": {
+            "tp": 158,
+            "tn": 1,
+            "fp": 10,
+            "fn": 6
+          },
+          "accuracy": {
+            "rate": 0.9086,
+            "numerator": 159,
+            "denominator": 175
+          },
+          "positivePrecision": {
+            "rate": 0.9405,
+            "numerator": 158,
+            "denominator": 168
+          },
+          "positiveRecall": {
+            "rate": 0.9634,
+            "numerator": 158,
+            "denominator": 164
+          },
+          "positiveF1": {
+            "rate": 0.9518
+          },
+          "negativePrecision": {
+            "rate": 0.1429,
+            "numerator": 1,
+            "denominator": 7
+          },
+          "negativeRecall": {
+            "rate": 0.0909,
+            "numerator": 1,
+            "denominator": 11
+          },
+          "negativeF1": {
+            "rate": 0.1111
+          },
+          "balancedAccuracy": {
+            "rate": 0.5272
+          },
+          "macroF1": {
+            "rate": 0.5315
+          },
+          "classSupport": {
+            "manualPositive": 164,
+            "manualNegative": 11,
+            "totalResolved": 175
+          },
+          "metricConvention": "zero_division_equals_zero"
+        },
+        "notApproved": true
+      },
+      {
+        "thresholdM": 10,
+        "metrics": {
+          "confusionMatrix": {
+            "tp": 158,
+            "tn": 1,
+            "fp": 10,
+            "fn": 6
+          },
+          "accuracy": {
+            "rate": 0.9086,
+            "numerator": 159,
+            "denominator": 175
+          },
+          "positivePrecision": {
+            "rate": 0.9405,
+            "numerator": 158,
+            "denominator": 168
+          },
+          "positiveRecall": {
+            "rate": 0.9634,
+            "numerator": 158,
+            "denominator": 164
+          },
+          "positiveF1": {
+            "rate": 0.9518
+          },
+          "negativePrecision": {
+            "rate": 0.1429,
+            "numerator": 1,
+            "denominator": 7
+          },
+          "negativeRecall": {
+            "rate": 0.0909,
+            "numerator": 1,
+            "denominator": 11
+          },
+          "negativeF1": {
+            "rate": 0.1111
+          },
+          "balancedAccuracy": {
+            "rate": 0.5272
+          },
+          "macroF1": {
+            "rate": 0.5315
+          },
+          "classSupport": {
+            "manualPositive": 164,
+            "manualNegative": 11,
+            "totalResolved": 175
+          },
+          "metricConvention": "zero_division_equals_zero"
+        },
+        "notApproved": true
+      },
+      {
+        "thresholdM": 12,
+        "metrics": {
+          "confusionMatrix": {
+            "tp": 158,
+            "tn": 1,
+            "fp": 10,
+            "fn": 6
+          },
+          "accuracy": {
+            "rate": 0.9086,
+            "numerator": 159,
+            "denominator": 175
+          },
+          "positivePrecision": {
+            "rate": 0.9405,
+            "numerator": 158,
+            "denominator": 168
+          },
+          "positiveRecall": {
+            "rate": 0.9634,
+            "numerator": 158,
+            "denominator": 164
+          },
+          "positiveF1": {
+            "rate": 0.9518
+          },
+          "negativePrecision": {
+            "rate": 0.1429,
+            "numerator": 1,
+            "denominator": 7
+          },
+          "negativeRecall": {
+            "rate": 0.0909,
+            "numerator": 1,
+            "denominator": 11
+          },
+          "negativeF1": {
+            "rate": 0.1111
+          },
+          "balancedAccuracy": {
+            "rate": 0.5272
+          },
+          "macroF1": {
+            "rate": 0.5315
+          },
+          "classSupport": {
+            "manualPositive": 164,
+            "manualNegative": 11,
+            "totalResolved": 175
+          },
+          "metricConvention": "zero_division_equals_zero"
+        },
+        "notApproved": true
+      },
+      {
+        "thresholdM": 15,
+        "metrics": {
+          "confusionMatrix": {
+            "tp": 158,
+            "tn": 1,
+            "fp": 10,
+            "fn": 6
+          },
+          "accuracy": {
+            "rate": 0.9086,
+            "numerator": 159,
+            "denominator": 175
+          },
+          "positivePrecision": {
+            "rate": 0.9405,
+            "numerator": 158,
+            "denominator": 168
+          },
+          "positiveRecall": {
+            "rate": 0.9634,
+            "numerator": 158,
+            "denominator": 164
+          },
+          "positiveF1": {
+            "rate": 0.9518
+          },
+          "negativePrecision": {
+            "rate": 0.1429,
+            "numerator": 1,
+            "denominator": 7
+          },
+          "negativeRecall": {
+            "rate": 0.0909,
+            "numerator": 1,
+            "denominator": 11
+          },
+          "negativeF1": {
+            "rate": 0.1111
+          },
+          "balancedAccuracy": {
+            "rate": 0.5272
+          },
+          "macroF1": {
+            "rate": 0.5315
+          },
+          "classSupport": {
+            "manualPositive": 164,
+            "manualNegative": 11,
+            "totalResolved": 175
+          },
+          "metricConvention": "zero_division_equals_zero"
+        },
+        "notApproved": true
+      },
+      {
+        "thresholdM": 20,
+        "metrics": {
+          "confusionMatrix": {
+            "tp": 159,
+            "tn": 1,
+            "fp": 10,
+            "fn": 5
+          },
+          "accuracy": {
+            "rate": 0.9143,
+            "numerator": 160,
+            "denominator": 175
+          },
+          "positivePrecision": {
+            "rate": 0.9408,
+            "numerator": 159,
+            "denominator": 169
+          },
+          "positiveRecall": {
+            "rate": 0.9695,
+            "numerator": 159,
+            "denominator": 164
+          },
+          "positiveF1": {
+            "rate": 0.955
+          },
+          "negativePrecision": {
+            "rate": 0.1667,
+            "numerator": 1,
+            "denominator": 6
+          },
+          "negativeRecall": {
+            "rate": 0.0909,
+            "numerator": 1,
+            "denominator": 11
+          },
+          "negativeF1": {
+            "rate": 0.1176
+          },
+          "balancedAccuracy": {
+            "rate": 0.5302
+          },
+          "macroF1": {
+            "rate": 0.5363
+          },
+          "classSupport": {
+            "manualPositive": 164,
+            "manualNegative": 11,
+            "totalResolved": 175
+          },
+          "metricConvention": "zero_division_equals_zero"
+        },
+        "notApproved": true
+      }
+    ]
+  },
+  "rankSoftSignalImpact": {
+    "fixes": [
+      0,
+      1,
+      2,
+      3,
+      22,
+      25,
+      56,
+      75,
+      92,
+      98,
+      121,
+      123,
+      124,
+      125,
+      126,
+      128,
+      129,
+      131,
+      132,
+      142,
+      145,
+      170,
+      174,
+      206,
+      210
+    ],
+    "damages": [
+      8,
+      9,
+      10,
+      15,
+      16,
+      30,
+      34,
+      35,
+      36,
+      38,
+      40,
+      67,
+      72,
+      76,
+      102,
+      111,
+      112,
+      113,
+      114,
+      117,
+      119,
+      120,
+      172,
+      173,
+      191,
+      193,
+      194,
+      198,
+      203,
+      205
+    ]
+  },
+  "recommendation": {
+    "decision": "proceed_to_limited_implementation",
+    "rationale": "Config B shows shadow improvement without catastrophic TP loss",
+    "bestCandidate": "B",
+    "evidence": {
+      "netCorrectImprovement": 17,
+      "baselineCorrect": 142,
+      "candidateCorrect": 159,
+      "corrected": 21,
+      "damaged": 4,
+      "rankImpact": {
+        "fixes": [
+          0,
+          1,
+          2,
+          3,
+          22,
+          25,
+          56,
+          75,
+          92,
+          98,
+          121,
+          123,
+          124,
+          125,
+          126,
+          128,
+          129,
+          131,
+          132,
+          142,
+          145,
+          170,
+          174,
+          206,
+          210
+        ],
+        "damages": [
+          8,
+          9,
+          10,
+          15,
+          16,
+          30,
+          34,
+          35,
+          36,
+          38,
+          40,
+          67,
+          72,
+          76,
+          102,
+          111,
+          112,
+          113,
+          114,
+          117,
+          119,
+          120,
+          172,
+          173,
+          191,
+          193,
+          194,
+          198,
+          203,
+          205
+        ]
+      }
+    }
+  },
+  "overfittingGuard": {
+    "evaluatedAcrossAllResolved": 175,
+    "notTunedOnDisagreementsOnly": true,
+    "truePositiveBehaviour": {
+      "baselineTpRetained": 142,
+      "baselineTpTotal": 142,
+      "allManualPositiveRetained": 142,
+      "allManualPositiveTotal": 164
+    }
+  }
+}

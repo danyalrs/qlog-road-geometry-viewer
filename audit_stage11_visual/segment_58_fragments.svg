@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+<rect width="100%" height="100%" fill="#111"/>
+<text x="12" y="24" fill="#fff" font-size="14">Segment 58 — 6 polygons (v10 0)</text>
+<path d="M196.8,33.2 L200.1,33.6 L200.5,34.0 L202.3,33.7 L205.9,34.2 L208.0,35.0 L208.4,35.1 L209.5,34.1 L207.7,32.5 L206.3,30.7 L206.0,29.7 L205.9,32.1 L201.1,48.9 L188.8,76.1 L173.7,115.6 L157.6,162.0 L139.1,215.6 L120.5,272.3 L100.5,331.1 L84.0,391.2 L76.2,452.0 L106.9,509.7 L177.6,560.1 L284.2,601.3 L408.4,632.9 L547.0,660.2 L692.5,688.3 L831.6,713.7 L981.5,742.4 L1125.5,770.3" fill="none" stroke="#888" stroke-width="1.5" stroke-dasharray="4,3"/>
+<path d="M203.8,86.2 L202.3,90.1 L200.9,94.1 L199.6,98.0 L152.8,95.1 L153.9,91.2 L155.3,87.3 L156.8,83.4 Z" fill="#e6194b55" stroke="#e6194b" stroke-width="1.2"/>
+<text x="203.8" y="86.2" fill="#e6194b" font-size="10">f0</text>
+<line x1="199.56030692396197" y1="97.97748112359432" x2="147.528269677059" y2="224.77777581937812" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="173.5" y="161.4" fill="#ff0" font-size="9">gap 65.0m</text>
+<path d="M147.5,224.8 L146.4,228.7 L145.3,232.6 L110.0,230.8 L111.1,226.9 L112.2,222.9 Z" fill="#3cb44b55" stroke="#3cb44b" stroke-width="1.2"/>
+<text x="147.5" y="224.8" fill="#3cb44b" font-size="10">f1</text>
+<line x1="145.27843275125926" y1="232.64000111808218" x2="133.97613563135386" y2="268.95534983576545" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="139.6" y="250.8" fill="#ff0" font-size="9">gap 18.5m</text>
+<path d="M134.0,269.0 L129.5,272.7 L128.1,276.6 L96.4,274.9 L97.8,271.1 L99.7,267.2 Z" fill="#4363d855" stroke="#4363d8" stroke-width="1.2"/>
+<text x="134.0" y="269.0" fill="#4363d8" font-size="10">f2</text>
+<line x1="128.0831992082885" y1="276.6432267231378" x2="124.20144103573575" y2="288.26288790909757" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="126.1" y="282.5" fill="#ff0" font-size="9">gap 5.9m</text>
+<path d="M124.2,288.3 L122.9,292.2 L121.6,296.1 L90.2,294.4 L91.5,290.5 L92.7,286.6 Z" fill="#f5823155" stroke="#f58231" stroke-width="1.2"/>
+<text x="124.2" y="288.3" fill="#f58231" font-size="10">f3</text>
+<line x1="121.57813263930369" y1="296.10565517158625" x2="117.29276912302235" y2="332.0027341328726" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="119.4" y="314.1" fill="#ff0" font-size="9">gap 18.1m</text>
+<path d="M117.3,332.0 L107.9,335.4 L106.6,339.3 L105.3,343.2 L74.5,341.9 L75.7,338.0 L77.0,334.1 L81.2,330.1 Z" fill="#911eb455" stroke="#911eb4" stroke-width="1.2"/>
+<text x="117.3" y="332.0" fill="#911eb4" font-size="10">f4</text>
+<line x1="105.29124459798079" y1="343.24736848914023" x2="699.9647121964227" y2="682.2285978830389" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="402.6" y="512.7" fill="#ff0" font-size="9">gap 237.6m</text>
+<path d="M700.0,682.2 L709.6,683.0 L719.6,683.8 L728.8,685.3 L737.9,686.9 L717.6,704.5 L708.6,702.9 L699.6,701.2 L690.6,699.5 L681.0,697.7 Z" fill="#42d4f455" stroke="#42d4f4" stroke-width="1.2"/>
+<text x="700.0" y="682.2" fill="#42d4f4" font-size="10">f5</text>
+</svg>

@@ -1,0 +1,1 @@
+{"insufficientEvidence":{"detail":{"no_valid_cross_pass_candidates_in_dataset":true},"reason":"insufficient_cross_pass_evidence"},"intervalId":"0:0:3:interval:0:0:3:6:run:0:0:0:3:5:run:0:25.1:74.5","partition":{"numPaths":1,"totalExtensionCost":0},"promotion":"hold","runId":"2026-07-27-stage19-v5","schemaVersion":"stage19_assessment_v0","status":"insufficient_evidence"}

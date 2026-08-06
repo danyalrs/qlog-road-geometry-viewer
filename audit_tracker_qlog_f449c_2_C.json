@@ -1,0 +1,3162 @@
+{
+  "file": "qlog_f449c_2.bz2",
+  "pipelineMode": "C",
+  "validModelFrames": 30,
+  "chunkId": 0,
+  "passes": [
+    {
+      "passId": 0,
+      "frameCount": 17,
+      "pathLengthM": 380.7540972580592,
+      "polygons": 1,
+      "tracking": {
+        "createdTracks": 10,
+        "continuedTracks": 13,
+        "terminatedTracks": 5,
+        "oneFrameTracks": 2,
+        "twoFrameTracks": 4,
+        "threePlusFrameTracks": 4,
+        "medianTrackDurationFrames": 2,
+        "maxTrackDurationFrames": 4,
+        "fragmentationRate": 0.2,
+        "observationAssociationPct": 56.52173913043478,
+        "rejectedMatches": 0,
+        "ambiguousMatches": 0,
+        "meanMatchCost": 1.7845789129955731
+      },
+      "framePairAudits": [
+        {
+          "prevFrameId": 2443,
+          "nextFrameId": 2483,
+          "prevTimestamp": "139726594139",
+          "nextTimestamp": "141726837576",
+          "prevLaneCount": 2,
+          "nextLaneCount": 2,
+          "costMatrix": [
+            [
+              1.236,
+              null
+            ],
+            [
+              null,
+              0.459
+            ]
+          ],
+          "candidates": [
+            {
+              "nextIdx": 0,
+              "trackIdx": 0,
+              "trackId": 0,
+              "valid": true,
+              "cost": 1.2362897777685762,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.22799925817670355
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 1,
+              "trackId": 1,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 3.8117714451608204
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 0,
+              "trackId": 0,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 3.643279810568758
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 1,
+              "trackId": 1,
+              "valid": true,
+              "cost": 0.4588109293623866,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.059507623584640824
+            }
+          ],
+          "assignments": [
+            {
+              "nextIdx": 0,
+              "trackId": 0,
+              "cost": 1.2362897777685762,
+              "prevTrackId": 0,
+              "resultingTrackId": 0,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 0
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 1,
+              "cost": 0.4588109293623866,
+              "prevTrackId": 1,
+              "resultingTrackId": 1,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 0
+            }
+          ],
+          "rejections": [
+            {
+              "nextIdx": 0,
+              "trackId": 1,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 0,
+              "reason": "excessiveLateralDisplacement"
+            }
+          ],
+          "threshold": 15,
+          "passId": 0
+        },
+        {
+          "prevFrameId": 2483,
+          "nextFrameId": 2523,
+          "prevTimestamp": "141726837576",
+          "nextTimestamp": "143726895711",
+          "prevLaneCount": 2,
+          "nextLaneCount": 2,
+          "costMatrix": [
+            [
+              2.366,
+              null
+            ],
+            [
+              null,
+              1.533
+            ]
+          ],
+          "candidates": [
+            {
+              "nextIdx": 0,
+              "trackIdx": 0,
+              "trackId": 0,
+              "valid": true,
+              "cost": 2.36563805525505,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.32859109570052314
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 1,
+              "trackId": 1,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 4.086136049192189
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 0,
+              "trackId": 0,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 3.6572143915044744
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 1,
+              "trackId": 1,
+              "valid": true,
+              "cost": 1.532858743582846,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.24810258162715448
+            }
+          ],
+          "assignments": [
+            {
+              "nextIdx": 0,
+              "trackId": 0,
+              "cost": 2.36563805525505,
+              "prevTrackId": 0,
+              "resultingTrackId": 0,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 0
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 1,
+              "cost": 1.532858743582846,
+              "prevTrackId": 1,
+              "resultingTrackId": 1,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 0
+            }
+          ],
+          "rejections": [
+            {
+              "nextIdx": 0,
+              "trackId": 1,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 0,
+              "reason": "excessiveLateralDisplacement"
+            }
+          ],
+          "threshold": 15,
+          "passId": 0
+        },
+        {
+          "prevFrameId": 2523,
+          "nextFrameId": 2563,
+          "prevTimestamp": "143726895711",
+          "nextTimestamp": "145723084099",
+          "prevLaneCount": 2,
+          "nextLaneCount": 2,
+          "costMatrix": [
+            [
+              null,
+              null
+            ],
+            [
+              null,
+              null
+            ]
+          ],
+          "candidates": [
+            {
+              "nextIdx": 0,
+              "trackIdx": 0,
+              "trackId": 0,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 1.0434870912433531
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 1,
+              "trackId": 1,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 4.296226505438487
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 0,
+              "trackId": 0,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 4.193191395097194
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 1,
+              "trackId": 1,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 1.2715654603754916
+            }
+          ],
+          "assignments": [
+            {
+              "nextIdx": 0,
+              "trackId": 2,
+              "cost": null,
+              "prevTrackId": null,
+              "resultingTrackId": 2,
+              "newTrack": true
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 3,
+              "cost": null,
+              "prevTrackId": null,
+              "resultingTrackId": 3,
+              "newTrack": true
+            }
+          ],
+          "rejections": [
+            {
+              "nextIdx": 0,
+              "trackId": 0,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 0,
+              "trackId": 1,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 0,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 1,
+              "reason": "excessiveLateralDisplacement"
+            }
+          ],
+          "threshold": 15,
+          "passId": 0
+        },
+        {
+          "prevFrameId": 2563,
+          "nextFrameId": 2603,
+          "prevTimestamp": "145723084099",
+          "nextTimestamp": "147723001692",
+          "prevLaneCount": 2,
+          "nextLaneCount": 2,
+          "costMatrix": [
+            [
+              null,
+              null,
+              1.956,
+              null
+            ],
+            [
+              null,
+              null,
+              null,
+              2.927
+            ]
+          ],
+          "candidates": [
+            {
+              "nextIdx": 0,
+              "trackIdx": 0,
+              "trackId": 0,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 1.2230240038164881
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 1,
+              "trackId": 1,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 4.57971723805717
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 2,
+              "trackId": 2,
+              "valid": true,
+              "cost": 1.9557984422315111,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.42975559812144865
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 3,
+              "trackId": 3,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 4.900837261203162
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 0,
+              "trackId": 0,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 3.6966295618205867
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 1,
+              "trackId": 1,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 1.3827254127905653
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 2,
+              "trackId": 2,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 4.120784695307872
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 3,
+              "trackId": 3,
+              "valid": true,
+              "cost": 2.926792845566262,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.5360473499692594
+            }
+          ],
+          "assignments": [
+            {
+              "nextIdx": 0,
+              "trackId": 2,
+              "cost": 1.9557984422315111,
+              "prevTrackId": 2,
+              "resultingTrackId": 2,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 0
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 3,
+              "cost": 2.926792845566262,
+              "prevTrackId": 3,
+              "resultingTrackId": 3,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 0
+            }
+          ],
+          "rejections": [
+            {
+              "nextIdx": 0,
+              "trackId": 0,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 0,
+              "trackId": 1,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 0,
+              "trackId": 3,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 0,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 1,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 2,
+              "reason": "excessiveLateralDisplacement"
+            }
+          ],
+          "threshold": 15,
+          "passId": 0
+        },
+        {
+          "prevFrameId": 2603,
+          "nextFrameId": 2643,
+          "prevTimestamp": "147723001692",
+          "nextTimestamp": "149725764567",
+          "prevLaneCount": 2,
+          "nextLaneCount": 1,
+          "costMatrix": [
+            [
+              null,
+              null,
+              2.373,
+              null
+            ]
+          ],
+          "candidates": [
+            {
+              "nextIdx": 0,
+              "trackIdx": 0,
+              "trackId": 0,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveTimeGap",
+              "sharedAnchors": 0,
+              "anchorLatMean": null
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 1,
+              "trackId": 1,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveTimeGap",
+              "sharedAnchors": 0,
+              "anchorLatMean": null
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 2,
+              "trackId": 2,
+              "valid": true,
+              "cost": 2.372540814345344,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.5044142355329433
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 3,
+              "trackId": 3,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 4.524545657025787
+            }
+          ],
+          "assignments": [
+            {
+              "nextIdx": 0,
+              "trackId": 2,
+              "cost": 2.372540814345344,
+              "prevTrackId": 2,
+              "resultingTrackId": 2,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 0
+            }
+          ],
+          "rejections": [
+            {
+              "nextIdx": 0,
+              "trackId": 0,
+              "reason": "excessiveTimeGap"
+            },
+            {
+              "nextIdx": 0,
+              "trackId": 1,
+              "reason": "excessiveTimeGap"
+            },
+            {
+              "nextIdx": 0,
+              "trackId": 3,
+              "reason": "excessiveLateralDisplacement"
+            }
+          ],
+          "threshold": 15,
+          "passId": 0
+        },
+        {
+          "prevFrameId": 2643,
+          "nextFrameId": 2683,
+          "prevTimestamp": "149725764567",
+          "nextTimestamp": "151716565150",
+          "prevLaneCount": 1,
+          "nextLaneCount": 0,
+          "costMatrix": [],
+          "candidates": [],
+          "assignments": [],
+          "rejections": [],
+          "threshold": 15,
+          "passId": 0
+        },
+        {
+          "prevFrameId": 2843,
+          "nextFrameId": 2883,
+          "prevTimestamp": "159714019679",
+          "nextTimestamp": "161715770488",
+          "prevLaneCount": 1,
+          "nextLaneCount": 1,
+          "costMatrix": [
+            [
+              null,
+              null,
+              null
+            ]
+          ],
+          "candidates": [
+            {
+              "nextIdx": 0,
+              "trackIdx": 0,
+              "trackId": 2,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveTimeGap",
+              "sharedAnchors": 0,
+              "anchorLatMean": null
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 1,
+              "trackId": 3,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveTimeGap",
+              "sharedAnchors": 0,
+              "anchorLatMean": null
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 2,
+              "trackId": 4,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.9725963887484846
+            }
+          ],
+          "assignments": [
+            {
+              "nextIdx": 0,
+              "trackId": 5,
+              "cost": null,
+              "prevTrackId": null,
+              "resultingTrackId": 5,
+              "newTrack": true
+            }
+          ],
+          "rejections": [
+            {
+              "nextIdx": 0,
+              "trackId": 2,
+              "reason": "excessiveTimeGap"
+            },
+            {
+              "nextIdx": 0,
+              "trackId": 3,
+              "reason": "excessiveTimeGap"
+            },
+            {
+              "nextIdx": 0,
+              "trackId": 4,
+              "reason": "excessiveLateralDisplacement"
+            }
+          ],
+          "threshold": 15,
+          "passId": 0
+        },
+        {
+          "prevFrameId": 2883,
+          "nextFrameId": 2923,
+          "prevTimestamp": "161715770488",
+          "nextTimestamp": "163718456147",
+          "prevLaneCount": 1,
+          "nextLaneCount": 1,
+          "costMatrix": [
+            [
+              null,
+              null,
+              1.719
+            ]
+          ],
+          "candidates": [
+            {
+              "nextIdx": 0,
+              "trackIdx": 0,
+              "trackId": 2,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveTimeGap",
+              "sharedAnchors": 0,
+              "anchorLatMean": null
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 1,
+              "trackId": 4,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 1.2174195044151919
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 2,
+              "trackId": 5,
+              "valid": true,
+              "cost": 1.7185377155911672,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.32359846375205287
+            }
+          ],
+          "assignments": [
+            {
+              "nextIdx": 0,
+              "trackId": 5,
+              "cost": 1.7185377155911672,
+              "prevTrackId": 5,
+              "resultingTrackId": 5,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 0
+            }
+          ],
+          "rejections": [
+            {
+              "nextIdx": 0,
+              "trackId": 2,
+              "reason": "excessiveTimeGap"
+            },
+            {
+              "nextIdx": 0,
+              "trackId": 4,
+              "reason": "excessiveLateralDisplacement"
+            }
+          ],
+          "threshold": 15,
+          "passId": 0
+        },
+        {
+          "prevFrameId": 2923,
+          "nextFrameId": 2963,
+          "prevTimestamp": "163718456147",
+          "nextTimestamp": "165711518986",
+          "prevLaneCount": 1,
+          "nextLaneCount": 2,
+          "costMatrix": [
+            [
+              null,
+              1.542
+            ],
+            [
+              null,
+              null
+            ]
+          ],
+          "candidates": [
+            {
+              "nextIdx": 0,
+              "trackIdx": 0,
+              "trackId": 4,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveTimeGap",
+              "sharedAnchors": 0,
+              "anchorLatMean": null
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 1,
+              "trackId": 5,
+              "valid": true,
+              "cost": 1.5415677943993988,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.24257067657881728
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 0,
+              "trackId": 4,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveTimeGap",
+              "sharedAnchors": 0,
+              "anchorLatMean": null
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 1,
+              "trackId": 5,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 2.815136291616063
+            }
+          ],
+          "assignments": [
+            {
+              "nextIdx": 0,
+              "trackId": 5,
+              "cost": 1.5415677943993988,
+              "prevTrackId": 5,
+              "resultingTrackId": 5,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 0
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 6,
+              "cost": null,
+              "prevTrackId": null,
+              "resultingTrackId": 6,
+              "newTrack": true
+            }
+          ],
+          "rejections": [
+            {
+              "nextIdx": 0,
+              "trackId": 4,
+              "reason": "excessiveTimeGap"
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 4,
+              "reason": "excessiveTimeGap"
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 5,
+              "reason": "excessiveLateralDisplacement"
+            }
+          ],
+          "threshold": 15,
+          "passId": 0
+        },
+        {
+          "prevFrameId": 2963,
+          "nextFrameId": 3003,
+          "prevTimestamp": "165711518986",
+          "nextTimestamp": "167711351167",
+          "prevLaneCount": 2,
+          "nextLaneCount": 2,
+          "costMatrix": [
+            [
+              1.46,
+              null
+            ],
+            [
+              null,
+              2.009
+            ]
+          ],
+          "candidates": [
+            {
+              "nextIdx": 0,
+              "trackIdx": 0,
+              "trackId": 5,
+              "valid": true,
+              "cost": 1.4596578305423937,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.2632555180091361
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 1,
+              "trackId": 6,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 2.8224648501576
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 0,
+              "trackId": 5,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 2.7334754849328853
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 1,
+              "trackId": 6,
+              "valid": true,
+              "cost": 2.0092913583457523,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.30564854658813984
+            }
+          ],
+          "assignments": [
+            {
+              "nextIdx": 0,
+              "trackId": 5,
+              "cost": 1.4596578305423937,
+              "prevTrackId": 5,
+              "resultingTrackId": 5,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 0
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 6,
+              "cost": 2.0092913583457523,
+              "prevTrackId": 6,
+              "resultingTrackId": 6,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 0
+            }
+          ],
+          "rejections": [
+            {
+              "nextIdx": 0,
+              "trackId": 6,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 5,
+              "reason": "excessiveLateralDisplacement"
+            }
+          ],
+          "threshold": 15,
+          "passId": 0
+        },
+        {
+          "prevFrameId": 3003,
+          "nextFrameId": 3043,
+          "prevTimestamp": "167711351167",
+          "nextTimestamp": "169710367871",
+          "prevLaneCount": 2,
+          "nextLaneCount": 2,
+          "costMatrix": [
+            [
+              null,
+              null
+            ],
+            [
+              null,
+              null
+            ]
+          ],
+          "candidates": [
+            {
+              "nextIdx": 0,
+              "trackIdx": 0,
+              "trackId": 5,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 1.2243777680614925
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 1,
+              "trackId": 6,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 2.0774387653611384
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 0,
+              "trackId": 5,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 3.799815536809117
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 1,
+              "trackId": 6,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 1.225387670491509
+            }
+          ],
+          "assignments": [
+            {
+              "nextIdx": 0,
+              "trackId": 7,
+              "cost": null,
+              "prevTrackId": null,
+              "resultingTrackId": 7,
+              "newTrack": true
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 8,
+              "cost": null,
+              "prevTrackId": null,
+              "resultingTrackId": 8,
+              "newTrack": true
+            }
+          ],
+          "rejections": [
+            {
+              "nextIdx": 0,
+              "trackId": 5,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 0,
+              "trackId": 6,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 5,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 6,
+              "reason": "excessiveLateralDisplacement"
+            }
+          ],
+          "threshold": 15,
+          "passId": 0
+        },
+        {
+          "prevFrameId": 3043,
+          "nextFrameId": 3083,
+          "prevTimestamp": "169710367871",
+          "nextTimestamp": "171706391399",
+          "prevLaneCount": 2,
+          "nextLaneCount": 3,
+          "costMatrix": [
+            [
+              null,
+              null,
+              1.829,
+              null
+            ],
+            [
+              null,
+              null,
+              null,
+              1.793
+            ],
+            [
+              null,
+              null,
+              null,
+              null
+            ]
+          ],
+          "candidates": [
+            {
+              "nextIdx": 0,
+              "trackIdx": 0,
+              "trackId": 5,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 1.5475255419693068
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 1,
+              "trackId": 6,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 2.0043230913762238
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 2,
+              "trackId": 7,
+              "valid": true,
+              "cost": 1.8287104752398409,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.3909369032838243
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 3,
+              "trackId": 8,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 2.2522899948398094
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 0,
+              "trackId": 5,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 4.250516956205721
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 1,
+              "trackId": 6,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 1.599026379882286
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 2,
+              "trackId": 7,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 3.093928317520239
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 3,
+              "trackId": 8,
+              "valid": true,
+              "cost": 1.7930310867119228,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.45070141939660474
+            },
+            {
+              "nextIdx": 2,
+              "trackIdx": 0,
+              "trackId": 5,
+              "valid": false,
+              "cost": null,
+              "rejection": "laneOrderReversal",
+              "sharedAnchors": 0,
+              "anchorLatMean": null
+            },
+            {
+              "nextIdx": 2,
+              "trackIdx": 1,
+              "trackId": 6,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 4.392265665977262
+            },
+            {
+              "nextIdx": 2,
+              "trackIdx": 2,
+              "trackId": 7,
+              "valid": false,
+              "cost": null,
+              "rejection": "laneOrderReversal",
+              "sharedAnchors": 0,
+              "anchorLatMean": null
+            },
+            {
+              "nextIdx": 2,
+              "trackIdx": 3,
+              "trackId": 8,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 3.24394070549158
+            }
+          ],
+          "assignments": [
+            {
+              "nextIdx": 0,
+              "trackId": 7,
+              "cost": 1.8287104752398409,
+              "prevTrackId": 7,
+              "resultingTrackId": 7,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 0
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 8,
+              "cost": 1.7930310867119228,
+              "prevTrackId": 8,
+              "resultingTrackId": 8,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 0
+            },
+            {
+              "nextIdx": 2,
+              "trackId": 9,
+              "cost": null,
+              "prevTrackId": null,
+              "resultingTrackId": 9,
+              "newTrack": true
+            }
+          ],
+          "rejections": [
+            {
+              "nextIdx": 0,
+              "trackId": 5,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 0,
+              "trackId": 6,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 0,
+              "trackId": 8,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 5,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 6,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 7,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 2,
+              "trackId": 5,
+              "reason": "laneOrderReversal"
+            },
+            {
+              "nextIdx": 2,
+              "trackId": 6,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 2,
+              "trackId": 7,
+              "reason": "laneOrderReversal"
+            },
+            {
+              "nextIdx": 2,
+              "trackId": 8,
+              "reason": "excessiveLateralDisplacement"
+            }
+          ],
+          "threshold": 15,
+          "passId": 0
+        }
+      ],
+      "tracks": [
+        {
+          "trackId": 0,
+          "frameIds": [
+            2443,
+            2483,
+            2523
+          ],
+          "frameCount": 3,
+          "coveredDistanceM": 65.78727043441252,
+          "laneOrder": 0
+        },
+        {
+          "trackId": 1,
+          "frameIds": [
+            2443,
+            2483,
+            2523
+          ],
+          "frameCount": 3,
+          "coveredDistanceM": 65.78727043441252,
+          "laneOrder": 1
+        },
+        {
+          "trackId": 2,
+          "frameIds": [
+            2563,
+            2603,
+            2643
+          ],
+          "frameCount": 3,
+          "coveredDistanceM": 44.40172152775098,
+          "laneOrder": 0
+        },
+        {
+          "trackId": 3,
+          "frameIds": [
+            2563,
+            2603
+          ],
+          "frameCount": 2,
+          "coveredDistanceM": 23.959857338015162,
+          "laneOrder": 1
+        },
+        {
+          "trackId": 4,
+          "frameIds": [
+            2843
+          ],
+          "frameCount": 1,
+          "coveredDistanceM": 0,
+          "laneOrder": 0
+        },
+        {
+          "trackId": 5,
+          "frameIds": [
+            2883,
+            2923,
+            2963,
+            3003
+          ],
+          "frameCount": 4,
+          "coveredDistanceM": 71.46794626123103,
+          "laneOrder": 0
+        },
+        {
+          "trackId": 6,
+          "frameIds": [
+            2963,
+            3003
+          ],
+          "frameCount": 2,
+          "coveredDistanceM": 24.864246575367165,
+          "laneOrder": 1
+        },
+        {
+          "trackId": 7,
+          "frameIds": [
+            3043,
+            3083
+          ],
+          "frameCount": 2,
+          "coveredDistanceM": 24.79574590486669,
+          "laneOrder": 0
+        },
+        {
+          "trackId": 8,
+          "frameIds": [
+            3043,
+            3083
+          ],
+          "frameCount": 2,
+          "coveredDistanceM": 24.79574590486669,
+          "laneOrder": 1
+        },
+        {
+          "trackId": 9,
+          "frameIds": [
+            3083
+          ],
+          "frameCount": 1,
+          "coveredDistanceM": 0,
+          "laneOrder": 2
+        }
+      ],
+      "geometryLayers": {
+        "accepted": 21,
+        "laneOnly": 0,
+        "rejected": 3
+      },
+      "laneOnlyCount": 0
+    },
+    {
+      "passId": 1,
+      "frameCount": 13,
+      "pathLengthM": 289.24788738311315,
+      "polygons": 1,
+      "tracking": {
+        "createdTracks": 6,
+        "continuedTracks": 24,
+        "terminatedTracks": 4,
+        "oneFrameTracks": 3,
+        "twoFrameTracks": 1,
+        "threePlusFrameTracks": 2,
+        "medianTrackDurationFrames": 2,
+        "maxTrackDurationFrames": 13,
+        "fragmentationRate": 0.5,
+        "observationAssociationPct": 80,
+        "rejectedMatches": 0,
+        "ambiguousMatches": 0,
+        "meanMatchCost": 1.154127174282552
+      },
+      "framePairAudits": [
+        {
+          "prevFrameId": 3123,
+          "nextFrameId": 3163,
+          "prevTimestamp": "173712039287",
+          "nextTimestamp": "175704371479",
+          "prevLaneCount": 3,
+          "nextLaneCount": 3,
+          "costMatrix": [
+            [
+              0.738,
+              null,
+              null
+            ],
+            [
+              null,
+              0.893,
+              null
+            ],
+            [
+              null,
+              null,
+              2.222
+            ]
+          ],
+          "candidates": [
+            {
+              "nextIdx": 0,
+              "trackIdx": 0,
+              "trackId": 0,
+              "valid": true,
+              "cost": 0.7381986063069741,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.12012984859995002
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 1,
+              "trackId": 1,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 2.9126472724177854
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 2,
+              "trackId": 2,
+              "valid": false,
+              "cost": null,
+              "rejection": "laneOrderReversal",
+              "sharedAnchors": 0,
+              "anchorLatMean": null
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 0,
+              "trackId": 0,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 2.554302648497981
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 1,
+              "trackId": 1,
+              "valid": true,
+              "cost": 0.8933153493856828,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.23821477531985405
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 2,
+              "trackId": 2,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 3.089920728033469
+            },
+            {
+              "nextIdx": 2,
+              "trackIdx": 0,
+              "trackId": 0,
+              "valid": false,
+              "cost": null,
+              "rejection": "laneOrderReversal",
+              "sharedAnchors": 0,
+              "anchorLatMean": null
+            },
+            {
+              "nextIdx": 2,
+              "trackIdx": 1,
+              "trackId": 1,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 2.404499404984291
+            },
+            {
+              "nextIdx": 2,
+              "trackIdx": 2,
+              "trackId": 2,
+              "valid": true,
+              "cost": 2.221510706689454,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.4472065477293235
+            }
+          ],
+          "assignments": [
+            {
+              "nextIdx": 0,
+              "trackId": 0,
+              "cost": 0.7381986063069741,
+              "prevTrackId": 0,
+              "resultingTrackId": 0,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 0
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 1,
+              "cost": 0.8933153493856828,
+              "prevTrackId": 1,
+              "resultingTrackId": 1,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 0
+            },
+            {
+              "nextIdx": 2,
+              "trackId": 2,
+              "cost": 2.221510706689454,
+              "prevTrackId": 2,
+              "resultingTrackId": 2,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 0
+            }
+          ],
+          "rejections": [
+            {
+              "nextIdx": 0,
+              "trackId": 1,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 0,
+              "trackId": 2,
+              "reason": "laneOrderReversal"
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 0,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 2,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 2,
+              "trackId": 0,
+              "reason": "laneOrderReversal"
+            },
+            {
+              "nextIdx": 2,
+              "trackId": 1,
+              "reason": "excessiveLateralDisplacement"
+            }
+          ],
+          "threshold": 15,
+          "passId": 1
+        },
+        {
+          "prevFrameId": 3163,
+          "nextFrameId": 3203,
+          "prevTimestamp": "175704371479",
+          "nextTimestamp": "177707085489",
+          "prevLaneCount": 3,
+          "nextLaneCount": 2,
+          "costMatrix": [
+            [
+              0.538,
+              null,
+              null
+            ],
+            [
+              null,
+              0.564,
+              null
+            ]
+          ],
+          "candidates": [
+            {
+              "nextIdx": 0,
+              "trackIdx": 0,
+              "trackId": 0,
+              "valid": true,
+              "cost": 0.5379647329199365,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.03679632161201444
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 1,
+              "trackId": 1,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 2.680165495159191
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 2,
+              "trackId": 2,
+              "valid": false,
+              "cost": null,
+              "rejection": "laneOrderReversal",
+              "sharedAnchors": 0,
+              "anchorLatMean": null
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 0,
+              "trackId": 0,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 2.569376676256924
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 1,
+              "trackId": 1,
+              "valid": true,
+              "cost": 0.5640297253815356,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.10505582084100713
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 2,
+              "trackId": 2,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 2.747770001145152
+            }
+          ],
+          "assignments": [
+            {
+              "nextIdx": 0,
+              "trackId": 0,
+              "cost": 0.5379647329199365,
+              "prevTrackId": 0,
+              "resultingTrackId": 0,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 0
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 1,
+              "cost": 0.5640297253815356,
+              "prevTrackId": 1,
+              "resultingTrackId": 1,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 0
+            }
+          ],
+          "rejections": [
+            {
+              "nextIdx": 0,
+              "trackId": 1,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 0,
+              "trackId": 2,
+              "reason": "laneOrderReversal"
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 0,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 2,
+              "reason": "excessiveLateralDisplacement"
+            }
+          ],
+          "threshold": 15,
+          "passId": 1
+        },
+        {
+          "prevFrameId": 3203,
+          "nextFrameId": 3243,
+          "prevTimestamp": "177707085489",
+          "nextTimestamp": "179713752755",
+          "prevLaneCount": 2,
+          "nextLaneCount": 2,
+          "costMatrix": [
+            [
+              0.55,
+              null,
+              null
+            ],
+            [
+              null,
+              0.641,
+              null
+            ]
+          ],
+          "candidates": [
+            {
+              "nextIdx": 0,
+              "trackIdx": 0,
+              "trackId": 0,
+              "valid": true,
+              "cost": 0.5498167606226522,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.027451904630821516
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 1,
+              "trackId": 1,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 2.55166757836257
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 2,
+              "trackId": 2,
+              "valid": false,
+              "cost": null,
+              "rejection": "laneOrderReversal",
+              "sharedAnchors": 0,
+              "anchorLatMean": null
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 0,
+              "trackId": 0,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 2.713098177140352
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 1,
+              "trackId": 1,
+              "valid": true,
+              "cost": 0.6411195561831822,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.13798850282216776
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 2,
+              "trackId": 2,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 2.6097814983229846
+            }
+          ],
+          "assignments": [
+            {
+              "nextIdx": 0,
+              "trackId": 0,
+              "cost": 0.5498167606226522,
+              "prevTrackId": 0,
+              "resultingTrackId": 0,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 0
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 1,
+              "cost": 0.6411195561831822,
+              "prevTrackId": 1,
+              "resultingTrackId": 1,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 0
+            }
+          ],
+          "rejections": [
+            {
+              "nextIdx": 0,
+              "trackId": 1,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 0,
+              "trackId": 2,
+              "reason": "laneOrderReversal"
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 0,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 2,
+              "reason": "excessiveLateralDisplacement"
+            }
+          ],
+          "threshold": 15,
+          "passId": 1
+        },
+        {
+          "prevFrameId": 3243,
+          "nextFrameId": 3283,
+          "prevTimestamp": "179713752755",
+          "nextTimestamp": "181701795889",
+          "prevLaneCount": 2,
+          "nextLaneCount": 2,
+          "costMatrix": [
+            [
+              0.804,
+              null,
+              null
+            ],
+            [
+              null,
+              0.638,
+              null
+            ]
+          ],
+          "candidates": [
+            {
+              "nextIdx": 0,
+              "trackIdx": 0,
+              "trackId": 0,
+              "valid": true,
+              "cost": 0.8043043045270502,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.1269318143675796
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 1,
+              "trackId": 1,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 2.8165878955523174
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 2,
+              "trackId": 2,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveTimeGap",
+              "sharedAnchors": 0,
+              "anchorLatMean": null
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 0,
+              "trackId": 0,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 2.8323027611868263
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 1,
+              "trackId": 1,
+              "valid": true,
+              "cost": 0.6382032906681806,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.1426466800020886
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 2,
+              "trackId": 2,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveTimeGap",
+              "sharedAnchors": 0,
+              "anchorLatMean": null
+            }
+          ],
+          "assignments": [
+            {
+              "nextIdx": 0,
+              "trackId": 0,
+              "cost": 0.8043043045270502,
+              "prevTrackId": 0,
+              "resultingTrackId": 0,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 0
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 1,
+              "cost": 0.6382032906681806,
+              "prevTrackId": 1,
+              "resultingTrackId": 1,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 0
+            }
+          ],
+          "rejections": [
+            {
+              "nextIdx": 0,
+              "trackId": 1,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 0,
+              "trackId": 2,
+              "reason": "excessiveTimeGap"
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 0,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 2,
+              "reason": "excessiveTimeGap"
+            }
+          ],
+          "threshold": 15,
+          "passId": 1
+        },
+        {
+          "prevFrameId": 3283,
+          "nextFrameId": 3323,
+          "prevTimestamp": "181701795889",
+          "nextTimestamp": "183695365176",
+          "prevLaneCount": 2,
+          "nextLaneCount": 3,
+          "costMatrix": [
+            [
+              0.6,
+              null
+            ],
+            [
+              null,
+              0.316
+            ],
+            [
+              null,
+              null
+            ]
+          ],
+          "candidates": [
+            {
+              "nextIdx": 0,
+              "trackIdx": 0,
+              "trackId": 0,
+              "valid": true,
+              "cost": 0.6003981410391495,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.05708719462600679
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 1,
+              "trackId": 1,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 2.9021473809283993
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 0,
+              "trackId": 0,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 2.9746953466547517
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 1,
+              "trackId": 1,
+              "valid": true,
+              "cost": 0.3159363563177323,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.017250717656436893
+            },
+            {
+              "nextIdx": 2,
+              "trackIdx": 0,
+              "trackId": 0,
+              "valid": false,
+              "cost": null,
+              "rejection": "laneOrderReversal",
+              "sharedAnchors": 0,
+              "anchorLatMean": null
+            },
+            {
+              "nextIdx": 2,
+              "trackIdx": 1,
+              "trackId": 1,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 2.9643327140039752
+            }
+          ],
+          "assignments": [
+            {
+              "nextIdx": 0,
+              "trackId": 0,
+              "cost": 0.6003981410391495,
+              "prevTrackId": 0,
+              "resultingTrackId": 0,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 0
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 1,
+              "cost": 0.3159363563177323,
+              "prevTrackId": 1,
+              "resultingTrackId": 1,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 0
+            },
+            {
+              "nextIdx": 2,
+              "trackId": 3,
+              "cost": null,
+              "prevTrackId": null,
+              "resultingTrackId": 3,
+              "newTrack": true
+            }
+          ],
+          "rejections": [
+            {
+              "nextIdx": 0,
+              "trackId": 1,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 0,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 2,
+              "trackId": 0,
+              "reason": "laneOrderReversal"
+            },
+            {
+              "nextIdx": 2,
+              "trackId": 1,
+              "reason": "excessiveLateralDisplacement"
+            }
+          ],
+          "threshold": 15,
+          "passId": 1
+        },
+        {
+          "prevFrameId": 3323,
+          "nextFrameId": 3363,
+          "prevTimestamp": "183695365176",
+          "nextTimestamp": "185690505804",
+          "prevLaneCount": 3,
+          "nextLaneCount": 2,
+          "costMatrix": [
+            [
+              0.642,
+              null,
+              null
+            ],
+            [
+              null,
+              0.378,
+              null
+            ]
+          ],
+          "candidates": [
+            {
+              "nextIdx": 0,
+              "trackIdx": 0,
+              "trackId": 0,
+              "valid": true,
+              "cost": 0.6416433897494523,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.07397445218043579
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 1,
+              "trackId": 1,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 2.843633699848309
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 2,
+              "trackId": 3,
+              "valid": false,
+              "cost": null,
+              "rejection": "laneOrderReversal",
+              "sharedAnchors": 0,
+              "anchorLatMean": null
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 0,
+              "trackId": 0,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 2.9535622824975767
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 1,
+              "trackId": 1,
+              "valid": true,
+              "cost": 0.3784095943387573,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.035954130468831814
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 2,
+              "trackId": 3,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 2.9129178124347974
+            }
+          ],
+          "assignments": [
+            {
+              "nextIdx": 0,
+              "trackId": 0,
+              "cost": 0.6416433897494523,
+              "prevTrackId": 0,
+              "resultingTrackId": 0,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 0
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 1,
+              "cost": 0.3784095943387573,
+              "prevTrackId": 1,
+              "resultingTrackId": 1,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 0
+            }
+          ],
+          "rejections": [
+            {
+              "nextIdx": 0,
+              "trackId": 1,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 0,
+              "trackId": 3,
+              "reason": "laneOrderReversal"
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 0,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 3,
+              "reason": "excessiveLateralDisplacement"
+            }
+          ],
+          "threshold": 15,
+          "passId": 1
+        },
+        {
+          "prevFrameId": 3363,
+          "nextFrameId": 3403,
+          "prevTimestamp": "185690505804",
+          "nextTimestamp": "187679843472",
+          "prevLaneCount": 2,
+          "nextLaneCount": 2,
+          "costMatrix": [
+            [
+              0.718,
+              null,
+              null
+            ],
+            [
+              null,
+              0.785,
+              null
+            ]
+          ],
+          "candidates": [
+            {
+              "nextIdx": 0,
+              "trackIdx": 0,
+              "trackId": 0,
+              "valid": true,
+              "cost": 0.7175723447756696,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.08878603003356478
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 1,
+              "trackId": 1,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 2.790801800283576
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 2,
+              "trackId": 3,
+              "valid": false,
+              "cost": null,
+              "rejection": "laneOrderReversal",
+              "sharedAnchors": 0,
+              "anchorLatMean": null
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 0,
+              "trackId": 0,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 3.0655523974004417
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 1,
+              "trackId": 1,
+              "valid": true,
+              "cost": 0.7853628974891751,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.18596456708330097
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 2,
+              "trackId": 3,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 2.7269532453514973
+            }
+          ],
+          "assignments": [
+            {
+              "nextIdx": 0,
+              "trackId": 0,
+              "cost": 0.7175723447756696,
+              "prevTrackId": 0,
+              "resultingTrackId": 0,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 0
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 1,
+              "cost": 0.7853628974891751,
+              "prevTrackId": 1,
+              "resultingTrackId": 1,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 0
+            }
+          ],
+          "rejections": [
+            {
+              "nextIdx": 0,
+              "trackId": 1,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 0,
+              "trackId": 3,
+              "reason": "laneOrderReversal"
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 0,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 3,
+              "reason": "excessiveLateralDisplacement"
+            }
+          ],
+          "threshold": 15,
+          "passId": 1
+        },
+        {
+          "prevFrameId": 3403,
+          "nextFrameId": 3443,
+          "prevTimestamp": "187679843472",
+          "nextTimestamp": "189674587404",
+          "prevLaneCount": 2,
+          "nextLaneCount": 3,
+          "costMatrix": [
+            [
+              null,
+              null,
+              null
+            ],
+            [
+              3.523,
+              null,
+              null
+            ],
+            [
+              null,
+              3.297,
+              null
+            ]
+          ],
+          "candidates": [
+            {
+              "nextIdx": 0,
+              "trackIdx": 0,
+              "trackId": 0,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 2.913676241087535
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 1,
+              "trackId": 1,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 5.8904426084544115
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 2,
+              "trackId": 3,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveTimeGap",
+              "sharedAnchors": 0,
+              "anchorLatMean": null
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 0,
+              "trackId": 0,
+              "valid": true,
+              "cost": 3.5226492141185286,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.3585446804128282
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 1,
+              "trackId": 1,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 3.335311047779705
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 2,
+              "trackId": 3,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveTimeGap",
+              "sharedAnchors": 0,
+              "anchorLatMean": null
+            },
+            {
+              "nextIdx": 2,
+              "trackIdx": 0,
+              "trackId": 0,
+              "valid": false,
+              "cost": null,
+              "rejection": "laneOrderReversal",
+              "sharedAnchors": 0,
+              "anchorLatMean": null
+            },
+            {
+              "nextIdx": 2,
+              "trackIdx": 1,
+              "trackId": 1,
+              "valid": true,
+              "cost": 3.297418999887025,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.3168356458959583
+            },
+            {
+              "nextIdx": 2,
+              "trackIdx": 2,
+              "trackId": 3,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveTimeGap",
+              "sharedAnchors": 0,
+              "anchorLatMean": null
+            }
+          ],
+          "assignments": [
+            {
+              "nextIdx": 0,
+              "trackId": 4,
+              "cost": null,
+              "prevTrackId": null,
+              "resultingTrackId": 4,
+              "newTrack": true
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 0,
+              "cost": 3.5226492141185286,
+              "prevTrackId": 0,
+              "resultingTrackId": 0,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 1
+            },
+            {
+              "nextIdx": 2,
+              "trackId": 1,
+              "cost": 3.297418999887025,
+              "prevTrackId": 1,
+              "resultingTrackId": 1,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 1
+            }
+          ],
+          "rejections": [
+            {
+              "nextIdx": 0,
+              "trackId": 0,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 0,
+              "trackId": 1,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 0,
+              "trackId": 3,
+              "reason": "excessiveTimeGap"
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 1,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 3,
+              "reason": "excessiveTimeGap"
+            },
+            {
+              "nextIdx": 2,
+              "trackId": 0,
+              "reason": "laneOrderReversal"
+            },
+            {
+              "nextIdx": 2,
+              "trackId": 3,
+              "reason": "excessiveTimeGap"
+            }
+          ],
+          "threshold": 15,
+          "passId": 1
+        },
+        {
+          "prevFrameId": 3443,
+          "nextFrameId": 3483,
+          "prevTimestamp": "189674587404",
+          "nextTimestamp": "191667697949",
+          "prevLaneCount": 3,
+          "nextLaneCount": 3,
+          "costMatrix": [
+            [
+              1.127,
+              null,
+              null
+            ],
+            [
+              null,
+              0.734,
+              null
+            ],
+            [
+              null,
+              null,
+              null
+            ]
+          ],
+          "candidates": [
+            {
+              "nextIdx": 0,
+              "trackIdx": 0,
+              "trackId": 0,
+              "valid": true,
+              "cost": 1.1271063528711873,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.21000267734087222
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 1,
+              "trackId": 1,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 3.228478079224619
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 2,
+              "trackId": 4,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 2.3451288833338353
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 0,
+              "trackId": 0,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 2.9016970839702263
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 1,
+              "trackId": 1,
+              "valid": true,
+              "cost": 0.7343279805218313,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.11677831791352061
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 2,
+              "trackId": 4,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 5.456828644644933
+            },
+            {
+              "nextIdx": 2,
+              "trackIdx": 0,
+              "trackId": 0,
+              "valid": false,
+              "cost": null,
+              "rejection": "laneOrderReversal",
+              "sharedAnchors": 0,
+              "anchorLatMean": null
+            },
+            {
+              "nextIdx": 2,
+              "trackIdx": 1,
+              "trackId": 1,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 2.5632052726232986
+            },
+            {
+              "nextIdx": 2,
+              "trackIdx": 2,
+              "trackId": 4,
+              "valid": false,
+              "cost": null,
+              "rejection": "laneOrderReversal",
+              "sharedAnchors": 0,
+              "anchorLatMean": null
+            }
+          ],
+          "assignments": [
+            {
+              "nextIdx": 0,
+              "trackId": 0,
+              "cost": 1.1271063528711873,
+              "prevTrackId": 0,
+              "resultingTrackId": 0,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 0
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 1,
+              "cost": 0.7343279805218313,
+              "prevTrackId": 1,
+              "resultingTrackId": 1,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 0
+            },
+            {
+              "nextIdx": 2,
+              "trackId": 5,
+              "cost": null,
+              "prevTrackId": null,
+              "resultingTrackId": 5,
+              "newTrack": true
+            }
+          ],
+          "rejections": [
+            {
+              "nextIdx": 0,
+              "trackId": 1,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 0,
+              "trackId": 4,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 0,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 4,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 2,
+              "trackId": 0,
+              "reason": "laneOrderReversal"
+            },
+            {
+              "nextIdx": 2,
+              "trackId": 1,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 2,
+              "trackId": 4,
+              "reason": "laneOrderReversal"
+            }
+          ],
+          "threshold": 15,
+          "passId": 1
+        },
+        {
+          "prevFrameId": 3483,
+          "nextFrameId": 3523,
+          "prevTimestamp": "191667697949",
+          "nextTimestamp": "193663564803",
+          "prevLaneCount": 3,
+          "nextLaneCount": 2,
+          "costMatrix": [
+            [
+              1.293,
+              null,
+              null,
+              null
+            ],
+            [
+              null,
+              0.851,
+              null,
+              null
+            ]
+          ],
+          "candidates": [
+            {
+              "nextIdx": 0,
+              "trackIdx": 0,
+              "trackId": 0,
+              "valid": true,
+              "cost": 1.2930653384954411,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.10513425543194736
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 1,
+              "trackId": 1,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 3.0189106563836012
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 2,
+              "trackId": 4,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 2.437917988261333
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 3,
+              "trackId": 5,
+              "valid": false,
+              "cost": null,
+              "rejection": "laneOrderReversal",
+              "sharedAnchors": 0,
+              "anchorLatMean": null
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 0,
+              "trackId": 0,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 3.043545116465386
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 1,
+              "trackId": 1,
+              "valid": true,
+              "cost": 0.8514948978981958,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.0873777211715878
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 2,
+              "trackId": 4,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 5.388673999799221
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 3,
+              "trackId": 5,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 2.7481382353825317
+            }
+          ],
+          "assignments": [
+            {
+              "nextIdx": 0,
+              "trackId": 0,
+              "cost": 1.2930653384954411,
+              "prevTrackId": 0,
+              "resultingTrackId": 0,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 0
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 1,
+              "cost": 0.8514948978981958,
+              "prevTrackId": 1,
+              "resultingTrackId": 1,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 0
+            }
+          ],
+          "rejections": [
+            {
+              "nextIdx": 0,
+              "trackId": 1,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 0,
+              "trackId": 4,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 0,
+              "trackId": 5,
+              "reason": "laneOrderReversal"
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 0,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 4,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 5,
+              "reason": "excessiveLateralDisplacement"
+            }
+          ],
+          "threshold": 15,
+          "passId": 1
+        },
+        {
+          "prevFrameId": 3523,
+          "nextFrameId": 3563,
+          "prevTimestamp": "193663564803",
+          "nextTimestamp": "195656697046",
+          "prevLaneCount": 2,
+          "nextLaneCount": 1,
+          "costMatrix": [
+            [
+              null,
+              3.024,
+              null,
+              null
+            ]
+          ],
+          "candidates": [
+            {
+              "nextIdx": 0,
+              "trackIdx": 0,
+              "trackId": 0,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 2.961472059470521
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 1,
+              "trackId": 1,
+              "valid": true,
+              "cost": 3.024372555412488,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.10838788099619218
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 2,
+              "trackId": 4,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveTimeGap",
+              "sharedAnchors": 0,
+              "anchorLatMean": null
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 3,
+              "trackId": 5,
+              "valid": false,
+              "cost": null,
+              "rejection": "laneOrderReversal",
+              "sharedAnchors": 0,
+              "anchorLatMean": null
+            }
+          ],
+          "assignments": [
+            {
+              "nextIdx": 0,
+              "trackId": 1,
+              "cost": 3.024372555412488,
+              "prevTrackId": 1,
+              "resultingTrackId": 1,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 1
+            }
+          ],
+          "rejections": [
+            {
+              "nextIdx": 0,
+              "trackId": 0,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 0,
+              "trackId": 4,
+              "reason": "excessiveTimeGap"
+            },
+            {
+              "nextIdx": 0,
+              "trackId": 5,
+              "reason": "laneOrderReversal"
+            }
+          ],
+          "threshold": 15,
+          "passId": 1
+        },
+        {
+          "prevFrameId": 3563,
+          "nextFrameId": 3603,
+          "prevTimestamp": "195656697046",
+          "nextTimestamp": "197651558947",
+          "prevLaneCount": 1,
+          "nextLaneCount": 2,
+          "costMatrix": [
+            [
+              1.827,
+              null,
+              null
+            ],
+            [
+              null,
+              0.993,
+              null
+            ]
+          ],
+          "candidates": [
+            {
+              "nextIdx": 0,
+              "trackIdx": 0,
+              "trackId": 0,
+              "valid": true,
+              "cost": 1.8273670034124876,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.2905904412808585
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 1,
+              "trackId": 1,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 2.7070663328248763
+            },
+            {
+              "nextIdx": 0,
+              "trackIdx": 2,
+              "trackId": 5,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveTimeGap",
+              "sharedAnchors": 0,
+              "anchorLatMean": null
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 0,
+              "trackId": 0,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveLateralDisplacement",
+              "sharedAnchors": 6,
+              "anchorLatMean": 2.921816504544051
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 1,
+              "trackId": 1,
+              "valid": true,
+              "cost": 0.993464083769479,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.07121460280205094
+            },
+            {
+              "nextIdx": 1,
+              "trackIdx": 2,
+              "trackId": 5,
+              "valid": false,
+              "cost": null,
+              "rejection": "excessiveTimeGap",
+              "sharedAnchors": 0,
+              "anchorLatMean": null
+            }
+          ],
+          "assignments": [
+            {
+              "nextIdx": 0,
+              "trackId": 0,
+              "cost": 1.8273670034124876,
+              "prevTrackId": 0,
+              "resultingTrackId": 0,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 0
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 1,
+              "cost": 0.993464083769479,
+              "prevTrackId": 1,
+              "resultingTrackId": 1,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 0
+            }
+          ],
+          "rejections": [
+            {
+              "nextIdx": 0,
+              "trackId": 1,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 0,
+              "trackId": 5,
+              "reason": "excessiveTimeGap"
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 0,
+              "reason": "excessiveLateralDisplacement"
+            },
+            {
+              "nextIdx": 1,
+              "trackId": 5,
+              "reason": "excessiveTimeGap"
+            }
+          ],
+          "threshold": 15,
+          "passId": 1
+        }
+      ],
+      "tracks": [
+        {
+          "trackId": 0,
+          "frameIds": [
+            3123,
+            3163,
+            3203,
+            3243,
+            3283,
+            3323,
+            3363,
+            3403,
+            3443,
+            3483,
+            3523,
+            3603
+          ],
+          "frameCount": 12,
+          "coveredDistanceM": 289.2394435306893,
+          "laneOrder": 0
+        },
+        {
+          "trackId": 1,
+          "frameIds": [
+            3123,
+            3163,
+            3203,
+            3243,
+            3283,
+            3323,
+            3363,
+            3403,
+            3443,
+            3483,
+            3523,
+            3563,
+            3603
+          ],
+          "frameCount": 13,
+          "coveredDistanceM": 289.24788738311315,
+          "laneOrder": 1
+        },
+        {
+          "trackId": 2,
+          "frameIds": [
+            3123,
+            3163
+          ],
+          "frameCount": 2,
+          "coveredDistanceM": 28.466806033992277,
+          "laneOrder": 2
+        },
+        {
+          "trackId": 3,
+          "frameIds": [
+            3323
+          ],
+          "frameCount": 1,
+          "coveredDistanceM": 0,
+          "laneOrder": 2
+        },
+        {
+          "trackId": 4,
+          "frameIds": [
+            3443
+          ],
+          "frameCount": 1,
+          "coveredDistanceM": 0,
+          "laneOrder": 0
+        },
+        {
+          "trackId": 5,
+          "frameIds": [
+            3483
+          ],
+          "frameCount": 1,
+          "coveredDistanceM": 0,
+          "laneOrder": 2
+        }
+      ],
+      "geometryLayers": {
+        "accepted": 21,
+        "laneOnly": 0,
+        "rejected": 3
+      },
+      "laneOnlyCount": 0
+    }
+  ],
+  "suspiciousFragments": []
+}

@@ -1,0 +1,65 @@
+# --- Dependencies ---
+node_modules/
+
+# --- Environment / secrets ---
+.env
+.env.*
+*.env
+*.pem
+*.p12
+*.pfx
+
+# --- Driving logs (qlog / rlog) ---
+qlog_f449c_*.bz2
+*.rlog
+*.rlog.bz2
+
+# --- Driving videos (qcamera transport streams + transcodes) ---
+*---qcamera.ts
+.video_cache/
+*.mkv
+*.mov
+*.hevc
+
+# --- Caches & temporary outputs ---
+.cache/
+.recovery/
+*.tmp
+*.log
+npm-debug.log*
+
+# --- Generated test/audit logs ---
+/full_suite_tap.txt
+/shell_out.txt
+/test_output.txt
+/test_run_output.txt
+/test_run_pixel_verify.txt
+/test_run_stage1_full.txt
+
+# --- Generated screenshots ---
+screenshots/
+
+# --- Large generated JSON files (regenerable/cached data) ---
+/projected_lane_observations_v0.json
+/audit_stage16_projected_lane_observations.json
+/lane_divider_supported_runs_v0.json
+/lane_divider_supported_runs_v1.json
+/lane_divider_tracks_v0.json
+/lane_intervals_v0.json
+/gps_extracted.json
+
+# --- Deliverable build artifacts (keep normative spec + revision docs) ---
+/deliverables/stage19-revision35/
+/deliverables/_extract_test/
+deliverables/*.zip
+deliverables/**/_zip_staging/
+deliverables/**/node_modules/
+
+# --- OS / editor ---
+Thumbs.db
+Desktop.ini
+.DS_Store
+*.swp
+*~
+.vscode/
+.idea/

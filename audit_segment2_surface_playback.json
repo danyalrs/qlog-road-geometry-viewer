@@ -1,0 +1,530 @@
+{
+  "segment": "qlog_f449c_2.bz2",
+  "indices": [
+    0,
+    8,
+    16,
+    29
+  ],
+  "firstInconsistentTimelineIndex": null,
+  "firstDataStageChange": null,
+  "visibleInconsistency": "none in data pipeline — geometry is stationary; apparent changes are viewport-relative or legitimate dropout gaps",
+  "snapshots": {
+    "0": {
+      "sourcePolygonCount": 13,
+      "apiPolygonCount": 13,
+      "localMapPolygonCount": 13,
+      "frontendPolygonCount": 13,
+      "renderedPolygonCount": 13,
+      "skippedPolygons": [],
+      "polygonIds": [
+        {
+          "index": 0,
+          "fragmentIndex": 0,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 8
+        },
+        {
+          "index": 1,
+          "fragmentIndex": 1,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 32
+        },
+        {
+          "index": 2,
+          "fragmentIndex": 2,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 6
+        },
+        {
+          "index": 3,
+          "fragmentIndex": 3,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 12
+        },
+        {
+          "index": 4,
+          "fragmentIndex": 4,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 28
+        },
+        {
+          "index": 5,
+          "fragmentIndex": 5,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 6
+        },
+        {
+          "index": 6,
+          "fragmentIndex": 6,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 20
+        },
+        {
+          "index": 7,
+          "fragmentIndex": 7,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 10
+        },
+        {
+          "index": 8,
+          "fragmentIndex": 8,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 44
+        },
+        {
+          "index": 9,
+          "fragmentIndex": 9,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 6
+        },
+        {
+          "index": 10,
+          "fragmentIndex": 10,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 6
+        },
+        {
+          "index": 11,
+          "fragmentIndex": 11,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 6
+        },
+        {
+          "index": 12,
+          "fragmentIndex": 12,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 6
+        }
+      ],
+      "surfaceTypes": [
+        "egoLaneCorridor"
+      ],
+      "checksum": "8eb3d954",
+      "roadSurfaceChecksum": "69faf370",
+      "roadSurfaceMetaChecksum": "503dcc7d",
+      "roadSurfaceBoundsChecksum": "f0bc1f45",
+      "roadSurfaceBounds": {
+        "minE": -43.43012330317786,
+        "maxE": 69.77597394346844,
+        "minN": -288.35980707871283,
+        "maxN": 58.12693855506338,
+        "finite": true
+      },
+      "finiteCoordinates": true,
+      "arrow": {
+        "east": 0,
+        "north": 0,
+        "headingDeg": 88.23849877186149
+      }
+    },
+    "8": {
+      "sourcePolygonCount": 13,
+      "apiPolygonCount": 13,
+      "localMapPolygonCount": 13,
+      "frontendPolygonCount": 13,
+      "renderedPolygonCount": 13,
+      "skippedPolygons": [],
+      "polygonIds": [
+        {
+          "index": 0,
+          "fragmentIndex": 0,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 8
+        },
+        {
+          "index": 1,
+          "fragmentIndex": 1,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 32
+        },
+        {
+          "index": 2,
+          "fragmentIndex": 2,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 6
+        },
+        {
+          "index": 3,
+          "fragmentIndex": 3,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 12
+        },
+        {
+          "index": 4,
+          "fragmentIndex": 4,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 28
+        },
+        {
+          "index": 5,
+          "fragmentIndex": 5,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 6
+        },
+        {
+          "index": 6,
+          "fragmentIndex": 6,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 20
+        },
+        {
+          "index": 7,
+          "fragmentIndex": 7,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 10
+        },
+        {
+          "index": 8,
+          "fragmentIndex": 8,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 44
+        },
+        {
+          "index": 9,
+          "fragmentIndex": 9,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 6
+        },
+        {
+          "index": 10,
+          "fragmentIndex": 10,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 6
+        },
+        {
+          "index": 11,
+          "fragmentIndex": 11,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 6
+        },
+        {
+          "index": 12,
+          "fragmentIndex": 12,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 6
+        }
+      ],
+      "surfaceTypes": [
+        "egoLaneCorridor"
+      ],
+      "checksum": "8eb3d954",
+      "roadSurfaceChecksum": "69faf370",
+      "roadSurfaceMetaChecksum": "503dcc7d",
+      "roadSurfaceBoundsChecksum": "f0bc1f45",
+      "roadSurfaceBounds": {
+        "minE": -43.43012330317786,
+        "maxE": 69.77597394346844,
+        "minN": -288.35980707871283,
+        "maxN": 58.12693855506338,
+        "finite": true
+      },
+      "finiteCoordinates": true,
+      "arrow": {
+        "east": 154.9511663331828,
+        "north": 68.36588557175219,
+        "headingDeg": 352.6033695996348
+      }
+    },
+    "16": {
+      "sourcePolygonCount": 13,
+      "apiPolygonCount": 13,
+      "localMapPolygonCount": 13,
+      "frontendPolygonCount": 13,
+      "renderedPolygonCount": 13,
+      "skippedPolygons": [],
+      "polygonIds": [
+        {
+          "index": 0,
+          "fragmentIndex": 0,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 8
+        },
+        {
+          "index": 1,
+          "fragmentIndex": 1,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 32
+        },
+        {
+          "index": 2,
+          "fragmentIndex": 2,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 6
+        },
+        {
+          "index": 3,
+          "fragmentIndex": 3,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 12
+        },
+        {
+          "index": 4,
+          "fragmentIndex": 4,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 28
+        },
+        {
+          "index": 5,
+          "fragmentIndex": 5,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 6
+        },
+        {
+          "index": 6,
+          "fragmentIndex": 6,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 20
+        },
+        {
+          "index": 7,
+          "fragmentIndex": 7,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 10
+        },
+        {
+          "index": 8,
+          "fragmentIndex": 8,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 44
+        },
+        {
+          "index": 9,
+          "fragmentIndex": 9,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 6
+        },
+        {
+          "index": 10,
+          "fragmentIndex": 10,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 6
+        },
+        {
+          "index": 11,
+          "fragmentIndex": 11,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 6
+        },
+        {
+          "index": 12,
+          "fragmentIndex": 12,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 6
+        }
+      ],
+      "surfaceTypes": [
+        "egoLaneCorridor"
+      ],
+      "checksum": "8eb3d954",
+      "roadSurfaceChecksum": "69faf370",
+      "roadSurfaceMetaChecksum": "503dcc7d",
+      "roadSurfaceBoundsChecksum": "f0bc1f45",
+      "roadSurfaceBounds": {
+        "minE": -43.43012330317786,
+        "maxE": 69.77597394346844,
+        "minN": -288.35980707871283,
+        "maxN": 58.12693855506338,
+        "finite": true
+      },
+      "finiteCoordinates": true,
+      "arrow": {
+        "east": 27.947072300912343,
+        "north": 12.250738280835218,
+        "headingDeg": 192.2702151270996
+      }
+    },
+    "29": {
+      "sourcePolygonCount": 13,
+      "apiPolygonCount": 13,
+      "localMapPolygonCount": 13,
+      "frontendPolygonCount": 13,
+      "renderedPolygonCount": 13,
+      "skippedPolygons": [],
+      "polygonIds": [
+        {
+          "index": 0,
+          "fragmentIndex": 0,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 8
+        },
+        {
+          "index": 1,
+          "fragmentIndex": 1,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 32
+        },
+        {
+          "index": 2,
+          "fragmentIndex": 2,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 6
+        },
+        {
+          "index": 3,
+          "fragmentIndex": 3,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 12
+        },
+        {
+          "index": 4,
+          "fragmentIndex": 4,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 28
+        },
+        {
+          "index": 5,
+          "fragmentIndex": 5,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 6
+        },
+        {
+          "index": 6,
+          "fragmentIndex": 6,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 20
+        },
+        {
+          "index": 7,
+          "fragmentIndex": 7,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 10
+        },
+        {
+          "index": 8,
+          "fragmentIndex": 8,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 44
+        },
+        {
+          "index": 9,
+          "fragmentIndex": 9,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 6
+        },
+        {
+          "index": 10,
+          "fragmentIndex": 10,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 6
+        },
+        {
+          "index": 11,
+          "fragmentIndex": 11,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 6
+        },
+        {
+          "index": 12,
+          "fragmentIndex": 12,
+          "passId": 0,
+          "surfaceType": "egoLaneCorridor",
+          "pointCount": 6
+        }
+      ],
+      "surfaceTypes": [
+        "egoLaneCorridor"
+      ],
+      "checksum": "8eb3d954",
+      "roadSurfaceChecksum": "69faf370",
+      "roadSurfaceMetaChecksum": "503dcc7d",
+      "roadSurfaceBoundsChecksum": "f0bc1f45",
+      "roadSurfaceBounds": {
+        "minE": -43.43012330317786,
+        "maxE": 69.77597394346844,
+        "minN": -288.35980707871283,
+        "maxN": 58.12693855506338,
+        "finite": true
+      },
+      "finiteCoordinates": true,
+      "arrow": {
+        "east": -41.304900639785494,
+        "north": -296.0440385367791,
+        "headingDeg": 191.67535723721733
+      }
+    }
+  },
+  "polygonCounts": {
+    "0": 13,
+    "8": 13,
+    "16": 13,
+    "29": 13
+  },
+  "geometryChecksums": {
+    "0": {
+      "lanes": "8eb3d954",
+      "roadPolygons": "69faf370",
+      "roadMeta": "503dcc7d",
+      "roadBounds": "f0bc1f45"
+    },
+    "8": {
+      "lanes": "8eb3d954",
+      "roadPolygons": "69faf370",
+      "roadMeta": "503dcc7d",
+      "roadBounds": "f0bc1f45"
+    },
+    "16": {
+      "lanes": "8eb3d954",
+      "roadPolygons": "69faf370",
+      "roadMeta": "503dcc7d",
+      "roadBounds": "f0bc1f45"
+    },
+    "29": {
+      "lanes": "8eb3d954",
+      "roadPolygons": "69faf370",
+      "roadMeta": "503dcc7d",
+      "roadBounds": "f0bc1f45"
+    }
+  }
+}

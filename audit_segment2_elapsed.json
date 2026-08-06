@@ -1,0 +1,1439 @@
+{
+  "segment": "qlog_f449c_2.bz2",
+  "anchorFrameIndex": 0,
+  "timelineCount": 30,
+  "timelineStartLogMonoTime": "139726594139",
+  "phaseStats": [
+    {
+      "label": "straight-before",
+      "range": "0-2",
+      "count": 3,
+      "screenHeadingStartDeg": 285.5979032870238,
+      "screenHeadingEndDeg": 285.16787913601,
+      "totalScreenHeadingChangeDeg": -0.4300241510137539,
+      "meanAbsStepDeg": 0.2241139076677996,
+      "maxAbsStepDeg": 0.43912598317467655
+    },
+    {
+      "label": "entering-curve",
+      "range": "3-5",
+      "count": 3,
+      "screenHeadingStartDeg": 285.2646291952442,
+      "screenHeadingEndDeg": 285.2545157816686,
+      "totalScreenHeadingChangeDeg": -0.010113413575595587,
+      "meanAbsStepDeg": 0.06410822495350506,
+      "maxAbsStepDeg": 0.09675005923418212
+    },
+    {
+      "label": "through-curve",
+      "range": "6-13",
+      "count": 8,
+      "screenHeadingStartDeg": 285.1191339853649,
+      "screenHeadingEndDeg": 285.7371808230266,
+      "totalScreenHeadingChangeDeg": 0.6180468376616091,
+      "meanAbsStepDeg": 0.20232429439226962,
+      "maxAbsStepDeg": 0.5960521466677164
+    },
+    {
+      "label": "leaving-curve",
+      "range": "14-15",
+      "count": 2,
+      "screenHeadingStartDeg": 284.7274180363761,
+      "screenHeadingEndDeg": 285.2329694148759,
+      "totalScreenHeadingChangeDeg": 0.5055513784998311,
+      "meanAbsStepDeg": 0.7576570825751787,
+      "maxAbsStepDeg": 1.0097627866505263
+    },
+    {
+      "label": "straight-after",
+      "range": "16-29",
+      "count": 14,
+      "screenHeadingStartDeg": 285.13269470094144,
+      "screenHeadingEndDeg": 279.86387893226004,
+      "totalScreenHeadingChangeDeg": -5.2688157686814066,
+      "meanAbsStepDeg": 0.6818204938491509,
+      "maxAbsStepDeg": 3.802916246934501
+    }
+  ],
+  "rows": [
+    {
+      "elapsedIdx": 0,
+      "logMonoTime": "139726594139",
+      "frameId": 2443,
+      "movementState": "uncertain",
+      "modelV2": {
+        "east": -24.055678502831913,
+        "north": -6.687047732752509,
+        "speedMps": 15.963268694241295,
+        "headingDeg": 254.5254303934877,
+        "laneCount": 2,
+        "pathPointCount": 30
+      },
+      "gps": {
+        "east": -24.055678502831913,
+        "north": -6.687047732752509,
+        "speedMps": 15.963268694241295,
+        "headingDeg": 254.5254303934877
+      },
+      "arrowPose": {
+        "east": -23.249950036706416,
+        "north": -6.350420797655641,
+        "pathIndex": 0,
+        "headingDeg": 74.4541749253222,
+        "frozen": false
+      },
+      "pathTangent": {
+        "dx": 0.3479913049962029,
+        "dy": 0.0968063249637785,
+        "pathHeadingDeg": 74.4541749253222,
+        "bracket": [
+          0,
+          1
+        ]
+      },
+      "screenTangent": {
+        "ux": -0.9631724071511919,
+        "uy": 0.26888457393941034,
+        "screenHeadingDeg": 285.5979032870238,
+        "segment": [
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "elapsedIdx": 1,
+      "logMonoTime": "141726837576",
+      "frameId": 2483,
+      "movementState": "uncertain",
+      "modelV2": {
+        "east": -56.864698695364645,
+        "north": -16.865774728480858,
+        "speedMps": 16.99652564337194,
+        "headingDeg": 252.84770471921937,
+        "laneCount": 2,
+        "pathPointCount": 33
+      },
+      "gps": {
+        "east": -56.864698695364645,
+        "north": -16.865774728480858,
+        "speedMps": 16.99652564337194,
+        "headingDeg": 252.84770471921937
+      },
+      "arrowPose": {
+        "east": -26.45413916810225,
+        "north": -7.232556320024402,
+        "pathIndex": 4.8532433359691876,
+        "headingDeg": 254.39299488081525,
+        "frozen": false
+      },
+      "pathTangent": {
+        "dx": -1.3336117450970626,
+        "dy": -0.372526856899551,
+        "pathHeadingDeg": 254.39299488081525,
+        "bracket": [
+          4,
+          5
+        ]
+      },
+      "screenTangent": {
+        "ux": -0.9631296808178835,
+        "uy": 0.2690375771665391,
+        "screenHeadingDeg": 285.6070051191847,
+        "segment": [
+          4,
+          5
+        ]
+      },
+      "screenHeadingStepDeg": 0.00910183216092264
+    },
+    {
+      "elapsedIdx": 2,
+      "logMonoTime": "143726895711",
+      "frameId": 2523,
+      "movementState": "moving",
+      "modelV2": {
+        "east": -87.37291588903517,
+        "north": -24.44500230416098,
+        "speedMps": 14.616447089129966,
+        "headingDeg": 254.45277686735218,
+        "laneCount": 2,
+        "pathPointCount": 33
+      },
+      "gps": {
+        "east": -87.37291588903517,
+        "north": -24.44500230416098,
+        "speedMps": 14.616447089129966,
+        "headingDeg": 254.45277686735218
+      },
+      "arrowPose": {
+        "east": -30.360351557814095,
+        "north": -8.285119436550191,
+        "pathIndex": 7.1498760579049065,
+        "headingDeg": 254.83212086398999,
+        "frozen": false
+      },
+      "pathTangent": {
+        "dx": -2.134531786230159,
+        "dy": -0.5786546622988631,
+        "pathHeadingDeg": 254.83212086398999,
+        "bracket": [
+          7,
+          8
+        ]
+      },
+      "screenTangent": {
+        "ux": -0.9651633299607625,
+        "uy": 0.2616481349045933,
+        "screenHeadingDeg": 285.16787913601,
+        "segment": [
+          7,
+          8
+        ]
+      },
+      "screenHeadingStepDeg": -0.43912598317467655
+    },
+    {
+      "elapsedIdx": 3,
+      "logMonoTime": "145723084099",
+      "frameId": 2563,
+      "movementState": "moving",
+      "modelV2": {
+        "east": -113.00789718552444,
+        "north": -31.930884618164242,
+        "speedMps": 13.018748508941812,
+        "headingDeg": 249.89231422955044,
+        "laneCount": 2,
+        "pathPointCount": 33
+      },
+      "gps": {
+        "east": -113.00789718552444,
+        "north": -31.930884618164242,
+        "speedMps": 13.018748508941812,
+        "headingDeg": 249.89231422955044
+      },
+      "arrowPose": {
+        "east": -34.256435302474124,
+        "north": -9.345091699938735,
+        "pathIndex": 8.854073790450691,
+        "headingDeg": 254.73537080475563,
+        "frozen": false
+      },
+      "pathTangent": {
+        "dx": -2.4371046053577885,
+        "dy": -0.665099534858193,
+        "pathHeadingDeg": 254.73537080475563,
+        "bracket": [
+          8,
+          9
+        ]
+      },
+      "screenTangent": {
+        "ux": -0.9647201332462344,
+        "uy": 0.263277542736497,
+        "screenHeadingDeg": 285.2646291952442,
+        "segment": [
+          8,
+          9
+        ]
+      },
+      "screenHeadingStepDeg": 0.09675005923418212
+    },
+    {
+      "elapsedIdx": 4,
+      "logMonoTime": "147723001692",
+      "frameId": 2603,
+      "movementState": "moving",
+      "modelV2": {
+        "east": -134.5313096065725,
+        "north": -42.45787285846892,
+        "speedMps": 11.4429409169499,
+        "headingDeg": 235.80879839900078,
+        "laneCount": 2,
+        "pathPointCount": 33
+      },
+      "gps": {
+        "east": -134.5313096065725,
+        "north": -42.45787285846892,
+        "speedMps": 11.4429409169499,
+        "headingDeg": 235.80879839900078
+      },
+      "arrowPose": {
+        "east": -38.16139262961104,
+        "north": -10.400769254036142,
+        "pathIndex": 10.325550353950433,
+        "headingDeg": 254.78821481935682,
+        "frozen": false
+      },
+      "pathTangent": {
+        "dx": -2.909767552448322,
+        "dy": -0.7912090740230013,
+        "pathHeadingDeg": 254.78821481935682,
+        "bracket": [
+          10,
+          11
+        ]
+      },
+      "screenTangent": {
+        "ux": -0.9649625443125637,
+        "uy": 0.26238766753379184,
+        "screenHeadingDeg": 285.21178518064323,
+        "segment": [
+          10,
+          11
+        ]
+      },
+      "screenHeadingStepDeg": -0.05284401460096433
+    },
+    {
+      "elapsedIdx": 5,
+      "logMonoTime": "149725764567",
+      "frameId": 2643,
+      "movementState": "moving",
+      "modelV2": {
+        "east": -150.26550620607728,
+        "north": -55.50796362136157,
+        "speedMps": 11.546250641457638,
+        "headingDeg": 220.16254320454763,
+        "laneCount": 1,
+        "pathPointCount": 33
+      },
+      "gps": {
+        "east": -150.26550620607728,
+        "north": -55.50796362136157,
+        "speedMps": 11.546250641457638,
+        "headingDeg": 220.16254320454763
+      },
+      "arrowPose": {
+        "east": -42.07001871157855,
+        "north": -11.46514185517614,
+        "pathIndex": 11.566827353717192,
+        "headingDeg": 254.74548421833137,
+        "frozen": false
+      },
+      "pathTangent": {
+        "dx": -3.4333812109978012,
+        "dy": -0.9363378773685334,
+        "pathHeadingDeg": 254.74548421833137,
+        "bracket": [
+          11,
+          12
+        ]
+      },
+      "screenTangent": {
+        "ux": -0.9647665899591403,
+        "uy": 0.26310725360318793,
+        "screenHeadingDeg": 285.2545157816686,
+        "segment": [
+          11,
+          12
+        ]
+      },
+      "screenHeadingStepDeg": 0.04273060102536874
+    },
+    {
+      "elapsedIdx": 6,
+      "logMonoTime": "151716565150",
+      "frameId": 2683,
+      "movementState": "moving",
+      "modelV2": {
+        "east": -161.02476639417577,
+        "north": -74.1117370164974,
+        "speedMps": 11.449599589748333,
+        "headingDeg": 199.79192309953027,
+        "laneCount": 0,
+        "pathPointCount": 33
+      },
+      "gps": {
+        "east": -161.02476639417577,
+        "north": -74.1117370164974,
+        "speedMps": 11.449599589748333,
+        "headingDeg": 199.79192309953027
+      },
+      "arrowPose": {
+        "east": -45.956507175216004,
+        "north": -12.518962527335676,
+        "pathIndex": 12.67787622798797,
+        "headingDeg": 254.88086601463516,
+        "frozen": false
+      },
+      "pathTangent": {
+        "dx": -3.5393506066633265,
+        "dy": -0.9562582212522788,
+        "pathHeadingDeg": 254.88086601463516,
+        "bracket": [
+          12,
+          13
+        ]
+      },
+      "screenTangent": {
+        "ux": -0.9653855812919602,
+        "uy": 0.26082691470318875,
+        "screenHeadingDeg": 285.1191339853649,
+        "segment": [
+          12,
+          13
+        ]
+      },
+      "screenHeadingStepDeg": -0.1353817963037045
+    },
+    {
+      "elapsedIdx": 7,
+      "logMonoTime": "153718306987",
+      "frameId": 2723,
+      "movementState": "moving",
+      "modelV2": {
+        "east": -163.0097908547397,
+        "north": -95.2818996874601,
+        "speedMps": 10.577937719184238,
+        "headingDeg": 170.69490833885266,
+        "laneCount": 0,
+        "pathPointCount": 33
+      },
+      "gps": {
+        "east": -163.0097908547397,
+        "north": -95.2818996874601,
+        "speedMps": 10.577937719184238,
+        "headingDeg": 170.69490833885266
+      },
+      "arrowPose": {
+        "east": -49.8662686994713,
+        "north": -13.571098927045838,
+        "pathIndex": 13.743535212414656,
+        "headingDeg": 254.96185352512492,
+        "frozen": false
+      },
+      "pathTangent": {
+        "dx": -3.7249783333990223,
+        "dy": -1.00076349046922,
+        "pathHeadingDeg": 254.96185352512492,
+        "bracket": [
+          13,
+          14
+        ]
+      },
+      "screenTangent": {
+        "ux": -0.9657532952672209,
+        "uy": 0.25946208331951703,
+        "screenHeadingDeg": 285.038146474875,
+        "segment": [
+          13,
+          14
+        ]
+      },
+      "screenHeadingStepDeg": -0.08098751048987651
+    },
+    {
+      "elapsedIdx": 8,
+      "logMonoTime": "155715044518",
+      "frameId": 2763,
+      "movementState": "moving",
+      "modelV2": {
+        "east": -155.14895929252313,
+        "north": -113.91722067777191,
+        "speedMps": 10.28652552150444,
+        "headingDeg": 141.78539708580504,
+        "laneCount": 0,
+        "pathPointCount": 33
+      },
+      "gps": {
+        "east": -155.14895929252313,
+        "north": -113.91722067777191,
+        "speedMps": 10.28652552150444,
+        "headingDeg": 141.78539708580504
+      },
+      "arrowPose": {
+        "east": -53.76238489152732,
+        "north": -14.63515032173747,
+        "pathIndex": 14.739495624773058,
+        "headingDeg": 254.64778000413588,
+        "frozen": false
+      },
+      "pathTangent": {
+        "dx": -3.976751608129298,
+        "dy": -1.0918128135417344,
+        "pathHeadingDeg": 254.64778000413588,
+        "bracket": [
+          14,
+          15
+        ]
+      },
+      "screenTangent": {
+        "ux": -0.9643165211125355,
+        "uy": 0.26475204835735844,
+        "screenHeadingDeg": 285.35221999586406,
+        "segment": [
+          14,
+          15
+        ]
+      },
+      "screenHeadingStepDeg": 0.31407352098904084
+    },
+    {
+      "elapsedIdx": 9,
+      "logMonoTime": "157716612745",
+      "frameId": 2803,
+      "movementState": "moving",
+      "modelV2": {
+        "east": -139.48015592986698,
+        "north": -125.95275564473704,
+        "speedMps": 10.10635869514145,
+        "headingDeg": 112.561284291739,
+        "laneCount": 0,
+        "pathPointCount": 33
+      },
+      "gps": {
+        "east": -139.48015592986698,
+        "north": -125.95275564473704,
+        "speedMps": 10.10635869514145,
+        "headingDeg": 112.561284291739
+      },
+      "arrowPose": {
+        "east": -57.67055742182845,
+        "north": -15.691873674367049,
+        "pathIndex": 15.675093158263468,
+        "headingDeg": 254.94985924215996,
+        "frozen": false
+      },
+      "pathTangent": {
+        "dx": -4.254540728246759,
+        "dy": -1.143992245099474,
+        "pathHeadingDeg": 254.94985924215996,
+        "bracket": [
+          15,
+          16
+        ]
+      },
+      "screenTangent": {
+        "ux": -0.9656989583842073,
+        "uy": 0.259664248166083,
+        "screenHeadingDeg": 285.05014075784004,
+        "segment": [
+          15,
+          16
+        ]
+      },
+      "screenHeadingStepDeg": -0.3020792380240209
+    },
+    {
+      "elapsedIdx": 10,
+      "logMonoTime": "159714019679",
+      "frameId": 2843,
+      "movementState": "moving",
+      "modelV2": {
+        "east": -119.68727191144207,
+        "north": -129.0825124429468,
+        "speedMps": 10.31871344554918,
+        "headingDeg": 87.673036309188,
+        "laneCount": 1,
+        "pathPointCount": 33
+      },
+      "gps": {
+        "east": -119.68727191144207,
+        "north": -129.0825124429468,
+        "speedMps": 10.31871344554918,
+        "headingDeg": 87.673036309188
+      },
+      "arrowPose": {
+        "east": -61.57042037721533,
+        "north": -16.747121927562382,
+        "pathIndex": 16.545983059932393,
+        "headingDeg": 254.80935521156857,
+        "frozen": false
+      },
+      "pathTangent": {
+        "dx": -4.611010394067023,
+        "dy": -1.2519753743891293,
+        "pathHeadingDeg": 254.80935521156857,
+        "bracket": [
+          16,
+          17
+        ]
+      },
+      "screenTangent": {
+        "ux": -0.9650592916592953,
+        "uy": 0.2620316079828137,
+        "screenHeadingDeg": 285.19064478843137,
+        "segment": [
+          16,
+          17
+        ]
+      },
+      "screenHeadingStepDeg": 0.14050403059127348
+    },
+    {
+      "elapsedIdx": 11,
+      "logMonoTime": "161715770488",
+      "frameId": 2883,
+      "movementState": "moving",
+      "modelV2": {
+        "east": -99.26933539263288,
+        "north": -124.60635783552887,
+        "speedMps": 11.086889139745308,
+        "headingDeg": 67.49817636893516,
+        "laneCount": 1,
+        "pathPointCount": 33
+      },
+      "gps": {
+        "east": -99.26933539263288,
+        "north": -124.60635783552887,
+        "speedMps": 11.086889139745308,
+        "headingDeg": 67.49817636893516
+      },
+      "arrowPose": {
+        "east": -65.47828153543448,
+        "north": -17.806495932189918,
+        "pathIndex": 17.38230010854496,
+        "headingDeg": 254.85887132364127,
+        "frozen": false
+      },
+      "pathTangent": {
+        "dx": -4.745968645916626,
+        "dy": -1.2842161567151251,
+        "pathHeadingDeg": 254.85887132364127,
+        "bracket": [
+          17,
+          18
+        ]
+      },
+      "screenTangent": {
+        "ux": -0.9652853839854936,
+        "uy": 0.2611974874763887,
+        "screenHeadingDeg": 285.14112867635885,
+        "segment": [
+          17,
+          18
+        ]
+      },
+      "screenHeadingStepDeg": -0.049516112072524265
+    },
+    {
+      "elapsedIdx": 12,
+      "logMonoTime": "163718456147",
+      "frameId": 2923,
+      "movementState": "moving",
+      "modelV2": {
+        "east": -78.82406389572091,
+        "north": -112.77711987245836,
+        "speedMps": 11.848343169719197,
+        "headingDeg": 51.21446071019753,
+        "laneCount": 1,
+        "pathPointCount": 33
+      },
+      "gps": {
+        "east": -78.82406389572091,
+        "north": -112.77711987245836,
+        "speedMps": 11.848343169719197,
+        "headingDeg": 51.21446071019753
+      },
+      "arrowPose": {
+        "east": -69.38566374071935,
+        "north": -18.874723907039762,
+        "pathIndex": 18.18396549963164,
+        "headingDeg": 254.26281917697332,
+        "frozen": false
+      },
+      "pathTangent": {
+        "dx": -5.304243946865213,
+        "dy": -1.4946704397981065,
+        "pathHeadingDeg": 254.26281917697332,
+        "bracket": [
+          18,
+          19
+        ]
+      },
+      "screenTangent": {
+        "ux": -0.9625159435937798,
+        "uy": 0.2712251063743469,
+        "screenHeadingDeg": 285.7371808230266,
+        "segment": [
+          18,
+          19
+        ]
+      },
+      "screenHeadingStepDeg": 0.5960521466677164
+    },
+    {
+      "elapsedIdx": 13,
+      "logMonoTime": "165711518986",
+      "frameId": 2963,
+      "movementState": "moving",
+      "modelV2": {
+        "east": -62.710961876822616,
+        "north": -96.3885947012073,
+        "speedMps": 12.162182656009914,
+        "headingDeg": 35.28680271476897,
+        "laneCount": 2,
+        "pathPointCount": 32
+      },
+      "gps": {
+        "east": -62.710961876822616,
+        "north": -96.3885947012073,
+        "speedMps": 12.162182656009914,
+        "headingDeg": 35.28680271476897
+      },
+      "arrowPose": {
+        "east": -73.26597699922833,
+        "north": -19.968148263601957,
+        "pathIndex": 18.915514292895992,
+        "headingDeg": 254.26281917697332,
+        "frozen": false
+      },
+      "pathTangent": {
+        "dx": -5.304243946865213,
+        "dy": -1.4946704397981065,
+        "pathHeadingDeg": 254.26281917697332,
+        "bracket": [
+          18,
+          19
+        ]
+      },
+      "screenTangent": {
+        "ux": -0.9625159435937798,
+        "uy": 0.2712251063743469,
+        "screenHeadingDeg": 285.7371808230266,
+        "segment": [
+          18,
+          19
+        ]
+      },
+      "screenHeadingStepDeg": 0
+    },
+    {
+      "elapsedIdx": 14,
+      "logMonoTime": "167711351167",
+      "frameId": 3003,
+      "movementState": "moving",
+      "modelV2": {
+        "east": -51.30210087206388,
+        "north": -74.29631893942229,
+        "speedMps": 12.23003350967097,
+        "headingDeg": 18.258055401414662,
+        "laneCount": 2,
+        "pathPointCount": 33
+      },
+      "gps": {
+        "east": -51.30210087206388,
+        "north": -74.29631893942229,
+        "speedMps": 12.23003350967097,
+        "headingDeg": 18.258055401414662
+      },
+      "arrowPose": {
+        "east": -77.17597425394473,
+        "north": -21.00440055337133,
+        "pathIndex": 19.685257366677263,
+        "headingDeg": 255.27258196362385,
+        "frozen": false
+      },
+      "pathTangent": {
+        "dx": -5.051918625843484,
+        "dy": -1.3279302712029626,
+        "pathHeadingDeg": 255.27258196362385,
+        "bracket": [
+          19,
+          20
+        ]
+      },
+      "screenTangent": {
+        "ux": -0.9671462099700638,
+        "uy": 0.2542207869953625,
+        "screenHeadingDeg": 284.7274180363761,
+        "segment": [
+          19,
+          20
+        ]
+      },
+      "screenHeadingStepDeg": -1.0097627866505263
+    },
+    {
+      "elapsedIdx": 15,
+      "logMonoTime": "169710367871",
+      "frameId": 3043,
+      "movementState": "moving",
+      "modelV2": {
+        "east": -47.16507906253405,
+        "north": -50.73977355831773,
+        "speedMps": 12.14137235223814,
+        "headingDeg": 1.9519132137177637,
+        "laneCount": 2,
+        "pathPointCount": 32
+      },
+      "gps": {
+        "east": -47.16507906253405,
+        "north": -50.73977355831773,
+        "speedMps": 12.14137235223814,
+        "headingDeg": 1.9519132137177637
+      },
+      "arrowPose": {
+        "east": -81.08105017632259,
+        "north": -22.05276499148156,
+        "pathIndex": 20.401393252338718,
+        "headingDeg": 254.76703058512408,
+        "frozen": false
+      },
+      "pathTangent": {
+        "dx": -5.767465539739973,
+        "dy": -1.5705499880971168,
+        "pathHeadingDeg": 254.76703058512408,
+        "bracket": [
+          20,
+          21
+        ]
+      },
+      "screenTangent": {
+        "ux": -0.9648654645488227,
+        "uy": 0.2627444296668996,
+        "screenHeadingDeg": 285.2329694148759,
+        "segment": [
+          20,
+          21
+        ]
+      },
+      "screenHeadingStepDeg": 0.5055513784998311
+    },
+    {
+      "elapsedIdx": 16,
+      "logMonoTime": "171706391399",
+      "frameId": 3083,
+      "movementState": "moving",
+      "modelV2": {
+        "east": -47.721013240124606,
+        "north": -25.950260610926048,
+        "speedMps": 12.762598016882984,
+        "headingDeg": 357.31263743665573,
+        "laneCount": 3,
+        "pathPointCount": 31
+      },
+      "gps": {
+        "east": -47.721013240124606,
+        "north": -25.950260610926048,
+        "speedMps": 12.762598016882984,
+        "headingDeg": 357.31263743665573
+      },
+      "arrowPose": {
+        "east": -84.97673891139755,
+        "north": -23.11277486178173,
+        "pathIndex": 21.077865716663993,
+        "headingDeg": 254.86730529905847,
+        "frozen": false
+      },
+      "pathTangent": {
+        "dx": -5.692427490205958,
+        "dy": -1.539420107094692,
+        "pathHeadingDeg": 254.86730529905847,
+        "bracket": [
+          21,
+          22
+        ]
+      },
+      "screenTangent": {
+        "ux": -0.9653238219647793,
+        "uy": 0.2610553940207157,
+        "screenHeadingDeg": 285.13269470094144,
+        "segment": [
+          21,
+          22
+        ]
+      },
+      "screenHeadingStepDeg": -0.10027471393448195
+    },
+    {
+      "elapsedIdx": 17,
+      "logMonoTime": "173712039287",
+      "frameId": 3123,
+      "movementState": "moving",
+      "modelV2": {
+        "east": -49.21765834109766,
+        "north": 0.78274468006442,
+        "speedMps": 13.74406391524266,
+        "headingDeg": 357.5081790603638,
+        "laneCount": 3,
+        "pathPointCount": 30
+      },
+      "gps": {
+        "east": -49.21765834109766,
+        "north": 0.78274468006442,
+        "speedMps": 13.74406391524266,
+        "headingDeg": 357.5081790603638
+      },
+      "arrowPose": {
+        "east": -88.89281264182308,
+        "north": -24.171810335110923,
+        "pathIndex": 21.76581013706518,
+        "headingDeg": 254.86730529905847,
+        "frozen": false
+      },
+      "pathTangent": {
+        "dx": -5.692427490205958,
+        "dy": -1.539420107094692,
+        "pathHeadingDeg": 254.86730529905847,
+        "bracket": [
+          21,
+          22
+        ]
+      },
+      "screenTangent": {
+        "ux": -0.9653238219647793,
+        "uy": 0.2610553940207157,
+        "screenHeadingDeg": 285.13269470094144,
+        "segment": [
+          21,
+          22
+        ]
+      },
+      "screenHeadingStepDeg": 0
+    },
+    {
+      "elapsedIdx": 18,
+      "logMonoTime": "175704371479",
+      "frameId": 3163,
+      "movementState": "moving",
+      "modelV2": {
+        "east": -50.56520013610584,
+        "north": 29.2176383300791,
+        "speedMps": 14.944986895447117,
+        "headingDeg": 357.8681527829441,
+        "laneCount": 3,
+        "pathPointCount": 30
+      },
+      "gps": {
+        "east": -50.56520013610584,
+        "north": 29.2176383300791,
+        "speedMps": 14.944986895447117,
+        "headingDeg": 357.8681527829441
+      },
+      "arrowPose": {
+        "east": -92.79016246369164,
+        "north": -25.1965934423671,
+        "pathIndex": 22.426004188335003,
+        "headingDeg": 255.47678232812441,
+        "frozen": false
+      },
+      "pathTangent": {
+        "dx": -6.019285909354323,
+        "dy": -1.559295757097562,
+        "pathHeadingDeg": 255.47678232812441,
+        "bracket": [
+          22,
+          23
+        ]
+      },
+      "screenTangent": {
+        "ux": -0.968046100700708,
+        "uy": 0.25077230093882874,
+        "screenHeadingDeg": 284.52321767187556,
+        "segment": [
+          22,
+          23
+        ]
+      },
+      "screenHeadingStepDeg": -0.6094770290658289
+    },
+    {
+      "elapsedIdx": 19,
+      "logMonoTime": "177707085489",
+      "frameId": 3203,
+      "movementState": "moving",
+      "modelV2": {
+        "east": -52.299387084372434,
+        "north": 59.963934913963094,
+        "speedMps": 16.115534613840083,
+        "headingDeg": 357.87938543676614,
+        "laneCount": 2,
+        "pathPointCount": 29
+      },
+      "gps": {
+        "east": -52.299387084372434,
+        "north": 59.963934913963094,
+        "speedMps": 16.115534613840083,
+        "headingDeg": 357.87938543676614
+      },
+      "arrowPose": {
+        "east": -96.71193320664783,
+        "north": -26.211239191355507,
+        "pathIndex": 23.07542640953705,
+        "headingDeg": 255.62514568255446,
+        "frozen": false
+      },
+      "pathTangent": {
+        "dx": -6.187830557457801,
+        "dy": -1.5858704663471173,
+        "pathHeadingDeg": 255.62514568255446,
+        "bracket": [
+          23,
+          24
+        ]
+      },
+      "screenTangent": {
+        "ux": -0.9686922116077343,
+        "uy": 0.24826477633872404,
+        "screenHeadingDeg": 284.37485431744557,
+        "segment": [
+          23,
+          24
+        ]
+      },
+      "screenHeadingStepDeg": -0.14836335442998916
+    },
+    {
+      "elapsedIdx": 20,
+      "logMonoTime": "179713752755",
+      "frameId": 3243,
+      "movementState": "moving",
+      "modelV2": {
+        "east": -53.62748274565796,
+        "north": 93.25492747794408,
+        "speedMps": 16.731062701609286,
+        "headingDeg": 357.5766980822572,
+        "laneCount": 2,
+        "pathPointCount": 28
+      },
+      "gps": {
+        "east": -53.62748274565796,
+        "north": 93.25492747794408,
+        "speedMps": 16.731062701609286,
+        "headingDeg": 357.5766980822572
+      },
+      "arrowPose": {
+        "east": -100.64366774413887,
+        "north": -27.218897954249243,
+        "pathIndex": 23.710824308846423,
+        "headingDeg": 255.62514568255446,
+        "frozen": false
+      },
+      "pathTangent": {
+        "dx": -6.187830557457801,
+        "dy": -1.5858704663471173,
+        "pathHeadingDeg": 255.62514568255446,
+        "bracket": [
+          23,
+          24
+        ]
+      },
+      "screenTangent": {
+        "ux": -0.9686922116077343,
+        "uy": 0.24826477633872404,
+        "screenHeadingDeg": 284.37485431744557,
+        "segment": [
+          23,
+          24
+        ]
+      },
+      "screenHeadingStepDeg": 0
+    },
+    {
+      "elapsedIdx": 21,
+      "logMonoTime": "181701795889",
+      "frameId": 3283,
+      "movementState": "moving",
+      "modelV2": {
+        "east": -55.49041692426589,
+        "north": 128.3742866796916,
+        "speedMps": 17.258139906250282,
+        "headingDeg": 357.6347729770144,
+        "laneCount": 2,
+        "pathPointCount": 29
+      },
+      "gps": {
+        "east": -55.49041692426589,
+        "north": 128.3742866796916,
+        "speedMps": 17.258139906250282,
+        "headingDeg": 357.6347729770144
+      },
+      "arrowPose": {
+        "east": -104.55251878187481,
+        "north": -28.161251019297115,
+        "pathIndex": 24.356385589654003,
+        "headingDeg": 257.1428519634703,
+        "frozen": false
+      },
+      "pathTangent": {
+        "dx": -5.947156453771214,
+        "dy": -1.3574002173644537,
+        "pathHeadingDeg": 257.1428519634703,
+        "bracket": [
+          24,
+          25
+        ]
+      },
+      "screenTangent": {
+        "ux": -0.9749278920665161,
+        "uy": 0.22252102208721708,
+        "screenHeadingDeg": 282.8571480365297,
+        "segment": [
+          24,
+          25
+        ]
+      },
+      "screenHeadingStepDeg": -1.5177062809159452
+    },
+    {
+      "elapsedIdx": 22,
+      "logMonoTime": "183695365176",
+      "frameId": 3323,
+      "movementState": "moving",
+      "modelV2": {
+        "east": -57.066682373218946,
+        "north": 160.40554185754854,
+        "speedMps": 16.420991034624713,
+        "headingDeg": 357.57211906462044,
+        "laneCount": 3,
+        "pathPointCount": 33
+      },
+      "gps": {
+        "east": -57.066682373218946,
+        "north": 160.40554185754854,
+        "speedMps": 16.420991034624713,
+        "headingDeg": 357.57211906462044
+      },
+      "arrowPose": {
+        "east": -108.48303127397901,
+        "north": -29.061802309827506,
+        "pathIndex": 25.014813271940017,
+        "headingDeg": 255.33639372084411,
+        "frozen": false
+      },
+      "pathTangent": {
+        "dx": -6.94221359678491,
+        "dy": -1.8165433090544347,
+        "pathHeadingDeg": 255.33639372084411,
+        "bracket": [
+          25,
+          26
+        ]
+      },
+      "screenTangent": {
+        "ux": -0.9674287422086271,
+        "uy": 0.2531434943833911,
+        "screenHeadingDeg": 284.66360627915583,
+        "segment": [
+          25,
+          26
+        ]
+      },
+      "screenHeadingStepDeg": 1.8064582426261495
+    },
+    {
+      "elapsedIdx": 23,
+      "logMonoTime": "185690505804",
+      "frameId": 3363,
+      "movementState": "moving",
+      "modelV2": {
+        "east": -58.465720761483084,
+        "north": 191.92677664948312,
+        "speedMps": 15.286815111071345,
+        "headingDeg": 357.4934918147574,
+        "laneCount": 2,
+        "pathPointCount": 33
+      },
+      "gps": {
+        "east": -58.465720761483084,
+        "north": 191.92677664948312,
+        "speedMps": 15.286815111071345,
+        "headingDeg": 357.4934918147574
+      },
+      "arrowPose": {
+        "east": -112.38713083789389,
+        "north": -30.083373576951345,
+        "pathIndex": 25.577184266362163,
+        "headingDeg": 255.33639372084411,
+        "frozen": false
+      },
+      "pathTangent": {
+        "dx": -6.94221359678491,
+        "dy": -1.8165433090544347,
+        "pathHeadingDeg": 255.33639372084411,
+        "bracket": [
+          25,
+          26
+        ]
+      },
+      "screenTangent": {
+        "ux": -0.9674287422086271,
+        "uy": 0.2531434943833911,
+        "screenHeadingDeg": 284.66360627915583,
+        "segment": [
+          25,
+          26
+        ]
+      },
+      "screenHeadingStepDeg": 0
+    },
+    {
+      "elapsedIdx": 24,
+      "logMonoTime": "187679843472",
+      "frameId": 3403,
+      "movementState": "moving",
+      "modelV2": {
+        "east": -59.63266805257428,
+        "north": 220.94280479421857,
+        "speedMps": 13.095588964572274,
+        "headingDeg": 357.8149900762928,
+        "laneCount": 2,
+        "pathPointCount": 33
+      },
+      "gps": {
+        "east": -59.63266805257428,
+        "north": 220.94280479421857,
+        "speedMps": 13.095588964572274,
+        "headingDeg": 357.8149900762928
+      },
+      "arrowPose": {
+        "east": -116.29438345125249,
+        "north": -31.03791814485818,
+        "pathIndex": 26.140755509957632,
+        "headingDeg": 259.1393099677787,
+        "frozen": false
+      },
+      "pathTangent": {
+        "dx": -6.9054169080555425,
+        "dy": -1.3248609312715907,
+        "pathHeadingDeg": 259.1393099677787,
+        "bracket": [
+          26,
+          27
+        ]
+      },
+      "screenTangent": {
+        "ux": -0.9820882177574344,
+        "uy": 0.1884216880882508,
+        "screenHeadingDeg": 280.8606900322213,
+        "segment": [
+          26,
+          27
+        ]
+      },
+      "screenHeadingStepDeg": -3.802916246934501
+    },
+    {
+      "elapsedIdx": 25,
+      "logMonoTime": "189674587404",
+      "frameId": 3443,
+      "movementState": "moving",
+      "modelV2": {
+        "east": -60.45350331258195,
+        "north": 243.93856096576945,
+        "speedMps": 10.126653091331068,
+        "headingDeg": 357.8088577919129,
+        "laneCount": 3,
+        "pathPointCount": 33
+      },
+      "gps": {
+        "east": -60.45350331258195,
+        "north": 243.93856096576945,
+        "speedMps": 10.126653091331068,
+        "headingDeg": 357.8088577919129
+      },
+      "arrowPose": {
+        "east": -120.25685302551764,
+        "north": -31.798150466844735,
+        "pathIndex": 26.714575979746026,
+        "headingDeg": 259.1393099677787,
+        "frozen": false
+      },
+      "pathTangent": {
+        "dx": -6.9054169080555425,
+        "dy": -1.3248609312715907,
+        "pathHeadingDeg": 259.1393099677787,
+        "bracket": [
+          26,
+          27
+        ]
+      },
+      "screenTangent": {
+        "ux": -0.9820882177574344,
+        "uy": 0.1884216880882508,
+        "screenHeadingDeg": 280.8606900322213,
+        "segment": [
+          26,
+          27
+        ]
+      },
+      "screenHeadingStepDeg": 0
+    },
+    {
+      "elapsedIdx": 26,
+      "logMonoTime": "191667697949",
+      "frameId": 3483,
+      "movementState": "moving",
+      "modelV2": {
+        "east": -60.84271682398983,
+        "north": 260.41114319774493,
+        "speedMps": 6.937488254426926,
+        "headingDeg": 356.8593230863989,
+        "laneCount": 3,
+        "pathPointCount": 33
+      },
+      "gps": {
+        "east": -60.84271682398983,
+        "north": 260.41114319774493,
+        "speedMps": 6.937488254426926,
+        "headingDeg": 356.8593230863989
+      },
+      "arrowPose": {
+        "east": -124.21418637603594,
+        "north": -32.56753406095282,
+        "pathIndex": 27.278690006784164,
+        "headingDeg": 258.85756999476877,
+        "frozen": false
+      },
+      "pathTangent": {
+        "dx": -7.127494516262658,
+        "dy": -1.4038410108121582,
+        "pathHeadingDeg": 258.85756999476877,
+        "bracket": [
+          27,
+          28
+        ]
+      },
+      "screenTangent": {
+        "ux": -0.9811498240816453,
+        "uy": 0.19324860337026092,
+        "screenHeadingDeg": 281.1424300052313,
+        "segment": [
+          27,
+          28
+        ]
+      },
+      "screenHeadingStepDeg": 0.28173997300996234
+    },
+    {
+      "elapsedIdx": 27,
+      "logMonoTime": "193663564803",
+      "frameId": 3523,
+      "movementState": "moving",
+      "modelV2": {
+        "east": -61.50480325974117,
+        "north": 273.05482536681944,
+        "speedMps": 5.162680254929667,
+        "headingDeg": 355.24327252578104,
+        "laneCount": 2,
+        "pathPointCount": 33
+      },
+      "gps": {
+        "east": -61.50480325974117,
+        "north": 273.05482536681944,
+        "speedMps": 5.162680254929667,
+        "headingDeg": 355.24327252578104
+      },
+      "arrowPose": {
+        "east": -128.17511466937358,
+        "north": -33.34768388307984,
+        "pathIndex": 27.834415203667877,
+        "headingDeg": 258.85756999476877,
+        "frozen": false
+      },
+      "pathTangent": {
+        "dx": -7.127494516262658,
+        "dy": -1.4038410108121582,
+        "pathHeadingDeg": 258.85756999476877,
+        "bracket": [
+          27,
+          28
+        ]
+      },
+      "screenTangent": {
+        "ux": -0.9811498240816453,
+        "uy": 0.19324860337026092,
+        "screenHeadingDeg": 281.1424300052313,
+        "segment": [
+          27,
+          28
+        ]
+      },
+      "screenHeadingStepDeg": 0
+    },
+    {
+      "elapsedIdx": 28,
+      "logMonoTime": "195656697046",
+      "frameId": 3563,
+      "movementState": "moving",
+      "modelV2": {
+        "east": -62.775188911860646,
+        "north": 282.70902844327,
+        "speedMps": 4.56703289636412,
+        "headingDeg": 355.55312369472165,
+        "laneCount": 1,
+        "pathPointCount": 33
+      },
+      "gps": {
+        "east": -62.775188911860646,
+        "north": 282.70902844327,
+        "speedMps": 4.56703289636412,
+        "headingDeg": 355.55312369472165
+      },
+      "arrowPose": {
+        "east": -132.1421118531655,
+        "north": -34.06470155678995,
+        "pathIndex": 28.412117846566296,
+        "headingDeg": 260.1361210677399,
+        "frozen": false
+      },
+      "pathTangent": {
+        "dx": -6.76212515225285,
+        "dy": -1.175787338232027,
+        "pathHeadingDeg": 260.1361210677399,
+        "bracket": [
+          28,
+          29
+        ]
+      },
+      "screenTangent": {
+        "ux": -0.9852175199158668,
+        "uy": 0.17130802214382293,
+        "screenHeadingDeg": 279.86387893226004,
+        "segment": [
+          28,
+          29
+        ]
+      },
+      "screenHeadingStepDeg": -1.2785510729712541
+    },
+    {
+      "elapsedIdx": 29,
+      "logMonoTime": "197651558947",
+      "frameId": 3603,
+      "movementState": "moving",
+      "modelV2": {
+        "east": -63.2358248188893,
+        "north": 289.64567692768867,
+        "speedMps": 4.398381233215332,
+        "headingDeg": 351.5805969238281,
+        "laneCount": 2,
+        "pathPointCount": 33
+      },
+      "gps": {
+        "east": -63.2358248188893,
+        "north": 289.64567692768867,
+        "speedMps": 4.398381233215332,
+        "headingDeg": 351.5805969238281
+      },
+      "arrowPose": {
+        "east": -136.11744454946012,
+        "north": -34.75592594916988,
+        "pathIndex": 29,
+        "headingDeg": 260.1361210677399,
+        "frozen": false
+      },
+      "pathTangent": {
+        "dx": -6.76212515225285,
+        "dy": -1.175787338232027,
+        "pathHeadingDeg": 260.1361210677399,
+        "bracket": [
+          28,
+          29
+        ]
+      },
+      "screenTangent": {
+        "ux": -0.9852175199158668,
+        "uy": 0.17130802214382293,
+        "screenHeadingDeg": 279.86387893226004,
+        "segment": [
+          28,
+          29
+        ]
+      },
+      "screenHeadingStepDeg": 0
+    }
+  ]
+}

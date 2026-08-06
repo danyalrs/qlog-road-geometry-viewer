@@ -1,0 +1,12 @@
+﻿{
+  "name": "stage19-revision36",
+  "private": true,
+  "scripts": {
+    "test": "node --test tests",
+    "stage19:evidence": "node scripts/stage19_evidence_runner.js"
+  },
+  "devDependencies": {
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1"
+  }
+}

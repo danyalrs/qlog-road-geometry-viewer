@@ -1,0 +1,3364 @@
+{
+  "generatedAt": "2026-08-05T05:56:36.071Z",
+  "segment": "qlog_f449c_2.bz2",
+  "stage": 5,
+  "scope": "dc015_dropout_corridor_investigation",
+  "investigationOnly": true,
+  "productionGeometryModified": false,
+  "baseline": {
+    "stage3AcceptedLaneChecksum": "ff6d115e",
+    "fusedFragments": 22,
+    "cleanedRuns": 21,
+    "stablePhysicalDisconnections": 18,
+    "roadSurfaceChecksum": "70457ea"
+  },
+  "after": {
+    "laneChecksum": "ff6d115e",
+    "fusedFragmentCount": 22,
+    "cleanedRunCount": 21,
+    "stablePhysicalDisconnections": 18,
+    "roadSurfaceChecksum": "70457ea"
+  },
+  "dc015": {
+    "identity": {
+      "disconnectionId": "DC-015",
+      "physicalBoundaryId": "PB0",
+      "trackId": 0,
+      "chunkId": 0,
+      "passId": 0,
+      "stage4PhysicalGapKey": "PB0|128.15|260.57",
+      "stage1PhysicalGapKey": "PB0|136.89|260.57",
+      "routeSInterval": [
+        128.15,
+        260.57
+      ],
+      "alongTrackGapM": 132.42,
+      "stage1RouteSInterval": [
+        136.89462245632075,
+        260.5733446591958
+      ],
+      "stage1AlongTrackGapM": 123.67872220287506,
+      "endpointKeyReconciliation": {
+        "samePhysicalCorridor": true,
+        "endpointShiftM": 8.74462245632074,
+        "shiftCause": "dc014_physical_closure_merged_preceding_run_endpoint",
+        "closedAdjacentGap": "PB0|101.42|128.15",
+        "noNewPhysicalGapIntroduced": true,
+        "stage1StartShiftedWestByM": 8.74462245632074,
+        "stage1EndUnchanged": true
+      },
+      "sourceFragmentId": 28,
+      "candidateContinuationFragmentId": 24,
+      "sourceRunId": 18,
+      "continuationRunId": 17,
+      "endpointCoordinates": {
+        "preceding": {
+          "east": -145.9067342708378,
+          "north": -47.06788469200899,
+          "s": 128.15150739711632,
+          "d": -3.7137264544720407
+        },
+        "following": {
+          "east": -98.96043523413093,
+          "north": -126.01540296021949,
+          "s": 260.5733446591958,
+          "d": -1.4425073557306312
+        }
+      },
+      "euclideanGapM": 91.85132352858795,
+      "lateralOffsetM": 2.2712190987414096,
+      "headingDifferenceDeg": 0.6265491845450697,
+      "endpointCompatibility": {
+        "compatible": false,
+        "gapM": 132.4218372620795,
+        "dDelta": 2.2712190987414096,
+        "headingDelta": 0.6265491845450697,
+        "reason": "lateralMismatch"
+      },
+      "laneOrderBefore": 0,
+      "laneOrderAfter": 0,
+      "competingContinuationCandidates": [],
+      "nearbyPb1Pb2": {
+        "PB1": [],
+        "PB2": []
+      },
+      "endpointFrames": {
+        "preceding": {
+          "frameId": null,
+          "s": 128.15150739711632
+        },
+        "following": {
+          "frameId": null,
+          "s": 260.5733446591958
+        }
+      }
+    },
+    "physicalGapKey": "PB0|128.15|260.57",
+    "physicallyOpen": true,
+    "pipeline": {
+      "corridorRouteS": [
+        110,
+        280
+      ],
+      "gapRouteS": [
+        128.15,
+        260.57
+      ],
+      "pipelineStages": [
+        "raw_modelV2",
+        "vehicle_relative",
+        "accepted_model_observations",
+        "pose_transformed",
+        "tracker_candidates",
+        "tracker_assignments",
+        "route_sd_projection",
+        "bin_aggregation",
+        "fused_fragments",
+        "cleaned_runs",
+        "mode5_rendering"
+      ],
+      "stageSummary": {
+        "raw_modelV2": {
+          "pointsInGap": 95,
+          "distinctFrames": 4,
+          "distinctTracks": [
+            0,
+            1
+          ]
+        },
+        "accepted_model_observations": {
+          "track0InGap": 35,
+          "allTracksInGap": 45,
+          "distinctFramesTrack0": 4
+        },
+        "bin_aggregation": {
+          "binsInGap": 24,
+          "accepted": 5,
+          "rejected": 19,
+          "rejectionReasons": {
+            "D6_minObsPerBin": 15,
+            "D7_minFramesPerBin": 4
+          }
+        },
+        "fused_fragments": {
+          "primarySplit": {
+            "afterBinKey": 73,
+            "beforeBinKey": 130,
+            "gapM": 114.6603661956996,
+            "lateralDeltaM": 17.604790107653855,
+            "reason": "D11_maxLaneFragmentGapM",
+            "bridgeRejected": null,
+            "measurement": "consecutive accepted fused bin centres (s coordinate)",
+            "thresholdM": 10
+          },
+          "acceptedBinsNearGap": [
+            {
+              "binKey": 64,
+              "s": 128.15150739711632,
+              "d": -3.7137264544720407
+            },
+            {
+              "binKey": 68,
+              "s": 136.89462245632075,
+              "d": -7.33884143023704
+            },
+            {
+              "binKey": 70,
+              "s": 139.11959802958535,
+              "d": -10.69203096796368
+            },
+            {
+              "binKey": 71,
+              "s": 142.44038927945275,
+              "d": -14.595575034610262
+            },
+            {
+              "binKey": 73,
+              "s": 145.91297846349622,
+              "d": -19.047297463384485
+            },
+            {
+              "binKey": 130,
+              "s": 260.5733446591958,
+              "d": -1.4425073557306312
+            }
+          ]
+        },
+        "cleaned_runs": {
+          "gapOpen": true,
+          "precedingRunEndS": 128.15150739711632,
+          "followingRunStartS": 260.5733446591958
+        }
+      },
+      "observationInventory": [
+        {
+          "frameId": 2563,
+          "logMonoTime": "145723084099",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.7887699604034424,
+          "modelX": 42.1875,
+          "modelY": -12.973161697387695,
+          "modelZ": 0.5925918817520142,
+          "east": -157.08397778088192,
+          "north": -34.25191887644632,
+          "routeS": 128.57296747729222,
+          "lateralD": -20.71378891521944,
+          "vehicleRouteS": 92.49290092856977,
+          "poseTimestamp": "145723084099",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "included",
+            "reason": "accepted_fused_fragment",
+            "stage": "fused_fragments"
+          }
+        },
+        {
+          "frameId": 2563,
+          "logMonoTime": "145723084099",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.7887699604034424,
+          "modelX": 48,
+          "modelY": -16.745752334594727,
+          "modelZ": 0.3975881338119507,
+          "east": -163.83915769570996,
+          "north": -32.70752880776356,
+          "routeS": 132.7865214602288,
+          "lateralD": -26.21502143155805,
+          "vehicleRouteS": 92.49290092856977,
+          "poseTimestamp": "145723084099",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2563,
+          "logMonoTime": "145723084099",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.7887699604034424,
+          "modelX": 54.1875,
+          "modelY": -21.079002380371094,
+          "modelZ": 0.24711251258850098,
+          "east": -171.13922733146384,
+          "north": -30.765572185599883,
+          "routeS": 136.89462245632075,
+          "lateralD": -32.370120469249315,
+          "vehicleRouteS": 92.49290092856977,
+          "poseTimestamp": "145723084099",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2563,
+          "logMonoTime": "145723084099",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.7887699604034424,
+          "modelX": 60.75,
+          "modelY": -26.03232192993164,
+          "modelZ": -0.06664025783538818,
+          "east": -179.00461102714402,
+          "north": -28.37026007028234,
+          "routeS": 136.89462245632075,
+          "lateralD": -39.23506593364816,
+          "vehicleRouteS": 92.49290092856977,
+          "poseTimestamp": "145723084099",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2563,
+          "logMonoTime": "145723084099",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.7887699604034424,
+          "modelX": 67.6875,
+          "modelY": -31.37333869934082,
+          "modelZ": -0.2777543067932129,
+          "east": -187.3554225229447,
+          "north": -25.73980122386156,
+          "routeS": 136.89462245632075,
+          "lateralD": -46.59090213355791,
+          "vehicleRouteS": 92.49290092856977,
+          "poseTimestamp": "145723084099",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2563,
+          "logMonoTime": "145723084099",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.7887699604034424,
+          "modelX": 75,
+          "modelY": -37.15616989135742,
+          "modelZ": -0.689372181892395,
+          "east": -196.21026653732164,
+          "north": -22.82337698750422,
+          "routeS": 136.89462245632075,
+          "lateralD": -54.48862168020993,
+          "vehicleRouteS": 92.49290092856977,
+          "poseTimestamp": "145723084099",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2563,
+          "logMonoTime": "145723084099",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.7887699604034424,
+          "modelX": 82.6875,
+          "modelY": -43.54882049560547,
+          "modelZ": -0.9737677574157715,
+          "east": -205.62690077709982,
+          "north": -19.46322258744604,
+          "routeS": 136.89462245632075,
+          "lateralD": -63.08652937658944,
+          "vehicleRouteS": 92.49290092856977,
+          "poseTimestamp": "145723084099",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2563,
+          "logMonoTime": "145723084099",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.7887699604034424,
+          "modelX": 90.75,
+          "modelY": -53.08599853515625,
+          "modelZ": -1.377805471420288,
+          "east": -216.47672152170463,
+          "north": -13.279125157906833,
+          "routeS": 136.89462245632075,
+          "lateralD": -74.77298556315496,
+          "vehicleRouteS": 92.49290092856977,
+          "poseTimestamp": "145723084099",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2563,
+          "logMonoTime": "145723084099",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.7887699604034424,
+          "modelX": 99.1875,
+          "modelY": -61.098209381103516,
+          "modelZ": -1.8509645462036133,
+          "east": -227.1544234620474,
+          "north": -8.655964965666563,
+          "routeS": 136.89462245632075,
+          "lateralD": -85.1481005168485,
+          "vehicleRouteS": 92.49290092856977,
+          "poseTimestamp": "145723084099",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2563,
+          "logMonoTime": "145723084099",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.7887699604034424,
+          "modelX": 108,
+          "modelY": -70.35578918457031,
+          "modelZ": -2.1180994510650635,
+          "east": -238.61240844988907,
+          "north": -2.992262988518476,
+          "routeS": 136.89462245632075,
+          "lateralD": -96.82225812917004,
+          "vehicleRouteS": 92.49290092856977,
+          "poseTimestamp": "145723084099",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2563,
+          "logMonoTime": "145723084099",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.7887699604034424,
+          "modelX": 117.1875,
+          "modelY": -78.91809844970703,
+          "modelZ": -2.790128707885742,
+          "east": -250.1835124485844,
+          "north": 1.8896268559191327,
+          "routeS": 136.89462245632075,
+          "lateralD": -107.96686656041777,
+          "vehicleRouteS": 92.49290092856977,
+          "poseTimestamp": "145723084099",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2563,
+          "logMonoTime": "145723084099",
+          "laneIndex": 2,
+          "laneTrackId": 1,
+          "prob": 0.7298612594604492,
+          "modelX": 42.1875,
+          "modelY": -7.9024200439453125,
+          "modelZ": 0.5659275054931641,
+          "east": -155.34072949724603,
+          "north": -39.013589417081825,
+          "routeS": 130.2710328396107,
+          "lateralD": -15.935819164242597,
+          "vehicleRouteS": 92.49290092856977,
+          "poseTimestamp": "145723084099",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "assigned_other_track",
+            "reason": "laneTrackId=1",
+            "stage": "tracker_assignments"
+          }
+        },
+        {
+          "frameId": 2563,
+          "logMonoTime": "145723084099",
+          "laneIndex": 2,
+          "laneTrackId": 1,
+          "prob": 0.7298612594604492,
+          "modelX": 48,
+          "modelY": -11.202766418457031,
+          "modelZ": 0.3838297128677368,
+          "east": -161.93355860490138,
+          "north": -37.91265944700888,
+          "routeS": 134.64272968997028,
+          "lateralD": -20.99207361692876,
+          "vehicleRouteS": 92.49290092856977,
+          "poseTimestamp": "145723084099",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "assigned_other_track",
+            "reason": "laneTrackId=1",
+            "stage": "tracker_assignments"
+          }
+        },
+        {
+          "frameId": 2563,
+          "logMonoTime": "145723084099",
+          "laneIndex": 2,
+          "laneTrackId": 1,
+          "prob": 0.7298612594604492,
+          "modelX": 54.1875,
+          "modelY": -15.331886291503906,
+          "modelZ": 0.13939929008483887,
+          "east": -169.1634512137883,
+          "north": -36.162390884772485,
+          "routeS": 136.89462245632075,
+          "lateralD": -26.95482844597727,
+          "vehicleRouteS": 92.49290092856977,
+          "poseTimestamp": "145723084099",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2563,
+          "logMonoTime": "145723084099",
+          "laneIndex": 2,
+          "laneTrackId": 1,
+          "prob": 0.7298612594604492,
+          "modelX": 60.75,
+          "modelY": -20.551050186157227,
+          "modelZ": -0.12232398986816406,
+          "east": -177.12022838402711,
+          "north": -33.51743813048383,
+          "routeS": 136.89462245632075,
+          "lateralD": -34.070269069887786,
+          "vehicleRouteS": 92.49290092856977,
+          "poseTimestamp": "145723084099",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2563,
+          "logMonoTime": "145723084099",
+          "laneIndex": 2,
+          "laneTrackId": 1,
+          "prob": 0.7298612594604492,
+          "modelX": 67.6875,
+          "modelY": -26.216394424438477,
+          "modelZ": -0.35933423042297363,
+          "east": -185.58253901389696,
+          "north": -30.58242017622552,
+          "routeS": 136.89462245632075,
+          "lateralD": -41.73170688423389,
+          "vehicleRouteS": 92.49290092856977,
+          "poseTimestamp": "145723084099",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2563,
+          "logMonoTime": "145723084099",
+          "laneIndex": 2,
+          "laneTrackId": 1,
+          "prob": 0.7298612594604492,
+          "modelX": 75,
+          "modelY": -32.327518463134766,
+          "modelZ": -0.7137546539306641,
+          "east": -194.55024540238358,
+          "north": -27.35771315135837,
+          "routeS": 136.89462245632075,
+          "lateralD": -49.93876447216294,
+          "vehicleRouteS": 92.49290092856977,
+          "poseTimestamp": "145723084099",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2563,
+          "logMonoTime": "145723084099",
+          "laneIndex": 2,
+          "laneTrackId": 1,
+          "prob": 0.7298612594604492,
+          "modelX": 82.6875,
+          "modelY": -40.20934295654297,
+          "modelZ": -1.003499984741211,
+          "east": -204.4788362756754,
+          "north": -22.599152773925333,
+          "routeS": 136.89462245632075,
+          "lateralD": -59.93986489312572,
+          "vehicleRouteS": 92.49290092856977,
+          "poseTimestamp": "145723084099",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2563,
+          "logMonoTime": "145723084099",
+          "laneIndex": 2,
+          "laneTrackId": 1,
+          "prob": 0.7298612594604492,
+          "modelX": 90.75,
+          "modelY": -46.751041412353516,
+          "modelZ": -1.342125654220581,
+          "east": -214.2988540841601,
+          "north": -19.227954889226453,
+          "routeS": 136.89462245632075,
+          "lateralD": -68.80379297257237,
+          "vehicleRouteS": 92.49290092856977,
+          "poseTimestamp": "145723084099",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2563,
+          "logMonoTime": "145723084099",
+          "laneIndex": 2,
+          "laneTrackId": 1,
+          "prob": 0.7298612594604492,
+          "modelX": 99.1875,
+          "modelY": -55.006187438964844,
+          "modelZ": -1.750326156616211,
+          "east": -225.0600736567687,
+          "north": -14.376666866362683,
+          "routeS": 136.89462245632075,
+          "lateralD": -79.4078166390324,
+          "vehicleRouteS": 92.49290092856977,
+          "poseTimestamp": "145723084099",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2563,
+          "logMonoTime": "145723084099",
+          "laneIndex": 2,
+          "laneTrackId": 1,
+          "prob": 0.7298612594604492,
+          "modelX": 108,
+          "modelY": -62.97917175292969,
+          "modelZ": -2.219982624053955,
+          "east": -236.07643313195575,
+          "north": -9.919261899996478,
+          "routeS": 136.89462245632075,
+          "lateralD": -89.87154808284367,
+          "vehicleRouteS": 92.49290092856977,
+          "poseTimestamp": "145723084099",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2563,
+          "logMonoTime": "145723084099",
+          "laneIndex": 2,
+          "laneTrackId": 1,
+          "prob": 0.7298612594604492,
+          "modelX": 117.1875,
+          "modelY": -69.60440063476562,
+          "modelZ": -2.5879600048065186,
+          "east": -246.9815966658748,
+          "north": -6.856383795142264,
+          "routeS": 136.89462245632075,
+          "lateralD": -99.19091829270846,
+          "vehicleRouteS": 92.49290092856977,
+          "poseTimestamp": "145723084099",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2603,
+          "logMonoTime": "147723001692",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.920274555683136,
+          "modelX": 12,
+          "modelY": -2.5792431831359863,
+          "modelZ": 1.180348515510559,
+          "east": -145.90673427083777,
+          "north": -47.06788469200898,
+          "routeS": 128.15150739711632,
+          "lateralD": -3.7137264544720407,
+          "vehicleRouteS": 116.45275826658494,
+          "poseTimestamp": "147723001692",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "included",
+            "reason": "accepted_fused_fragment",
+            "stage": "fused_fragments"
+          }
+        },
+        {
+          "frameId": 2603,
+          "logMonoTime": "147723001692",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.920274555683136,
+          "modelX": 15.1875,
+          "modelY": -3.1401731967926025,
+          "modelZ": 1.1233505010604858,
+          "east": -148.85854688732275,
+          "north": -48.39513787335036,
+          "routeS": 131.2708498368598,
+          "lateralD": -4.576571442772742,
+          "vehicleRouteS": 116.45275826658494,
+          "poseTimestamp": "147723001692",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "D6_minObsPerBin",
+            "stage": "bin_aggregation"
+          }
+        },
+        {
+          "frameId": 2603,
+          "logMonoTime": "147723001692",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.920274555683136,
+          "modelX": 18.75,
+          "modelY": -4.01227331161499,
+          "modelZ": 1.0492416620254517,
+          "east": -152.2954111018915,
+          "north": -49.67573508984351,
+          "routeS": 134.73375353716492,
+          "lateralD": -5.784984792039652,
+          "vehicleRouteS": 116.45275826658494,
+          "poseTimestamp": "147723001692",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "D6_minObsPerBin",
+            "stage": "bin_aggregation"
+          }
+        },
+        {
+          "frameId": 2603,
+          "logMonoTime": "147723001692",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.920274555683136,
+          "modelX": 22.6875,
+          "modelY": -5.195417881011963,
+          "modelZ": 0.9370647668838501,
+          "east": -156.21725630664247,
+          "north": -50.909780272187064,
+          "routeS": 136.89462245632075,
+          "lateralD": -7.33884143023704,
+          "vehicleRouteS": 116.45275826658494,
+          "poseTimestamp": "147723001692",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "D10_lateralSpikeSkipped",
+            "stage": "fused_fragments"
+          }
+        },
+        {
+          "frameId": 2603,
+          "logMonoTime": "147723001692",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.920274555683136,
+          "modelX": 27,
+          "modelY": -6.709089756011963,
+          "modelZ": 0.781777560710907,
+          "east": -160.6350310136976,
+          "north": -52.0811578513091,
+          "routeS": 139.11959802958535,
+          "lateralD": -10.69203096796368,
+          "vehicleRouteS": 116.45275826658494,
+          "poseTimestamp": "147723001692",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "orphan_bin",
+            "reason": "not_in_output_fragment",
+            "stage": "fused_fragments"
+          }
+        },
+        {
+          "frameId": 2603,
+          "logMonoTime": "147723001692",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.920274555683136,
+          "modelX": 31.6875,
+          "modelY": -8.780961990356445,
+          "modelZ": 0.5918533802032471,
+          "east": -165.6766775444908,
+          "north": -53.0015442179991,
+          "routeS": 142.44038927945275,
+          "lateralD": -14.595575034610262,
+          "vehicleRouteS": 116.45275826658494,
+          "poseTimestamp": "147723001692",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "D10_lateralSpikeSkipped",
+            "stage": "fused_fragments"
+          }
+        },
+        {
+          "frameId": 2603,
+          "logMonoTime": "147723001692",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.920274555683136,
+          "modelX": 36.75,
+          "modelY": -11.280522346496582,
+          "modelZ": 0.3611835837364197,
+          "east": -171.26885371656726,
+          "north": -53.778894772412784,
+          "routeS": 145.91297846349622,
+          "lateralD": -19.047297463384485,
+          "vehicleRouteS": 116.45275826658494,
+          "poseTimestamp": "147723001692",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "orphan_bin",
+            "reason": "not_in_output_fragment",
+            "stage": "fused_fragments"
+          }
+        },
+        {
+          "frameId": 2603,
+          "logMonoTime": "147723001692",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.920274555683136,
+          "modelX": 42.1875,
+          "modelY": -14.373539924621582,
+          "modelZ": 0.08122646808624268,
+          "east": -177.50471453071296,
+          "north": -54.27609080537404,
+          "routeS": 149.46530526777343,
+          "lateralD": -24.19648558037963,
+          "vehicleRouteS": 116.45275826658494,
+          "poseTimestamp": "147723001692",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "D6_minObsPerBin",
+            "stage": "bin_aggregation"
+          }
+        },
+        {
+          "frameId": 2603,
+          "logMonoTime": "147723001692",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.920274555683136,
+          "modelX": 48,
+          "modelY": -18.48591423034668,
+          "modelZ": -0.24018502235412598,
+          "east": -184.62359692448138,
+          "north": -54.140842352214854,
+          "routeS": 152.91222992831445,
+          "lateralD": -30.42669336703827,
+          "vehicleRouteS": 116.45275826658494,
+          "poseTimestamp": "147723001692",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2603,
+          "logMonoTime": "147723001692",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.920274555683136,
+          "modelX": 54.1875,
+          "modelY": -23.1749267578125,
+          "modelZ": -0.5318259000778198,
+          "east": -192.37671241609775,
+          "north": -53.73935149753679,
+          "routeS": 156.44620347781424,
+          "lateralD": -37.33922008916873,
+          "vehicleRouteS": 116.45275826658494,
+          "poseTimestamp": "147723001692",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2603,
+          "logMonoTime": "147723001692",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.920274555683136,
+          "modelX": 60.75,
+          "modelY": -28.291805267333984,
+          "modelZ": -0.9861643314361572,
+          "east": -200.6804574987024,
+          "north": -53.1946777104663,
+          "routeS": 158.38559880298226,
+          "lateralD": -44.800085349735944,
+          "vehicleRouteS": 116.45275826658494,
+          "poseTimestamp": "147723001692",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2603,
+          "logMonoTime": "147723001692",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.920274555683136,
+          "modelX": 67.6875,
+          "modelY": -34.127323150634766,
+          "modelZ": -1.375004768371582,
+          "east": -209.69823413022127,
+          "north": -52.26630287218393,
+          "routeS": 158.38559880298226,
+          "lateralD": -53.07115207795861,
+          "vehicleRouteS": 116.45275826658494,
+          "poseTimestamp": "147723001692",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2603,
+          "logMonoTime": "147723001692",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.920274555683136,
+          "modelX": 75,
+          "modelY": -40.07876205444336,
+          "modelZ": -1.9379806518554688,
+          "east": -219.0913408964065,
+          "north": -51.45277564165573,
+          "routeS": 158.38559880298226,
+          "lateralD": -61.6096278520613,
+          "vehicleRouteS": 116.45275826658494,
+          "poseTimestamp": "147723001692",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2603,
+          "logMonoTime": "147723001692",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.920274555683136,
+          "modelX": 82.6875,
+          "modelY": -46.795372009277344,
+          "modelZ": -2.393847703933716,
+          "east": -229.2246279836564,
+          "north": -50.21705789769076,
+          "routeS": 158.38559880298226,
+          "lateralD": -71.00021030816143,
+          "vehicleRouteS": 116.45275826658494,
+          "poseTimestamp": "147723001692",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2603,
+          "logMonoTime": "147723001692",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.920274555683136,
+          "modelX": 90.75,
+          "modelY": -56.894676208496094,
+          "modelZ": -2.994450569152832,
+          "east": -241.56902920808082,
+          "north": -46.394021150707296,
+          "routeS": 158.38559880298226,
+          "lateralD": -83.60017253320711,
+          "vehicleRouteS": 116.45275826658494,
+          "poseTimestamp": "147723001692",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2603,
+          "logMonoTime": "147723001692",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.920274555683136,
+          "modelX": 99.1875,
+          "modelY": -65.03569793701172,
+          "modelZ": -3.6162023544311523,
+          "east": -253.12314871530506,
+          "north": -44.40154443893772,
+          "routeS": 158.38559880298226,
+          "lateralD": -94.59957026369204,
+          "vehicleRouteS": 116.45275826658494,
+          "poseTimestamp": "147723001692",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2603,
+          "logMonoTime": "147723001692",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.920274555683136,
+          "modelX": 108,
+          "modelY": -74.6596450805664,
+          "modelZ": -4.0658416748046875,
+          "east": -265.8207951761535,
+          "north": -41.393174576830134,
+          "routeS": 158.38559880298226,
+          "lateralD": -107.0974655275034,
+          "vehicleRouteS": 116.45275826658494,
+          "poseTimestamp": "147723001692",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2603,
+          "logMonoTime": "147723001692",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.920274555683136,
+          "modelX": 117.1875,
+          "modelY": -83.77912902832031,
+          "modelZ": -4.940248489379883,
+          "east": -278.54514291326353,
+          "north": -39.012813598229414,
+          "routeS": 158.38559880298226,
+          "lateralD": -119.30406800013687,
+          "vehicleRouteS": 116.45275826658494,
+          "poseTimestamp": "147723001692",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2603,
+          "logMonoTime": "147723001692",
+          "laneIndex": 2,
+          "laneTrackId": 1,
+          "prob": 0.5466658473014832,
+          "modelX": 12,
+          "modelY": 1.8442792892456055,
+          "modelZ": 1.1901761293411255,
+          "east": -143.42090766671984,
+          "north": -50.726875968019975,
+          "routeS": 128.57405612706248,
+          "lateralD": 0.6895681796043487,
+          "vehicleRouteS": 116.45275826658494,
+          "poseTimestamp": "147723001692",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "assigned_other_track",
+            "reason": "laneTrackId=1",
+            "stage": "tracker_assignments"
+          }
+        },
+        {
+          "frameId": 2603,
+          "logMonoTime": "147723001692",
+          "laneIndex": 2,
+          "laneTrackId": 1,
+          "prob": 0.5466658473014832,
+          "modelX": 15.1875,
+          "modelY": 1.3361685276031494,
+          "modelZ": 1.130852460861206,
+          "east": -146.34303816840014,
+          "north": -52.097819485181255,
+          "routeS": 131.69844402729473,
+          "lateralD": -0.12069908801743523,
+          "vehicleRouteS": 116.45275826658494,
+          "poseTimestamp": "147723001692",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "assigned_other_track",
+            "reason": "laneTrackId=1",
+            "stage": "tracker_assignments"
+          }
+        },
+        {
+          "frameId": 2603,
+          "logMonoTime": "147723001692",
+          "laneIndex": 2,
+          "laneTrackId": 1,
+          "prob": 0.5466658473014832,
+          "modelX": 18.75,
+          "modelY": 0.5707876682281494,
+          "modelZ": 1.0550189018249512,
+          "east": -149.71993081822177,
+          "north": -53.466691335092094,
+          "routeS": 135.17154188533988,
+          "lateralD": -1.2228811865564406,
+          "vehicleRouteS": 116.45275826658494,
+          "poseTimestamp": "147723001692",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "assigned_other_track",
+            "reason": "laneTrackId=1",
+            "stage": "tracker_assignments"
+          }
+        },
+        {
+          "frameId": 2603,
+          "logMonoTime": "147723001692",
+          "laneIndex": 2,
+          "laneTrackId": 1,
+          "prob": 0.5466658473014832,
+          "modelX": 22.6875,
+          "modelY": -0.6409916877746582,
+          "modelZ": 0.928033709526062,
+          "east": -153.6578675235342,
+          "north": -54.677050770378784,
+          "routeS": 137.87369308281828,
+          "lateralD": -3.352603791448697,
+          "vehicleRouteS": 116.45275826658494,
+          "poseTimestamp": "147723001692",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "assigned_other_track",
+            "reason": "laneTrackId=1",
+            "stage": "tracker_assignments"
+          }
+        },
+        {
+          "frameId": 2603,
+          "logMonoTime": "147723001692",
+          "laneIndex": 2,
+          "laneTrackId": 1,
+          "prob": 0.5466658473014832,
+          "modelX": 27,
+          "modelY": -2.1097893714904785,
+          "modelZ": 0.778114914894104,
+          "east": -158.0504248932233,
+          "north": -55.88554679423621,
+          "routeS": 141.11892739341465,
+          "lateralD": -6.550021054649938,
+          "vehicleRouteS": 116.45275826658494,
+          "poseTimestamp": "147723001692",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "assigned_other_track",
+            "reason": "laneTrackId=1",
+            "stage": "tracker_assignments"
+          }
+        },
+        {
+          "frameId": 2603,
+          "logMonoTime": "147723001692",
+          "laneIndex": 2,
+          "laneTrackId": 1,
+          "prob": 0.5466658473014832,
+          "modelX": 31.6875,
+          "modelY": -4.172415256500244,
+          "modelZ": 0.5757112503051758,
+          "east": -163.08687537916515,
+          "north": -56.81358143484409,
+          "routeS": 144.4437380584512,
+          "lateralD": -10.445238100357566,
+          "vehicleRouteS": 116.45275826658494,
+          "poseTimestamp": "147723001692",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "assigned_other_track",
+            "reason": "laneTrackId=1",
+            "stage": "tracker_assignments"
+          }
+        },
+        {
+          "frameId": 2603,
+          "logMonoTime": "147723001692",
+          "laneIndex": 2,
+          "laneTrackId": 1,
+          "prob": 0.5466658473014832,
+          "modelX": 36.75,
+          "modelY": -6.714540481567383,
+          "modelZ": 0.36433595418930054,
+          "east": -168.70297115021285,
+          "north": -57.555723739488315,
+          "routeS": 147.8978241691578,
+          "lateralD": -14.935293339410475,
+          "vehicleRouteS": 116.45275826658494,
+          "poseTimestamp": "147723001692",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "assigned_other_track",
+            "reason": "laneTrackId=1",
+            "stage": "tracker_assignments"
+          }
+        },
+        {
+          "frameId": 2603,
+          "logMonoTime": "147723001692",
+          "laneIndex": 2,
+          "laneTrackId": 1,
+          "prob": 0.5466658473014832,
+          "modelX": 42.1875,
+          "modelY": -9.679452896118164,
+          "modelZ": 0.06894564628601074,
+          "east": -174.86684245244223,
+          "north": -58.1588841207391,
+          "routeS": 151.5058386636876,
+          "lateralD": -19.969113288834578,
+          "vehicleRouteS": 116.45275826658494,
+          "poseTimestamp": "147723001692",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "assigned_other_track",
+            "reason": "laneTrackId=1",
+            "stage": "tracker_assignments"
+          }
+        },
+        {
+          "frameId": 2603,
+          "logMonoTime": "147723001692",
+          "laneIndex": 2,
+          "laneTrackId": 1,
+          "prob": 0.5466658473014832,
+          "modelX": 48,
+          "modelY": -13.255411148071289,
+          "modelZ": -0.23261284828186035,
+          "east": -181.68428243110645,
+          "north": -58.467341260423254,
+          "routeS": 155.18594495575354,
+          "lateralD": -25.716238774571625,
+          "vehicleRouteS": 116.45275826658494,
+          "poseTimestamp": "147723001692",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2603,
+          "logMonoTime": "147723001692",
+          "laneIndex": 2,
+          "laneTrackId": 1,
+          "prob": 0.5466658473014832,
+          "modelX": 54.1875,
+          "modelY": -17.77472686767578,
+          "modelZ": -0.631331205368042,
+          "east": -189.34203572161513,
+          "north": -58.20621798461661,
+          "routeS": 158.38559880298226,
+          "lateralD": -32.47594097956794,
+          "vehicleRouteS": 116.45275826658494,
+          "poseTimestamp": "147723001692",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2603,
+          "logMonoTime": "147723001692",
+          "laneIndex": 2,
+          "laneTrackId": 1,
+          "prob": 0.5466658473014832,
+          "modelX": 60.75,
+          "modelY": -23.33553123474121,
+          "modelZ": -1.0339312553405762,
+          "east": -197.8952477649572,
+          "north": -57.294343431620206,
+          "routeS": 158.38559880298226,
+          "lateralD": -40.33659428374969,
+          "vehicleRouteS": 116.45275826658494,
+          "poseTimestamp": "147723001692",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2603,
+          "logMonoTime": "147723001692",
+          "laneIndex": 2,
+          "laneTrackId": 1,
+          "prob": 0.5466658473014832,
+          "modelX": 67.6875,
+          "modelY": -29.305973052978516,
+          "modelZ": -1.4573917388916016,
+          "east": -206.98884576035326,
+          "north": -56.25436398322448,
+          "routeS": 158.38559880298226,
+          "lateralD": -48.72916998710497,
+          "vehicleRouteS": 116.45275826658494,
+          "poseTimestamp": "147723001692",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2603,
+          "logMonoTime": "147723001692",
+          "laneIndex": 2,
+          "laneTrackId": 1,
+          "prob": 0.5466658473014832,
+          "modelX": 75,
+          "modelY": -35.68150329589844,
+          "modelZ": -1.958726167678833,
+          "east": -216.6202733534182,
+          "north": -55.090042443471326,
+          "routeS": 158.38559880298226,
+          "lateralD": -57.649571355078706,
+          "vehicleRouteS": 116.45275826658494,
+          "poseTimestamp": "147723001692",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2603,
+          "logMonoTime": "147723001692",
+          "laneIndex": 2,
+          "laneTrackId": 1,
+          "prob": 0.5466658473014832,
+          "modelX": 82.6875,
+          "modelY": -44.122196197509766,
+          "modelZ": -2.4316766262054443,
+          "east": -227.72241982446542,
+          "north": -52.428220389928555,
+          "routeS": 158.38559880298226,
+          "lateralD": -68.59281792526016,
+          "vehicleRouteS": 116.45275826658494,
+          "poseTimestamp": "147723001692",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2603,
+          "logMonoTime": "147723001692",
+          "laneIndex": 2,
+          "laneTrackId": 1,
+          "prob": 0.5466658473014832,
+          "modelX": 90.75,
+          "modelY": -50.784847259521484,
+          "modelZ": -2.954603672027588,
+          "east": -238.1355719479906,
+          "north": -51.44786929136822,
+          "routeS": 158.38559880298226,
+          "lateralD": -78.09782001009894,
+          "vehicleRouteS": 116.45275826658494,
+          "poseTimestamp": "147723001692",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2603,
+          "logMonoTime": "147723001692",
+          "laneIndex": 2,
+          "laneTrackId": 1,
+          "prob": 0.5466658473014832,
+          "modelX": 99.1875,
+          "modelY": -59.646366119384766,
+          "modelZ": -3.5353379249572754,
+          "east": -250.09457940333243,
+          "north": -48.85942121640295,
+          "routeS": 158.38559880298226,
+          "lateralD": -89.74607865660482,
+          "vehicleRouteS": 116.45275826658494,
+          "poseTimestamp": "147723001692",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2603,
+          "logMonoTime": "147723001692",
+          "laneIndex": 2,
+          "laneTrackId": 1,
+          "prob": 0.5466658473014832,
+          "modelX": 108,
+          "modelY": -67.81511688232422,
+          "modelZ": -4.1787109375,
+          "east": -261.97446899740004,
+          "north": -47.05474160223644,
+          "routeS": 158.38559880298226,
+          "lateralD": -100.93346203156209,
+          "vehicleRouteS": 116.45275826658494,
+          "poseTimestamp": "147723001692",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2603,
+          "logMonoTime": "147723001692",
+          "laneIndex": 2,
+          "laneTrackId": 1,
+          "prob": 0.5466658473014832,
+          "modelX": 117.1875,
+          "modelY": -75.06413269042969,
+          "modelZ": -4.695199966430664,
+          "east": -273.6476952600011,
+          "north": -46.22156991627774,
+          "routeS": 158.38559880298226,
+          "lateralD": -111.45556970515285,
+          "vehicleRouteS": 116.45275826658494,
+          "poseTimestamp": "147723001692",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2643,
+          "logMonoTime": "149725764567",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.7635427713394165,
+          "modelX": 0,
+          "modelY": -1.340688943862915,
+          "modelZ": 1.270912766456604,
+          "east": -151.29008460111558,
+          "north": -54.64327526327123,
+          "routeS": 136.89462245632075,
+          "lateralD": -1.3196456752701753,
+          "vehicleRouteS": 136.89462245632075,
+          "poseTimestamp": "149725764567",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "D10_lateralSpikeSkipped",
+            "stage": "fused_fragments"
+          }
+        },
+        {
+          "frameId": 2643,
+          "logMonoTime": "149725764567",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.7635427713394165,
+          "modelX": 0.1875,
+          "modelY": -1.3300163745880127,
+          "modelZ": 1.2685084342956543,
+          "east": -151.40285810009567,
+          "north": -54.7934494676564,
+          "routeS": 136.89462245632075,
+          "lateralD": -1.2760505290369437,
+          "vehicleRouteS": 136.89462245632075,
+          "poseTimestamp": "149725764567",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "D10_lateralSpikeSkipped",
+            "stage": "fused_fragments"
+          }
+        },
+        {
+          "frameId": 2643,
+          "logMonoTime": "149725764567",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.7635427713394165,
+          "modelX": 0.75,
+          "modelY": -1.3317170143127441,
+          "modelZ": 1.2684211730957031,
+          "east": -151.76694675942264,
+          "north": -55.222225155312515,
+          "routeS": 137.39895393586465,
+          "lateralD": -1.442782022673952,
+          "vehicleRouteS": 136.89462245632075,
+          "poseTimestamp": "149725764567",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "D7_minFramesPerBin",
+            "stage": "bin_aggregation"
+          }
+        },
+        {
+          "frameId": 2643,
+          "logMonoTime": "149725764567",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.7635427713394165,
+          "modelX": 1.6875,
+          "modelY": -1.3245456218719482,
+          "modelZ": 1.2595473527908325,
+          "east": -152.36611458700088,
+          "north": -55.94330461921695,
+          "routeS": 138.32312793239421,
+          "lateralD": -1.6004528919178886,
+          "vehicleRouteS": 136.89462245632075,
+          "poseTimestamp": "149725764567",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "D7_minFramesPerBin",
+            "stage": "bin_aggregation"
+          }
+        },
+        {
+          "frameId": 2643,
+          "logMonoTime": "149725764567",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.7635427713394165,
+          "modelX": 3,
+          "modelY": -1.3711713552474976,
+          "modelZ": 1.2544833421707153,
+          "east": -153.24825447073508,
+          "north": -56.91626887063537,
+          "routeS": 139.60701464564897,
+          "lateralD": -1.8769761577394717,
+          "vehicleRouteS": 136.89462245632075,
+          "poseTimestamp": "149725764567",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "orphan_bin",
+            "reason": "not_in_output_fragment",
+            "stage": "fused_fragments"
+          }
+        },
+        {
+          "frameId": 2643,
+          "logMonoTime": "149725764567",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.7635427713394165,
+          "modelX": 4.6875,
+          "modelY": -1.462551474571228,
+          "modelZ": 1.2430477142333984,
+          "east": -154.40645578758827,
+          "north": -58.146950098999206,
+          "routeS": 141.2522030001484,
+          "lateralD": -2.2634497718803117,
+          "vehicleRouteS": 136.89462245632075,
+          "poseTimestamp": "149725764567",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "D10_lateralSpikeSkipped",
+            "stage": "fused_fragments"
+          }
+        },
+        {
+          "frameId": 2643,
+          "logMonoTime": "149725764567",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.7635427713394165,
+          "modelX": 6.75,
+          "modelY": -1.643524408340454,
+          "modelZ": 1.2317906618118286,
+          "east": -155.87498486407577,
+          "north": -59.60642939116744,
+          "routeS": 143.25081431316028,
+          "lateralD": -2.804014543446233,
+          "vehicleRouteS": 136.89462245632075,
+          "poseTimestamp": "149725764567",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "D6_minObsPerBin",
+            "stage": "bin_aggregation"
+          }
+        },
+        {
+          "frameId": 2643,
+          "logMonoTime": "149725764567",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.7635427713394165,
+          "modelX": 9.1875,
+          "modelY": -1.9498093128204346,
+          "modelZ": 1.2038403749465942,
+          "east": -157.68113891627874,
+          "north": -61.27166938360787,
+          "routeS": 145.5965722741824,
+          "lateralD": -3.533833891650628,
+          "vehicleRouteS": 136.89462245632075,
+          "poseTimestamp": "149725764567",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "orphan_bin",
+            "reason": "not_in_output_fragment",
+            "stage": "fused_fragments"
+          }
+        },
+        {
+          "frameId": 2643,
+          "logMonoTime": "149725764567",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.7635427713394165,
+          "modelX": 12,
+          "modelY": -2.4186832904815674,
+          "modelZ": 1.1729307174682617,
+          "east": -159.85340577054626,
+          "north": -63.11862790257316,
+          "routeS": 148.28292682173003,
+          "lateralD": -4.489604942581766,
+          "vehicleRouteS": 136.89462245632075,
+          "poseTimestamp": "149725764567",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "D6_minObsPerBin",
+            "stage": "bin_aggregation"
+          }
+        },
+        {
+          "frameId": 2643,
+          "logMonoTime": "149725764567",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.7635427713394165,
+          "modelX": 15.1875,
+          "modelY": -3.126339912414551,
+          "modelZ": 1.110438585281372,
+          "east": -162.4500139124176,
+          "north": -65.09816327789062,
+          "routeS": 151.29648977532986,
+          "lateralD": -5.746335808462086,
+          "vehicleRouteS": 136.89462245632075,
+          "poseTimestamp": "149725764567",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "D6_minObsPerBin",
+            "stage": "bin_aggregation"
+          }
+        },
+        {
+          "frameId": 2643,
+          "logMonoTime": "149725764567",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.7635427713394165,
+          "modelX": 18.75,
+          "modelY": -4.230274677276611,
+          "modelZ": 1.0193549394607544,
+          "east": -165.59132421007067,
+          "north": -67.10869749270265,
+          "routeS": 154.60958717076736,
+          "lateralD": -7.459071591767962,
+          "vehicleRouteS": 136.89462245632075,
+          "poseTimestamp": "149725764567",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "D6_minObsPerBin",
+            "stage": "bin_aggregation"
+          }
+        },
+        {
+          "frameId": 2643,
+          "logMonoTime": "149725764567",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.7635427713394165,
+          "modelX": 22.6875,
+          "modelY": -5.651823043823242,
+          "modelZ": 0.8990360498428345,
+          "east": -169.21721981851798,
+          "north": -69.20096588970002,
+          "routeS": 158.23604136943004,
+          "lateralD": -9.550371654751057,
+          "vehicleRouteS": 136.89462245632075,
+          "poseTimestamp": "149725764567",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "D7_minFramesPerBin",
+            "stage": "bin_aggregation"
+          }
+        },
+        {
+          "frameId": 2643,
+          "logMonoTime": "149725764567",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.7635427713394165,
+          "modelX": 27,
+          "modelY": -7.578100681304932,
+          "modelZ": 0.7251413464546204,
+          "east": -173.47069786842485,
+          "north": -71.25428667945066,
+          "routeS": 158.38559880298226,
+          "lateralD": -12.2044404245933,
+          "vehicleRouteS": 136.89462245632075,
+          "poseTimestamp": "149725764567",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "D7_minFramesPerBin",
+            "stage": "bin_aggregation"
+          }
+        },
+        {
+          "frameId": 2643,
+          "logMonoTime": "149725764567",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.7635427713394165,
+          "modelX": 31.6875,
+          "modelY": -10.137560844421387,
+          "modelZ": 0.5110260844230652,
+          "east": -178.4499246273213,
+          "north": -73.18581287913572,
+          "routeS": 159.0904563076843,
+          "lateralD": -17.435499730617817,
+          "vehicleRouteS": 136.89462245632075,
+          "poseTimestamp": "149725764567",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "D6_minObsPerBin",
+            "stage": "bin_aggregation"
+          }
+        },
+        {
+          "frameId": 2643,
+          "logMonoTime": "149725764567",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.7635427713394165,
+          "modelX": 36.75,
+          "modelY": -13.137084007263184,
+          "modelZ": 0.26883697509765625,
+          "east": -184.00731471023593,
+          "north": -75.12009851490586,
+          "routeS": 161.53510864931505,
+          "lateralD": -22.78804308709647,
+          "vehicleRouteS": 136.89462245632075,
+          "poseTimestamp": "149725764567",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "D6_minObsPerBin",
+            "stage": "bin_aggregation"
+          }
+        },
+        {
+          "frameId": 2643,
+          "logMonoTime": "149725764567",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.7635427713394165,
+          "modelX": 42.1875,
+          "modelY": -16.91067123413086,
+          "modelZ": -0.045880794525146484,
+          "east": -190.39811768566008,
+          "north": -76.84172685403385,
+          "routeS": 163.8458362567386,
+          "lateralD": -28.990212444109336,
+          "vehicleRouteS": 136.89462245632075,
+          "poseTimestamp": "149725764567",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2643,
+          "logMonoTime": "149725764567",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.7635427713394165,
+          "modelX": 48,
+          "modelY": -21.500722885131836,
+          "modelZ": -0.3920367956161499,
+          "east": -197.65473666477533,
+          "north": -78.32335143563364,
+          "routeS": 165.9984371113395,
+          "lateralD": -36.076822350801514,
+          "vehicleRouteS": 136.89462245632075,
+          "poseTimestamp": "149725764567",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2643,
+          "logMonoTime": "149725764567",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.7635427713394165,
+          "modelX": 54.1875,
+          "modelY": -26.65907859802246,
+          "modelZ": -0.6810810565948486,
+          "east": -205.58752307411987,
+          "north": -79.72502532582007,
+          "routeS": 168.134560522025,
+          "lateralD": -43.844110596066606,
+          "vehicleRouteS": 136.89462245632075,
+          "poseTimestamp": "149725764567",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2643,
+          "logMonoTime": "149725764567",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.7635427713394165,
+          "modelX": 60.75,
+          "modelY": -32.3481559753418,
+          "modelZ": -1.1603727340698242,
+          "east": -214.16775577546952,
+          "north": -81.07098760085493,
+          "routeS": 170.2756584264828,
+          "lateralD": -52.261218615965916,
+          "vehicleRouteS": 136.89462245632075,
+          "poseTimestamp": "149725764567",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2643,
+          "logMonoTime": "149725764567",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.7635427713394165,
+          "modelX": 67.6875,
+          "modelY": -37.75825881958008,
+          "modelZ": -1.5469741821289062,
+          "east": -222.7766504980128,
+          "north": -82.88345848100752,
+          "routeS": 172.88390337219437,
+          "lateralD": -60.663312244247194,
+          "vehicleRouteS": 136.89462245632075,
+          "poseTimestamp": "149725764567",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2643,
+          "logMonoTime": "149725764567",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.7635427713394165,
+          "modelX": 75,
+          "modelY": -43.73779296875,
+          "modelZ": -2.1037862300872803,
+          "east": -232.06257411001647,
+          "north": -84.61525164507813,
+          "routeS": 175.47502744650504,
+          "lateralD": -69.7470097800867,
+          "vehicleRouteS": 136.89462245632075,
+          "poseTimestamp": "149725764567",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2643,
+          "logMonoTime": "149725764567",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.7635427713394165,
+          "modelX": 82.6875,
+          "modelY": -49.61664581298828,
+          "modelZ": -2.4748809337615967,
+          "east": -241.5134146070879,
+          "north": -86.69856173076462,
+          "routeS": 178.43152923709806,
+          "lateralD": -78.9620878685474,
+          "vehicleRouteS": 136.89462245632075,
+          "poseTimestamp": "149725764567",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2643,
+          "logMonoTime": "149725764567",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.7635427713394165,
+          "modelX": 90.75,
+          "modelY": -58.86805725097656,
+          "modelZ": -3.0681653022766113,
+          "east": -253.78348384677173,
+          "north": -86.89329410687562,
+          "routeS": 179.64862092177006,
+          "lateralD": -91.16039212695567,
+          "vehicleRouteS": 136.89462245632075,
+          "poseTimestamp": "149725764567",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2643,
+          "logMonoTime": "149725764567",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.7635427713394165,
+          "modelX": 99.1875,
+          "modelY": -66.6589126586914,
+          "modelZ": -3.670559883117676,
+          "east": -265.17922946020127,
+          "north": -88.3166057902117,
+          "routeS": 179.64862092177006,
+          "lateralD": -102.37349619818337,
+          "vehicleRouteS": 136.89462245632075,
+          "poseTimestamp": "149725764567",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2643,
+          "logMonoTime": "149725764567",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.7635427713394165,
+          "modelX": 108,
+          "modelY": -74.95858764648438,
+          "modelZ": -4.050198078155518,
+          "east": -277.2056834022667,
+          "north": -89.69833178778691,
+          "routeS": 179.64862092177006,
+          "lateralD": -114.21843644225343,
+          "vehicleRouteS": 136.89462245632075,
+          "poseTimestamp": "149725764567",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2643,
+          "logMonoTime": "149725764567",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.7635427713394165,
+          "modelX": 117.1875,
+          "modelY": -80.24962615966797,
+          "modelZ": -4.8157525062561035,
+          "east": -287.17474304064103,
+          "north": -93.30708430417359,
+          "routeS": 179.64862092177006,
+          "lateralD": -123.80706175923578,
+          "vehicleRouteS": 136.89462245632075,
+          "poseTimestamp": "149725764567",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "perp_dist_exceeded",
+            "stage": "route_sd_projection"
+          }
+        },
+        {
+          "frameId": 2843,
+          "logMonoTime": "159714019679",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.5498607158660889,
+          "modelX": 0,
+          "modelY": -1.674314260482788,
+          "modelZ": 1.2920470237731934,
+          "east": -119.61929138017561,
+          "north": -130.75544606094388,
+          "routeS": 239.67051968849796,
+          "lateralD": -1.6417855968688961,
+          "vehicleRouteS": 239.67051968849796,
+          "poseTimestamp": "159714019679",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "D7_minFramesPerBin",
+            "stage": "bin_aggregation"
+          }
+        },
+        {
+          "frameId": 2843,
+          "logMonoTime": "159714019679",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.5498607158660889,
+          "modelX": 0.1875,
+          "modelY": -1.6764392852783203,
+          "modelZ": 1.2869833707809448,
+          "east": -119.4318597127188,
+          "north": -130.74995645579037,
+          "routeS": 239.67051968849796,
+          "lateralD": -1.6070893804767783,
+          "vehicleRouteS": 239.67051968849796,
+          "poseTimestamp": "159714019679",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "D7_minFramesPerBin",
+            "stage": "bin_aggregation"
+          }
+        },
+        {
+          "frameId": 2843,
+          "logMonoTime": "159714019679",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.5498607158660889,
+          "modelX": 0.75,
+          "modelY": -1.6794906854629517,
+          "modelZ": 1.2868332862854004,
+          "east": -118.8696996582153,
+          "north": -130.73016670683546,
+          "routeS": 240.1162959486087,
+          "lateralD": -1.784509032893487,
+          "vehicleRouteS": 239.67051968849796,
+          "poseTimestamp": "159714019679",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "D7_minFramesPerBin",
+            "stage": "bin_aggregation"
+          }
+        },
+        {
+          "frameId": 2843,
+          "logMonoTime": "159714019679",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.5498607158660889,
+          "modelX": 1.6875,
+          "modelY": -1.7303223609924316,
+          "modelZ": 1.2806493043899536,
+          "east": -117.93090885395692,
+          "north": -130.7428920782266,
+          "routeS": 241.03058434468895,
+          "lateralD": -1.9979729362357372,
+          "vehicleRouteS": 239.67051968849796,
+          "poseTimestamp": "159714019679",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "D7_minFramesPerBin",
+            "stage": "bin_aggregation"
+          }
+        },
+        {
+          "frameId": 2843,
+          "logMonoTime": "159714019679",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.5498607158660889,
+          "modelX": 3,
+          "modelY": -1.842738389968872,
+          "modelZ": 1.2727811336517334,
+          "east": -116.61492682656949,
+          "north": -130.80192526519875,
+          "routeS": 242.303397749601,
+          "lateralD": -2.337442595921314,
+          "vehicleRouteS": 239.67051968849796,
+          "poseTimestamp": "159714019679",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "D7_minFramesPerBin",
+            "stage": "bin_aggregation"
+          }
+        },
+        {
+          "frameId": 2843,
+          "logMonoTime": "159714019679",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.5498607158660889,
+          "modelX": 4.6875,
+          "modelY": -1.9834321737289429,
+          "modelZ": 1.2603791952133179,
+          "east": -114.92310589104262,
+          "north": -130.87398713376845,
+          "routeS": 243.94054164980273,
+          "lateralD": -2.770121276723842,
+          "vehicleRouteS": 239.67051968849796,
+          "poseTimestamp": "159714019679",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "D6_minObsPerBin",
+            "stage": "bin_aggregation"
+          }
+        },
+        {
+          "frameId": 2843,
+          "logMonoTime": "159714019679",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.5498607158660889,
+          "modelX": 6.75,
+          "modelY": -2.2422425746917725,
+          "modelZ": 1.2480946779251099,
+          "east": -112.85179840861475,
+          "north": -131.0488424650708,
+          "routeS": 245.92635673692587,
+          "lateralD": -3.3844725715061195,
+          "vehicleRouteS": 239.67051968849796,
+          "poseTimestamp": "159714019679",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "D6_minObsPerBin",
+            "stage": "bin_aggregation"
+          }
+        },
+        {
+          "frameId": 2843,
+          "logMonoTime": "159714019679",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.5498607158660889,
+          "modelX": 9.1875,
+          "modelY": -2.617953300476074,
+          "modelZ": 1.212505578994751,
+          "east": -110.40105376320632,
+          "north": -131.32527596968131,
+          "routeS": 248.2610550160755,
+          "lateralD": -4.1792988071106,
+          "vehicleRouteS": 239.67051968849796,
+          "poseTimestamp": "159714019679",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "D6_minObsPerBin",
+            "stage": "bin_aggregation"
+          }
+        },
+        {
+          "frameId": 2843,
+          "logMonoTime": "159714019679",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.5498607158660889,
+          "modelX": 12,
+          "modelY": -3.1833975315093994,
+          "modelZ": 1.1753507852554321,
+          "east": -107.5679147809963,
+          "north": -131.77606076965887,
+          "routeS": 250.93194134395782,
+          "lateralD": -5.226318220464558,
+          "vehicleRouteS": 239.67051968849796,
+          "poseTimestamp": "159714019679",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "D6_minObsPerBin",
+            "stage": "bin_aggregation"
+          }
+        },
+        {
+          "frameId": 2843,
+          "logMonoTime": "159714019679",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.5498607158660889,
+          "modelX": 15.1875,
+          "modelY": -3.9058899879455566,
+          "modelZ": 1.104258418083191,
+          "east": -104.35370855017891,
+          "north": -132.36853853749648,
+          "routeS": 253.94471290843163,
+          "lateralD": -6.493345883897868,
+          "vehicleRouteS": 239.67051968849796,
+          "poseTimestamp": "159714019679",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "D6_minObsPerBin",
+            "stage": "bin_aggregation"
+          }
+        },
+        {
+          "frameId": 2843,
+          "logMonoTime": "159714019679",
+          "laneIndex": 1,
+          "laneTrackId": 0,
+          "prob": 0.5498607158660889,
+          "modelX": 18.75,
+          "modelY": -4.992611885070801,
+          "modelZ": 1.000478744506836,
+          "east": -100.75002309612312,
+          "north": -133.3097196464857,
+          "routeS": 257.26325711355656,
+          "lateralD": -8.184391445177372,
+          "vehicleRouteS": 239.67051968849796,
+          "poseTimestamp": "159714019679",
+          "poseValid": true,
+          "headingSource": "gps_pose",
+          "inclusion": {
+            "status": "rejected",
+            "reason": "D6_minObsPerBin",
+            "stage": "bin_aggregation"
+          }
+        }
+      ],
+      "observationInventoryCount": 95,
+      "modelV2FrameSummary": {
+        "frameCount": 25,
+        "framesWithLane": [
+          {
+            "frameId": 2443,
+            "elapsedIdx": 0,
+            "logMonoTime": "139726594139",
+            "pointCount": 26,
+            "prob": 0.9339951276779175,
+            "hasMappedObsInRange": false
+          },
+          {
+            "frameId": 2483,
+            "elapsedIdx": 1,
+            "logMonoTime": "141726837576",
+            "pointCount": 26,
+            "prob": 0.7666933536529541,
+            "hasMappedObsInRange": false
+          },
+          {
+            "frameId": 2523,
+            "elapsedIdx": 2,
+            "logMonoTime": "143726895711",
+            "pointCount": 26,
+            "prob": 0.6032437682151794,
+            "hasMappedObsInRange": false
+          },
+          {
+            "frameId": 2563,
+            "elapsedIdx": 3,
+            "logMonoTime": "145723084099",
+            "pointCount": 26,
+            "prob": 0.7887699604034424,
+            "hasMappedObsInRange": true
+          },
+          {
+            "frameId": 2603,
+            "elapsedIdx": 4,
+            "logMonoTime": "147723001692",
+            "pointCount": 26,
+            "prob": 0.920274555683136,
+            "hasMappedObsInRange": true
+          },
+          {
+            "frameId": 2643,
+            "elapsedIdx": 5,
+            "logMonoTime": "149725764567",
+            "pointCount": 26,
+            "prob": 0.7635427713394165,
+            "hasMappedObsInRange": true
+          },
+          {
+            "frameId": 2843,
+            "elapsedIdx": 10,
+            "logMonoTime": "159714019679",
+            "pointCount": 26,
+            "prob": 0.5498607158660889,
+            "hasMappedObsInRange": true
+          },
+          {
+            "frameId": 2883,
+            "elapsedIdx": 11,
+            "logMonoTime": "161715770488",
+            "pointCount": 26,
+            "prob": 0.8267959356307983,
+            "hasMappedObsInRange": false
+          },
+          {
+            "frameId": 2923,
+            "elapsedIdx": 12,
+            "logMonoTime": "163718456147",
+            "pointCount": 26,
+            "prob": 0.8617314696311951,
+            "hasMappedObsInRange": false
+          },
+          {
+            "frameId": 2963,
+            "elapsedIdx": 13,
+            "logMonoTime": "165711518986",
+            "pointCount": 26,
+            "prob": 0.7944315671920776,
+            "hasMappedObsInRange": false
+          },
+          {
+            "frameId": 3003,
+            "elapsedIdx": 14,
+            "logMonoTime": "167711351167",
+            "pointCount": 26,
+            "prob": 0.8697840571403503,
+            "hasMappedObsInRange": false
+          },
+          {
+            "frameId": 3043,
+            "elapsedIdx": 15,
+            "logMonoTime": "169710367871",
+            "pointCount": 26,
+            "prob": 0.8152815699577332,
+            "hasMappedObsInRange": false
+          },
+          {
+            "frameId": 3083,
+            "elapsedIdx": 16,
+            "logMonoTime": "171706391399",
+            "pointCount": 26,
+            "prob": 0.9377167820930481,
+            "hasMappedObsInRange": false
+          },
+          {
+            "frameId": 3123,
+            "elapsedIdx": 17,
+            "logMonoTime": "173712039287",
+            "pointCount": 26,
+            "prob": 0.9332014918327332,
+            "hasMappedObsInRange": false
+          },
+          {
+            "frameId": 3163,
+            "elapsedIdx": 18,
+            "logMonoTime": "175704371479",
+            "pointCount": 26,
+            "prob": 0.9317337870597839,
+            "hasMappedObsInRange": false
+          },
+          {
+            "frameId": 3203,
+            "elapsedIdx": 19,
+            "logMonoTime": "177707085489",
+            "pointCount": 26,
+            "prob": 0.9179291725158691,
+            "hasMappedObsInRange": false
+          },
+          {
+            "frameId": 3243,
+            "elapsedIdx": 20,
+            "logMonoTime": "179713752755",
+            "pointCount": 26,
+            "prob": 0.9009042978286743,
+            "hasMappedObsInRange": false
+          },
+          {
+            "frameId": 3283,
+            "elapsedIdx": 21,
+            "logMonoTime": "181701795889",
+            "pointCount": 26,
+            "prob": 0.8986271619796753,
+            "hasMappedObsInRange": false
+          },
+          {
+            "frameId": 3323,
+            "elapsedIdx": 22,
+            "logMonoTime": "183695365176",
+            "pointCount": 26,
+            "prob": 0.929695188999176,
+            "hasMappedObsInRange": false
+          },
+          {
+            "frameId": 3363,
+            "elapsedIdx": 23,
+            "logMonoTime": "185690505804",
+            "pointCount": 26,
+            "prob": 0.9139852523803711,
+            "hasMappedObsInRange": false
+          },
+          {
+            "frameId": 3403,
+            "elapsedIdx": 24,
+            "logMonoTime": "187679843472",
+            "pointCount": 26,
+            "prob": 0.898047685623169,
+            "hasMappedObsInRange": false
+          },
+          {
+            "frameId": 3443,
+            "elapsedIdx": 25,
+            "logMonoTime": "189674587404",
+            "pointCount": 26,
+            "prob": 0.9555996060371399,
+            "hasMappedObsInRange": false
+          },
+          {
+            "frameId": 3483,
+            "elapsedIdx": 26,
+            "logMonoTime": "191667697949",
+            "pointCount": 26,
+            "prob": 0.8276240825653076,
+            "hasMappedObsInRange": false
+          },
+          {
+            "frameId": 3523,
+            "elapsedIdx": 27,
+            "logMonoTime": "193663564803",
+            "pointCount": 26,
+            "prob": 0.5896987915039062,
+            "hasMappedObsInRange": false
+          },
+          {
+            "frameId": 3603,
+            "elapsedIdx": 29,
+            "logMonoTime": "197651558947",
+            "pointCount": 26,
+            "prob": 0.8509367108345032,
+            "hasMappedObsInRange": false
+          }
+        ],
+        "framesWithMappedObsInRange": [
+          2563,
+          2603,
+          2643,
+          2843
+        ],
+        "observationCount": 35,
+        "distinctFramesInRange": 4
+      },
+      "sourcePolylineSpanM": 42.753998465449314,
+      "binsInGap": [
+        {
+          "binKey": 66,
+          "binCentreS": 132,
+          "accepted": false,
+          "rejectionReason": "D6_minObsPerBin",
+          "observationCount": 1,
+          "distinctFrameCount": 1
+        },
+        {
+          "binKey": 67,
+          "binCentreS": 134,
+          "accepted": false,
+          "rejectionReason": "D6_minObsPerBin",
+          "observationCount": 1,
+          "distinctFrameCount": 1
+        },
+        {
+          "binKey": 68,
+          "binCentreS": 136,
+          "accepted": true,
+          "rejectionReason": null,
+          "observationCount": 3,
+          "distinctFrameCount": 2
+        },
+        {
+          "binKey": 69,
+          "binCentreS": 138,
+          "accepted": false,
+          "rejectionReason": "D7_minFramesPerBin",
+          "observationCount": 2,
+          "distinctFrameCount": 1
+        },
+        {
+          "binKey": 70,
+          "binCentreS": 140,
+          "accepted": true,
+          "rejectionReason": null,
+          "observationCount": 2,
+          "distinctFrameCount": 2
+        },
+        {
+          "binKey": 71,
+          "binCentreS": 142,
+          "accepted": true,
+          "rejectionReason": null,
+          "observationCount": 2,
+          "distinctFrameCount": 2
+        },
+        {
+          "binKey": 72,
+          "binCentreS": 144,
+          "accepted": false,
+          "rejectionReason": "D6_minObsPerBin",
+          "observationCount": 1,
+          "distinctFrameCount": 1
+        },
+        {
+          "binKey": 73,
+          "binCentreS": 146,
+          "accepted": true,
+          "rejectionReason": null,
+          "observationCount": 2,
+          "distinctFrameCount": 2
+        },
+        {
+          "binKey": 74,
+          "binCentreS": 148,
+          "accepted": false,
+          "rejectionReason": "D6_minObsPerBin",
+          "observationCount": 1,
+          "distinctFrameCount": 1
+        },
+        {
+          "binKey": 75,
+          "binCentreS": 150,
+          "accepted": false,
+          "rejectionReason": "D6_minObsPerBin",
+          "observationCount": 1,
+          "distinctFrameCount": 1
+        },
+        {
+          "binKey": 76,
+          "binCentreS": 152,
+          "accepted": false,
+          "rejectionReason": "D6_minObsPerBin",
+          "observationCount": 1,
+          "distinctFrameCount": 1
+        },
+        {
+          "binKey": 77,
+          "binCentreS": 154,
+          "accepted": false,
+          "rejectionReason": "D6_minObsPerBin",
+          "observationCount": 1,
+          "distinctFrameCount": 1
+        },
+        {
+          "binKey": 79,
+          "binCentreS": 158,
+          "accepted": false,
+          "rejectionReason": "D7_minFramesPerBin",
+          "observationCount": 2,
+          "distinctFrameCount": 1
+        },
+        {
+          "binKey": 80,
+          "binCentreS": 160,
+          "accepted": false,
+          "rejectionReason": "D6_minObsPerBin",
+          "observationCount": 1,
+          "distinctFrameCount": 1
+        },
+        {
+          "binKey": 81,
+          "binCentreS": 162,
+          "accepted": false,
+          "rejectionReason": "D6_minObsPerBin",
+          "observationCount": 1,
+          "distinctFrameCount": 1
+        },
+        {
+          "binKey": 120,
+          "binCentreS": 240,
+          "accepted": false,
+          "rejectionReason": "D7_minFramesPerBin",
+          "observationCount": 3,
+          "distinctFrameCount": 1
+        },
+        {
+          "binKey": 121,
+          "binCentreS": 242,
+          "accepted": false,
+          "rejectionReason": "D7_minFramesPerBin",
+          "observationCount": 2,
+          "distinctFrameCount": 1
+        },
+        {
+          "binKey": 122,
+          "binCentreS": 244,
+          "accepted": false,
+          "rejectionReason": "D6_minObsPerBin",
+          "observationCount": 1,
+          "distinctFrameCount": 1
+        },
+        {
+          "binKey": 123,
+          "binCentreS": 246,
+          "accepted": false,
+          "rejectionReason": "D6_minObsPerBin",
+          "observationCount": 1,
+          "distinctFrameCount": 1
+        },
+        {
+          "binKey": 124,
+          "binCentreS": 248,
+          "accepted": false,
+          "rejectionReason": "D6_minObsPerBin",
+          "observationCount": 1,
+          "distinctFrameCount": 1
+        },
+        {
+          "binKey": 125,
+          "binCentreS": 250,
+          "accepted": false,
+          "rejectionReason": "D6_minObsPerBin",
+          "observationCount": 1,
+          "distinctFrameCount": 1
+        },
+        {
+          "binKey": 127,
+          "binCentreS": 254,
+          "accepted": false,
+          "rejectionReason": "D6_minObsPerBin",
+          "observationCount": 1,
+          "distinctFrameCount": 1
+        },
+        {
+          "binKey": 129,
+          "binCentreS": 258,
+          "accepted": false,
+          "rejectionReason": "D6_minObsPerBin",
+          "observationCount": 1,
+          "distinctFrameCount": 1
+        },
+        {
+          "binKey": 130,
+          "binCentreS": 260,
+          "accepted": true,
+          "rejectionReason": null,
+          "observationCount": 4,
+          "distinctFrameCount": 2
+        }
+      ],
+      "fragmentSplitsNearGap": [
+        {
+          "afterBinKey": 64,
+          "beforeBinKey": 70,
+          "gapM": 10.968090632469028,
+          "lateralDeltaM": 6.978304513491639,
+          "reason": "D11_maxLaneFragmentGapM",
+          "bridgeRejected": "lateralMismatch",
+          "measurement": "consecutive accepted fused bin centres (s coordinate)",
+          "thresholdM": 10
+        },
+        {
+          "afterBinKey": 70,
+          "beforeBinKey": 73,
+          "gapM": 6.793380433910869,
+          "lateralDeltaM": 8.355266495420805,
+          "reason": "D10_lateralJumpSplit",
+          "bridgeRejected": null,
+          "measurement": "consecutive accepted fused bin centres (s coordinate)",
+          "thresholdM": 7.5
+        },
+        {
+          "afterBinKey": 73,
+          "beforeBinKey": 130,
+          "gapM": 114.6603661956996,
+          "lateralDeltaM": 17.604790107653855,
+          "reason": "D11_maxLaneFragmentGapM",
+          "bridgeRejected": null,
+          "measurement": "consecutive accepted fused bin centres (s coordinate)",
+          "thresholdM": 10
+        },
+        {
+          "afterBinKey": 134,
+          "beforeBinKey": 142,
+          "gapM": 17.215560665616124,
+          "lateralDeltaM": 1.4931611304864836,
+          "reason": "D11_maxLaneFragmentGapM",
+          "bridgeRejected": "lateralMismatch",
+          "measurement": "consecutive accepted fused bin centres (s coordinate)",
+          "thresholdM": 10
+        }
+      ]
+    },
+    "firstSupportLoss": {
+      "category": "A",
+      "categoryLabel": "Genuine long detection dropout",
+      "firstSupportLossStage": "fused_fragments",
+      "firstSupportLossStageIndex": 8,
+      "responsibleFunction": "fuseLaneTrackSdFragments",
+      "responsibleCondition": "D11_maxLaneFragmentGapM gapM=114.66 between bins 73→130; bridgeRejected=n/a",
+      "distinction": "missing_fusion_output",
+      "unsupportedIntervals": [
+        {
+          "startS": 128.15150739711632,
+          "endS": 136.89462245632075,
+          "lengthM": 8.743115059204428
+        },
+        {
+          "startS": 136.89462245632075,
+          "endS": 139.11959802958535,
+          "lengthM": 2.224975573264601
+        },
+        {
+          "startS": 139.11959802958535,
+          "endS": 142.44038927945275,
+          "lengthM": 3.3207912498673977
+        },
+        {
+          "startS": 142.44038927945275,
+          "endS": 145.91297846349622,
+          "lengthM": 3.4725891840434713
+        },
+        {
+          "startS": 145.91297846349622,
+          "endS": 260.5733446591958,
+          "lengthM": 114.6603661956996
+        }
+      ],
+      "longestUnsupportedM": 114.6603661956996,
+      "interiorMappedObsCount": 18,
+      "primaryFragmentSplit": {
+        "afterBinKey": 73,
+        "beforeBinKey": 130,
+        "gapM": 114.6603661956996,
+        "lateralDeltaM": 17.604790107653855,
+        "reason": "D11_maxLaneFragmentGapM",
+        "bridgeRejected": null,
+        "measurement": "consecutive accepted fused bin centres (s coordinate)",
+        "thresholdM": 10
+      }
+    },
+    "alternativeTracks": {
+      "pb0TrackId": 0,
+      "pb0ObservationCount": 35,
+      "pb0MeanLateralD": -7.0301892157668995,
+      "alternatives": [
+        {
+          "laneTrackId": 1,
+          "observationCount": 10,
+          "distinctFrames": 2,
+          "routeSOverlap": [
+            128.57405612706248,
+            151.5058386636876
+          ],
+          "meanLateralD": -9.283417445084215,
+          "lateralDeltaFromPb0M": 2.2532282293173154,
+          "meanProb": 0.5833049297332764,
+          "physicalBoundaryPlausible": false,
+          "reassignmentRejected": true,
+          "reassignmentRejectReason": "lateral_separation_exceeds_identity_threshold"
+        }
+      ],
+      "trackSwitchDetected": false,
+      "identitySwapDetected": false,
+      "nearestObsNotReassigned": true
+    },
+    "recovery": {
+      "options": [
+        {
+          "option": 1,
+          "name": "existing_accepted_pb0_observations_only",
+          "supportedIntervalM": 17.761471066379897,
+          "unsupportedIntervalM": 114.65852893362009,
+          "maxObsSpacingM": 114.6603661956996,
+          "lateralResidualM": null,
+          "headingResidualDeg": null,
+          "laneOrderConsistent": true,
+          "crossingCount": 0,
+          "selfIntersectionCount": 0,
+          "competingBoundaryConflict": false,
+          "productionModified": false
+        },
+        {
+          "option": 2,
+          "name": "rejected_pb0_candidates_restored_one_at_a_time",
+          "restorableBinCount": 15,
+          "supportedIntervalM": 30,
+          "unsupportedIntervalM": 102.41999999999999,
+          "maxObsSpacingM": 114.6603661956996,
+          "productionModified": false,
+          "note": "Each restored singleton bin adds at most one 2 m centre; cannot span 114 m interior"
+        },
+        {
+          "option": 3,
+          "name": "alternative_track_observations",
+          "viable": false,
+          "supportedIntervalM": 0,
+          "unsupportedIntervalM": 132.42,
+          "productionModified": false,
+          "note": "Track 1 observations are 8–14 m laterally offset from PB0 — not same boundary"
+        },
+        {
+          "option": 4,
+          "name": "short_local_interpolation",
+          "maxDefensibleSpanM": 10,
+          "supportedIntervalM": 10,
+          "unsupportedIntervalM": 122.41999999999999,
+          "productionModified": false,
+          "note": "Only sub-gaps ≤10 m between accepted bins 64–73 are individually supported"
+        },
+        {
+          "option": 5,
+          "name": "piecewise_local_fitting",
+          "supportedIntervalM": 17.761471066379897,
+          "unsupportedIntervalM": 114.6603661956996,
+          "productionModified": false,
+          "note": "West cluster 128–146 m only; interior unconstrained"
+        },
+        {
+          "option": 6,
+          "name": "no_reconstruction",
+          "supportedIntervalM": 17.761471066379897,
+          "unsupportedIntervalM": 114.6603661956996,
+          "productionModified": false,
+          "recommended": true
+        }
+      ],
+      "maximumEvidenceSupportedRecoverableIntervalM": 30,
+      "completeReconstructionDefensible": false,
+      "longestUnsupportedM": 114.6603661956996,
+      "unsupportedIntervals": [
+        {
+          "startS": 128.15150739711632,
+          "endS": 136.89462245632075,
+          "lengthM": 8.743115059204428
+        },
+        {
+          "startS": 136.89462245632075,
+          "endS": 139.11959802958535,
+          "lengthM": 2.224975573264601
+        },
+        {
+          "startS": 139.11959802958535,
+          "endS": 142.44038927945275,
+          "lengthM": 3.3207912498673977
+        },
+        {
+          "startS": 142.44038927945275,
+          "endS": 145.91297846349622,
+          "lengthM": 3.4725891840434713
+        },
+        {
+          "startS": 145.91297846349622,
+          "endS": 260.5733446591958,
+          "lengthM": 114.6603661956996
+        }
+      ]
+    },
+    "frameRouteSTable": [
+      {
+        "frameId": 2443,
+        "elapsedIdx": 0,
+        "logMonoTime": "139726594139",
+        "vehicleRouteS": 0,
+        "laneProb": 0.9339951276779175,
+        "lanePointCount": 26,
+        "mappedObsInGap": 0,
+        "roadCondition": "modelV2_present_no_gap_projection",
+        "videoAvailable": false,
+        "videoNote": "qlog video not in workspace; classification from modelV2 metadata"
+      },
+      {
+        "frameId": 2483,
+        "elapsedIdx": 1,
+        "logMonoTime": "141726837576",
+        "vehicleRouteS": 34.351685391660034,
+        "laneProb": 0.7666933536529541,
+        "lanePointCount": 26,
+        "mappedObsInGap": 0,
+        "roadCondition": "modelV2_present_no_gap_projection",
+        "videoAvailable": false,
+        "videoNote": "qlog video not in workspace; classification from modelV2 metadata"
+      },
+      {
+        "frameId": 2523,
+        "elapsedIdx": 2,
+        "logMonoTime": "143726895711",
+        "vehicleRouteS": 65.78727043441252,
+        "laneProb": 0.6032437682151794,
+        "lanePointCount": 26,
+        "mappedObsInGap": 0,
+        "roadCondition": "low_confidence_detection",
+        "videoAvailable": false,
+        "videoNote": "qlog video not in workspace; classification from modelV2 metadata"
+      },
+      {
+        "frameId": 2563,
+        "elapsedIdx": 3,
+        "logMonoTime": "145723084099",
+        "vehicleRouteS": 92.49290092856977,
+        "laneProb": 0.7887699604034424,
+        "lanePointCount": 26,
+        "mappedObsInGap": 1,
+        "roadCondition": "sparse_mapped_support",
+        "videoAvailable": false,
+        "videoNote": "qlog video not in workspace; classification from modelV2 metadata"
+      },
+      {
+        "frameId": 2603,
+        "elapsedIdx": 4,
+        "logMonoTime": "147723001692",
+        "vehicleRouteS": 116.45275826658494,
+        "laneProb": 0.920274555683136,
+        "lanePointCount": 26,
+        "mappedObsInGap": 8,
+        "roadCondition": "sparse_mapped_support",
+        "videoAvailable": false,
+        "videoNote": "qlog video not in workspace; classification from modelV2 metadata"
+      },
+      {
+        "frameId": 2643,
+        "elapsedIdx": 5,
+        "logMonoTime": "149725764567",
+        "vehicleRouteS": 136.89462245632075,
+        "laneProb": 0.7635427713394165,
+        "lanePointCount": 26,
+        "mappedObsInGap": 15,
+        "roadCondition": "sparse_mapped_support",
+        "videoAvailable": false,
+        "videoNote": "qlog video not in workspace; classification from modelV2 metadata"
+      },
+      {
+        "frameId": 2843,
+        "elapsedIdx": 10,
+        "logMonoTime": "159714019679",
+        "vehicleRouteS": 239.67051968849796,
+        "laneProb": 0.5498607158660889,
+        "lanePointCount": 26,
+        "mappedObsInGap": 11,
+        "roadCondition": "low_confidence_detection",
+        "videoAvailable": false,
+        "videoNote": "qlog video not in workspace; classification from modelV2 metadata"
+      },
+      {
+        "frameId": 2883,
+        "elapsedIdx": 11,
+        "logMonoTime": "161715770488",
+        "vehicleRouteS": 260.5733446591958,
+        "laneProb": 0.8267959356307983,
+        "lanePointCount": 26,
+        "mappedObsInGap": 0,
+        "roadCondition": "modelV2_present_no_gap_projection",
+        "videoAvailable": false,
+        "videoNote": "qlog video not in workspace; classification from modelV2 metadata"
+      },
+      {
+        "frameId": 2923,
+        "elapsedIdx": 12,
+        "logMonoTime": "163718456147",
+        "vehicleRouteS": 284.19409819013526,
+        "laneProb": 0.8617314696311951,
+        "lanePointCount": 26,
+        "mappedObsInGap": 0,
+        "roadCondition": "modelV2_present_no_gap_projection",
+        "videoAvailable": false,
+        "videoNote": "qlog video not in workspace; classification from modelV2 metadata"
+      },
+      {
+        "frameId": 2963,
+        "elapsedIdx": 13,
+        "logMonoTime": "165711518986",
+        "vehicleRouteS": 307.17704434505964,
+        "laneProb": 0.7944315671920776,
+        "lanePointCount": 26,
+        "mappedObsInGap": 0,
+        "roadCondition": "modelV2_present_no_gap_projection",
+        "videoAvailable": false,
+        "videoNote": "qlog video not in workspace; classification from modelV2 metadata"
+      },
+      {
+        "frameId": 3003,
+        "elapsedIdx": 14,
+        "logMonoTime": "167711351167",
+        "vehicleRouteS": 332.04129092042683,
+        "laneProb": 0.8697840571403503,
+        "lanePointCount": 26,
+        "mappedObsInGap": 0,
+        "roadCondition": "modelV2_present_no_gap_projection",
+        "videoAvailable": false,
+        "videoNote": "qlog video not in workspace; classification from modelV2 metadata"
+      },
+      {
+        "frameId": 3043,
+        "elapsedIdx": 15,
+        "logMonoTime": "169710367871",
+        "vehicleRouteS": 355.9583513531925,
+        "laneProb": 0.8152815699577332,
+        "lanePointCount": 26,
+        "mappedObsInGap": 0,
+        "roadCondition": "modelV2_present_no_gap_projection",
+        "videoAvailable": false,
+        "videoNote": "qlog video not in workspace; classification from modelV2 metadata"
+      },
+      {
+        "frameId": 3083,
+        "elapsedIdx": 16,
+        "logMonoTime": "171706391399",
+        "vehicleRouteS": 380.7540972580592,
+        "laneProb": 0.9377167820930481,
+        "lanePointCount": 26,
+        "mappedObsInGap": 0,
+        "roadCondition": "modelV2_present_no_gap_projection",
+        "videoAvailable": false,
+        "videoNote": "qlog video not in workspace; classification from modelV2 metadata"
+      },
+      {
+        "frameId": 3123,
+        "elapsedIdx": 17,
+        "logMonoTime": "173712039287",
+        "vehicleRouteS": 407.52896454897945,
+        "laneProb": 0.9332014918327332,
+        "lanePointCount": 26,
+        "mappedObsInGap": 0,
+        "roadCondition": "modelV2_present_no_gap_projection",
+        "videoAvailable": false,
+        "videoNote": "qlog video not in workspace; classification from modelV2 metadata"
+      },
+      {
+        "frameId": 3163,
+        "elapsedIdx": 18,
+        "logMonoTime": "175704371479",
+        "vehicleRouteS": 435.9957705829717,
+        "laneProb": 0.9317337870597839,
+        "lanePointCount": 26,
+        "mappedObsInGap": 0,
+        "roadCondition": "modelV2_present_no_gap_projection",
+        "videoAvailable": false,
+        "videoNote": "qlog video not in workspace; classification from modelV2 metadata"
+      },
+      {
+        "frameId": 3203,
+        "elapsedIdx": 19,
+        "logMonoTime": "177707085489",
+        "vehicleRouteS": 466.79093510592395,
+        "laneProb": 0.9179291725158691,
+        "lanePointCount": 26,
+        "mappedObsInGap": 0,
+        "roadCondition": "modelV2_present_no_gap_projection",
+        "videoAvailable": false,
+        "videoNote": "qlog video not in workspace; classification from modelV2 metadata"
+      },
+      {
+        "frameId": 3243,
+        "elapsedIdx": 20,
+        "logMonoTime": "179713752755",
+        "vehicleRouteS": 500.10840835916696,
+        "laneProb": 0.9009042978286743,
+        "lanePointCount": 26,
+        "mappedObsInGap": 0,
+        "roadCondition": "modelV2_present_no_gap_projection",
+        "videoAvailable": false,
+        "videoNote": "qlog video not in workspace; classification from modelV2 metadata"
+      },
+      {
+        "frameId": 3283,
+        "elapsedIdx": 21,
+        "logMonoTime": "181701795889",
+        "vehicleRouteS": 535.2771432595753,
+        "laneProb": 0.8986271619796753,
+        "lanePointCount": 26,
+        "mappedObsInGap": 0,
+        "roadCondition": "modelV2_present_no_gap_projection",
+        "videoAvailable": false,
+        "videoNote": "qlog video not in workspace; classification from modelV2 metadata"
+      },
+      {
+        "frameId": 3323,
+        "elapsedIdx": 22,
+        "logMonoTime": "183695365176",
+        "vehicleRouteS": 567.3471591784137,
+        "laneProb": 0.929695188999176,
+        "lanePointCount": 26,
+        "mappedObsInGap": 0,
+        "roadCondition": "modelV2_present_no_gap_projection",
+        "videoAvailable": false,
+        "videoNote": "qlog video not in workspace; classification from modelV2 metadata"
+      },
+      {
+        "frameId": 3363,
+        "elapsedIdx": 23,
+        "logMonoTime": "185690505804",
+        "vehicleRouteS": 598.8994261527549,
+        "laneProb": 0.9139852523803711,
+        "lanePointCount": 26,
+        "mappedObsInGap": 0,
+        "roadCondition": "modelV2_present_no_gap_projection",
+        "videoAvailable": false,
+        "videoNote": "qlog video not in workspace; classification from modelV2 metadata"
+      },
+      {
+        "frameId": 3403,
+        "elapsedIdx": 24,
+        "logMonoTime": "187679843472",
+        "vehicleRouteS": 627.9389105709788,
+        "laneProb": 0.898047685623169,
+        "lanePointCount": 26,
+        "mappedObsInGap": 0,
+        "roadCondition": "modelV2_present_no_gap_projection",
+        "videoAvailable": false,
+        "videoNote": "qlog video not in workspace; classification from modelV2 metadata"
+      },
+      {
+        "frameId": 3443,
+        "elapsedIdx": 25,
+        "logMonoTime": "189674587404",
+        "vehicleRouteS": 650.9493119674232,
+        "laneProb": 0.9555996060371399,
+        "lanePointCount": 26,
+        "mappedObsInGap": 0,
+        "roadCondition": "modelV2_present_no_gap_projection",
+        "videoAvailable": false,
+        "videoNote": "qlog video not in workspace; classification from modelV2 metadata"
+      },
+      {
+        "frameId": 3483,
+        "elapsedIdx": 26,
+        "logMonoTime": "191667697949",
+        "vehicleRouteS": 667.4264917184199,
+        "laneProb": 0.8276240825653076,
+        "lanePointCount": 26,
+        "mappedObsInGap": 0,
+        "roadCondition": "modelV2_present_no_gap_projection",
+        "videoAvailable": false,
+        "videoNote": "qlog video not in workspace; classification from modelV2 metadata"
+      },
+      {
+        "frameId": 3523,
+        "elapsedIdx": 27,
+        "logMonoTime": "193663564803",
+        "vehicleRouteS": 680.0874970987592,
+        "laneProb": 0.5896987915039062,
+        "lanePointCount": 26,
+        "mappedObsInGap": 0,
+        "roadCondition": "low_confidence_detection",
+        "videoAvailable": false,
+        "videoNote": "qlog video not in workspace; classification from modelV2 metadata"
+      },
+      {
+        "frameId": 3603,
+        "elapsedIdx": 29,
+        "logMonoTime": "197651558947",
+        "vehicleRouteS": 696.7768519320928,
+        "laneProb": 0.8509367108345032,
+        "lanePointCount": 26,
+        "mappedObsInGap": 0,
+        "roadCondition": "modelV2_present_no_gap_projection",
+        "videoAvailable": false,
+        "videoNote": "qlog video not in workspace; classification from modelV2 metadata"
+      }
+    ],
+    "gapMechanism": {
+      "primary": "D11",
+      "mechanism": "maxLaneFragmentGapM=10 split at 114.7 m; intermediate bins rejected (D6_minObsPerBin, D7_minFramesPerBin)",
+      "firstStage": "fuseLaneTrackSdFragments fragment construction",
+      "safeToCorrect": false,
+      "proposedCorrection": "A — intermediate bins lack support",
+      "risk": "false continuity across rejected bins"
+    },
+    "physicalRoadCondition": {
+      "primary": "forward_range_limited_detection_with_interior_dropout",
+      "westEnd": "sparse_low_frame_support_128_146m",
+      "interior": "no_track0_mapped_observations_148_228m",
+      "eastApproach": "rejected_bins_238_258m_then_accepted_at_260m",
+      "videoReviewed": false,
+      "videoNote": "qlog source video not available in workspace"
+    },
+    "verdict": "G",
+    "verdictLabel": "Corridor has short recoverable sections but long unsupported interior — remain open",
+    "readyForTargetedRepair": false,
+    "nextEvidenceSupportedAction": "Remain open; optional future west-end local repair only if independent interior evidence appears"
+  },
+  "unsafeStillOpen": [
+    {
+      "disconnectionId": "DC-002",
+      "stillOpen": true
+    },
+    {
+      "disconnectionId": "DC-003",
+      "stillOpen": true
+    },
+    {
+      "disconnectionId": "DC-004",
+      "stillOpen": true
+    },
+    {
+      "disconnectionId": "DC-013",
+      "stillOpen": true
+    },
+    {
+      "disconnectionId": "DC-015",
+      "stillOpen": true
+    },
+    {
+      "disconnectionId": "DC-016",
+      "stillOpen": true
+    },
+    {
+      "disconnectionId": "DC-017",
+      "stillOpen": true
+    },
+    {
+      "disconnectionId": "DC-018",
+      "stillOpen": true
+    }
+  ],
+  "summary": {
+    "dc015RemainsOpen": true,
+    "allUnsafeGapsOpen": true,
+    "dc014Closed": true,
+    "stage2RepairsIntact": true,
+    "pb1Pb2DisplacementM": 0,
+    "laneChecksumUnchanged": true,
+    "productionGeometryModified": false,
+    "stage5Accepted": true
+  }
+}

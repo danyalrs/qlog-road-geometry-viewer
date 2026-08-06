@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hdmap.local/schemas/stage19/exclusions_v0.json",
+  "title": "Stage19ExclusionsV0",
+  "type": "object",
+  "required": ["schemaVersion", "runId", "excluded"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "const": "stage19_exclusions_v0" },
+    "runId": { "type": "string", "minLength": 1 },
+    "excluded": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["gapId", "reason"],
+        "additionalProperties": false,
+        "properties": {
+          "gapId": { "type": "string", "minLength": 1 },
+          "reason": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}

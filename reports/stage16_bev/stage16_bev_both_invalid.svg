@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="520">
+<rect width="100%" height="100%" fill="#111"/>
+<text x="20" y="24" fill="#ccc" font-size="14">both_invalid seg0 t17714651795</text>
+<text x="20" y="42" fill="#888" font-size="10">No slots projected in frame — all rejected</text>
+<text x="20" y="58" fill="#888" font-size="11">slot 0 (predominantly_outer_right): rejected_low_assessment_confidence — confidence_below_assessment_threshold</text>
+<text x="20" y="72" fill="#888" font-size="11">slot 1 (predominantly_inner_right_ego_candidate): rejected_missing_pose — no_matching_processed_frame</text>
+<text x="20" y="86" fill="#888" font-size="11">slot 2 (predominantly_inner_left_ego_candidate): rejected_missing_pose — no_matching_processed_frame</text>
+<text x="20" y="100" fill="#888" font-size="11">slot 3 (predominantly_outer_left): rejected_low_assessment_confidence — confidence_below_assessment_threshold</text>
+<text x="20" y="512" fill="#666" font-size="10">s → | d ↑ | assessment prototype | not ground-truth alignment</text>
+</svg>

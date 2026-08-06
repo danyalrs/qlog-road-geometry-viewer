@@ -1,0 +1,994 @@
+{
+  "generatedAt": "2026-08-04T08:39:26.958Z",
+  "segment": "qlog_f449c_2.bz2",
+  "stage": 2,
+  "baselineFrozen": true,
+  "summary": {
+    "polygonCount": 14,
+    "structurallyAccepted": 14,
+    "structurallyRejected": 0,
+    "inconclusive": 0,
+    "thinTriangles": 0,
+    "widthCollapses": 0,
+    "widthSpikes": 0,
+    "overlaps": 0,
+    "coveragePct": 100
+  },
+  "components": [
+    {
+      "polygonId": "RS-BP-PB1-PB0-0-89",
+      "boundaryPairId": "BP-PB1-PB0",
+      "leftPb": "PB1",
+      "rightPb": "PB0",
+      "leftTrackIds": [
+        1,
+        2
+      ],
+      "rightTrackIds": [
+        0
+      ],
+      "leftRunIds": [
+        2
+      ],
+      "rightRunIds": [
+        22
+      ],
+      "chunkId": 0,
+      "passId": 0,
+      "routeSStart": 88.60640899874842,
+      "routeSEnd": 92.49290092856977,
+      "supportedLengthM": 3.8864919298213465,
+      "areaM2": 14.996788879836913,
+      "vertexCount": 4,
+      "minWidthM": 3.655213401518179,
+      "medianWidthM": 3.8586954895661547,
+      "maxWidthM": 4.06217757761413,
+      "widthVariationM": 0.40696417609595104,
+      "minEndCapWidthM": 3.655213401518179,
+      "maxEndCapWidthM": 4.06217757761413,
+      "endCapStartWidthM": 4.06217757761413,
+      "endCapEndWidthM": 3.655213401518179,
+      "relativeBoundaryHeadingDeg": 5.787333444714989,
+      "winding": "clockwise",
+      "selfIntersectionCount": 0,
+      "overlapPolygonIds": [],
+      "neighbouringPolygonIds": [
+        "RS-BP-PB1-PB0-1-66",
+        "RS-BP-PB1-PB0-11-332"
+      ],
+      "startSplitReason": "missing_right_support",
+      "endSplitReason": "missing_left_support",
+      "computedSamplingPointCount": 1,
+      "shapeDependsOnSamplingPoints": false,
+      "provenanceComplete": true,
+      "structuralFlags": {
+        "selfIntersection": false,
+        "interiorOverlap": false,
+        "reversedPolygon": false,
+        "wrongSideOfBoundary": false,
+        "thinTriangle": false,
+        "widthCollapse": false,
+        "widthSpike": false,
+        "duplicateCoverage": false
+      },
+      "structuralVerdict": "accepted",
+      "visualReviewStatus": "accepted"
+    },
+    {
+      "polygonId": "RS-BP-PB1-PB0-1-66",
+      "boundaryPairId": "BP-PB1-PB0",
+      "leftPb": "PB1",
+      "rightPb": "PB0",
+      "leftTrackIds": [
+        1,
+        2
+      ],
+      "rightTrackIds": [
+        0
+      ],
+      "leftRunIds": [
+        3
+      ],
+      "rightRunIds": [
+        29
+      ],
+      "chunkId": 0,
+      "passId": 0,
+      "routeSStart": 65.78727043441252,
+      "routeSEnd": 71.1020363294706,
+      "supportedLengthM": 5.314765895058073,
+      "areaM2": 20.304072244686154,
+      "vertexCount": 4,
+      "minWidthM": 3.6690580611554267,
+      "medianWidthM": 3.830754320402747,
+      "maxWidthM": 3.9924505796500678,
+      "widthVariationM": 0.3233925184946411,
+      "minEndCapWidthM": 3.6690580611554267,
+      "maxEndCapWidthM": 3.9924505796500678,
+      "endCapStartWidthM": 3.6690580611554267,
+      "endCapEndWidthM": 3.9924505796500678,
+      "relativeBoundaryHeadingDeg": 3.6210802821052823,
+      "winding": "clockwise",
+      "selfIntersectionCount": 0,
+      "overlapPolygonIds": [],
+      "neighbouringPolygonIds": [
+        "RS-BP-PB1-PB0-0-89"
+      ],
+      "startSplitReason": "unsupported_break",
+      "endSplitReason": "missing_left_support",
+      "computedSamplingPointCount": 1,
+      "shapeDependsOnSamplingPoints": false,
+      "provenanceComplete": true,
+      "structuralFlags": {
+        "selfIntersection": false,
+        "interiorOverlap": false,
+        "reversedPolygon": false,
+        "wrongSideOfBoundary": false,
+        "thinTriangle": false,
+        "widthCollapse": false,
+        "widthSpike": false,
+        "duplicateCoverage": false
+      },
+      "structuralVerdict": "accepted",
+      "visualReviewStatus": "accepted"
+    },
+    {
+      "polygonId": "RS-BP-PB1-PB0-2-622",
+      "boundaryPairId": "BP-PB1-PB0",
+      "leftPb": "PB1",
+      "rightPb": "PB0",
+      "leftTrackIds": [
+        1,
+        2
+      ],
+      "rightTrackIds": [
+        0
+      ],
+      "leftRunIds": [
+        5
+      ],
+      "rightRunIds": [
+        18
+      ],
+      "chunkId": 0,
+      "passId": 0,
+      "routeSStart": 621.5384584633066,
+      "routeSEnd": 630.5748338730675,
+      "supportedLengthM": 9.036375409760922,
+      "areaM2": 27.402607044917204,
+      "vertexCount": 8,
+      "minWidthM": 2.9982086420059235,
+      "medianWidthM": 3.003021367359227,
+      "maxWidthM": 3.0619351900805745,
+      "widthVariationM": 0.06372654807465095,
+      "minEndCapWidthM": 2.9982086420059235,
+      "maxEndCapWidthM": 3.0078114735828794,
+      "endCapStartWidthM": 2.9982086420059235,
+      "endCapEndWidthM": 3.0078114735828794,
+      "relativeBoundaryHeadingDeg": 0.057205437963375516,
+      "winding": "clockwise",
+      "selfIntersectionCount": 0,
+      "overlapPolygonIds": [],
+      "neighbouringPolygonIds": [
+        "RS-BP-PB1-PB0-4-590",
+        "RS-BP-PB1-PB0-5-647"
+      ],
+      "startSplitReason": "unsupported_break",
+      "endSplitReason": "missing_left_support",
+      "computedSamplingPointCount": 2,
+      "shapeDependsOnSamplingPoints": false,
+      "provenanceComplete": true,
+      "structuralFlags": {
+        "selfIntersection": false,
+        "interiorOverlap": false,
+        "reversedPolygon": false,
+        "wrongSideOfBoundary": false,
+        "thinTriangle": false,
+        "widthCollapse": false,
+        "widthSpike": false,
+        "duplicateCoverage": false
+      },
+      "structuralVerdict": "accepted",
+      "visualReviewStatus": "accepted"
+    },
+    {
+      "polygonId": "RS-BP-PB1-PB0-3-435",
+      "boundaryPairId": "BP-PB1-PB0",
+      "leftPb": "PB1",
+      "rightPb": "PB0",
+      "leftTrackIds": [
+        1,
+        2
+      ],
+      "rightTrackIds": [
+        0
+      ],
+      "leftRunIds": [
+        6
+      ],
+      "rightRunIds": [
+        15
+      ],
+      "chunkId": 0,
+      "passId": 0,
+      "routeSStart": 434.9420161044949,
+      "routeSEnd": 439.19607520729676,
+      "supportedLengthM": 4.254059102801875,
+      "areaM2": 11.895712650488008,
+      "vertexCount": 6,
+      "minWidthM": 2.7625287692932505,
+      "medianWidthM": 2.7738744676225537,
+      "maxWidthM": 2.8197297557855245,
+      "widthVariationM": 0.05720098649227401,
+      "minEndCapWidthM": 2.7625287692932505,
+      "maxEndCapWidthM": 2.7738744676225537,
+      "endCapStartWidthM": 2.7625287692932505,
+      "endCapEndWidthM": 2.7738744676225537,
+      "relativeBoundaryHeadingDeg": 0.14356169350382686,
+      "winding": "clockwise",
+      "selfIntersectionCount": 0,
+      "overlapPolygonIds": [],
+      "neighbouringPolygonIds": [
+        "RS-BP-PB1-PB0-8-381",
+        "RS-BP-PB1-PB0-10-467"
+      ],
+      "startSplitReason": "missing_right_support",
+      "endSplitReason": "missing_right_support",
+      "computedSamplingPointCount": 2,
+      "shapeDependsOnSamplingPoints": true,
+      "provenanceComplete": true,
+      "structuralFlags": {
+        "selfIntersection": false,
+        "interiorOverlap": false,
+        "reversedPolygon": false,
+        "wrongSideOfBoundary": false,
+        "thinTriangle": false,
+        "widthCollapse": false,
+        "widthSpike": false,
+        "duplicateCoverage": false
+      },
+      "structuralVerdict": "accepted",
+      "visualReviewStatus": "accepted"
+    },
+    {
+      "polygonId": "RS-BP-PB1-PB0-4-590",
+      "boundaryPairId": "BP-PB1-PB0",
+      "leftPb": "PB1",
+      "rightPb": "PB0",
+      "leftTrackIds": [
+        1,
+        2
+      ],
+      "rightTrackIds": [
+        0
+      ],
+      "leftRunIds": [
+        7
+      ],
+      "rightRunIds": [
+        19
+      ],
+      "chunkId": 0,
+      "passId": 0,
+      "routeSStart": 590.0372592002434,
+      "routeSEnd": 609.5318972808049,
+      "supportedLengthM": 19.494638080561458,
+      "areaM2": 57.73346095411489,
+      "vertexCount": 18,
+      "minWidthM": 2.7980667443937364,
+      "medianWidthM": 2.9726443441279295,
+      "maxWidthM": 3.0310697317735484,
+      "widthVariationM": 0.23300298737981207,
+      "minEndCapWidthM": 2.9462511539459144,
+      "maxEndCapWidthM": 2.9986225366592407,
+      "endCapStartWidthM": 2.9462511539459144,
+      "endCapEndWidthM": 2.9986225366592407,
+      "relativeBoundaryHeadingDeg": 0.1538797794113549,
+      "winding": "clockwise",
+      "selfIntersectionCount": 0,
+      "overlapPolygonIds": [],
+      "neighbouringPolygonIds": [
+        "RS-BP-PB1-PB0-9-567",
+        "RS-BP-PB1-PB0-2-622"
+      ],
+      "startSplitReason": "unsupported_break",
+      "endSplitReason": "unsupported_break",
+      "computedSamplingPointCount": 4,
+      "shapeDependsOnSamplingPoints": false,
+      "provenanceComplete": true,
+      "structuralFlags": {
+        "selfIntersection": false,
+        "interiorOverlap": false,
+        "reversedPolygon": false,
+        "wrongSideOfBoundary": false,
+        "thinTriangle": false,
+        "widthCollapse": false,
+        "widthSpike": false,
+        "duplicateCoverage": false
+      },
+      "structuralVerdict": "accepted",
+      "visualReviewStatus": "accepted"
+    },
+    {
+      "polygonId": "RS-BP-PB1-PB0-5-647",
+      "boundaryPairId": "BP-PB1-PB0",
+      "leftPb": "PB1",
+      "rightPb": "PB0",
+      "leftTrackIds": [
+        1,
+        2
+      ],
+      "rightTrackIds": [
+        0
+      ],
+      "leftRunIds": [
+        8
+      ],
+      "rightRunIds": [
+        25
+      ],
+      "chunkId": 0,
+      "passId": 0,
+      "routeSStart": 646.9116126270657,
+      "routeSEnd": 689.824925750434,
+      "supportedLengthM": 42.91331312336831,
+      "areaM2": 135.77837467862355,
+      "vertexCount": 34,
+      "minWidthM": 2.9509168320903703,
+      "medianWidthM": 3.1023462888368805,
+      "maxWidthM": 4.139600023497817,
+      "widthVariationM": 1.1886831914074465,
+      "minEndCapWidthM": 3.074964557537189,
+      "maxEndCapWidthM": 4.139600023497817,
+      "endCapStartWidthM": 3.074964557537189,
+      "endCapEndWidthM": 4.139600023497817,
+      "relativeBoundaryHeadingDeg": 1.3767916621420113,
+      "winding": "clockwise",
+      "selfIntersectionCount": 0,
+      "overlapPolygonIds": [],
+      "neighbouringPolygonIds": [
+        "RS-BP-PB1-PB0-2-622"
+      ],
+      "startSplitReason": "missing_right_support",
+      "endSplitReason": "supported_endpoint",
+      "computedSamplingPointCount": 13,
+      "shapeDependsOnSamplingPoints": false,
+      "provenanceComplete": true,
+      "structuralFlags": {
+        "selfIntersection": false,
+        "interiorOverlap": false,
+        "reversedPolygon": false,
+        "wrongSideOfBoundary": false,
+        "thinTriangle": false,
+        "widthCollapse": false,
+        "widthSpike": false,
+        "duplicateCoverage": false
+      },
+      "structuralVerdict": "accepted",
+      "visualReviewStatus": "accepted"
+    },
+    {
+      "polygonId": "RS-BP-PB1-PB0-6-500",
+      "boundaryPairId": "BP-PB1-PB0",
+      "leftPb": "PB1",
+      "rightPb": "PB0",
+      "leftTrackIds": [
+        1,
+        2
+      ],
+      "rightTrackIds": [
+        0
+      ],
+      "leftRunIds": [
+        9
+      ],
+      "rightRunIds": [
+        27
+      ],
+      "chunkId": 0,
+      "passId": 0,
+      "routeSStart": 500.1206905235975,
+      "routeSEnd": 503.51347510831215,
+      "supportedLengthM": 3.3927845847146614,
+      "areaM2": 11.120481639784884,
+      "vertexCount": 6,
+      "minWidthM": 2.6641740777045526,
+      "medianWidthM": 3.853241951195589,
+      "maxWidthM": 3.853241951195589,
+      "widthVariationM": 1.1890678734910365,
+      "minEndCapWidthM": 2.6641740777045526,
+      "maxEndCapWidthM": 3.853241951195589,
+      "endCapStartWidthM": 3.853241951195589,
+      "endCapEndWidthM": 2.6641740777045526,
+      "relativeBoundaryHeadingDeg": 19.136481953375522,
+      "winding": "clockwise",
+      "selfIntersectionCount": 0,
+      "overlapPolygonIds": [],
+      "neighbouringPolygonIds": [
+        "RS-BP-PB1-PB0-10-467",
+        "RS-BP-PB1-PB0-7-528"
+      ],
+      "startSplitReason": "missing_left_support",
+      "endSplitReason": "missing_right_support",
+      "computedSamplingPointCount": 1,
+      "shapeDependsOnSamplingPoints": false,
+      "provenanceComplete": true,
+      "structuralFlags": {
+        "selfIntersection": false,
+        "interiorOverlap": false,
+        "reversedPolygon": false,
+        "wrongSideOfBoundary": false,
+        "thinTriangle": false,
+        "widthCollapse": false,
+        "widthSpike": false,
+        "duplicateCoverage": false
+      },
+      "structuralVerdict": "accepted",
+      "visualReviewStatus": "accepted"
+    },
+    {
+      "polygonId": "RS-BP-PB1-PB0-7-528",
+      "boundaryPairId": "BP-PB1-PB0",
+      "leftPb": "PB1",
+      "rightPb": "PB0",
+      "leftTrackIds": [
+        1,
+        2
+      ],
+      "rightTrackIds": [
+        0
+      ],
+      "leftRunIds": [
+        10
+      ],
+      "rightRunIds": [
+        23
+      ],
+      "chunkId": 0,
+      "passId": 0,
+      "routeSStart": 527.5523303173946,
+      "routeSEnd": 554.0369644246867,
+      "supportedLengthM": 26.484634107292095,
+      "areaM2": 80.83124655934034,
+      "vertexCount": 16,
+      "minWidthM": 2.7232202280098967,
+      "medianWidthM": 3.1914867704410725,
+      "maxWidthM": 3.1986260101231383,
+      "widthVariationM": 0.4754057821132416,
+      "minEndCapWidthM": 2.7232202280098967,
+      "maxEndCapWidthM": 3.198007892410239,
+      "endCapStartWidthM": 2.7232202280098967,
+      "endCapEndWidthM": 3.198007892410239,
+      "relativeBoundaryHeadingDeg": 1.0265435492525086,
+      "winding": "clockwise",
+      "selfIntersectionCount": 0,
+      "overlapPolygonIds": [],
+      "neighbouringPolygonIds": [
+        "RS-BP-PB1-PB0-6-500",
+        "RS-BP-PB1-PB0-9-567"
+      ],
+      "startSplitReason": "missing_left_support",
+      "endSplitReason": "missing_left_support",
+      "computedSamplingPointCount": 8,
+      "shapeDependsOnSamplingPoints": false,
+      "provenanceComplete": true,
+      "structuralFlags": {
+        "selfIntersection": false,
+        "interiorOverlap": false,
+        "reversedPolygon": false,
+        "wrongSideOfBoundary": false,
+        "thinTriangle": false,
+        "widthCollapse": false,
+        "widthSpike": false,
+        "duplicateCoverage": false
+      },
+      "structuralVerdict": "accepted",
+      "visualReviewStatus": "accepted"
+    },
+    {
+      "polygonId": "RS-BP-PB1-PB0-8-381",
+      "boundaryPairId": "BP-PB1-PB0",
+      "leftPb": "PB1",
+      "rightPb": "PB0",
+      "leftTrackIds": [
+        1,
+        2
+      ],
+      "rightTrackIds": [
+        0
+      ],
+      "leftRunIds": [
+        11
+      ],
+      "rightRunIds": [
+        15
+      ],
+      "chunkId": 0,
+      "passId": 0,
+      "routeSStart": 381.491557471317,
+      "routeSEnd": 412.22180615396644,
+      "supportedLengthM": 30.73024868264946,
+      "areaM2": 83.6307139078736,
+      "vertexCount": 22,
+      "minWidthM": 2.693812260097723,
+      "medianWidthM": 2.7131255964096326,
+      "maxWidthM": 2.8969391457629903,
+      "widthVariationM": 0.2031268856652675,
+      "minEndCapWidthM": 2.7131255964096326,
+      "maxEndCapWidthM": 2.8969391457629903,
+      "endCapStartWidthM": 2.7131255964096326,
+      "endCapEndWidthM": 2.8969391457629903,
+      "relativeBoundaryHeadingDeg": 0.34264430836648785,
+      "winding": "clockwise",
+      "selfIntersectionCount": 0,
+      "overlapPolygonIds": [],
+      "neighbouringPolygonIds": [
+        "RS-BP-PB1-PB0-11-332",
+        "RS-BP-PB1-PB0-3-435"
+      ],
+      "startSplitReason": "missing_right_support",
+      "endSplitReason": "missing_left_support",
+      "computedSamplingPointCount": 10,
+      "shapeDependsOnSamplingPoints": false,
+      "provenanceComplete": true,
+      "structuralFlags": {
+        "selfIntersection": false,
+        "interiorOverlap": false,
+        "reversedPolygon": false,
+        "wrongSideOfBoundary": false,
+        "thinTriangle": false,
+        "widthCollapse": false,
+        "widthSpike": false,
+        "duplicateCoverage": false
+      },
+      "structuralVerdict": "accepted",
+      "visualReviewStatus": "accepted"
+    },
+    {
+      "polygonId": "RS-BP-PB1-PB0-9-567",
+      "boundaryPairId": "BP-PB1-PB0",
+      "leftPb": "PB1",
+      "rightPb": "PB0",
+      "leftTrackIds": [
+        1,
+        2
+      ],
+      "rightTrackIds": [
+        0
+      ],
+      "leftRunIds": [
+        12
+      ],
+      "rightRunIds": [
+        21
+      ],
+      "chunkId": 0,
+      "passId": 0,
+      "routeSStart": 567.3471591784137,
+      "routeSEnd": 572.0315218311622,
+      "supportedLengthM": 4.6843626527485185,
+      "areaM2": 13.453218610356998,
+      "vertexCount": 6,
+      "minWidthM": 2.84299292768557,
+      "medianWidthM": 2.9000334345555054,
+      "maxWidthM": 2.9008336067199667,
+      "widthVariationM": 0.057840679034396825,
+      "minEndCapWidthM": 2.84299292768557,
+      "maxEndCapWidthM": 2.9008336067199667,
+      "endCapStartWidthM": 2.84299292768557,
+      "endCapEndWidthM": 2.9008336067199667,
+      "relativeBoundaryHeadingDeg": 0.6648173213503412,
+      "winding": "clockwise",
+      "selfIntersectionCount": 0,
+      "overlapPolygonIds": [],
+      "neighbouringPolygonIds": [
+        "RS-BP-PB1-PB0-7-528",
+        "RS-BP-PB1-PB0-4-590"
+      ],
+      "startSplitReason": "unsupported_break",
+      "endSplitReason": "unsupported_break",
+      "computedSamplingPointCount": 1,
+      "shapeDependsOnSamplingPoints": false,
+      "provenanceComplete": true,
+      "structuralFlags": {
+        "selfIntersection": false,
+        "interiorOverlap": false,
+        "reversedPolygon": false,
+        "wrongSideOfBoundary": false,
+        "thinTriangle": false,
+        "widthCollapse": false,
+        "widthSpike": false,
+        "duplicateCoverage": false
+      },
+      "structuralVerdict": "accepted",
+      "visualReviewStatus": "accepted"
+    },
+    {
+      "polygonId": "RS-BP-PB1-PB0-10-467",
+      "boundaryPairId": "BP-PB1-PB0",
+      "leftPb": "PB1",
+      "rightPb": "PB0",
+      "leftTrackIds": [
+        1,
+        2
+      ],
+      "rightTrackIds": [
+        0
+      ],
+      "leftRunIds": [
+        13
+      ],
+      "rightRunIds": [
+        27
+      ],
+      "chunkId": 0,
+      "passId": 0,
+      "routeSStart": 466.79093510592395,
+      "routeSEnd": 478.79387292483455,
+      "supportedLengthM": 12.002937818910596,
+      "areaM2": 37.37435916422237,
+      "vertexCount": 14,
+      "minWidthM": 2.486399482963969,
+      "medianWidthM": 3.1100466312212487,
+      "maxWidthM": 3.3950097633281655,
+      "widthVariationM": 0.9086102803641967,
+      "minEndCapWidthM": 2.895722680373975,
+      "maxEndCapWidthM": 3.3950097633281655,
+      "endCapStartWidthM": 2.895722680373975,
+      "endCapEndWidthM": 3.3950097633281655,
+      "relativeBoundaryHeadingDeg": 2.3859452935913765,
+      "winding": "clockwise",
+      "selfIntersectionCount": 0,
+      "overlapPolygonIds": [],
+      "neighbouringPolygonIds": [
+        "RS-BP-PB1-PB0-3-435",
+        "RS-BP-PB1-PB0-6-500"
+      ],
+      "startSplitReason": "missing_left_support",
+      "endSplitReason": "missing_left_support",
+      "computedSamplingPointCount": 5,
+      "shapeDependsOnSamplingPoints": false,
+      "provenanceComplete": true,
+      "structuralFlags": {
+        "selfIntersection": false,
+        "interiorOverlap": false,
+        "reversedPolygon": false,
+        "wrongSideOfBoundary": false,
+        "thinTriangle": false,
+        "widthCollapse": false,
+        "widthSpike": false,
+        "duplicateCoverage": false
+      },
+      "structuralVerdict": "accepted",
+      "visualReviewStatus": "accepted"
+    },
+    {
+      "polygonId": "RS-BP-PB1-PB0-11-332",
+      "boundaryPairId": "BP-PB1-PB0",
+      "leftPb": "PB1",
+      "rightPb": "PB0",
+      "leftTrackIds": [
+        1,
+        2
+      ],
+      "rightTrackIds": [
+        0
+      ],
+      "leftRunIds": [
+        14
+      ],
+      "rightRunIds": [
+        20
+      ],
+      "chunkId": 0,
+      "passId": 0,
+      "routeSStart": 332.4326940942537,
+      "routeSEnd": 338.4892400311075,
+      "supportedLengthM": 6.056545936853809,
+      "areaM2": 17.33723119945921,
+      "vertexCount": 8,
+      "minWidthM": 2.7274262065793695,
+      "medianWidthM": 2.867731602466325,
+      "maxWidthM": 2.9761478263832912,
+      "widthVariationM": 0.2487216198039217,
+      "minEndCapWidthM": 2.7274262065793695,
+      "maxEndCapWidthM": 2.7621791359108157,
+      "endCapStartWidthM": 2.7621791359108157,
+      "endCapEndWidthM": 2.7274262065793695,
+      "relativeBoundaryHeadingDeg": 0.316337385743779,
+      "winding": "clockwise",
+      "selfIntersectionCount": 0,
+      "overlapPolygonIds": [],
+      "neighbouringPolygonIds": [
+        "RS-BP-PB1-PB0-0-89",
+        "RS-BP-PB1-PB0-8-381"
+      ],
+      "startSplitReason": "missing_left_support",
+      "endSplitReason": "missing_right_support",
+      "computedSamplingPointCount": 4,
+      "shapeDependsOnSamplingPoints": true,
+      "provenanceComplete": true,
+      "structuralFlags": {
+        "selfIntersection": false,
+        "interiorOverlap": false,
+        "reversedPolygon": false,
+        "wrongSideOfBoundary": false,
+        "thinTriangle": false,
+        "widthCollapse": false,
+        "widthSpike": false,
+        "duplicateCoverage": false
+      },
+      "structuralVerdict": "accepted",
+      "visualReviewStatus": "accepted"
+    },
+    {
+      "polygonId": "RS-BP-PB2-PB1-12-408",
+      "boundaryPairId": "BP-PB2-PB1",
+      "leftPb": "PB2",
+      "rightPb": "PB1",
+      "leftTrackIds": [
+        3
+      ],
+      "rightTrackIds": [
+        1,
+        2
+      ],
+      "leftRunIds": [
+        0
+      ],
+      "rightRunIds": [
+        11
+      ],
+      "chunkId": 0,
+      "passId": 0,
+      "routeSStart": 407.7330461017007,
+      "routeSEnd": 412.22180615396644,
+      "supportedLengthM": 4.488760052265718,
+      "areaM2": 13.413777057153826,
+      "vertexCount": 6,
+      "minWidthM": 2.8754655122756896,
+      "medianWidthM": 2.875547103549233,
+      "maxWidthM": 3.093941121236166,
+      "widthVariationM": 0.21847560896047646,
+      "minEndCapWidthM": 2.8754655122756896,
+      "maxEndCapWidthM": 3.093941121236166,
+      "endCapStartWidthM": 3.093941121236166,
+      "endCapEndWidthM": 2.8754655122756896,
+      "relativeBoundaryHeadingDeg": 2.786461477998131,
+      "winding": "clockwise",
+      "selfIntersectionCount": 0,
+      "overlapPolygonIds": [],
+      "neighbouringPolygonIds": [
+        "RS-BP-PB2-PB1-13-435"
+      ],
+      "startSplitReason": "supported_endpoint",
+      "endSplitReason": "unsupported_break",
+      "computedSamplingPointCount": 2,
+      "shapeDependsOnSamplingPoints": true,
+      "provenanceComplete": true,
+      "structuralFlags": {
+        "selfIntersection": false,
+        "interiorOverlap": false,
+        "reversedPolygon": false,
+        "wrongSideOfBoundary": false,
+        "thinTriangle": false,
+        "widthCollapse": false,
+        "widthSpike": false,
+        "duplicateCoverage": false
+      },
+      "structuralVerdict": "accepted",
+      "visualReviewStatus": "accepted"
+    },
+    {
+      "polygonId": "RS-BP-PB2-PB1-13-435",
+      "boundaryPairId": "BP-PB2-PB1",
+      "leftPb": "PB2",
+      "rightPb": "PB1",
+      "leftTrackIds": [
+        3
+      ],
+      "rightTrackIds": [
+        1,
+        2
+      ],
+      "leftRunIds": [
+        1
+      ],
+      "rightRunIds": [
+        6
+      ],
+      "chunkId": 0,
+      "passId": 0,
+      "routeSStart": 434.5339771485253,
+      "routeSEnd": 439.23222706113535,
+      "supportedLengthM": 4.698249912610038,
+      "areaM2": 12.465030509683857,
+      "vertexCount": 10,
+      "minWidthM": 2.602911253855334,
+      "medianWidthM": 2.686349660784534,
+      "maxWidthM": 2.8304435243025265,
+      "widthVariationM": 0.2275322704471927,
+      "minEndCapWidthM": 2.686349660784534,
+      "maxEndCapWidthM": 2.8304435243025265,
+      "endCapStartWidthM": 2.8304435243025265,
+      "endCapEndWidthM": 2.686349660784534,
+      "relativeBoundaryHeadingDeg": 1.7741610451802359,
+      "winding": "clockwise",
+      "selfIntersectionCount": 0,
+      "overlapPolygonIds": [],
+      "neighbouringPolygonIds": [
+        "RS-BP-PB2-PB1-12-408"
+      ],
+      "startSplitReason": "unsupported_break",
+      "endSplitReason": "missing_right_support",
+      "computedSamplingPointCount": 4,
+      "shapeDependsOnSamplingPoints": true,
+      "provenanceComplete": true,
+      "structuralFlags": {
+        "selfIntersection": false,
+        "interiorOverlap": false,
+        "reversedPolygon": false,
+        "wrongSideOfBoundary": false,
+        "thinTriangle": false,
+        "widthCollapse": false,
+        "widthSpike": false,
+        "duplicateCoverage": false
+      },
+      "structuralVerdict": "accepted",
+      "visualReviewStatus": "accepted"
+    }
+  ],
+  "pb2pb1Review": [
+    {
+      "polygonId": "RS-BP-PB2-PB1-12-408",
+      "boundaryPairId": "BP-PB2-PB1",
+      "leftPb": "PB2",
+      "rightPb": "PB1",
+      "leftTrackIds": [
+        3
+      ],
+      "rightTrackIds": [
+        1,
+        2
+      ],
+      "leftRunIds": [
+        0
+      ],
+      "rightRunIds": [
+        11
+      ],
+      "chunkId": 0,
+      "passId": 0,
+      "routeSStart": 407.7330461017007,
+      "routeSEnd": 412.22180615396644,
+      "supportedLengthM": 4.488760052265718,
+      "areaM2": 13.413777057153826,
+      "vertexCount": 6,
+      "minWidthM": 2.8754655122756896,
+      "medianWidthM": 2.875547103549233,
+      "maxWidthM": 3.093941121236166,
+      "widthVariationM": 0.21847560896047646,
+      "minEndCapWidthM": 2.8754655122756896,
+      "maxEndCapWidthM": 3.093941121236166,
+      "endCapStartWidthM": 3.093941121236166,
+      "endCapEndWidthM": 2.8754655122756896,
+      "relativeBoundaryHeadingDeg": 2.786461477998131,
+      "winding": "clockwise",
+      "selfIntersectionCount": 0,
+      "overlapPolygonIds": [],
+      "neighbouringPolygonIds": [
+        "RS-BP-PB2-PB1-13-435"
+      ],
+      "startSplitReason": "supported_endpoint",
+      "endSplitReason": "unsupported_break",
+      "computedSamplingPointCount": 2,
+      "shapeDependsOnSamplingPoints": true,
+      "provenanceComplete": true,
+      "structuralFlags": {
+        "selfIntersection": false,
+        "interiorOverlap": false,
+        "reversedPolygon": false,
+        "wrongSideOfBoundary": false,
+        "thinTriangle": false,
+        "widthCollapse": false,
+        "widthSpike": false,
+        "duplicateCoverage": false
+      },
+      "structuralVerdict": "accepted",
+      "visualReviewStatus": "accepted",
+      "found": true,
+      "betweenPb2AndPb1": true,
+      "connectsPb1Pb2Provenance": false,
+      "crossesCd10": false,
+      "crossesCd18": false,
+      "unsupportedIntervalsLeft": [],
+      "unsupportedIntervalsRight": [],
+      "dedicatedReviewStatus": "pending_capture"
+    },
+    {
+      "polygonId": "RS-BP-PB2-PB1-13-435",
+      "boundaryPairId": "BP-PB2-PB1",
+      "leftPb": "PB2",
+      "rightPb": "PB1",
+      "leftTrackIds": [
+        3
+      ],
+      "rightTrackIds": [
+        1,
+        2
+      ],
+      "leftRunIds": [
+        1
+      ],
+      "rightRunIds": [
+        6
+      ],
+      "chunkId": 0,
+      "passId": 0,
+      "routeSStart": 434.5339771485253,
+      "routeSEnd": 439.23222706113535,
+      "supportedLengthM": 4.698249912610038,
+      "areaM2": 12.465030509683857,
+      "vertexCount": 10,
+      "minWidthM": 2.602911253855334,
+      "medianWidthM": 2.686349660784534,
+      "maxWidthM": 2.8304435243025265,
+      "widthVariationM": 0.2275322704471927,
+      "minEndCapWidthM": 2.686349660784534,
+      "maxEndCapWidthM": 2.8304435243025265,
+      "endCapStartWidthM": 2.8304435243025265,
+      "endCapEndWidthM": 2.686349660784534,
+      "relativeBoundaryHeadingDeg": 1.7741610451802359,
+      "winding": "clockwise",
+      "selfIntersectionCount": 0,
+      "overlapPolygonIds": [],
+      "neighbouringPolygonIds": [
+        "RS-BP-PB2-PB1-12-408"
+      ],
+      "startSplitReason": "unsupported_break",
+      "endSplitReason": "missing_right_support",
+      "computedSamplingPointCount": 4,
+      "shapeDependsOnSamplingPoints": true,
+      "provenanceComplete": true,
+      "structuralFlags": {
+        "selfIntersection": false,
+        "interiorOverlap": false,
+        "reversedPolygon": false,
+        "wrongSideOfBoundary": false,
+        "thinTriangle": false,
+        "widthCollapse": false,
+        "widthSpike": false,
+        "duplicateCoverage": false
+      },
+      "structuralVerdict": "accepted",
+      "visualReviewStatus": "accepted",
+      "found": true,
+      "betweenPb2AndPb1": true,
+      "connectsPb1Pb2Provenance": false,
+      "crossesCd10": false,
+      "crossesCd18": false,
+      "unsupportedIntervalsLeft": [
+        {
+          "startS": 412.2329184179182,
+          "endS": 434.5449151711091,
+          "reason": "sparseFusionGap"
+        }
+      ],
+      "unsupportedIntervalsRight": [],
+      "dedicatedReviewStatus": "pending_capture"
+    }
+  ],
+  "mode5Baseline": {
+    "laneChecksum": "5283af91",
+    "roadSurfaceCount": 0,
+    "cleanedRunCount": 28,
+    "fusedFragmentCount": 33
+  },
+  "prototypeMode": {
+    "geometrySource": "cleanedWithStage1Surface",
+    "laneChecksum": "5283af91",
+    "roadSurfacePolygonCount": 14,
+    "roadSurfaceChecksum": "26ae09b9"
+  },
+  "geometryUnchangedFromStage1": true
+}

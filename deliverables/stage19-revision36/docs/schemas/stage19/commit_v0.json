@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hdmap.local/schemas/stage19/commit_v0.json",
+  "title": "Stage19CommitV0",
+  "type": "object",
+  "required": ["schemaVersion", "runId", "manifestSha256", "publishedAt"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "const": "stage19_commit_v0" },
+    "runId": { "type": "string", "minLength": 1 },
+    "manifestSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "publishedAt": { "type": "string", "format": "date-time" }
+  }
+}

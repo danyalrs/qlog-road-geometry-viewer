@@ -1,0 +1,56 @@
+{
+  "comparedAt": "2026-07-27T09:51:08.602Z",
+  "baselinePath": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\audit_dataset_v11_full.json",
+  "baselineProcessingVersion": "2026-07-24-fusion-v11",
+  "freshProcessingVersion": "2026-07-24-fusion-v11",
+  "segmentCount": 92,
+  "geometryDifferenceCount": 0,
+  "baselineFlaggedCount": 25,
+  "freshFlaggedCount": 25,
+  "baselineZeroPolygonCount": 13,
+  "freshZeroPolygonCount": 13,
+  "spotSegments": [
+    {
+      "segmentId": 2,
+      "baselinePolygons": 7,
+      "freshPolygons": 7,
+      "match": true
+    },
+    {
+      "segmentId": 5,
+      "baselinePolygons": 9,
+      "freshPolygons": 9,
+      "match": true
+    },
+    {
+      "segmentId": 6,
+      "baselinePolygons": 2,
+      "freshPolygons": 2,
+      "match": true
+    },
+    {
+      "segmentId": 54,
+      "baselinePolygons": 3,
+      "freshPolygons": 3,
+      "match": true
+    },
+    {
+      "segmentId": 58,
+      "baselinePolygons": 6,
+      "freshPolygons": 6,
+      "match": true
+    },
+    {
+      "segmentId": 99,
+      "baselinePolygons": 3,
+      "freshPolygons": 3,
+      "match": true
+    }
+  ],
+  "differences": [],
+  "protectedHashes": {
+    "lib/version.js": "09444cdec775828371e681b858aa99e2ea0bacfd122ba936f84775eab5f6a235",
+    "lib/process_route.js": "08383ff1455707b7f42ed3c6d50c0840db2db04817b0c176d140112833359800"
+  },
+  "allPass": true
+}

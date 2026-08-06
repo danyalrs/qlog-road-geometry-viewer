@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hdmap.local/schemas/stage19/bev_v0.json",
+  "title": "Stage19BevV0",
+  "type": "object",
+  "required": ["schemaVersion", "runId", "images"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "const": "stage19_bev_v0" },
+    "runId": { "type": "string", "minLength": 1 },
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["imageId", "featurePairId", "widthPx", "heightPx", "mime", "sha256", "bytes", "payloadPath"],
+        "additionalProperties": false,
+        "properties": {
+          "imageId": { "type": "string", "minLength": 1 },
+          "featurePairId": { "type": "string", "minLength": 1 },
+          "widthPx": { "type": "integer", "minimum": 1, "maximum": 16384 },
+          "heightPx": { "type": "integer", "minimum": 1, "maximum": 16384 },
+          "mime": { "type": "string", "enum": ["image/png"] },
+          "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+          "bytes": { "type": "integer", "minimum": 0 },
+          "payloadPath": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}

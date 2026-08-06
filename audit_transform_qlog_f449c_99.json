@@ -1,0 +1,416 @@
+{
+  "segment": "qlog_f449c_99.bz2",
+  "segmentId": 99,
+  "processingVersion": "2026-07-24-pose-v9",
+  "targetFrameId": 119803,
+  "expectedReason": "spatialRevisit",
+  "passDiagnostics": {
+    "passCount": 1,
+    "splitEvents": [],
+    "suppressedSplitEvents": [
+      {
+        "reason": "suppressedCurveSpatialRevisit",
+        "wouldBeReason": "spatialRevisit",
+        "revisitIndex": 3,
+        "dist": 0.8048523382973056,
+        "travelSince": 332.62871595768576,
+        "travelToEuclid": 413.27918194457123,
+        "i": 24,
+        "movementState": "moving",
+        "frameId": 119803,
+        "logMonoTime": "6006146226986"
+      },
+      {
+        "reason": "suppressedChordSelfIntersection",
+        "wouldBeReason": "selfIntersection",
+        "segB": 3,
+        "alongTrackFromHitToEndM": 332.62871595768576,
+        "i": 25,
+        "movementState": "moving",
+        "frameId": 119843,
+        "logMonoTime": "6008132831636"
+      }
+    ],
+    "suppressedReversalCount": 2,
+    "suppressedStationarySplits": 0,
+    "directionReversals": 0,
+    "selfIntersectionSplits": 0,
+    "selfIntersections": 1,
+    "minNonAdjacentDistM": 0.8048523382973056,
+    "suspiciousLoop": false,
+    "startEndDisplacementM": 88.65923518525805
+  },
+  "temporalPassCount": 1,
+  "observationPair": {
+    "previous": {
+      "frameId": 119763,
+      "logMonoTime": "6004152559199",
+      "modelTimestamp": "6004152559199",
+      "mapPosition": {
+        "east": -58.813020876944904,
+        "north": -69.64993019859892
+      },
+      "headingDeg": 34.75570208344694,
+      "headingSource": "interpolated",
+      "speedMps": 16.0237247310483,
+      "movementState": "moving",
+      "gpsInterpolated": {
+        "logMonoTime": "6004152559199",
+        "interpolated": true,
+        "east": -58.813020876944904,
+        "north": -69.64993019859892,
+        "headingDeg": 34.75570208344694,
+        "speed": 16.0237247310483,
+        "modelGpsDeltaNs": 0
+      },
+      "modelPathPoints": 31,
+      "modelLaneLines": 2
+    },
+    "current": {
+      "frameId": 119803,
+      "logMonoTime": "6006146226986",
+      "modelTimestamp": "6006146226986",
+      "mapPosition": {
+        "east": -41.680099453382674,
+        "north": -43.762130972753376
+      },
+      "headingDeg": 32.784442312944535,
+      "headingSource": "interpolated",
+      "speedMps": 14.768996850077443,
+      "movementState": "moving",
+      "gpsInterpolated": {
+        "logMonoTime": "6006146226986",
+        "interpolated": true,
+        "east": -41.680099453382674,
+        "north": -43.762130972753376,
+        "headingDeg": 32.784442312944535,
+        "speed": 14.768996850077443,
+        "modelGpsDeltaNs": 0
+      },
+      "modelPathPoints": 33,
+      "modelLaneLines": 3
+    },
+    "displacementM": 31.043761776943963,
+    "timeGapSec": 1.993667787,
+    "impliedSpeedMps": 15.571180905549719,
+    "poseContinuityCheck": {
+      "ok": true,
+      "reason": null,
+      "step": 31.043761776943963,
+      "dt": 1.993667787,
+      "impliedSpeed": 15.571180905549719,
+      "headingDelta": 1.9712597705024066,
+      "motionDisagreement": 0.7127272136326113
+    },
+    "motionDerivedBearingDeg": 33.497169526577146,
+    "headingDisagreementDeg": 0.7127272136326113
+  },
+  "selfIntersection": null,
+  "spatialRevisit": null,
+  "transformedTrajectorySample": [
+    {
+      "frameId": 118843,
+      "logMonoTime": "5958239085150",
+      "east": -5.421459814170825,
+      "north": -12.652789731418673,
+      "headingDeg": 201.89207748304628,
+      "movementState": "uncertain"
+    },
+    {
+      "frameId": 118883,
+      "logMonoTime": "5960231277369",
+      "east": -14.221177855441205,
+      "north": -33.750175999202135,
+      "headingDeg": 212.13422336524513,
+      "movementState": "uncertain"
+    },
+    {
+      "frameId": 118923,
+      "logMonoTime": "5962229218185",
+      "east": -26.82039691694233,
+      "north": -44.646046226049094,
+      "headingDeg": 250.2998101095571,
+      "movementState": "moving"
+    },
+    {
+      "frameId": 118963,
+      "logMonoTime": "5964229387910",
+      "east": -40.87990107354311,
+      "north": -43.675702740301375,
+      "headingDeg": 289.5906075907624,
+      "movementState": "moving"
+    },
+    {
+      "frameId": 119003,
+      "logMonoTime": "5966226319163",
+      "east": -51.390644018489,
+      "north": -40.07617221863058,
+      "headingDeg": 281.1727215456889,
+      "movementState": "moving"
+    },
+    {
+      "frameId": 119043,
+      "logMonoTime": "5968224329670",
+      "east": -59.80134605373064,
+      "north": -41.06293438761398,
+      "headingDeg": 248.50659247037015,
+      "movementState": "moving"
+    },
+    {
+      "frameId": 119083,
+      "logMonoTime": "5970222666817",
+      "east": -68.00636102956426,
+      "north": -47.66527472539427,
+      "headingDeg": 214.84397237170853,
+      "movementState": "moving"
+    },
+    {
+      "frameId": 119123,
+      "logMonoTime": "5972222197440",
+      "east": -76.43340686589934,
+      "north": -62.5414035891614,
+      "headingDeg": 201.94536319434707,
+      "movementState": "moving"
+    },
+    {
+      "frameId": 119163,
+      "logMonoTime": "5974221174793",
+      "east": -82.94242612591512,
+      "north": -80.53069856475238,
+      "headingDeg": 202.07220236426272,
+      "movementState": "moving"
+    },
+    {
+      "frameId": 119203,
+      "logMonoTime": "5976221068197",
+      "east": -91.0764361753091,
+      "north": -99.36485459986177,
+      "headingDeg": 203.66274942683452,
+      "movementState": "moving"
+    },
+    {
+      "frameId": 119243,
+      "logMonoTime": "5978221638457",
+      "east": -100.07737061933877,
+      "north": -112.43132742573324,
+      "headingDeg": 234.89142209249155,
+      "movementState": "moving"
+    },
+    {
+      "frameId": 119283,
+      "logMonoTime": "5980216803447",
+      "east": -112.98607695966422,
+      "north": -114.73025437019521,
+      "headingDeg": 283.73038892272643,
+      "movementState": "moving"
+    },
+    {
+      "frameId": 119323,
+      "logMonoTime": "5982221562213",
+      "east": -127.6074900766863,
+      "north": -110.51675715004522,
+      "headingDeg": 291.23908131322327,
+      "movementState": "moving"
+    },
+    {
+      "frameId": 119363,
+      "logMonoTime": "5984221254575",
+      "east": -140.66848555297958,
+      "north": -108.0302963830691,
+      "headingDeg": 260.35877804852885,
+      "movementState": "moving"
+    },
+    {
+      "frameId": 119403,
+      "logMonoTime": "5986216291842",
+      "east": -149.08998449903254,
+      "north": -115.46172825606962,
+      "headingDeg": 204.45751655206985,
+      "movementState": "moving"
+    },
+    {
+      "frameId": 119443,
+      "logMonoTime": "5988220605083",
+      "east": -148.8144398803689,
+      "north": -124.45730672785805,
+      "headingDeg": 152.03770956438592,
+      "movementState": "moving"
+    },
+    {
+      "frameId": 119483,
+      "logMonoTime": "5990215266087",
+      "east": -140.13962324264978,
+      "north": -133.26328809818034,
+      "headingDeg": 115.19684412958266,
+      "movementState": "moving"
+    },
+    {
+      "frameId": 119523,
+      "logMonoTime": "5992221787963",
+      "east": -126.21117130525495,
+      "north": -140.81057951647676,
+      "headingDeg": 109.30683787124033,
+      "movementState": "moving"
+    },
+    {
+      "frameId": 119563,
+      "logMonoTime": "5994216310715",
+      "east": -113.09159364403654,
+      "north": -144.33774666455696,
+      "headingDeg": 93.64644715637544,
+      "movementState": "moving"
+    },
+    {
+      "frameId": 119603,
+      "logMonoTime": "5996216654567",
+      "east": -102.14998230040179,
+      "north": -141.25501632715105,
+      "headingDeg": 52.83666319771739,
+      "movementState": "moving"
+    },
+    {
+      "frameId": 119643,
+      "logMonoTime": "5998196546009",
+      "east": -96.15397502809559,
+      "north": -132.22922367078746,
+      "headingDeg": 19.215523748483076,
+      "movementState": "moving"
+    },
+    {
+      "frameId": 119683,
+      "logMonoTime": "6000182387583",
+      "east": -89.13796388646371,
+      "north": -117.51073530002488,
+      "headingDeg": 24.709658775993535,
+      "movementState": "moving"
+    },
+    {
+      "frameId": 119723,
+      "logMonoTime": "6002165859956",
+      "east": -76.76935463286898,
+      "north": -95.70167974293952,
+      "headingDeg": 35.58909846333712,
+      "movementState": "moving"
+    },
+    {
+      "frameId": 119763,
+      "logMonoTime": "6004152559199",
+      "east": -58.813020876944904,
+      "north": -69.64993019859892,
+      "headingDeg": 34.75570208344694,
+      "movementState": "moving"
+    },
+    {
+      "frameId": 119803,
+      "logMonoTime": "6006146226986",
+      "east": -41.680099453382674,
+      "north": -43.762130972753376,
+      "headingDeg": 32.784442312944535,
+      "movementState": "moving"
+    },
+    {
+      "frameId": 119843,
+      "logMonoTime": "6008132831636",
+      "east": -27.446665814054473,
+      "north": -18.86008833421498,
+      "headingDeg": 28.034336004306414,
+      "movementState": "moving"
+    },
+    {
+      "frameId": 119883,
+      "logMonoTime": "6010123028355",
+      "east": -15.993404483625222,
+      "north": 4.845041842106479,
+      "headingDeg": 23.961243821778552,
+      "movementState": "moving"
+    },
+    {
+      "frameId": 119923,
+      "logMonoTime": "6012113032948",
+      "east": -5.733580609087992,
+      "north": 26.216341343234905,
+      "headingDeg": 23.855830816369362,
+      "movementState": "moving"
+    },
+    {
+      "frameId": 119963,
+      "logMonoTime": "6014103973198",
+      "east": 3.935378754382993,
+      "north": 48.93675261964352,
+      "headingDeg": 23.448832718305738,
+      "movementState": "moving"
+    },
+    {
+      "frameId": 120003,
+      "logMonoTime": "6016097729690",
+      "east": 14.561032382492298,
+      "north": 73.72521666630503,
+      "headingDeg": 27.824365615844727,
+      "movementState": "moving"
+    }
+  ],
+  "transformChain": {
+    "coordinateAxes": {
+      "x": "forward (m)",
+      "y": "left (m)",
+      "z": "up (m)"
+    },
+    "yawConvention": "bearing θ clockwise from north (degrees)",
+    "rotationFormula": {
+      "east": "vehicleEast + x*sin(θ) - y*cos(θ)",
+      "north": "vehicleNorth + x*cos(θ) + y*sin(θ)"
+    },
+    "translationOrigin": {
+      "lat": 1.3514657693586154,
+      "lon": 103.98572030528726
+    },
+    "headingFallbackOrder": [
+      "gps bearing when speed>=2 & accuracy ok",
+      "motion bearing",
+      "gps_fallback",
+      "default 0"
+    ],
+    "behindVehiclePolicy": "model points with x < -5 m excluded from transformXyztLine",
+    "modelPoseAlignment": "interpolateGpsAtTime(model.logMonoTime) with maxModelGpsDeltaNs=2e9"
+  },
+  "poseSource": {
+    "filename": "qlog_f449c_99.bz2",
+    "pipelinePoseSource": "gpsLocation",
+    "pipelineNote": "process_route uses GpsLocation via extract_gps + interpolateGpsAtTime; LiveLocationKalman is NOT used for map projection",
+    "selectedSource": "gpsLocation",
+    "poseUnavailable": false,
+    "gpsCount": 60,
+    "kalmanCount": 240,
+    "validGpsCount": 60,
+    "validKalmanCount": 0,
+    "kalmanGpsOkFalse": 240,
+    "kalmanPositionInvalid": 240,
+    "kalmanNotPlausible": 240,
+    "gpsLowSpeedSamples": 0,
+    "gpsHighBearingUncertainty": 0,
+    "sampleGps": {
+      "logMonoTime": "5957223092391",
+      "source": "gpsLocationDEPRECATED",
+      "lat": 1.3514657693586154,
+      "lon": 103.98572030528726,
+      "flags": 1,
+      "horizontalAccuracy": 0,
+      "speed": 13.534104347229004,
+      "speedAccuracy": 0.40836673974990845,
+      "plausible": true
+    },
+    "sampleKalman": {
+      "logMonoTime": "5956736771070",
+      "gpsOK": false,
+      "positionValid": false,
+      "lat": null,
+      "lon": null
+    },
+    "gpsAccuracyAvailable": false
+  },
+  "classification": {
+    "category": "none",
+    "confidence": "high"
+  },
+  "whyPoseContinuityDidNotReject": "Transition passed pose continuity (step=31.04m, dt=1.99s, implied=15.57m/s). Split triggered by separate temporal rule: undefined."
+}

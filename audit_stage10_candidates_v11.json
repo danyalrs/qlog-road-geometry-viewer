@@ -1,0 +1,1530 @@
+{
+  "auditedAt": "2026-07-23T06:14:29.420Z",
+  "processingVersion": "2026-07-24-fusion-v11",
+  "maxInterpolationSpanM": 4,
+  "results": [
+    {
+      "segmentId": 5,
+      "temporalPassId": 0,
+      "poseSectionId": 0,
+      "leftObservations": 502,
+      "rightObservations": 413,
+      "supportedRunCount": {
+        "left": 9,
+        "right": 8
+      },
+      "pairedRunOverlaps": [
+        {
+          "overlapM": 6.235120833612868,
+          "overlapStart": 41.815123803273885,
+          "overlapEnd": 48.05024463688675
+        },
+        {
+          "overlapM": 27.53566712908661,
+          "overlapStart": 58.10309235746086,
+          "overlapEnd": 85.63875948654747
+        },
+        {
+          "overlapM": 4.6016742649742355,
+          "overlapStart": 135.26657673333014,
+          "overlapEnd": 139.86825099830438
+        },
+        {
+          "overlapM": 7.8271075346561645,
+          "overlapStart": 150.18845900371616,
+          "overlapEnd": 158.01556653837233
+        },
+        {
+          "overlapM": 10.833008261265036,
+          "overlapStart": 169.42980050634503,
+          "overlapEnd": 180.26280876761007
+        },
+        {
+          "overlapM": 7.44172602998961,
+          "overlapStart": 189.54345803283638,
+          "overlapEnd": 196.985184062826
+        },
+        {
+          "overlapM": 4.28623294803819,
+          "overlapStart": 227.6102207552435,
+          "overlapEnd": 231.89645370328168
+        },
+        {
+          "overlapM": 4.50039662331767,
+          "overlapStart": 241.2807861212307,
+          "overlapEnd": 245.78118274454837
+        },
+        {
+          "overlapM": 6.234926475025958,
+          "overlapStart": 255.40231047331704,
+          "overlapEnd": 261.637236948343
+        }
+      ],
+      "polygonsProduced": 9,
+      "polygonRejections": 0,
+      "acceptedPolygons": [
+        {
+          "fragmentIndex": 0,
+          "sRange": [
+            41.815123803273885,
+            47.815123803273885
+          ],
+          "coverageM": 6,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 5.52151960373257,
+          "widthMedian": 8.089556407125066,
+          "widthMin": 5.521519603732571,
+          "widthMax": 8.508570260669426
+        },
+        {
+          "fragmentIndex": 1,
+          "sRange": [
+            58.10309235746086,
+            84.10309235746087
+          ],
+          "coverageM": 26.000000000000007,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 8.910652635942565,
+          "widthMedian": 9.155623551942822,
+          "widthMin": 8.868064240710105,
+          "widthMax": 9.473318134882007
+        },
+        {
+          "fragmentIndex": 2,
+          "sRange": [
+            135.26657673333014,
+            139.26657673333014
+          ],
+          "coverageM": 4,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 10.590384095969755,
+          "widthMedian": 10.408791408238507,
+          "widthMin": 10.227198720507268,
+          "widthMax": 10.590384095969748
+        },
+        {
+          "fragmentIndex": 3,
+          "sRange": [
+            150.18845900371616,
+            156.18845900371616
+          ],
+          "coverageM": 6,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 9.915947017817148,
+          "widthMedian": 10.620703005875235,
+          "widthMin": 9.915947017817146,
+          "widthMax": 10.712333490407847
+        },
+        {
+          "fragmentIndex": 4,
+          "sRange": [
+            169.42980050634503,
+            179.42980050634503
+          ],
+          "coverageM": 10,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 9.187498702880905,
+          "widthMedian": 8.931130125290938,
+          "widthMin": 8.227501243541997,
+          "widthMax": 9.187498702880902
+        },
+        {
+          "fragmentIndex": 5,
+          "sRange": [
+            189.54345803283638,
+            195.54345803283638
+          ],
+          "coverageM": 6,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 9.114213060803259,
+          "widthMedian": 9.186705730255818,
+          "widthMin": 9.11421306080327,
+          "widthMax": 9.246078798025888
+        },
+        {
+          "fragmentIndex": 6,
+          "sRange": [
+            227.6102207552435,
+            231.6102207552435
+          ],
+          "coverageM": 4,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 8.82430695767726,
+          "widthMedian": 8.830909698849492,
+          "widthMin": 8.824306957677274,
+          "widthMax": 8.840819987913912
+        },
+        {
+          "fragmentIndex": 7,
+          "sRange": [
+            241.2807861212307,
+            245.2807861212307
+          ],
+          "coverageM": 4,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 8.288774093109176,
+          "widthMedian": 8.256291423699444,
+          "widthMin": 8.223808754289728,
+          "widthMax": 8.288774093109163
+        },
+        {
+          "fragmentIndex": 8,
+          "sRange": [
+            255.40231047331704,
+            261.402310473317
+          ],
+          "coverageM": 5.999999999999972,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 8.702311594130258,
+          "widthMedian": 8.477993910798297,
+          "widthMin": 8.380515713872798,
+          "widthMax": 8.702311594130288
+        }
+      ],
+      "rejectedPolygons": [],
+      "maxAcceptedVertexJumpM": 10.590384095969755,
+      "maxRejectedVertexJumpM": 0,
+      "unsupportedSpanRemovedM": 170.52186649478722,
+      "finalOutcome": "accepted:9",
+      "chunkPolygonCount": 9
+    },
+    {
+      "segmentId": 9,
+      "temporalPassId": 0,
+      "poseSectionId": 0,
+      "leftObservations": 375,
+      "rightObservations": 345,
+      "supportedRunCount": {
+        "left": 1,
+        "right": 1
+      },
+      "pairedRunOverlaps": [],
+      "polygonsProduced": 0,
+      "polygonRejections": 0,
+      "acceptedPolygons": [],
+      "rejectedPolygons": [],
+      "maxAcceptedVertexJumpM": 0,
+      "maxRejectedVertexJumpM": 0,
+      "unsupportedSpanRemovedM": 9.747531305552103,
+      "finalOutcome": "missingBoundary",
+      "chunkPolygonCount": 0
+    },
+    {
+      "segmentId": 24,
+      "temporalPassId": 0,
+      "poseSectionId": 0,
+      "leftObservations": 481,
+      "rightObservations": 553,
+      "supportedRunCount": {
+        "left": 21,
+        "right": 21
+      },
+      "pairedRunOverlaps": [
+        {
+          "overlapM": 4.611771265581382,
+          "overlapStart": 131.41571883678924,
+          "overlapEnd": 136.02749010237062
+        },
+        {
+          "overlapM": 8.950800940063004,
+          "overlapStart": 143.52181827411525,
+          "overlapEnd": 152.47261921417825
+        },
+        {
+          "overlapM": 9.170721491992737,
+          "overlapStart": 162.14382859583446,
+          "overlapEnd": 171.3145500878272
+        },
+        {
+          "overlapM": 11.985919908826673,
+          "overlapStart": 185.1230922813214,
+          "overlapEnd": 197.10901219014806
+        },
+        {
+          "overlapM": 12.837857852947536,
+          "overlapStart": 203.90306874517805,
+          "overlapEnd": 216.74092659812558
+        },
+        {
+          "overlapM": 4.384200760315252,
+          "overlapStart": 257.63089625856543,
+          "overlapEnd": 262.0150970188807
+        },
+        {
+          "overlapM": 16.54191111881522,
+          "overlapStart": 267.375019030211,
+          "overlapEnd": 283.9169301490262
+        },
+        {
+          "overlapM": 6.503641380633439,
+          "overlapStart": 343.7058556237834,
+          "overlapEnd": 350.20949700441685
+        },
+        {
+          "overlapM": 6.747389146578996,
+          "overlapStart": 457.09283633102274,
+          "overlapEnd": 463.84022547760173
+        },
+        {
+          "overlapM": 6.80286275879547,
+          "overlapStart": 477.2233287568087,
+          "overlapEnd": 484.0261915156042
+        },
+        {
+          "overlapM": 7.651521024057331,
+          "overlapStart": 499.9183615103607,
+          "overlapEnd": 507.569882534418
+        }
+      ],
+      "polygonsProduced": 11,
+      "polygonRejections": 0,
+      "acceptedPolygons": [
+        {
+          "fragmentIndex": 0,
+          "sRange": [
+            131.41571883678924,
+            135.41571883678924
+          ],
+          "coverageM": 4,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 11.841028360218758,
+          "widthMedian": 11.939115260882257,
+          "widthMin": 11.841028360218758,
+          "widthMax": 12.037202161545757
+        },
+        {
+          "fragmentIndex": 1,
+          "sRange": [
+            143.52181827411525,
+            151.52181827411525
+          ],
+          "coverageM": 8,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 10.976207275418533,
+          "widthMedian": 10.932274095528285,
+          "widthMin": 10.924646816427071,
+          "widthMax": 10.976207275418531
+        },
+        {
+          "fragmentIndex": 2,
+          "sRange": [
+            162.14382859583446,
+            170.14382859583446
+          ],
+          "coverageM": 8,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 9.651911442093025,
+          "widthMedian": 9.651911442093034,
+          "widthMin": 9.633374235721536,
+          "widthMax": 11.051918620032165
+        },
+        {
+          "fragmentIndex": 3,
+          "sRange": [
+            185.1230922813214,
+            195.1230922813214
+          ],
+          "coverageM": 10,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 10.162167093533554,
+          "widthMedian": 10.10135451705554,
+          "widthMin": 10.08055970604335,
+          "widthMax": 10.16216709353355
+        },
+        {
+          "fragmentIndex": 4,
+          "sRange": [
+            203.90306874517805,
+            215.90306874517805
+          ],
+          "coverageM": 12,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 13.727023654341313,
+          "widthMedian": 12.805231642752215,
+          "widthMin": 10.211398480267903,
+          "widthMax": 13.727023654341314
+        },
+        {
+          "fragmentIndex": 5,
+          "sRange": [
+            257.63089625856543,
+            261.63089625856543
+          ],
+          "coverageM": 4,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 12.566529291096185,
+          "widthMedian": 12.576457259187922,
+          "widthMin": 12.566529291096181,
+          "widthMax": 12.586385227279663
+        },
+        {
+          "fragmentIndex": 6,
+          "sRange": [
+            267.375019030211,
+            283.375019030211
+          ],
+          "coverageM": 16,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 10.36016814343166,
+          "widthMedian": 11.203251646946667,
+          "widthMin": 10.360168143431665,
+          "widthMax": 12.633645060952052
+        },
+        {
+          "fragmentIndex": 7,
+          "sRange": [
+            343.7058556237834,
+            349.7058556237834
+          ],
+          "coverageM": 6,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 11.671335483711692,
+          "widthMedian": 11.59988691596648,
+          "widthMin": 11.547283944378615,
+          "widthMax": 11.671335483711696
+        },
+        {
+          "fragmentIndex": 8,
+          "sRange": [
+            457.09283633102274,
+            463.09283633102274
+          ],
+          "coverageM": 6,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 11.25394080279842,
+          "widthMedian": 11.202423442009685,
+          "widthMin": 10.855988118467875,
+          "widthMax": 11.283040096068682
+        },
+        {
+          "fragmentIndex": 9,
+          "sRange": [
+            477.2233287568087,
+            483.2233287568087
+          ],
+          "coverageM": 6,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 11.282281939710437,
+          "widthMedian": 11.30675798983258,
+          "widthMin": 11.282281939710446,
+          "widthMax": 11.397397390277444
+        },
+        {
+          "fragmentIndex": 10,
+          "sRange": [
+            499.9183615103607,
+            505.9183615103607
+          ],
+          "coverageM": 6,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 11.601809939919953,
+          "widthMedian": 11.645916869226323,
+          "widthMin": 11.60180993991996,
+          "widthMax": 11.843390466206607
+        }
+      ],
+      "rejectedPolygons": [],
+      "maxAcceptedVertexJumpM": 13.727023654341313,
+      "maxRejectedVertexJumpM": 0,
+      "unsupportedSpanRemovedM": 407.75881662580815,
+      "finalOutcome": "accepted:11",
+      "chunkPolygonCount": 11
+    },
+    {
+      "segmentId": 28,
+      "temporalPassId": 0,
+      "poseSectionId": 0,
+      "leftObservations": 628,
+      "rightObservations": 625,
+      "supportedRunCount": {
+        "left": 16,
+        "right": 24
+      },
+      "pairedRunOverlaps": [
+        {
+          "overlapM": 6.677226764526537,
+          "overlapStart": 35.44766440248448,
+          "overlapEnd": 42.124891167011015
+        },
+        {
+          "overlapM": 4.239116231142134,
+          "overlapStart": 291.45442319130075,
+          "overlapEnd": 295.6935394224429
+        }
+      ],
+      "polygonsProduced": 2,
+      "polygonRejections": 0,
+      "acceptedPolygons": [
+        {
+          "fragmentIndex": 0,
+          "sRange": [
+            35.44766440248448,
+            41.44766440248448
+          ],
+          "coverageM": 6,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 10.59570309835657,
+          "widthMedian": 10.648883025988976,
+          "widthMin": 10.445655725909509,
+          "widthMax": 11.39195414617887
+        },
+        {
+          "fragmentIndex": 1,
+          "sRange": [
+            291.45442319130075,
+            295.45442319130075
+          ],
+          "coverageM": 4,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 13.513302877005788,
+          "widthMedian": 13.483830729497893,
+          "widthMin": 13.454358581989991,
+          "widthMax": 13.513302877005792
+        }
+      ],
+      "rejectedPolygons": [],
+      "maxAcceptedVertexJumpM": 13.513302877005788,
+      "maxRejectedVertexJumpM": 0,
+      "unsupportedSpanRemovedM": 843.7372690070272,
+      "finalOutcome": "accepted:2",
+      "chunkPolygonCount": 2
+    },
+    {
+      "segmentId": 46,
+      "temporalPassId": 0,
+      "poseSectionId": 0,
+      "leftObservations": 573,
+      "rightObservations": 582,
+      "supportedRunCount": {
+        "left": 23,
+        "right": 23
+      },
+      "pairedRunOverlaps": [
+        {
+          "overlapM": 7.827998888873857,
+          "overlapStart": 18.30009940107601,
+          "overlapEnd": 26.128098289949868
+        },
+        {
+          "overlapM": 8.34918057036866,
+          "overlapStart": 53.26957776908394,
+          "overlapEnd": 61.6187583394526
+        },
+        {
+          "overlapM": 7.739449690975647,
+          "overlapStart": 111.91421024968099,
+          "overlapEnd": 119.65365994065664
+        },
+        {
+          "overlapM": 7.946629777247125,
+          "overlapStart": 129.6068901479171,
+          "overlapEnd": 137.55351992516424
+        },
+        {
+          "overlapM": 11.96876875239127,
+          "overlapStart": 147.60939048486875,
+          "overlapEnd": 159.57815923726002
+        },
+        {
+          "overlapM": 8.202063019979363,
+          "overlapStart": 165.48588213224537,
+          "overlapEnd": 173.68794515222473
+        },
+        {
+          "overlapM": 8.858119164157188,
+          "overlapStart": 191.35120343824536,
+          "overlapEnd": 200.20932260240255
+        },
+        {
+          "overlapM": 4.614201307542714,
+          "overlapStart": 213.46989947377918,
+          "overlapEnd": 218.0841007813219
+        },
+        {
+          "overlapM": 5.935224811822138,
+          "overlapStart": 234.14767257586712,
+          "overlapEnd": 240.08289738768926
+        },
+        {
+          "overlapM": 4.235996001779199,
+          "overlapStart": 315.44559749520727,
+          "overlapEnd": 319.68159349698647
+        },
+        {
+          "overlapM": 8.703669652168344,
+          "overlapStart": 495.2162522442501,
+          "overlapEnd": 503.91992189641843
+        },
+        {
+          "overlapM": 4.548851510316581,
+          "overlapStart": 525.7332479031934,
+          "overlapEnd": 530.28209941351
+        },
+        {
+          "overlapM": 5.055505688740482,
+          "overlapStart": 557.2804370009378,
+          "overlapEnd": 562.3359426896783
+        },
+        {
+          "overlapM": 10.163438212133997,
+          "overlapStart": 579.9788799997162,
+          "overlapEnd": 590.1423182118502
+        },
+        {
+          "overlapM": 9.432573249756501,
+          "overlapStart": 607.6938824851268,
+          "overlapEnd": 617.1264557348833
+        }
+      ],
+      "polygonsProduced": 14,
+      "polygonRejections": 1,
+      "acceptedPolygons": [
+        {
+          "fragmentIndex": 0,
+          "sRange": [
+            18.30009940107601,
+            24.30009940107601
+          ],
+          "coverageM": 6,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 10.532665023818655,
+          "widthMedian": 9.998600317460294,
+          "widthMin": 9.918224905416967,
+          "widthMax": 10.532665023818653
+        },
+        {
+          "fragmentIndex": 1,
+          "sRange": [
+            53.26957776908394,
+            61.26957776908394
+          ],
+          "coverageM": 8,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 8.729608271612449,
+          "widthMedian": 8.814292356410714,
+          "widthMin": 8.723173867099781,
+          "widthMax": 9.711994135455326
+        },
+        {
+          "fragmentIndex": 2,
+          "sRange": [
+            111.91421024968099,
+            117.91421024968099
+          ],
+          "coverageM": 6,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 10.875357406004222,
+          "widthMedian": 10.864537297602535,
+          "widthMin": 10.854446506726479,
+          "widthMax": 10.875357406004225
+        },
+        {
+          "fragmentIndex": 3,
+          "sRange": [
+            129.6068901479171,
+            135.6068901479171
+          ],
+          "coverageM": 6,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 10.770683137410868,
+          "widthMedian": 10.772436607592148,
+          "widthMin": 10.763812415552987,
+          "widthMax": 10.792491148460005
+        },
+        {
+          "fragmentIndex": 4,
+          "sRange": [
+            147.60939048486875,
+            157.60939048486875
+          ],
+          "coverageM": 10,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 9.389143441951973,
+          "widthMedian": 9.537569530834084,
+          "widthMin": 9.389143441951973,
+          "widthMax": 10.869336346669321
+        },
+        {
+          "fragmentIndex": 5,
+          "sRange": [
+            165.48588213224537,
+            173.48588213224537
+          ],
+          "coverageM": 8,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 10.263747887634052,
+          "widthMedian": 9.16932001100043,
+          "widthMin": 9.092313941296258,
+          "widthMax": 10.263747887634038
+        },
+        {
+          "fragmentIndex": 6,
+          "sRange": [
+            191.35120343824536,
+            199.35120343824536
+          ],
+          "coverageM": 8,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 12.072129338538907,
+          "widthMedian": 11.91624015596634,
+          "widthMin": 10.409235673175422,
+          "widthMax": 12.072129338538915
+        },
+        {
+          "fragmentIndex": 7,
+          "sRange": [
+            213.46989947377918,
+            217.46989947377918
+          ],
+          "coverageM": 4,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 11.843177972143417,
+          "widthMedian": 11.290658606657269,
+          "widthMin": 10.738139241171108,
+          "widthMax": 11.84317797214343
+        },
+        {
+          "fragmentIndex": 8,
+          "sRange": [
+            234.14767257586712,
+            238.14767257586712
+          ],
+          "coverageM": 4,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 10.896541303182989,
+          "widthMedian": 10.920096075490015,
+          "widthMin": 10.896541303182989,
+          "widthMax": 11.751330826898164
+        },
+        {
+          "fragmentIndex": 9,
+          "sRange": [
+            315.44559749520727,
+            319.44559749520727
+          ],
+          "coverageM": 4,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 11.123541110591594,
+          "widthMedian": 11.09984208878152,
+          "widthMin": 11.07614306697143,
+          "widthMax": 11.12354111059161
+        },
+        {
+          "fragmentIndex": 11,
+          "sRange": [
+            525.7332479031934,
+            529.7332479031934
+          ],
+          "coverageM": 4,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 14.043406461289326,
+          "widthMedian": 14.584374933293368,
+          "widthMin": 14.043406461289306,
+          "widthMax": 15.125343405297427
+        },
+        {
+          "fragmentIndex": 12,
+          "sRange": [
+            557.2804370009378,
+            561.2804370009378
+          ],
+          "coverageM": 4,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 13.6834486714713,
+          "widthMedian": 13.683448671471307,
+          "widthMin": 13.682919960243385,
+          "widthMax": 13.789981984848104
+        },
+        {
+          "fragmentIndex": 13,
+          "sRange": [
+            579.9788799997162,
+            589.9788799997162
+          ],
+          "coverageM": 10,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 13.913323231980288,
+          "widthMedian": 13.903137199824705,
+          "widthMin": 13.787406897612218,
+          "widthMax": 14.42058071328309
+        },
+        {
+          "fragmentIndex": 14,
+          "sRange": [
+            607.6938824851268,
+            615.6938824851268
+          ],
+          "coverageM": 8,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 14.459800276542618,
+          "widthMedian": 13.984457962809312,
+          "widthMin": 13.735609325514462,
+          "widthMax": 14.459800276542618
+        }
+      ],
+      "rejectedPolygons": [
+        {
+          "fragmentIndex": 10,
+          "reasons": [
+            "vertexJumpTooLarge"
+          ],
+          "selfIntersections": 0,
+          "maxVertexJumpM": 15.129188987881262,
+          "widthMedian": 14.398190273678999
+        }
+      ],
+      "maxAcceptedVertexJumpM": 14.459800276542618,
+      "maxRejectedVertexJumpM": 15.129188987881262,
+      "unsupportedSpanRemovedM": 520.9619436386422,
+      "finalOutcome": "accepted:14",
+      "chunkPolygonCount": 14
+    },
+    {
+      "segmentId": 50,
+      "temporalPassId": 0,
+      "poseSectionId": 0,
+      "leftObservations": 342,
+      "rightObservations": 443,
+      "supportedRunCount": {
+        "left": 5,
+        "right": 9
+      },
+      "pairedRunOverlaps": [],
+      "polygonsProduced": 0,
+      "polygonRejections": 0,
+      "acceptedPolygons": [],
+      "rejectedPolygons": [],
+      "maxAcceptedVertexJumpM": 0,
+      "maxRejectedVertexJumpM": 0,
+      "unsupportedSpanRemovedM": 554.8006922658531,
+      "finalOutcome": "insufficientPairedCoverage",
+      "chunkPolygonCount": 0
+    },
+    {
+      "segmentId": 56,
+      "temporalPassId": 0,
+      "poseSectionId": 0,
+      "leftObservations": 530,
+      "rightObservations": 400,
+      "supportedRunCount": {
+        "left": 17,
+        "right": 13
+      },
+      "pairedRunOverlaps": [
+        {
+          "overlapM": 5.059650842731585,
+          "overlapStart": 121.4033793712531,
+          "overlapEnd": 126.46303021398468
+        },
+        {
+          "overlapM": 9.008826789950206,
+          "overlapStart": 137.58196493905257,
+          "overlapEnd": 146.59079172900277
+        },
+        {
+          "overlapM": 8.481349984852955,
+          "overlapStart": 151.7129569274304,
+          "overlapEnd": 160.19430691228337
+        },
+        {
+          "overlapM": 7.3007466831498675,
+          "overlapStart": 218.45338983249115,
+          "overlapEnd": 225.75413651564102
+        },
+        {
+          "overlapM": 8.958389895092381,
+          "overlapStart": 231.5082991892253,
+          "overlapEnd": 240.4666890843177
+        },
+        {
+          "overlapM": 4.594521855504183,
+          "overlapStart": 265.6756400546709,
+          "overlapEnd": 270.2701619101751
+        },
+        {
+          "overlapM": 12.175314447843903,
+          "overlapStart": 279.87261811200966,
+          "overlapEnd": 292.04793255985356
+        },
+        {
+          "overlapM": 11.250217747566694,
+          "overlapStart": 371.394899079243,
+          "overlapEnd": 382.64511682680967
+        }
+      ],
+      "polygonsProduced": 8,
+      "polygonRejections": 0,
+      "acceptedPolygons": [
+        {
+          "fragmentIndex": 0,
+          "sRange": [
+            121.4033793712531,
+            125.4033793712531
+          ],
+          "coverageM": 4,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 9.789644208333286,
+          "widthMedian": 9.78671065843263,
+          "widthMin": 9.783777108531975,
+          "widthMax": 9.789644208333284
+        },
+        {
+          "fragmentIndex": 1,
+          "sRange": [
+            137.58196493905257,
+            145.58196493905257
+          ],
+          "coverageM": 8,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 9.856337157532241,
+          "widthMedian": 9.717212504678598,
+          "widthMin": 8.295497988350796,
+          "widthMax": 9.85727474817962
+        },
+        {
+          "fragmentIndex": 2,
+          "sRange": [
+            151.7129569274304,
+            159.7129569274304
+          ],
+          "coverageM": 8,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 9.323433820557899,
+          "widthMedian": 9.889994267024964,
+          "widthMin": 9.323433820557895,
+          "widthMax": 10.195404409980355
+        },
+        {
+          "fragmentIndex": 3,
+          "sRange": [
+            218.45338983249115,
+            224.45338983249115
+          ],
+          "coverageM": 6,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 4.853629516167257,
+          "widthMedian": 4.878796390751444,
+          "widthMin": 4.8536295161672705,
+          "widthMax": 4.89368803285257
+        },
+        {
+          "fragmentIndex": 4,
+          "sRange": [
+            231.5082991892253,
+            239.5082991892253
+          ],
+          "coverageM": 8,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 5.034092772585276,
+          "widthMedian": 5.034092772585264,
+          "widthMin": 4.959952086973761,
+          "widthMax": 5.445442693432971
+        },
+        {
+          "fragmentIndex": 5,
+          "sRange": [
+            265.6756400546709,
+            269.6756400546709
+          ],
+          "coverageM": 4,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 5.539070001869177,
+          "widthMedian": 5.528735687128269,
+          "widthMin": 5.518401372387335,
+          "widthMax": 5.539070001869204
+        },
+        {
+          "fragmentIndex": 6,
+          "sRange": [
+            279.87261811200966,
+            291.87261811200966
+          ],
+          "coverageM": 12,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 6.721447544157514,
+          "widthMedian": 6.460615504191939,
+          "widthMin": 5.825546124994633,
+          "widthMax": 6.721447544157531
+        },
+        {
+          "fragmentIndex": 7,
+          "sRange": [
+            371.394899079243,
+            381.394899079243
+          ],
+          "coverageM": 10,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 5.661278916853753,
+          "widthMedian": 6.094981349341667,
+          "widthMin": 4.864804629013799,
+          "widthMax": 7.156554854236945
+        }
+      ],
+      "rejectedPolygons": [],
+      "maxAcceptedVertexJumpM": 9.856337157532241,
+      "maxRejectedVertexJumpM": 0,
+      "unsupportedSpanRemovedM": 290.96944284662965,
+      "finalOutcome": "accepted:8",
+      "chunkPolygonCount": 8
+    },
+    {
+      "segmentId": 58,
+      "temporalPassId": 0,
+      "poseSectionId": 0,
+      "leftObservations": 386,
+      "rightObservations": 620,
+      "supportedRunCount": {
+        "left": 11,
+        "right": 17
+      },
+      "pairedRunOverlaps": [
+        {
+          "overlapM": 7.312453997569008,
+          "overlapStart": 34.08474586411231,
+          "overlapEnd": 41.397199861681315
+        },
+        {
+          "overlapM": 4.754233130976218,
+          "overlapStart": 105.09178451650592,
+          "overlapEnd": 109.84601764748214
+        },
+        {
+          "overlapM": 4.744657206729016,
+          "overlapStart": 127.59141151070031,
+          "overlapEnd": 132.33606871742933
+        },
+        {
+          "overlapM": 4.069362677377342,
+          "overlapStart": 137.51758690001077,
+          "overlapEnd": 141.5869495773881
+        },
+        {
+          "overlapM": 6.675928308976211,
+          "overlapStart": 159.6178306912665,
+          "overlapEnd": 166.29375900024272
+        },
+        {
+          "overlapM": 9.10417637382767,
+          "overlapStart": 403.2474236164582,
+          "overlapEnd": 412.3515999902859
+        }
+      ],
+      "polygonsProduced": 6,
+      "polygonRejections": 0,
+      "acceptedPolygons": [
+        {
+          "fragmentIndex": 0,
+          "sRange": [
+            34.08474586411231,
+            40.08474586411231
+          ],
+          "coverageM": 6,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 9.523206049160601,
+          "widthMedian": 9.57606671532277,
+          "widthMin": 9.5232060491606,
+          "widthMax": 9.586482241610634
+        },
+        {
+          "fragmentIndex": 1,
+          "sRange": [
+            105.09178451650592,
+            109.09178451650592
+          ],
+          "coverageM": 4,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 7.16224060478135,
+          "widthMedian": 7.171087945569566,
+          "widthMin": 7.162240604781351,
+          "widthMax": 7.179935286357782
+        },
+        {
+          "fragmentIndex": 2,
+          "sRange": [
+            127.59141151070031,
+            131.5914115107003
+          ],
+          "coverageM": 4,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 6.439323842176633,
+          "widthMedian": 6.439323842176631,
+          "widthMin": 6.431109788397993,
+          "widthMax": 6.956713465108294
+        },
+        {
+          "fragmentIndex": 3,
+          "sRange": [
+            137.51758690001077,
+            141.51758690001077
+          ],
+          "coverageM": 4,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 6.368774353090637,
+          "widthMedian": 6.386548840292125,
+          "widthMin": 6.368774353090637,
+          "widthMax": 6.404323327493612
+        },
+        {
+          "fragmentIndex": 4,
+          "sRange": [
+            159.6178306912665,
+            165.6178306912665
+          ],
+          "coverageM": 6,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 6.23762563379451,
+          "widthMedian": 6.255774571883087,
+          "widthMin": 6.23762563379451,
+          "widthMax": 7.337077548660483
+        },
+        {
+          "fragmentIndex": 5,
+          "sRange": [
+            403.2474236164582,
+            411.2474236164582
+          ],
+          "coverageM": 8,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 9.798196218099541,
+          "widthMedian": 9.704733807808918,
+          "widthMin": 8.715315605294132,
+          "widthMax": 9.798196218099566
+        }
+      ],
+      "rejectedPolygons": [],
+      "maxAcceptedVertexJumpM": 9.798196218099541,
+      "maxRejectedVertexJumpM": 0,
+      "unsupportedSpanRemovedM": 466.8468930636072,
+      "finalOutcome": "accepted:6",
+      "chunkPolygonCount": 6
+    },
+    {
+      "segmentId": 65,
+      "temporalPassId": 0,
+      "poseSectionId": 0,
+      "leftObservations": 322,
+      "rightObservations": 398,
+      "supportedRunCount": {
+        "left": 1,
+        "right": 1
+      },
+      "pairedRunOverlaps": [
+        {
+          "overlapM": 7.15569948077874,
+          "overlapStart": 0.8116337835620326,
+          "overlapEnd": 7.967333264340772
+        }
+      ],
+      "polygonsProduced": 0,
+      "polygonRejections": 1,
+      "acceptedPolygons": [],
+      "rejectedPolygons": [
+        {
+          "fragmentIndex": 0,
+          "reasons": [
+            "selfIntersecting"
+          ],
+          "selfIntersections": 1,
+          "maxVertexJumpM": 10.867925470699355,
+          "widthMedian": 9.293676713365986
+        }
+      ],
+      "maxAcceptedVertexJumpM": 0,
+      "maxRejectedVertexJumpM": 10.867925470699355,
+      "unsupportedSpanRemovedM": 9.066672073174967,
+      "finalOutcome": "rejected:selfIntersecting",
+      "chunkPolygonCount": 0
+    },
+    {
+      "segmentId": 72,
+      "temporalPassId": 0,
+      "poseSectionId": 0,
+      "leftObservations": 622,
+      "rightObservations": 653,
+      "supportedRunCount": {
+        "left": 26,
+        "right": 26
+      },
+      "pairedRunOverlaps": [
+        {
+          "overlapM": 4.933608696292197,
+          "overlapStart": 257.5703946205927,
+          "overlapEnd": 262.5040033168849
+        },
+        {
+          "overlapM": 4.158084596801871,
+          "overlapStart": 311.03658510850113,
+          "overlapEnd": 315.194669705303
+        },
+        {
+          "overlapM": 5.333773864822092,
+          "overlapStart": 345.30971788064033,
+          "overlapEnd": 350.6434917454624
+        },
+        {
+          "overlapM": 6.341830840282114,
+          "overlapStart": 369.3089706660304,
+          "overlapEnd": 375.6508015063125
+        },
+        {
+          "overlapM": 5.4083458402431575,
+          "overlapStart": 448.1874224883844,
+          "overlapEnd": 453.59576832862757
+        },
+        {
+          "overlapM": 5.339000089483761,
+          "overlapStart": 486.5254049450692,
+          "overlapEnd": 491.864405034553
+        },
+        {
+          "overlapM": 4.309151192026775,
+          "overlapStart": 592.3325149737764,
+          "overlapEnd": 596.6416661658031
+        }
+      ],
+      "polygonsProduced": 7,
+      "polygonRejections": 0,
+      "acceptedPolygons": [
+        {
+          "fragmentIndex": 0,
+          "sRange": [
+            257.5703946205927,
+            261.5703946205927
+          ],
+          "coverageM": 4,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 11.883656392280624,
+          "widthMedian": 11.836487338338582,
+          "widthMin": 11.789318284396554,
+          "widthMax": 11.883656392280608
+        },
+        {
+          "fragmentIndex": 1,
+          "sRange": [
+            311.03658510850113,
+            315.03658510850113
+          ],
+          "coverageM": 4,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 11.902417591797631,
+          "widthMedian": 11.95138843499598,
+          "widthMin": 11.902417591797633,
+          "widthMax": 11.987835055743115
+        },
+        {
+          "fragmentIndex": 2,
+          "sRange": [
+            345.30971788064033,
+            349.30971788064033
+          ],
+          "coverageM": 4,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 10.911903164124759,
+          "widthMedian": 10.938617429922726,
+          "widthMin": 10.91190316412475,
+          "widthMax": 10.965331695720701
+        },
+        {
+          "fragmentIndex": 3,
+          "sRange": [
+            369.3089706660304,
+            375.3089706660304
+          ],
+          "coverageM": 6,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 10.816795276458421,
+          "widthMedian": 10.918163694649476,
+          "widthMin": 10.816795276458414,
+          "widthMax": 11.075151277639748
+        },
+        {
+          "fragmentIndex": 4,
+          "sRange": [
+            448.1874224883844,
+            452.1874224883844
+          ],
+          "coverageM": 4,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 11.517474283647736,
+          "widthMedian": 11.526063904134396,
+          "widthMin": 11.51747428364774,
+          "widthMax": 11.801319165151359
+        },
+        {
+          "fragmentIndex": 5,
+          "sRange": [
+            486.5254049450692,
+            490.5254049450692
+          ],
+          "coverageM": 4,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 11.202737558280361,
+          "widthMedian": 11.202737558280383,
+          "widthMin": 11.186922901224076,
+          "widthMax": 11.539931505684743
+        },
+        {
+          "fragmentIndex": 6,
+          "sRange": [
+            592.3325149737764,
+            596.3325149737764
+          ],
+          "coverageM": 4,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 11.43978270881789,
+          "widthMedian": 11.815703594902415,
+          "widthMin": 11.439782708817877,
+          "widthMax": 12.191624480986953
+        }
+      ],
+      "rejectedPolygons": [],
+      "maxAcceptedVertexJumpM": 11.902417591797631,
+      "maxRejectedVertexJumpM": 0,
+      "unsupportedSpanRemovedM": 817.4994558271902,
+      "finalOutcome": "accepted:7",
+      "chunkPolygonCount": 7
+    },
+    {
+      "segmentId": 92,
+      "temporalPassId": 0,
+      "poseSectionId": 0,
+      "leftObservations": 596,
+      "rightObservations": 684,
+      "supportedRunCount": {
+        "left": 17,
+        "right": 26
+      },
+      "pairedRunOverlaps": [
+        {
+          "overlapM": 4.409681956492022,
+          "overlapStart": 287.8643354017008,
+          "overlapEnd": 292.27401735819285
+        },
+        {
+          "overlapM": 4.491344255280296,
+          "overlapStart": 386.24893451791905,
+          "overlapEnd": 390.74027877319935
+        },
+        {
+          "overlapM": 4.489940364517565,
+          "overlapStart": 413.26292694799906,
+          "overlapEnd": 417.7528673125166
+        },
+        {
+          "overlapM": 4.5540118770446725,
+          "overlapStart": 449.55309125632874,
+          "overlapEnd": 454.1071031333734
+        },
+        {
+          "overlapM": 4.499886602857657,
+          "overlapStart": 481.45539304278947,
+          "overlapEnd": 485.9552796456471
+        },
+        {
+          "overlapM": 4.765083847912251,
+          "overlapStart": 719.3408277158944,
+          "overlapEnd": 724.1059115638067
+        },
+        {
+          "overlapM": 4.116168779709255,
+          "overlapStart": 755.3599941273244,
+          "overlapEnd": 759.4761629070337
+        }
+      ],
+      "polygonsProduced": 7,
+      "polygonRejections": 0,
+      "acceptedPolygons": [
+        {
+          "fragmentIndex": 0,
+          "sRange": [
+            287.8643354017008,
+            291.8643354017008
+          ],
+          "coverageM": 4,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 10.018804216533216,
+          "widthMedian": 10.0354353349692,
+          "widthMin": 10.018804216533216,
+          "widthMax": 10.052066453405182
+        },
+        {
+          "fragmentIndex": 1,
+          "sRange": [
+            386.24893451791905,
+            390.24893451791905
+          ],
+          "coverageM": 4,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 9.779364248858776,
+          "widthMedian": 9.511815367791687,
+          "widthMin": 9.244266486724602,
+          "widthMax": 9.779364248858776
+        },
+        {
+          "fragmentIndex": 2,
+          "sRange": [
+            413.26292694799906,
+            417.26292694799906
+          ],
+          "coverageM": 4,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 9.657678967767222,
+          "widthMedian": 9.867384623586434,
+          "widthMin": 9.657678967767248,
+          "widthMax": 10.077090279405617
+        },
+        {
+          "fragmentIndex": 3,
+          "sRange": [
+            449.55309125632874,
+            453.55309125632874
+          ],
+          "coverageM": 4,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 10.053111637635745,
+          "widthMedian": 10.189140154274495,
+          "widthMin": 10.053111637635748,
+          "widthMax": 10.325168670913243
+        },
+        {
+          "fragmentIndex": 4,
+          "sRange": [
+            481.45539304278947,
+            485.45539304278947
+          ],
+          "coverageM": 4,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 10.584118139761305,
+          "widthMedian": 9.967403750006568,
+          "widthMin": 9.350689360251842,
+          "widthMax": 10.584118139761294
+        },
+        {
+          "fragmentIndex": 5,
+          "sRange": [
+            719.3408277158944,
+            723.3408277158944
+          ],
+          "coverageM": 4,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 14.59788828726135,
+          "widthMedian": 14.42591335131668,
+          "widthMin": 14.25393841537199,
+          "widthMax": 14.597888287261373
+        },
+        {
+          "fragmentIndex": 6,
+          "sRange": [
+            755.3599941273244,
+            759.3599941273244
+          ],
+          "coverageM": 4,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 12.102688598465535,
+          "widthMedian": 12.745497226815978,
+          "widthMin": 12.102688598465544,
+          "widthMax": 13.38830585516641
+        }
+      ],
+      "rejectedPolygons": [],
+      "maxAcceptedVertexJumpM": 14.59788828726135,
+      "maxRejectedVertexJumpM": 0,
+      "unsupportedSpanRemovedM": 742.9968610821861,
+      "finalOutcome": "accepted:7",
+      "chunkPolygonCount": 7
+    },
+    {
+      "segmentId": 99,
+      "temporalPassId": 0,
+      "poseSectionId": 0,
+      "leftObservations": 434,
+      "rightObservations": 518,
+      "supportedRunCount": {
+        "left": 15,
+        "right": 16
+      },
+      "pairedRunOverlaps": [
+        {
+          "overlapM": 6.930270940759385,
+          "overlapStart": 246.38717461073227,
+          "overlapEnd": 253.31744555149166
+        },
+        {
+          "overlapM": 6.721012722564865,
+          "overlapStart": 489.6462891291866,
+          "overlapEnd": 496.36730185175145
+        },
+        {
+          "overlapM": 9.464231596513685,
+          "overlapStart": 507.1519011513738,
+          "overlapEnd": 516.6161327478875
+        }
+      ],
+      "polygonsProduced": 3,
+      "polygonRejections": 0,
+      "acceptedPolygons": [
+        {
+          "fragmentIndex": 0,
+          "sRange": [
+            246.38717461073227,
+            252.38717461073227
+          ],
+          "coverageM": 6,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 6.403387695374599,
+          "widthMedian": 6.464354819977924,
+          "widthMin": 6.254360740008292,
+          "widthMax": 6.559681749227268
+        },
+        {
+          "fragmentIndex": 1,
+          "sRange": [
+            489.6462891291866,
+            495.6462891291866
+          ],
+          "coverageM": 6,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 7.477751209918143,
+          "widthMedian": 7.999688190959606,
+          "widthMin": 7.477751209918142,
+          "widthMax": 8.702879248316657
+        },
+        {
+          "fragmentIndex": 2,
+          "sRange": [
+            507.1519011513738,
+            515.1519011513737
+          ],
+          "coverageM": 7.999999999999943,
+          "selfIntersections": 0,
+          "maxVertexJumpM": 8.177417441538442,
+          "widthMedian": 7.512827854723525,
+          "widthMin": 7.481544783411183,
+          "widthMax": 8.177417441538449
+        }
+      ],
+      "rejectedPolygons": [],
+      "maxAcceptedVertexJumpM": 8.177417441538442,
+      "maxRejectedVertexJumpM": 0,
+      "unsupportedSpanRemovedM": 431.89701386592947,
+      "finalOutcome": "accepted:3",
+      "chunkPolygonCount": 3
+    }
+  ],
+  "recovered": [
+    5,
+    24,
+    28,
+    46,
+    56,
+    58,
+    72,
+    92,
+    99
+  ],
+  "stillZero": [
+    9,
+    50,
+    65
+  ]
+}

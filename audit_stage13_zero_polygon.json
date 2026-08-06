@@ -1,0 +1,2513 @@
+{
+  "auditedAt": "2026-07-23T06:39:47.252Z",
+  "processingVersion": "2026-07-24-fusion-v11",
+  "stage13Status": "approved",
+  "segmentIds": [
+    9,
+    17,
+    26,
+    31,
+    37,
+    50,
+    57,
+    60,
+    62,
+    65,
+    87,
+    90,
+    96
+  ],
+  "summary": {
+    "segmentCount": 13,
+    "byClassification": {
+      "correctly_rejected_for_insufficient_evidence": 5,
+      "inconclusive_without_camera_imagery": 6,
+      "blocked_by_pose_fragmentation": 5,
+      "blocked_by_multi_pass_ambiguity": 1,
+      "blocked_by_polygon_validation": 2,
+      "potentially_recoverable_through_dataset_wide_rule": 2
+    },
+    "poseFragmented": [
+      26,
+      57,
+      60,
+      62,
+      96
+    ],
+    "multiPass": [
+      57
+    ],
+    "insufficientEvidence": [
+      9,
+      26,
+      60,
+      62,
+      96
+    ],
+    "polygonValidation": [
+      57,
+      65
+    ],
+    "potentiallyRecoverable": [
+      57,
+      65
+    ]
+  },
+  "results": [
+    {
+      "segmentId": 9,
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "poseRejection": {
+        "rejectedCount": 0,
+        "breakdown": {},
+        "transitions": []
+      },
+      "fusion": {
+        "edgeObservationCount": 720,
+        "pairedFrames": {
+          "pairedFrameCount": 27,
+          "leftOnlyFrames": 3,
+          "rightOnlyFrames": 0,
+          "totalFrames": 30
+        },
+        "longitudinalCoverageM": {
+          "left": 9.747531305552103,
+          "right": 12.14890433570175,
+          "paired": 9.747531305552103
+        },
+        "maxSourceBinGapM": 0
+      },
+      "attemptedPolygonCount": 0,
+      "acceptedPolygonCount": 0,
+      "rejectedPolygonCount": 0,
+      "exactRejectionReasons": [],
+      "roadShape": "straight",
+      "gpsQuality": "adequate",
+      "polygonCount": 0,
+      "recoverabilityHint": "none",
+      "recoverableWithCurrentEvidence": false,
+      "missingEvidenceForRecovery": [
+        "paired longitudinal coverage >= 20 m"
+      ],
+      "classifications": [
+        "correctly_rejected_for_insufficient_evidence"
+      ],
+      "primaryClassification": "correctly_rejected_for_insufficient_evidence",
+      "sectionDiagnostics": [
+        {
+          "temporalPassId": 0,
+          "poseSectionId": 0,
+          "frameCount": 30,
+          "leftObservationCount": 375,
+          "rightObservationCount": 345,
+          "pairedFrames": {
+            "pairedFrameCount": 27,
+            "leftOnlyFrames": 3,
+            "rightOnlyFrames": 0,
+            "totalFrames": 30
+          },
+          "pairedBinCounts": {
+            "left": 7,
+            "right": 7
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 1,
+            "rightSupportedRunCount": 1,
+            "pairedRunCount": 1,
+            "pairedRunOverlaps": [
+              {
+                "overlapM": 9.747531305552103,
+                "overlapStart": 1.7986635181714548,
+                "overlapEnd": 11.546194823723559
+              }
+            ]
+          },
+          "longitudinalCoverageM": {
+            "left": 9.747531305552103,
+            "right": 12.14890433570175,
+            "paired": 9.747531305552103
+          },
+          "maxSourceBinGapM": 0,
+          "widthDistribution": null,
+          "attemptedPolygonCount": 0,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 0,
+          "exactRejectionReasons": [],
+          "rejectedPolygonDetails": []
+        }
+      ],
+      "recoverability": {
+        "recoverableWithCurrentEvidence": false,
+        "missingEvidence": [
+          "paired longitudinal coverage >= 20 m"
+        ],
+        "recoverabilityHint": "none"
+      }
+    },
+    {
+      "segmentId": 17,
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "poseRejection": {
+        "rejectedCount": 0,
+        "breakdown": {},
+        "transitions": []
+      },
+      "fusion": {
+        "edgeObservationCount": 1461,
+        "pairedFrames": {
+          "pairedFrameCount": 30,
+          "leftOnlyFrames": 0,
+          "rightOnlyFrames": 0,
+          "totalFrames": 30
+        },
+        "longitudinalCoverageM": {
+          "left": 1278.4550172616555,
+          "right": 1279.561966081588,
+          "paired": 1278.4550172616555
+        },
+        "maxSourceBinGapM": 18
+      },
+      "attemptedPolygonCount": 0,
+      "acceptedPolygonCount": 0,
+      "rejectedPolygonCount": 0,
+      "exactRejectionReasons": [],
+      "roadShape": "straight",
+      "gpsQuality": "adequate",
+      "polygonCount": 0,
+      "recoverabilityHint": "none",
+      "recoverableWithCurrentEvidence": true,
+      "missingEvidenceForRecovery": [],
+      "classifications": [
+        "inconclusive_without_camera_imagery"
+      ],
+      "primaryClassification": "inconclusive_without_camera_imagery",
+      "sectionDiagnostics": [
+        {
+          "temporalPassId": 0,
+          "poseSectionId": 0,
+          "frameCount": 30,
+          "leftObservationCount": 627,
+          "rightObservationCount": 834,
+          "pairedFrames": {
+            "pairedFrameCount": 30,
+            "leftOnlyFrames": 0,
+            "rightOnlyFrames": 0,
+            "totalFrames": 30
+          },
+          "pairedBinCounts": {
+            "left": 410,
+            "right": 461
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 10,
+            "rightSupportedRunCount": 17,
+            "pairedRunCount": 3,
+            "pairedRunOverlaps": [
+              {
+                "overlapM": 1.6572282849027715,
+                "overlapStart": 800.1193260517763,
+                "overlapEnd": 801.776554336679
+              },
+              {
+                "overlapM": 2.169854812116114,
+                "overlapStart": 845.946272604076,
+                "overlapEnd": 848.1161274161921
+              },
+              {
+                "overlapM": 3.7460870404969455,
+                "overlapStart": 1023.3355014263592,
+                "overlapEnd": 1027.0815884668561
+              }
+            ]
+          },
+          "longitudinalCoverageM": {
+            "left": 1278.4550172616555,
+            "right": 1279.561966081588,
+            "paired": 1278.4550172616555
+          },
+          "maxSourceBinGapM": 18,
+          "widthDistribution": null,
+          "attemptedPolygonCount": 0,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 0,
+          "exactRejectionReasons": [],
+          "rejectedPolygonDetails": []
+        }
+      ],
+      "recoverability": {
+        "recoverableWithCurrentEvidence": true,
+        "missingEvidence": [],
+        "recoverabilityHint": "none"
+      }
+    },
+    {
+      "segmentId": 26,
+      "temporalPassCount": 1,
+      "poseSectionCount": 2,
+      "poseRejection": {
+        "rejectedCount": 1,
+        "breakdown": {
+          "headingMotionDisagreement": 1
+        },
+        "transitions": [
+          {
+            "fromFrameId": 31243,
+            "toFrameId": 31283,
+            "reason": "headingMotionDisagreement"
+          }
+        ]
+      },
+      "fusion": {
+        "edgeObservationCount": 0,
+        "pairedFrames": {
+          "pairedFrameCount": 0,
+          "leftOnlyFrames": 0,
+          "rightOnlyFrames": 0,
+          "totalFrames": 0
+        },
+        "longitudinalCoverageM": {
+          "left": 0,
+          "right": 0,
+          "paired": 0
+        },
+        "maxSourceBinGapM": 0
+      },
+      "attemptedPolygonCount": 0,
+      "acceptedPolygonCount": 0,
+      "rejectedPolygonCount": 0,
+      "exactRejectionReasons": [],
+      "roadShape": "tight_curve",
+      "gpsQuality": "adequate",
+      "polygonCount": 0,
+      "recoverabilityHint": "none",
+      "recoverableWithCurrentEvidence": false,
+      "missingEvidenceForRecovery": [
+        "paired longitudinal coverage >= 20 m",
+        "sufficient paired L/R frames per section",
+        "continuous pose section without GPS outliers"
+      ],
+      "classifications": [
+        "correctly_rejected_for_insufficient_evidence",
+        "blocked_by_pose_fragmentation"
+      ],
+      "primaryClassification": "correctly_rejected_for_insufficient_evidence",
+      "sectionDiagnostics": [
+        {
+          "temporalPassId": 0,
+          "poseSectionId": 0,
+          "frameCount": 1,
+          "leftObservationCount": 0,
+          "rightObservationCount": 0,
+          "pairedFrames": {
+            "pairedFrameCount": 0,
+            "leftOnlyFrames": 0,
+            "rightOnlyFrames": 0,
+            "totalFrames": 0
+          },
+          "pairedBinCounts": {
+            "left": 0,
+            "right": 0
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 0,
+            "rightSupportedRunCount": 0,
+            "pairedRunCount": 0,
+            "pairedRunOverlaps": []
+          },
+          "longitudinalCoverageM": {
+            "left": 0,
+            "right": 0,
+            "paired": 0
+          },
+          "maxSourceBinGapM": 0,
+          "widthDistribution": null,
+          "attemptedPolygonCount": 0,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 0,
+          "exactRejectionReasons": [],
+          "rejectedPolygonDetails": []
+        },
+        {
+          "temporalPassId": 0,
+          "poseSectionId": 1,
+          "frameCount": 1,
+          "leftObservationCount": 0,
+          "rightObservationCount": 0,
+          "pairedFrames": {
+            "pairedFrameCount": 0,
+            "leftOnlyFrames": 0,
+            "rightOnlyFrames": 0,
+            "totalFrames": 0
+          },
+          "pairedBinCounts": {
+            "left": 0,
+            "right": 0
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 0,
+            "rightSupportedRunCount": 0,
+            "pairedRunCount": 0,
+            "pairedRunOverlaps": []
+          },
+          "longitudinalCoverageM": {
+            "left": 0,
+            "right": 0,
+            "paired": 0
+          },
+          "maxSourceBinGapM": 0,
+          "widthDistribution": null,
+          "attemptedPolygonCount": 0,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 0,
+          "exactRejectionReasons": [],
+          "rejectedPolygonDetails": []
+        }
+      ],
+      "recoverability": {
+        "recoverableWithCurrentEvidence": false,
+        "missingEvidence": [
+          "paired longitudinal coverage >= 20 m",
+          "sufficient paired L/R frames per section",
+          "continuous pose section without GPS outliers"
+        ],
+        "recoverabilityHint": "none"
+      }
+    },
+    {
+      "segmentId": 31,
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "poseRejection": {
+        "rejectedCount": 0,
+        "breakdown": {},
+        "transitions": []
+      },
+      "fusion": {
+        "edgeObservationCount": 1475,
+        "pairedFrames": {
+          "pairedFrameCount": 30,
+          "leftOnlyFrames": 0,
+          "rightOnlyFrames": 0,
+          "totalFrames": 30
+        },
+        "longitudinalCoverageM": {
+          "left": 1196.2919010568528,
+          "right": 1308.6069635158804,
+          "paired": 1196.2919010568528
+        },
+        "maxSourceBinGapM": 22
+      },
+      "attemptedPolygonCount": 0,
+      "acceptedPolygonCount": 0,
+      "rejectedPolygonCount": 0,
+      "exactRejectionReasons": [],
+      "roadShape": "gradual_curve",
+      "gpsQuality": "adequate",
+      "polygonCount": 0,
+      "recoverabilityHint": "none",
+      "recoverableWithCurrentEvidence": true,
+      "missingEvidenceForRecovery": [],
+      "classifications": [
+        "inconclusive_without_camera_imagery"
+      ],
+      "primaryClassification": "inconclusive_without_camera_imagery",
+      "sectionDiagnostics": [
+        {
+          "temporalPassId": 0,
+          "poseSectionId": 0,
+          "frameCount": 30,
+          "leftObservationCount": 568,
+          "rightObservationCount": 907,
+          "pairedFrames": {
+            "pairedFrameCount": 30,
+            "leftOnlyFrames": 0,
+            "rightOnlyFrames": 0,
+            "totalFrames": 30
+          },
+          "pairedBinCounts": {
+            "left": 394,
+            "right": 490
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 0,
+            "rightSupportedRunCount": 17,
+            "pairedRunCount": 0,
+            "pairedRunOverlaps": []
+          },
+          "longitudinalCoverageM": {
+            "left": 1196.2919010568528,
+            "right": 1308.6069635158804,
+            "paired": 1196.2919010568528
+          },
+          "maxSourceBinGapM": 22,
+          "widthDistribution": null,
+          "attemptedPolygonCount": 0,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 0,
+          "exactRejectionReasons": [],
+          "rejectedPolygonDetails": []
+        }
+      ],
+      "recoverability": {
+        "recoverableWithCurrentEvidence": true,
+        "missingEvidence": [],
+        "recoverabilityHint": "none"
+      }
+    },
+    {
+      "segmentId": 37,
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "poseRejection": {
+        "rejectedCount": 0,
+        "breakdown": {},
+        "transitions": []
+      },
+      "fusion": {
+        "edgeObservationCount": 1433,
+        "pairedFrames": {
+          "pairedFrameCount": 30,
+          "leftOnlyFrames": 0,
+          "rightOnlyFrames": 0,
+          "totalFrames": 30
+        },
+        "longitudinalCoverageM": {
+          "left": 1178.1971034154406,
+          "right": 1178.3955668232225,
+          "paired": 1178.1971034154406
+        },
+        "maxSourceBinGapM": 10
+      },
+      "attemptedPolygonCount": 0,
+      "acceptedPolygonCount": 0,
+      "rejectedPolygonCount": 0,
+      "exactRejectionReasons": [],
+      "roadShape": "gradual_curve",
+      "gpsQuality": "adequate",
+      "polygonCount": 0,
+      "recoverabilityHint": "none",
+      "recoverableWithCurrentEvidence": true,
+      "missingEvidenceForRecovery": [],
+      "classifications": [
+        "inconclusive_without_camera_imagery"
+      ],
+      "primaryClassification": "inconclusive_without_camera_imagery",
+      "sectionDiagnostics": [
+        {
+          "temporalPassId": 0,
+          "poseSectionId": 0,
+          "frameCount": 30,
+          "leftObservationCount": 707,
+          "rightObservationCount": 726,
+          "pairedFrames": {
+            "pairedFrameCount": 30,
+            "leftOnlyFrames": 0,
+            "rightOnlyFrames": 0,
+            "totalFrames": 30
+          },
+          "pairedBinCounts": {
+            "left": 422,
+            "right": 424
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 18,
+            "rightSupportedRunCount": 14,
+            "pairedRunCount": 11,
+            "pairedRunOverlaps": [
+              {
+                "overlapM": 2.8962045433488015,
+                "overlapStart": 90.39961001733036,
+                "overlapEnd": 93.29581456067916
+              },
+              {
+                "overlapM": 3.0654702454147866,
+                "overlapStart": 180.1276990030238,
+                "overlapEnd": 183.19316924843858
+              },
+              {
+                "overlapM": 3.5704919125529386,
+                "overlapStart": 269.58362702289884,
+                "overlapEnd": 273.1541189354518
+              },
+              {
+                "overlapM": 2.1760920710603386,
+                "overlapStart": 315.3800984088684,
+                "overlapEnd": 317.5561904799287
+              },
+              {
+                "overlapM": 1.9799464127714828,
+                "overlapStart": 453.83544958271284,
+                "overlapEnd": 455.8153959954843
+              },
+              {
+                "overlapM": 1.7436057503969096,
+                "overlapStart": 624.042499583464,
+                "overlapEnd": 625.7861053338609
+              },
+              {
+                "overlapM": 0,
+                "overlapStart": 664.4101214120878,
+                "overlapEnd": 664.4101214120878
+              },
+              {
+                "overlapM": 1.4832979351697304,
+                "overlapStart": 704.2209598051927,
+                "overlapEnd": 705.7042577403624
+              },
+              {
+                "overlapM": 1.6395784609998145,
+                "overlapStart": 784.1299139012305,
+                "overlapEnd": 785.7694923622303
+              },
+              {
+                "overlapM": 1.6353910637703848,
+                "overlapStart": 1073.9118672769434,
+                "overlapEnd": 1075.5472583407138
+              },
+              {
+                "overlapM": 0.1758263285976227,
+                "overlapStart": 1155.039841438629,
+                "overlapEnd": 1155.2156677672267
+              }
+            ]
+          },
+          "longitudinalCoverageM": {
+            "left": 1178.1971034154406,
+            "right": 1178.3955668232225,
+            "paired": 1178.1971034154406
+          },
+          "maxSourceBinGapM": 10,
+          "widthDistribution": null,
+          "attemptedPolygonCount": 0,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 0,
+          "exactRejectionReasons": [],
+          "rejectedPolygonDetails": []
+        }
+      ],
+      "recoverability": {
+        "recoverableWithCurrentEvidence": true,
+        "missingEvidence": [],
+        "recoverabilityHint": "none"
+      }
+    },
+    {
+      "segmentId": 50,
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "poseRejection": {
+        "rejectedCount": 0,
+        "breakdown": {},
+        "transitions": []
+      },
+      "fusion": {
+        "edgeObservationCount": 785,
+        "pairedFrames": {
+          "pairedFrameCount": 17,
+          "leftOnlyFrames": 0,
+          "rightOnlyFrames": 0,
+          "totalFrames": 17
+        },
+        "longitudinalCoverageM": {
+          "left": 554.8006922658531,
+          "right": 641.0078264057094,
+          "paired": 554.8006922658531
+        },
+        "maxSourceBinGapM": 6
+      },
+      "attemptedPolygonCount": 0,
+      "acceptedPolygonCount": 0,
+      "rejectedPolygonCount": 0,
+      "exactRejectionReasons": [],
+      "roadShape": "gradual_curve",
+      "gpsQuality": "adequate",
+      "polygonCount": 0,
+      "recoverabilityHint": "none",
+      "recoverableWithCurrentEvidence": true,
+      "missingEvidenceForRecovery": [],
+      "classifications": [
+        "inconclusive_without_camera_imagery"
+      ],
+      "primaryClassification": "inconclusive_without_camera_imagery",
+      "sectionDiagnostics": [
+        {
+          "temporalPassId": 0,
+          "poseSectionId": 0,
+          "frameCount": 17,
+          "leftObservationCount": 342,
+          "rightObservationCount": 443,
+          "pairedFrames": {
+            "pairedFrameCount": 17,
+            "leftOnlyFrames": 0,
+            "rightOnlyFrames": 0,
+            "totalFrames": 17
+          },
+          "pairedBinCounts": {
+            "left": 226,
+            "right": 258
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 5,
+            "rightSupportedRunCount": 9,
+            "pairedRunCount": 1,
+            "pairedRunOverlaps": [
+              {
+                "overlapM": 3.8360036242680167,
+                "overlapStart": 239.92097970081477,
+                "overlapEnd": 243.75698332508279
+              }
+            ]
+          },
+          "longitudinalCoverageM": {
+            "left": 554.8006922658531,
+            "right": 641.0078264057094,
+            "paired": 554.8006922658531
+          },
+          "maxSourceBinGapM": 6,
+          "widthDistribution": null,
+          "attemptedPolygonCount": 0,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 0,
+          "exactRejectionReasons": [],
+          "rejectedPolygonDetails": []
+        }
+      ],
+      "recoverability": {
+        "recoverableWithCurrentEvidence": true,
+        "missingEvidence": [],
+        "recoverabilityHint": "none"
+      }
+    },
+    {
+      "segmentId": 57,
+      "temporalPassCount": 2,
+      "poseSectionCount": 5,
+      "poseRejection": {
+        "rejectedCount": 4,
+        "breakdown": {
+          "headingMotionDisagreement": 2,
+          "positionJump": 2
+        },
+        "transitions": [
+          {
+            "fromFrameId": 68443,
+            "toFrameId": 68483,
+            "reason": "headingMotionDisagreement"
+          },
+          {
+            "fromFrameId": 68483,
+            "toFrameId": 68523,
+            "reason": "headingMotionDisagreement"
+          },
+          {
+            "fromFrameId": 68603,
+            "toFrameId": 68643,
+            "reason": "positionJump"
+          },
+          {
+            "fromFrameId": 68803,
+            "toFrameId": 68843,
+            "reason": "positionJump"
+          }
+        ]
+      },
+      "fusion": {
+        "edgeObservationCount": 0,
+        "pairedFrames": {
+          "pairedFrameCount": 0,
+          "leftOnlyFrames": 0,
+          "rightOnlyFrames": 0,
+          "totalFrames": 0
+        },
+        "longitudinalCoverageM": {
+          "left": 0,
+          "right": 0,
+          "paired": 0
+        },
+        "maxSourceBinGapM": 36
+      },
+      "attemptedPolygonCount": 1,
+      "acceptedPolygonCount": 0,
+      "rejectedPolygonCount": 1,
+      "exactRejectionReasons": [
+        "selfIntersecting"
+      ],
+      "roadShape": "tight_curve",
+      "gpsQuality": "adequate",
+      "polygonCount": 0,
+      "recoverabilityHint": "dataset_wide_rule_possible",
+      "recoverableWithCurrentEvidence": false,
+      "missingEvidenceForRecovery": [
+        "paired longitudinal coverage >= 20 m",
+        "sufficient paired L/R frames per section",
+        "continuous pose section without GPS outliers",
+        "single temporal pass or verified multi-pass alignment",
+        "supported-run geometry fix (not segment-specific)"
+      ],
+      "classifications": [
+        "blocked_by_multi_pass_ambiguity",
+        "blocked_by_pose_fragmentation",
+        "blocked_by_polygon_validation",
+        "potentially_recoverable_through_dataset_wide_rule"
+      ],
+      "primaryClassification": "blocked_by_multi_pass_ambiguity",
+      "sectionDiagnostics": [
+        {
+          "temporalPassId": 0,
+          "poseSectionId": 0,
+          "frameCount": 1,
+          "leftObservationCount": 0,
+          "rightObservationCount": 0,
+          "pairedFrames": {
+            "pairedFrameCount": 0,
+            "leftOnlyFrames": 0,
+            "rightOnlyFrames": 0,
+            "totalFrames": 0
+          },
+          "pairedBinCounts": {
+            "left": 0,
+            "right": 0
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 0,
+            "rightSupportedRunCount": 0,
+            "pairedRunCount": 0,
+            "pairedRunOverlaps": []
+          },
+          "longitudinalCoverageM": {
+            "left": 0,
+            "right": 0,
+            "paired": 0
+          },
+          "maxSourceBinGapM": 0,
+          "widthDistribution": null,
+          "attemptedPolygonCount": 0,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 0,
+          "exactRejectionReasons": [],
+          "rejectedPolygonDetails": []
+        },
+        {
+          "temporalPassId": 0,
+          "poseSectionId": 1,
+          "frameCount": 1,
+          "leftObservationCount": 0,
+          "rightObservationCount": 0,
+          "pairedFrames": {
+            "pairedFrameCount": 0,
+            "leftOnlyFrames": 0,
+            "rightOnlyFrames": 0,
+            "totalFrames": 0
+          },
+          "pairedBinCounts": {
+            "left": 0,
+            "right": 0
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 0,
+            "rightSupportedRunCount": 0,
+            "pairedRunCount": 0,
+            "pairedRunOverlaps": []
+          },
+          "longitudinalCoverageM": {
+            "left": 0,
+            "right": 0,
+            "paired": 0
+          },
+          "maxSourceBinGapM": 0,
+          "widthDistribution": null,
+          "attemptedPolygonCount": 0,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 0,
+          "exactRejectionReasons": [],
+          "rejectedPolygonDetails": []
+        },
+        {
+          "temporalPassId": 0,
+          "poseSectionId": 2,
+          "frameCount": 3,
+          "leftObservationCount": 57,
+          "rightObservationCount": 18,
+          "pairedFrames": {
+            "pairedFrameCount": 3,
+            "leftOnlyFrames": 0,
+            "rightOnlyFrames": 0,
+            "totalFrames": 3
+          },
+          "pairedBinCounts": {
+            "left": 7,
+            "right": 7
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 0,
+            "rightSupportedRunCount": 0,
+            "pairedRunCount": 0,
+            "pairedRunOverlaps": []
+          },
+          "longitudinalCoverageM": {
+            "left": 0,
+            "right": 0,
+            "paired": 0
+          },
+          "maxSourceBinGapM": 2,
+          "widthDistribution": null,
+          "attemptedPolygonCount": 0,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 0,
+          "exactRejectionReasons": [],
+          "rejectedPolygonDetails": []
+        },
+        {
+          "temporalPassId": 0,
+          "poseSectionId": 3,
+          "frameCount": 2,
+          "leftObservationCount": 19,
+          "rightObservationCount": 40,
+          "pairedFrames": {
+            "pairedFrameCount": 2,
+            "leftOnlyFrames": 0,
+            "rightOnlyFrames": 0,
+            "totalFrames": 2
+          },
+          "pairedBinCounts": {
+            "left": 3,
+            "right": 16
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 0,
+            "rightSupportedRunCount": 0,
+            "pairedRunCount": 0,
+            "pairedRunOverlaps": []
+          },
+          "longitudinalCoverageM": {
+            "left": 0,
+            "right": 0,
+            "paired": 0
+          },
+          "maxSourceBinGapM": 36,
+          "widthDistribution": null,
+          "attemptedPolygonCount": 0,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 0,
+          "exactRejectionReasons": [],
+          "rejectedPolygonDetails": []
+        },
+        {
+          "temporalPassId": 1,
+          "poseSectionId": 3,
+          "frameCount": 3,
+          "leftObservationCount": 53,
+          "rightObservationCount": 22,
+          "pairedFrames": {
+            "pairedFrameCount": 3,
+            "leftOnlyFrames": 0,
+            "rightOnlyFrames": 0,
+            "totalFrames": 3
+          },
+          "pairedBinCounts": {
+            "left": 17,
+            "right": 10
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 1,
+            "rightSupportedRunCount": 0,
+            "pairedRunCount": 0,
+            "pairedRunOverlaps": []
+          },
+          "longitudinalCoverageM": {
+            "left": 15.39704894549563,
+            "right": 0,
+            "paired": 0
+          },
+          "maxSourceBinGapM": 8,
+          "widthDistribution": null,
+          "attemptedPolygonCount": 0,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 0,
+          "exactRejectionReasons": [],
+          "rejectedPolygonDetails": []
+        },
+        {
+          "temporalPassId": 1,
+          "poseSectionId": 4,
+          "frameCount": 20,
+          "leftObservationCount": 266,
+          "rightObservationCount": 285,
+          "pairedFrames": {
+            "pairedFrameCount": 19,
+            "leftOnlyFrames": 1,
+            "rightOnlyFrames": 0,
+            "totalFrames": 20
+          },
+          "pairedBinCounts": {
+            "left": 58,
+            "right": 58
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 4,
+            "rightSupportedRunCount": 5,
+            "pairedRunCount": 5,
+            "pairedRunOverlaps": [
+              {
+                "overlapM": 2.5097019272066916,
+                "overlapStart": 19.372518177767923,
+                "overlapEnd": 21.882220104974614
+              },
+              {
+                "overlapM": 3.825353576576852,
+                "overlapStart": 43.419378041942494,
+                "overlapEnd": 47.244731618519346
+              },
+              {
+                "overlapM": 3.932103297013498,
+                "overlapStart": 75.19939045638017,
+                "overlapEnd": 79.13149375339367
+              },
+              {
+                "overlapM": 1.1242113009713819,
+                "overlapStart": 88.11985133172591,
+                "overlapEnd": 89.2440626326973
+              },
+              {
+                "overlapM": 5.310807481146767,
+                "overlapStart": 117.825068469279,
+                "overlapEnd": 123.13587595042577
+              }
+            ]
+          },
+          "longitudinalCoverageM": {
+            "left": 103.76335777265786,
+            "right": 105.01448584827392,
+            "paired": 103.76335777265786
+          },
+          "maxSourceBinGapM": 2,
+          "widthDistribution": {
+            "median": 8.781883067029453,
+            "min": 7.909080513780459,
+            "max": 9.782374733739628
+          },
+          "attemptedPolygonCount": 1,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 1,
+          "exactRejectionReasons": [
+            "selfIntersecting"
+          ],
+          "rejectedPolygonDetails": [
+            {
+              "fragmentIndex": 0,
+              "reasons": [
+                "selfIntersecting"
+              ],
+              "exactRejectionConditions": [
+                "countSelfIntersections(ring)=2 > 0"
+              ],
+              "inferredRootCauses": [
+                "sparse_bin_interpolation",
+                "noisy_endpoint_geometry"
+              ]
+            }
+          ]
+        }
+      ],
+      "recoverability": {
+        "recoverableWithCurrentEvidence": false,
+        "missingEvidence": [
+          "paired longitudinal coverage >= 20 m",
+          "sufficient paired L/R frames per section",
+          "continuous pose section without GPS outliers",
+          "single temporal pass or verified multi-pass alignment",
+          "supported-run geometry fix (not segment-specific)"
+        ],
+        "recoverabilityHint": "dataset_wide_rule_possible"
+      }
+    },
+    {
+      "segmentId": 60,
+      "temporalPassCount": 1,
+      "poseSectionCount": 2,
+      "poseRejection": {
+        "rejectedCount": 1,
+        "breakdown": {
+          "headingMotionDisagreement": 1
+        },
+        "transitions": [
+          {
+            "fromFrameId": 72283,
+            "toFrameId": 72323,
+            "reason": "headingMotionDisagreement"
+          }
+        ]
+      },
+      "fusion": {
+        "edgeObservationCount": 168,
+        "pairedFrames": {
+          "pairedFrameCount": 7,
+          "leftOnlyFrames": 0,
+          "rightOnlyFrames": 0,
+          "totalFrames": 7
+        },
+        "longitudinalCoverageM": {
+          "left": 3.9303086302273673,
+          "right": 3.9303086302273673,
+          "paired": 3.9303086302273673
+        },
+        "maxSourceBinGapM": 0
+      },
+      "attemptedPolygonCount": 0,
+      "acceptedPolygonCount": 0,
+      "rejectedPolygonCount": 0,
+      "exactRejectionReasons": [],
+      "roadShape": "straight",
+      "gpsQuality": "adequate",
+      "polygonCount": 0,
+      "recoverabilityHint": "none",
+      "recoverableWithCurrentEvidence": false,
+      "missingEvidenceForRecovery": [
+        "paired longitudinal coverage >= 20 m",
+        "continuous pose section without GPS outliers"
+      ],
+      "classifications": [
+        "correctly_rejected_for_insufficient_evidence",
+        "blocked_by_pose_fragmentation"
+      ],
+      "primaryClassification": "correctly_rejected_for_insufficient_evidence",
+      "sectionDiagnostics": [
+        {
+          "temporalPassId": 0,
+          "poseSectionId": 0,
+          "frameCount": 7,
+          "leftObservationCount": 70,
+          "rightObservationCount": 98,
+          "pairedFrames": {
+            "pairedFrameCount": 7,
+            "leftOnlyFrames": 0,
+            "rightOnlyFrames": 0,
+            "totalFrames": 7
+          },
+          "pairedBinCounts": {
+            "left": 3,
+            "right": 3
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 1,
+            "rightSupportedRunCount": 1,
+            "pairedRunCount": 1,
+            "pairedRunOverlaps": [
+              {
+                "overlapM": 3.9303086302273673,
+                "overlapStart": 0,
+                "overlapEnd": 3.9303086302273673
+              }
+            ]
+          },
+          "longitudinalCoverageM": {
+            "left": 3.9303086302273673,
+            "right": 3.9303086302273673,
+            "paired": 3.9303086302273673
+          },
+          "maxSourceBinGapM": 0,
+          "widthDistribution": null,
+          "attemptedPolygonCount": 0,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 0,
+          "exactRejectionReasons": [],
+          "rejectedPolygonDetails": []
+        },
+        {
+          "temporalPassId": 0,
+          "poseSectionId": 1,
+          "frameCount": 23,
+          "leftObservationCount": 298,
+          "rightObservationCount": 254,
+          "pairedFrames": {
+            "pairedFrameCount": 23,
+            "leftOnlyFrames": 0,
+            "rightOnlyFrames": 0,
+            "totalFrames": 23
+          },
+          "pairedBinCounts": {
+            "left": 7,
+            "right": 7
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 1,
+            "rightSupportedRunCount": 1,
+            "pairedRunCount": 1,
+            "pairedRunOverlaps": [
+              {
+                "overlapM": 12.167959532644083,
+                "overlapStart": 0.3275318740266932,
+                "overlapEnd": 12.495491406670777
+              }
+            ]
+          },
+          "longitudinalCoverageM": {
+            "left": 12.167959532644083,
+            "right": 12.167959532644083,
+            "paired": 12.167959532644083
+          },
+          "maxSourceBinGapM": 0,
+          "widthDistribution": null,
+          "attemptedPolygonCount": 0,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 0,
+          "exactRejectionReasons": [],
+          "rejectedPolygonDetails": []
+        }
+      ],
+      "recoverability": {
+        "recoverableWithCurrentEvidence": false,
+        "missingEvidence": [
+          "paired longitudinal coverage >= 20 m",
+          "continuous pose section without GPS outliers"
+        ],
+        "recoverabilityHint": "none"
+      }
+    },
+    {
+      "segmentId": 62,
+      "temporalPassCount": 1,
+      "poseSectionCount": 15,
+      "poseRejection": {
+        "rejectedCount": 14,
+        "breakdown": {
+          "headingMotionDisagreement": 14
+        },
+        "transitions": [
+          {
+            "fromFrameId": 74523,
+            "toFrameId": 74563,
+            "reason": "headingMotionDisagreement"
+          },
+          {
+            "fromFrameId": 74923,
+            "toFrameId": 74963,
+            "reason": "headingMotionDisagreement"
+          },
+          {
+            "fromFrameId": 74963,
+            "toFrameId": 75003,
+            "reason": "headingMotionDisagreement"
+          },
+          {
+            "fromFrameId": 75003,
+            "toFrameId": 75043,
+            "reason": "headingMotionDisagreement"
+          },
+          {
+            "fromFrameId": 75043,
+            "toFrameId": 75083,
+            "reason": "headingMotionDisagreement"
+          },
+          {
+            "fromFrameId": 75123,
+            "toFrameId": 75163,
+            "reason": "headingMotionDisagreement"
+          },
+          {
+            "fromFrameId": 75163,
+            "toFrameId": 75203,
+            "reason": "headingMotionDisagreement"
+          },
+          {
+            "fromFrameId": 75203,
+            "toFrameId": 75243,
+            "reason": "headingMotionDisagreement"
+          },
+          {
+            "fromFrameId": 75243,
+            "toFrameId": 75283,
+            "reason": "headingMotionDisagreement"
+          },
+          {
+            "fromFrameId": 75283,
+            "toFrameId": 75323,
+            "reason": "headingMotionDisagreement"
+          },
+          {
+            "fromFrameId": 75323,
+            "toFrameId": 75363,
+            "reason": "headingMotionDisagreement"
+          },
+          {
+            "fromFrameId": 75363,
+            "toFrameId": 75403,
+            "reason": "headingMotionDisagreement"
+          },
+          {
+            "fromFrameId": 75443,
+            "toFrameId": 75483,
+            "reason": "headingMotionDisagreement"
+          },
+          {
+            "fromFrameId": 75483,
+            "toFrameId": 75523,
+            "reason": "headingMotionDisagreement"
+          }
+        ]
+      },
+      "fusion": {
+        "edgeObservationCount": 77,
+        "pairedFrames": {
+          "pairedFrameCount": 3,
+          "leftOnlyFrames": 0,
+          "rightOnlyFrames": 0,
+          "totalFrames": 3
+        },
+        "longitudinalCoverageM": {
+          "left": 5.58213243914985,
+          "right": 1.0979370316722967,
+          "paired": 1.0979370316722967
+        },
+        "maxSourceBinGapM": 4
+      },
+      "attemptedPolygonCount": 0,
+      "acceptedPolygonCount": 0,
+      "rejectedPolygonCount": 0,
+      "exactRejectionReasons": [],
+      "roadShape": "tight_curve",
+      "gpsQuality": "adequate",
+      "polygonCount": 0,
+      "recoverabilityHint": "none",
+      "recoverableWithCurrentEvidence": false,
+      "missingEvidenceForRecovery": [
+        "paired longitudinal coverage >= 20 m",
+        "sufficient paired L/R frames per section",
+        "continuous pose section without GPS outliers"
+      ],
+      "classifications": [
+        "correctly_rejected_for_insufficient_evidence",
+        "blocked_by_pose_fragmentation"
+      ],
+      "primaryClassification": "correctly_rejected_for_insufficient_evidence",
+      "sectionDiagnostics": [
+        {
+          "temporalPassId": 0,
+          "poseSectionId": 0,
+          "frameCount": 3,
+          "leftObservationCount": 32,
+          "rightObservationCount": 45,
+          "pairedFrames": {
+            "pairedFrameCount": 3,
+            "leftOnlyFrames": 0,
+            "rightOnlyFrames": 0,
+            "totalFrames": 3
+          },
+          "pairedBinCounts": {
+            "left": 7,
+            "right": 7
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 1,
+            "rightSupportedRunCount": 1,
+            "pairedRunCount": 1,
+            "pairedRunOverlaps": [
+              {
+                "overlapM": 1.0979370316722967,
+                "overlapStart": 10.864011822013257,
+                "overlapEnd": 11.961948853685554
+              }
+            ]
+          },
+          "longitudinalCoverageM": {
+            "left": 5.58213243914985,
+            "right": 1.0979370316722967,
+            "paired": 1.0979370316722967
+          },
+          "maxSourceBinGapM": 0,
+          "widthDistribution": null,
+          "attemptedPolygonCount": 0,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 0,
+          "exactRejectionReasons": [],
+          "rejectedPolygonDetails": []
+        },
+        {
+          "temporalPassId": 0,
+          "poseSectionId": 1,
+          "frameCount": 10,
+          "leftObservationCount": 110,
+          "rightObservationCount": 141,
+          "pairedFrames": {
+            "pairedFrameCount": 10,
+            "leftOnlyFrames": 0,
+            "rightOnlyFrames": 0,
+            "totalFrames": 10
+          },
+          "pairedBinCounts": {
+            "left": 26,
+            "right": 26
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 3,
+            "rightSupportedRunCount": 2,
+            "pairedRunCount": 2,
+            "pairedRunOverlaps": [
+              {
+                "overlapM": 1.2730453575635883,
+                "overlapStart": 6.2293733293244715,
+                "overlapEnd": 7.50241868688806
+              },
+              {
+                "overlapM": 2.1417581533364825,
+                "overlapStart": 54.12883538879516,
+                "overlapEnd": 56.27059354213164
+              }
+            ]
+          },
+          "longitudinalCoverageM": {
+            "left": 51.64977667906448,
+            "right": 56.27059354213164,
+            "paired": 51.64977667906448
+          },
+          "maxSourceBinGapM": 4,
+          "widthDistribution": null,
+          "attemptedPolygonCount": 0,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 0,
+          "exactRejectionReasons": [],
+          "rejectedPolygonDetails": []
+        },
+        {
+          "temporalPassId": 0,
+          "poseSectionId": 2,
+          "frameCount": 1,
+          "leftObservationCount": 0,
+          "rightObservationCount": 0,
+          "pairedFrames": {
+            "pairedFrameCount": 0,
+            "leftOnlyFrames": 0,
+            "rightOnlyFrames": 0,
+            "totalFrames": 0
+          },
+          "pairedBinCounts": {
+            "left": 0,
+            "right": 0
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 0,
+            "rightSupportedRunCount": 0,
+            "pairedRunCount": 0,
+            "pairedRunOverlaps": []
+          },
+          "longitudinalCoverageM": {
+            "left": 0,
+            "right": 0,
+            "paired": 0
+          },
+          "maxSourceBinGapM": 0,
+          "widthDistribution": null,
+          "attemptedPolygonCount": 0,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 0,
+          "exactRejectionReasons": [],
+          "rejectedPolygonDetails": []
+        },
+        {
+          "temporalPassId": 0,
+          "poseSectionId": 3,
+          "frameCount": 1,
+          "leftObservationCount": 0,
+          "rightObservationCount": 0,
+          "pairedFrames": {
+            "pairedFrameCount": 0,
+            "leftOnlyFrames": 0,
+            "rightOnlyFrames": 0,
+            "totalFrames": 0
+          },
+          "pairedBinCounts": {
+            "left": 0,
+            "right": 0
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 0,
+            "rightSupportedRunCount": 0,
+            "pairedRunCount": 0,
+            "pairedRunOverlaps": []
+          },
+          "longitudinalCoverageM": {
+            "left": 0,
+            "right": 0,
+            "paired": 0
+          },
+          "maxSourceBinGapM": 0,
+          "widthDistribution": null,
+          "attemptedPolygonCount": 0,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 0,
+          "exactRejectionReasons": [],
+          "rejectedPolygonDetails": []
+        },
+        {
+          "temporalPassId": 0,
+          "poseSectionId": 4,
+          "frameCount": 1,
+          "leftObservationCount": 0,
+          "rightObservationCount": 0,
+          "pairedFrames": {
+            "pairedFrameCount": 0,
+            "leftOnlyFrames": 0,
+            "rightOnlyFrames": 0,
+            "totalFrames": 0
+          },
+          "pairedBinCounts": {
+            "left": 0,
+            "right": 0
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 0,
+            "rightSupportedRunCount": 0,
+            "pairedRunCount": 0,
+            "pairedRunOverlaps": []
+          },
+          "longitudinalCoverageM": {
+            "left": 0,
+            "right": 0,
+            "paired": 0
+          },
+          "maxSourceBinGapM": 0,
+          "widthDistribution": null,
+          "attemptedPolygonCount": 0,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 0,
+          "exactRejectionReasons": [],
+          "rejectedPolygonDetails": []
+        },
+        {
+          "temporalPassId": 0,
+          "poseSectionId": 5,
+          "frameCount": 2,
+          "leftObservationCount": 40,
+          "rightObservationCount": 8,
+          "pairedFrames": {
+            "pairedFrameCount": 2,
+            "leftOnlyFrames": 0,
+            "rightOnlyFrames": 0,
+            "totalFrames": 2
+          },
+          "pairedBinCounts": {
+            "left": 1,
+            "right": 1
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 0,
+            "rightSupportedRunCount": 0,
+            "pairedRunCount": 0,
+            "pairedRunOverlaps": []
+          },
+          "longitudinalCoverageM": {
+            "left": 0,
+            "right": 0,
+            "paired": 0
+          },
+          "maxSourceBinGapM": 0,
+          "widthDistribution": null,
+          "attemptedPolygonCount": 0,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 0,
+          "exactRejectionReasons": [],
+          "rejectedPolygonDetails": []
+        },
+        {
+          "temporalPassId": 0,
+          "poseSectionId": 6,
+          "frameCount": 1,
+          "leftObservationCount": 0,
+          "rightObservationCount": 0,
+          "pairedFrames": {
+            "pairedFrameCount": 0,
+            "leftOnlyFrames": 0,
+            "rightOnlyFrames": 0,
+            "totalFrames": 0
+          },
+          "pairedBinCounts": {
+            "left": 0,
+            "right": 0
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 0,
+            "rightSupportedRunCount": 0,
+            "pairedRunCount": 0,
+            "pairedRunOverlaps": []
+          },
+          "longitudinalCoverageM": {
+            "left": 0,
+            "right": 0,
+            "paired": 0
+          },
+          "maxSourceBinGapM": 0,
+          "widthDistribution": null,
+          "attemptedPolygonCount": 0,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 0,
+          "exactRejectionReasons": [],
+          "rejectedPolygonDetails": []
+        },
+        {
+          "temporalPassId": 0,
+          "poseSectionId": 7,
+          "frameCount": 1,
+          "leftObservationCount": 0,
+          "rightObservationCount": 0,
+          "pairedFrames": {
+            "pairedFrameCount": 0,
+            "leftOnlyFrames": 0,
+            "rightOnlyFrames": 0,
+            "totalFrames": 0
+          },
+          "pairedBinCounts": {
+            "left": 0,
+            "right": 0
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 0,
+            "rightSupportedRunCount": 0,
+            "pairedRunCount": 0,
+            "pairedRunOverlaps": []
+          },
+          "longitudinalCoverageM": {
+            "left": 0,
+            "right": 0,
+            "paired": 0
+          },
+          "maxSourceBinGapM": 0,
+          "widthDistribution": null,
+          "attemptedPolygonCount": 0,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 0,
+          "exactRejectionReasons": [],
+          "rejectedPolygonDetails": []
+        },
+        {
+          "temporalPassId": 0,
+          "poseSectionId": 8,
+          "frameCount": 1,
+          "leftObservationCount": 0,
+          "rightObservationCount": 0,
+          "pairedFrames": {
+            "pairedFrameCount": 0,
+            "leftOnlyFrames": 0,
+            "rightOnlyFrames": 0,
+            "totalFrames": 0
+          },
+          "pairedBinCounts": {
+            "left": 0,
+            "right": 0
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 0,
+            "rightSupportedRunCount": 0,
+            "pairedRunCount": 0,
+            "pairedRunOverlaps": []
+          },
+          "longitudinalCoverageM": {
+            "left": 0,
+            "right": 0,
+            "paired": 0
+          },
+          "maxSourceBinGapM": 0,
+          "widthDistribution": null,
+          "attemptedPolygonCount": 0,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 0,
+          "exactRejectionReasons": [],
+          "rejectedPolygonDetails": []
+        },
+        {
+          "temporalPassId": 0,
+          "poseSectionId": 9,
+          "frameCount": 1,
+          "leftObservationCount": 0,
+          "rightObservationCount": 0,
+          "pairedFrames": {
+            "pairedFrameCount": 0,
+            "leftOnlyFrames": 0,
+            "rightOnlyFrames": 0,
+            "totalFrames": 0
+          },
+          "pairedBinCounts": {
+            "left": 0,
+            "right": 0
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 0,
+            "rightSupportedRunCount": 0,
+            "pairedRunCount": 0,
+            "pairedRunOverlaps": []
+          },
+          "longitudinalCoverageM": {
+            "left": 0,
+            "right": 0,
+            "paired": 0
+          },
+          "maxSourceBinGapM": 0,
+          "widthDistribution": null,
+          "attemptedPolygonCount": 0,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 0,
+          "exactRejectionReasons": [],
+          "rejectedPolygonDetails": []
+        },
+        {
+          "temporalPassId": 0,
+          "poseSectionId": 10,
+          "frameCount": 1,
+          "leftObservationCount": 0,
+          "rightObservationCount": 0,
+          "pairedFrames": {
+            "pairedFrameCount": 0,
+            "leftOnlyFrames": 0,
+            "rightOnlyFrames": 0,
+            "totalFrames": 0
+          },
+          "pairedBinCounts": {
+            "left": 0,
+            "right": 0
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 0,
+            "rightSupportedRunCount": 0,
+            "pairedRunCount": 0,
+            "pairedRunOverlaps": []
+          },
+          "longitudinalCoverageM": {
+            "left": 0,
+            "right": 0,
+            "paired": 0
+          },
+          "maxSourceBinGapM": 0,
+          "widthDistribution": null,
+          "attemptedPolygonCount": 0,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 0,
+          "exactRejectionReasons": [],
+          "rejectedPolygonDetails": []
+        },
+        {
+          "temporalPassId": 0,
+          "poseSectionId": 11,
+          "frameCount": 1,
+          "leftObservationCount": 0,
+          "rightObservationCount": 0,
+          "pairedFrames": {
+            "pairedFrameCount": 0,
+            "leftOnlyFrames": 0,
+            "rightOnlyFrames": 0,
+            "totalFrames": 0
+          },
+          "pairedBinCounts": {
+            "left": 0,
+            "right": 0
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 0,
+            "rightSupportedRunCount": 0,
+            "pairedRunCount": 0,
+            "pairedRunOverlaps": []
+          },
+          "longitudinalCoverageM": {
+            "left": 0,
+            "right": 0,
+            "paired": 0
+          },
+          "maxSourceBinGapM": 0,
+          "widthDistribution": null,
+          "attemptedPolygonCount": 0,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 0,
+          "exactRejectionReasons": [],
+          "rejectedPolygonDetails": []
+        },
+        {
+          "temporalPassId": 0,
+          "poseSectionId": 12,
+          "frameCount": 2,
+          "leftObservationCount": 14,
+          "rightObservationCount": 34,
+          "pairedFrames": {
+            "pairedFrameCount": 2,
+            "leftOnlyFrames": 0,
+            "rightOnlyFrames": 0,
+            "totalFrames": 2
+          },
+          "pairedBinCounts": {
+            "left": 1,
+            "right": 1
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 0,
+            "rightSupportedRunCount": 0,
+            "pairedRunCount": 0,
+            "pairedRunOverlaps": []
+          },
+          "longitudinalCoverageM": {
+            "left": 0,
+            "right": 0,
+            "paired": 0
+          },
+          "maxSourceBinGapM": 0,
+          "widthDistribution": null,
+          "attemptedPolygonCount": 0,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 0,
+          "exactRejectionReasons": [],
+          "rejectedPolygonDetails": []
+        },
+        {
+          "temporalPassId": 0,
+          "poseSectionId": 13,
+          "frameCount": 1,
+          "leftObservationCount": 0,
+          "rightObservationCount": 0,
+          "pairedFrames": {
+            "pairedFrameCount": 0,
+            "leftOnlyFrames": 0,
+            "rightOnlyFrames": 0,
+            "totalFrames": 0
+          },
+          "pairedBinCounts": {
+            "left": 0,
+            "right": 0
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 0,
+            "rightSupportedRunCount": 0,
+            "pairedRunCount": 0,
+            "pairedRunOverlaps": []
+          },
+          "longitudinalCoverageM": {
+            "left": 0,
+            "right": 0,
+            "paired": 0
+          },
+          "maxSourceBinGapM": 0,
+          "widthDistribution": null,
+          "attemptedPolygonCount": 0,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 0,
+          "exactRejectionReasons": [],
+          "rejectedPolygonDetails": []
+        },
+        {
+          "temporalPassId": 0,
+          "poseSectionId": 14,
+          "frameCount": 3,
+          "leftObservationCount": 54,
+          "rightObservationCount": 15,
+          "pairedFrames": {
+            "pairedFrameCount": 3,
+            "leftOnlyFrames": 0,
+            "rightOnlyFrames": 0,
+            "totalFrames": 3
+          },
+          "pairedBinCounts": {
+            "left": 2,
+            "right": 2
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 1,
+            "rightSupportedRunCount": 0,
+            "pairedRunCount": 0,
+            "pairedRunOverlaps": []
+          },
+          "longitudinalCoverageM": {
+            "left": 1.6530567075865714,
+            "right": 0,
+            "paired": 0
+          },
+          "maxSourceBinGapM": 0,
+          "widthDistribution": null,
+          "attemptedPolygonCount": 0,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 0,
+          "exactRejectionReasons": [],
+          "rejectedPolygonDetails": []
+        }
+      ],
+      "recoverability": {
+        "recoverableWithCurrentEvidence": false,
+        "missingEvidence": [
+          "paired longitudinal coverage >= 20 m",
+          "sufficient paired L/R frames per section",
+          "continuous pose section without GPS outliers"
+        ],
+        "recoverabilityHint": "none"
+      }
+    },
+    {
+      "segmentId": 65,
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "poseRejection": {
+        "rejectedCount": 0,
+        "breakdown": {},
+        "transitions": []
+      },
+      "fusion": {
+        "edgeObservationCount": 720,
+        "pairedFrames": {
+          "pairedFrameCount": 26,
+          "leftOnlyFrames": 1,
+          "rightOnlyFrames": 3,
+          "totalFrames": 30
+        },
+        "longitudinalCoverageM": {
+          "left": 9.248787937083286,
+          "right": 9.066672073174967,
+          "paired": 9.066672073174967
+        },
+        "maxSourceBinGapM": 0
+      },
+      "attemptedPolygonCount": 1,
+      "acceptedPolygonCount": 0,
+      "rejectedPolygonCount": 1,
+      "exactRejectionReasons": [
+        "selfIntersecting"
+      ],
+      "roadShape": "straight",
+      "gpsQuality": "adequate",
+      "polygonCount": 0,
+      "recoverabilityHint": "dataset_wide_rule_possible",
+      "recoverableWithCurrentEvidence": false,
+      "missingEvidenceForRecovery": [
+        "paired longitudinal coverage >= 20 m",
+        "supported-run geometry fix (not segment-specific)"
+      ],
+      "classifications": [
+        "blocked_by_polygon_validation",
+        "potentially_recoverable_through_dataset_wide_rule"
+      ],
+      "primaryClassification": "blocked_by_polygon_validation",
+      "sectionDiagnostics": [
+        {
+          "temporalPassId": 0,
+          "poseSectionId": 0,
+          "frameCount": 30,
+          "leftObservationCount": 322,
+          "rightObservationCount": 398,
+          "pairedFrames": {
+            "pairedFrameCount": 26,
+            "leftOnlyFrames": 1,
+            "rightOnlyFrames": 3,
+            "totalFrames": 30
+          },
+          "pairedBinCounts": {
+            "left": 6,
+            "right": 6
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 1,
+            "rightSupportedRunCount": 1,
+            "pairedRunCount": 1,
+            "pairedRunOverlaps": [
+              {
+                "overlapM": 9.066672073174967,
+                "overlapStart": 0.8116337835620326,
+                "overlapEnd": 9.878305856737
+              }
+            ]
+          },
+          "longitudinalCoverageM": {
+            "left": 9.248787937083286,
+            "right": 9.066672073174967,
+            "paired": 9.066672073174967
+          },
+          "maxSourceBinGapM": 0,
+          "widthDistribution": {
+            "median": 9.293676713365985,
+            "min": 8.417685596088182,
+            "max": 10.815542086237254
+          },
+          "attemptedPolygonCount": 1,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 1,
+          "exactRejectionReasons": [
+            "selfIntersecting"
+          ],
+          "rejectedPolygonDetails": [
+            {
+              "fragmentIndex": 0,
+              "reasons": [
+                "selfIntersecting"
+              ],
+              "exactRejectionConditions": [
+                "countSelfIntersections(ring)=1 > 0"
+              ],
+              "inferredRootCauses": [
+                "genuine_road_curve_unrepresentable"
+              ]
+            }
+          ]
+        }
+      ],
+      "recoverability": {
+        "recoverableWithCurrentEvidence": false,
+        "missingEvidence": [
+          "paired longitudinal coverage >= 20 m",
+          "supported-run geometry fix (not segment-specific)"
+        ],
+        "recoverabilityHint": "dataset_wide_rule_possible"
+      }
+    },
+    {
+      "segmentId": 87,
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "poseRejection": {
+        "rejectedCount": 0,
+        "breakdown": {},
+        "transitions": []
+      },
+      "fusion": {
+        "edgeObservationCount": 1399,
+        "pairedFrames": {
+          "pairedFrameCount": 30,
+          "leftOnlyFrames": 0,
+          "rightOnlyFrames": 0,
+          "totalFrames": 30
+        },
+        "longitudinalCoverageM": {
+          "left": 1092.2438293197029,
+          "right": 1097.9268761164935,
+          "paired": 1092.2438293197029
+        },
+        "maxSourceBinGapM": 4
+      },
+      "attemptedPolygonCount": 0,
+      "acceptedPolygonCount": 0,
+      "rejectedPolygonCount": 0,
+      "exactRejectionReasons": [],
+      "roadShape": "straight",
+      "gpsQuality": "adequate",
+      "polygonCount": 0,
+      "recoverabilityHint": "none",
+      "recoverableWithCurrentEvidence": true,
+      "missingEvidenceForRecovery": [],
+      "classifications": [
+        "inconclusive_without_camera_imagery"
+      ],
+      "primaryClassification": "inconclusive_without_camera_imagery",
+      "sectionDiagnostics": [
+        {
+          "temporalPassId": 0,
+          "poseSectionId": 0,
+          "frameCount": 30,
+          "leftObservationCount": 697,
+          "rightObservationCount": 702,
+          "pairedFrames": {
+            "pairedFrameCount": 30,
+            "leftOnlyFrames": 0,
+            "rightOnlyFrames": 0,
+            "totalFrames": 30
+          },
+          "pairedBinCounts": {
+            "left": 427,
+            "right": 414
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 13,
+            "rightSupportedRunCount": 14,
+            "pairedRunCount": 7,
+            "pairedRunOverlaps": [
+              {
+                "overlapM": 2.3191211660165436,
+                "overlapStart": 319.8196126576379,
+                "overlapEnd": 322.13873382365443
+              },
+              {
+                "overlapM": 1.6025056471983703,
+                "overlapStart": 356.0845003444246,
+                "overlapEnd": 357.687005991623
+              },
+              {
+                "overlapM": 3.7230516623748144,
+                "overlapStart": 579.9966753930661,
+                "overlapEnd": 583.7197270554409
+              },
+              {
+                "overlapM": 2.3212268145799726,
+                "overlapStart": 623.5744570547882,
+                "overlapEnd": 625.8956838693682
+              },
+              {
+                "overlapM": 1.073416553013658,
+                "overlapStart": 664.6588394509536,
+                "overlapEnd": 665.7322560039672
+              },
+              {
+                "overlapM": 2.821779396885404,
+                "overlapStart": 785.8756626582773,
+                "overlapEnd": 788.6974420551627
+              },
+              {
+                "overlapM": 3.4642394204854554,
+                "overlapStart": 821.8922339849389,
+                "overlapEnd": 825.3564734054244
+              }
+            ]
+          },
+          "longitudinalCoverageM": {
+            "left": 1092.2438293197029,
+            "right": 1097.9268761164935,
+            "paired": 1092.2438293197029
+          },
+          "maxSourceBinGapM": 4,
+          "widthDistribution": null,
+          "attemptedPolygonCount": 0,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 0,
+          "exactRejectionReasons": [],
+          "rejectedPolygonDetails": []
+        }
+      ],
+      "recoverability": {
+        "recoverableWithCurrentEvidence": true,
+        "missingEvidence": [],
+        "recoverabilityHint": "none"
+      }
+    },
+    {
+      "segmentId": 90,
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "poseRejection": {
+        "rejectedCount": 0,
+        "breakdown": {},
+        "transitions": []
+      },
+      "fusion": {
+        "edgeObservationCount": 1451,
+        "pairedFrames": {
+          "pairedFrameCount": 30,
+          "leftOnlyFrames": 0,
+          "rightOnlyFrames": 0,
+          "totalFrames": 30
+        },
+        "longitudinalCoverageM": {
+          "left": 1222.1637061310068,
+          "right": 1199.2644382906753,
+          "paired": 1199.2644382906753
+        },
+        "maxSourceBinGapM": 4
+      },
+      "attemptedPolygonCount": 0,
+      "acceptedPolygonCount": 0,
+      "rejectedPolygonCount": 0,
+      "exactRejectionReasons": [],
+      "roadShape": "straight",
+      "gpsQuality": "adequate",
+      "polygonCount": 0,
+      "recoverabilityHint": "none",
+      "recoverableWithCurrentEvidence": true,
+      "missingEvidenceForRecovery": [],
+      "classifications": [
+        "inconclusive_without_camera_imagery"
+      ],
+      "primaryClassification": "inconclusive_without_camera_imagery",
+      "sectionDiagnostics": [
+        {
+          "temporalPassId": 0,
+          "poseSectionId": 0,
+          "frameCount": 30,
+          "leftObservationCount": 799,
+          "rightObservationCount": 652,
+          "pairedFrames": {
+            "pairedFrameCount": 30,
+            "leftOnlyFrames": 0,
+            "rightOnlyFrames": 0,
+            "totalFrames": 30
+          },
+          "pairedBinCounts": {
+            "left": 443,
+            "right": 429
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 18,
+            "rightSupportedRunCount": 5,
+            "pairedRunCount": 4,
+            "pairedRunOverlaps": [
+              {
+                "overlapM": 3.509554273981962,
+                "overlapStart": 382.1047384947287,
+                "overlapEnd": 385.61429276871064
+              },
+              {
+                "overlapM": 0,
+                "overlapStart": 574.2472673530206,
+                "overlapEnd": 574.2472673530206
+              },
+              {
+                "overlapM": 0,
+                "overlapStart": 613.4064028758241,
+                "overlapEnd": 613.4064028758241
+              },
+              {
+                "overlapM": 2.257949778571856,
+                "overlapStart": 887.5498301082978,
+                "overlapEnd": 889.8077798868696
+              }
+            ]
+          },
+          "longitudinalCoverageM": {
+            "left": 1222.1637061310068,
+            "right": 1199.2644382906753,
+            "paired": 1199.2644382906753
+          },
+          "maxSourceBinGapM": 4,
+          "widthDistribution": null,
+          "attemptedPolygonCount": 0,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 0,
+          "exactRejectionReasons": [],
+          "rejectedPolygonDetails": []
+        }
+      ],
+      "recoverability": {
+        "recoverableWithCurrentEvidence": true,
+        "missingEvidence": [],
+        "recoverabilityHint": "none"
+      }
+    },
+    {
+      "segmentId": 96,
+      "temporalPassCount": 1,
+      "poseSectionCount": 7,
+      "poseRejection": {
+        "rejectedCount": 6,
+        "breakdown": {
+          "headingMotionDisagreement": 6
+        },
+        "transitions": [
+          {
+            "fromFrameId": 115323,
+            "toFrameId": 115363,
+            "reason": "headingMotionDisagreement"
+          },
+          {
+            "fromFrameId": 115443,
+            "toFrameId": 115483,
+            "reason": "headingMotionDisagreement"
+          },
+          {
+            "fromFrameId": 115563,
+            "toFrameId": 115603,
+            "reason": "headingMotionDisagreement"
+          },
+          {
+            "fromFrameId": 115603,
+            "toFrameId": 115643,
+            "reason": "headingMotionDisagreement"
+          },
+          {
+            "fromFrameId": 115643,
+            "toFrameId": 115683,
+            "reason": "headingMotionDisagreement"
+          },
+          {
+            "fromFrameId": 115683,
+            "toFrameId": 115723,
+            "reason": "headingMotionDisagreement"
+          }
+        ]
+      },
+      "fusion": {
+        "edgeObservationCount": 72,
+        "pairedFrames": {
+          "pairedFrameCount": 3,
+          "leftOnlyFrames": 0,
+          "rightOnlyFrames": 0,
+          "totalFrames": 3
+        },
+        "longitudinalCoverageM": {
+          "left": 0.4715917525159855,
+          "right": 0.4715917525159855,
+          "paired": 0.4715917525159855
+        },
+        "maxSourceBinGapM": 0
+      },
+      "attemptedPolygonCount": 0,
+      "acceptedPolygonCount": 0,
+      "rejectedPolygonCount": 0,
+      "exactRejectionReasons": [],
+      "roadShape": "straight",
+      "gpsQuality": "adequate",
+      "polygonCount": 0,
+      "recoverabilityHint": "none",
+      "recoverableWithCurrentEvidence": false,
+      "missingEvidenceForRecovery": [
+        "paired longitudinal coverage >= 20 m",
+        "sufficient paired L/R frames per section",
+        "continuous pose section without GPS outliers"
+      ],
+      "classifications": [
+        "correctly_rejected_for_insufficient_evidence",
+        "blocked_by_pose_fragmentation"
+      ],
+      "primaryClassification": "correctly_rejected_for_insufficient_evidence",
+      "sectionDiagnostics": [
+        {
+          "temporalPassId": 0,
+          "poseSectionId": 0,
+          "frameCount": 3,
+          "leftObservationCount": 14,
+          "rightObservationCount": 58,
+          "pairedFrames": {
+            "pairedFrameCount": 3,
+            "leftOnlyFrames": 0,
+            "rightOnlyFrames": 0,
+            "totalFrames": 3
+          },
+          "pairedBinCounts": {
+            "left": 2,
+            "right": 2
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 1,
+            "rightSupportedRunCount": 1,
+            "pairedRunCount": 1,
+            "pairedRunOverlaps": [
+              {
+                "overlapM": 0.4715917525159855,
+                "overlapStart": 0.9735219077882459,
+                "overlapEnd": 1.4451136603042314
+              }
+            ]
+          },
+          "longitudinalCoverageM": {
+            "left": 0.4715917525159855,
+            "right": 0.4715917525159855,
+            "paired": 0.4715917525159855
+          },
+          "maxSourceBinGapM": 0,
+          "widthDistribution": null,
+          "attemptedPolygonCount": 0,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 0,
+          "exactRejectionReasons": [],
+          "rejectedPolygonDetails": []
+        },
+        {
+          "temporalPassId": 0,
+          "poseSectionId": 1,
+          "frameCount": 3,
+          "leftObservationCount": 60,
+          "rightObservationCount": 12,
+          "pairedFrames": {
+            "pairedFrameCount": 3,
+            "leftOnlyFrames": 0,
+            "rightOnlyFrames": 0,
+            "totalFrames": 3
+          },
+          "pairedBinCounts": {
+            "left": 2,
+            "right": 1
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 1,
+            "rightSupportedRunCount": 0,
+            "pairedRunCount": 0,
+            "pairedRunOverlaps": []
+          },
+          "longitudinalCoverageM": {
+            "left": 1.8520015007417006,
+            "right": 0,
+            "paired": 0
+          },
+          "maxSourceBinGapM": 0,
+          "widthDistribution": null,
+          "attemptedPolygonCount": 0,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 0,
+          "exactRejectionReasons": [],
+          "rejectedPolygonDetails": []
+        },
+        {
+          "temporalPassId": 0,
+          "poseSectionId": 2,
+          "frameCount": 3,
+          "leftObservationCount": 58,
+          "rightObservationCount": 15,
+          "pairedFrames": {
+            "pairedFrameCount": 3,
+            "leftOnlyFrames": 0,
+            "rightOnlyFrames": 0,
+            "totalFrames": 3
+          },
+          "pairedBinCounts": {
+            "left": 2,
+            "right": 1
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 1,
+            "rightSupportedRunCount": 0,
+            "pairedRunCount": 0,
+            "pairedRunOverlaps": []
+          },
+          "longitudinalCoverageM": {
+            "left": 2.6621320889863176,
+            "right": 0,
+            "paired": 0
+          },
+          "maxSourceBinGapM": 0,
+          "widthDistribution": null,
+          "attemptedPolygonCount": 0,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 0,
+          "exactRejectionReasons": [],
+          "rejectedPolygonDetails": []
+        },
+        {
+          "temporalPassId": 0,
+          "poseSectionId": 3,
+          "frameCount": 1,
+          "leftObservationCount": 0,
+          "rightObservationCount": 0,
+          "pairedFrames": {
+            "pairedFrameCount": 0,
+            "leftOnlyFrames": 0,
+            "rightOnlyFrames": 0,
+            "totalFrames": 0
+          },
+          "pairedBinCounts": {
+            "left": 0,
+            "right": 0
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 0,
+            "rightSupportedRunCount": 0,
+            "pairedRunCount": 0,
+            "pairedRunOverlaps": []
+          },
+          "longitudinalCoverageM": {
+            "left": 0,
+            "right": 0,
+            "paired": 0
+          },
+          "maxSourceBinGapM": 0,
+          "widthDistribution": null,
+          "attemptedPolygonCount": 0,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 0,
+          "exactRejectionReasons": [],
+          "rejectedPolygonDetails": []
+        },
+        {
+          "temporalPassId": 0,
+          "poseSectionId": 4,
+          "frameCount": 1,
+          "leftObservationCount": 0,
+          "rightObservationCount": 0,
+          "pairedFrames": {
+            "pairedFrameCount": 0,
+            "leftOnlyFrames": 0,
+            "rightOnlyFrames": 0,
+            "totalFrames": 0
+          },
+          "pairedBinCounts": {
+            "left": 0,
+            "right": 0
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 0,
+            "rightSupportedRunCount": 0,
+            "pairedRunCount": 0,
+            "pairedRunOverlaps": []
+          },
+          "longitudinalCoverageM": {
+            "left": 0,
+            "right": 0,
+            "paired": 0
+          },
+          "maxSourceBinGapM": 0,
+          "widthDistribution": null,
+          "attemptedPolygonCount": 0,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 0,
+          "exactRejectionReasons": [],
+          "rejectedPolygonDetails": []
+        },
+        {
+          "temporalPassId": 0,
+          "poseSectionId": 5,
+          "frameCount": 1,
+          "leftObservationCount": 0,
+          "rightObservationCount": 0,
+          "pairedFrames": {
+            "pairedFrameCount": 0,
+            "leftOnlyFrames": 0,
+            "rightOnlyFrames": 0,
+            "totalFrames": 0
+          },
+          "pairedBinCounts": {
+            "left": 0,
+            "right": 0
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 0,
+            "rightSupportedRunCount": 0,
+            "pairedRunCount": 0,
+            "pairedRunOverlaps": []
+          },
+          "longitudinalCoverageM": {
+            "left": 0,
+            "right": 0,
+            "paired": 0
+          },
+          "maxSourceBinGapM": 0,
+          "widthDistribution": null,
+          "attemptedPolygonCount": 0,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 0,
+          "exactRejectionReasons": [],
+          "rejectedPolygonDetails": []
+        },
+        {
+          "temporalPassId": 0,
+          "poseSectionId": 6,
+          "frameCount": 2,
+          "leftObservationCount": 10,
+          "rightObservationCount": 38,
+          "pairedFrames": {
+            "pairedFrameCount": 2,
+            "leftOnlyFrames": 0,
+            "rightOnlyFrames": 0,
+            "totalFrames": 2
+          },
+          "pairedBinCounts": {
+            "left": 1,
+            "right": 1
+          },
+          "supportedRuns": {
+            "leftSupportedRunCount": 0,
+            "rightSupportedRunCount": 0,
+            "pairedRunCount": 0,
+            "pairedRunOverlaps": []
+          },
+          "longitudinalCoverageM": {
+            "left": 0,
+            "right": 0,
+            "paired": 0
+          },
+          "maxSourceBinGapM": 0,
+          "widthDistribution": null,
+          "attemptedPolygonCount": 0,
+          "acceptedPolygonCount": 0,
+          "rejectedPolygonCount": 0,
+          "exactRejectionReasons": [],
+          "rejectedPolygonDetails": []
+        }
+      ],
+      "recoverability": {
+        "recoverableWithCurrentEvidence": false,
+        "missingEvidence": [
+          "paired longitudinal coverage >= 20 m",
+          "sufficient paired L/R frames per section",
+          "continuous pose section without GPS outliers"
+        ],
+        "recoverabilityHint": "none"
+      }
+    }
+  ]
+}

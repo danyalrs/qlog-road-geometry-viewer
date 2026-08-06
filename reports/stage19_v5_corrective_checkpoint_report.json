@@ -1,0 +1,112 @@
+{
+  "reportId": "2026-07-27-stage19-v5-corrective-checkpoint",
+  "generatedAt": "2026-07-27T09:35:00.000Z",
+  "status": "STAGE 19 IMPLEMENTATION READY FOR FINAL VALIDATION",
+  "rollbackCheckpoint": "checkpoints/stage19-implementation-pre-v5.json",
+  "postCheckpoint": "checkpoints/stage19-implementation-2026-07-27-stage19-v5.json",
+  "implementationCheckpoint": "2026-07-27-stage19-v5",
+  "deploymentAuthorized": false,
+  "productionLaneCountImplemented": false,
+  "hdMapSystemComplete": false,
+  "preservation": {
+    "v0": { "approved": false, "preservation": "checkpoint-only", "immutableRun": false },
+    "v1": { "approved": false, "preservation": "immutable-run", "path": "stage19_bundle/runs/2026-07-27-stage19-v1" },
+    "v2": { "approved": false, "preservation": "immutable-run-superseded", "path": "stage19_bundle/runs/2026-07-27-stage19-v2" },
+    "v3": { "approved": false, "preservation": "immutable-run-superseded", "path": "stage19_bundle/runs/2026-07-27-stage19-v3" },
+    "v4": { "approved": false, "preservation": "immutable-run-superseded", "path": "stage19_bundle/runs/2026-07-27-stage19-v4" },
+    "v5": { "approved": false, "preservation": "current-implementation", "path": "stage19_bundle/runs/2026-07-27-stage19-v5" }
+  },
+  "v4PartialRequirementsClosed": {
+    "D1_p3ThroughCompleteBundle": "VERIFIED",
+    "D2_samePassRepeatedEvidenceFullBundle": "VERIFIED",
+    "D6_genuineRejectedNonOverflowPartition": "VERIFIED",
+    "D3_fencingPostImmutablePrePointerTrace": "VERIFIED"
+  },
+  "changedFiles": [
+    "lib/stage19_partition_config_overlay.js",
+    "lib/stage19_partition_production.js",
+    "lib/stage19_bundle_builder.js",
+    "lib/stage19_interval_evidence.js",
+    "lib/stage19_quality_gates.js",
+    "lib/stage19_version.js",
+    "tests/stage19_partition_matrix.test.js",
+    "tests/stage19_conflict_bundle.test.js",
+    "tests/stage19_publication_fencing.test.js",
+    "tests/stage19_api.test.js",
+    "tests/stage19_api_http.test.js",
+    "tests/stage19_production_v2.test.js",
+    "tests/stage19_dataset_sensitivity.test.js",
+    "checkpoints/stage19-implementation-pre-v5.json",
+    "checkpoints/stage19-implementation-2026-07-27-stage19-v5.json",
+    "reports/stage19_v5_corrective_checkpoint_report.json",
+    "audit_stage19_dataset_sensitivity.json",
+    "reports/stage19_dataset_sensitivity.md",
+    "reports/stage19_p3_production_audit.json",
+    "reports/stage19_bev_production_audit.json",
+    "stage19_bundle/current.json",
+    "stage19_bundle/runs/2026-07-27-stage19-v5/"
+  ],
+  "protectedHashComparison": {
+    "immutableProtectedFiles": { "unchanged": 28, "changed": 0, "total": 28 },
+    "expectedVersionFiles": {
+      "lib/stage19_version.js": {
+        "changedIntentionally": true,
+        "preV5": "74962ee9708cacbfbb346d1dccf9341ac02a26ea6992156bb35ab0d1e827821b",
+        "v5": "23a792d02ebed38bf6fc52fddb96e8f03b2e4993592ab0dcc02dbf53236d6a16"
+      }
+    }
+  },
+  "newAssertions": {
+    "partitionMatrix": [
+      "rejected non-overflow open_cap_exceeded via maxClosureSubsetsPerState overlay",
+      "rejected partition failed status through buildStage19Bundle",
+      "P3 selected output through buildStage19Bundle with catalog members and production audit",
+      "applyBranchSelection bypass fails qualityGatesFailed missing_apply_branch_selection"
+    ],
+    "conflictBundle": [
+      "same-pass evidence pair rejected; quality gates block publication",
+      "self-pair cross_pass_self_pair quality gate rejection",
+      "repeated evidence unit cross_pass_same_evidence_unit rejection",
+      "duplicated provenance duplicate_feature_pair_id semantic rejection",
+      "invalid evidence cannot contaminate other interval when publication blocked"
+    ],
+    "fencing": [
+      "post-immutable pre-pointer trace: complete run, no current.json, stale token rejected"
+    ]
+  },
+  "generatedBundleRecords": {
+    "runId": "2026-07-27-stage19-v5",
+    "manifestSha256": "72e16122fae6eecc8d12a4a4f869b949dc2aba53f7cb3be7868efab902ab35f6",
+    "catalogMembers": 5809,
+    "manifestFiles": 18,
+    "assessmentStatus": "insufficient_evidence × 5",
+    "promotionDecisions": "hold × 5",
+    "crossPassConflicts": 0,
+    "conflictEvidenceAvailable": false,
+    "p3Stats": "0/0/0",
+    "partitionFailures": 0,
+    "overflowPartitions": 0
+  },
+  "validation": {
+    "npmTest": { "pass": 432, "fail": 0, "skipped": 0 },
+    "publicationRepeat30": { "pass": 30, "fail": 0 },
+    "stage19Evidence": { "exitCode": 0, "allPass": true },
+    "independentReview": { "exitCode": 0, "independentReviewPass": true },
+    "v11GeometryCompare": { "segments": 92, "differences": 0, "allPass": true },
+    "fsResidue": "none",
+    "liveApi": {
+      "implementationCheckpoint": "2026-07-27-stage19-v5",
+      "insufficientEvidenceIntervalCount": 5,
+      "singletonChainCount": 5809,
+      "p3Stats": "0/0/0",
+      "productionLaneCountImplemented": false,
+      "hdMapSystemComplete": false
+    },
+    "browserPanel": {
+      "checkpoint": "2026-07-27-stage19-v5",
+      "promotionDecisions": "hold × 5",
+      "conflictEvidenceAvailable": false
+    }
+  },
+  "currentJson": { "runId": "2026-07-27-stage19-v5" }
+}

@@ -1,0 +1,76 @@
+{
+  "reportId": "2026-07-27-stage19-v3-corrective-checkpoint",
+  "generatedAt": "2026-07-27T07:30:00.000Z",
+  "status": "STAGE 19 IMPLEMENTATION READY FOR FINAL VALIDATION",
+  "rollbackCheckpoint": "checkpoints/stage19-implementation-pre-v3.json",
+  "postCheckpoint": "checkpoints/stage19-implementation-2026-07-27-stage19-v3.json",
+  "implementationCheckpoint": "2026-07-27-stage19-v3",
+  "deploymentAuthorized": false,
+  "productionLaneCountImplemented": false,
+  "hdMapSystemComplete": false,
+  "preservation": {
+    "v0": { "approved": false, "preservation": "checkpoint-only", "immutableRun": false, "note": "checkpoints/stage19-implementation-pre-v0.json only; no runs/2026-07-27-stage19-v0" },
+    "v1": { "approved": false, "preservation": "immutable-run-preserved", "path": "stage19_bundle/runs/2026-07-27-stage19-v1" },
+    "v2": { "approved": false, "preservation": "superseded-validation-checkpoint-immutable-run-preserved", "path": "stage19_bundle/runs/2026-07-27-stage19-v2" },
+    "v3": { "approved": false, "preservation": "current-implementation", "path": "stage19_bundle/runs/2026-07-27-stage19-v3" }
+  },
+  "protectedHashComparison": {
+    "immutableProtectedFiles": { "unchanged": 28, "changed": 0, "total": 28 },
+    "expectedVersionFiles": {
+      "lib/stage19_version.js": { "changedIntentionally": true, "preV3": "02d9f33e57b1e3e1fd33503ce1defb4bd4975a7f49e0e3487dff378d3663377d", "v3": "8cfa27e24072652de33136484ece05b79d60774e7032ba10c4d9f49dffbfe9ed" }
+    },
+    "v2FalseClaimCorrected": "28/29 immutable unchanged; lib/stage19_version.js changed intentionally for v3 (not counted as protected mismatch)"
+  },
+  "pathValidation": {
+    "module": "lib/stage19_path_validation.js",
+    "rules": ["raw traversal", "URL-encoded traversal", "double-encoded traversal", "mixed slash", "Windows separators", "absolute POSIX", "Windows drive", "UNC", "encoded separators", "null bytes", "bounded decode max 2", "malformed percent encoding", "resolve inside run directory"],
+    "httpTests": "tests/stage19_api_http.test.js — 11/11 pass including %2e%2e/secret, %252e%252e%252fsecret, payloads%2f..%2f..%2fsecret, %00, %25"
+  },
+  "partitionMatrix": "tests/stage19_partition_matrix.test.js — production entry, real 5809 singletons, overflow, P3/applyBranchSelection failures, deterministic rerun, bundle quality gate on stub",
+  "conflictMatrix": "tests/stage19_conflict_bundle.test.js — real bundle unavailable evidence, 5 vs 50, 359 vs 1, same-pass/EU rejection, quality gates, evidence available vs unavailable distinction",
+  "overlappingPublication": "tests/stage19_publication_overlap.test.js — 9 tests: concurrent writers, quarantine+reader drain, rerun, child process, stale fencing, failed pub cleanup, crash-after-rename recovery, concurrent read during pointer update, expired lease staging delete",
+  "legacyResidue": "reports/stage19_legacy_publication_classification_v3.json — 4 timestamp dirs + 3 perf-run dirs archived to stage19_bundle/legacy_archive/",
+  "v11Comparison": {
+    "report": "reports/stage19_v11_geometry_compare_v3.json",
+    "segmentCount": 92,
+    "geometryDifferenceCount": 0,
+    "flaggedSegments": "25/25",
+    "zeroPolygonSegments": "13/13",
+    "processingVersion": "2026-07-24-fusion-v11",
+    "spotSegments": { "2": 7, "5": 9, "6": 2, "54": 3, "58": 6, "99": 3 }
+  },
+  "browserValidation": {
+    "screenshots": [
+      "reports/stage19_browser_validation_1366x768.png",
+      "reports/stage19_browser_validation_1920x1080.png"
+    ],
+    "apiVerified": true,
+    "currentRunId": "2026-07-27-stage19-v3",
+    "promotionHoldCount": 5
+  },
+  "validationCommands": {
+    "npmTest": { "pass": 408, "fail": 0, "durationMs": 103391 },
+    "stage19Evidence": { "allPass": true },
+    "independentReview": { "independentReviewPass": true },
+    "stage19Audit": { "runId": "2026-07-27-stage19-v3", "exitCode": 0, "durationSec": 23.6 },
+    "v11Compare": { "allPass": true, "durationSec": 5.4 }
+  },
+  "publicationState": {
+    "currentJson": { "runId": "2026-07-27-stage19-v3" },
+    "stagingParentRemoved": true,
+    "realData": {
+      "singletonChains": 5809,
+      "multiObservationChains": 0,
+      "crossPassCandidates": 0,
+      "conflicts": 0,
+      "conflictEvidenceAvailable": false,
+      "insufficientEvidenceIntervals": 5,
+      "p3EligibleExecutedSelected": "0/0/0"
+    }
+  },
+  "boundaries": {
+    "stage19Spec": "Approved — Revision 37 (lib/stage19_spec/ byte-identical)",
+    "v11": "Frozen — 2026-07-24-fusion-v11",
+    "bevEvidence": "Representative audit artifacts only"
+  }
+}

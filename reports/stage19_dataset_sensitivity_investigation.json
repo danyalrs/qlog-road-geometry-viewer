@@ -1,0 +1,617 @@
+{
+  "schemaVersion": "stage19_dataset_sensitivity_investigation_v1",
+  "generatedAt": "2026-07-28T02:20:03.419Z",
+  "implementationCheckpoint": "2026-07-27-stage19-v5",
+  "readOnly": true,
+  "objective": "Investigate why real dataset yields 5809 singleton chains and zero cross-pass/P3",
+  "baselineVerified": {
+    "observations": 5809,
+    "singletonChains": 5809,
+    "multiObservationChains": 0,
+    "p3": "0/0/0",
+    "crossPassCandidates": 0,
+    "assessmentsInsufficient": 5
+  },
+  "singletonFormation": {
+    "failureCounts": {
+      "evidence_unit_identity": {
+        "count": 226,
+        "pct": 3.89
+      },
+      "spatial_distance": {
+        "count": 4728,
+        "pct": 81.39
+      },
+      "temporal_gap": {
+        "count": 164,
+        "pct": 2.82
+      },
+      "chunk_boundary": {
+        "count": 683,
+        "pct": 11.76
+      },
+      "other_eligibility": {
+        "count": 8,
+        "pct": 0.14
+      }
+    },
+    "pairFailureDetailInMultiObsUnits": {
+      "spatial_distance": 4248,
+      "chunk_boundary": 607,
+      "temporal_gap": 147,
+      "other_eligibility": 8
+    },
+    "multiObsPartitionUnits": 573
+  },
+  "nearMiss": {
+    "distributions": {
+      "temporalSeparationS": {
+        "n": 5010,
+        "min": 1.956587818,
+        "p25": 1.998011601,
+        "median": 2.000969221,
+        "p75": 2.012125195,
+        "max": 141.870513753
+      },
+      "spatialSeparationM": {
+        "n": 5010,
+        "min": 0.218,
+        "p25": 19.297,
+        "median": 32.984,
+        "p75": 43.542,
+        "max": 877.449
+      },
+      "headingDiffDeg": {
+        "n": 5010,
+        "min": 0,
+        "p25": 0.54,
+        "median": 1.47,
+        "p75": 3.88,
+        "max": 85.64
+      },
+      "routeSGapM": {
+        "n": 5010,
+        "min": 0,
+        "p25": 15.289,
+        "median": 27.234,
+        "p75": 38.195,
+        "max": 97.588
+      }
+    },
+    "singleConditionFailureCounts": {
+      "spatial_distance": 4084,
+      "route_s_gap": 4,
+      "heading_difference": 0,
+      "lateral_offset_delta": 5
+    },
+    "thresholds": {
+      "maxSpatialJumpM": 12,
+      "maxConsecutiveRouteSGapM": 50,
+      "maxLocalHeadingDeltaDeg": 30,
+      "maxLateralOffsetDeltaM": 2
+    }
+  },
+  "approvedSensitivity": {
+    "note": "Revision 37 authorizes baseline recording only; rows do not mutate config",
+    "table": {
+      "schemaVersion": "stage19_sensitivity_v0",
+      "authorityNote": "Revision 37 authorizes baseline config constants only; no alternate parameter ranges are defined.",
+      "empiricalLimitation": "Dataset has 0 cross-pass candidates and 0 multi-observation chains; sensitivity rows record baseline outcomes only.",
+      "baseline": {
+        "crossPassCount": 0,
+        "conflictCount": 0,
+        "insufficientCount": 0,
+        "assessmentStatusCounts": {
+          "insufficient_evidence": 5
+        },
+        "partitionFailed": 0,
+        "multiObservationChains": 0
+      },
+      "parameterCount": 7,
+      "rowCount": 7,
+      "rows": [
+        {
+          "parameter": "maxCrossPassHeadingDiffDeg",
+          "value": 10,
+          "authoritySource": "lib/stage19_spec/config.js#maxCrossPassHeadingDiffDeg",
+          "crossPassCount": 0,
+          "conflictCount": 0,
+          "insufficientCount": 0,
+          "partitionFailed": 0,
+          "multiObservationChains": 0,
+          "assessmentStatusCounts": {
+            "insufficient_evidence": 5
+          },
+          "deltaFromBaseline": {
+            "crossPassCount": 0,
+            "conflictCount": 0,
+            "insufficientCount": 0,
+            "partitionFailed": 0
+          }
+        },
+        {
+          "parameter": "minCrossPassTrajectoryOverlapM",
+          "value": 5,
+          "authoritySource": "lib/stage19_spec/config.js#minCrossPassTrajectoryOverlapM",
+          "crossPassCount": 0,
+          "conflictCount": 0,
+          "insufficientCount": 0,
+          "partitionFailed": 0,
+          "multiObservationChains": 0,
+          "assessmentStatusCounts": {
+            "insufficient_evidence": 5
+          },
+          "deltaFromBaseline": {
+            "crossPassCount": 0,
+            "conflictCount": 0,
+            "insufficientCount": 0,
+            "partitionFailed": 0
+          }
+        },
+        {
+          "parameter": "minHeadingResultant",
+          "value": 1.5,
+          "authoritySource": "lib/stage19_spec/config.js#minHeadingResultant",
+          "crossPassCount": 0,
+          "conflictCount": 0,
+          "insufficientCount": 0,
+          "partitionFailed": 0,
+          "multiObservationChains": 0,
+          "assessmentStatusCounts": {
+            "insufficient_evidence": 5
+          },
+          "deltaFromBaseline": {
+            "crossPassCount": 0,
+            "conflictCount": 0,
+            "insufficientCount": 0,
+            "partitionFailed": 0
+          }
+        },
+        {
+          "parameter": "maxLocalHeadingDeltaDeg",
+          "value": 30,
+          "authoritySource": "lib/stage19_spec/config.js#maxLocalHeadingDeltaDeg",
+          "crossPassCount": 0,
+          "conflictCount": 0,
+          "insufficientCount": 0,
+          "partitionFailed": 0,
+          "multiObservationChains": 0,
+          "assessmentStatusCounts": {
+            "insufficient_evidence": 5
+          },
+          "deltaFromBaseline": {
+            "crossPassCount": 0,
+            "conflictCount": 0,
+            "insufficientCount": 0,
+            "partitionFailed": 0
+          }
+        },
+        {
+          "parameter": "minCorroboratingEvidenceUnits",
+          "value": 2,
+          "authoritySource": "lib/stage19_spec/config.js#minCorroboratingEvidenceUnits",
+          "crossPassCount": 0,
+          "conflictCount": 0,
+          "insufficientCount": 0,
+          "partitionFailed": 0,
+          "multiObservationChains": 0,
+          "assessmentStatusCounts": {
+            "insufficient_evidence": 5
+          },
+          "deltaFromBaseline": {
+            "crossPassCount": 0,
+            "conflictCount": 0,
+            "insufficientCount": 0,
+            "partitionFailed": 0
+          }
+        },
+        {
+          "parameter": "minP3MatchCount",
+          "value": 2,
+          "authoritySource": "lib/stage19_spec/config.js#minP3MatchCount",
+          "crossPassCount": 0,
+          "conflictCount": 0,
+          "insufficientCount": 0,
+          "partitionFailed": 0,
+          "multiObservationChains": 0,
+          "assessmentStatusCounts": {
+            "insufficient_evidence": 5
+          },
+          "deltaFromBaseline": {
+            "crossPassCount": 0,
+            "conflictCount": 0,
+            "insufficientCount": 0,
+            "partitionFailed": 0
+          }
+        },
+        {
+          "parameter": "B_partition",
+          "value": 256,
+          "authoritySource": "lib/stage19_spec/config.js#B_partition",
+          "crossPassCount": 0,
+          "conflictCount": 0,
+          "insufficientCount": 0,
+          "partitionFailed": 0,
+          "multiObservationChains": 0,
+          "assessmentStatusCounts": {
+            "insufficient_evidence": 5
+          },
+          "deltaFromBaseline": {
+            "crossPassCount": 0,
+            "conflictCount": 0,
+            "insufficientCount": 0,
+            "partitionFailed": 0
+          }
+        }
+      ]
+    }
+  },
+  "experimentalSensitivity": {
+    "note": "EXPERIMENTAL read-only overlays; not approved normative sensitivity ranges",
+    "rows": [
+      {
+        "variation": "baseline_config",
+        "experimental": false,
+        "overlay": null,
+        "singletonChains": 5809,
+        "multiObservationChains": 0,
+        "nonTrivialPartitions": -5809,
+        "p3Eligible": 0,
+        "p3Executed": 0,
+        "p3Selected": 0,
+        "crossPassCandidates": 0,
+        "conflicts": 0,
+        "validation": "experimental_read_only"
+      },
+      {
+        "variation": "spatial_jump_25m",
+        "experimental": true,
+        "overlay": {
+          "maxSpatialJumpM": 25
+        },
+        "singletonChains": 5809,
+        "multiObservationChains": 0,
+        "nonTrivialPartitions": -5809,
+        "p3Eligible": 0,
+        "p3Executed": 0,
+        "p3Selected": 0,
+        "crossPassCandidates": 0,
+        "conflicts": 0,
+        "validation": "experimental_read_only"
+      },
+      {
+        "variation": "spatial_jump_50m",
+        "experimental": true,
+        "overlay": {
+          "maxSpatialJumpM": 50
+        },
+        "singletonChains": 5793,
+        "multiObservationChains": 7,
+        "nonTrivialPartitions": -5786,
+        "p3Eligible": 7,
+        "p3Executed": 7,
+        "p3Selected": 0,
+        "crossPassCandidates": 0,
+        "conflicts": 0,
+        "validation": "experimental_read_only"
+      },
+      {
+        "variation": "route_s_gap_100m",
+        "experimental": true,
+        "overlay": {
+          "maxConsecutiveRouteSGapM": 100
+        },
+        "singletonChains": 5809,
+        "multiObservationChains": 0,
+        "nonTrivialPartitions": -5809,
+        "p3Eligible": 0,
+        "p3Executed": 0,
+        "p3Selected": 0,
+        "crossPassCandidates": 0,
+        "conflicts": 0,
+        "validation": "experimental_read_only"
+      },
+      {
+        "variation": "heading_tol_45deg",
+        "experimental": true,
+        "overlay": {
+          "maxLocalHeadingDeltaDeg": 45
+        },
+        "singletonChains": 5809,
+        "multiObservationChains": 0,
+        "nonTrivialPartitions": -5809,
+        "p3Eligible": 0,
+        "p3Executed": 0,
+        "p3Selected": 0,
+        "crossPassCandidates": 0,
+        "conflicts": 0,
+        "validation": "experimental_read_only"
+      },
+      {
+        "variation": "lateral_tol_5m",
+        "experimental": true,
+        "overlay": {
+          "maxLateralOffsetDeltaM": 5
+        },
+        "singletonChains": 5809,
+        "multiObservationChains": 0,
+        "nonTrivialPartitions": -5809,
+        "p3Eligible": 0,
+        "p3Executed": 0,
+        "p3Selected": 0,
+        "crossPassCandidates": 0,
+        "conflicts": 0,
+        "validation": "experimental_read_only"
+      },
+      {
+        "variation": "combined_relaxed_geometry",
+        "experimental": true,
+        "overlay": {
+          "maxSpatialJumpM": 50,
+          "maxConsecutiveRouteSGapM": 100,
+          "maxLocalHeadingDeltaDeg": 45,
+          "maxLateralOffsetDeltaM": 5
+        },
+        "singletonChains": 5793,
+        "multiObservationChains": 7,
+        "nonTrivialPartitions": -5786,
+        "p3Eligible": 7,
+        "p3Executed": 7,
+        "p3Selected": 0,
+        "crossPassCandidates": 0,
+        "conflicts": 0,
+        "validation": "experimental_read_only"
+      }
+    ]
+  },
+  "dataAlignment": {
+    "stage16TotalObservations": 11044,
+    "stage16Projected": 5809,
+    "stage16Rejected": 5235,
+    "stage19Matches": 5809,
+    "tracksTotal": 742,
+    "tracksMultiObservation": 573,
+    "maxObservationsPerTrack": 87,
+    "supportedRuns": 878,
+    "supportedRunsMissingTemporalPassId": 878,
+    "gaps": 136,
+    "acceptedIntervals": 5,
+    "crossPassBlocker": "supportedRuns lack temporalPassId/chunkId; parentTrackId embeds pass so no multi-pass groups form",
+    "parentsWithTwoPassesOnTracks": 0,
+    "algorithmicVsAbsence": {
+      "chainsBlockedByGeometry": "573 multi-obs partition units produce 0 static links under Rev37 thresholds",
+      "crossPassBlockedBySchema": "878 runs missing pass metadata required by buildCrossPassCandidates grouping",
+      "notDatasetAbsenceOfTracks": "742 tracks with up to 87 observations exist upstream of partition"
+    }
+  },
+  "segmentTraces": {
+    "0": {
+      "totalObservations": 75,
+      "projectedObservations": 75,
+      "rejectedObservations": 0,
+      "stage19Matches": 75,
+      "partitionUnits": 11,
+      "multiObsUnits": 8,
+      "nearestFailedLink": {
+        "spatialM": 2.56,
+        "reason": "stage17_gap",
+        "unitSize": 3
+      },
+      "chunkIds": [
+        0
+      ],
+      "temporalPasses": [
+        0
+      ]
+    },
+    "2": {
+      "totalObservations": 51,
+      "projectedObservations": 51,
+      "rejectedObservations": 0,
+      "stage19Matches": 51,
+      "partitionUnits": 11,
+      "multiObsUnits": 8,
+      "nearestFailedLink": {
+        "spatialM": 4.67,
+        "reason": "stage17_gap",
+        "unitSize": 13
+      },
+      "chunkIds": [
+        0
+      ],
+      "temporalPasses": [
+        0
+      ]
+    },
+    "6": {
+      "totalObservations": 1,
+      "projectedObservations": 1,
+      "rejectedObservations": 0,
+      "stage19Matches": 1,
+      "partitionUnits": 1,
+      "multiObsUnits": 0,
+      "nearestFailedLink": null,
+      "chunkIds": [
+        0
+      ],
+      "temporalPasses": [
+        0
+      ]
+    },
+    "10": {
+      "totalObservations": 56,
+      "projectedObservations": 56,
+      "rejectedObservations": 0,
+      "stage19Matches": 56,
+      "partitionUnits": 10,
+      "multiObsUnits": 6,
+      "nearestFailedLink": {
+        "spatialM": 0.34,
+        "reason": "stage17_gap",
+        "unitSize": 7
+      },
+      "chunkIds": [
+        0
+      ],
+      "temporalPasses": [
+        0
+      ]
+    },
+    "20": {
+      "totalObservations": 106,
+      "projectedObservations": 106,
+      "rejectedObservations": 0,
+      "stage19Matches": 106,
+      "partitionUnits": 7,
+      "multiObsUnits": 7,
+      "nearestFailedLink": {
+        "spatialM": 0.87,
+        "reason": "stage17_gap",
+        "unitSize": 25
+      },
+      "chunkIds": [
+        0
+      ],
+      "temporalPasses": [
+        0
+      ]
+    },
+    "30": {
+      "totalObservations": 85,
+      "projectedObservations": 85,
+      "rejectedObservations": 0,
+      "stage19Matches": 85,
+      "partitionUnits": 4,
+      "multiObsUnits": 4,
+      "nearestFailedLink": {
+        "spatialM": 9.6,
+        "reason": "stage17_gap",
+        "unitSize": 11
+      },
+      "chunkIds": [
+        0
+      ],
+      "temporalPasses": [
+        0
+      ]
+    },
+    "40": {
+      "totalObservations": 87,
+      "projectedObservations": 87,
+      "rejectedObservations": 0,
+      "stage19Matches": 87,
+      "partitionUnits": 3,
+      "multiObsUnits": 3,
+      "nearestFailedLink": {
+        "spatialM": 2.5,
+        "reason": "stage17_gap",
+        "unitSize": 29
+      },
+      "chunkIds": [
+        0
+      ],
+      "temporalPasses": [
+        0
+      ]
+    },
+    "54": {
+      "totalObservations": 17,
+      "projectedObservations": 17,
+      "rejectedObservations": 0,
+      "stage19Matches": 17,
+      "partitionUnits": 6,
+      "multiObsUnits": 5,
+      "nearestFailedLink": {
+        "spatialM": 0.5,
+        "reason": "stage17_gap",
+        "unitSize": 5
+      },
+      "chunkIds": [
+        0
+      ],
+      "temporalPasses": [
+        0
+      ]
+    },
+    "58": {
+      "totalObservations": 29,
+      "projectedObservations": 29,
+      "rejectedObservations": 0,
+      "stage19Matches": 29,
+      "partitionUnits": 9,
+      "multiObsUnits": 6,
+      "nearestFailedLink": {
+        "spatialM": 5.46,
+        "reason": "stage17_gap",
+        "unitSize": 5
+      },
+      "chunkIds": [
+        0
+      ],
+      "temporalPasses": [
+        0
+      ]
+    },
+    "99": {
+      "totalObservations": 26,
+      "projectedObservations": 26,
+      "rejectedObservations": 0,
+      "stage19Matches": 26,
+      "partitionUnits": 11,
+      "multiObsUnits": 5,
+      "nearestFailedLink": {
+        "spatialM": 2.75,
+        "reason": "stage17_gap",
+        "unitSize": 4
+      },
+      "chunkIds": [
+        0
+      ],
+      "temporalPasses": [
+        0
+      ]
+    }
+  },
+  "auditTruthfulness": {
+    "defaultConfigSingletonChains5809": true,
+    "sensitivityLabeledExperimental": true,
+    "fixtureP3NotClaimedAsRealData": true,
+    "zeroConflictsNotAgreement": true,
+    "productionLaneCountDisabled": true,
+    "hdMapSystemIncomplete": true,
+    "deploymentAuthorized": false
+  },
+  "recommendations": [
+    {
+      "rank": 1,
+      "item": "Fix supportedRuns metadata (temporalPassId, chunkId, poseSectionId) for cross-pass eligibility",
+      "risk": "medium",
+      "expectedValue": "high"
+    },
+    {
+      "rank": 2,
+      "item": "Reconcile Stage 17 track continuity with Stage 19 static edge geometry (spatial jump dominates)",
+      "risk": "high",
+      "expectedValue": "high"
+    },
+    {
+      "rank": 3,
+      "item": "Document modelV2 ~0.5 Hz + vehicle motion as structural limit on consecutive spatial jumps",
+      "risk": "low",
+      "expectedValue": "medium"
+    },
+    {
+      "rank": 4,
+      "item": "Evaluate whether route-s gaps reflect chunk/pose boundaries vs true temporal gaps",
+      "risk": "medium",
+      "expectedValue": "medium"
+    },
+    {
+      "rank": 5,
+      "item": "Do not relax Rev37 thresholds without specification amendment",
+      "risk": "high",
+      "expectedValue": "low"
+    }
+  ],
+  "conclusion": "MATCHING AND FILTERING LOGIC IS THE PRIMARY CAUSE"
+}

@@ -1,0 +1,31 @@
+{
+  "dependencies": {
+    "@commaai/log_reader": "^0.9.0",
+    "capnp-ts": "^0.4.0",
+    "express": "^4.22.2",
+    "node-fetch": "^2.7.0",
+    "sharp": "^0.35.3"
+  },
+  "scripts": {
+    "extract-modelv2": "node extract_modelv2.js",
+    "extract-gps": "node extract_gps.js",
+    "extract": "node extract_modelv2.js && node extract_gps.js",
+    "test": "node --expose-gc --test tests",
+    "stage19:evidence": "node --expose-gc scripts/stage19_evidence_runner.js",
+    "stage19:build": "node scripts/build_stage19_deliverable.js",
+    "stage19:audit": "node stage19_dataset_sensitivity_audit.js",
+    "start": "node server.js",
+    "bundle:browser": "node scripts/bundle_segment2_browser_audit_data.js && node scripts/bundle_lane_map_cleanup.js && node scripts/bundle_road_surface_stage1.js && node scripts/sync_segment_local_map_public.js",
+    "b-motion:validate-manifest": "node scripts/stage20_b_motion_manifest_validate.js",
+    "b-motion:review-batches": "node scripts/stage20_b_motion_review_batches.js",
+    "b-motion:review-progress": "node scripts/stage20_b_motion_review_progress.js",
+    "b-motion:review": "node scripts/stage20_b_motion_review_server.js",
+    "b-motion:stage26-review": "node scripts/stage26_b_motion_runtime_review_server.js",
+    "b-motion:stage26": "node scripts/stage26_b_motion_runtime_manual_review.js"
+  },
+  "devDependencies": {
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
+    "puppeteer": "^25.4.0"
+  }
+}

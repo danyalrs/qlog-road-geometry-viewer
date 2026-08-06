@@ -1,0 +1,122 @@
+{
+  "generatedAt": "2026-07-30T08:33:44.430Z",
+  "fieldUsedForStage24Summary": "vectorResidualM (all non-null values in category, regardless of decision reason)",
+  "recalculatedFromRawRecords": {
+    "same_positive": {
+      "count": 3591,
+      "unavailableCount": 0,
+      "min": 0.0022,
+      "p05": 0.0244,
+      "p25": 0.0764,
+      "median": 0.1539,
+      "p75": 0.3216,
+      "p95": 3.0805,
+      "max": 11.7684,
+      "countLe12M": 3591,
+      "countGt12M": 0,
+      "fallbackCount": 0,
+      "fieldUsed": "vectorResidualM"
+    },
+    "same_negative": {
+      "count": 1140,
+      "unavailableCount": 12,
+      "min": 0,
+      "p05": 0.0324,
+      "p25": 0.1414,
+      "median": 0.4293,
+      "p75": 2.7955,
+      "p95": 10.8571,
+      "max": 136.0685,
+      "countLe12M": 1083,
+      "countGt12M": 57,
+      "fallbackCount": 12,
+      "fieldUsed": "vectorResidualM"
+    },
+    "legacy_positive_vector_negative": {
+      "count": 82,
+      "unavailableCount": 0,
+      "min": 12.1484,
+      "p05": 12.9374,
+      "p25": 16.6174,
+      "median": 24.298,
+      "p75": 40.6947,
+      "p95": 121.5214,
+      "max": 126.7199,
+      "countLe12M": 0,
+      "countGt12M": 82,
+      "fallbackCount": 0,
+      "fieldUsed": "vectorResidualM"
+    },
+    "legacy_negative_vector_positive": {
+      "count": 185,
+      "unavailableCount": 0,
+      "min": 0.0026,
+      "p05": 0.0336,
+      "p25": 0.1031,
+      "median": 0.213,
+      "p75": 0.7512,
+      "p95": 4.0966,
+      "max": 10.431,
+      "countLe12M": 185,
+      "countGt12M": 0,
+      "fallbackCount": 0,
+      "fieldUsed": "vectorResidualM"
+    }
+  },
+  "stage24Reported": {
+    "same_positive": {
+      "count": 3591,
+      "min": 0.0022,
+      "max": 11.7684,
+      "median": 0.1539
+    },
+    "same_negative": {
+      "count": 1140,
+      "min": 0,
+      "max": 136.0685,
+      "median": 0.4293
+    },
+    "legacy_positive_vector_negative": {
+      "count": 82,
+      "min": 12.1484,
+      "max": 126.7199,
+      "median": 24.298
+    },
+    "legacy_negative_vector_positive": {
+      "count": 185,
+      "min": 0.0026,
+      "max": 10.431,
+      "median": 0.213
+    }
+  },
+  "numericInconsistencies": [],
+  "sameNegativeMedianExplanation": {
+    "category": "same_negative",
+    "reportedMedianM": 0.4293,
+    "recalculatedMedianM": 0.4293,
+    "apparentInconsistency": "Median vectorResidualM can be <= 12 m while vectorShadowDecision is negative",
+    "cause": "same_negative includes records where vector rejects due to boundary/geometry gates or legacy fallback, not only threshold_reject (residual > 12 m)",
+    "sameNegativeTotal": 1152,
+    "sameNegativeResidualLe12M": 1083,
+    "sameNegativeBoundaryOrFallback": 1122,
+    "fieldsChecked": {
+      "vectorResidualM": "Euclidean pose-compensated anchor residual (correct field)",
+      "lateralResidualM": "Not used in Stage 24 distribution",
+      "legacyScalarResidualM": "Not used in Stage 24 distribution"
+    },
+    "reportingFixRequired": false,
+    "reportingClarificationRequired": true
+  },
+  "thresholdRuleVerification": {
+    "rule": "vectorShadowDecision positive iff geometry available, no boundary gate, and vectorResidualM <= 12 m",
+    "geometryAvailablePositiveCount": 3776,
+    "geometryAvailableNegativeCount": 1222,
+    "positiveWithResidualGt12": 0,
+    "negativeWithResidualLe12ExcludingBoundary": 0,
+    "positiveViolationExamples": [],
+    "negativeViolationExamples": []
+  },
+  "staleDiagnosticsCheck": {
+    "runtimeDiagnosticsRecordCount": 5010
+  }
+}

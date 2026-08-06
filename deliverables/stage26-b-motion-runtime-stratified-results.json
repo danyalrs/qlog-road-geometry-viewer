@@ -1,0 +1,139 @@
+{
+  "generatedAt": "2026-07-30T08:47:20.262Z",
+  "terminology": "Targeted manual evidence review — not general runtime performance",
+  "noCombinedHeadlineAccuracy": true,
+  "strata": {
+    "A": {
+      "stratumId": "A_runtime_only_legacy_positive_vector_negative",
+      "label": "targeted-stratum results — not general runtime performance",
+      "reviewedCount": 0,
+      "resolvedCount": 0,
+      "unresolvedCount": 0,
+      "evidenceAvailableRate": null,
+      "manualPositiveSupport": 0,
+      "manualNegativeSupport": 0,
+      "legacyAgreementCount": 0,
+      "legacyAgreementRate": null,
+      "vectorAgreementCount": 0,
+      "vectorAgreementRate": null,
+      "confidenceDistribution": {
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "identitySwapCount": 0,
+      "geometryIssueCount": 0,
+      "segmentCoverage": 23,
+      "runtimeOnlyResolvedCount": 0,
+      "independentRuntimeValidation": true
+    },
+    "B": {
+      "stratumId": "B_runtime_only_legacy_negative_vector_positive_sample",
+      "label": "targeted-stratum results — not general runtime performance",
+      "reviewedCount": 0,
+      "resolvedCount": 0,
+      "unresolvedCount": 0,
+      "evidenceAvailableRate": null,
+      "manualPositiveSupport": 0,
+      "manualNegativeSupport": 0,
+      "legacyAgreementCount": 0,
+      "legacyAgreementRate": null,
+      "vectorAgreementCount": 0,
+      "vectorAgreementRate": null,
+      "confidenceDistribution": {
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "identitySwapCount": 0,
+      "geometryIssueCount": 0,
+      "segmentCoverage": 28,
+      "runtimeOnlyResolvedCount": 0,
+      "independentRuntimeValidation": true
+    },
+    "C": {
+      "stratumId": "C_runtime_only_fallback_unavailable",
+      "label": "targeted-stratum results — not general runtime performance",
+      "reviewedCount": 12,
+      "resolvedCount": 0,
+      "unresolvedCount": 12,
+      "evidenceAvailableRate": 0,
+      "manualPositiveSupport": 0,
+      "manualNegativeSupport": 0,
+      "legacyAgreementCount": 0,
+      "legacyAgreementRate": 0,
+      "vectorAgreementCount": 0,
+      "vectorAgreementRate": 0,
+      "confidenceDistribution": {
+        "high": 0,
+        "medium": 0,
+        "low": 12
+      },
+      "identitySwapCount": 0,
+      "geometryIssueCount": 12,
+      "segmentCoverage": 1,
+      "runtimeOnlyResolvedCount": 0,
+      "independentRuntimeValidation": true
+    },
+    "D": {
+      "stratumId": "D_development_consistency_checks",
+      "label": "targeted-stratum results — not general runtime performance",
+      "reviewedCount": 0,
+      "resolvedCount": 0,
+      "unresolvedCount": 0,
+      "evidenceAvailableRate": null,
+      "manualPositiveSupport": 0,
+      "manualNegativeSupport": 0,
+      "legacyAgreementCount": 0,
+      "legacyAgreementRate": null,
+      "vectorAgreementCount": 0,
+      "vectorAgreementRate": null,
+      "confidenceDistribution": {
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "identitySwapCount": 0,
+      "geometryIssueCount": 0,
+      "segmentCoverage": 10,
+      "runtimeOnlyResolvedCount": 0,
+      "independentRuntimeValidation": false
+    },
+    "E": {
+      "stratumId": "E_known_damaged_development_indices",
+      "label": "targeted-stratum results — not general runtime performance",
+      "reviewedCount": 0,
+      "resolvedCount": 0,
+      "unresolvedCount": 0,
+      "evidenceAvailableRate": null,
+      "manualPositiveSupport": 0,
+      "manualNegativeSupport": 0,
+      "legacyAgreementCount": 0,
+      "legacyAgreementRate": null,
+      "vectorAgreementCount": 0,
+      "vectorAgreementRate": null,
+      "confidenceDistribution": {
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "identitySwapCount": 0,
+      "geometryIssueCount": 0,
+      "segmentCoverage": 3,
+      "runtimeOnlyResolvedCount": 0,
+      "independentRuntimeValidation": false
+    }
+  },
+  "validationSufficiency": {
+    "minimumRuntimeResolvedTarget": 50,
+    "currentRuntimeOnlyResolved": 0,
+    "regressionRiskReviewed": 0,
+    "regressionRiskTarget": 82,
+    "evidenceIntegrityOk": true,
+    "note": "Meeting numerical minimum does not automatically approve a canary"
+  },
+  "recommendation": {
+    "decision": "continue_manual_review",
+    "rationale": "122 cases await human visual review; 0 independent runtime-only resolved labels (target: 50)"
+  }
+}

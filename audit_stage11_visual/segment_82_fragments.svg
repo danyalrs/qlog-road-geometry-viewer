@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+<rect width="100%" height="100%" fill="#111"/>
+<text x="12" y="24" fill="#fff" font-size="14">Segment 82 — 21 polygons (v10 1)</text>
+<path d="M33.6,716.0 L69.7,699.1 L105.4,679.9 L142.0,655.7 L177.1,634.4 L210.6,615.0 L247.0,594.2 L288.4,568.3 L332.3,540.8 L380.7,513.4 L423.5,487.9 L466.6,463.1 L509.6,436.5 L552.1,411.3 L597.0,387.5 L640.8,362.5 L686.7,338.1 L731.9,307.1 L769.9,286.3 L808.0,262.4 L843.7,241.9 L873.8,225.2 L893.6,213.5 L910.8,204.9 L936.8,191.6 L969.4,175.3 L1015.0,157.6 L1069.4,132.6 L1121.5,105.4 L1166.4,87.6" fill="none" stroke="#888" stroke-width="1.5" stroke-dasharray="4,3"/>
+<path d="M127.0,654.5 L131.4,651.9 L135.7,649.3 L140.1,646.8 L145.4,696.8 L141.4,703.0 L137.1,705.7 L132.7,708.5 Z" fill="#e6194b55" stroke="#e6194b" stroke-width="1.2"/>
+<text x="127.0" y="654.5" fill="#e6194b" font-size="10">f0</text>
+<line x1="140.09870718895263" y1="646.7745950306544" x2="173.30919165805156" y2="626.083015528757" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="156.7" y="636.4" fill="#ff0" font-size="9">gap 15.2m</text>
+<path d="M173.3,626.1 L177.6,622.2 L181.9,618.9 L186.3,616.5 L191.0,667.6 L186.5,669.0 L182.5,674.9 L178.7,681.1 Z" fill="#3cb44b55" stroke="#3cb44b" stroke-width="1.2"/>
+<text x="173.3" y="626.1" fill="#3cb44b" font-size="10">f1</text>
+<line x1="186.2659230681874" y1="616.4696483757833" x2="209.4634196815838" y2="602.2937674657795" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="197.9" y="609.4" fill="#ff0" font-size="9">gap 10.7m</text>
+<path d="M209.5,602.3 L213.9,600.6 L218.3,598.5 L222.7,596.0 L227.4,647.7 L223.1,650.2 L218.7,652.6 L214.3,654.8 Z" fill="#4363d855" stroke="#4363d8" stroke-width="1.2"/>
+<text x="209.5" y="602.3" fill="#4363d8" font-size="10">f2</text>
+<line x1="222.6983711037162" y1="595.991378249515" x2="278.8415836313436" y2="564.1161811586352" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="250.8" y="580.1" fill="#ff0" font-size="9">gap 25.7m</text>
+<path d="M278.8,564.1 L283.2,561.6 L287.6,559.1 L291.9,556.5 L296.3,553.9 L300.7,551.3 L306.1,605.5 L301.7,608.1 L297.3,609.8 L292.8,610.5 L288.5,614.0 L284.2,617.5 Z" fill="#f5823155" stroke="#f58231" stroke-width="1.2"/>
+<text x="278.8" y="564.1" fill="#f58231" font-size="10">f3</text>
+<line x1="300.6563524779002" y1="551.2917602058701" x2="336.9807723147508" y2="527.2542882468313" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="318.8" y="539.3" fill="#ff0" font-size="9">gap 16.7m</text>
+<path d="M337.0,527.3 L341.3,524.6 L345.7,521.9 L350.0,519.2 L354.4,516.5 L359.1,568.9 L354.8,571.3 L350.4,573.8 L346.0,576.5 L341.7,579.2 Z" fill="#911eb455" stroke="#911eb4" stroke-width="1.2"/>
+<text x="337.0" y="527.3" fill="#911eb4" font-size="10">f4</text>
+<line x1="354.3914321176117" y1="516.5126444639164" x2="379.6290073493634" y2="501.58856224047526" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="367.0" y="509.1" fill="#ff0" font-size="9">gap 11.6m</text>
+<path d="M379.6,501.6 L383.9,499.1 L388.3,496.6 L392.7,494.1 L397.1,491.6 L402.5,549.1 L398.2,551.5 L393.8,554.0 L389.4,556.4 L384.8,558.9 Z" fill="#42d4f455" stroke="#42d4f4" stroke-width="1.2"/>
+<text x="379.6" y="501.6" fill="#42d4f4" font-size="10">f5</text>
+<line x1="397.05138014181347" y1="491.5870615415369" x2="429.10008000923693" y2="472.93477609230564" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="413.1" y="482.3" fill="#ff0" font-size="9">gap 14.7m</text>
+<path d="M429.1,472.9 L433.5,470.5 L437.9,468.1 L442.2,465.7 L446.6,463.3 L451.9,521.0 L447.5,523.5 L443.2,525.9 L438.8,528.6 L434.5,531.3 Z" fill="#f032e655" stroke="#f032e6" stroke-width="1.2"/>
+<text x="429.1" y="472.9" fill="#f032e6" font-size="10">f6</text>
+<line x1="446.6116352170113" y1="463.30090454997463" x2="480.0179905509741" y2="444.2492554522546" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="463.3" y="453.8" fill="#ff0" font-size="9">gap 15.3m</text>
+<path d="M480.0,444.2 L484.4,441.8 L488.8,439.4 L494.5,497.5 L490.2,500.0 L485.8,502.5 Z" fill="#bfef4555" stroke="#bfef45" stroke-width="1.2"/>
+<text x="480.0" y="444.2" fill="#bfef45" font-size="10">f7</text>
+<line x1="488.7779764135047" y1="439.44561769852197" x2="545.8114170134339" y2="406.016290385036" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="517.3" y="422.7" fill="#ff0" font-size="9">gap 26.1m</text>
+<path d="M545.8,406.0 L550.1,402.5 L554.4,398.7 L559.0,452.9 L555.2,456.2 L550.8,459.2 Z" fill="#fabed455" stroke="#fabed4" stroke-width="1.2"/>
+<text x="545.8" y="406.0" fill="#fabed4" font-size="10">f8</text>
+<line x1="554.4343385540309" y1="398.6662649984246" x2="595.8226937617858" y2="373.86077741638195" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="575.1" y="386.3" fill="#ff0" font-size="9">gap 19.0m</text>
+<path d="M595.8,373.9 L600.3,373.1 L604.6,370.6 L609.0,368.1 L614.0,422.4 L609.6,425.1 L605.3,427.7 L600.4,427.3 Z" fill="#46999055" stroke="#469990" stroke-width="1.2"/>
+<text x="595.8" y="373.9" fill="#469990" font-size="10">f9</text>
+<line x1="609.0060063237818" y1="368.14406185334565" x2="730.7264653412873" y2="296.52320162807587" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="669.9" y="332.3" fill="#ff0" font-size="9">gap 55.9m</text>
+<path d="M730.7,296.5 L735.6,296.8 L739.9,294.2 L744.3,291.5 L748.6,288.7 L753.5,344.3 L749.2,347.2 L744.8,349.9 L740.5,352.6 L736.6,349.8 Z" fill="#dcbeff55" stroke="#dcbeff" stroke-width="1.2"/>
+<text x="730.7" y="296.5" fill="#dcbeff" font-size="10">f10</text>
+<line x1="748.6295127543298" y1="288.7385659617501" x2="764.4468894782366" y2="278.8791193162416" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="756.5" y="283.8" fill="#ff0" font-size="9">gap 7.3m</text>
+<path d="M764.4,278.9 L768.6,274.1 L772.9,271.8 L777.2,269.5 L782.7,324.2 L778.3,326.3 L773.4,328.8 L769.3,334.2 Z" fill="#9A632455" stroke="#9A6324" stroke-width="1.2"/>
+<text x="764.4" y="278.9" fill="#9A6324" font-size="10">f11</text>
+<line x1="777.2485055678247" y1="269.5490092615843" x2="817.5267984660701" y2="248.5652578820941" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="797.4" y="259.1" fill="#ff0" font-size="9">gap 18.3m</text>
+<path d="M817.5,248.6 L821.9,246.2 L826.3,243.7 L831.3,298.9 L827.0,301.3 L822.6,303.7 Z" fill="#80000055" stroke="#800000" stroke-width="1.2"/>
+<text x="817.5" y="248.6" fill="#800000" font-size="10">f12</text>
+<line x1="826.2818387514852" y1="243.74114385618532" x2="843.0990642816807" y2="234.94283545390022" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="834.7" y="239.3" fill="#ff0" font-size="9">gap 7.7m</text>
+<path d="M843.1,234.9 L847.1,227.8 L851.4,224.6 L855.8,222.2 L861.2,283.0 L856.8,285.4 L852.4,287.8 L848.2,290.2 Z" fill="#aaffc355" stroke="#aaffc3" stroke-width="1.2"/>
+<text x="843.1" y="234.9" fill="#aaffc3" font-size="10">f13</text>
+<line x1="855.7559877113607" y1="222.20707084721687" x2="872.6365169393657" y2="212.59947094042764" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="864.2" y="217.4" fill="#ff0" font-size="9">gap 7.7m</text>
+<path d="M872.6,212.6 L877.0,210.3 L881.3,208.0 L885.7,205.6 L890.1,203.2 L896.0,265.6 L891.7,268.5 L887.3,271.3 L883.0,273.7 L878.3,276.3 Z" fill="#80800055" stroke="#808000" stroke-width="1.2"/>
+<text x="872.6" y="212.6" fill="#808000" font-size="10">f14</text>
+<line x1="890.1081827488093" y1="203.22018984772012" x2="906.4320391521056" y2="194.16131886376593" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="898.3" y="198.7" fill="#ff0" font-size="9">gap 7.4m</text>
+<path d="M906.4,194.2 L910.7,191.3 L915.2,190.0 L920.1,249.3 L915.7,252.0 L911.5,257.6 Z" fill="#ffd8b155" stroke="#ffd8b1" stroke-width="1.2"/>
+<text x="906.4" y="194.2" fill="#ffd8b1" font-size="10">f15</text>
+<line x1="915.2153200724464" y1="189.95058329661083" x2="930.3407765108992" y2="181.3359013472591" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="922.8" y="185.6" fill="#ff0" font-size="9">gap 6.9m</text>
+<path d="M930.3,181.3 L934.6,178.1 L939.2,177.2 L943.7,176.8 L948.1,174.6 L952.7,231.7 L948.3,234.0 L943.7,233.6 L939.3,234.7 L935.2,240.6 Z" fill="#00007555" stroke="#000075" stroke-width="1.2"/>
+<text x="930.3" y="181.3" fill="#000075" font-size="10">f16</text>
+<line x1="948.1121704359183" y1="174.62976926141198" x2="968.1025607430101" y2="158.61614441524387" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="958.1" y="166.6" fill="#ff0" font-size="9">gap 9.3m</text>
+<path d="M968.1,158.6 L973.1,161.2 L977.7,161.7 L982.1,160.0 L985.5,214.5 L981.1,216.7 L976.6,217.6 L972.7,216.0 Z" fill="#a9a9a955" stroke="#a9a9a9" stroke-width="1.2"/>
+<text x="968.1" y="158.6" fill="#a9a9a9" font-size="10">f17</text>
+<line x1="982.0952485555867" y1="159.98985722890768" x2="1014.2913976870997" y2="146.62022052960492" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="998.2" y="153.3" fill="#ff0" font-size="9">gap 14.6m</text>
+<path d="M1014.3,146.6 L1018.7,145.9 L1023.1,144.2 L1027.5,142.4 L1031.6,198.0 L1027.2,200.1 L1022.8,202.1 L1017.9,204.4 Z" fill="#e6194b55" stroke="#e6194b" stroke-width="1.2"/>
+<text x="1014.3" y="146.6" fill="#e6194b" font-size="10">f18</text>
+<line x1="1027.5268331861355" y1="142.36486112584782" x2="1068.8688404122151" y2="125.47361022333598" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="1048.2" y="133.9" fill="#ff0" font-size="9">gap 18.7m</text>
+<path d="M1068.9,125.5 L1073.0,120.4 L1077.3,117.9 L1081.7,115.9 L1086.5,172.5 L1082.0,173.5 L1077.5,174.9 L1072.9,180.2 Z" fill="#3cb44b55" stroke="#3cb44b" stroke-width="1.2"/>
+<text x="1068.9" y="125.5" fill="#3cb44b" font-size="10">f19</text>
+<line x1="1081.7375044571943" y1="115.90016305385564" x2="1138.2937336069099" y2="88.46620170981487" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="1110.0" y="102.2" fill="#ff0" font-size="9">gap 25.6m</text>
+<path d="M1138.3,88.5 L1142.7,86.2 L1147.1,84.0 L1150.7,141.2 L1146.3,143.2 L1141.9,145.2 Z" fill="#4363d855" stroke="#4363d8" stroke-width="1.2"/>
+<text x="1138.3" y="88.5" fill="#4363d8" font-size="10">f20</text>
+</svg>

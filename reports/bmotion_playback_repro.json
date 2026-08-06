@@ -1,0 +1,250 @@
+{
+  "nextProgress": {
+    "generatedAt": "2026-07-28T08:30:14.128Z",
+    "manifestSchemaVersion": "stage20-b-motion-evidence-review-manifest-v1",
+    "reviewsSchemaVersion": "stage20-b-motion-manual-reviews-v1",
+    "totalPairs": 220,
+    "completed": 0,
+    "pending": 220,
+    "positive": 0,
+    "negative": 0,
+    "unresolved": 0,
+    "videoReviewed": 0,
+    "qlogOnlyReviewed": 0,
+    "invalidReviewRecords": 0,
+    "invalidReviewIssues": [],
+    "ruleDerivedPositiveContinuations": 20,
+    "note": "ruleDerivedPositiveContinuations are not manual positives",
+    "approvalGates": {
+      "minReviewedPairs": 200,
+      "minPositive": 30,
+      "minNegative": 80,
+      "maxUnresolvedFraction": 0.2
+    },
+    "remaining": {
+      "reviewedPairs": 200,
+      "positive": 30,
+      "negative": 80
+    },
+    "unresolvedFraction": 0,
+    "thresholdCalibrationBlocked": true,
+    "thresholdCalibrationBlockedReason": "threshold_approval_minimums_not_met",
+    "qlogCoverage": {
+      "qlogFilesInWorkspace": 92,
+      "pairsWithQlogAvailable": 220
+    },
+    "completedPairIds": []
+  },
+  "pairKeys": [
+    "reviewPairId",
+    "observationIdA",
+    "observationIdB",
+    "segmentId",
+    "parentTrackId",
+    "temporalPassIdA",
+    "temporalPassIdB",
+    "chunkIdA",
+    "chunkIdB",
+    "poseSectionIdA",
+    "poseSectionIdB",
+    "logMonoTimeA",
+    "logMonoTimeB",
+    "deltaTimeS",
+    "spatialM",
+    "routeSGapM",
+    "headingDiffDeg",
+    "lateralDeltaM",
+    "speedMps",
+    "expectedMotionM",
+    "poseDisplacementM",
+    "residualAfterPoseM",
+    "residualRouteSAfterSpeedM",
+    "stage17GapIntersection",
+    "rev37StaticEdgePass",
+    "qlogReference",
+    "videoReference",
+    "videoAvailableInWorkspace",
+    "evidenceProvenance",
+    "reviewStatus",
+    "evidenceAvailability"
+  ],
+  "qlogFrameCount": 21,
+  "sampleFrameKeys": [
+    "index",
+    "logMonoTime",
+    "chunkId",
+    "passId",
+    "laneLines",
+    "roadEdges"
+  ],
+  "sampleLane": {
+    "laneIndex": 0,
+    "prob": 0.8413172960281372,
+    "points": [
+      {
+        "east": -2.4627497121392716,
+        "north": 4.354131753250953,
+        "modelX": 0,
+        "modelY": -5.002359390258789
+      },
+      {
+        "east": -2.6196140120996607,
+        "north": 4.250615527055535,
+        "modelX": 0.1875,
+        "modelY": -4.9894843101501465
+      },
+      {
+        "east": -3.112802817618707,
+        "north": 3.9800163202919316,
+        "modelX": 0.75,
+        "modelY": -4.996756076812744
+      },
+      {
+        "east": -3.92755706053798,
+        "north": 3.516240158813985,
+        "modelX": 1.6875,
+        "modelY": -4.994195938110352
+      },
+      {
+        "east": -5.070272180555906,
+        "north": 2.87059415472069,
+        "modelX": 3,
+        "modelY": -4.9947943687438965
+      },
+      {
+        "east": -6.545851747192025,
+        "north": 2.051747799533678,
+        "modelX": 4.6875,
+        "modelY": -5.008511543273926
+      },
+      {
+        "east": -8.337612637530045,
+        "north": 1.0302053979026886,
+        "modelX": 6.75,
+        "modelY": -5.001460552215576
+      },
+      {
+        "east": -10.452879452899873,
+        "north": -0.18108318398277223,
+        "modelX": 9.1875,
+        "modelY": -4.988519191741943
+      },
+      {
+        "east": -12.900152449368772,
+        "north": -1.567089527006143,
+        "modelX": 12,
+        "modelY": -4.986953258514404
+      },
+      {
+        "east": -15.681958533404963,
+        "north": -3.1233460705230884,
+        "modelX": 15.1875,
+        "modelY": -5.001895427703857
+      },
+      {
+        "east": -18.7956229026767,
+        "north": -4.8545818544798705,
+        "modelX": 18.75,
+        "modelY": -5.027912616729736
+      },
+      {
+        "east": -22.23065387157659,
+        "north": -6.779346137545807,
+        "modelX": 22.6875,
+        "modelY": -5.043694019317627
+      },
+      {
+        "east": -25.992392358820595,
+        "north": -8.888196196549284,
+        "modelX": 27,
+        "modelY": -5.060088157653809
+      },
+      {
+        "east": -30.086025518377678,
+        "north": -11.171961163783394,
+        "modelX": 31.6875,
+        "modelY": -5.0876312255859375
+      },
+      {
+        "east": -34.49771780959275,
+        "north": -13.655102220420046,
+        "modelX": 36.75,
+        "modelY": -5.098220348358154
+      },
+      {
+        "east": -39.229008992733846,
+        "north": -16.33489707639363,
+        "modelX": 42.1875,
+        "modelY": -5.094983100891113
+      },
+      {
+        "east": -44.27158591173883,
+        "north": -19.22604335875145,
+        "modelX": 48,
+        "modelY": -5.061033725738525
+      },
+      {
+        "east": -49.654539448207714,
+        "north": -22.277108503851196,
+        "modelX": 54.1875,
+        "modelY": -5.055461883544922
+      },
+      {
+        "east": -55.325024062549666,
+        "north": -25.58152321673609,
+        "modelX": 60.75,
+        "modelY": -4.9709272384643555
+      },
+      {
+        "east": -61.361130413993195,
+        "north": -29.001223520663704,
+        "modelX": 67.6875,
+        "modelY": -4.966048240661621
+      },
+      {
+        "east": -67.67968374693461,
+        "north": -32.68326205466505,
+        "modelX": 75,
+        "modelY": -4.871879577636719
+      },
+      {
+        "east": -74.30343232322676,
+        "north": -36.58741998173184,
+        "modelX": 82.6875,
+        "modelY": -4.734627723693848
+      },
+      {
+        "east": -81.24821602460851,
+        "north": -40.68569245358132,
+        "modelX": 90.75,
+        "modelY": -4.5864667892456055
+      },
+      {
+        "east": -88.53541519357273,
+        "north": -44.94027910922474,
+        "modelX": 99.1875,
+        "modelY": -4.470824718475342
+      },
+      {
+        "east": -96.0741881999017,
+        "north": -49.51178759169566,
+        "modelX": 108,
+        "modelY": -4.203183174133301
+      },
+      {
+        "east": -103.9706634719735,
+        "north": -54.21258325925766,
+        "modelX": 117.1875,
+        "modelY": -3.9991111755371094
+      }
+    ]
+  },
+  "samplePoint": {
+    "east": -2.4627497121392716,
+    "north": 4.354131753250953,
+    "modelX": 0,
+    "modelY": -5.002359390258789
+  },
+  "laneLineCount": 4,
+  "roadEdgeCount": 2
+}

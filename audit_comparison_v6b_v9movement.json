@@ -1,0 +1,971 @@
+{
+  "baselineVersion": "2026-07-23-validate-v6b",
+  "currentVersion": "2026-07-24-pose-v9-movement",
+  "segmentCount": 92,
+  "baselineMultiPass": 21,
+  "currentMultiPass": 2,
+  "baselineMedianMs": 629,
+  "currentMedianMs": 580.5,
+  "failuresBefore": 0,
+  "failuresAfter": 0,
+  "passCountChanges": 19,
+  "improvements": 19,
+  "regressions": 0,
+  "stabilityGroupRegressions": [],
+  "largestPassIncreases": [],
+  "largestPassDecreases": [
+    {
+      "segmentId": 66,
+      "passCountBefore": 6,
+      "passCountAfter": 1,
+      "passDelta": -5,
+      "polygonDelta": -1,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "sharpHeadingChange",
+          "frameId": 79443,
+          "logMonoTime": "3988608557875",
+          "headingDelta": 119.832974590216
+        },
+        {
+          "passId": 1,
+          "reason": "directionReversal",
+          "frameId": 79563,
+          "logMonoTime": "3994604008801",
+          "dot": -0.9698763889048645
+        },
+        {
+          "passId": 2,
+          "reason": "directionReversal",
+          "frameId": 79763,
+          "logMonoTime": "4004597330589",
+          "dot": -0.4112192810934531
+        },
+        {
+          "passId": 3,
+          "reason": "directionReversal",
+          "frameId": 79843,
+          "logMonoTime": "4008594274873",
+          "dot": -0.9666343546624858
+        },
+        {
+          "passId": 4,
+          "reason": "selfIntersection",
+          "frameId": 80163,
+          "logMonoTime": "4024586416526"
+        }
+      ],
+      "splitAfter": [],
+      "suppressedAfter": 3,
+      "changeReason": "passes reduced 6→1; suppressed 3 reversal candidate(s); splits now: none; was: sharpHeadingChange,directionReversal,selfIntersection",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 62,
+      "passCountBefore": 5,
+      "passCountAfter": 1,
+      "passDelta": -4,
+      "polygonDelta": -1,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "sharpHeadingChange",
+          "frameId": 75163,
+          "logMonoTime": "3774746213830",
+          "headingDelta": 101.04833732762262
+        },
+        {
+          "passId": 1,
+          "reason": "sharpHeadingChange",
+          "frameId": 75203,
+          "logMonoTime": "3776746978987",
+          "headingDelta": 104.15790593963851
+        },
+        {
+          "passId": 2,
+          "reason": "sharpHeadingChange",
+          "frameId": 75283,
+          "logMonoTime": "3780746422761",
+          "headingDelta": 101.71903472101138
+        },
+        {
+          "passId": 3,
+          "reason": "sharpHeadingChange",
+          "frameId": 75323,
+          "logMonoTime": "3782747162249",
+          "headingDelta": 98.89957113887777
+        },
+        {
+          "passId": 4,
+          "reason": "directionReversal",
+          "frameId": 75403,
+          "logMonoTime": "3786743365984",
+          "dot": -0.6726923201994339
+        },
+        {
+          "passId": 5,
+          "reason": "directionReversal",
+          "frameId": 75603,
+          "logMonoTime": "3796746353270",
+          "dot": -0.9828148870077986
+        }
+      ],
+      "splitAfter": [],
+      "suppressedAfter": 2,
+      "changeReason": "passes reduced 5→1; suppressed 2 reversal candidate(s); splits now: none; was: sharpHeadingChange,directionReversal",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 60,
+      "passCountBefore": 4,
+      "passCountAfter": 1,
+      "passDelta": -3,
+      "polygonDelta": 1,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "directionReversal",
+          "frameId": 72403,
+          "logMonoTime": "3636737100537",
+          "dot": -0.6941983483630735
+        },
+        {
+          "passId": 1,
+          "reason": "directionReversal",
+          "frameId": 72643,
+          "logMonoTime": "3648744995632",
+          "dot": -0.6061710457288724
+        },
+        {
+          "passId": 2,
+          "reason": "directionReversal",
+          "frameId": 72883,
+          "logMonoTime": "3660751322818",
+          "dot": -0.4321588023434668
+        }
+      ],
+      "splitAfter": [],
+      "suppressedAfter": 4,
+      "changeReason": "passes reduced 4→1; suppressed 4 reversal candidate(s); splits now: none; was: directionReversal",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 65,
+      "passCountBefore": 4,
+      "passCountAfter": 1,
+      "passDelta": -3,
+      "polygonDelta": 0,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "selfIntersection",
+          "frameId": 78483,
+          "logMonoTime": "3940640304491"
+        },
+        {
+          "passId": 1,
+          "reason": "directionReversal",
+          "frameId": 78843,
+          "logMonoTime": "3958624360374",
+          "dot": -0.9538294105421559
+        },
+        {
+          "passId": 2,
+          "reason": "selfIntersection",
+          "frameId": 79163,
+          "logMonoTime": "3974614508033"
+        }
+      ],
+      "splitAfter": [],
+      "suppressedAfter": 1,
+      "changeReason": "passes reduced 4→1; suppressed 1 reversal candidate(s); splits now: none; was: selfIntersection,directionReversal",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 96,
+      "passCountBefore": 4,
+      "passCountAfter": 1,
+      "passDelta": -3,
+      "polygonDelta": 0,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "directionReversal",
+          "frameId": 115403,
+          "logMonoTime": "5786302463799",
+          "dot": -0.7904551878652254
+        },
+        {
+          "passId": 1,
+          "reason": "directionReversal",
+          "frameId": 115483,
+          "logMonoTime": "5790305257668",
+          "dot": -0.8563032956370775
+        },
+        {
+          "passId": 2,
+          "reason": "directionReversal",
+          "frameId": 115643,
+          "logMonoTime": "5798302250687",
+          "dot": -0.8217930745900437
+        }
+      ],
+      "splitAfter": [],
+      "suppressedAfter": 4,
+      "changeReason": "passes reduced 4→1; suppressed 4 reversal candidate(s); splits now: none; was: directionReversal",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 6,
+      "passCountBefore": 3,
+      "passCountAfter": 1,
+      "passDelta": -2,
+      "polygonDelta": -2,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "directionReversal",
+          "frameId": 7643,
+          "logMonoTime": "399588854853",
+          "dot": -0.40957951293365163
+        },
+        {
+          "passId": 1,
+          "reason": "directionReversal",
+          "frameId": 8323,
+          "logMonoTime": "433604820723",
+          "dot": -0.7423947702036361
+        }
+      ],
+      "splitAfter": [],
+      "suppressedAfter": 2,
+      "changeReason": "passes reduced 3→1; suppressed 2 reversal candidate(s); splits now: none; was: directionReversal",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 58,
+      "passCountBefore": 3,
+      "passCountAfter": 1,
+      "passDelta": -2,
+      "polygonDelta": -1,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "directionReversal",
+          "frameId": 69923,
+          "logMonoTime": "3512721948406",
+          "dot": -0.4168717160979863
+        },
+        {
+          "passId": 1,
+          "reason": "directionReversal",
+          "frameId": 70083,
+          "logMonoTime": "3520715669367",
+          "dot": -0.9889733158457044
+        }
+      ],
+      "splitAfter": [],
+      "suppressedAfter": 2,
+      "changeReason": "passes reduced 3→1; suppressed 2 reversal candidate(s); splits now: none; was: directionReversal",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 67,
+      "passCountBefore": 3,
+      "passCountAfter": 1,
+      "passDelta": -2,
+      "polygonDelta": -2,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "directionReversal",
+          "frameId": 80963,
+          "logMonoTime": "4064565555518",
+          "dot": -0.8400895203590071
+        },
+        {
+          "passId": 1,
+          "reason": "sharpHeadingChange",
+          "frameId": 81003,
+          "logMonoTime": "4066566896895",
+          "headingDelta": 179.50387731792281
+        },
+        {
+          "passId": 2,
+          "reason": "sharpHeadingChange",
+          "frameId": 81163,
+          "logMonoTime": "4074565593768",
+          "headingDelta": 115.0804110546137
+        }
+      ],
+      "splitAfter": [],
+      "suppressedAfter": 1,
+      "changeReason": "passes reduced 3→1; suppressed 1 reversal candidate(s); splits now: none; was: directionReversal,sharpHeadingChange",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 2,
+      "passCountBefore": 2,
+      "passCountAfter": 1,
+      "passDelta": -1,
+      "polygonDelta": -1,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "selfIntersection",
+          "frameId": 3123,
+          "logMonoTime": "173712039287"
+        }
+      ],
+      "splitAfter": [],
+      "suppressedAfter": 1,
+      "changeReason": "passes reduced 2→1; suppressed 1 reversal candidate(s); splits now: none; was: selfIntersection",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 5,
+      "passCountBefore": 2,
+      "passCountAfter": 1,
+      "passDelta": -1,
+      "polygonDelta": -2,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "directionReversal",
+          "frameId": 6523,
+          "logMonoTime": "343584650292",
+          "dot": -0.842450999030999
+        }
+      ],
+      "splitAfter": [],
+      "suppressedAfter": 1,
+      "changeReason": "passes reduced 2→1; suppressed 1 reversal candidate(s); splits now: none; was: directionReversal",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 9,
+      "passCountBefore": 2,
+      "passCountAfter": 1,
+      "passDelta": -1,
+      "polygonDelta": 0,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "selfIntersection",
+          "frameId": 11243,
+          "logMonoTime": "579709618313"
+        }
+      ],
+      "splitAfter": [],
+      "suppressedAfter": 0,
+      "changeReason": "passes reduced 2→1; movement-state gating removed splits (selfIntersection → none)",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 23,
+      "passCountBefore": 2,
+      "passCountAfter": 1,
+      "passDelta": -1,
+      "polygonDelta": 0,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "directionReversal",
+          "frameId": 27883,
+          "logMonoTime": "1411396936537",
+          "dot": -0.78579040296149
+        }
+      ],
+      "splitAfter": [],
+      "suppressedAfter": 2,
+      "changeReason": "passes reduced 2→1; suppressed 2 reversal candidate(s); splits now: none; was: directionReversal",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 27,
+      "passCountBefore": 2,
+      "passCountAfter": 1,
+      "passDelta": -1,
+      "polygonDelta": -2,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "directionReversal",
+          "frameId": 32763,
+          "logMonoTime": "1655403569281",
+          "dot": -0.39717091550808026
+        }
+      ],
+      "splitAfter": [],
+      "suppressedAfter": 1,
+      "changeReason": "passes reduced 2→1; suppressed 1 reversal candidate(s); splits now: none; was: directionReversal",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 59,
+      "passCountBefore": 2,
+      "passCountAfter": 1,
+      "passDelta": -1,
+      "polygonDelta": 0,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "directionReversal",
+          "frameId": 71843,
+          "logMonoTime": "3608716682080",
+          "dot": -0.7925346128634863
+        }
+      ],
+      "splitAfter": [],
+      "suppressedAfter": 1,
+      "changeReason": "passes reduced 2→1; suppressed 1 reversal candidate(s); splits now: none; was: directionReversal",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 61,
+      "passCountBefore": 2,
+      "passCountAfter": 1,
+      "passDelta": -1,
+      "polygonDelta": -1,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "directionReversal",
+          "frameId": 73763,
+          "logMonoTime": "3704754074884",
+          "dot": -0.9872619208867713
+        }
+      ],
+      "splitAfter": [],
+      "suppressedAfter": 1,
+      "changeReason": "passes reduced 2→1; suppressed 1 reversal candidate(s); splits now: none; was: directionReversal",
+      "inStabilityGroup": false
+    }
+  ],
+  "allPassChanges": [
+    {
+      "segmentId": 66,
+      "passCountBefore": 6,
+      "passCountAfter": 1,
+      "passDelta": -5,
+      "polygonDelta": -1,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "sharpHeadingChange",
+          "frameId": 79443,
+          "logMonoTime": "3988608557875",
+          "headingDelta": 119.832974590216
+        },
+        {
+          "passId": 1,
+          "reason": "directionReversal",
+          "frameId": 79563,
+          "logMonoTime": "3994604008801",
+          "dot": -0.9698763889048645
+        },
+        {
+          "passId": 2,
+          "reason": "directionReversal",
+          "frameId": 79763,
+          "logMonoTime": "4004597330589",
+          "dot": -0.4112192810934531
+        },
+        {
+          "passId": 3,
+          "reason": "directionReversal",
+          "frameId": 79843,
+          "logMonoTime": "4008594274873",
+          "dot": -0.9666343546624858
+        },
+        {
+          "passId": 4,
+          "reason": "selfIntersection",
+          "frameId": 80163,
+          "logMonoTime": "4024586416526"
+        }
+      ],
+      "splitAfter": [],
+      "suppressedAfter": 3,
+      "changeReason": "passes reduced 6→1; suppressed 3 reversal candidate(s); splits now: none; was: sharpHeadingChange,directionReversal,selfIntersection",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 62,
+      "passCountBefore": 5,
+      "passCountAfter": 1,
+      "passDelta": -4,
+      "polygonDelta": -1,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "sharpHeadingChange",
+          "frameId": 75163,
+          "logMonoTime": "3774746213830",
+          "headingDelta": 101.04833732762262
+        },
+        {
+          "passId": 1,
+          "reason": "sharpHeadingChange",
+          "frameId": 75203,
+          "logMonoTime": "3776746978987",
+          "headingDelta": 104.15790593963851
+        },
+        {
+          "passId": 2,
+          "reason": "sharpHeadingChange",
+          "frameId": 75283,
+          "logMonoTime": "3780746422761",
+          "headingDelta": 101.71903472101138
+        },
+        {
+          "passId": 3,
+          "reason": "sharpHeadingChange",
+          "frameId": 75323,
+          "logMonoTime": "3782747162249",
+          "headingDelta": 98.89957113887777
+        },
+        {
+          "passId": 4,
+          "reason": "directionReversal",
+          "frameId": 75403,
+          "logMonoTime": "3786743365984",
+          "dot": -0.6726923201994339
+        },
+        {
+          "passId": 5,
+          "reason": "directionReversal",
+          "frameId": 75603,
+          "logMonoTime": "3796746353270",
+          "dot": -0.9828148870077986
+        }
+      ],
+      "splitAfter": [],
+      "suppressedAfter": 2,
+      "changeReason": "passes reduced 5→1; suppressed 2 reversal candidate(s); splits now: none; was: sharpHeadingChange,directionReversal",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 60,
+      "passCountBefore": 4,
+      "passCountAfter": 1,
+      "passDelta": -3,
+      "polygonDelta": 1,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "directionReversal",
+          "frameId": 72403,
+          "logMonoTime": "3636737100537",
+          "dot": -0.6941983483630735
+        },
+        {
+          "passId": 1,
+          "reason": "directionReversal",
+          "frameId": 72643,
+          "logMonoTime": "3648744995632",
+          "dot": -0.6061710457288724
+        },
+        {
+          "passId": 2,
+          "reason": "directionReversal",
+          "frameId": 72883,
+          "logMonoTime": "3660751322818",
+          "dot": -0.4321588023434668
+        }
+      ],
+      "splitAfter": [],
+      "suppressedAfter": 4,
+      "changeReason": "passes reduced 4→1; suppressed 4 reversal candidate(s); splits now: none; was: directionReversal",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 65,
+      "passCountBefore": 4,
+      "passCountAfter": 1,
+      "passDelta": -3,
+      "polygonDelta": 0,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "selfIntersection",
+          "frameId": 78483,
+          "logMonoTime": "3940640304491"
+        },
+        {
+          "passId": 1,
+          "reason": "directionReversal",
+          "frameId": 78843,
+          "logMonoTime": "3958624360374",
+          "dot": -0.9538294105421559
+        },
+        {
+          "passId": 2,
+          "reason": "selfIntersection",
+          "frameId": 79163,
+          "logMonoTime": "3974614508033"
+        }
+      ],
+      "splitAfter": [],
+      "suppressedAfter": 1,
+      "changeReason": "passes reduced 4→1; suppressed 1 reversal candidate(s); splits now: none; was: selfIntersection,directionReversal",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 96,
+      "passCountBefore": 4,
+      "passCountAfter": 1,
+      "passDelta": -3,
+      "polygonDelta": 0,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "directionReversal",
+          "frameId": 115403,
+          "logMonoTime": "5786302463799",
+          "dot": -0.7904551878652254
+        },
+        {
+          "passId": 1,
+          "reason": "directionReversal",
+          "frameId": 115483,
+          "logMonoTime": "5790305257668",
+          "dot": -0.8563032956370775
+        },
+        {
+          "passId": 2,
+          "reason": "directionReversal",
+          "frameId": 115643,
+          "logMonoTime": "5798302250687",
+          "dot": -0.8217930745900437
+        }
+      ],
+      "splitAfter": [],
+      "suppressedAfter": 4,
+      "changeReason": "passes reduced 4→1; suppressed 4 reversal candidate(s); splits now: none; was: directionReversal",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 6,
+      "passCountBefore": 3,
+      "passCountAfter": 1,
+      "passDelta": -2,
+      "polygonDelta": -2,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "directionReversal",
+          "frameId": 7643,
+          "logMonoTime": "399588854853",
+          "dot": -0.40957951293365163
+        },
+        {
+          "passId": 1,
+          "reason": "directionReversal",
+          "frameId": 8323,
+          "logMonoTime": "433604820723",
+          "dot": -0.7423947702036361
+        }
+      ],
+      "splitAfter": [],
+      "suppressedAfter": 2,
+      "changeReason": "passes reduced 3→1; suppressed 2 reversal candidate(s); splits now: none; was: directionReversal",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 58,
+      "passCountBefore": 3,
+      "passCountAfter": 1,
+      "passDelta": -2,
+      "polygonDelta": -1,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "directionReversal",
+          "frameId": 69923,
+          "logMonoTime": "3512721948406",
+          "dot": -0.4168717160979863
+        },
+        {
+          "passId": 1,
+          "reason": "directionReversal",
+          "frameId": 70083,
+          "logMonoTime": "3520715669367",
+          "dot": -0.9889733158457044
+        }
+      ],
+      "splitAfter": [],
+      "suppressedAfter": 2,
+      "changeReason": "passes reduced 3→1; suppressed 2 reversal candidate(s); splits now: none; was: directionReversal",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 67,
+      "passCountBefore": 3,
+      "passCountAfter": 1,
+      "passDelta": -2,
+      "polygonDelta": -2,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "directionReversal",
+          "frameId": 80963,
+          "logMonoTime": "4064565555518",
+          "dot": -0.8400895203590071
+        },
+        {
+          "passId": 1,
+          "reason": "sharpHeadingChange",
+          "frameId": 81003,
+          "logMonoTime": "4066566896895",
+          "headingDelta": 179.50387731792281
+        },
+        {
+          "passId": 2,
+          "reason": "sharpHeadingChange",
+          "frameId": 81163,
+          "logMonoTime": "4074565593768",
+          "headingDelta": 115.0804110546137
+        }
+      ],
+      "splitAfter": [],
+      "suppressedAfter": 1,
+      "changeReason": "passes reduced 3→1; suppressed 1 reversal candidate(s); splits now: none; was: directionReversal,sharpHeadingChange",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 2,
+      "passCountBefore": 2,
+      "passCountAfter": 1,
+      "passDelta": -1,
+      "polygonDelta": -1,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "selfIntersection",
+          "frameId": 3123,
+          "logMonoTime": "173712039287"
+        }
+      ],
+      "splitAfter": [],
+      "suppressedAfter": 1,
+      "changeReason": "passes reduced 2→1; suppressed 1 reversal candidate(s); splits now: none; was: selfIntersection",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 5,
+      "passCountBefore": 2,
+      "passCountAfter": 1,
+      "passDelta": -1,
+      "polygonDelta": -2,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "directionReversal",
+          "frameId": 6523,
+          "logMonoTime": "343584650292",
+          "dot": -0.842450999030999
+        }
+      ],
+      "splitAfter": [],
+      "suppressedAfter": 1,
+      "changeReason": "passes reduced 2→1; suppressed 1 reversal candidate(s); splits now: none; was: directionReversal",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 9,
+      "passCountBefore": 2,
+      "passCountAfter": 1,
+      "passDelta": -1,
+      "polygonDelta": 0,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "selfIntersection",
+          "frameId": 11243,
+          "logMonoTime": "579709618313"
+        }
+      ],
+      "splitAfter": [],
+      "suppressedAfter": 0,
+      "changeReason": "passes reduced 2→1; movement-state gating removed splits (selfIntersection → none)",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 23,
+      "passCountBefore": 2,
+      "passCountAfter": 1,
+      "passDelta": -1,
+      "polygonDelta": 0,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "directionReversal",
+          "frameId": 27883,
+          "logMonoTime": "1411396936537",
+          "dot": -0.78579040296149
+        }
+      ],
+      "splitAfter": [],
+      "suppressedAfter": 2,
+      "changeReason": "passes reduced 2→1; suppressed 2 reversal candidate(s); splits now: none; was: directionReversal",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 27,
+      "passCountBefore": 2,
+      "passCountAfter": 1,
+      "passDelta": -1,
+      "polygonDelta": -2,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "directionReversal",
+          "frameId": 32763,
+          "logMonoTime": "1655403569281",
+          "dot": -0.39717091550808026
+        }
+      ],
+      "splitAfter": [],
+      "suppressedAfter": 1,
+      "changeReason": "passes reduced 2→1; suppressed 1 reversal candidate(s); splits now: none; was: directionReversal",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 59,
+      "passCountBefore": 2,
+      "passCountAfter": 1,
+      "passDelta": -1,
+      "polygonDelta": 0,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "directionReversal",
+          "frameId": 71843,
+          "logMonoTime": "3608716682080",
+          "dot": -0.7925346128634863
+        }
+      ],
+      "splitAfter": [],
+      "suppressedAfter": 1,
+      "changeReason": "passes reduced 2→1; suppressed 1 reversal candidate(s); splits now: none; was: directionReversal",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 61,
+      "passCountBefore": 2,
+      "passCountAfter": 1,
+      "passDelta": -1,
+      "polygonDelta": -1,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "directionReversal",
+          "frameId": 73763,
+          "logMonoTime": "3704754074884",
+          "dot": -0.9872619208867713
+        }
+      ],
+      "splitAfter": [],
+      "suppressedAfter": 1,
+      "changeReason": "passes reduced 2→1; suppressed 1 reversal candidate(s); splits now: none; was: directionReversal",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 64,
+      "passCountBefore": 2,
+      "passCountAfter": 1,
+      "passDelta": -1,
+      "polygonDelta": 0,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "selfIntersection",
+          "frameId": 77283,
+          "logMonoTime": "3880696850203"
+        }
+      ],
+      "splitAfter": [],
+      "suppressedAfter": 0,
+      "changeReason": "passes reduced 2→1; movement-state gating removed splits (selfIntersection → none)",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 95,
+      "passCountBefore": 2,
+      "passCountAfter": 1,
+      "passDelta": -1,
+      "polygonDelta": -1,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "directionReversal",
+          "frameId": 114883,
+          "logMonoTime": "5760288268601",
+          "dot": -0.5670233296087386
+        },
+        {
+          "passId": 1,
+          "reason": "sharpHeadingChange",
+          "frameId": 114923,
+          "logMonoTime": "5762292234172",
+          "headingDelta": 149.5576291016179
+        }
+      ],
+      "splitAfter": [],
+      "suppressedAfter": 2,
+      "changeReason": "passes reduced 2→1; suppressed 2 reversal candidate(s); splits now: none; was: directionReversal,sharpHeadingChange",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 97,
+      "passCountBefore": 2,
+      "passCountAfter": 1,
+      "passDelta": -1,
+      "polygonDelta": 0,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "directionReversal",
+          "frameId": 116563,
+          "logMonoTime": "5844150385890",
+          "dot": -0.7301341330882511
+        }
+      ],
+      "splitAfter": [],
+      "suppressedAfter": 2,
+      "changeReason": "passes reduced 2→1; suppressed 2 reversal candidate(s); splits now: none; was: directionReversal",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 99,
+      "passCountBefore": 2,
+      "passCountAfter": 1,
+      "passDelta": -1,
+      "polygonDelta": -2,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "spatialRevisit",
+          "frameId": 119803,
+          "logMonoTime": "6006146226986"
+        }
+      ],
+      "splitAfter": [],
+      "suppressedAfter": 2,
+      "changeReason": "passes reduced 2→1; suppressed 2 reversal candidate(s); splits now: none; was: spatialRevisit",
+      "inStabilityGroup": false
+    }
+  ],
+  "movementAggregate": {
+    "baselineSuppressedReversals": 0,
+    "currentSuppressedReversals": 32,
+    "currentMovementStates": {
+      "moving": 2166,
+      "stationary": 152,
+      "creeping": 0,
+      "uncertain": 304
+    }
+  }
+}

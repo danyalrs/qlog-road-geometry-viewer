@@ -1,0 +1,841 @@
+{
+  "generatedAt": "2026-08-05T05:56:34.156Z",
+  "segment": "qlog_f449c_2.bz2",
+  "stage": 3,
+  "scope": "dc014_lateral_spike_investigation",
+  "baseline": {
+    "stage2AcceptedLaneChecksum": "fa3dac79",
+    "stage2FusedFragments": 23,
+    "stage2CleanedRuns": 22,
+    "stage2VisibleDisconnections": 12,
+    "frozenStage1SurfaceChecksum": "26ae09b9"
+  },
+  "after": {
+    "laneChecksum": "ff6d115e",
+    "fusedFragmentCount": 22,
+    "cleanedRunCount": 21,
+    "visibleDisconnections": 18,
+    "roadSurfaceChecksum": "70457ea",
+    "roadSurfaceChecksumBefore": "cd437093",
+    "roadSurfacePolygonCount": 13
+  },
+  "stage1Stage2Reconciliation": {
+    "stage1FusionPairingCount": 13,
+    "stage1FusionPairingIds": [
+      "DC-006",
+      "DC-008",
+      "DC-009",
+      "DC-010",
+      "DC-011",
+      "DC-012",
+      "DC-014",
+      "DC-019",
+      "DC-020",
+      "DC-021",
+      "DC-022",
+      "DC-023",
+      "DC-024"
+    ],
+    "stage2Pb0CandidateCount": 7,
+    "candidates": [
+      {
+        "disconnectionId": "DC-006",
+        "physicalBoundaryId": "PB1",
+        "alongTrackGapM": 27.558708044788602,
+        "classification": "outside_pb0",
+        "evidence": "PB1 parallel-boundary fusion_pairing; Stage 2 scoped PB0-only"
+      },
+      {
+        "disconnectionId": "DC-008",
+        "physicalBoundaryId": "PB1",
+        "alongTrackGapM": 23.99706305128666,
+        "classification": "outside_pb0",
+        "evidence": "PB1 parallel-boundary fusion_pairing; Stage 2 scoped PB0-only"
+      },
+      {
+        "disconnectionId": "DC-009",
+        "physicalBoundaryId": "PB1",
+        "alongTrackGapM": 13.310194753726933,
+        "classification": "outside_pb0",
+        "evidence": "PB1 parallel-boundary fusion_pairing; Stage 2 scoped PB0-only"
+      },
+      {
+        "disconnectionId": "DC-010",
+        "physicalBoundaryId": "PB1",
+        "alongTrackGapM": 17.999992647332874,
+        "classification": "outside_pb0",
+        "evidence": "PB1 parallel-boundary fusion_pairing; Stage 2 scoped PB0-only"
+      },
+      {
+        "disconnectionId": "DC-011",
+        "physicalBoundaryId": "PB1",
+        "alongTrackGapM": 12.000028557998007,
+        "classification": "outside_pb0",
+        "evidence": "PB1 parallel-boundary fusion_pairing; Stage 2 scoped PB0-only"
+      },
+      {
+        "disconnectionId": "DC-012",
+        "physicalBoundaryId": "PB1",
+        "alongTrackGapM": 16.311966248993144,
+        "classification": "outside_pb0",
+        "evidence": "PB1 parallel-boundary fusion_pairing; Stage 2 scoped PB0-only"
+      },
+      {
+        "disconnectionId": "DC-014",
+        "physicalBoundaryId": "PB0",
+        "alongTrackGapM": 26.730898583888745,
+        "classification": "stage3_primary_target",
+        "evidence": "Stage 2 PB0 fusion-pairing candidate"
+      },
+      {
+        "disconnectionId": "DC-019",
+        "physicalBoundaryId": "PB0",
+        "alongTrackGapM": 22.497312876545152,
+        "classification": "targeted_by_stage2",
+        "evidence": "Stage 2 PB0 fusion-pairing candidate"
+      },
+      {
+        "disconnectionId": "DC-020",
+        "physicalBoundaryId": "PB0",
+        "alongTrackGapM": 23.995271002239747,
+        "classification": "targeted_by_stage2",
+        "evidence": "Stage 2 PB0 fusion-pairing candidate"
+      },
+      {
+        "disconnectionId": "DC-021",
+        "physicalBoundaryId": "PB0",
+        "alongTrackGapM": 13.062738425353132,
+        "classification": "targeted_by_stage2",
+        "evidence": "Stage 2 PB0 fusion-pairing candidate"
+      },
+      {
+        "disconnectionId": "DC-022",
+        "physicalBoundaryId": "PB0",
+        "alongTrackGapM": 17.99990270381784,
+        "classification": "targeted_by_stage2",
+        "evidence": "Stage 2 PB0 fusion-pairing candidate"
+      },
+      {
+        "disconnectionId": "DC-023",
+        "physicalBoundaryId": "PB0",
+        "alongTrackGapM": 12.000027656186717,
+        "classification": "targeted_by_stage2",
+        "evidence": "Stage 2 PB0 fusion-pairing candidate"
+      },
+      {
+        "disconnectionId": "DC-024",
+        "physicalBoundaryId": "PB0",
+        "alongTrackGapM": 16.313074683178343,
+        "classification": "targeted_by_stage2",
+        "evidence": "Stage 2 PB0 fusion-pairing candidate"
+      }
+    ],
+    "omittedIncorrectly": [],
+    "duplicateRepresentations": [],
+    "outsidePb0": [
+      "DC-006",
+      "DC-008",
+      "DC-009",
+      "DC-010",
+      "DC-011",
+      "DC-012"
+    ],
+    "note": "Stage 1 reported 13 fusion_pairing candidates (6 PB1 + 7 PB0). Stage 2 \"7 candidates\" is correct PB0 scope."
+  },
+  "dc014": {
+    "disconnectionId": "DC-014",
+    "routeSInterval": [
+      101.42060881322757,
+      128.15150739711632
+    ],
+    "firstFailingStage": "bin_aggregation",
+    "firstFailingStageIndex": 5,
+    "firstFailingStageLabel": "bin aggregation",
+    "spikeSource": "bimodal_cluster_contamination",
+    "spikeBinKey": 58,
+    "spikeObservation": {
+      "obs": [
+        {
+          "east": -135.51825672199203,
+          "north": -41.33880026626784,
+          "s": 116.49799978860325,
+          "d": -1.491422569205666,
+          "laneIndex": 1,
+          "prob": 0.920274555683136,
+          "frameId": 2603,
+          "logMonoTime": "147723001692",
+          "sourceFile": "qlog_f449c_2.bz2",
+          "passId": 0,
+          "laneTrackId": 0
+        },
+        {
+          "east": -135.35887333475645,
+          "north": -41.2397474844979,
+          "s": 116.45275826658494,
+          "d": -1.4578537737700223,
+          "laneIndex": 1,
+          "prob": 0.920274555683136,
+          "frameId": 2603,
+          "logMonoTime": "147723001692",
+          "sourceFile": "qlog_f449c_2.bz2",
+          "passId": 0,
+          "laneTrackId": 0
+        }
+      ],
+      "selected": true,
+      "reason": "bimodalNeighbourCluster",
+      "expectedD": -2.2374461544510895,
+      "selectedMeanD": -1.474638171487844,
+      "rejectedMeanD": -9.005010198751663,
+      "clusterCount": 4
+    },
+    "lateralResidualM": -6.767564044300573,
+    "preliminarySpikeDM": -9.005010198751663,
+    "correctedDM": -1.491422569205666,
+    "expectedTrajectoryDM": -2.2374461544510895,
+    "observationCount": 45,
+    "binsInRange": 23,
+    "neighbouringBins": [
+      {
+        "binKey": 48,
+        "s": 95.31175243770912,
+        "d": -2.126431795773238,
+        "preliminaryD": -2.126431795773238
+      },
+      {
+        "binKey": 51,
+        "s": 101.42060881322757,
+        "d": -2.968338480247656,
+        "preliminaryD": -2.968338480247656
+      },
+      {
+        "binKey": 58,
+        "s": 116.45275826658494,
+        "d": -1.491422569205666,
+        "preliminaryD": -9.005010198751663
+      },
+      {
+        "binKey": 60,
+        "s": 119.28943270179562,
+        "d": -2.099521529505604,
+        "preliminaryD": -2.099521529505604
+      },
+      {
+        "binKey": 64,
+        "s": 128.15150739711632,
+        "d": -3.7137264544720407,
+        "preliminaryD": -3.7137264544720407
+      }
+    ],
+    "observationsSample": [
+      {
+        "observationIndex": 0,
+        "frameId": 2483,
+        "logMonoTime": "141726837576",
+        "s": 92.49290092856977,
+        "d": -1.4068801281582957,
+        "prob": 0.7666933536529541,
+        "laneTrackId": 0,
+        "east": -115.97739310439353,
+        "north": -31.33239290505727
+      },
+      {
+        "observationIndex": 1,
+        "frameId": 2483,
+        "logMonoTime": "141726837576",
+        "s": 92.49290092856977,
+        "d": -1.826947670061374,
+        "prob": 0.7666933536529541,
+        "laneTrackId": 0,
+        "east": -122.7614350341928,
+        "north": -32.87584520898023
+      },
+      {
+        "observationIndex": 2,
+        "frameId": 2483,
+        "logMonoTime": "141726837576",
+        "s": 92.49290092856977,
+        "d": -2.6942275138340985,
+        "prob": 0.7666933536529541,
+        "laneTrackId": 0,
+        "east": -130.03738862816502,
+        "north": -34.09705449802651
+      },
+      {
+        "observationIndex": 3,
+        "frameId": 2483,
+        "logMonoTime": "141726837576",
+        "s": 92.49290092856977,
+        "d": -3.741263220123942,
+        "prob": 0.7666933536529541,
+        "laneTrackId": 0,
+        "east": -137.7263684502777,
+        "north": -35.25161158681085
+      },
+      {
+        "observationIndex": 4,
+        "frameId": 2523,
+        "logMonoTime": "143726895711",
+        "s": 92.49290092856977,
+        "d": -3.7243183209981905,
+        "prob": 0.6032437682151794,
+        "laneTrackId": 0,
+        "east": -114.29089760681092,
+        "north": -28.425679066368637
+      },
+      {
+        "observationIndex": 5,
+        "frameId": 2523,
+        "logMonoTime": "143726895711",
+        "s": 96.56941414163119,
+        "d": -5.347751528351728,
+        "prob": 0.6032437682151794,
+        "laneTrackId": 0,
+        "east": -119.01946021545417,
+        "north": -28.91799293036088
+      },
+      {
+        "observationIndex": 6,
+        "frameId": 2523,
+        "logMonoTime": "143726895711",
+        "s": 101.36213708193873,
+        "d": -7.2669846299252905,
+        "prob": 0.6032437682151794,
+        "laneTrackId": 0,
+        "east": -124.16805083577482,
+        "north": -29.299651816111094
+      },
+      {
+        "observationIndex": 7,
+        "frameId": 2523,
+        "logMonoTime": "143726895711",
+        "s": 106.44120759805858,
+        "d": -9.698318531818847,
+        "prob": 0.6032437682151794,
+        "laneTrackId": 0,
+        "east": -129.7988670348957,
+        "north": -29.347094222595604
+      },
+      {
+        "observationIndex": 8,
+        "frameId": 2523,
+        "logMonoTime": "143726895711",
+        "s": 111.79725804921654,
+        "d": -12.692218872304775,
+        "prob": 0.6032437682151794,
+        "laneTrackId": 0,
+        "east": -135.92566630645234,
+        "north": -29.010870531931346
+      },
+      {
+        "observationIndex": 9,
+        "frameId": 2523,
+        "logMonoTime": "143726895711",
+        "s": 116.45275826658494,
+        "d": -16.420919180415638,
+        "prob": 0.6032437682151794,
+        "laneTrackId": 0,
+        "east": -142.59540142386848,
+        "north": -28.122214778029694
+      },
+      {
+        "observationIndex": 10,
+        "frameId": 2523,
+        "logMonoTime": "143726895711",
+        "s": 116.45275826658494,
+        "d": -20.655057298088927,
+        "prob": 0.6032437682151794,
+        "laneTrackId": 0,
+        "east": -149.7455457147826,
+        "north": -26.90587139019553
+      },
+      {
+        "observationIndex": 11,
+        "frameId": 2563,
+        "logMonoTime": "145723084099",
+        "s": 92.49290092856977,
+        "d": -1.540784285308857,
+        "prob": 0.7887699604034424,
+        "laneTrackId": 0,
+        "east": -113.53878172505281,
+        "north": -30.48077719739073
+      },
+      {
+        "observationIndex": 12,
+        "frameId": 2563,
+        "logMonoTime": "145723084099",
+        "s": 92.5195281369635,
+        "d": -1.5519206825811056,
+        "prob": 0.7887699604034424,
+        "laneTrackId": 0,
+        "east": -113.71366763001146,
+        "north": -30.548475527866277
+      },
+      {
+        "observationIndex": 13,
+        "frameId": 2563,
+        "logMonoTime": "145723084099",
+        "s": 93.08061320693427,
+        "d": -1.5947440612138104,
+        "prob": 0.7887699604034424,
+        "laneTrackId": 0,
+        "east": -114.23651158483226,
+        "north": -30.75652479224605
+      },
+      {
+        "observationIndex": 14,
+        "frameId": 2563,
+        "logMonoTime": "145723084099",
+        "s": 94.01238557765755,
+        "d": -1.6984164051310495,
+        "prob": 0.7887699604034424,
+        "laneTrackId": 0,
+        "east": -115.11908272307211,
+        "north": -31.07277768422112
+      },
+      {
+        "observationIndex": 15,
+        "frameId": 2563,
+        "logMonoTime": "145723084099",
+        "s": 95.31175243770912,
+        "d": -1.892586191644081,
+        "prob": 0.7887699604034424,
+        "laneTrackId": 0,
+        "east": -116.37162907387035,
+        "north": -31.469241783600626
+      },
+      {
+        "observationIndex": 16,
+        "frameId": 2563,
+        "logMonoTime": "145723084099",
+        "s": 96.98401529720311,
+        "d": -2.126431795773238,
+        "prob": 0.7887699604034424,
+        "laneTrackId": 0,
+        "east": -117.97658408606036,
+        "north": -31.993900002501018
+      },
+      {
+        "observationIndex": 17,
+        "frameId": 2563,
+        "logMonoTime": "145723084099",
+        "s": 99.02023431718062,
+        "d": -2.485652788615992,
+        "prob": 0.7887699604034424,
+        "laneTrackId": 0,
+        "east": -119.9635699116541,
+        "north": -32.565839639094456
+      },
+      {
+        "observationIndex": 18,
+        "frameId": 2563,
+        "logMonoTime": "145723084099",
+        "s": 101.42060881322757,
+        "d": -2.968338480247656,
+        "prob": 0.7887699604034424,
+        "laneTrackId": 0,
+        "east": -122.33192611855523,
+        "north": -33.18686465905056
+      },
+      {
+        "observationIndex": 19,
+        "frameId": 2563,
+        "logMonoTime": "145723084099",
+        "s": 104.18247750484083,
+        "d": -3.600000582762546,
+        "prob": 0.7887699604034424,
+        "laneTrackId": 0,
+        "east": -125.09047085840753,
+        "north": -33.83288834259502
+      },
+      {
+        "observationIndex": 20,
+        "frameId": 2563,
+        "logMonoTime": "145723084099",
+        "s": 107.30384382250296,
+        "d": -4.3997787196033125,
+        "prob": 0.7887699604034424,
+        "laneTrackId": 0,
+        "east": -128.2458197633292,
+        "north": -34.48584013669143
+      },
+      {
+        "observationIndex": 21,
+        "frameId": 2563,
+        "logMonoTime": "145723084099",
+        "s": 110.76830813175098,
+        "d": -5.5248839597942405,
+        "prob": 0.7887699604034424,
+        "laneTrackId": 0,
+        "east": -131.85231301408157,
+        "north": -34.997290216206494
+      },
+      {
+        "observationIndex": 22,
+        "frameId": 2563,
+        "logMonoTime": "145723084099",
+        "s": 114.5801123728811,
+        "d": -6.934651984248669,
+        "prob": 0.7887699604034424,
+        "laneTrackId": 0,
+        "east": -135.8958949435706,
+        "north": -35.40563153787448
+      },
+      {
+        "observationIndex": 23,
+        "frameId": 2563,
+        "logMonoTime": "145723084099",
+        "s": 116.61608615202006,
+        "d": -9.005010198751663,
+        "prob": 0.7887699604034424,
+        "laneTrackId": 0,
+        "east": -140.40582439443602,
+        "north": -35.630943776886554
+      },
+      {
+        "observationIndex": 24,
+        "frameId": 2563,
+        "logMonoTime": "145723084099",
+        "s": 120.42028623383767,
+        "d": -12.298610496496817,
+        "prob": 0.7887699604034424,
+        "laneTrackId": 0,
+        "east": -145.43656982249104,
+        "north": -35.52444672569886
+      },
+      {
+        "observationIndex": 25,
+        "frameId": 2563,
+        "logMonoTime": "145723084099",
+        "s": 124.41377826599921,
+        "d": -16.179406628584196,
+        "prob": 0.7887699604034424,
+        "laneTrackId": 0,
+        "east": -150.98788008731455,
+        "north": -35.086826372621886
+      },
+      {
+        "observationIndex": 26,
+        "frameId": 2563,
+        "logMonoTime": "145723084099",
+        "s": 128.57296747729222,
+        "d": -20.71378891521944,
+        "prob": 0.7887699604034424,
+        "laneTrackId": 0,
+        "east": -157.08397778088192,
+        "north": -34.25191887644632
+      },
+      {
+        "observationIndex": 27,
+        "frameId": 2603,
+        "logMonoTime": "147723001692",
+        "s": 116.45275826658494,
+        "d": -1.4578537737700223,
+        "prob": 0.920274555683136,
+        "laneTrackId": 0,
+        "east": -135.35887333475645,
+        "north": -41.2397474844979
+      },
+      {
+        "observationIndex": 28,
+        "frameId": 2603,
+        "logMonoTime": "147723001692",
+        "s": 116.49799978860325,
+        "d": -1.491422569205666,
+        "prob": 0.920274555683136,
+        "laneTrackId": 0,
+        "east": -135.51825672199203,
+        "north": -41.33880026626784
+      },
+      {
+        "observationIndex": 29,
+        "frameId": 2603,
+        "logMonoTime": "147723001692",
+        "s": 117.0585549404564,
+        "d": -1.5386168856059892,
+        "prob": 0.920274555683136,
+        "laneTrackId": 0,
+        "east": -135.97984745506116,
+        "north": -41.66033312137648
+      },
+      {
+        "observationIndex": 30,
+        "frameId": 2603,
+        "logMonoTime": "147723001692",
+        "s": 117.9916675942582,
+        "d": -1.6292156110796476,
+        "prob": 0.920274555683136,
+        "laneTrackId": 0,
+        "east": -136.75590679033462,
+        "north": -42.18629819804735
+      },
+      {
+        "observationIndex": 31,
+        "frameId": 2603,
+        "logMonoTime": "147723001692",
+        "s": 119.28943270179562,
+        "d": -1.8455956501376134,
+        "prob": 0.920274555683136,
+        "laneTrackId": 0,
+        "east": -137.89293961059113,
+        "north": -42.848243030570316
+      },
+      {
+        "observationIndex": 32,
+        "frameId": 2603,
+        "logMonoTime": "147723001692",
+        "s": 120.96031751095167,
+        "d": -2.099521529505604,
+        "prob": 0.920274555683136,
+        "laneTrackId": 0,
+        "east": -139.3411336490806,
+        "north": -43.719488360293695
+      },
+      {
+        "observationIndex": 33,
+        "frameId": 2603,
+        "logMonoTime": "147723001692",
+        "s": 122.99660597900494,
+        "d": -2.4714005657921696,
+        "prob": 0.920274555683136,
+        "laneTrackId": 0,
+        "east": -141.145881881609,
+        "north": -44.733218383496016
+      },
+      {
+        "observationIndex": 34,
+        "frameId": 2603,
+        "logMonoTime": "147723001692",
+        "s": 125.3939678783215,
+        "d": -3.0063571831252007,
+        "prob": 0.920274555683136,
+        "laneTrackId": 0,
+        "east": -143.33265875477014,
+        "north": -45.85193620570622
+      },
+      {
+        "observationIndex": 35,
+        "frameId": 2603,
+        "logMonoTime": "147723001692",
+        "s": 128.15150739711632,
+        "d": -3.7137264544720407,
+        "prob": 0.920274555683136,
+        "laneTrackId": 0,
+        "east": -145.90673427083777,
+        "north": -47.06788469200898
+      },
+      {
+        "observationIndex": 36,
+        "frameId": 2603,
+        "logMonoTime": "147723001692",
+        "s": 131.2708498368598,
+        "d": -4.576571442772742,
+        "prob": 0.920274555683136,
+        "laneTrackId": 0,
+        "east": -148.85854688732275,
+        "north": -48.39513787335036
+      },
+      {
+        "observationIndex": 37,
+        "frameId": 2603,
+        "logMonoTime": "147723001692",
+        "s": 134.73375353716492,
+        "d": -5.784984792039652,
+        "prob": 0.920274555683136,
+        "laneTrackId": 0,
+        "east": -152.2954111018915,
+        "north": -49.67573508984351
+      },
+      {
+        "observationIndex": 38,
+        "frameId": 2603,
+        "logMonoTime": "147723001692",
+        "s": 136.89462245632075,
+        "d": -7.33884143023704,
+        "prob": 0.920274555683136,
+        "laneTrackId": 0,
+        "east": -156.21725630664247,
+        "north": -50.909780272187064
+      },
+      {
+        "observationIndex": 39,
+        "frameId": 2603,
+        "logMonoTime": "147723001692",
+        "s": 139.11959802958535,
+        "d": -10.69203096796368,
+        "prob": 0.920274555683136,
+        "laneTrackId": 0,
+        "east": -160.6350310136976,
+        "north": -52.0811578513091
+      }
+    ],
+    "verdict": "E_bin_aggregation_error",
+    "repairImplemented": true,
+    "responsibleFunction": "aggregateFusedBin / selectBimodalCluster / canBridgeTrackerContinuousFusionGap",
+    "responsibleCondition": "bimodal neighbour-cluster selection when lateral clusters disagree; spike-blocked bridge join after correction",
+    "repaired": true,
+    "alongTrackGapM": 26.730898583888745
+  },
+  "summary": {
+    "verdict": "E_and_F_bin_aggregation_with_spike_blocked_bridge",
+    "repairImplemented": true,
+    "unsafeGapsStillOpen": [
+      "DC-002",
+      "DC-003",
+      "DC-004",
+      "DC-013",
+      "DC-015",
+      "DC-016",
+      "DC-017",
+      "DC-018"
+    ],
+    "stage2RepairedIntact": true,
+    "dc022Dc024Unchanged": true,
+    "pb1Pb2Unchanged": false,
+    "fusedFragmentsBefore": 23,
+    "fusedFragmentsAfter": 22,
+    "cleanedRunsBefore": 22,
+    "cleanedRunsAfter": 21,
+    "visibleDisconnectionsBefore": 19,
+    "visibleDisconnectionsAfter": 18,
+    "maxCoordinateDisplacementOutsideInterval": 54.492652487196096,
+    "coordinatesChangedOutsideApprovedInterval": 9,
+    "roadSurfaceChecksumDiscrepancy": {
+      "frozenStage1": "26ae09b9",
+      "stage2Current": "cd437093",
+      "stage3Current": "70457ea",
+      "polygonsRegeneratedAutomatically": false,
+      "serializationOnly": false,
+      "coordinateChange": true,
+      "browserNodeSamePolygons": true,
+      "expectedFromLaneRepair": true,
+      "obsoleteFrozenReference": true,
+      "explanation": "Frozen 26ae09b9 is the Stage 1 fourteen-polygon baseline. Stage 2 bridge-only surface is cd437093 (13 polygons). Stage 3 bimodal lane correction changes PB0 geometry and regenerates dependent road-surface polygons to 70457ea without altering road-surface generator code."
+    }
+  },
+  "unsafeStillOpen": [
+    {
+      "disconnectionId": "DC-002",
+      "stillOpen": true,
+      "alongTrackGapM": 17.442207002724956
+    },
+    {
+      "disconnectionId": "DC-003",
+      "stillOpen": true,
+      "alongTrackGapM": 239.9397931656839
+    },
+    {
+      "disconnectionId": "DC-004",
+      "stillOpen": true,
+      "alongTrackGapM": 14.968126127636538
+    },
+    {
+      "disconnectionId": "DC-013",
+      "stillOpen": true,
+      "alongTrackGapM": 17.443788652165253
+    },
+    {
+      "disconnectionId": "DC-015",
+      "stillOpen": true,
+      "alongTrackGapM": 123.67872220287506
+    },
+    {
+      "disconnectionId": "DC-016",
+      "stillOpen": true,
+      "alongTrackGapM": 17.215560665616124
+    },
+    {
+      "disconnectionId": "DC-017",
+      "stillOpen": true,
+      "alongTrackGapM": 36.18011637773424
+    },
+    {
+      "disconnectionId": "DC-018",
+      "stillOpen": true,
+      "alongTrackGapM": 43.00231744020948
+    }
+  ],
+  "stage2RepairedIntact": [
+    {
+      "disconnectionId": "DC-019",
+      "stillClosed": true
+    },
+    {
+      "disconnectionId": "DC-020",
+      "stillClosed": true
+    },
+    {
+      "disconnectionId": "DC-021",
+      "stillClosed": true
+    },
+    {
+      "disconnectionId": "DC-023",
+      "stillClosed": true
+    }
+  ],
+  "outsideChanges": [
+    {
+      "pb": "PB0",
+      "run": 3,
+      "point": 0,
+      "s": 260.5733446591958,
+      "displacementM": 24.4163985238763
+    },
+    {
+      "pb": "PB0",
+      "run": 3,
+      "point": 1,
+      "s": 263.34557856988033,
+      "displacementM": 24.087535558251663
+    },
+    {
+      "pb": "PB0",
+      "run": 3,
+      "point": 2,
+      "s": 267.03391232848685,
+      "displacementM": 29.434635255384723
+    },
+    {
+      "pb": "PB0",
+      "run": 4,
+      "point": 0,
+      "s": 284.249472994103,
+      "displacementM": 47.976896328734846
+    },
+    {
+      "pb": "PB0",
+      "run": 4,
+      "point": 1,
+      "s": 287.03435946713455,
+      "displacementM": 46.90325749770703
+    },
+    {
+      "pb": "PB0",
+      "run": 4,
+      "point": 2,
+      "s": 295.869183290206,
+      "displacementM": 43.61373435448459
+    },
+    {
+      "pb": "PB0",
+      "run": 5,
+      "point": 0,
+      "s": 332.04929966794026,
+      "displacementM": 49.50661737564928
+    },
+    {
+      "pb": "PB0",
+      "run": 5,
+      "point": 1,
+      "s": 333.5261869027725,
+      "displacementM": 54.05798167122282
+    },
+    {
+      "pb": "PB0",
+      "run": 5,
+      "point": 2,
+      "s": 338.4892400311075,
+      "displacementM": 54.492652487196096
+    }
+  ]
+}

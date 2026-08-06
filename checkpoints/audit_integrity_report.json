@@ -1,0 +1,96 @@
+{
+  "checkedAt": "2026-07-23T04:14:36.494Z",
+  "audits": [
+    {
+      "path": "audit_dataset_full.json",
+      "exists": true,
+      "valid": true,
+      "processingVersion": "2026-07-23-validate-v6b",
+      "segmentCount": 92,
+      "multiPassCount": 21,
+      "zeroPolygonCount": 16,
+      "medianProcessingMs": 629,
+      "sha256": "e0ad975af5f0e403a2833b83ec8a2ad98619b3704b63408fca374fefe0e5080b",
+      "mtime": "2026-07-23T03:44:31.480Z",
+      "kind": "v6b baseline"
+    },
+    {
+      "path": "audit_dataset_v7_full.json",
+      "exists": true,
+      "valid": true,
+      "processingVersion": "2026-07-24-pose-v7",
+      "segmentCount": 92,
+      "multiPassCount": 4,
+      "zeroPolygonCount": 24,
+      "medianProcessingMs": 577,
+      "sha256": "b30f5c0c26eb4d6f20b26ac90cdc88b8cf7c6d8407a815a22d4dfca9cafbebcd",
+      "mtime": "2026-07-23T04:09:57.156Z",
+      "kind": "v7 movement-only"
+    },
+    {
+      "path": "audit_dataset_v8_full.json",
+      "exists": true,
+      "valid": true,
+      "processingVersion": "2026-07-24-pose-v8",
+      "segmentCount": 92,
+      "multiPassCount": 4,
+      "zeroPolygonCount": 36,
+      "medianProcessingMs": 561.5,
+      "sha256": "54e546fa2a0d95d663d85f23f93f0987b62279dd4b8c9aa624f2a294943bbc3b",
+      "mtime": "2026-07-23T04:10:53.651Z",
+      "kind": "v8 pose continuity"
+    },
+    {
+      "path": "audit_reference_v7.json",
+      "exists": true,
+      "valid": true,
+      "processingVersion": "2026-07-24-pose-v7",
+      "segmentCount": 5,
+      "multiPassCount": 2,
+      "zeroPolygonCount": 3,
+      "medianProcessingMs": 610,
+      "sha256": "5ffef603c01e1f37da1257efd7e9a50ad871b76fb138ba2a58787d7837a0fd36",
+      "mtime": "2026-07-23T03:45:22.143Z",
+      "kind": "v7 reference (legacy)"
+    },
+    {
+      "path": "audit_reference_v7_rerun.json",
+      "exists": true,
+      "valid": true,
+      "processingVersion": "2026-07-24-pose-v7",
+      "segmentCount": 5,
+      "multiPassCount": 2,
+      "zeroPolygonCount": 3,
+      "medianProcessingMs": 615,
+      "sha256": "5217ed320284070a068433fc9ab5ef9b349ad949eb09b5f023f17f684b82bcad",
+      "mtime": "2026-07-23T04:04:25.175Z",
+      "kind": "v7 reference rerun"
+    },
+    {
+      "path": "audit_reference_v8.json",
+      "exists": true,
+      "valid": true,
+      "processingVersion": "2026-07-24-pose-v8",
+      "segmentCount": 5,
+      "multiPassCount": 2,
+      "zeroPolygonCount": 2,
+      "medianProcessingMs": 588,
+      "sha256": "09bb7163fcba3a98328a71d442409e654c938f46aa68c791e1a4846c259dec93",
+      "mtime": "2026-07-23T04:01:31.911Z",
+      "kind": "v8 reference"
+    }
+  ],
+  "comparisons": [
+    {
+      "path": "audit_comparison_v6b_v7.json",
+      "sha256": "78cb665b7955e1fab4c55fed89434027df17d89a874d7287b9af4f91d729e065",
+      "mtime": "2026-07-23T04:14:36.578Z"
+    },
+    {
+      "path": "audit_comparison_v7_v8.json",
+      "sha256": "dc73f6393db379ee6f89a33d5108af83740105dee3042225bf585e2b1517b88e",
+      "mtime": "2026-07-23T04:14:36.657Z"
+    }
+  ],
+  "actions": []
+}

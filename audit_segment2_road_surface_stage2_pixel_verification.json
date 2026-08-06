@@ -1,0 +1,1125 @@
+{
+  "generatedAt": "2026-08-04T08:39:26.964Z",
+  "segment": "qlog_f449c_2.bz2",
+  "status": "completed",
+  "manifestPath": "screenshots/segment2_road_surface_stage2/capture_manifest.json",
+  "captureCount": 28,
+  "method": "stage2-prototype-harness-v1",
+  "roadSurfaceChecksum": "26ae09b9",
+  "mode5Checksum": "5283af91",
+  "captures": [
+    {
+      "filename": "stage2_overview_t0.png",
+      "displayMode": "cleanedWithStage1Surface",
+      "polygonIdsVisible": [
+        "RS-BP-PB1-PB0-0-89",
+        "RS-BP-PB1-PB0-1-66",
+        "RS-BP-PB1-PB0-2-622",
+        "RS-BP-PB1-PB0-3-435",
+        "RS-BP-PB1-PB0-4-590",
+        "RS-BP-PB1-PB0-5-647",
+        "RS-BP-PB1-PB0-6-500",
+        "RS-BP-PB1-PB0-7-528",
+        "RS-BP-PB1-PB0-8-381",
+        "RS-BP-PB1-PB0-9-567",
+        "RS-BP-PB1-PB0-10-467",
+        "RS-BP-PB1-PB0-11-332",
+        "RS-BP-PB2-PB1-12-408",
+        "RS-BP-PB2-PB1-13-435"
+      ],
+      "polygonCountDrawn": 14,
+      "canvasDimensions": {
+        "width": 1280,
+        "height": 800
+      },
+      "devicePixelRatio": 1,
+      "zoom": 1.9059095011603646,
+      "pan": {
+        "x": -57.29367842848352,
+        "y": -185.0940104480348
+      },
+      "routeSTarget": "overview",
+      "timelineIndex": 0,
+      "pixelsPerMetre": 1.9059095011603646,
+      "laneChecksum": "5283af91",
+      "roadSurfaceChecksum": "26ae09b9",
+      "surfaceVisibility": true,
+      "viewportBoundingBox": {
+        "minE": -305.7366161492718,
+        "maxE": 365.8587556250462,
+        "minN": -306.9893980232614,
+        "maxN": 112.75770933568731
+      },
+      "structuralVerdict": "pending",
+      "visualVerdict": "pending",
+      "status": "captured",
+      "inspected": true,
+      "structurallyValid": true,
+      "visiblyValid": true
+    },
+    {
+      "filename": "stage2_CD-10_t0.png",
+      "displayMode": "cleanedWithStage1Surface",
+      "polygonIdsVisible": [
+        "RS-BP-PB1-PB0-0-89",
+        "RS-BP-PB1-PB0-1-66",
+        "RS-BP-PB1-PB0-2-622",
+        "RS-BP-PB1-PB0-3-435",
+        "RS-BP-PB1-PB0-4-590",
+        "RS-BP-PB1-PB0-5-647",
+        "RS-BP-PB1-PB0-6-500",
+        "RS-BP-PB1-PB0-7-528",
+        "RS-BP-PB1-PB0-8-381",
+        "RS-BP-PB1-PB0-9-567",
+        "RS-BP-PB1-PB0-10-467",
+        "RS-BP-PB1-PB0-11-332",
+        "RS-BP-PB2-PB1-12-408",
+        "RS-BP-PB2-PB1-13-435"
+      ],
+      "polygonCountDrawn": 14,
+      "canvasDimensions": {
+        "width": 1280,
+        "height": 800
+      },
+      "devicePixelRatio": 1,
+      "zoom": 2.1060071802599296,
+      "pan": {
+        "x": -51.15427950280058,
+        "y": -243.37223567598895
+      },
+      "routeSTarget": "CD-10",
+      "timelineIndex": 0,
+      "pixelsPerMetre": 2.1060071802599296,
+      "laneChecksum": "5283af91",
+      "roadSurfaceChecksum": "26ae09b9",
+      "surfaceVisibility": true,
+      "viewportBoundingBox": {
+        "minE": -279.6029026000388,
+        "maxE": 328.1822996526993,
+        "minN": -305.4938471750994,
+        "maxN": 74.37190423286194
+      },
+      "structuralVerdict": "pending",
+      "visualVerdict": "pending",
+      "status": "captured",
+      "inspected": true,
+      "structurallyValid": true,
+      "visiblyValid": true
+    },
+    {
+      "filename": "stage2_CD-12_t0.png",
+      "displayMode": "cleanedWithStage1Surface",
+      "polygonIdsVisible": [
+        "RS-BP-PB1-PB0-0-89",
+        "RS-BP-PB1-PB0-1-66",
+        "RS-BP-PB1-PB0-2-622",
+        "RS-BP-PB1-PB0-3-435",
+        "RS-BP-PB1-PB0-4-590",
+        "RS-BP-PB1-PB0-5-647",
+        "RS-BP-PB1-PB0-6-500",
+        "RS-BP-PB1-PB0-7-528",
+        "RS-BP-PB1-PB0-8-381",
+        "RS-BP-PB1-PB0-9-567",
+        "RS-BP-PB1-PB0-10-467",
+        "RS-BP-PB1-PB0-11-332",
+        "RS-BP-PB2-PB1-12-408",
+        "RS-BP-PB2-PB1-13-435"
+      ],
+      "polygonCountDrawn": 14,
+      "canvasDimensions": {
+        "width": 1280,
+        "height": 800
+      },
+      "devicePixelRatio": 1,
+      "zoom": 2.1060071802599296,
+      "pan": {
+        "x": -51.15427950280058,
+        "y": -243.37223567598895
+      },
+      "routeSTarget": "CD-12",
+      "timelineIndex": 0,
+      "pixelsPerMetre": 2.1060071802599296,
+      "laneChecksum": "5283af91",
+      "roadSurfaceChecksum": "26ae09b9",
+      "surfaceVisibility": true,
+      "viewportBoundingBox": {
+        "minE": -279.6029026000388,
+        "maxE": 328.1822996526993,
+        "minN": -305.4938471750994,
+        "maxN": 74.37190423286194
+      },
+      "structuralVerdict": "pending",
+      "visualVerdict": "pending",
+      "status": "captured",
+      "inspected": true,
+      "structurallyValid": true,
+      "visiblyValid": true
+    },
+    {
+      "filename": "stage2_CD-18_t0.png",
+      "displayMode": "cleanedWithStage1Surface",
+      "polygonIdsVisible": [
+        "RS-BP-PB1-PB0-0-89",
+        "RS-BP-PB1-PB0-1-66",
+        "RS-BP-PB1-PB0-2-622",
+        "RS-BP-PB1-PB0-3-435",
+        "RS-BP-PB1-PB0-4-590",
+        "RS-BP-PB1-PB0-5-647",
+        "RS-BP-PB1-PB0-6-500",
+        "RS-BP-PB1-PB0-7-528",
+        "RS-BP-PB1-PB0-8-381",
+        "RS-BP-PB1-PB0-9-567",
+        "RS-BP-PB1-PB0-10-467",
+        "RS-BP-PB1-PB0-11-332",
+        "RS-BP-PB2-PB1-12-408",
+        "RS-BP-PB2-PB1-13-435"
+      ],
+      "polygonCountDrawn": 14,
+      "canvasDimensions": {
+        "width": 1280,
+        "height": 800
+      },
+      "devicePixelRatio": 1,
+      "zoom": 2.1060071802599296,
+      "pan": {
+        "x": -51.15427950280058,
+        "y": -243.37223567598895
+      },
+      "routeSTarget": "CD-18",
+      "timelineIndex": 0,
+      "pixelsPerMetre": 2.1060071802599296,
+      "laneChecksum": "5283af91",
+      "roadSurfaceChecksum": "26ae09b9",
+      "surfaceVisibility": true,
+      "viewportBoundingBox": {
+        "minE": -279.6029026000388,
+        "maxE": 328.1822996526993,
+        "minN": -305.4938471750994,
+        "maxN": 74.37190423286194
+      },
+      "structuralVerdict": "pending",
+      "visualVerdict": "pending",
+      "status": "captured",
+      "inspected": true,
+      "structurallyValid": true,
+      "visiblyValid": true
+    },
+    {
+      "filename": "stage2_CD-01_D10_control_t0.png",
+      "displayMode": "cleanedWithStage1Surface",
+      "polygonIdsVisible": [
+        "RS-BP-PB1-PB0-0-89",
+        "RS-BP-PB1-PB0-1-66",
+        "RS-BP-PB1-PB0-2-622",
+        "RS-BP-PB1-PB0-3-435",
+        "RS-BP-PB1-PB0-4-590",
+        "RS-BP-PB1-PB0-5-647",
+        "RS-BP-PB1-PB0-6-500",
+        "RS-BP-PB1-PB0-7-528",
+        "RS-BP-PB1-PB0-8-381",
+        "RS-BP-PB1-PB0-9-567",
+        "RS-BP-PB1-PB0-10-467",
+        "RS-BP-PB1-PB0-11-332",
+        "RS-BP-PB2-PB1-12-408",
+        "RS-BP-PB2-PB1-13-435"
+      ],
+      "polygonCountDrawn": 14,
+      "canvasDimensions": {
+        "width": 1280,
+        "height": 800
+      },
+      "devicePixelRatio": 1,
+      "zoom": 2.1060071802599296,
+      "pan": {
+        "x": -96.13514809243203,
+        "y": -243.37223567598895
+      },
+      "routeSTarget": "CD-01_D10_control",
+      "timelineIndex": 0,
+      "pixelsPerMetre": 2.1060071802599296,
+      "laneChecksum": "5283af91",
+      "roadSurfaceChecksum": "26ae09b9",
+      "surfaceVisibility": true,
+      "viewportBoundingBox": {
+        "minE": -258.2445382928099,
+        "maxE": 349.5406639599282,
+        "minN": -305.4938471750994,
+        "maxN": 74.37190423286194
+      },
+      "structuralVerdict": "pending",
+      "visualVerdict": "pending",
+      "status": "captured",
+      "inspected": true,
+      "structurallyValid": true,
+      "visiblyValid": true
+    },
+    {
+      "filename": "stage2_D6_control_t0.png",
+      "displayMode": "cleanedWithStage1Surface",
+      "polygonIdsVisible": [
+        "RS-BP-PB1-PB0-0-89",
+        "RS-BP-PB1-PB0-1-66",
+        "RS-BP-PB1-PB0-2-622",
+        "RS-BP-PB1-PB0-3-435",
+        "RS-BP-PB1-PB0-4-590",
+        "RS-BP-PB1-PB0-5-647",
+        "RS-BP-PB1-PB0-6-500",
+        "RS-BP-PB1-PB0-7-528",
+        "RS-BP-PB1-PB0-8-381",
+        "RS-BP-PB1-PB0-9-567",
+        "RS-BP-PB1-PB0-10-467",
+        "RS-BP-PB1-PB0-11-332",
+        "RS-BP-PB2-PB1-12-408",
+        "RS-BP-PB2-PB1-13-435"
+      ],
+      "polygonCountDrawn": 14,
+      "canvasDimensions": {
+        "width": 1280,
+        "height": 800
+      },
+      "devicePixelRatio": 1,
+      "zoom": 2.10427640487116,
+      "pan": {
+        "x": -51.11223949039058,
+        "y": -242.8681492798868
+      },
+      "routeSTarget": "D6_control",
+      "timelineIndex": 0,
+      "pixelsPerMetre": 2.10427640487116,
+      "laneChecksum": "5283af91",
+      "roadSurfaceChecksum": "26ae09b9",
+      "surfaceVisibility": true,
+      "viewportBoundingBox": {
+        "minE": -279.8528554264076,
+        "maxE": 328.4322524790681,
+        "minN": -305.50556371383544,
+        "maxN": 74.67262872708683
+      },
+      "structuralVerdict": "pending",
+      "visualVerdict": "pending",
+      "status": "captured",
+      "inspected": true,
+      "structurallyValid": true,
+      "visiblyValid": true
+    },
+    {
+      "filename": "stage2_classF_control_t0.png",
+      "displayMode": "cleanedWithStage1Surface",
+      "polygonIdsVisible": [
+        "RS-BP-PB1-PB0-0-89",
+        "RS-BP-PB1-PB0-1-66",
+        "RS-BP-PB1-PB0-2-622",
+        "RS-BP-PB1-PB0-3-435",
+        "RS-BP-PB1-PB0-4-590",
+        "RS-BP-PB1-PB0-5-647",
+        "RS-BP-PB1-PB0-6-500",
+        "RS-BP-PB1-PB0-7-528",
+        "RS-BP-PB1-PB0-8-381",
+        "RS-BP-PB1-PB0-9-567",
+        "RS-BP-PB1-PB0-10-467",
+        "RS-BP-PB1-PB0-11-332",
+        "RS-BP-PB2-PB1-12-408",
+        "RS-BP-PB2-PB1-13-435"
+      ],
+      "polygonCountDrawn": 14,
+      "canvasDimensions": {
+        "width": 1280,
+        "height": 800
+      },
+      "devicePixelRatio": 1,
+      "zoom": 2.1060071802599296,
+      "pan": {
+        "x": -60.94652868777276,
+        "y": -243.37223567598895
+      },
+      "routeSTarget": "classF_control",
+      "timelineIndex": 0,
+      "pixelsPerMetre": 2.1060071802599296,
+      "laneChecksum": "5283af91",
+      "roadSurfaceChecksum": "26ae09b9",
+      "surfaceVisibility": true,
+      "viewportBoundingBox": {
+        "minE": -274.9532274817595,
+        "maxE": 332.83197477097866,
+        "minN": -305.4938471750994,
+        "maxN": 74.37190423286194
+      },
+      "structuralVerdict": "pending",
+      "visualVerdict": "pending",
+      "status": "captured",
+      "inspected": true,
+      "structurallyValid": true,
+      "visiblyValid": true
+    },
+    {
+      "filename": "stage2_dropout_240m_t0.png",
+      "displayMode": "cleanedWithStage1Surface",
+      "polygonIdsVisible": [
+        "RS-BP-PB1-PB0-0-89",
+        "RS-BP-PB1-PB0-1-66",
+        "RS-BP-PB1-PB0-2-622",
+        "RS-BP-PB1-PB0-3-435",
+        "RS-BP-PB1-PB0-4-590",
+        "RS-BP-PB1-PB0-5-647",
+        "RS-BP-PB1-PB0-6-500",
+        "RS-BP-PB1-PB0-7-528",
+        "RS-BP-PB1-PB0-8-381",
+        "RS-BP-PB1-PB0-9-567",
+        "RS-BP-PB1-PB0-10-467",
+        "RS-BP-PB1-PB0-11-332",
+        "RS-BP-PB2-PB1-12-408",
+        "RS-BP-PB2-PB1-13-435"
+      ],
+      "polygonCountDrawn": 14,
+      "canvasDimensions": {
+        "width": 1280,
+        "height": 800
+      },
+      "devicePixelRatio": 1,
+      "zoom": 1.9059095011603646,
+      "pan": {
+        "x": -87.00107666404573,
+        "y": -185.0940104480348
+      },
+      "routeSTarget": "dropout_240m",
+      "timelineIndex": 0,
+      "pixelsPerMetre": 1.9059095011603646,
+      "laneChecksum": "5283af91",
+      "roadSurfaceChecksum": "26ae09b9",
+      "surfaceVisibility": true,
+      "viewportBoundingBox": {
+        "minE": -290.14962305359984,
+        "maxE": 381.44574872071814,
+        "minN": -306.9893980232614,
+        "maxN": 112.75770933568731
+      },
+      "structuralVerdict": "pending",
+      "visualVerdict": "pending",
+      "status": "captured",
+      "inspected": true,
+      "structurallyValid": true,
+      "visiblyValid": true
+    },
+    {
+      "filename": "stage2_poly_RS-BP-PB1-PB0-0-89_t0.png",
+      "displayMode": "cleanedWithStage1Surface",
+      "polygonIdsVisible": [
+        "RS-BP-PB1-PB0-0-89"
+      ],
+      "polygonCountDrawn": 1,
+      "canvasDimensions": {
+        "width": 1280,
+        "height": 800
+      },
+      "devicePixelRatio": 1,
+      "zoom": 10.829664232974803,
+      "pan": {
+        "x": -713.1355386639066,
+        "y": 302.8138843739931
+      },
+      "routeSTarget": "RS-BP-PB1-PB0-0-89",
+      "timelineIndex": 0,
+      "pixelsPerMetre": 10.829664232974803,
+      "laneChecksum": "5283af91",
+      "roadSurfaceChecksum": "26ae09b9",
+      "surfaceVisibility": true,
+      "viewportBoundingBox": {
+        "minE": 6.753260035636117,
+        "maxE": 124.94713682293116,
+        "minN": -8.974065449793798,
+        "maxN": 64.8971075422656
+      },
+      "structuralVerdict": "pending",
+      "visualVerdict": "pending",
+      "status": "captured",
+      "inspected": true,
+      "structurallyValid": true,
+      "visiblyValid": true
+    },
+    {
+      "filename": "stage2_poly_RS-BP-PB1-PB0-1-66_t0.png",
+      "displayMode": "cleanedWithStage1Surface",
+      "polygonIdsVisible": [
+        "RS-BP-PB1-PB0-1-66"
+      ],
+      "polygonCountDrawn": 1,
+      "canvasDimensions": {
+        "width": 1280,
+        "height": 800
+      },
+      "devicePixelRatio": 1,
+      "zoom": 35.06831801019949,
+      "pan": {
+        "x": -2773.556688111757,
+        "y": 24.190376928392087
+      },
+      "routeSTarget": "RS-BP-PB1-PB0-1-66",
+      "timelineIndex": 0,
+      "pixelsPerMetre": 35.06831801019949,
+      "laneChecksum": "5283af91",
+      "roadSurfaceChecksum": "26ae09b9",
+      "surfaceVisibility": true,
+      "viewportBoundingBox": {
+        "minE": 60.84000628405445,
+        "maxE": 97.34018857473964,
+        "minN": -10.716499803677642,
+        "maxN": 12.096114128000604
+      },
+      "structuralVerdict": "pending",
+      "visualVerdict": "pending",
+      "status": "captured",
+      "inspected": true,
+      "structurallyValid": true,
+      "visiblyValid": true
+    },
+    {
+      "filename": "stage2_poly_RS-BP-PB1-PB0-2-622_t0.png",
+      "displayMode": "cleanedWithStage1Surface",
+      "polygonIdsVisible": [
+        "RS-BP-PB1-PB0-2-622"
+      ],
+      "polygonCountDrawn": 1,
+      "canvasDimensions": {
+        "width": 1280,
+        "height": 800
+      },
+      "devicePixelRatio": 1,
+      "zoom": 7.003087530003391,
+      "pan": {
+        "x": 211.82160653910861,
+        "y": -1683.6475852011897
+      },
+      "routeSTarget": "RS-BP-PB1-PB0-2-622",
+      "timelineIndex": 0,
+      "pixelsPerMetre": 7.003087530003391,
+      "laneChecksum": "5283af91",
+      "roadSurfaceChecksum": "26ae09b9",
+      "surfaceVisibility": true,
+      "viewportBoundingBox": {
+        "minE": -121.63515062315608,
+        "maxE": 61.14137394776844,
+        "minN": -297.53270629193185,
+        "maxN": -183.29737843510404
+      },
+      "structuralVerdict": "pending",
+      "visualVerdict": "pending",
+      "status": "captured",
+      "inspected": true,
+      "structurallyValid": true,
+      "visiblyValid": true
+    },
+    {
+      "filename": "stage2_poly_RS-BP-PB1-PB0-3-435_t0.png",
+      "displayMode": "cleanedWithStage1Surface",
+      "polygonIdsVisible": [
+        "RS-BP-PB1-PB0-3-435"
+      ],
+      "polygonCountDrawn": 1,
+      "canvasDimensions": {
+        "width": 1280,
+        "height": 800
+      },
+      "devicePixelRatio": 1,
+      "zoom": 7.148799254024487,
+      "pan": {
+        "x": -119.5755223150898,
+        "y": -256.85845724194405
+      },
+      "routeSTarget": "RS-BP-PB1-PB0-3-435",
+      "timelineIndex": 0,
+      "pixelsPerMetre": 7.148799254024487,
+      "laneChecksum": "5283af91",
+      "roadSurfaceChecksum": "26ae09b9",
+      "surfaceVisibility": true,
+      "viewportBoundingBox": {
+        "minE": -72.79886582238719,
+        "maxE": 106.25218240496532,
+        "minN": -91.88374633294663,
+        "maxN": 20.023158809148683
+      },
+      "structuralVerdict": "pending",
+      "visualVerdict": "pending",
+      "status": "captured",
+      "inspected": true,
+      "structurallyValid": true,
+      "visiblyValid": true
+    },
+    {
+      "filename": "stage2_poly_RS-BP-PB1-PB0-4-590_t0.png",
+      "displayMode": "cleanedWithStage1Surface",
+      "polygonIdsVisible": [
+        "RS-BP-PB1-PB0-4-590"
+      ],
+      "polygonCountDrawn": 1,
+      "canvasDimensions": {
+        "width": 1280,
+        "height": 800
+      },
+      "devicePixelRatio": 1,
+      "zoom": 10.506336315231522,
+      "pan": {
+        "x": 213.15815756885513,
+        "y": -2107.3844548425623
+      },
+      "routeSTarget": "RS-BP-PB1-PB0-4-590",
+      "timelineIndex": 0,
+      "pixelsPerMetre": 10.506336315231522,
+      "laneChecksum": "5283af91",
+      "roadSurfaceChecksum": "26ae09b9",
+      "surfaceVisibility": true,
+      "viewportBoundingBox": {
+        "minE": -81.20415451882997,
+        "maxE": 40.627087276116654,
+        "minN": -238.6545013990739,
+        "maxN": -162.50997527723226
+      },
+      "structuralVerdict": "pending",
+      "visualVerdict": "pending",
+      "status": "captured",
+      "inspected": true,
+      "structurallyValid": true,
+      "visiblyValid": true
+    },
+    {
+      "filename": "stage2_poly_RS-BP-PB1-PB0-5-647_t0.png",
+      "displayMode": "cleanedWithStage1Surface",
+      "polygonIdsVisible": [
+        "RS-BP-PB1-PB0-5-647"
+      ],
+      "polygonCountDrawn": 1,
+      "canvasDimensions": {
+        "width": 1280,
+        "height": 800
+      },
+      "devicePixelRatio": 1,
+      "zoom": 9.867213772892855,
+      "pan": {
+        "x": 333.6056295829718,
+        "y": -2523.5494023955916
+      },
+      "routeSTarget": "RS-BP-PB1-PB0-5-647",
+      "timelineIndex": 0,
+      "pixelsPerMetre": 9.867213772892855,
+      "laneChecksum": "5283af91",
+      "roadSurfaceChecksum": "26ae09b9",
+      "surfaceVisibility": true,
+      "viewportBoundingBox": {
+        "minE": -98.67077495145134,
+        "maxE": 31.051761669414,
+        "minN": -296.2892534493524,
+        "maxN": -215.21266806131155
+      },
+      "structuralVerdict": "pending",
+      "visualVerdict": "pending",
+      "status": "captured",
+      "inspected": true,
+      "structurallyValid": true,
+      "visiblyValid": true
+    },
+    {
+      "filename": "stage2_poly_RS-BP-PB1-PB0-6-500_t0.png",
+      "displayMode": "cleanedWithStage1Surface",
+      "polygonIdsVisible": [
+        "RS-BP-PB1-PB0-6-500"
+      ],
+      "polygonCountDrawn": 1,
+      "canvasDimensions": {
+        "width": 1280,
+        "height": 800
+      },
+      "devicePixelRatio": 1,
+      "zoom": 7.88826993124547,
+      "pan": {
+        "x": 6.411442861445631,
+        "y": -900.9014137079769
+      },
+      "routeSTarget": "RS-BP-PB1-PB0-6-500",
+      "timelineIndex": 0,
+      "pixelsPerMetre": 7.88826993124547,
+      "laneChecksum": "5283af91",
+      "roadSurfaceChecksum": "26ae09b9",
+      "surfaceVisibility": true,
+      "viewportBoundingBox": {
+        "minE": -81.94590810096484,
+        "maxE": 80.32034434178114,
+        "minN": -164.91593531239351,
+        "maxN": -63.49952753567728
+      },
+      "structuralVerdict": "pending",
+      "visualVerdict": "pending",
+      "status": "captured",
+      "inspected": true,
+      "structurallyValid": true,
+      "visiblyValid": true
+    },
+    {
+      "filename": "stage2_poly_RS-BP-PB1-PB0-7-528_t0.png",
+      "displayMode": "cleanedWithStage1Surface",
+      "polygonIdsVisible": [
+        "RS-BP-PB1-PB0-7-528"
+      ],
+      "polygonCountDrawn": 1,
+      "canvasDimensions": {
+        "width": 1280,
+        "height": 800
+      },
+      "devicePixelRatio": 1,
+      "zoom": 9.3528904287336,
+      "pan": {
+        "x": 58.123446594019335,
+        "y": -1301.4341295829477
+      },
+      "routeSTarget": "RS-BP-PB1-PB0-7-528",
+      "timelineIndex": 0,
+      "pixelsPerMetre": 9.3528904287336,
+      "laneChecksum": "5283af91",
+      "roadSurfaceChecksum": "26ae09b9",
+      "surfaceVisibility": true,
+      "viewportBoundingBox": {
+        "minE": -74.64253450989553,
+        "maxE": 62.213553963848575,
+        "minN": -181.91532794566535,
+        "maxN": -96.3802726495753
+      },
+      "structuralVerdict": "pending",
+      "visualVerdict": "pending",
+      "status": "captured",
+      "inspected": true,
+      "structurallyValid": true,
+      "visiblyValid": true
+    },
+    {
+      "filename": "stage2_poly_RS-BP-PB1-PB0-8-381_t0.png",
+      "displayMode": "cleanedWithStage1Surface",
+      "polygonIdsVisible": [
+        "RS-BP-PB1-PB0-8-381"
+      ],
+      "polygonCountDrawn": 1,
+      "canvasDimensions": {
+        "width": 1280,
+        "height": 800
+      },
+      "devicePixelRatio": 1,
+      "zoom": 6.656191394451031,
+      "pan": {
+        "x": -196.63460567011353,
+        "y": 43.52879377380074
+      },
+      "routeSTarget": "RS-BP-PB1-PB0-8-381",
+      "timelineIndex": 0,
+      "pixelsPerMetre": 6.656191394451031,
+      "laneChecksum": "5283af91",
+      "roadSurfaceChecksum": "26ae09b9",
+      "surfaceVisibility": true,
+      "viewportBoundingBox": {
+        "minE": -66.60947200218737,
+        "maxE": 125.69269062298577,
+        "minN": -53.554831149142345,
+        "maxN": 66.63402049159086
+      },
+      "structuralVerdict": "pending",
+      "visualVerdict": "pending",
+      "status": "captured",
+      "inspected": true,
+      "structurallyValid": true,
+      "visiblyValid": true
+    },
+    {
+      "filename": "stage2_poly_RS-BP-PB1-PB0-9-567_t0.png",
+      "displayMode": "cleanedWithStage1Surface",
+      "polygonIdsVisible": [
+        "RS-BP-PB1-PB0-9-567"
+      ],
+      "polygonCountDrawn": 1,
+      "canvasDimensions": {
+        "width": 1280,
+        "height": 800
+      },
+      "devicePixelRatio": 1,
+      "zoom": 8.34095993921059,
+      "pan": {
+        "x": 114.7031932386491,
+        "y": -1425.354453817894
+      },
+      "routeSTarget": "RS-BP-PB1-PB0-9-567",
+      "timelineIndex": 0,
+      "pixelsPerMetre": 8.34095993921059,
+      "laneChecksum": "5283af91",
+      "roadSurfaceChecksum": "26ae09b9",
+      "surfaceVisibility": true,
+      "viewportBoundingBox": {
+        "minE": -90.48157511113476,
+        "maxE": 62.97797982363482,
+        "minN": -218.84225162585426,
+        "maxN": -122.93002979162327
+      },
+      "structuralVerdict": "pending",
+      "visualVerdict": "pending",
+      "status": "captured",
+      "inspected": true,
+      "structurallyValid": true,
+      "visiblyValid": true
+    },
+    {
+      "filename": "stage2_poly_RS-BP-PB1-PB0-10-467_t0.png",
+      "displayMode": "cleanedWithStage1Surface",
+      "polygonIdsVisible": [
+        "RS-BP-PB1-PB0-10-467"
+      ],
+      "polygonCountDrawn": 1,
+      "canvasDimensions": {
+        "width": 1280,
+        "height": 800
+      },
+      "devicePixelRatio": 1,
+      "zoom": 9.807758615845204,
+      "pan": {
+        "x": -81.5231593931082,
+        "y": -726.2062182262963
+      },
+      "routeSTarget": "RS-BP-PB1-PB0-10-467",
+      "timelineIndex": 0,
+      "pixelsPerMetre": 9.807758615845204,
+      "laneChecksum": "5283af91",
+      "roadSurfaceChecksum": "26ae09b9",
+      "surfaceVisibility": true,
+      "viewportBoundingBox": {
+        "minE": -56.94235171169778,
+        "maxE": 73.56656986107213,
+        "minN": -114.82809297598554,
+        "maxN": -33.260016993004356
+      },
+      "structuralVerdict": "pending",
+      "visualVerdict": "pending",
+      "status": "captured",
+      "inspected": true,
+      "structurallyValid": true,
+      "visiblyValid": true
+    },
+    {
+      "filename": "stage2_poly_RS-BP-PB1-PB0-11-332_t0.png",
+      "displayMode": "cleanedWithStage1Surface",
+      "polygonIdsVisible": [
+        "RS-BP-PB1-PB0-11-332"
+      ],
+      "polygonCountDrawn": 1,
+      "canvasDimensions": {
+        "width": 1280,
+        "height": 800
+      },
+      "devicePixelRatio": 1,
+      "zoom": 8.714118146346744,
+      "pan": {
+        "x": -488.94327532823684,
+        "y": 171.38148263964692
+      },
+      "routeSTarget": "RS-BP-PB1-PB0-11-332",
+      "timelineIndex": 0,
+      "pixelsPerMetre": 8.714118146346744,
+      "laneChecksum": "5283af91",
+      "roadSurfaceChecksum": "26ae09b9",
+      "surfaceVisibility": true,
+      "viewportBoundingBox": {
+        "minE": -17.33471157205865,
+        "maxE": 129.55335885611424,
+        "minN": -26.235416311884386,
+        "maxN": 65.56962770572369
+      },
+      "structuralVerdict": "pending",
+      "visualVerdict": "pending",
+      "status": "captured",
+      "inspected": true,
+      "structurallyValid": true,
+      "visiblyValid": true
+    },
+    {
+      "filename": "stage2_poly_RS-BP-PB2-PB1-12-408_t0.png",
+      "displayMode": "cleanedWithStage1Surface",
+      "polygonIdsVisible": [
+        "RS-BP-PB2-PB1-12-408"
+      ],
+      "polygonCountDrawn": 1,
+      "canvasDimensions": {
+        "width": 1280,
+        "height": 800
+      },
+      "devicePixelRatio": 1,
+      "zoom": 18.840774860259636,
+      "pan": {
+        "x": -403.19724804426477,
+        "y": -565.4881202634957
+      },
+      "routeSTarget": "RS-BP-PB2-PB1-12-408",
+      "timelineIndex": 0,
+      "pixelsPerMetre": 18.840774860259636,
+      "laneChecksum": "5283af91",
+      "roadSurfaceChecksum": "26ae09b9",
+      "surfaceVisibility": true,
+      "viewportBoundingBox": {
+        "minE": -12.568631264482505,
+        "maxE": 55.36912657688268,
+        "minN": -51.244607900918936,
+        "maxN": -8.783509250065695
+      },
+      "structuralVerdict": "pending",
+      "visualVerdict": "pending",
+      "status": "captured",
+      "inspected": true,
+      "structurallyValid": true,
+      "visiblyValid": true
+    },
+    {
+      "filename": "stage2_poly_RS-BP-PB2-PB1-13-435_t0.png",
+      "displayMode": "cleanedWithStage1Surface",
+      "polygonIdsVisible": [
+        "RS-BP-PB2-PB1-13-435"
+      ],
+      "polygonCountDrawn": 1,
+      "canvasDimensions": {
+        "width": 1280,
+        "height": 800
+      },
+      "devicePixelRatio": 1,
+      "zoom": 18.840774860259636,
+      "pan": {
+        "x": -403.19724804426477,
+        "y": -565.4881202634957
+      },
+      "routeSTarget": "RS-BP-PB2-PB1-13-435",
+      "timelineIndex": 0,
+      "pixelsPerMetre": 18.840774860259636,
+      "laneChecksum": "5283af91",
+      "roadSurfaceChecksum": "26ae09b9",
+      "surfaceVisibility": true,
+      "viewportBoundingBox": {
+        "minE": -12.568631264482505,
+        "maxE": 55.36912657688268,
+        "minN": -51.244607900918936,
+        "maxN": -8.783509250065695
+      },
+      "structuralVerdict": "pending",
+      "visualVerdict": "pending",
+      "status": "captured",
+      "inspected": true,
+      "structurallyValid": true,
+      "visiblyValid": true
+    },
+    {
+      "filename": "stage2_pb2pb1_RS-BP-PB2-PB1-12-408_t0.png",
+      "displayMode": "cleanedWithStage1Surface",
+      "polygonIdsVisible": [
+        "RS-BP-PB2-PB1-12-408"
+      ],
+      "polygonCountDrawn": 1,
+      "canvasDimensions": {
+        "width": 1280,
+        "height": 800
+      },
+      "devicePixelRatio": 1,
+      "zoom": 43.36889051626961,
+      "pan": {
+        "x": -1061.5735221601383,
+        "y": -733.2491726793029
+      },
+      "routeSTarget": "PB2-PB1_RS-BP-PB2-PB1-12-408",
+      "timelineIndex": 0,
+      "pixelsPerMetre": 43.36889051626961,
+      "laneChecksum": "5283af91",
+      "roadSurfaceChecksum": "26ae09b9",
+      "surfaceVisibility": true,
+      "viewportBoundingBox": {
+        "minE": 9.720643464512591,
+        "maxE": 39.23488707929482,
+        "minN": -26.130462623990127,
+        "maxN": -7.684060364751232
+      },
+      "structuralVerdict": "pending",
+      "visualVerdict": "pending",
+      "status": "captured",
+      "inspected": true,
+      "structurallyValid": true,
+      "visiblyValid": true
+    },
+    {
+      "filename": "stage2_pb2pb1_RS-BP-PB2-PB1-13-435_t0.png",
+      "displayMode": "cleanedWithStage1Surface",
+      "polygonIdsVisible": [
+        "RS-BP-PB2-PB1-13-435"
+      ],
+      "polygonCountDrawn": 1,
+      "canvasDimensions": {
+        "width": 1280,
+        "height": 800
+      },
+      "devicePixelRatio": 1,
+      "zoom": 43.20691620512474,
+      "pan": {
+        "x": -792.2151681101209,
+        "y": -1861.7373195227913
+      },
+      "routeSTarget": "PB2-PB1_RS-BP-PB2-PB1-13-435",
+      "timelineIndex": 0,
+      "pixelsPerMetre": 43.20691620512474,
+      "laneChecksum": "5283af91",
+      "roadSurfaceChecksum": "26ae09b9",
+      "surfaceVisibility": true,
+      "viewportBoundingBox": {
+        "minE": 3.522935249242961,
+        "maxE": 33.14782201327867,
+        "minN": -52.34664998504402,
+        "maxN": -33.8310957575217
+      },
+      "structuralVerdict": "pending",
+      "visualVerdict": "pending",
+      "status": "captured",
+      "inspected": true,
+      "structurallyValid": true,
+      "visiblyValid": true
+    },
+    {
+      "filename": "stage2_shortest_polygon_t0.png",
+      "displayMode": "cleanedWithStage1Surface",
+      "polygonIdsVisible": [
+        "RS-BP-PB1-PB0-6-500"
+      ],
+      "polygonCountDrawn": 1,
+      "canvasDimensions": {
+        "width": 1280,
+        "height": 800
+      },
+      "devicePixelRatio": 1,
+      "zoom": 36.667330322569526,
+      "pan": {
+        "x": -38.85570921675917,
+        "y": -3874.9508022823
+      },
+      "routeSTarget": "shortest_polygon",
+      "timelineIndex": 0,
+      "pixelsPerMetre": 36.667330322569526,
+      "laneChecksum": "5283af91",
+      "roadSurfaceChecksum": "26ae09b9",
+      "surfaceVisibility": true,
+      "viewportBoundingBox": {
+        "minE": -16.39454755759035,
+        "maxE": 18.51391151863895,
+        "minN": -116.58745713622288,
+        "maxN": -94.76967021357957
+      },
+      "structuralVerdict": "pending",
+      "visualVerdict": "pending",
+      "status": "captured",
+      "inspected": true,
+      "structurallyValid": true,
+      "visiblyValid": true
+    },
+    {
+      "filename": "stage2_widest_polygon_t0.png",
+      "displayMode": "cleanedWithStage1Surface",
+      "polygonIdsVisible": [
+        "RS-BP-PB1-PB0-5-647"
+      ],
+      "polygonCountDrawn": 1,
+      "canvasDimensions": {
+        "width": 1280,
+        "height": 800
+      },
+      "devicePixelRatio": 1,
+      "zoom": 12.703318771143506,
+      "pan": {
+        "x": 464.564984695101,
+        "y": -3406.0472960260727
+      },
+      "routeSTarget": "widest_polygon",
+      "timelineIndex": 0,
+      "pixelsPerMetre": 12.703318771143506,
+      "laneChecksum": "5283af91",
+      "roadSurfaceChecksum": "26ae09b9",
+      "surfaceVisibility": true,
+      "viewportBoundingBox": {
+        "minE": -86.9508987843554,
+        "maxE": 13.81017185079321,
+        "minN": -299.6104690903121,
+        "maxN": -236.6347999433442
+      },
+      "structuralVerdict": "pending",
+      "visualVerdict": "pending",
+      "status": "captured",
+      "inspected": true,
+      "structurallyValid": true,
+      "visiblyValid": true
+    },
+    {
+      "filename": "stage2_highest_width_variation_t0.png",
+      "displayMode": "cleanedWithStage1Surface",
+      "polygonIdsVisible": [
+        "RS-BP-PB1-PB0-6-500"
+      ],
+      "polygonCountDrawn": 1,
+      "canvasDimensions": {
+        "width": 1280,
+        "height": 800
+      },
+      "devicePixelRatio": 1,
+      "zoom": 36.667330322569526,
+      "pan": {
+        "x": -38.85570921675917,
+        "y": -3874.9508022823
+      },
+      "routeSTarget": "highest_width_variation",
+      "timelineIndex": 0,
+      "pixelsPerMetre": 36.667330322569526,
+      "laneChecksum": "5283af91",
+      "roadSurfaceChecksum": "26ae09b9",
+      "surfaceVisibility": true,
+      "viewportBoundingBox": {
+        "minE": -16.39454755759035,
+        "maxE": 18.51391151863895,
+        "minN": -116.58745713622288,
+        "maxN": -94.76967021357957
+      },
+      "structuralVerdict": "pending",
+      "visualVerdict": "pending",
+      "status": "captured",
+      "inspected": true,
+      "structurallyValid": true,
+      "visiblyValid": true
+    },
+    {
+      "filename": "stage2_closest_neighbours_t0.png",
+      "displayMode": "cleanedWithStage1Surface",
+      "polygonIdsVisible": [
+        "RS-BP-PB1-PB0-2-622",
+        "RS-BP-PB1-PB0-4-590"
+      ],
+      "polygonCountDrawn": 2,
+      "canvasDimensions": {
+        "width": 1280,
+        "height": 800
+      },
+      "devicePixelRatio": 1,
+      "zoom": 14.171391525481956,
+      "pan": {
+        "x": 319.17505935310294,
+        "y": -2999.943890738612
+      },
+      "routeSTarget": "closest_neighbours",
+      "timelineIndex": 0,
+      "pixelsPerMetre": 14.171391525481956,
+      "laneChecksum": "5283af91",
+      "roadSurfaceChecksum": "26ae09b9",
+      "surfaceVisibility": true,
+      "viewportBoundingBox": {
+        "minE": -67.68390088075576,
+        "maxE": 22.63891587992705,
+        "minN": -239.9160226873333,
+        "maxN": -183.46426221190657
+      },
+      "structuralVerdict": "pending",
+      "visualVerdict": "pending",
+      "status": "captured",
+      "inspected": true,
+      "structurallyValid": true,
+      "visiblyValid": true
+    }
+  ]
+}

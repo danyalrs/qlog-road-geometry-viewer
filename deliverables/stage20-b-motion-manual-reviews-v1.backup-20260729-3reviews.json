@@ -1,0 +1,62 @@
+{
+  "schemaVersion": "stage20-b-motion-manual-reviews-v1",
+  "manifestSchemaVersion": "stage20-b-motion-evidence-review-manifest-v1",
+  "manifestPath": "deliverables\\stage20-b-motion-evidence-review-manifest.json",
+  "manifestContentHash": "11084aa3e2e5b196c05c0bd466d24f28f19649536d1b54455cc5f44806129f8d",
+  "createdAt": "2026-07-29T02:18:22.523Z",
+  "updatedAt": "2026-07-29T02:28:20.726Z",
+  "reviews": [
+    {
+      "reviewPairId": "0:0:73700718671:0|0:0:75701987372:0",
+      "reviewerLabel": "positive_continuation",
+      "reviewerId": "danyal-roslan",
+      "reviewedAt": "2026-07-29T02:18:22.511Z",
+      "evidenceMode": "qlog_playback",
+      "reviewerNotes": "Frames A (19) and B (20) preserve the same lane-divider order and road-edge structure, with smooth geometry changes through the preceding frames and no sudden jump or identity swap.",
+      "observationIdA": "0:0:73700718671:0",
+      "observationIdB": "0:0:75701987372:0",
+      "measurementFingerprint": "cb964af07a6662fbb3e2c21f47819a250da8478dfb5cbe6382f17eff32cfe981",
+      "manifestVersion": "stage20-b-motion-evidence-review-manifest-v1",
+      "sourcePairIndex": 0
+    },
+    {
+      "reviewPairId": "0:0:73700718671:1|0:0:75701987372:1",
+      "reviewerLabel": "positive_continuation",
+      "reviewerId": "danyal-roslan",
+      "reviewedAt": "2026-07-29T02:26:19.686Z",
+      "evidenceMode": "qlog_playback",
+      "reviewerNotes": "Lane-divider order and road-edge structure remain consistent between frames A and B, with no sudden geometry jump or identity swap.",
+      "observationIdA": "0:0:73700718671:1",
+      "observationIdB": "0:0:75701987372:1",
+      "measurementFingerprint": "af8c4cf1b71cef35b0c745dd3005be97d3340356fb5f033112cdd7246a80c729",
+      "manifestVersion": "stage20-b-motion-evidence-review-manifest-v1",
+      "sourcePairIndex": 1
+    },
+    {
+      "reviewPairId": "0:0:73700718671:2|0:0:75701987372:2",
+      "reviewerLabel": "positive_continuation",
+      "reviewerId": "danyal-roslan",
+      "reviewedAt": "2026-07-29T02:27:15.521Z",
+      "evidenceMode": "qlog_playback",
+      "reviewerNotes": "",
+      "observationIdA": "0:0:73700718671:2",
+      "observationIdB": "0:0:75701987372:2",
+      "measurementFingerprint": "ebcaeef676ce7d8d52b8c37f5f678951da547daa40799ec1969fb2a47d68cf0a",
+      "manifestVersion": "stage20-b-motion-evidence-review-manifest-v1",
+      "sourcePairIndex": 2
+    },
+    {
+      "reviewPairId": "0:0:73700718671:3|0:0:75701987372:3",
+      "reviewerLabel": "positive_continuation",
+      "reviewerId": "danyal-roslan",
+      "reviewedAt": "2026-07-29T02:28:20.708Z",
+      "evidenceMode": "qlog_playback",
+      "reviewerNotes": "",
+      "observationIdA": "0:0:73700718671:3",
+      "observationIdB": "0:0:75701987372:3",
+      "measurementFingerprint": "6b3b62b91b0de14b75233852296b2662f66bf95005dfb91909d4130c917d35dd",
+      "manifestVersion": "stage20-b-motion-evidence-review-manifest-v1",
+      "sourcePairIndex": 3
+    }
+  ]
+}

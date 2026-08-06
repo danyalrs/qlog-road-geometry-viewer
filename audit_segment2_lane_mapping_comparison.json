@@ -1,0 +1,166 @@
+{
+  "generatedAt": "2026-08-05T04:33:21.866Z",
+  "segment": "qlog_f449c_2.bz2",
+  "gitCommit": null,
+  "note": "No git repository detected; baseline identified from audit artifacts and feature flags.",
+  "baselineIdentification": {
+    "preStage7ProcessingVersion": "2026-07-24-fusion-v11",
+    "stage7ProcessingVersion": "2026-07-24-fusion-v12",
+    "currentProcessingVersion": "2026-07-24-fusion-v13",
+    "preStage7Flags": {
+      "bimodalClusterSelection": true,
+      "positiveBoundaryContinuityBridgeEnabled": false
+    },
+    "preStage8Flags": {
+      "bimodalClusterSelection": true,
+      "positiveBoundaryContinuityBridgeEnabled": true,
+      "visibleGapReconstructionEnabled": false
+    },
+    "acceptedStage6LaneChecksum": "ff6d115e",
+    "acceptedStage7LaneChecksum": "10845acd"
+  },
+  "variants": [
+    {
+      "id": "A",
+      "label": "Earlier baseline (pre Stage 7/8)",
+      "processingVersionLabel": "2026-07-24-fusion-v11 (Stage 6 accepted)",
+      "codeVersion": "2026-07-24-fusion-v13",
+      "flags": {
+        "bimodalClusterSelection": true,
+        "positiveBoundaryContinuityBridgeEnabled": false
+      },
+      "flagSummary": "positiveBoundaryContinuityBridgeEnabled=false, visibleGapReconstructionEnabled=false",
+      "laneChecksum": "ff6d115e",
+      "coordinateChecksum": "6838c279",
+      "roadSurfaceChecksum": "70457ea",
+      "fusedFragments": 22,
+      "cleanedRuns": 21,
+      "interpolatedPointCount": 0
+    },
+    {
+      "id": "B",
+      "label": "Current code, Stage 8 disabled",
+      "processingVersionLabel": "2026-07-24-fusion-v13 + PRE_STAGE8 flags",
+      "codeVersion": "2026-07-24-fusion-v13",
+      "flags": {
+        "bimodalClusterSelection": true,
+        "positiveBoundaryContinuityBridgeEnabled": true,
+        "visibleGapReconstructionEnabled": false
+      },
+      "flagSummary": "positiveBoundaryContinuityBridgeEnabled=true, visibleGapReconstructionEnabled=false",
+      "laneChecksum": "10845acd",
+      "coordinateChecksum": "a418087f",
+      "roadSurfaceChecksum": "70457ea",
+      "fusedFragments": 18,
+      "cleanedRuns": 17,
+      "interpolatedPointCount": 0
+    },
+    {
+      "id": "C",
+      "label": "Current code, Stages 7+8 disabled",
+      "processingVersionLabel": "2026-07-24-fusion-v13 + PRE_STAGE7 flags",
+      "codeVersion": "2026-07-24-fusion-v13",
+      "flags": {
+        "bimodalClusterSelection": true,
+        "positiveBoundaryContinuityBridgeEnabled": false
+      },
+      "flagSummary": "positiveBoundaryContinuityBridgeEnabled=false, visibleGapReconstructionEnabled=false",
+      "laneChecksum": "ff6d115e",
+      "coordinateChecksum": "6838c279",
+      "roadSurfaceChecksum": "70457ea",
+      "fusedFragments": 22,
+      "cleanedRuns": 21,
+      "interpolatedPointCount": 0
+    }
+  ],
+  "viewport": {
+    "width": 1280,
+    "height": 800
+  },
+  "scenes": [
+    {
+      "sceneId": "compare_A_overview_mode5",
+      "variantId": "A",
+      "viewId": "overview_mode5",
+      "laneChecksum": "ff6d115e",
+      "coordinateChecksum": "6838c279"
+    },
+    {
+      "sceneId": "compare_A_pb1_540_660",
+      "variantId": "A",
+      "viewId": "pb1_540_660",
+      "laneChecksum": "ff6d115e",
+      "coordinateChecksum": "6838c279"
+    },
+    {
+      "sceneId": "compare_A_DC-010",
+      "variantId": "A",
+      "viewId": "DC-010",
+      "laneChecksum": "ff6d115e",
+      "coordinateChecksum": "6838c279"
+    },
+    {
+      "sceneId": "compare_A_DC-012",
+      "variantId": "A",
+      "viewId": "DC-012",
+      "laneChecksum": "ff6d115e",
+      "coordinateChecksum": "6838c279"
+    },
+    {
+      "sceneId": "compare_B_overview_mode5",
+      "variantId": "B",
+      "viewId": "overview_mode5",
+      "laneChecksum": "10845acd",
+      "coordinateChecksum": "a418087f"
+    },
+    {
+      "sceneId": "compare_B_pb1_540_660",
+      "variantId": "B",
+      "viewId": "pb1_540_660",
+      "laneChecksum": "10845acd",
+      "coordinateChecksum": "a418087f"
+    },
+    {
+      "sceneId": "compare_B_DC-010",
+      "variantId": "B",
+      "viewId": "DC-010",
+      "laneChecksum": "10845acd",
+      "coordinateChecksum": "a418087f"
+    },
+    {
+      "sceneId": "compare_B_DC-012",
+      "variantId": "B",
+      "viewId": "DC-012",
+      "laneChecksum": "10845acd",
+      "coordinateChecksum": "a418087f"
+    },
+    {
+      "sceneId": "compare_C_overview_mode5",
+      "variantId": "C",
+      "viewId": "overview_mode5",
+      "laneChecksum": "ff6d115e",
+      "coordinateChecksum": "6838c279"
+    },
+    {
+      "sceneId": "compare_C_pb1_540_660",
+      "variantId": "C",
+      "viewId": "pb1_540_660",
+      "laneChecksum": "ff6d115e",
+      "coordinateChecksum": "6838c279"
+    },
+    {
+      "sceneId": "compare_C_DC-010",
+      "variantId": "C",
+      "viewId": "DC-010",
+      "laneChecksum": "ff6d115e",
+      "coordinateChecksum": "6838c279"
+    },
+    {
+      "sceneId": "compare_C_DC-012",
+      "variantId": "C",
+      "viewId": "DC-012",
+      "laneChecksum": "ff6d115e",
+      "coordinateChecksum": "6838c279"
+    }
+  ]
+}

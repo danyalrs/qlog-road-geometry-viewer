@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hdmap.local/schemas/stage19/cross_pass_v0.json",
+  "title": "Stage19CrossPassV0",
+  "type": "object",
+  "required": ["schemaVersion", "runId", "pairs"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "const": "stage19_cross_pass_v0" },
+    "runId": { "type": "string", "minLength": 1 },
+    "pairs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["featurePairId", "evidenceUnitKey", "overlapM", "headingDiffDeg"],
+        "additionalProperties": false,
+        "properties": {
+          "featurePairId": { "type": "string", "minLength": 1 },
+          "evidenceUnitKey": { "type": "string", "minLength": 1 },
+          "overlapM": { "type": "number", "minimum": 0 },
+          "headingDiffDeg": { "type": "number" }
+        }
+      }
+    }
+  }
+}

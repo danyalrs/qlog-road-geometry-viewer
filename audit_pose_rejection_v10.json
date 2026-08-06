@@ -1,0 +1,521 @@
+{
+  "auditedAt": "2026-07-23T04:36:29.917Z",
+  "segmentCount": 17,
+  "totalRejections": 4,
+  "falseSparseRejectionCount": 1,
+  "genuineRejectionCount": 3,
+  "recoveredPolygonSegments": [
+    0,
+    14,
+    15,
+    16,
+    17,
+    18,
+    29,
+    30,
+    31,
+    32,
+    35,
+    37,
+    49,
+    88,
+    89,
+    90
+  ],
+  "stillZeroPolygonAffected": [
+    25
+  ],
+  "results": [
+    {
+      "segmentId": 0,
+      "filename": "qlog_f449c_0.bz2",
+      "polygonCount": 1,
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "rejectedPoseTransitions": 0,
+      "hiddenConnectorLengthM": 0,
+      "falseSparseRejectionCount": 0,
+      "genuineRejectionCount": 0,
+      "rejections": [],
+      "sections": [
+        {
+          "poseSectionId": 0,
+          "pointCount": 21,
+          "startFrameId": 403,
+          "endFrameId": 1203,
+          "startLogMonoTime": "37711368013",
+          "endLogMonoTime": "77699966948"
+        }
+      ]
+    },
+    {
+      "segmentId": 14,
+      "filename": "qlog_f449c_14.bz2",
+      "polygonCount": 1,
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "rejectedPoseTransitions": 0,
+      "hiddenConnectorLengthM": 0,
+      "falseSparseRejectionCount": 0,
+      "genuineRejectionCount": 0,
+      "rejections": [],
+      "sections": [
+        {
+          "poseSectionId": 0,
+          "pointCount": 30,
+          "startFrameId": 16843,
+          "endFrameId": 18003,
+          "startLogMonoTime": "859423063999",
+          "endLogMonoTime": "917473686122"
+        }
+      ]
+    },
+    {
+      "segmentId": 15,
+      "filename": "qlog_f449c_15.bz2",
+      "polygonCount": 1,
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "rejectedPoseTransitions": 0,
+      "hiddenConnectorLengthM": 0,
+      "falseSparseRejectionCount": 0,
+      "genuineRejectionCount": 0,
+      "rejections": [],
+      "sections": [
+        {
+          "poseSectionId": 0,
+          "pointCount": 30,
+          "startFrameId": 18043,
+          "endFrameId": 19203,
+          "startLogMonoTime": "919477111295",
+          "endLogMonoTime": "977469175859"
+        }
+      ]
+    },
+    {
+      "segmentId": 16,
+      "filename": "qlog_f449c_16.bz2",
+      "polygonCount": 1,
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "rejectedPoseTransitions": 0,
+      "hiddenConnectorLengthM": 0,
+      "falseSparseRejectionCount": 0,
+      "genuineRejectionCount": 0,
+      "rejections": [],
+      "sections": [
+        {
+          "poseSectionId": 0,
+          "pointCount": 30,
+          "startFrameId": 19243,
+          "endFrameId": 20403,
+          "startLogMonoTime": "979472082217",
+          "endLogMonoTime": "1037550763436"
+        }
+      ]
+    },
+    {
+      "segmentId": 17,
+      "filename": "qlog_f449c_17.bz2",
+      "polygonCount": 1,
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "rejectedPoseTransitions": 0,
+      "hiddenConnectorLengthM": 0,
+      "falseSparseRejectionCount": 0,
+      "genuineRejectionCount": 0,
+      "rejections": [],
+      "sections": [
+        {
+          "poseSectionId": 0,
+          "pointCount": 30,
+          "startFrameId": 20443,
+          "endFrameId": 21603,
+          "startLogMonoTime": "1039549438068",
+          "endLogMonoTime": "1097575804942"
+        }
+      ]
+    },
+    {
+      "segmentId": 18,
+      "filename": "qlog_f449c_18.bz2",
+      "polygonCount": 1,
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "rejectedPoseTransitions": 0,
+      "hiddenConnectorLengthM": 0,
+      "falseSparseRejectionCount": 0,
+      "genuineRejectionCount": 0,
+      "rejections": [],
+      "sections": [
+        {
+          "poseSectionId": 0,
+          "pointCount": 30,
+          "startFrameId": 21643,
+          "endFrameId": 22803,
+          "startLogMonoTime": "1099576659989",
+          "endLogMonoTime": "1157525407292"
+        }
+      ]
+    },
+    {
+      "segmentId": 25,
+      "filename": "qlog_f449c_25.bz2",
+      "polygonCount": 0,
+      "temporalPassCount": 4,
+      "poseSectionCount": 5,
+      "rejectedPoseTransitions": 4,
+      "hiddenConnectorLengthM": 65.34150523972512,
+      "falseSparseRejectionCount": 1,
+      "genuineRejectionCount": 3,
+      "rejections": [
+        {
+          "index": 20,
+          "reason": "headingMotionDisagreement",
+          "classification": "false_sparse_heading_noise",
+          "displacementM": 5.991121739529435,
+          "elapsedSec": 2.000258388,
+          "impliedSpeedMps": 2.995173911266425,
+          "reportedSpeedMps": 2.4271261408041487,
+          "maxAllowedStepM": 35,
+          "movementState": "moving",
+          "headingContinuityDeg": 39.417483853552,
+          "headingDeltaDeg": 39.417483853552,
+          "motionDisagreementDeg": 76.25304617035744,
+          "disagreementLimitDeg": 65,
+          "gpsSamplingIntervalSec": 2.000258388,
+          "neighborPrevStepM": 13.083712208634562,
+          "neighborPrevImpliedSpeedMps": 6.539340165121493,
+          "resultingSectionPointCount": 3,
+          "fromFrameId": 30803,
+          "toFrameId": 30843
+        },
+        {
+          "index": 23,
+          "reason": "headingMotionDisagreement",
+          "classification": "genuine_localization_failure",
+          "displacementM": 10.385028750394628,
+          "elapsedSec": 1.999672201,
+          "impliedSpeedMps": 5.19336556521677,
+          "reportedSpeedMps": 1.0843915263843718,
+          "maxAllowedStepM": 35,
+          "movementState": "moving",
+          "headingContinuityDeg": 117.07466024667164,
+          "headingDeltaDeg": 117.07466024667164,
+          "motionDisagreementDeg": 91.78616202617917,
+          "disagreementLimitDeg": 45,
+          "gpsSamplingIntervalSec": 1.999672201,
+          "neighborPrevStepM": 6.452784895334764,
+          "neighborPrevImpliedSpeedMps": 3.226615264811109,
+          "resultingSectionPointCount": 1,
+          "fromFrameId": 30923,
+          "toFrameId": 30963
+        },
+        {
+          "index": 24,
+          "reason": "headingMotionDisagreement",
+          "classification": "genuine_localization_failure",
+          "displacementM": 26.66050126569356,
+          "elapsedSec": 2.000917847,
+          "impliedSpeedMps": 13.32413587377711,
+          "reportedSpeedMps": 2.4152855072928254,
+          "maxAllowedStepM": 35,
+          "movementState": "moving",
+          "headingContinuityDeg": 144.19121167844773,
+          "headingDeltaDeg": 144.19121167844773,
+          "motionDisagreementDeg": 168.43345505439535,
+          "disagreementLimitDeg": 45,
+          "gpsSamplingIntervalSec": 2.000917847,
+          "neighborPrevStepM": 10.385028750394628,
+          "neighborPrevImpliedSpeedMps": 5.19336556521677,
+          "resultingSectionPointCount": 2,
+          "fromFrameId": 30963,
+          "toFrameId": 31003
+        },
+        {
+          "index": 26,
+          "reason": "headingMotionDisagreement",
+          "classification": "genuine_localization_failure",
+          "displacementM": 22.304853484107493,
+          "elapsedSec": 2.004682102,
+          "impliedSpeedMps": 11.126379320618833,
+          "reportedSpeedMps": 1.033247187965694,
+          "maxAllowedStepM": 40.111552203545116,
+          "movementState": "moving",
+          "headingContinuityDeg": 105.03591373106224,
+          "headingDeltaDeg": 105.03591373106224,
+          "motionDisagreementDeg": 125.13472974141143,
+          "disagreementLimitDeg": 45,
+          "gpsSamplingIntervalSec": 2.004682102,
+          "neighborPrevStepM": 13.968724622699133,
+          "neighborPrevImpliedSpeedMps": 6.992857223815772,
+          "resultingSectionPointCount": 4,
+          "fromFrameId": 31043,
+          "toFrameId": 31083
+        }
+      ],
+      "sections": [
+        {
+          "poseSectionId": 0,
+          "pointCount": 20,
+          "startFrameId": 30043,
+          "endFrameId": 30803,
+          "startLogMonoTime": "1519414164181",
+          "endLogMonoTime": "1557416656732"
+        },
+        {
+          "poseSectionId": 1,
+          "pointCount": 3,
+          "startFrameId": 30843,
+          "endFrameId": 30923,
+          "startLogMonoTime": "1559416915120",
+          "endLogMonoTime": "1563412863555"
+        },
+        {
+          "poseSectionId": 2,
+          "pointCount": 1,
+          "startFrameId": 30963,
+          "endFrameId": 30963,
+          "startLogMonoTime": "1565412535756",
+          "endLogMonoTime": "1565412535756"
+        },
+        {
+          "poseSectionId": 3,
+          "pointCount": 2,
+          "startFrameId": 31003,
+          "endFrameId": 31043,
+          "startLogMonoTime": "1567413453603",
+          "endLogMonoTime": "1569411024006"
+        },
+        {
+          "poseSectionId": 4,
+          "pointCount": 4,
+          "startFrameId": 31083,
+          "endFrameId": 31203,
+          "startLogMonoTime": "1571415706108",
+          "endLogMonoTime": "1577409765003"
+        }
+      ]
+    },
+    {
+      "segmentId": 29,
+      "filename": "qlog_f449c_29.bz2",
+      "polygonCount": 1,
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "rejectedPoseTransitions": 0,
+      "hiddenConnectorLengthM": 0,
+      "falseSparseRejectionCount": 0,
+      "genuineRejectionCount": 0,
+      "rejections": [],
+      "sections": [
+        {
+          "poseSectionId": 0,
+          "pointCount": 30,
+          "startFrameId": 34843,
+          "endFrameId": 36003,
+          "startLogMonoTime": "1759391000795",
+          "endLogMonoTime": "1817328092614"
+        }
+      ]
+    },
+    {
+      "segmentId": 30,
+      "filename": "qlog_f449c_30.bz2",
+      "polygonCount": 1,
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "rejectedPoseTransitions": 0,
+      "hiddenConnectorLengthM": 0,
+      "falseSparseRejectionCount": 0,
+      "genuineRejectionCount": 0,
+      "rejections": [],
+      "sections": [
+        {
+          "poseSectionId": 0,
+          "pointCount": 30,
+          "startFrameId": 36043,
+          "endFrameId": 37203,
+          "startLogMonoTime": "1819323976705",
+          "endLogMonoTime": "1877290137997"
+        }
+      ]
+    },
+    {
+      "segmentId": 31,
+      "filename": "qlog_f449c_31.bz2",
+      "polygonCount": 1,
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "rejectedPoseTransitions": 0,
+      "hiddenConnectorLengthM": 0,
+      "falseSparseRejectionCount": 0,
+      "genuineRejectionCount": 0,
+      "rejections": [],
+      "sections": [
+        {
+          "poseSectionId": 0,
+          "pointCount": 30,
+          "startFrameId": 37243,
+          "endFrameId": 38403,
+          "startLogMonoTime": "1879288086632",
+          "endLogMonoTime": "1937259195428"
+        }
+      ]
+    },
+    {
+      "segmentId": 32,
+      "filename": "qlog_f449c_32.bz2",
+      "polygonCount": 1,
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "rejectedPoseTransitions": 0,
+      "hiddenConnectorLengthM": 0,
+      "falseSparseRejectionCount": 0,
+      "genuineRejectionCount": 0,
+      "rejections": [],
+      "sections": [
+        {
+          "poseSectionId": 0,
+          "pointCount": 30,
+          "startFrameId": 38443,
+          "endFrameId": 39603,
+          "startLogMonoTime": "1939265907897",
+          "endLogMonoTime": "1997242925688"
+        }
+      ]
+    },
+    {
+      "segmentId": 35,
+      "filename": "qlog_f449c_35.bz2",
+      "polygonCount": 1,
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "rejectedPoseTransitions": 0,
+      "hiddenConnectorLengthM": 0,
+      "falseSparseRejectionCount": 0,
+      "genuineRejectionCount": 0,
+      "rejections": [],
+      "sections": [
+        {
+          "poseSectionId": 0,
+          "pointCount": 30,
+          "startFrameId": 42043,
+          "endFrameId": 43203,
+          "startLogMonoTime": "2119282681113",
+          "endLogMonoTime": "2177283760068"
+        }
+      ]
+    },
+    {
+      "segmentId": 37,
+      "filename": "qlog_f449c_37.bz2",
+      "polygonCount": 1,
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "rejectedPoseTransitions": 0,
+      "hiddenConnectorLengthM": 0,
+      "falseSparseRejectionCount": 0,
+      "genuineRejectionCount": 0,
+      "rejections": [],
+      "sections": [
+        {
+          "poseSectionId": 0,
+          "pointCount": 30,
+          "startFrameId": 44443,
+          "endFrameId": 45603,
+          "startLogMonoTime": "2239280656548",
+          "endLogMonoTime": "2297221908289"
+        }
+      ]
+    },
+    {
+      "segmentId": 49,
+      "filename": "qlog_f449c_49.bz2",
+      "polygonCount": 1,
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "rejectedPoseTransitions": 0,
+      "hiddenConnectorLengthM": 0,
+      "falseSparseRejectionCount": 0,
+      "genuineRejectionCount": 0,
+      "rejections": [],
+      "sections": [
+        {
+          "poseSectionId": 0,
+          "pointCount": 30,
+          "startFrameId": 58843,
+          "endFrameId": 60003,
+          "startLogMonoTime": "2959071017755",
+          "endLogMonoTime": "3017060212551"
+        }
+      ]
+    },
+    {
+      "segmentId": 88,
+      "filename": "qlog_f449c_88.bz2",
+      "polygonCount": 1,
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "rejectedPoseTransitions": 0,
+      "hiddenConnectorLengthM": 0,
+      "falseSparseRejectionCount": 0,
+      "genuineRejectionCount": 0,
+      "rejections": [],
+      "sections": [
+        {
+          "poseSectionId": 0,
+          "pointCount": 30,
+          "startFrameId": 105643,
+          "endFrameId": 106803,
+          "startLogMonoTime": "5298451596375",
+          "endLogMonoTime": "5356327019653"
+        }
+      ]
+    },
+    {
+      "segmentId": 89,
+      "filename": "qlog_f449c_89.bz2",
+      "polygonCount": 1,
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "rejectedPoseTransitions": 0,
+      "hiddenConnectorLengthM": 0,
+      "falseSparseRejectionCount": 0,
+      "genuineRejectionCount": 0,
+      "rejections": [],
+      "sections": [
+        {
+          "poseSectionId": 0,
+          "pointCount": 30,
+          "startFrameId": 106843,
+          "endFrameId": 108003,
+          "startLogMonoTime": "5358318838878",
+          "endLogMonoTime": "5416300179451"
+        }
+      ]
+    },
+    {
+      "segmentId": 90,
+      "filename": "qlog_f449c_90.bz2",
+      "polygonCount": 1,
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "rejectedPoseTransitions": 0,
+      "hiddenConnectorLengthM": 0,
+      "falseSparseRejectionCount": 0,
+      "genuineRejectionCount": 0,
+      "rejections": [],
+      "sections": [
+        {
+          "poseSectionId": 0,
+          "pointCount": 30,
+          "startFrameId": 108043,
+          "endFrameId": 109203,
+          "startLogMonoTime": "5418302562709",
+          "endLogMonoTime": "5476351812074"
+        }
+      ]
+    }
+  ]
+}

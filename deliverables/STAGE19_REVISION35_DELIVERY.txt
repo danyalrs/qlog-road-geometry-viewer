@@ -1,0 +1,27 @@
+Stage 19 Revision 35 — normative specification delivery
+========================================================
+
+Status: Specification pending final review
+         Implementation NOT authorized
+         Approval NOT granted
+
+PRIMARY ARCHIVE (use this):
+  deliverables/stage19-revision35.zip
+
+After extraction, project root is: stage19-revision35/
+
+Verify + run:
+  cd stage19-revision35
+  npm install
+  npm run stage19:evidence
+  npm test
+
+Both commands must exit 0.
+
+Integrity: sha256sum -c MANIFEST.sha256  (inside extracted folder)
+
+Specification: docs/stage19_revision35_specification.md
+
+This file is NOT a substitute for the archive. The archive contains all
+normative schemas, reference implementation, evidence runner, tests, and
+pre-captured results.

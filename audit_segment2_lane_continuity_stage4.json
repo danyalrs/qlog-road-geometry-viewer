@@ -1,0 +1,1092 @@
+{
+  "generatedAt": "2026-08-05T05:56:34.400Z",
+  "segment": "qlog_f449c_2.bz2",
+  "stage": 4,
+  "scope": "disconnection_count_reconciliation_dc022_dc024",
+  "baseline": {
+    "stage3AcceptedLaneChecksum": "ff6d115e",
+    "stage3FusedFragments": 22,
+    "stage3CleanedRuns": 21,
+    "stage3SurfaceChecksum": "70457ea"
+  },
+  "after": {
+    "laneChecksum": "ff6d115e",
+    "fusedFragmentCount": 22,
+    "cleanedRunCount": 21,
+    "stablePhysicalDisconnections": 18,
+    "auditDisconnections": 18,
+    "roadSurfaceChecksum": "70457ea"
+  },
+  "reconciliation": {
+    "stableDefinition": "consecutive cleaned-run gaps with alongTrackGapM > S_EPS (0.05 m)",
+    "stage2ReportedInSummary": 12,
+    "stage3ReportedInSummary": 18,
+    "stage2StablePhysicalCount": 19,
+    "stage3StablePhysicalCount": 18,
+    "stage2AuditDisconnections": 19,
+    "stage3AuditDisconnections": 18,
+    "stage2Pb1OnlyCount": 12,
+    "closedPhysicalGaps": [
+      {
+        "physicalGapKey": "PB0|101.42|128.15",
+        "physicalBoundaryId": "PB0",
+        "routeSInterval": [
+          101.42060881322757,
+          128.15150739711632
+        ],
+        "alongTrackGapM": 26.730898583888745,
+        "sourceRunId": 17,
+        "continuationRunId": 21,
+        "trackId": 0,
+        "chunkId": 0,
+        "passId": 0
+      },
+      {
+        "physicalGapKey": "PB0|136.89|260.57",
+        "physicalBoundaryId": "PB0",
+        "routeSInterval": [
+          136.89462245632075,
+          260.5733446591958
+        ],
+        "alongTrackGapM": 123.67872220287506,
+        "sourceRunId": 21,
+        "continuationRunId": 18,
+        "trackId": 0,
+        "chunkId": 0,
+        "passId": 0
+      }
+    ],
+    "openedPhysicalGaps": [
+      {
+        "physicalGapKey": "PB0|128.15|260.57",
+        "physicalBoundaryId": "PB0",
+        "routeSInterval": [
+          128.15150739711632,
+          260.5733446591958
+        ],
+        "alongTrackGapM": 132.4218372620795,
+        "sourceRunId": 18,
+        "continuationRunId": 17,
+        "trackId": 0,
+        "chunkId": 0,
+        "passId": 0
+      }
+    ],
+    "newPhysicalGapsFromStage3": 0,
+    "mapping": [
+      {
+        "stage2PhysicalGapKey": "PB1|41.01|65.79",
+        "stage3PhysicalGapKey": "PB1|41.01|65.79",
+        "status": "persisted",
+        "stage2AuditId": "DC-001",
+        "stage3AuditId": "DC-001",
+        "idRegenerated": false
+      },
+      {
+        "stage2PhysicalGapKey": "PB1|71.10|88.54",
+        "stage3PhysicalGapKey": "PB1|71.10|88.54",
+        "status": "persisted",
+        "stage2AuditId": "DC-002",
+        "stage3AuditId": "DC-002",
+        "idRegenerated": false
+      },
+      {
+        "stage2PhysicalGapKey": "PB0|71.16|88.61",
+        "stage3PhysicalGapKey": "PB0|71.16|88.61",
+        "status": "persisted",
+        "stage2AuditId": "DC-013",
+        "stage3AuditId": "DC-013",
+        "idRegenerated": false
+      },
+      {
+        "stage2PhysicalGapKey": "PB1|92.49|332.43",
+        "stage3PhysicalGapKey": "PB1|92.49|332.43",
+        "status": "persisted",
+        "stage2AuditId": "DC-003",
+        "stage3AuditId": "DC-003",
+        "idRegenerated": false
+      },
+      {
+        "stage2PhysicalGapKey": "PB0|101.42|128.15",
+        "stage3PhysicalGapKey": null,
+        "status": "closed",
+        "stage2AuditId": "DC-014",
+        "stage3AuditId": null,
+        "idRegenerated": false
+      },
+      {
+        "stage2PhysicalGapKey": "PB0|136.89|260.57",
+        "stage3PhysicalGapKey": null,
+        "status": "closed",
+        "stage2AuditId": "DC-015",
+        "stage3AuditId": null,
+        "idRegenerated": false
+      },
+      {
+        "stage2PhysicalGapKey": "PB0|267.03|284.25",
+        "stage3PhysicalGapKey": "PB0|267.03|284.25",
+        "status": "persisted",
+        "stage2AuditId": "DC-016",
+        "stage3AuditId": "DC-015",
+        "idRegenerated": false
+      },
+      {
+        "stage2PhysicalGapKey": "PB0|295.87|332.05",
+        "stage3PhysicalGapKey": "PB0|295.87|332.05",
+        "status": "persisted",
+        "stage2AuditId": "DC-017",
+        "stage3AuditId": "DC-016",
+        "idRegenerated": false
+      },
+      {
+        "stage2PhysicalGapKey": "PB0|338.49|381.49",
+        "stage3PhysicalGapKey": "PB0|338.49|381.49",
+        "status": "persisted",
+        "stage2AuditId": "DC-018",
+        "stage3AuditId": "DC-017",
+        "idRegenerated": false
+      },
+      {
+        "stage2PhysicalGapKey": "PB1|341.25|356.22",
+        "stage3PhysicalGapKey": "PB1|341.25|356.22",
+        "status": "persisted",
+        "stage2AuditId": "DC-004",
+        "stage3AuditId": "DC-004",
+        "idRegenerated": false
+      },
+      {
+        "stage2PhysicalGapKey": "PB1|428.76|430.22",
+        "stage3PhysicalGapKey": "PB1|428.76|430.22",
+        "status": "persisted",
+        "stage2AuditId": "DC-005",
+        "stage3AuditId": "DC-005",
+        "idRegenerated": false
+      },
+      {
+        "stage2PhysicalGapKey": "PB2|428.76|430.23",
+        "stage3PhysicalGapKey": "PB2|428.76|430.23",
+        "status": "persisted",
+        "stage2AuditId": "DC-000",
+        "stage3AuditId": "DC-000",
+        "idRegenerated": false
+      },
+      {
+        "stage2PhysicalGapKey": "PB1|439.23|466.79",
+        "stage3PhysicalGapKey": "PB1|439.23|466.79",
+        "status": "persisted",
+        "stage2AuditId": "DC-006",
+        "stage3AuditId": "DC-006",
+        "idRegenerated": false
+      },
+      {
+        "stage2PhysicalGapKey": "PB1|498.48|500.12",
+        "stage3PhysicalGapKey": "PB1|498.48|500.12",
+        "status": "persisted",
+        "stage2AuditId": "DC-007",
+        "stage3AuditId": "DC-007",
+        "idRegenerated": false
+      },
+      {
+        "stage2PhysicalGapKey": "PB1|503.56|527.55",
+        "stage3PhysicalGapKey": "PB1|503.56|527.55",
+        "status": "persisted",
+        "stage2AuditId": "DC-008",
+        "stage3AuditId": "DC-008",
+        "idRegenerated": false
+      },
+      {
+        "stage2PhysicalGapKey": "PB1|554.04|567.35",
+        "stage3PhysicalGapKey": "PB1|554.04|567.35",
+        "status": "persisted",
+        "stage2AuditId": "DC-009",
+        "stage3AuditId": "DC-009",
+        "idRegenerated": false
+      },
+      {
+        "stage2PhysicalGapKey": "PB1|572.04|590.04",
+        "stage3PhysicalGapKey": "PB1|572.04|590.04",
+        "status": "persisted",
+        "stage2AuditId": "DC-010",
+        "stage3AuditId": "DC-010",
+        "idRegenerated": false
+      },
+      {
+        "stage2PhysicalGapKey": "PB1|609.53|621.53",
+        "stage3PhysicalGapKey": "PB1|609.53|621.53",
+        "status": "persisted",
+        "stage2AuditId": "DC-011",
+        "stage3AuditId": "DC-011",
+        "idRegenerated": false
+      },
+      {
+        "stage2PhysicalGapKey": "PB1|630.57|646.89",
+        "stage3PhysicalGapKey": "PB1|630.57|646.89",
+        "status": "persisted",
+        "stage2AuditId": "DC-012",
+        "stage3AuditId": "DC-012",
+        "idRegenerated": false
+      },
+      {
+        "stage2PhysicalGapKey": "PB0|101.42|128.15",
+        "stage3PhysicalGapKey": "PB0|128.15|260.57",
+        "status": "endpoint_shift_after_closure",
+        "stage2AuditId": null,
+        "stage3AuditId": "DC-014",
+        "idRegenerated": true
+      }
+    ],
+    "reconciliationCause": [
+      "dc014_physical_closure_with_endpoint_shift",
+      "stale_summary_mislabeled_pb1_count_as_total",
+      "audit_id_reindex_after_run_merge_not_new_geometry"
+    ],
+    "reconciliationPassed": true
+  },
+  "stage2Disconnections": [
+    {
+      "auditId": "DC-000",
+      "physicalGapKey": "PB2|428.76|430.23",
+      "physicalBoundaryId": "PB2",
+      "routeSInterval": [
+        428.7570377828136,
+        430.2325151017333
+      ],
+      "alongTrackGapM": 1.4754773189197294,
+      "classification": "intentionally_preserved_unsupported_gap",
+      "safe": true,
+      "unsafe": false,
+      "open": true,
+      "sourceFragmentId": 0,
+      "candidateContinuationFragmentId": 1,
+      "firstPipelineStage": "preservation_d12"
+    },
+    {
+      "auditId": "DC-001",
+      "physicalGapKey": "PB1|41.01|65.79",
+      "physicalBoundaryId": "PB1",
+      "routeSInterval": [
+        41.01278646157863,
+        65.78727043441252
+      ],
+      "alongTrackGapM": 24.77448397283389,
+      "classification": "fusion_failure",
+      "safe": true,
+      "unsafe": false,
+      "open": true,
+      "sourceFragmentId": 4,
+      "candidateContinuationFragmentId": 3,
+      "firstPipelineStage": "raw_modelV2"
+    },
+    {
+      "auditId": "DC-002",
+      "physicalGapKey": "PB1|71.10|88.54",
+      "physicalBoundaryId": "PB1",
+      "routeSInterval": [
+        71.1020363294706,
+        88.54424333219555
+      ],
+      "alongTrackGapM": 17.442207002724956,
+      "classification": "excessive_heading_difference",
+      "safe": false,
+      "unsafe": true,
+      "open": true,
+      "sourceFragmentId": 3,
+      "candidateContinuationFragmentId": 2,
+      "firstPipelineStage": "raw_modelV2"
+    },
+    {
+      "auditId": "DC-003",
+      "physicalGapKey": "PB1|92.49|332.43",
+      "physicalBoundaryId": "PB1",
+      "routeSInterval": [
+        92.49290092856977,
+        332.4326940942537
+      ],
+      "alongTrackGapM": 239.9397931656839,
+      "classification": "real_missing_observation",
+      "safe": false,
+      "unsafe": true,
+      "open": true,
+      "sourceFragmentId": 2,
+      "candidateContinuationFragmentId": 14,
+      "firstPipelineStage": "cleaned_runs"
+    },
+    {
+      "auditId": "DC-004",
+      "physicalGapKey": "PB1|341.25|356.22",
+      "physicalBoundaryId": "PB1",
+      "routeSInterval": [
+        341.2495644385052,
+        356.21769056614175
+      ],
+      "alongTrackGapM": 14.968126127636538,
+      "classification": "excessive_heading_difference",
+      "safe": false,
+      "unsafe": true,
+      "open": true,
+      "sourceFragmentId": 14,
+      "candidateContinuationFragmentId": 11,
+      "firstPipelineStage": "fused_fragments"
+    },
+    {
+      "auditId": "DC-005",
+      "physicalGapKey": "PB1|428.76|430.22",
+      "physicalBoundaryId": "PB1",
+      "routeSInterval": [
+        428.7557621001464,
+        430.22150557754463
+      ],
+      "alongTrackGapM": 1.4657434773982345,
+      "classification": "intentionally_preserved_unsupported_gap",
+      "safe": true,
+      "unsafe": false,
+      "open": true,
+      "sourceFragmentId": 11,
+      "candidateContinuationFragmentId": 6,
+      "firstPipelineStage": "preservation_d12"
+    },
+    {
+      "auditId": "DC-006",
+      "physicalGapKey": "PB1|439.23|466.79",
+      "physicalBoundaryId": "PB1",
+      "routeSInterval": [
+        439.23222706113535,
+        466.79093510592395
+      ],
+      "alongTrackGapM": 27.558708044788602,
+      "classification": "fusion_failure",
+      "safe": true,
+      "unsafe": false,
+      "open": true,
+      "sourceFragmentId": 6,
+      "candidateContinuationFragmentId": 13,
+      "firstPipelineStage": "fused_fragments"
+    },
+    {
+      "auditId": "DC-007",
+      "physicalGapKey": "PB1|498.48|500.12",
+      "physicalBoundaryId": "PB1",
+      "routeSInterval": [
+        498.48122518574536,
+        500.1206905235975
+      ],
+      "alongTrackGapM": 1.6394653378521298,
+      "classification": "intentionally_preserved_unsupported_gap",
+      "safe": true,
+      "unsafe": false,
+      "open": true,
+      "sourceFragmentId": 13,
+      "candidateContinuationFragmentId": 9,
+      "firstPipelineStage": "preservation_d12"
+    },
+    {
+      "auditId": "DC-008",
+      "physicalGapKey": "PB1|503.56|527.55",
+      "physicalBoundaryId": "PB1",
+      "routeSInterval": [
+        503.555267266108,
+        527.5523303173946
+      ],
+      "alongTrackGapM": 23.99706305128666,
+      "classification": "fusion_failure",
+      "safe": true,
+      "unsafe": false,
+      "open": true,
+      "sourceFragmentId": 9,
+      "candidateContinuationFragmentId": 10,
+      "firstPipelineStage": "fused_fragments"
+    },
+    {
+      "auditId": "DC-009",
+      "physicalGapKey": "PB1|554.04|567.35",
+      "physicalBoundaryId": "PB1",
+      "routeSInterval": [
+        554.0369644246867,
+        567.3471591784137
+      ],
+      "alongTrackGapM": 13.310194753726933,
+      "classification": "fusion_failure",
+      "safe": true,
+      "unsafe": false,
+      "open": true,
+      "sourceFragmentId": 10,
+      "candidateContinuationFragmentId": 12,
+      "firstPipelineStage": "fused_fragments"
+    },
+    {
+      "auditId": "DC-010",
+      "physicalGapKey": "PB1|572.04|590.04",
+      "physicalBoundaryId": "PB1",
+      "routeSInterval": [
+        572.0372665529105,
+        590.0372592002434
+      ],
+      "alongTrackGapM": 17.999992647332874,
+      "classification": "fusion_failure",
+      "safe": true,
+      "unsafe": false,
+      "open": true,
+      "sourceFragmentId": 12,
+      "candidateContinuationFragmentId": 7,
+      "firstPipelineStage": "fused_fragments"
+    },
+    {
+      "auditId": "DC-011",
+      "physicalGapKey": "PB1|609.53|621.53",
+      "physicalBoundaryId": "PB1",
+      "routeSInterval": [
+        609.5318972808049,
+        621.5319258388029
+      ],
+      "alongTrackGapM": 12.000028557998007,
+      "classification": "fusion_failure",
+      "safe": true,
+      "unsafe": false,
+      "open": true,
+      "sourceFragmentId": 7,
+      "candidateContinuationFragmentId": 5,
+      "firstPipelineStage": "fused_fragments"
+    },
+    {
+      "auditId": "DC-012",
+      "physicalGapKey": "PB1|630.57|646.89",
+      "physicalBoundaryId": "PB1",
+      "routeSInterval": [
+        630.5748338730675,
+        646.8868001220607
+      ],
+      "alongTrackGapM": 16.311966248993144,
+      "classification": "fusion_failure",
+      "safe": true,
+      "unsafe": false,
+      "open": true,
+      "sourceFragmentId": 5,
+      "candidateContinuationFragmentId": 8,
+      "firstPipelineStage": "fused_fragments"
+    },
+    {
+      "auditId": "DC-013",
+      "physicalGapKey": "PB0|71.16|88.61",
+      "physicalBoundaryId": "PB0",
+      "routeSInterval": [
+        71.16262034658317,
+        88.60640899874842
+      ],
+      "alongTrackGapM": 17.443788652165253,
+      "classification": "excessive_heading_difference",
+      "safe": false,
+      "unsafe": true,
+      "open": true,
+      "sourceFragmentId": 20,
+      "candidateContinuationFragmentId": 17,
+      "firstPipelineStage": "fused_fragments"
+    },
+    {
+      "auditId": "DC-014",
+      "physicalGapKey": "PB0|101.42|128.15",
+      "physicalBoundaryId": "PB0",
+      "routeSInterval": [
+        101.42060881322757,
+        128.15150739711632
+      ],
+      "alongTrackGapM": 26.730898583888745,
+      "classification": "fusion_failure",
+      "safe": true,
+      "unsafe": false,
+      "open": true,
+      "sourceFragmentId": 17,
+      "candidateContinuationFragmentId": 21,
+      "firstPipelineStage": "fused_fragments"
+    },
+    {
+      "auditId": "DC-015",
+      "physicalGapKey": "PB0|136.89|260.57",
+      "physicalBoundaryId": "PB0",
+      "routeSInterval": [
+        136.89462245632075,
+        260.5733446591958
+      ],
+      "alongTrackGapM": 123.67872220287506,
+      "classification": "real_missing_observation",
+      "safe": false,
+      "unsafe": true,
+      "open": true,
+      "sourceFragmentId": 21,
+      "candidateContinuationFragmentId": 18,
+      "firstPipelineStage": "fused_fragments"
+    },
+    {
+      "auditId": "DC-016",
+      "physicalGapKey": "PB0|267.03|284.25",
+      "physicalBoundaryId": "PB0",
+      "routeSInterval": [
+        267.03391232848685,
+        284.249472994103
+      ],
+      "alongTrackGapM": 17.215560665616124,
+      "classification": "excessive_heading_difference",
+      "safe": false,
+      "unsafe": true,
+      "open": true,
+      "sourceFragmentId": 18,
+      "candidateContinuationFragmentId": 19,
+      "firstPipelineStage": "fused_fragments"
+    },
+    {
+      "auditId": "DC-017",
+      "physicalGapKey": "PB0|295.87|332.05",
+      "physicalBoundaryId": "PB0",
+      "routeSInterval": [
+        295.869183290206,
+        332.04929966794026
+      ],
+      "alongTrackGapM": 36.18011637773424,
+      "classification": "real_missing_observation",
+      "safe": false,
+      "unsafe": true,
+      "open": true,
+      "sourceFragmentId": 19,
+      "candidateContinuationFragmentId": 16,
+      "firstPipelineStage": "fused_fragments"
+    },
+    {
+      "auditId": "DC-018",
+      "physicalGapKey": "PB0|338.49|381.49",
+      "physicalBoundaryId": "PB0",
+      "routeSInterval": [
+        338.4892400311075,
+        381.491557471317
+      ],
+      "alongTrackGapM": 43.00231744020948,
+      "classification": "real_missing_observation",
+      "safe": false,
+      "unsafe": true,
+      "open": true,
+      "sourceFragmentId": 16,
+      "candidateContinuationFragmentId": 15,
+      "firstPipelineStage": "fused_fragments"
+    }
+  ],
+  "stage3Disconnections": [
+    {
+      "auditId": "DC-000",
+      "physicalGapKey": "PB2|428.76|430.23",
+      "physicalBoundaryId": "PB2",
+      "routeSInterval": [
+        428.7570377828136,
+        430.2325151017333
+      ],
+      "alongTrackGapM": 1.4754773189197294,
+      "classification": "intentionally_preserved_unsupported_gap",
+      "safe": true,
+      "unsafe": false,
+      "open": true,
+      "sourceFragmentId": 0,
+      "candidateContinuationFragmentId": 1,
+      "firstPipelineStage": "preservation_d12"
+    },
+    {
+      "auditId": "DC-001",
+      "physicalGapKey": "PB1|41.01|65.79",
+      "physicalBoundaryId": "PB1",
+      "routeSInterval": [
+        41.01278646157863,
+        65.78727043441252
+      ],
+      "alongTrackGapM": 24.77448397283389,
+      "classification": "fusion_failure",
+      "safe": true,
+      "unsafe": false,
+      "open": true,
+      "sourceFragmentId": 4,
+      "candidateContinuationFragmentId": 3,
+      "firstPipelineStage": "raw_modelV2"
+    },
+    {
+      "auditId": "DC-002",
+      "physicalGapKey": "PB1|71.10|88.54",
+      "physicalBoundaryId": "PB1",
+      "routeSInterval": [
+        71.1020363294706,
+        88.54424333219555
+      ],
+      "alongTrackGapM": 17.442207002724956,
+      "classification": "excessive_heading_difference",
+      "safe": false,
+      "unsafe": true,
+      "open": true,
+      "sourceFragmentId": 3,
+      "candidateContinuationFragmentId": 2,
+      "firstPipelineStage": "raw_modelV2"
+    },
+    {
+      "auditId": "DC-003",
+      "physicalGapKey": "PB1|92.49|332.43",
+      "physicalBoundaryId": "PB1",
+      "routeSInterval": [
+        92.49290092856977,
+        332.4326940942537
+      ],
+      "alongTrackGapM": 239.9397931656839,
+      "classification": "real_missing_observation",
+      "safe": false,
+      "unsafe": true,
+      "open": true,
+      "sourceFragmentId": 2,
+      "candidateContinuationFragmentId": 14,
+      "firstPipelineStage": "cleaned_runs"
+    },
+    {
+      "auditId": "DC-004",
+      "physicalGapKey": "PB1|341.25|356.22",
+      "physicalBoundaryId": "PB1",
+      "routeSInterval": [
+        341.2495644385052,
+        356.21769056614175
+      ],
+      "alongTrackGapM": 14.968126127636538,
+      "classification": "excessive_heading_difference",
+      "safe": false,
+      "unsafe": true,
+      "open": true,
+      "sourceFragmentId": 14,
+      "candidateContinuationFragmentId": 11,
+      "firstPipelineStage": "fused_fragments"
+    },
+    {
+      "auditId": "DC-005",
+      "physicalGapKey": "PB1|428.76|430.22",
+      "physicalBoundaryId": "PB1",
+      "routeSInterval": [
+        428.7557621001464,
+        430.22150557754463
+      ],
+      "alongTrackGapM": 1.4657434773982345,
+      "classification": "intentionally_preserved_unsupported_gap",
+      "safe": true,
+      "unsafe": false,
+      "open": true,
+      "sourceFragmentId": 11,
+      "candidateContinuationFragmentId": 6,
+      "firstPipelineStage": "preservation_d12"
+    },
+    {
+      "auditId": "DC-006",
+      "physicalGapKey": "PB1|439.23|466.79",
+      "physicalBoundaryId": "PB1",
+      "routeSInterval": [
+        439.23222706113535,
+        466.79093510592395
+      ],
+      "alongTrackGapM": 27.558708044788602,
+      "classification": "fusion_failure",
+      "safe": true,
+      "unsafe": false,
+      "open": true,
+      "sourceFragmentId": 6,
+      "candidateContinuationFragmentId": 13,
+      "firstPipelineStage": "fused_fragments"
+    },
+    {
+      "auditId": "DC-007",
+      "physicalGapKey": "PB1|498.48|500.12",
+      "physicalBoundaryId": "PB1",
+      "routeSInterval": [
+        498.48122518574536,
+        500.1206905235975
+      ],
+      "alongTrackGapM": 1.6394653378521298,
+      "classification": "intentionally_preserved_unsupported_gap",
+      "safe": true,
+      "unsafe": false,
+      "open": true,
+      "sourceFragmentId": 13,
+      "candidateContinuationFragmentId": 9,
+      "firstPipelineStage": "preservation_d12"
+    },
+    {
+      "auditId": "DC-008",
+      "physicalGapKey": "PB1|503.56|527.55",
+      "physicalBoundaryId": "PB1",
+      "routeSInterval": [
+        503.555267266108,
+        527.5523303173946
+      ],
+      "alongTrackGapM": 23.99706305128666,
+      "classification": "fusion_failure",
+      "safe": true,
+      "unsafe": false,
+      "open": true,
+      "sourceFragmentId": 9,
+      "candidateContinuationFragmentId": 10,
+      "firstPipelineStage": "fused_fragments"
+    },
+    {
+      "auditId": "DC-009",
+      "physicalGapKey": "PB1|554.04|567.35",
+      "physicalBoundaryId": "PB1",
+      "routeSInterval": [
+        554.0369644246867,
+        567.3471591784137
+      ],
+      "alongTrackGapM": 13.310194753726933,
+      "classification": "fusion_failure",
+      "safe": true,
+      "unsafe": false,
+      "open": true,
+      "sourceFragmentId": 10,
+      "candidateContinuationFragmentId": 12,
+      "firstPipelineStage": "fused_fragments"
+    },
+    {
+      "auditId": "DC-010",
+      "physicalGapKey": "PB1|572.04|590.04",
+      "physicalBoundaryId": "PB1",
+      "routeSInterval": [
+        572.0372665529105,
+        590.0372592002434
+      ],
+      "alongTrackGapM": 17.999992647332874,
+      "classification": "fusion_failure",
+      "safe": true,
+      "unsafe": false,
+      "open": true,
+      "sourceFragmentId": 12,
+      "candidateContinuationFragmentId": 7,
+      "firstPipelineStage": "fused_fragments"
+    },
+    {
+      "auditId": "DC-011",
+      "physicalGapKey": "PB1|609.53|621.53",
+      "physicalBoundaryId": "PB1",
+      "routeSInterval": [
+        609.5318972808049,
+        621.5319258388029
+      ],
+      "alongTrackGapM": 12.000028557998007,
+      "classification": "fusion_failure",
+      "safe": true,
+      "unsafe": false,
+      "open": true,
+      "sourceFragmentId": 7,
+      "candidateContinuationFragmentId": 5,
+      "firstPipelineStage": "fused_fragments"
+    },
+    {
+      "auditId": "DC-012",
+      "physicalGapKey": "PB1|630.57|646.89",
+      "physicalBoundaryId": "PB1",
+      "routeSInterval": [
+        630.5748338730675,
+        646.8868001220607
+      ],
+      "alongTrackGapM": 16.311966248993144,
+      "classification": "fusion_failure",
+      "safe": true,
+      "unsafe": false,
+      "open": true,
+      "sourceFragmentId": 5,
+      "candidateContinuationFragmentId": 8,
+      "firstPipelineStage": "fused_fragments"
+    },
+    {
+      "auditId": "DC-013",
+      "physicalGapKey": "PB0|71.16|88.61",
+      "physicalBoundaryId": "PB0",
+      "routeSInterval": [
+        71.16262034658317,
+        88.60640899874842
+      ],
+      "alongTrackGapM": 17.443788652165253,
+      "classification": "excessive_heading_difference",
+      "safe": false,
+      "unsafe": true,
+      "open": true,
+      "sourceFragmentId": 20,
+      "candidateContinuationFragmentId": 18,
+      "firstPipelineStage": "fused_fragments"
+    },
+    {
+      "auditId": "DC-014",
+      "physicalGapKey": "PB0|128.15|260.57",
+      "physicalBoundaryId": "PB0",
+      "routeSInterval": [
+        128.15150739711632,
+        260.5733446591958
+      ],
+      "alongTrackGapM": 132.4218372620795,
+      "classification": "real_missing_observation",
+      "safe": false,
+      "unsafe": true,
+      "open": true,
+      "sourceFragmentId": 18,
+      "candidateContinuationFragmentId": 17,
+      "firstPipelineStage": "fused_fragments"
+    },
+    {
+      "auditId": "DC-015",
+      "physicalGapKey": "PB0|267.03|284.25",
+      "physicalBoundaryId": "PB0",
+      "routeSInterval": [
+        267.03391232848685,
+        284.249472994103
+      ],
+      "alongTrackGapM": 17.215560665616124,
+      "classification": "excessive_heading_difference",
+      "safe": false,
+      "unsafe": true,
+      "open": true,
+      "sourceFragmentId": 17,
+      "candidateContinuationFragmentId": 19,
+      "firstPipelineStage": "fused_fragments"
+    },
+    {
+      "auditId": "DC-016",
+      "physicalGapKey": "PB0|295.87|332.05",
+      "physicalBoundaryId": "PB0",
+      "routeSInterval": [
+        295.869183290206,
+        332.04929966794026
+      ],
+      "alongTrackGapM": 36.18011637773424,
+      "classification": "real_missing_observation",
+      "safe": false,
+      "unsafe": true,
+      "open": true,
+      "sourceFragmentId": 19,
+      "candidateContinuationFragmentId": 16,
+      "firstPipelineStage": "fused_fragments"
+    },
+    {
+      "auditId": "DC-017",
+      "physicalGapKey": "PB0|338.49|381.49",
+      "physicalBoundaryId": "PB0",
+      "routeSInterval": [
+        338.4892400311075,
+        381.491557471317
+      ],
+      "alongTrackGapM": 43.00231744020948,
+      "classification": "real_missing_observation",
+      "safe": false,
+      "unsafe": true,
+      "open": true,
+      "sourceFragmentId": 16,
+      "candidateContinuationFragmentId": 15,
+      "firstPipelineStage": "fused_fragments"
+    }
+  ],
+  "dc022": {
+    "disconnectionId": "DC-022",
+    "physicalBoundaryId": "PB0",
+    "trackId": 0,
+    "chunkId": 0,
+    "passId": 0,
+    "sourceFragmentId": 21,
+    "candidateContinuationFragmentId": 19,
+    "routeSInterval": [
+      572.0315218311622,
+      590.03142453498
+    ],
+    "alongTrackGapM": 17.99990270381784,
+    "euclideanGapM": 18.000027225732865,
+    "lateralOffsetM": 0.06695356760992599,
+    "headingDifferenceDeg": 10.183904070656467,
+    "observationSupport": {
+      "mappedObsInGap": 8,
+      "distinctFrames": 2,
+      "modelV2Frames": 25
+    },
+    "fusionBeforeBridge": {
+      "fragmentCount": 2,
+      "fragments": [
+        {
+          "sMin": 567.3471591784137,
+          "sMax": 572.0315218311622,
+          "pointCount": 2
+        },
+        {
+          "sMin": 590.03142453498,
+          "sMax": 609.5384308071199,
+          "pointCount": 5
+        }
+      ],
+      "primarySplit": {
+        "afterBinKey": 286,
+        "beforeBinKey": 295,
+        "gapM": 17.99990270381784,
+        "lateralDeltaM": 0.06695356760992599,
+        "reason": "D11_maxLaneFragmentGapM",
+        "bridgeRejected": "bridgeDisabled",
+        "measurement": "consecutive accepted fused bin centres (s coordinate)",
+        "thresholdM": 10
+      },
+      "endpointCompatibility": {
+        "compatible": true,
+        "gapM": 17.99990270381784,
+        "dDelta": 0.06695356760992599,
+        "headingDelta": 10.16823541651786,
+        "reason": null
+      }
+    },
+    "fusionAfterBridge": {
+      "fragmentCount": 1,
+      "fragments": [
+        {
+          "sMin": 381.491557471317,
+          "sMax": 689.824925750434,
+          "pointCount": 44
+        }
+      ]
+    },
+    "cleanup": {
+      "openAtStage1Baseline": false,
+      "openAtStage3Accepted": false,
+      "responsibleFunction": null,
+      "responsibleCondition": "single fused fragment 381.5–689.8 m → one cleaned run",
+      "cleanupCauseProven": true,
+      "cleanupIsRootCause": false
+    },
+    "firstFailingStage": "fused_fragments",
+    "firstFailingStageIndex": 6,
+    "responsibleFunction": "fuseLaneTrackSdFragments",
+    "responsibleCondition": "D11_maxLaneFragmentGapM gapM=18.00 bridgeRejected=bridgeDisabled",
+    "verdict": "D_fusion_output_defect_resolved_by_stage2_bridge",
+    "repairImplemented": false,
+    "physicallyOpenAtStage3": false,
+    "stage2FusionPairingUnresolved": true,
+    "resolvedByStage2MainChainBridge": true
+  },
+  "dc024": {
+    "disconnectionId": "DC-024",
+    "physicalBoundaryId": "PB0",
+    "trackId": 0,
+    "chunkId": 0,
+    "passId": 0,
+    "sourceFragmentId": 18,
+    "candidateContinuationFragmentId": 25,
+    "routeSInterval": [
+      630.5985379438873,
+      646.9116126270657
+    ],
+    "alongTrackGapM": 16.313074683178343,
+    "euclideanGapM": 16.313090523829167,
+    "lateralOffsetM": 0.022733668664361772,
+    "headingDifferenceDeg": 6.378745542810634,
+    "observationSupport": {
+      "mappedObsInGap": 9,
+      "distinctFrames": 2,
+      "modelV2Frames": 25
+    },
+    "fusionBeforeBridge": {
+      "fragmentCount": 2,
+      "fragments": [
+        {
+          "sMin": 621.5384584633066,
+          "sMax": 630.5985379438873,
+          "pointCount": 3
+        },
+        {
+          "sMin": 646.9116126270657,
+          "sMax": 689.824925750434,
+          "pointCount": 11
+        }
+      ],
+      "primarySplit": {
+        "afterBinKey": 315,
+        "beforeBinKey": 323,
+        "gapM": 16.313074683178343,
+        "lateralDeltaM": 0.022733668664361772,
+        "reason": "D11_maxLaneFragmentGapM",
+        "bridgeRejected": "bridgeDisabled",
+        "measurement": "consecutive accepted fused bin centres (s coordinate)",
+        "thresholdM": 10
+      },
+      "endpointCompatibility": {
+        "compatible": true,
+        "gapM": 16.313074683178343,
+        "dDelta": 0.022733668664361772,
+        "headingDelta": 6.3609210323986645,
+        "reason": null
+      }
+    },
+    "fusionAfterBridge": {
+      "fragmentCount": 1,
+      "fragments": [
+        {
+          "sMin": 381.491557471317,
+          "sMax": 689.824925750434,
+          "pointCount": 44
+        }
+      ]
+    },
+    "cleanup": {
+      "openAtStage1Baseline": false,
+      "openAtStage3Accepted": false,
+      "responsibleFunction": null,
+      "responsibleCondition": "single fused fragment 381.5–689.8 m → one cleaned run",
+      "cleanupCauseProven": true,
+      "cleanupIsRootCause": false
+    },
+    "firstFailingStage": "fused_fragments",
+    "firstFailingStageIndex": 6,
+    "responsibleFunction": "fuseLaneTrackSdFragments",
+    "responsibleCondition": "D11_maxLaneFragmentGapM gapM=16.31 bridgeRejected=bridgeDisabled",
+    "verdict": "D_fusion_output_defect_resolved_by_stage2_bridge",
+    "repairImplemented": false,
+    "physicallyOpenAtStage3": false,
+    "stage2FusionPairingUnresolved": true,
+    "resolvedByStage2MainChainBridge": true
+  },
+  "summary": {
+    "reconciliationPassed": true,
+    "newPhysicalGapsFromStage3": 0,
+    "dc014RepairRetained": true,
+    "dc022Repaired": true,
+    "dc024Repaired": true,
+    "stage4RepairImplemented": false,
+    "unsafeGapsStillOpen": [
+      "DC-002",
+      "DC-003",
+      "DC-004",
+      "DC-013",
+      "DC-015",
+      "DC-016",
+      "DC-017",
+      "DC-018"
+    ]
+  },
+  "unsafeStillOpen": [
+    {
+      "disconnectionId": "DC-002",
+      "stillOpen": true
+    },
+    {
+      "disconnectionId": "DC-003",
+      "stillOpen": true
+    },
+    {
+      "disconnectionId": "DC-004",
+      "stillOpen": true
+    },
+    {
+      "disconnectionId": "DC-013",
+      "stillOpen": true
+    },
+    {
+      "disconnectionId": "DC-015",
+      "stillOpen": true
+    },
+    {
+      "disconnectionId": "DC-016",
+      "stillOpen": true
+    },
+    {
+      "disconnectionId": "DC-017",
+      "stillOpen": true
+    },
+    {
+      "disconnectionId": "DC-018",
+      "stillOpen": true
+    }
+  ]
+}

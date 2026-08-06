@@ -1,0 +1,15 @@
+{
+  "checkpoint": "stage19-implementation-pre-v1",
+  "createdAt": "2026-07-27T05:35:00.000Z",
+  "purpose": "Rollback reference before Stage 19 v1 corrective checkpoint",
+  "priorCheckpoint": "2026-07-27-stage19-v0",
+  "frozenV11ProcessingVersion": "2026-07-24-fusion-v11",
+  "stage19ImplementationCheckpoint": "2026-07-27-stage19-v1",
+  "fileHashes": {
+    "lib/version.js": "09444cdec775828371e681b858aa99e2ea0bacfd122ba936f84775eab5f6a235",
+    "lib/process_route.js": "08383ff1455707b7f42ed3c6d50c0840db2db04817b0c176d140112833359800",
+    "lib/stage18_lane_interval_audit.js": "a061092d9bc8ce6b7d720b4bee9dc0509f96eae6ab1d7a3d46a02165564591bd"
+  },
+  "normativePackage": "deliverables/stage19-revision37/lib/stage19_spec",
+  "note": "Stages 15-18 and v11 core unchanged; Stage 19 v0 preserved; v1 is separate checkpoint"
+}

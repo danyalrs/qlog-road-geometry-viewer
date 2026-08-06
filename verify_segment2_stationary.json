@@ -1,0 +1,165 @@
+{
+  "segment": "qlog_f449c_2.bz2",
+  "chunkPassGroups": [
+    {
+      "chunkId": 0,
+      "passId": 0,
+      "frameIndices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ]
+    }
+  ],
+  "referencePose": {
+    "frameIndex": 0,
+    "east": -24.055678502831913,
+    "north": -6.687047732752509,
+    "headingDeg": 254.5254303934877,
+    "logMonoTime": "139726594139",
+    "chunkId": 0,
+    "passId": 0
+  },
+  "mapChecksum": "19f7fd01",
+  "laneFragmentCount": 53,
+  "edgeFragmentCount": 60,
+  "trajectoryPointCount": 30,
+  "observationFrameCount": 26,
+  "stationaryBounds": {
+    "minE": -106.2479417575999,
+    "maxE": 318.1099136996307,
+    "minN": -281.60675186879473,
+    "maxN": 462.68190238795154
+  },
+  "perIndex": [
+    {
+      "elapsedIdx": 0,
+      "mapChecksum": "19f7fd01",
+      "stationaryBounds": {
+        "minE": -106.2479417575999,
+        "maxE": 318.1099136996307,
+        "minN": -281.60675186879473,
+        "maxN": 462.68190238795154
+      },
+      "arrowLocal": {
+        "east": 0,
+        "north": 0
+      },
+      "arrowHeading": 91.76150122813851,
+      "activeChunk": 0,
+      "activePass": 0
+    },
+    {
+      "elapsedIdx": 4,
+      "mapChecksum": "19f7fd01",
+      "stationaryBounds": {
+        "minE": -106.2479417575999,
+        "maxE": 318.1099136996307,
+        "minN": -281.60675186879473,
+        "maxN": 462.68190238795154
+      },
+      "arrowLocal": {
+        "east": 116.01481277178966,
+        "north": -4.9980211555128555
+      },
+      "arrowHeading": 100.58844506713547,
+      "activeChunk": 0,
+      "activePass": 0
+    },
+    {
+      "elapsedIdx": 8,
+      "mapChecksum": "19f7fd01",
+      "stationaryBounds": {
+        "minE": -106.2479417575999,
+        "maxE": 318.1099136996307,
+        "minN": -281.60675186879473,
+        "maxN": 462.68190238795154
+      },
+      "arrowLocal": {
+        "east": 154.9511663331828,
+        "north": -68.36588557175219
+      },
+      "arrowHeading": 187.39663040036515,
+      "activeChunk": 0,
+      "activePass": 0
+    },
+    {
+      "elapsedIdx": 12,
+      "mapChecksum": "19f7fd01",
+      "stationaryBounds": {
+        "minE": -106.2479417575999,
+        "maxE": 318.1099136996307,
+        "minN": -281.60675186879473,
+        "maxN": 462.68190238795154
+      },
+      "arrowLocal": {
+        "east": 81.08893593900854,
+        "north": -87.63140940000554
+      },
+      "arrowHeading": 284.57827287697296,
+      "activeChunk": 0,
+      "activePass": 0
+    },
+    {
+      "elapsedIdx": 16,
+      "mapChecksum": "19f7fd01",
+      "stationaryBounds": {
+        "minE": -106.2479417575999,
+        "maxE": 318.1099136996307,
+        "minN": -281.60675186879473,
+        "maxN": 462.68190238795154
+      },
+      "arrowLocal": {
+        "east": 27.947072300912343,
+        "north": -12.250738280835218
+      },
+      "arrowHeading": 347.72978487290044,
+      "activeChunk": 0,
+      "activePass": 0
+    },
+    {
+      "elapsedIdx": 29,
+      "mapChecksum": "19f7fd01",
+      "stationaryBounds": {
+        "minE": -106.2479417575999,
+        "maxE": 318.1099136996307,
+        "minN": -281.60675186879473,
+        "maxN": 462.68190238795154
+      },
+      "arrowLocal": {
+        "east": -41.304900639785494,
+        "north": 296.0440385367791
+      },
+      "arrowHeading": 348.3246427627827,
+      "activeChunk": 0,
+      "activePass": 0
+    }
+  ]
+}

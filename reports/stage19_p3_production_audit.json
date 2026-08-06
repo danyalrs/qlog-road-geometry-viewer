@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "stage19_p3_production_audit_v0",
+  "runId": "2026-07-27-stage19-v5",
+  "eligible": 0,
+  "executed": 0,
+  "selected": 0,
+  "failed": 0,
+  "singletonSkipped": 5809,
+  "records": []
+}

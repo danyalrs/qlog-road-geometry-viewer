@@ -1,0 +1,1341 @@
+{
+  "generatedAt": "2026-07-28T07:11:34.287Z",
+  "manifestPath": "deliverables\\stage20-b-motion-evidence-review-manifest.json",
+  "ok": true,
+  "issueCount": 0,
+  "warningCount": 220,
+  "pairCount": 220,
+  "uniquePairIds": 220,
+  "codesPresent": [],
+  "fkResolutionEnabled": true,
+  "observationCount": 5809,
+  "qlogAvailabilitySummary": {
+    "referenced": 42,
+    "availableInWorkspace": 42,
+    "missing": []
+  },
+  "warnings": [
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:73700718671:0|0:0:75701987372:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:73700718671:1|0:0:75701987372:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:73700718671:2|0:0:75701987372:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:73700718671:3|0:0:75701987372:3",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:71704779595:0|0:0:73700718671:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:71704779595:1|0:0:73700718671:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:71704779595:2|0:0:73700718671:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:71704779595:3|0:0:73700718671:3",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:61705567632:3|0:0:63702876083:3",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:61705567632:2|0:0:63702876083:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:61705567632:1|0:0:63702876083:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:51710515128:0|0:0:53706292912:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:51710515128:1|0:0:53706292912:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:51710515128:2|0:0:53706292912:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:51710515128:3|0:0:53706292912:3",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:67702076235:2|0:0:69704610186:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:67702076235:1|0:0:69704610186:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:53706292912:3|0:0:55708851946:3",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:53706292912:2|0:0:55708851946:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:53706292912:1|0:0:55708851946:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:53706292912:0|0:0:55708851946:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:49707759802:0|0:0:51710515128:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:47709620393:0|0:0:49707759802:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:49707759802:1|0:0:51710515128:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:49707759802:2|0:0:51710515128:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:47709620393:1|0:0:49707759802:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:49707759802:3|0:0:51710515128:3",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:65703050742:0|0:0:67702076235:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:65703050742:1|0:0:67702076235:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:65703050742:2|0:0:67702076235:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:47709620393:2|0:0:49707759802:3",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:57709105356:0|0:0:59710520765:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:57709105356:1|0:0:59710520765:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:57709105356:2|0:0:59710520765:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:69704610186:3|0:0:71704779595:3",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:69704610186:2|0:0:71704779595:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:69704610186:1|0:0:71704779595:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:57709105356:3|0:0:59710520765:3",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:63702876083:1|0:0:65703050742:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:43710338574:1|0:0:45709299900:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:63702876083:2|0:0:65703050742:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:55708851946:3|0:0:57709105356:3",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:55708851946:2|0:0:57709105356:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:55708851946:1|0:0:57709105356:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:55708851946:0|0:0:57709105356:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:43710338574:2|0:0:45709299900:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:43710338574:3|0:0:45709299900:3",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:59710520765:3|0:0:61705567632:3",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:59710520765:2|0:0:61705567632:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:59710520765:1|0:0:61705567632:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:59710520765:0|0:0:61705567632:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:45709299900:1|0:0:47709620393:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:45709299900:2|0:0:47709620393:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:45709299900:3|0:0:47709620393:3",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:41712785998:2|0:0:43710338574:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:41712785998:3|0:0:43710338574:3",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:37711368013:1|0:0:39710346547:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:45709299900:0|1:0:89728796706:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:37711368013:2|1:0:81700087891:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:37711368013:3|1:0:81700087891:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:61705567632:0|0:0:65703050742:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:39710346547:1|1:0:83705111509:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:39710346547:2|1:0:83705111509:3",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "0:0:43710338574:0|1:0:87723823256:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:121743162482:2|1:0:123742871386:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:79698947232:0|0:0:37711368013:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:79698947232:1|0:0:37711368013:3",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:91739924846:1|1:0:93738299632:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:95744420457:3|1:0:97745432998:3",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:95744420457:2|1:0:97745432998:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:95744420457:1|1:0:97745432998:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:95744420457:0|1:0:97745432998:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:83705111509:2|1:0:85709147389:3",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:105749854369:1|1:0:107753084222:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:105749854369:2|1:0:107753084222:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:103751381131:2|1:0:105749854369:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:103751381131:3|1:0:105749854369:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:97745432998:3|1:0:99751386579:3",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:97745432998:2|1:0:99751386579:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:97745432998:1|1:0:99751386579:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:97745432998:0|1:0:99751386579:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:99751386579:0|1:0:101749512675:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:99751386579:1|1:0:101749512675:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:99751386579:2|1:0:101749512675:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:99751386579:3|1:0:101749512675:3",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:101749512675:3|1:0:103751381131:3",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:101749512675:1|1:0:103751381131:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:101749512675:2|1:0:103751381131:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:101749512675:0|1:0:103751381131:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:107753084222:1|1:0:109750095499:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:107753084222:2|1:0:109750095499:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:107753084222:3|1:0:109750095499:3",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:89728796706:2|1:0:91739924846:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:111752308622:2|1:0:113754527189:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:111752308622:1|1:0:113754527189:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:117750796680:2|1:0:119746137178:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:113754527189:1|1:0:115753878127:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:113754527189:2|1:0:115753878127:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:109750095499:1|1:0:111752308622:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:123742871386:2|1:0:125742395201:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:119746137178:2|1:0:121743162482:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:89728796706:0|0:0:47709620393:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:93738299632:1|1:0:95744420457:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:93738299632:0|1:0:95744420457:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:93738299632:2|1:0:95744420457:3",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:115753878127:2|1:0:117750796680:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:81700087891:0|0:0:39710346547:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:81700087891:1|0:0:39710346547:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:87723823256:2|0:0:45709299900:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:85709147389:3|0:0:43710338574:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "1:0:83705111509:3|0:0:43710338574:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "2:0:163718456147:1|2:0:165711518986:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "2:0:161715770488:1|2:0:163718456147:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "3:0:203640343027:3|3:0:205643208113:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "3:0:235606401707:2|3:0:237605580862:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "4:0:291607671384:1|4:0:293601851387:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "4:0:291607671384:2|4:0:293601851387:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "8:0:541682280630:2|8:0:543682517090:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "10:0:663507063640:2|10:0:665501895205:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "11:0:681520524831:2|11:0:683524609031:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "11:0:705517612650:1|11:0:707521227257:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "12:0:793454278280:0|12:0:795456783476:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "12:0:769472960607:0|12:0:771467903614:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "19:0:1213505750614:3|19:0:1215507244096:3",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "19:0:1213505750614:2|19:0:1215507244096:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "19:0:1213505750614:0|19:0:1215507244096:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "19:0:1213505750614:1|19:0:1215507244096:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "19:0:1197509793558:1|20:0:1271425507362:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "20:0:1273421306391:0|20:0:1275420367375:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "23:0:1453415666350:1|23:0:1455417714325:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "23:0:1453415666350:0|23:0:1455417714325:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "23:0:1449414290885:1|23:0:1451415306316:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "24:0:1485417290219:2|24:0:1487416852549:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "25:0:1547416295498:2|25:0:1549411150398:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "27:0:1677402107612:1|27:0:1679401429852:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "27:0:1677402107612:0|27:0:1679401429852:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "27:0:1689405691021:2|27:0:1691398927101:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "27:0:1689405691021:1|27:0:1691398927101:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "27:0:1689405691021:0|27:0:1691398927101:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "28:0:1753390726877:2|28:0:1755395170363:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "28:0:1753390726877:1|28:0:1755395170363:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "34:0:2065271978134:2|34:0:2067273337550:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "36:0:2233277527111:2|36:0:2235281138212:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "36:0:2219283612213:2|36:0:2221285217851:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "36:0:2205284760143:2|36:0:2207283328351:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "39:0:2413096001137:0|39:0:2415089745183:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "39:0:2389111074324:2|40:0:2457066294867:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "39:0:2389111074324:1|40:0:2457066294867:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "39:0:2389111074324:0|40:0:2457066294867:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "39:0:2387109041492:2|40:0:2455066277260:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "39:0:2387109041492:1|40:0:2455066277260:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "40:0:2449068975524:0|39:0:2379115003826:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "40:0:2449068975524:1|39:0:2379115003826:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "40:0:2449068975524:2|39:0:2379115003826:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "40:0:2469062300931:2|41:0:2535026563698:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "40:0:2469062300931:1|41:0:2535026563698:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "40:0:2469062300931:0|41:0:2535026563698:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "40:0:2421084737288:2|41:0:2483056838458:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "40:0:2421084737288:1|41:0:2483056838458:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "40:0:2453067427916:0|39:0:2385114549279:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "40:0:2453067427916:1|39:0:2385114549279:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "40:0:2421084737288:0|41:0:2483056838458:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "40:0:2453067427916:2|39:0:2385114549279:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "41:0:2479055856257:1|40:0:2419085001157:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "41:0:2479055856257:0|40:0:2419085001157:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "41:0:2531030136032:2|40:0:2465064345344:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "41:0:2531030136032:1|40:0:2465064345344:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "41:0:2535026563698:2|40:0:2471062369089:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "41:0:2535026563698:1|40:0:2471062369089:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "41:0:2535026563698:0|40:0:2471062369089:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "42:0:2589065664601:1|42:0:2591070646031:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "42:0:2585069287325:2|42:0:2587062664110:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "42:0:2591070646031:1|42:0:2593072079938:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "42:0:2563047041895:0|42:0:2565049491768:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "42:0:2593072079938:2|42:0:2595068747379:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "42:0:2547033348177:0|42:0:2549035985334:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "42:0:2547033348177:1|42:0:2549035985334:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "42:0:2547033348177:2|42:0:2549035985334:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "43:0:2605072814780:0|43:0:2607074782907:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "43:0:2643083306625:1|43:0:2645080906874:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "43:0:2643083306625:2|43:0:2645080906874:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "43:0:2641081826174:1|43:0:2643083306625:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "43:0:2641081826174:2|43:0:2643083306625:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "44:0:2667082168391:2|44:0:2669079726015:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "44:0:2667082168391:1|44:0:2669079726015:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "44:0:2667082168391:0|44:0:2669079726015:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "45:0:2773068940332:1|45:0:2775071001390:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "45:0:2773068940332:2|45:0:2775071001390:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "47:0:2873066230805:0|47:0:2875066472749:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "47:0:2873066230805:1|47:0:2875066472749:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "47:0:2873066230805:2|47:0:2875066472749:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "51:0:3127050401601:1|51:0:3129048085909:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "51:0:3119044048189:1|51:0:3121052196209:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "54:0:3265024725538:1|54:0:3267024374375:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "54:0:3263024302805:2|54:0:3265024725538:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "55:0:3358921794610:0|55:0:3360913441195:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "58:0:3528712848719:1|58:0:3530708933210:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "58:0:3528712848719:0|58:0:3530708933210:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "59:0:3590689887060:2|59:0:3592693297660:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "60:0:3662748322692:2|60:0:3664745530078:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "60:0:3660751322818:2|60:0:3662748322692:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "60:0:3658745902208:2|60:0:3660751322818:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "67:0:4044577598869:1|67:0:4046574887893:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "68:0:4122745003607:3|68:0:4124758111964:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "68:0:4122745003607:1|68:0:4124758111964:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "69:0:4176673389290:1|69:0:4178658363920:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "69:0:4202564938022:2|69:0:4204562341519:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "72:0:4392664981322:1|72:0:4394669147870:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "72:0:4338678115070:2|73:0:4398668929179:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "73:0:4398668929179:1|72:0:4338678115070:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "74:0:4512484856165:2|74:0:4514481283201:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "74:0:4494503589716:2|74:0:4496504532019:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "74:0:4484521322063:0|74:0:4486513752653:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "82:0:4950340643987:2|83:0:5008336525317:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "83:0:5002336244243:2|82:0:4946341997937:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "83:0:5002336244243:1|82:0:4946341997937:1",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "84:0:5060322843886:0|84:0:5062326728488:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "91:0:5490373022833:2|91:0:5492375186765:2",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "91:0:5524391476385:0|91:0:5526394901596:0",
+      "field": "videoAvailableInWorkspace"
+    },
+    {
+      "code": "B-MR-W001",
+      "message": "videoAvailableInWorkspace is false but qlog file exists in workspace",
+      "reviewPairId": "91:0:5490373022833:3|91:0:5492375186765:3",
+      "field": "videoAvailableInWorkspace"
+    }
+  ],
+  "issues": [],
+  "note": "No records were repaired — validation is read-only"
+}

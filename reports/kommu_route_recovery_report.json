@@ -1,0 +1,71 @@
+{
+  "generatedAt": "2026-08-05T08:58:00Z",
+  "route": {
+    "dongle": "f449c322f59e6943",
+    "timestamp": "2026-07-20--09-34-13",
+    "depotBase": "http://web.kommu.ai/depot/upload/f449c322f59e6943"
+  },
+  "stagingDirectory": ".recovery/route_f449c322f59e6943/2026-08-05",
+  "manifestPath": ".recovery/route_f449c322f59e6943/2026-08-05/recovery_manifest.json",
+  "segment37Test": {
+    "file": "qcamera.ts",
+    "requestedUrl": "http://web.kommu.ai/depot/upload/f449c322f59e6943/f449c322f59e6943---2026-07-20--09-34-13--37---qcamera.ts",
+    "httpStatus": 404,
+    "contentType": "application/json; charset=UTF-8",
+    "downloadedSize": 24,
+    "finalUrlAfterRedirects": "http://web.kommu.ai/depot/upload/f449c322f59e6943/f449c322f59e6943---2026-07-20--09-34-13--37---qcamera.ts",
+    "redirects": 0,
+    "responseBody": "{\"message\":\"Not Found\"}",
+    "ffprobe": null,
+    "ffmpegDecode": null,
+    "verdict": "sourceUnavailable",
+    "note": "Depot has qlog for segment 37 (HTTP 200, 2778640 bytes) but not qcamera.ts"
+  },
+  "pipelineValidation": {
+    "segment": 2,
+    "kind": "qcamera",
+    "httpStatus": 200,
+    "sizeBytes": 1672072,
+    "ffprobe": {
+      "container": "mpegts",
+      "codec": "h264",
+      "width": 526,
+      "height": 330,
+      "frameRate": "20/1",
+      "durationSec": 59.924411
+    },
+    "ffmpegDecodeOk": true,
+    "note": "Confirms URL pattern and verification pipeline work when depot file exists"
+  },
+  "recoverySummary": {
+    "attempted": 22,
+    "recovered": 0,
+    "sourceUnavailable": 22,
+    "failed": 0,
+    "skippedExistingProjectFiles": 0,
+    "copiedToProject": 0
+  },
+  "sourceUnavailable": {
+    "missingVideo_qlogExistsLocally": [
+      { "segment": 37, "qcameraUrl": "…--37---qcamera.ts", "qlogOnDepot": true },
+      { "segment": 64, "qcameraUrl": "…--64---qcamera.ts", "qlogOnDepot": true },
+      { "segment": 67, "qcameraUrl": "…--67---qcamera.ts", "qlogOnDepot": true },
+      { "segment": 72, "qcameraUrl": "…--72---qcamera.ts", "qlogOnDepot": true },
+      { "segment": 73, "qcameraUrl": "…--73---qcamera.ts", "qlogOnDepot": true },
+      { "segment": 94, "qcameraUrl": "…--94---qcamera.ts", "qlogOnDepot": true }
+    ],
+    "missingQlog_videoExistsLocally": [
+      { "segment": 52, "qlogUrl": "…--52---qlog.bz2", "qcameraOnDepot": true },
+      { "segment": 70, "qlogUrl": "…--70---qlog.bz2", "qcameraOnDepot": true }
+    ],
+    "missingBoth": [21, 38, 76, 77, 78, 79, 80]
+  },
+  "inventoryAfterRecovery": {
+    "completePair": 86,
+    "missingVideo": 6,
+    "missingQlog": 2,
+    "unchanged": true
+  },
+  "projectFilesModified": false,
+  "geometryOrRenderingCodeModified": false
+}

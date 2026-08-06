@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Qlog Road Geometry Viewer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Qlog Road Geometry Viewer</h1>
+    <p id="modeLabel" class="mode-label">Loading…</p>
+  </header>
+
+  <div class="layout">
+    <aside class="panel">
+      <section>
+        <h2>Controls</h2>
+        <label>Segment(s)</label>
+        <select id="segmentSelect" multiple size="6"></select>
+        <div class="btn-row">
+          <button id="btnProcess">Process selected</button>
+          <button id="btnProcessAll">Combine all segments</button>
+          <button id="btnReprocess">Reprocess selected</button>
+        </div>
+        <p class="meta-line">Processing version: <strong id="procVersion">—</strong></p>
+        <p class="meta-line">Processed at: <strong id="procTime">—</strong></p>
+        <label>Visualization mode</label>
+        <select id="vizMode">
+          <option value="global">Global map (GPS + model)</option>
+          <option value="vehicle">Vehicle-relative frame</option>
+          <option value="local">Local playback</option>
+        </select>
+        <label class="local-only-control">Local geometry</label>
+        <select id="localGeometryMode" class="local-only-control">
+          <option value="observations">Raw mapped observations</option>
+          <option value="fused" selected>Fused lane lines</option>
+        </select>
+        <div class="btn-row">
+          <button id="btnReset">Reset view</button>
+          <button id="btnFit">Fit to view</button>
+        </div>
+        <div class="btn-row">
+          <button id="btnPng">Export PNG</button>
+          <button id="btnCsv">Export CSV</button>
+          <button id="btnGeoJson">Export GeoJSON</button>
+        </div>
+        <p id="status" class="status">Ready</p>
+      </section>
+
+      <section>
+        <h2>Layers</h2>
+        <label><input type="checkbox" id="layerGps" checked> GPS trajectory</label>
+        <label><input type="checkbox" id="layerVehicle" checked> Model vehicle path</label>
+        <label><input type="checkbox" id="layerRawLanes"> Raw lane observations (all frames)</label>
+        <label><input type="checkbox" id="layerRawFrame" checked> Raw frame detections (timeline)</label>
+        <label><input type="checkbox" id="layerFusedLanes" checked> Fused lane lines</label>
+        <label><input type="checkbox" id="layerFusedTracks"> Fused lane tracks</label>
+        <label><input type="checkbox" id="layerTrackConnections"> Frame-to-frame connections</label>
+        <label><input type="checkbox" id="layerColorByTrack"> Colour by lane track</label>
+        <label><input type="checkbox" id="layerTrackIds"> Track IDs</label>
+        <label><input type="checkbox" id="layerLaneOnly"> Lane-only candidates</label>
+        <label><input type="checkbox" id="layerEdges" checked> Road edges</label>
+        <label><input type="checkbox" id="layerCentre" checked> Centre line (estimated)</label>
+        <label><input type="checkbox" id="layerRoadSurface" checked> Road surface</label>
+        <label><input type="checkbox" id="layerMarkers" checked> Start / end markers</label>
+        <label><input type="checkbox" id="layerColorByChunk"> Colour by chunk (debug)</label>
+        <label><input type="checkbox" id="layerColorByPass" checked> Colour road surface by pass</label>
+        <label><input type="checkbox" id="layerPassBoundaries"> Pass boundaries</label>
+        <label><input type="checkbox" id="layerSuspiciousGps"> Suspicious GPS sections</label>
+        <label><input type="checkbox" id="layerRejectedObs"> Rejected observations</label>
+        <h3 class="layer-subhead local-only-control">Geometry diagnostics overlays</h3>
+        <label class="local-only-control"><input type="checkbox" id="layerDiagPhysicalBoundary"> Physical-boundary labels</label>
+        <label class="local-only-control"><input type="checkbox" id="layerDiagTrackIds"> Track IDs (stationary)</label>
+        <label class="local-only-control"><input type="checkbox" id="layerDiagFragmentIds"> Fused-fragment / run IDs</label>
+        <label class="local-only-control"><input type="checkbox" id="layerDiagDisconnections"> Open disconnection markers</label>
+        <label class="local-only-control"><input type="checkbox" id="layerDiagRepairedGaps"> Repaired-gap markers (Stage 7)</label>
+        <label class="local-only-control"><input type="checkbox" id="layerDiagStructuralBridges"> Structural bridge segments (no interior geometry)</label>
+        <label class="local-only-control"><input type="checkbox" id="layerDiagInterpolatedBridges"> Interpolated bridge geometry (Stage 8)</label>
+      </section>
+
+      <section id="geometryDiagnosticsSection" class="local-only-control">
+        <h2>Geometry diagnostics</h2>
+        <p class="meta-line">Lane checksum: <strong id="diagLaneChecksum">—</strong></p>
+        <p class="meta-line">API lane checksum: <strong id="diagApiLaneChecksum">—</strong></p>
+        <p class="meta-line">Processing version: <strong id="diagProcessingVersion">—</strong></p>
+        <p class="meta-line">Geometry source: <strong id="diagGeometrySource">—</strong></p>
+        <p class="meta-line">Fused fragments: <strong id="diagFusedFragments">—</strong></p>
+        <p class="meta-line">Cleaned runs: <strong id="diagCleanedRuns">—</strong></p>
+        <p class="meta-line">Stable disconnections: <strong id="diagDisconnections">—</strong></p>
+        <p class="meta-line">PB0 / PB1 / PB2 gaps: <strong id="diagPbGaps">—</strong></p>
+        <p class="meta-line">Stage 7 repair flag: <strong id="diagStage7Flag">—</strong></p>
+        <p class="meta-line">Stage 8 reconstruction flag: <strong id="diagStage8Flag">—</strong></p>
+        <p class="meta-line">Coordinate checksum: <strong id="diagCoordinateChecksum">—</strong></p>
+        <p class="meta-line">Interpolated points: <strong id="diagInterpolatedCount">—</strong></p>
+        <p class="meta-line">Accepted repairs: <strong id="diagAcceptedRepairs">—</strong></p>
+        <p class="meta-line">Continuity verdict: <strong id="diagContinuityVerdict">—</strong></p>
+        <p class="meta-line">Road-surface checksum: <strong id="diagSurfaceChecksum">—</strong></p>
+        <p class="meta-line">Map cache: <strong id="diagMapCache">—</strong></p>
+        <p class="meta-line">API cache hit: <strong id="diagApiCacheHit">—</strong></p>
+        <div id="diagRepairTable" class="chunk-table"></div>
+        <p class="meta-line subtle">API checksums reflect cleaned fused-lane map (Mode 5). Local geometry switches raw observations vs fused lane lines only.</p>
+      </section>
+
+      <section>
+        <h2>Chunking settings</h2>
+        <label>Max time gap (s) <input type="number" id="maxTimeGap" value="3" min="0.5" step="0.5"></label>
+        <label>Max GPS gap (m) <input type="number" id="maxGpsGap" value="30" min="1" step="1"></label>
+        <label>Max implied speed (m/s) <input type="number" id="maxImpliedSpeed" value="55" min="10" step="1"></label>
+        <label>Max lane fragment gap (m) <input type="number" id="maxLaneGap" value="10" min="1" step="1"></label>
+        <label>Max road-edge gap (m) <input type="number" id="maxEdgeGap" value="10" min="1" step="1"></label>
+      </section>
+
+      <section>
+        <h2>Settings</h2>
+        <label>Min lane prob <input type="number" id="minLaneProb" value="0.5" min="0" max="1" step="0.05"></label>
+        <label>Max GPS accuracy (m) <input type="number" id="maxGpsAcc" value="50" min="1" step="1"></label>
+        <label>Max model-GPS Δ (s) <input type="number" id="maxModelGps" value="2" min="0.1" step="0.1"></label>
+        <label>Max forward (m) <input type="number" id="maxForward" value="120" min="10" step="5"></label>
+        <label>Fusion interval (m) <input type="number" id="fusionInterval" value="2" min="0.5" step="0.5"></label>
+        <label>Min speed for GPS bearing (m/s) <input type="number" id="minBearingSpeed" value="2" min="0" step="0.5"></label>
+        <label><input type="checkbox" id="laneTrackingEnabled" checked> Temporal lane tracking (lanes only)</label>
+        <label><input type="checkbox" id="localSupportFilter" checked> Local multi-frame support filter (mode C)</label>
+        <label>Playback speed <select id="playSpeed">
+          <option value="0.5">0.5×</option>
+          <option value="1" selected>1×</option>
+          <option value="2">2×</option>
+          <option value="5">5×</option>
+        </select></label>
+      </section>
+
+      <section>
+        <h2>File identity</h2>
+        <div id="fileAuditTable" class="chunk-table"></div>
+      </section>
+
+      <section>
+        <h2>Frame counts</h2>
+        <div id="frameCountPanel" class="chunk-table"></div>
+      </section>
+
+      <section>
+        <h2>Info</h2>
+        <dl id="infoPanel"></dl>
+      </section>
+
+      <section>
+        <h2>Timeline</h2>
+        <input type="range" id="timeline" min="0" max="0" value="0" disabled>
+        <dl id="timelineInfo"></dl>
+        <div class="btn-row">
+          <button id="btnPrevFrame">◀ Prev frame</button>
+          <button id="btnPlay">▶ Play</button>
+          <button id="btnNextFrame">Next frame ▶</button>
+        </div>
+      </section>
+
+      <section>
+        <h2>Lane tracking diagnostics</h2>
+        <div id="trackDiagnostics" class="chunk-table"></div>
+      </section>
+
+      <section>
+        <h2>Pass / polygon coverage</h2>
+        <div id="passTable" class="chunk-table"></div>
+      </section>
+
+      <section>
+        <h2>Chunk diagnostics</h2>
+        <div id="chunkTable" class="chunk-table"></div>
+      </section>
+
+      <section>
+        <h2>Stage 19 — dataset sensitivity audit</h2>
+        <p class="meta-line">Stage 19 version: <strong id="stage19Version">—</strong></p>
+        <p class="meta-line">Status: <strong id="stage19Status">—</strong></p>
+        <div id="stage19Panel" class="chunk-table"></div>
+        <p class="meta-line subtle">Read-only audit layer. Production lane counting remains disabled.</p>
+      </section>
+
+      <section>
+        <h2>Hover</h2>
+        <pre id="hoverInfo">—</pre>
+      </section>
+    </aside>
+
+    <main>
+      <canvas id="canvas"></canvas>
+      <div id="localVideoPanel" class="local-video-panel hidden">
+        <div class="local-video-header">
+          <span class="local-video-title">Synchronized road video</span>
+          <span class="local-video-sync" data-video-sync>● —</span>
+          <button type="button" class="local-video-collapse" data-video-collapse title="Expand/collapse">▾</button>
+        </div>
+        <div class="local-video-body" data-video-body>
+          <video id="localPlaybackVideo" muted playsinline></video>
+          <div class="local-video-meta">
+            <span data-video-status>Idle</span>
+            <span data-video-time>0.0s / —</span>
+          </div>
+        </div>
+        <div class="local-video-message" data-video-message>No matching video for this segment</div>
+      </div>
+      <div id="vehicleRelBanner" class="banner hidden">
+        Vehicle-relative model view — not a global road map.
+      </div>
+      <div id="localPlaybackBanner" class="banner banner-local hidden">
+        Local playback — stationary segment map with moving arrow
+      </div>
+    </main>
+  </div>
+
+  <script src="geometry_diagnostics.js?v=20260805d"></script>
+  <script src="vehicle_movement_display.js?v=20260731d"></script>
+  <script src="local_playback.js?v=20260803c"></script>
+  <script src="segment2_browser_audit_data.js?v=20260804c"></script>
+  <script src="lane_map_cleanup.js?v=20260805b"></script>
+  <script src="road_surface_stage1.js?v=20260804c"></script>
+  <script src="segment_local_map.js?v=20260805c"></script>
+  <script src="playback_arrow_screen.js?v=20260731i"></script>
+  <script src="segment_video_timing.js?v=20260803a"></script>
+  <script src="local_playback_video.js?v=20260803a"></script>
+  <script src="local_geometry_ui.js?v=20260805e"></script>
+  <script src="local_trajectory_overlay.js?v=20260805h"></script>
+  <script src="local_road_surface_path_filter.js?v=20260805i"></script>
+  <script src="local_road_surface_ribbon.js?v=20260805j"></script>
+  <script src="render.js?v=20260805j"></script>
+  <script src="app.js?v=20260805e"></script>
+</body>
+</html>

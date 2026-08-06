@@ -1,0 +1,1 @@
+{"caveats":["partition_fallback_in_spatial_frames"],"intervalId":"0:1:4:interval:0:1:4:3:run:0:0:1:4:2:run:0:89.2:115.2","partition":{"numPaths":302,"totalExtensionCost":0},"promotion":"promote_with_caveats","runId":"perf-run-1","schemaVersion":"stage19_assessment_v0","status":"accepted_with_caveats"}

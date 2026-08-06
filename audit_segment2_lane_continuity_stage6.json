@@ -1,0 +1,919 @@
+{
+  "generatedAt": "2026-08-05T05:56:34.621Z",
+  "segment": "qlog_f449c_2.bz2",
+  "stage": 6,
+  "scope": "remaining_candidate_classification",
+  "investigationOnly": true,
+  "productionGeometryModified": false,
+  "baseline": {
+    "laneChecksum": "ff6d115e",
+    "fusedFragments": 22,
+    "cleanedRuns": 21,
+    "stablePhysicalDisconnections": 18,
+    "roadSurfaceChecksum": "70457ea"
+  },
+  "after": {
+    "laneChecksum": "ff6d115e",
+    "fusedFragmentCount": 22,
+    "cleanedRunCount": 21,
+    "stablePhysicalDisconnections": 18,
+    "roadSurfaceChecksum": "70457ea"
+  },
+  "d12TestAccounting": {
+    "staleExpectations": {
+      "fusedFragments": 33,
+      "cleanedRuns": 28
+    },
+    "acceptedBaseline": {
+      "fusedFragments": 22,
+      "cleanedRuns": 21
+    },
+    "runtimeGeometryUnchanged": true,
+    "laneChecksum": "ff6d115e",
+    "failureCause": "test_expected_stage1_fragment_run_counts_not_post_repair_baseline",
+    "productionGeometryModifiedByTestFix": false,
+    "displaySpanDeltaM": -45.562405372404896,
+    "explanation": "Stage 2 PB0 bridge and Stage 3 DC-014 repair reduced fused fragments 33→22 and cleaned runs 28→21; D12 tests still asserted Stage 1 counts"
+  },
+  "testAccounting": {
+    "stage1to5Continuity": "128/128 pass",
+    "classDFusion": "28/28 pass",
+    "cleanup": "19/19 pass",
+    "targetedPassingBeforeD12Fix": 175,
+    "d12StaleFailures": 5,
+    "d12StaleFailureCause": "stage1_fragment_run_count_expectations",
+    "newStage5FailureIdentities": "none"
+  },
+  "safeFusionCandidates": {
+    "ids": [
+      "DC-009",
+      "DC-010",
+      "DC-011",
+      "DC-012"
+    ],
+    "count": 4,
+    "note": "PB1 track-2 fusion_pairing cluster parallel to repaired PB0 554–647 m; DC-006/DC-008 out of scope (earlier route segment)",
+    "candidates": [
+      {
+        "stage1DisconnectionId": "DC-009",
+        "stablePhysicalGapKey": "PB1|554.04|567.35",
+        "earlierAuditIds": [
+          "DC-009"
+        ],
+        "classDGapId": "CD-14",
+        "category": "safe_fusion",
+        "physicalBoundaryId": "PB1",
+        "trackId": 2,
+        "chunkId": 0,
+        "passId": 0,
+        "routeSInterval": [
+          554.0369644246867,
+          567.3471591784137
+        ],
+        "alongTrackGapM": 13.310194753726933,
+        "euclideanGapM": 13.319866297158809,
+        "lateralOffsetM": 0.5074975783665627,
+        "headingDifferenceDeg": 8.242234695771913,
+        "endpointCoordinates": {
+          "preceding": {
+            "east": -57.581899897067466,
+            "north": 147.05388658079727,
+            "s": 554.0369644246867,
+            "d": 1.1708387352409648
+          },
+          "following": {
+            "east": -57.729221796947066,
+            "north": 160.37293813982365,
+            "s": 567.3471591784137,
+            "d": 0.6633411568744021
+          }
+        },
+        "endpointCompatibility": {
+          "compatible": true,
+          "gapM": 13.310194753726933,
+          "dDelta": 0.5074975783665627,
+          "headingDelta": 8.242234695771913,
+          "reason": null
+        },
+        "rawModelV2Support": {
+          "frameCount": 17,
+          "distinctFramesInRange": 2,
+          "observationCount": 10
+        },
+        "mappedObservations": {
+          "count": 10,
+          "distinctFrames": 2
+        },
+        "rejectedObservations": {
+          "rejectedBinCount": 4,
+          "rejectionReasons": {
+            "D6_minObsPerBin": 4
+          }
+        },
+        "alternativeTrackSupport": [
+          {
+            "laneTrackId": 0,
+            "observationCount": 10,
+            "meanLateralD": -2.04459259665638,
+            "lateralDeltaFromCandidateM": 2.855715712170832
+          }
+        ],
+        "trackerContinuity": {
+          "trackSwitchDetected": false,
+          "sameTrackIdThroughout": true,
+          "laneTrackId": 2
+        },
+        "fusionBinContinuity": {
+          "acceptedBins": 0,
+          "rejectedBins": 4,
+          "primarySplit": {
+            "afterBinKey": 277,
+            "beforeBinKey": 284,
+            "gapM": 13.310194753726933,
+            "lateralDeltaM": 0.5074975783665627,
+            "reason": "D11_maxLaneFragmentGapM",
+            "bridgeRejected": "notProvenBoundaryTrack",
+            "measurement": "consecutive accepted fused bin centres (s coordinate)",
+            "thresholdM": 10
+          }
+        },
+        "cleanupDecision": {
+          "physicallyOpen": true,
+          "mirrorsFusionFragmentation": true,
+          "cleanupIsIndependentRootCause": false
+        },
+        "firstFailingStage": "fused_fragments",
+        "responsibleFunction": "fuseLaneTrackSdFragments",
+        "responsibleCondition": "D11_maxLaneFragmentGapM gapM=13.31 bridgeRejected=notProvenBoundaryTrack",
+        "laneOrderConsistent": true,
+        "competingContinuations": [],
+        "crossingRisk": false,
+        "selfIntersectionRisk": false,
+        "evidenceSupportedRecoverableLengthM": 0,
+        "unsupportedLengthM": 13.310194753726933,
+        "dashedMarkingAnalysis": {
+          "markingTypeAvailable": false,
+          "rawModelV2Continuous": true,
+          "repeatedDashSpacingSuspected": false,
+          "modelRepresentsSingleLaneObject": true,
+          "pipelineBreaksAtPaintGap": false,
+          "verdict": "not_dashed_marking"
+        },
+        "gapMechanism": "D6",
+        "verdict": "A",
+        "verdictLabel": "Supported short fusion gap — eligible for later repair",
+        "repairable": true,
+        "remainOpen": true,
+        "readyForTargetedRepair": true
+      },
+      {
+        "stage1DisconnectionId": "DC-010",
+        "stablePhysicalGapKey": "PB1|572.04|590.04",
+        "earlierAuditIds": [
+          "DC-010"
+        ],
+        "classDGapId": "CD-15",
+        "category": "safe_fusion",
+        "physicalBoundaryId": "PB1",
+        "trackId": 2,
+        "chunkId": 0,
+        "passId": 0,
+        "routeSInterval": [
+          572.0372665529105,
+          590.0372592002434
+        ],
+        "alongTrackGapM": 17.999992647332874,
+        "euclideanGapM": 18.000005530778274,
+        "lateralOffsetM": 0.021536109444747487,
+        "headingDifferenceDeg": 10.308701158062945,
+        "endpointCoordinates": {
+          "preceding": {
+            "east": -58.58531918751751,
+            "north": 165.03286340063534,
+            "s": 572.0372665529105,
+            "d": 1.3119661781267276
+          },
+          "following": {
+            "east": -59.36193013467086,
+            "north": 183.01610767259055,
+            "s": 590.0372592002434,
+            "d": 1.29043006868198
+          }
+        },
+        "endpointCompatibility": {
+          "compatible": true,
+          "gapM": 17.999992647332874,
+          "dDelta": 0.021536109444747487,
+          "headingDelta": 10.308701158062945,
+          "reason": null
+        },
+        "rawModelV2Support": {
+          "frameCount": 17,
+          "distinctFramesInRange": 2,
+          "observationCount": 10
+        },
+        "mappedObservations": {
+          "count": 10,
+          "distinctFrames": 2
+        },
+        "rejectedObservations": {
+          "rejectedBinCount": 7,
+          "rejectionReasons": {
+            "D6_minObsPerBin": 7
+          }
+        },
+        "alternativeTrackSupport": [
+          {
+            "laneTrackId": 0,
+            "observationCount": 9,
+            "meanLateralD": -1.7320537394962607,
+            "lateralDeltaFromCandidateM": 2.9687473195950194
+          },
+          {
+            "laneTrackId": 3,
+            "observationCount": 6,
+            "meanLateralD": 4.235693285541287,
+            "lateralDeltaFromCandidateM": 2.998999705442528
+          }
+        ],
+        "trackerContinuity": {
+          "trackSwitchDetected": false,
+          "sameTrackIdThroughout": true,
+          "laneTrackId": 2
+        },
+        "fusionBinContinuity": {
+          "acceptedBins": 1,
+          "rejectedBins": 7,
+          "primarySplit": {
+            "afterBinKey": 286,
+            "beforeBinKey": 295,
+            "gapM": 17.999992647332874,
+            "lateralDeltaM": 0.021536109444747487,
+            "reason": "D11_maxLaneFragmentGapM",
+            "bridgeRejected": "notProvenBoundaryTrack",
+            "measurement": "consecutive accepted fused bin centres (s coordinate)",
+            "thresholdM": 10
+          }
+        },
+        "cleanupDecision": {
+          "physicallyOpen": true,
+          "mirrorsFusionFragmentation": true,
+          "cleanupIsIndependentRootCause": false
+        },
+        "firstFailingStage": "fused_fragments",
+        "responsibleFunction": "fuseLaneTrackSdFragments",
+        "responsibleCondition": "D11_maxLaneFragmentGapM gapM=18.00 bridgeRejected=notProvenBoundaryTrack",
+        "laneOrderConsistent": true,
+        "competingContinuations": [],
+        "crossingRisk": false,
+        "selfIntersectionRisk": false,
+        "evidenceSupportedRecoverableLengthM": 0,
+        "unsupportedLengthM": 17.999992647332874,
+        "dashedMarkingAnalysis": {
+          "markingTypeAvailable": false,
+          "rawModelV2Continuous": true,
+          "repeatedDashSpacingSuspected": false,
+          "modelRepresentsSingleLaneObject": true,
+          "pipelineBreaksAtPaintGap": false,
+          "verdict": "not_dashed_marking"
+        },
+        "gapMechanism": "D6",
+        "verdict": "A",
+        "verdictLabel": "Supported short fusion gap — eligible for later repair",
+        "repairable": true,
+        "remainOpen": true,
+        "readyForTargetedRepair": true
+      },
+      {
+        "stage1DisconnectionId": "DC-011",
+        "stablePhysicalGapKey": "PB1|609.53|621.53",
+        "earlierAuditIds": [
+          "DC-011"
+        ],
+        "classDGapId": "CD-16",
+        "category": "safe_fusion",
+        "physicalBoundaryId": "PB1",
+        "trackId": 2,
+        "chunkId": 0,
+        "passId": 0,
+        "routeSInterval": [
+          609.5318972808049,
+          621.5319258388029
+        ],
+        "alongTrackGapM": 12.000028557998007,
+        "euclideanGapM": 12.00002855804577,
+        "lateralOffsetM": 0.00003385640925701594,
+        "headingDifferenceDeg": 0.09922063022429484,
+        "endpointCoordinates": {
+          "preceding": {
+            "east": -60.19950729625666,
+            "north": 202.4981146913436,
+            "s": 609.5318972808049,
+            "d": 1.3075784697804709
+          },
+          "following": {
+            "east": -60.6816928006061,
+            "north": 214.48845173970506,
+            "s": 621.5319258388029,
+            "d": 1.3075446133712139
+          }
+        },
+        "endpointCompatibility": {
+          "compatible": true,
+          "gapM": 12.000028557998007,
+          "dDelta": 0.00003385640925701594,
+          "headingDelta": 0.09922063022429484,
+          "reason": null
+        },
+        "rawModelV2Support": {
+          "frameCount": 17,
+          "distinctFramesInRange": 2,
+          "observationCount": 6
+        },
+        "mappedObservations": {
+          "count": 6,
+          "distinctFrames": 2
+        },
+        "rejectedObservations": {
+          "rejectedBinCount": 3,
+          "rejectionReasons": {
+            "D6_minObsPerBin": 3
+          }
+        },
+        "alternativeTrackSupport": [
+          {
+            "laneTrackId": 0,
+            "observationCount": 5,
+            "meanLateralD": -1.5621768259399151,
+            "lateralDeltaFromCandidateM": 2.9342715328891957
+          },
+          {
+            "laneTrackId": 3,
+            "observationCount": 2,
+            "meanLateralD": 4.406703171793719,
+            "lateralDeltaFromCandidateM": 3.034608464844438
+          }
+        ],
+        "trackerContinuity": {
+          "trackSwitchDetected": false,
+          "sameTrackIdThroughout": true,
+          "laneTrackId": 2
+        },
+        "fusionBinContinuity": {
+          "acceptedBins": 1,
+          "rejectedBins": 3,
+          "primarySplit": {
+            "afterBinKey": 305,
+            "beforeBinKey": 311,
+            "gapM": 12.000028557998007,
+            "lateralDeltaM": 0.00003385640925701594,
+            "reason": "D11_maxLaneFragmentGapM",
+            "bridgeRejected": "notProvenBoundaryTrack",
+            "measurement": "consecutive accepted fused bin centres (s coordinate)",
+            "thresholdM": 10
+          }
+        },
+        "cleanupDecision": {
+          "physicallyOpen": true,
+          "mirrorsFusionFragmentation": true,
+          "cleanupIsIndependentRootCause": false
+        },
+        "firstFailingStage": "fused_fragments",
+        "responsibleFunction": "fuseLaneTrackSdFragments",
+        "responsibleCondition": "D11_maxLaneFragmentGapM gapM=12.00 bridgeRejected=notProvenBoundaryTrack",
+        "laneOrderConsistent": true,
+        "competingContinuations": [],
+        "crossingRisk": false,
+        "selfIntersectionRisk": false,
+        "evidenceSupportedRecoverableLengthM": 0,
+        "unsupportedLengthM": 12.000028557998007,
+        "dashedMarkingAnalysis": {
+          "markingTypeAvailable": false,
+          "rawModelV2Continuous": true,
+          "repeatedDashSpacingSuspected": false,
+          "modelRepresentsSingleLaneObject": true,
+          "pipelineBreaksAtPaintGap": false,
+          "verdict": "not_dashed_marking"
+        },
+        "gapMechanism": "D6",
+        "verdict": "A",
+        "verdictLabel": "Supported short fusion gap — eligible for later repair",
+        "repairable": true,
+        "remainOpen": true,
+        "readyForTargetedRepair": true
+      },
+      {
+        "stage1DisconnectionId": "DC-012",
+        "stablePhysicalGapKey": "PB1|630.57|646.89",
+        "earlierAuditIds": [
+          "DC-012"
+        ],
+        "classDGapId": "CD-17",
+        "category": "safe_fusion",
+        "physicalBoundaryId": "PB1",
+        "trackId": 2,
+        "chunkId": 0,
+        "passId": 0,
+        "routeSInterval": [
+          630.5748338730675,
+          646.8868001220607
+        ],
+        "alongTrackGapM": 16.311966248993144,
+        "euclideanGapM": 16.312233032211157,
+        "lateralOffsetM": 0.09329302690601549,
+        "headingDifferenceDeg": 6.95554892165535,
+        "endpointCoordinates": {
+          "preceding": {
+            "east": -61.29671222863626,
+            "north": 223.5210086443154,
+            "s": 630.5748338730675,
+            "d": 1.5710144678027789
+          },
+          "following": {
+            "east": -61.97183216630348,
+            "north": 239.8192649794859,
+            "s": 646.8868001220607,
+            "d": 1.6643074947087944
+          }
+        },
+        "endpointCompatibility": {
+          "compatible": true,
+          "gapM": 16.311966248993144,
+          "dDelta": 0.09329302690601549,
+          "headingDelta": 6.95554892165535,
+          "reason": null
+        },
+        "rawModelV2Support": {
+          "frameCount": 17,
+          "distinctFramesInRange": 2,
+          "observationCount": 11
+        },
+        "mappedObservations": {
+          "count": 11,
+          "distinctFrames": 2
+        },
+        "rejectedObservations": {
+          "rejectedBinCount": 7,
+          "rejectionReasons": {
+            "D6_minObsPerBin": 7
+          }
+        },
+        "alternativeTrackSupport": [
+          {
+            "laneTrackId": 0,
+            "observationCount": 10,
+            "meanLateralD": -1.3856024401881517,
+            "lateralDeltaFromCandidateM": 2.9826496274238226
+          }
+        ],
+        "trackerContinuity": {
+          "trackSwitchDetected": false,
+          "sameTrackIdThroughout": true,
+          "laneTrackId": 2
+        },
+        "fusionBinContinuity": {
+          "acceptedBins": 1,
+          "rejectedBins": 7,
+          "primarySplit": {
+            "afterBinKey": 315,
+            "beforeBinKey": 323,
+            "gapM": 16.311966248993144,
+            "lateralDeltaM": 0.09329302690601549,
+            "reason": "D11_maxLaneFragmentGapM",
+            "bridgeRejected": "notProvenBoundaryTrack",
+            "measurement": "consecutive accepted fused bin centres (s coordinate)",
+            "thresholdM": 10
+          }
+        },
+        "cleanupDecision": {
+          "physicallyOpen": true,
+          "mirrorsFusionFragmentation": true,
+          "cleanupIsIndependentRootCause": false
+        },
+        "firstFailingStage": "fused_fragments",
+        "responsibleFunction": "fuseLaneTrackSdFragments",
+        "responsibleCondition": "D11_maxLaneFragmentGapM gapM=16.31 bridgeRejected=notProvenBoundaryTrack",
+        "laneOrderConsistent": true,
+        "competingContinuations": [],
+        "crossingRisk": false,
+        "selfIntersectionRisk": false,
+        "evidenceSupportedRecoverableLengthM": 0,
+        "unsupportedLengthM": 16.311966248993144,
+        "dashedMarkingAnalysis": {
+          "markingTypeAvailable": false,
+          "rawModelV2Continuous": true,
+          "repeatedDashSpacingSuspected": false,
+          "modelRepresentsSingleLaneObject": true,
+          "pipelineBreaksAtPaintGap": false,
+          "verdict": "not_dashed_marking"
+        },
+        "gapMechanism": "D6",
+        "verdict": "A",
+        "verdictLabel": "Supported short fusion gap — eligible for later repair",
+        "repairable": true,
+        "remainOpen": true,
+        "readyForTargetedRepair": true
+      }
+    ]
+  },
+  "dashedMarkingSuspects": {
+    "ids": [
+      "DC-000",
+      "DC-005",
+      "DC-007"
+    ],
+    "count": 3,
+    "note": "Stage 1 dashed-marking suspects; only DC-000 is on PB2 physically — DC-005/DC-007 are PB1 parallel short gaps",
+    "candidates": [
+      {
+        "stage1DisconnectionId": "DC-000",
+        "stablePhysicalGapKey": "PB2|428.76|430.23",
+        "earlierAuditIds": [
+          "DC-000"
+        ],
+        "classDGapId": "CD-18",
+        "category": "dashed_marking",
+        "physicalBoundaryId": "PB2",
+        "trackId": 3,
+        "chunkId": 0,
+        "passId": 0,
+        "routeSInterval": [
+          428.7570377828136,
+          430.2325151017333
+        ],
+        "alongTrackGapM": 1.4754773189197294,
+        "euclideanGapM": 1.4755770535402666,
+        "lateralOffsetM": 0.01715582373466873,
+        "headingDifferenceDeg": 0.9952103856126087,
+        "endpointCoordinates": {
+          "preceding": {
+            "east": -54.31024745142154,
+            "north": 21.793302127732822,
+            "s": 428.7570377828136,
+            "d": 4.092297018465027
+          },
+          "following": {
+            "east": -54.39722915829964,
+            "north": 23.26631326944328,
+            "s": 430.2325151017333,
+            "d": 4.109452842199696
+          }
+        },
+        "endpointCompatibility": {
+          "compatible": true,
+          "gapM": 1.4754773189197294,
+          "dDelta": 0.01715582373466873,
+          "headingDelta": 0.9952103856126087,
+          "reason": null
+        },
+        "rawModelV2Support": {
+          "frameCount": 5,
+          "distinctFramesInRange": 2,
+          "observationCount": 2
+        },
+        "mappedObservations": {
+          "count": 2,
+          "distinctFrames": 2
+        },
+        "rejectedObservations": {
+          "rejectedBinCount": 1,
+          "rejectionReasons": {
+            "D6_minObsPerBin": 1
+          }
+        },
+        "alternativeTrackSupport": [
+          {
+            "laneTrackId": 0,
+            "observationCount": 1,
+            "meanLateralD": -1.5402912033646319,
+            "lateralDeltaFromCandidateM": 5.641166133696993
+          },
+          {
+            "laneTrackId": 2,
+            "observationCount": 1,
+            "meanLateralD": 1.2605940629183159,
+            "lateralDeltaFromCandidateM": 2.8402808674140454
+          }
+        ],
+        "trackerContinuity": {
+          "trackSwitchDetected": false,
+          "sameTrackIdThroughout": true,
+          "laneTrackId": 3
+        },
+        "fusionBinContinuity": {
+          "acceptedBins": 0,
+          "rejectedBins": 1,
+          "primarySplit": null
+        },
+        "cleanupDecision": {
+          "physicallyOpen": true,
+          "mirrorsFusionFragmentation": false,
+          "cleanupIsIndependentRootCause": false
+        },
+        "firstFailingStage": "preservation_d12",
+        "responsibleFunction": "D12 preservation / intentional open gap",
+        "responsibleCondition": "All candidate bins in interval rejected: D6_minObsPerBin",
+        "laneOrderConsistent": true,
+        "competingContinuations": [],
+        "crossingRisk": false,
+        "selfIntersectionRisk": false,
+        "evidenceSupportedRecoverableLengthM": 0,
+        "unsupportedLengthM": 1.4754773189197294,
+        "dashedMarkingAnalysis": {
+          "markingTypeAvailable": false,
+          "rawModelV2Continuous": false,
+          "repeatedDashSpacingSuspected": true,
+          "modelRepresentsSingleLaneObject": true,
+          "pipelineBreaksAtPaintGap": true,
+          "verdict": "possible_dashed_marking_not_geometry_gap"
+        },
+        "gapMechanism": "D6",
+        "verdict": "D",
+        "verdictLabel": "Normal dashed-marking interval with continuous boundary identity",
+        "repairable": false,
+        "remainOpen": true,
+        "readyForTargetedRepair": false
+      },
+      {
+        "stage1DisconnectionId": "DC-005",
+        "stablePhysicalGapKey": "PB1|428.76|430.22",
+        "earlierAuditIds": [
+          "DC-005"
+        ],
+        "classDGapId": "CD-10",
+        "category": "dashed_marking",
+        "physicalBoundaryId": "PB1",
+        "trackId": 2,
+        "chunkId": 0,
+        "passId": 0,
+        "routeSInterval": [
+          428.7557621001464,
+          430.22150557754463
+        ],
+        "alongTrackGapM": 1.4657434773982345,
+        "euclideanGapM": 1.4657619530258617,
+        "lateralOffsetM": 0.007359443098331919,
+        "headingDifferenceDeg": 0.4038374470163717,
+        "endpointCoordinates": {
+          "preceding": {
+            "east": -51.4890097492575,
+            "north": 21.925724677034985,
+            "s": 428.7557621001464,
+            "d": 1.2679535060166478
+          },
+          "following": {
+            "east": -51.55104289806322,
+            "north": 23.390173375824887,
+            "s": 430.22150557754463,
+            "d": 1.2605940629183159
+          }
+        },
+        "endpointCompatibility": {
+          "compatible": true,
+          "gapM": 1.4657434773982345,
+          "dDelta": 0.007359443098331919,
+          "headingDelta": 0.4038374470163717,
+          "reason": null
+        },
+        "rawModelV2Support": {
+          "frameCount": 17,
+          "distinctFramesInRange": 2,
+          "observationCount": 2
+        },
+        "mappedObservations": {
+          "count": 2,
+          "distinctFrames": 2
+        },
+        "rejectedObservations": {
+          "rejectedBinCount": 1,
+          "rejectionReasons": {
+            "D6_minObsPerBin": 1
+          }
+        },
+        "alternativeTrackSupport": [
+          {
+            "laneTrackId": 0,
+            "observationCount": 1,
+            "meanLateralD": -1.5402912033646319,
+            "lateralDeltaFromCandidateM": 2.804564987832114
+          },
+          {
+            "laneTrackId": 3,
+            "observationCount": 1,
+            "meanLateralD": 4.092297018465027,
+            "lateralDeltaFromCandidateM": 2.8280232339975453
+          }
+        ],
+        "trackerContinuity": {
+          "trackSwitchDetected": false,
+          "sameTrackIdThroughout": true,
+          "laneTrackId": 2
+        },
+        "fusionBinContinuity": {
+          "acceptedBins": 0,
+          "rejectedBins": 1,
+          "primarySplit": null
+        },
+        "cleanupDecision": {
+          "physicallyOpen": true,
+          "mirrorsFusionFragmentation": false,
+          "cleanupIsIndependentRootCause": false
+        },
+        "firstFailingStage": "preservation_d12",
+        "responsibleFunction": "D12 preservation / intentional open gap",
+        "responsibleCondition": "All candidate bins in interval rejected: D6_minObsPerBin",
+        "laneOrderConsistent": true,
+        "competingContinuations": [],
+        "crossingRisk": false,
+        "selfIntersectionRisk": false,
+        "evidenceSupportedRecoverableLengthM": 0,
+        "unsupportedLengthM": 1.4657434773982345,
+        "dashedMarkingAnalysis": {
+          "markingTypeAvailable": false,
+          "rawModelV2Continuous": false,
+          "repeatedDashSpacingSuspected": true,
+          "modelRepresentsSingleLaneObject": true,
+          "pipelineBreaksAtPaintGap": true,
+          "verdict": "possible_dashed_marking_not_geometry_gap"
+        },
+        "gapMechanism": "D6",
+        "verdict": "D",
+        "verdictLabel": "Normal dashed-marking interval with continuous boundary identity",
+        "repairable": false,
+        "remainOpen": true,
+        "readyForTargetedRepair": false
+      },
+      {
+        "stage1DisconnectionId": "DC-007",
+        "stablePhysicalGapKey": "PB1|498.48|500.12",
+        "earlierAuditIds": [
+          "DC-007"
+        ],
+        "classDGapId": "CD-12",
+        "category": "dashed_marking",
+        "physicalBoundaryId": "PB1",
+        "trackId": 2,
+        "chunkId": 0,
+        "passId": 0,
+        "routeSInterval": [
+          498.48122518574536,
+          500.1206905235975
+        ],
+        "alongTrackGapM": 1.6394653378521298,
+        "euclideanGapM": 1.6369891257716205,
+        "lateralOffsetM": 0.2007504284962387,
+        "headingDifferenceDeg": 0.4285324774983792,
+        "endpointCoordinates": {
+          "preceding": {
+            "east": -54.491869997205654,
+            "north": 91.59196652204426,
+            "s": 498.48122518574536,
+            "d": 0.9299889147829123
+          },
+          "following": {
+            "east": -54.7572851720629,
+            "north": 93.2072956472847,
+            "s": 500.1206905235975,
+            "d": 1.130739343279151
+          }
+        },
+        "endpointCompatibility": {
+          "compatible": true,
+          "gapM": 1.6394653378521298,
+          "dDelta": 0.2007504284962387,
+          "headingDelta": 0.4285324774983792,
+          "reason": null
+        },
+        "rawModelV2Support": {
+          "frameCount": 17,
+          "distinctFramesInRange": 3,
+          "observationCount": 5
+        },
+        "mappedObservations": {
+          "count": 5,
+          "distinctFrames": 3
+        },
+        "rejectedObservations": {
+          "rejectedBinCount": 0,
+          "rejectionReasons": {}
+        },
+        "alternativeTrackSupport": [
+          {
+            "laneTrackId": 0,
+            "observationCount": 4,
+            "meanLateralD": -2.4644621943315204,
+            "lateralDeltaFromCandidateM": 2.9434426122449158
+          },
+          {
+            "laneTrackId": 3,
+            "observationCount": 3,
+            "meanLateralD": 2.914257238380813,
+            "lateralDeltaFromCandidateM": 2.4352768204674176
+          }
+        ],
+        "trackerContinuity": {
+          "trackSwitchDetected": false,
+          "sameTrackIdThroughout": true,
+          "laneTrackId": 2
+        },
+        "fusionBinContinuity": {
+          "acceptedBins": 1,
+          "rejectedBins": 0,
+          "primarySplit": null
+        },
+        "cleanupDecision": {
+          "physicallyOpen": true,
+          "mirrorsFusionFragmentation": false,
+          "cleanupIsIndependentRootCause": false
+        },
+        "firstFailingStage": "preservation_d12",
+        "responsibleFunction": "D12 preservation / intentional open gap",
+        "responsibleCondition": "Unclassified — requires manual review",
+        "laneOrderConsistent": true,
+        "competingContinuations": [],
+        "crossingRisk": false,
+        "selfIntersectionRisk": false,
+        "evidenceSupportedRecoverableLengthM": 0,
+        "unsupportedLengthM": 1.6394653378521298,
+        "dashedMarkingAnalysis": {
+          "markingTypeAvailable": false,
+          "rawModelV2Continuous": true,
+          "repeatedDashSpacingSuspected": true,
+          "modelRepresentsSingleLaneObject": true,
+          "pipelineBreaksAtPaintGap": true,
+          "verdict": "possible_dashed_marking_not_geometry_gap"
+        },
+        "gapMechanism": "D15",
+        "verdict": "D",
+        "verdictLabel": "Normal dashed-marking interval with continuous boundary identity",
+        "repairable": false,
+        "remainOpen": true,
+        "readyForTargetedRepair": false
+      }
+    ]
+  },
+  "dc015Preserved": {
+    "stableKey": "PB0|128.15|260.57",
+    "remainsOpen": true,
+    "stage5Verdict": "G_remain_open"
+  },
+  "summary": {
+    "repairableCandidateIds": [
+      "DC-009",
+      "DC-010",
+      "DC-011",
+      "DC-012"
+    ],
+    "mustRemainOpenIds": [
+      "DC-009",
+      "DC-010",
+      "DC-011",
+      "DC-012",
+      "DC-000",
+      "DC-005",
+      "DC-007"
+    ],
+    "dashedMarkingIdentityProven": [
+      "PB2|428.76|430.23",
+      "PB1|428.76|430.22",
+      "PB1|498.48|500.12"
+    ],
+    "allUnsafeGapsOpen": true,
+    "pb1Pb2DisplacementM": 0,
+    "stage6Accepted": true
+  },
+  "unsafeStillOpen": [
+    {
+      "disconnectionId": "DC-002",
+      "stillOpen": true
+    },
+    {
+      "disconnectionId": "DC-003",
+      "stillOpen": true
+    },
+    {
+      "disconnectionId": "DC-004",
+      "stillOpen": true
+    },
+    {
+      "disconnectionId": "DC-013",
+      "stillOpen": true
+    },
+    {
+      "disconnectionId": "DC-015",
+      "stillOpen": true
+    },
+    {
+      "disconnectionId": "DC-016",
+      "stillOpen": true
+    },
+    {
+      "disconnectionId": "DC-017",
+      "stillOpen": true
+    },
+    {
+      "disconnectionId": "DC-018",
+      "stillOpen": true
+    }
+  ]
+}

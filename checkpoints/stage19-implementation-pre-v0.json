@@ -1,0 +1,13 @@
+{
+  "checkpoint": "stage19-implementation-pre-v0",
+  "createdAt": "2026-07-27T04:55:49.649Z",
+  "purpose": "Rollback reference before Stage 19 production integration",
+  "frozenV11ProcessingVersion": "2026-07-24-fusion-v11",
+  "fileHashes": {
+    "lib/version.js": "09444cdec775828371e681b858aa99e2ea0bacfd122ba936f84775eab5f6a235",
+    "lib/process_route.js": "08383ff1455707b7f42ed3c6d50c0840db2db04817b0c176d140112833359800",
+    "server.js": "f8cbc94bdb20b01ea85cd2dcac2fc90cdb2012c6de716a95e1e9ce2f75e94c45",
+    "public/app.js": "1f172573627d9c444296906a6ea2f172e7234b2636ff8c02fafa9c8883e480a0",
+    "lib/stage18_lane_interval_audit.js": "a061092d9bc8ce6b7d720b4bee9dc0509f96eae6ab1d7a3d46a02165564591bd"
+  }
+}

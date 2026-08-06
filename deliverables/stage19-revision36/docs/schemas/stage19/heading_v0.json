@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hdmap.local/schemas/stage19/heading_v0.json",
+  "title": "Stage19HeadingV0",
+  "type": "object",
+  "required": ["schemaVersion", "runId", "results"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "const": "stage19_heading_v0" },
+    "runId": { "type": "string", "minLength": 1 },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["featurePairId", "estimates", "qualifying"],
+        "additionalProperties": false,
+        "properties": {
+          "featurePairId": { "type": "string", "minLength": 1 },
+          "estimates": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["mean", "meanResultant", "evidenceUnitKey", "featurePairId"],
+              "additionalProperties": false,
+              "properties": {
+                "mean": { "type": "number" },
+                "meanResultant": { "type": "number", "minimum": 0 },
+                "evidenceUnitKey": { "type": "string", "minLength": 1 },
+                "featurePairId": { "type": "string", "minLength": 1 }
+              }
+            }
+          },
+          "qualifying": {
+            "type": "array",
+            "items": { "type": "object" }
+          }
+        }
+      }
+    }
+  }
+}

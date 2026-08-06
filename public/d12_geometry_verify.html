@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>D12 geometry pixel verification</title>
+  <style>
+    body { margin: 0; background: #f8fafc; font-family: system-ui, sans-serif; }
+    #wrap { display: flex; flex-direction: column; align-items: center; padding: 8px; }
+    canvas { background: #fff; border: 1px solid #cbd5e1; }
+    #meta { font-size: 12px; color: #334155; margin-top: 6px; }
+  </style>
+</head>
+<body>
+  <div id="wrap">
+    <canvas id="canvas" width="1280" height="800"></canvas>
+    <div id="meta"></div>
+  </div>
+  <script>
+    const PB_COLORS = { PB0: '#2563eb', PB1: '#16a34a', PB2: '#7c3aed' };
+    const state = { scale: 1, offsetX: 0, offsetY: 0, w: 1280, h: 800 };
+
+    function worldToScreen(east, north) {
+      const cx = state.w / 2 + state.offsetX;
+      const cy = state.h / 2 + state.offsetY;
+      return { x: cx + east * state.scale, y: cy - north * state.scale };
+    }
+
+    function fitBounds(bounds, pad = 30) {
+      const rangeE = bounds.maxE - bounds.minE || 1;
+      const rangeN = bounds.maxN - bounds.minN || 1;
+      state.scale = Math.min((state.w - pad * 2) / rangeE, (state.h - pad * 2) / rangeN);
+      const midE = (bounds.minE + bounds.maxE) / 2;
+      const midN = (bounds.minN + bounds.maxN) / 2;
+      state.offsetX = -midE * state.scale;
+      state.offsetY = midN * state.scale;
+    }
+
+    function drawPolyline(ctx, points, color, width, dashed) {
+      if (!points || points.length < 2) return;
+      ctx.strokeStyle = color;
+      ctx.lineWidth = width;
+      ctx.setLineDash(dashed ? [8, 6] : []);
+      let run = [points[0]];
+      for (let i = 1; i < points.length; i++) {
+        const jump = Math.hypot(points[i].east - points[i - 1].east, points[i].north - points[i - 1].north);
+        if (jump > 15) {
+          strokeRun(ctx, run);
+          run = [points[i]];
+        } else run.push(points[i]);
+      }
+      strokeRun(ctx, run);
+      ctx.setLineDash([]);
+    }
+
+    function strokeRun(ctx, run) {
+      if (run.length < 2) return;
+      ctx.beginPath();
+      const p0 = worldToScreen(run[0].east, run[0].north);
+      ctx.moveTo(p0.x, p0.y);
+      for (let i = 1; i < run.length; i++) {
+        const p = worldToScreen(run[i].east, run[i].north);
+        ctx.lineTo(p.x, p.y);
+      }
+      ctx.stroke();
+    }
+
+    function drawGapMarker(ctx, gap) {
+      if (!gap?.a || !gap?.b) return;
+      const sa = worldToScreen(gap.a.east, gap.a.north);
+      const sb = worldToScreen(gap.b.east, gap.b.north);
+      gap.gapEndpointsScreen = { a: sa, b: sb };
+      ctx.strokeStyle = '#dc2626';
+      ctx.lineWidth = 2;
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath();
+      ctx.moveTo(sa.x, sa.y);
+      ctx.lineTo(sb.x, sb.y);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = '#dc2626';
+      ctx.font = '12px sans-serif';
+      const mx = (sa.x + sb.x) / 2;
+      const my = (sa.y + sb.y) / 2;
+      ctx.fillText(`OPEN ${gap.gapId} ${gap.openLengthM?.toFixed(2)}m`, mx + 4, my - 4);
+    }
+
+    function drawVehicleArrow(ctx, arrow) {
+      if (!arrow) return;
+      const tip = worldToScreen(arrow.east, arrow.north);
+      const rad = ((arrow.headingDeg ?? 0) - 90) * Math.PI / 180;
+      const len = 18;
+      const wing = 8;
+      const bx = tip.x - Math.cos(rad) * len;
+      const by = tip.y - Math.sin(rad) * len;
+      const lx = bx + Math.cos(rad + Math.PI / 2) * wing;
+      const ly = by + Math.sin(rad + Math.PI / 2) * wing;
+      const rx = bx + Math.cos(rad - Math.PI / 2) * wing;
+      const ry = by + Math.sin(rad - Math.PI / 2) * wing;
+      ctx.fillStyle = '#ea580c';
+      ctx.strokeStyle = '#7c2d12';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(tip.x, tip.y);
+      ctx.lineTo(lx, ly);
+      ctx.lineTo(rx, ry);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+    }
+
+    function drawPlaybackHud(ctx, scene) {
+      const a = scene.vehicleArrow || {};
+      const lines = [
+        `timeline=${scene.timelineIndex}`,
+        `logMonoTime=${a.logMonoTime || 'n/a'}`,
+        `heading=${(a.headingDeg ?? 0).toFixed(1)}°`,
+        `laneChecksum=${scene.laneChecksum || ''}`,
+      ];
+      ctx.fillStyle = 'rgba(15,23,42,0.82)';
+      ctx.fillRect(8, 8, 320, 72);
+      ctx.fillStyle = '#f8fafc';
+      ctx.font = '13px monospace';
+      lines.forEach((line, i) => ctx.fillText(line, 16, 28 + i * 16));
+    }
+
+    function drawStage1Hud(ctx, scene) {
+      const surfaceOn = scene.showRoadSurface !== false;
+      const polyCount = (scene.roadSurfacePolygons || []).length;
+      const lines = [
+        `mode=${scene.geometrySource || scene.modeLabel || 'unknown'}`,
+        `polygons=${polyCount}`,
+        `surfaceVisible=${surfaceOn}`,
+        `laneChecksum=${scene.laneChecksum || ''}`,
+        `timeline=${scene.timelineIndex ?? 0}`,
+      ];
+      ctx.fillStyle = 'rgba(15,23,42,0.88)';
+      ctx.fillRect(8, 8, 420, 92);
+      ctx.fillStyle = '#f8fafc';
+      ctx.font = '14px monospace';
+      lines.forEach((line, i) => ctx.fillText(line, 16, 28 + i * 17));
+    }
+
+    function drawRoadSurface(ctx, poly) {
+      if (!poly?.ring || poly.ring.length < 3) return false;
+      ctx.fillStyle = poly.fill || 'rgba(255, 165, 0, 0.30)';
+      ctx.strokeStyle = poly.stroke || 'rgba(180, 83, 9, 0.85)';
+      ctx.lineWidth = poly.strokeWidth || 1.25;
+      ctx.beginPath();
+      const p0 = worldToScreen(poly.ring[0].east, poly.ring[0].north);
+      ctx.moveTo(p0.x, p0.y);
+      for (let i = 1; i < poly.ring.length; i++) {
+        const p = worldToScreen(poly.ring[i].east, poly.ring[i].north);
+        ctx.lineTo(p.x, p.y);
+      }
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+      return true;
+    }
+
+    window.renderVerificationScene = function renderVerificationScene(scene) {
+      const canvas = document.getElementById('canvas');
+      const ctx = canvas.getContext('2d');
+      state.w = canvas.width;
+      state.h = canvas.height;
+      ctx.clearRect(0, 0, state.w, state.h);
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0, 0, state.w, state.h);
+      fitBounds(scene.bounds);
+      const screenGaps = [];
+      let polygonsDrawn = 0;
+      const surfaceOn = scene.showRoadSurface !== false;
+      if (surfaceOn) {
+        for (const poly of scene.roadSurfacePolygons || []) {
+          if (drawRoadSurface(ctx, poly)) polygonsDrawn += 1;
+        }
+      }
+      for (const frag of scene.fragments || []) {
+        const color = frag.color || PB_COLORS[frag.physicalBoundaryId] || '#334155';
+        drawPolyline(ctx, frag.points, color, frag.width || 2.5, frag.dashed || false);
+      }
+      if (scene.showGapMarkers) {
+        for (const gap of scene.gapMarkers || []) {
+          drawGapMarker(ctx, gap);
+          if (gap.gapEndpointsScreen) screenGaps.push(gap);
+        }
+      } else {
+        for (const gap of scene.gapMarkers || []) {
+          if (!gap?.a || !gap?.b) continue;
+          const sa = worldToScreen(gap.a.east, gap.a.north);
+          const sb = worldToScreen(gap.b.east, gap.b.north);
+          gap.gapEndpointsScreen = { a: sa, b: sb };
+          screenGaps.push(gap);
+        }
+      }
+      const meta = document.getElementById('meta');
+      if (scene.playbackHud) {
+        drawVehicleArrow(ctx, scene.vehicleArrow);
+        drawPlaybackHud(ctx, scene);
+      } else if (scene.stage1Hud || scene.stage2Hud || scene.geometrySource === 'cleanedWithStage1Surface') {
+        drawStage1Hud(ctx, scene);
+      } else if (scene.laneContinuityHud) {
+        const lines = [
+          `mode=${scene.geometrySource || scene.modeLabel}`,
+          `laneChecksum=${scene.laneChecksum || ''}`,
+          `disconnection=${scene.disconnectionMeta?.disconnectionId || scene.id || ''}`,
+          `cause=${scene.disconnectionMeta?.primaryCause || ''}`,
+        ];
+        ctx.fillStyle = 'rgba(15,23,42,0.88)';
+        ctx.fillRect(8, 8, 480, 92);
+        ctx.fillStyle = '#f8fafc';
+        ctx.font = '14px monospace';
+        lines.forEach((line, i) => ctx.fillText(line, 16, 28 + i * 17));
+      }
+      if (scene.endpointMarkers?.length) {
+        for (const ep of scene.endpointMarkers) {
+          const p = worldToScreen(ep.east, ep.north);
+          ctx.fillStyle = '#dc2626';
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, 5, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.fillStyle = '#111';
+          ctx.font = '10px sans-serif';
+          ctx.fillText(ep.label || ep.id, p.x + 6, p.y - 4);
+        }
+      }
+      if (scene.diagnosticLabels?.length) {
+        ctx.fillStyle = '#0f172a';
+        ctx.font = '12px monospace';
+        for (const lbl of scene.diagnosticLabels) {
+          const p = worldToScreen(lbl.east, lbl.north);
+          ctx.fillText(lbl.text, p.x, p.y);
+        }
+      }
+      const midE = (scene.bounds.minE + scene.bounds.maxE) / 2;
+      const midN = (scene.bounds.minN + scene.bounds.maxN) / 2;
+      const rangeE = scene.bounds.maxE - scene.bounds.minE || 1;
+      const pxPerM = state.scale;
+      const viewportBoundingBox = {
+        minE: midE - (state.w / 2) / state.scale,
+        maxE: midE + (state.w / 2) / state.scale,
+        minN: midN - (state.h / 2) / state.scale,
+        maxN: midN + (state.h / 2) / state.scale,
+      };
+      meta.textContent = [
+        scene.id,
+        scene.geometrySource || scene.modeLabel,
+        `polygons=${polygonsDrawn}/${(scene.roadSurfacePolygons || []).length}`,
+        `surface=${surfaceOn}`,
+        scene.laneChecksum || '',
+        `${pxPerM.toFixed(2)} px/m`,
+      ].filter(Boolean).join(' | ');
+      const g0 = screenGaps[0]?.gapEndpointsScreen;
+      const pxDist = g0 ? Math.hypot(g0.b.x - g0.a.x, g0.b.y - g0.a.y) : null;
+      return {
+        scale: state.scale,
+        zoom: state.scale,
+        offsetX: state.offsetX,
+        offsetY: state.offsetY,
+        pan: { x: state.offsetX, y: state.offsetY },
+        pixelsPerMetre: pxPerM,
+        viewportBoundingBox,
+        gapEndpointsScreen: g0 || null,
+        pixelDistanceAcrossOpening: pxDist,
+        geometrySource: scene.geometrySource || scene.modeLabel,
+        roadSurfacePolygonCount: (scene.roadSurfacePolygons || []).length,
+        polygonsDrawn,
+        surfaceVisible: surfaceOn,
+        laneChecksum: scene.laneChecksum,
+        timelineIndex: scene.timelineIndex,
+      };
+    };
+  </script>
+</body>
+</html>

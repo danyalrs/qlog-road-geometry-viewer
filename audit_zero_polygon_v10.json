@@ -1,0 +1,699 @@
+{
+  "auditedAt": "2026-07-23T04:46:00.813Z",
+  "processingVersion": "2026-07-24-pose-v10",
+  "zeroPolygonCount": 19,
+  "byCause": {
+    "polygon_validation_rejected:selfIntersecting": 5,
+    "insufficient_paired_coverage": 2,
+    "pose_section_fragmentation": 7,
+    "polygon_validation_rejected:vertexJumpTooLarge": 5
+  },
+  "byStage10Bucket": {
+    "lane_polygon_candidate": 12,
+    "pose_or_multipass": 7
+  },
+  "lanePolygonCandidates": [
+    5,
+    9,
+    24,
+    28,
+    46,
+    50,
+    56,
+    58,
+    65,
+    72,
+    92,
+    99
+  ],
+  "poseOrMultipass": [
+    22,
+    25,
+    26,
+    60,
+    61,
+    66,
+    96
+  ],
+  "results": [
+    {
+      "segmentId": 5,
+      "filename": "qlog_f449c_5.bz2",
+      "polygonCount": 0,
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "rejectedPoseTransitions": 0,
+      "fusionSkipped": false,
+      "inputEdgeObservationCount": 915,
+      "rejectedEdgeObservationCount": 645,
+      "fusedLeftPointCount": 0,
+      "fusedRightPointCount": 0,
+      "pairedCoverageM": 242.5218664947872,
+      "pathLengthM": 279.78961679124984,
+      "acceptedPolygonCount": 0,
+      "rejectedPolygonCount": 1,
+      "rejectionReasons": [
+        "selfIntersecting"
+      ],
+      "suppressedReversalCount": 1,
+      "fusedLaneCount": 6,
+      "classifiedCause": "polygon_validation_rejected:selfIntersecting",
+      "rejectionDetails": [
+        {
+          "reasons": [
+            "selfIntersecting"
+          ],
+          "stats": {
+            "length": 236.9215733139618,
+            "area": 2079.4736950488764,
+            "medianWidth": 9.11208234457148,
+            "intersections": 1,
+            "maxVertexJump": 10.470531290745814
+          }
+        }
+      ],
+      "stage10Bucket": "lane_polygon_candidate"
+    },
+    {
+      "segmentId": 9,
+      "filename": "qlog_f449c_9.bz2",
+      "polygonCount": 0,
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "rejectedPoseTransitions": 0,
+      "fusionSkipped": false,
+      "inputEdgeObservationCount": 720,
+      "rejectedEdgeObservationCount": 840,
+      "fusedLeftPointCount": 0,
+      "fusedRightPointCount": 0,
+      "pairedCoverageM": 9.747531305552103,
+      "pathLengthM": 12.14890433570175,
+      "acceptedPolygonCount": 0,
+      "rejectedPolygonCount": 0,
+      "rejectionReasons": [],
+      "suppressedReversalCount": 0,
+      "fusedLaneCount": 2,
+      "classifiedCause": "insufficient_paired_coverage",
+      "rejectionDetails": [],
+      "stage10Bucket": "lane_polygon_candidate"
+    },
+    {
+      "segmentId": 22,
+      "filename": "qlog_f449c_22.bz2",
+      "polygonCount": 0,
+      "temporalPassCount": 1,
+      "poseSectionCount": 2,
+      "rejectedPoseTransitions": 1,
+      "fusionSkipped": false,
+      "inputEdgeObservationCount": 887,
+      "rejectedEdgeObservationCount": 673,
+      "fusedLeftPointCount": 0,
+      "fusedRightPointCount": 0,
+      "pairedCoverageM": 194.65192896758964,
+      "pathLengthM": 275.97602593253293,
+      "acceptedPolygonCount": 0,
+      "rejectedPolygonCount": 1,
+      "rejectionReasons": [
+        "selfIntersecting"
+      ],
+      "suppressedReversalCount": 0,
+      "fusedLaneCount": 8,
+      "classifiedCause": "pose_section_fragmentation",
+      "rejectionDetails": [
+        {
+          "reasons": [
+            "selfIntersecting"
+          ],
+          "stats": {
+            "length": 213.38785214368818,
+            "area": 1773.7594366827911,
+            "medianWidth": 9.668809102258402,
+            "intersections": 1,
+            "maxVertexJump": 8.372357670294853
+          }
+        }
+      ],
+      "stage10Bucket": "pose_or_multipass"
+    },
+    {
+      "segmentId": 24,
+      "filename": "qlog_f449c_24.bz2",
+      "polygonCount": 0,
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "rejectedPoseTransitions": 0,
+      "fusionSkipped": false,
+      "inputEdgeObservationCount": 1034,
+      "rejectedEdgeObservationCount": 526,
+      "fusedLeftPointCount": 0,
+      "fusedRightPointCount": 0,
+      "pairedCoverageM": 493.75881662580815,
+      "pathLengthM": 516.792371720085,
+      "acceptedPolygonCount": 0,
+      "rejectedPolygonCount": 1,
+      "rejectionReasons": [
+        "selfIntersecting"
+      ],
+      "suppressedReversalCount": 0,
+      "fusedLaneCount": 12,
+      "classifiedCause": "polygon_validation_rejected:selfIntersecting",
+      "rejectionDetails": [
+        {
+          "reasons": [
+            "selfIntersecting"
+          ],
+          "stats": {
+            "length": 499.58522360237566,
+            "area": 5985.601207336327,
+            "medianWidth": 11.45544447494746,
+            "intersections": 5,
+            "maxVertexJump": 11.570315335213515
+          }
+        }
+      ],
+      "stage10Bucket": "lane_polygon_candidate"
+    },
+    {
+      "segmentId": 25,
+      "filename": "qlog_f449c_25.bz2",
+      "polygonCount": 0,
+      "temporalPassCount": 4,
+      "poseSectionCount": 5,
+      "rejectedPoseTransitions": 4,
+      "fusionSkipped": false,
+      "inputEdgeObservationCount": 710,
+      "rejectedEdgeObservationCount": 746,
+      "fusedLeftPointCount": 0,
+      "fusedRightPointCount": 0,
+      "pairedCoverageM": 233.25397749600626,
+      "pathLengthM": 287.3494208098363,
+      "acceptedPolygonCount": 0,
+      "rejectedPolygonCount": 1,
+      "rejectionReasons": [
+        "selfIntersecting"
+      ],
+      "suppressedReversalCount": 0,
+      "fusedLaneCount": 5,
+      "classifiedCause": "pose_section_fragmentation",
+      "rejectionDetails": [
+        {
+          "reasons": [
+            "selfIntersecting"
+          ],
+          "stats": {
+            "length": 246.99676615018004,
+            "area": 2046.6587056896635,
+            "medianWidth": 8.203166698912531,
+            "intersections": 3,
+            "maxVertexJump": 9.835342281535059
+          }
+        }
+      ],
+      "stage10Bucket": "pose_or_multipass"
+    },
+    {
+      "segmentId": 26,
+      "filename": "qlog_f449c_26.bz2",
+      "polygonCount": 0,
+      "temporalPassCount": 1,
+      "poseSectionCount": 2,
+      "rejectedPoseTransitions": 1,
+      "fusionSkipped": false,
+      "inputEdgeObservationCount": 0,
+      "rejectedEdgeObservationCount": 104,
+      "fusedLeftPointCount": 0,
+      "fusedRightPointCount": 0,
+      "pairedCoverageM": 0,
+      "pathLengthM": 8.232485216745586,
+      "acceptedPolygonCount": 0,
+      "rejectedPolygonCount": 0,
+      "rejectionReasons": [],
+      "suppressedReversalCount": 0,
+      "fusedLaneCount": 0,
+      "classifiedCause": "pose_section_fragmentation",
+      "rejectionDetails": [],
+      "stage10Bucket": "pose_or_multipass"
+    },
+    {
+      "segmentId": 28,
+      "filename": "qlog_f449c_28.bz2",
+      "polygonCount": 0,
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "rejectedPoseTransitions": 0,
+      "fusionSkipped": false,
+      "inputEdgeObservationCount": 1253,
+      "rejectedEdgeObservationCount": 307,
+      "fusedLeftPointCount": 0,
+      "fusedRightPointCount": 0,
+      "pairedCoverageM": 853.7372690070272,
+      "pathLengthM": 876.0557050095085,
+      "acceptedPolygonCount": 0,
+      "rejectedPolygonCount": 1,
+      "rejectionReasons": [
+        "vertexJumpTooLarge"
+      ],
+      "suppressedReversalCount": 0,
+      "fusedLaneCount": 54,
+      "classifiedCause": "polygon_validation_rejected:vertexJumpTooLarge",
+      "rejectionDetails": [
+        {
+          "reasons": [
+            "vertexJumpTooLarge"
+          ],
+          "stats": {
+            "length": 820.3636800700016,
+            "area": 11549.106877171154,
+            "medianWidth": 14.659275575553288,
+            "intersections": 0,
+            "maxVertexJump": 16.03819246929743
+          }
+        }
+      ],
+      "stage10Bucket": "lane_polygon_candidate"
+    },
+    {
+      "segmentId": 46,
+      "filename": "qlog_f449c_46.bz2",
+      "polygonCount": 0,
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "rejectedPoseTransitions": 0,
+      "fusionSkipped": false,
+      "inputEdgeObservationCount": 1155,
+      "rejectedEdgeObservationCount": 405,
+      "fusedLeftPointCount": 0,
+      "fusedRightPointCount": 0,
+      "pairedCoverageM": 610.9619436386422,
+      "pathLengthM": 643.6156462514864,
+      "acceptedPolygonCount": 0,
+      "rejectedPolygonCount": 1,
+      "rejectionReasons": [
+        "vertexJumpTooLarge"
+      ],
+      "suppressedReversalCount": 0,
+      "fusedLaneCount": 36,
+      "classifiedCause": "polygon_validation_rejected:vertexJumpTooLarge",
+      "rejectionDetails": [
+        {
+          "reasons": [
+            "vertexJumpTooLarge"
+          ],
+          "stats": {
+            "length": 613.8170410909073,
+            "area": 7313.309015621146,
+            "medianWidth": 11.419820115825113,
+            "intersections": 0,
+            "maxVertexJump": 15.025295819293252
+          }
+        }
+      ],
+      "stage10Bucket": "lane_polygon_candidate"
+    },
+    {
+      "segmentId": 50,
+      "filename": "qlog_f449c_50.bz2",
+      "polygonCount": 0,
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "rejectedPoseTransitions": 0,
+      "fusionSkipped": false,
+      "inputEdgeObservationCount": 785,
+      "rejectedEdgeObservationCount": 99,
+      "fusedLeftPointCount": 0,
+      "fusedRightPointCount": 0,
+      "pairedCoverageM": 554.8006922658531,
+      "pathLengthM": 688.9548917259808,
+      "acceptedPolygonCount": 0,
+      "rejectedPolygonCount": 1,
+      "rejectionReasons": [
+        "vertexJumpTooLarge"
+      ],
+      "suppressedReversalCount": 0,
+      "fusedLaneCount": 45,
+      "classifiedCause": "polygon_validation_rejected:vertexJumpTooLarge",
+      "rejectionDetails": [
+        {
+          "reasons": [
+            "vertexJumpTooLarge"
+          ],
+          "stats": {
+            "length": 502.0766909481511,
+            "area": 7814.303105763218,
+            "medianWidth": 16.14007216650422,
+            "intersections": 0,
+            "maxVertexJump": 17.80384933025496
+          }
+        }
+      ],
+      "stage10Bucket": "lane_polygon_candidate"
+    },
+    {
+      "segmentId": 56,
+      "filename": "qlog_f449c_56.bz2",
+      "polygonCount": 0,
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "rejectedPoseTransitions": 0,
+      "fusionSkipped": false,
+      "inputEdgeObservationCount": 930,
+      "rejectedEdgeObservationCount": 630,
+      "fusedLeftPointCount": 0,
+      "fusedRightPointCount": 0,
+      "pairedCoverageM": 350.96944284662965,
+      "pathLengthM": 383.24765245701616,
+      "acceptedPolygonCount": 0,
+      "rejectedPolygonCount": 1,
+      "rejectionReasons": [
+        "selfIntersecting"
+      ],
+      "suppressedReversalCount": 0,
+      "fusedLaneCount": 16,
+      "classifiedCause": "polygon_validation_rejected:selfIntersecting",
+      "rejectionDetails": [
+        {
+          "reasons": [
+            "selfIntersecting"
+          ],
+          "stats": {
+            "length": 369.97643045580503,
+            "area": 3086.698038840602,
+            "medianWidth": 8.785369247182633,
+            "intersections": 3,
+            "maxVertexJump": 6.936797551465647
+          }
+        }
+      ],
+      "stage10Bucket": "lane_polygon_candidate"
+    },
+    {
+      "segmentId": 58,
+      "filename": "qlog_f449c_58.bz2",
+      "polygonCount": 0,
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "rejectedPoseTransitions": 0,
+      "fusionSkipped": false,
+      "inputEdgeObservationCount": 1006,
+      "rejectedEdgeObservationCount": 554,
+      "fusedLeftPointCount": 0,
+      "fusedRightPointCount": 0,
+      "pairedCoverageM": 498.8468930636072,
+      "pathLengthM": 499.78960904283247,
+      "acceptedPolygonCount": 0,
+      "rejectedPolygonCount": 1,
+      "rejectionReasons": [
+        "selfIntersecting"
+      ],
+      "suppressedReversalCount": 2,
+      "fusedLaneCount": 17,
+      "classifiedCause": "polygon_validation_rejected:selfIntersecting",
+      "rejectionDetails": [
+        {
+          "reasons": [
+            "selfIntersecting"
+          ],
+          "stats": {
+            "length": 502.70358717162895,
+            "area": 4106.716672842675,
+            "medianWidth": 8.435122739091367,
+            "intersections": 2,
+            "maxVertexJump": 13.368158699061558
+          }
+        }
+      ],
+      "stage10Bucket": "lane_polygon_candidate"
+    },
+    {
+      "segmentId": 60,
+      "filename": "qlog_f449c_60.bz2",
+      "polygonCount": 0,
+      "temporalPassCount": 1,
+      "poseSectionCount": 2,
+      "rejectedPoseTransitions": 1,
+      "fusionSkipped": false,
+      "inputEdgeObservationCount": 720,
+      "rejectedEdgeObservationCount": 840,
+      "fusedLeftPointCount": 0,
+      "fusedRightPointCount": 0,
+      "pairedCoverageM": 3.9303086302273673,
+      "pathLengthM": 18.163797026943413,
+      "acceptedPolygonCount": 0,
+      "rejectedPolygonCount": 0,
+      "rejectionReasons": [],
+      "suppressedReversalCount": 4,
+      "fusedLaneCount": 4,
+      "classifiedCause": "pose_section_fragmentation",
+      "rejectionDetails": [],
+      "stage10Bucket": "pose_or_multipass"
+    },
+    {
+      "segmentId": 61,
+      "filename": "qlog_f449c_61.bz2",
+      "polygonCount": 0,
+      "temporalPassCount": 1,
+      "poseSectionCount": 4,
+      "rejectedPoseTransitions": 3,
+      "fusionSkipped": false,
+      "inputEdgeObservationCount": 821,
+      "rejectedEdgeObservationCount": 739,
+      "fusedLeftPointCount": 0,
+      "fusedRightPointCount": 0,
+      "pairedCoverageM": 0,
+      "pathLengthM": 234.23398160738807,
+      "acceptedPolygonCount": 0,
+      "rejectedPolygonCount": 0,
+      "rejectionReasons": [],
+      "suppressedReversalCount": 1,
+      "fusedLaneCount": 9,
+      "classifiedCause": "pose_section_fragmentation",
+      "rejectionDetails": [
+        {
+          "reasons": [
+            "selfIntersecting"
+          ],
+          "stats": {
+            "length": 217.33796843544343,
+            "area": 2174.7457540314713,
+            "medianWidth": 9.590833374661722,
+            "intersections": 1,
+            "maxVertexJump": 8.95394178863917
+          }
+        }
+      ],
+      "stage10Bucket": "pose_or_multipass"
+    },
+    {
+      "segmentId": 65,
+      "filename": "qlog_f449c_65.bz2",
+      "polygonCount": 0,
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "rejectedPoseTransitions": 0,
+      "fusionSkipped": false,
+      "inputEdgeObservationCount": 720,
+      "rejectedEdgeObservationCount": 840,
+      "fusedLeftPointCount": 0,
+      "fusedRightPointCount": 0,
+      "pairedCoverageM": 9.066672073174967,
+      "pathLengthM": 10.757886091121048,
+      "acceptedPolygonCount": 0,
+      "rejectedPolygonCount": 1,
+      "rejectionReasons": [
+        "selfIntersecting"
+      ],
+      "suppressedReversalCount": 1,
+      "fusedLaneCount": 0,
+      "classifiedCause": "insufficient_paired_coverage",
+      "rejectionDetails": [
+        {
+          "reasons": [
+            "selfIntersecting"
+          ],
+          "stats": {
+            "length": 15.215484459362882,
+            "area": 9.34592838811806,
+            "medianWidth": 9.293676713365986,
+            "intersections": 1,
+            "maxVertexJump": 10.867925470699355
+          }
+        }
+      ],
+      "stage10Bucket": "lane_polygon_candidate"
+    },
+    {
+      "segmentId": 66,
+      "filename": "qlog_f449c_66.bz2",
+      "polygonCount": 0,
+      "temporalPassCount": 1,
+      "poseSectionCount": 3,
+      "rejectedPoseTransitions": 2,
+      "fusionSkipped": false,
+      "inputEdgeObservationCount": 744,
+      "rejectedEdgeObservationCount": 816,
+      "fusedLeftPointCount": 0,
+      "fusedRightPointCount": 0,
+      "pairedCoverageM": 0,
+      "pathLengthM": 82.83894664309325,
+      "acceptedPolygonCount": 0,
+      "rejectedPolygonCount": 0,
+      "rejectionReasons": [],
+      "suppressedReversalCount": 3,
+      "fusedLaneCount": 2,
+      "classifiedCause": "pose_section_fragmentation",
+      "rejectionDetails": [
+        {
+          "reasons": [
+            "vertexJumpTooLarge",
+            "selfIntersecting"
+          ],
+          "stats": {
+            "length": 125.83687263294719,
+            "area": 750.8353931132614,
+            "medianWidth": 11.209590752173037,
+            "intersections": 10,
+            "maxVertexJump": 15.026292983339538
+          }
+        }
+      ],
+      "stage10Bucket": "pose_or_multipass"
+    },
+    {
+      "segmentId": 72,
+      "filename": "qlog_f449c_72.bz2",
+      "polygonCount": 0,
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "rejectedPoseTransitions": 0,
+      "fusionSkipped": false,
+      "inputEdgeObservationCount": 1275,
+      "rejectedEdgeObservationCount": 285,
+      "fusedLeftPointCount": 0,
+      "fusedRightPointCount": 0,
+      "pairedCoverageM": 847.4994558271902,
+      "pathLengthM": 884.7803385488974,
+      "acceptedPolygonCount": 0,
+      "rejectedPolygonCount": 1,
+      "rejectionReasons": [
+        "vertexJumpTooLarge"
+      ],
+      "suppressedReversalCount": 0,
+      "fusedLaneCount": 64,
+      "classifiedCause": "polygon_validation_rejected:vertexJumpTooLarge",
+      "rejectionDetails": [
+        {
+          "reasons": [
+            "vertexJumpTooLarge"
+          ],
+          "stats": {
+            "length": 753.1955028956809,
+            "area": 9118.193556839318,
+            "medianWidth": 11.832730417365289,
+            "intersections": 0,
+            "maxVertexJump": 15.626272316641002
+          }
+        }
+      ],
+      "stage10Bucket": "lane_polygon_candidate"
+    },
+    {
+      "segmentId": 92,
+      "filename": "qlog_f449c_92.bz2",
+      "polygonCount": 0,
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "rejectedPoseTransitions": 0,
+      "fusionSkipped": false,
+      "inputEdgeObservationCount": 1280,
+      "rejectedEdgeObservationCount": 280,
+      "fusedLeftPointCount": 0,
+      "fusedRightPointCount": 0,
+      "pairedCoverageM": 770.9968610821861,
+      "pathLengthM": 952.0412869574901,
+      "acceptedPolygonCount": 0,
+      "rejectedPolygonCount": 1,
+      "rejectionReasons": [
+        "vertexJumpTooLarge"
+      ],
+      "suppressedReversalCount": 0,
+      "fusedLaneCount": 64,
+      "classifiedCause": "polygon_validation_rejected:vertexJumpTooLarge",
+      "rejectionDetails": [
+        {
+          "reasons": [
+            "vertexJumpTooLarge"
+          ],
+          "stats": {
+            "length": 767.806402002868,
+            "area": 9655.414467309296,
+            "medianWidth": 12.561531253359233,
+            "intersections": 0,
+            "maxVertexJump": 15.908420526063155
+          }
+        }
+      ],
+      "stage10Bucket": "lane_polygon_candidate"
+    },
+    {
+      "segmentId": 96,
+      "filename": "qlog_f449c_96.bz2",
+      "polygonCount": 0,
+      "temporalPassCount": 1,
+      "poseSectionCount": 7,
+      "rejectedPoseTransitions": 6,
+      "fusionSkipped": false,
+      "inputEdgeObservationCount": 265,
+      "rejectedEdgeObservationCount": 463,
+      "fusedLeftPointCount": 0,
+      "fusedRightPointCount": 0,
+      "pairedCoverageM": 0.4715917525159855,
+      "pathLengthM": 15.422512234417407,
+      "acceptedPolygonCount": 0,
+      "rejectedPolygonCount": 0,
+      "rejectionReasons": [],
+      "suppressedReversalCount": 4,
+      "fusedLaneCount": 0,
+      "classifiedCause": "pose_section_fragmentation",
+      "rejectionDetails": [],
+      "stage10Bucket": "pose_or_multipass"
+    },
+    {
+      "segmentId": 99,
+      "filename": "qlog_f449c_99.bz2",
+      "polygonCount": 0,
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "rejectedPoseTransitions": 0,
+      "fusionSkipped": false,
+      "inputEdgeObservationCount": 952,
+      "rejectedEdgeObservationCount": 608,
+      "fusedLeftPointCount": 0,
+      "fusedRightPointCount": 0,
+      "pairedCoverageM": 451.8970138659294,
+      "pathLengthM": 516.6161327478875,
+      "acceptedPolygonCount": 0,
+      "rejectedPolygonCount": 1,
+      "rejectionReasons": [
+        "selfIntersecting"
+      ],
+      "suppressedReversalCount": 2,
+      "fusedLaneCount": 11,
+      "classifiedCause": "polygon_validation_rejected:selfIntersecting",
+      "rejectionDetails": [
+        {
+          "reasons": [
+            "selfIntersecting"
+          ],
+          "stats": {
+            "length": 447.15312129444953,
+            "area": 4993.865397231422,
+            "medianWidth": 10.237054680809528,
+            "intersections": 3,
+            "maxVertexJump": 10.415243436246577
+          }
+        }
+      ],
+      "stage10Bucket": "lane_polygon_candidate"
+    }
+  ]
+}

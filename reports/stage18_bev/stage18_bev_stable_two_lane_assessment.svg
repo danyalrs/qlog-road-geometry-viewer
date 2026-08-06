@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="520">
+<rect width="100%" height="100%" fill="#111"/>
+<text x="20" y="24" fill="#ccc" font-size="14">stable_two_lane_assessment</text>
+<text x="20" y="42" fill="#888" font-size="10">Assessed count run with laneCountCandidate = 2</text>
+<text x="20" y="496" fill="#8f8" font-size="10">count: 2 status: assessed</text>
+<text x="20" y="512" fill="#666" font-size="10">prototype assessment — not physical-road accuracy</text>
+</svg>

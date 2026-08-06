@@ -1,0 +1,796 @@
+{
+  "generatedAt": "2026-08-05T05:56:37.265Z",
+  "segment": "qlog_f449c_2.bz2",
+  "stage": 8,
+  "scope": "visible_gap_reconstruction_pb1",
+  "productionGeometryModified": true,
+  "processingVersion": "2026-07-24-fusion-v15",
+  "repairRule": {
+    "productionFunction": "lib/visible_gap_reconstruction.js applyVisibleGapReconstruction",
+    "cleanupStage": "buildCleanedLaneMap post-merge visible gap reconstruction",
+    "description": "Insert parametric bridge coordinates only where an accepted positive-boundary tracker-continuity structural bridge remains visually open (>15 m renderer gap).",
+    "thresholds": {
+      "maxPointSpacingM": 1,
+      "rendererMaxIntraGapM": 15,
+      "minStructuralBridgeGapM": 12,
+      "maxStructuralBridgeGapM": 18
+    }
+  },
+  "featureFlag": "visibleGapReconstructionEnabled",
+  "baseline": {
+    "fusedFragments": 18,
+    "cleanedRuns": 17,
+    "stablePhysicalDisconnections": 14,
+    "pbDisconnections": {
+      "PB0": 5,
+      "PB1": 8,
+      "PB2": 1
+    },
+    "laneChecksum": "10845acd",
+    "coordinateChecksum": "a418087f",
+    "roadSurfaceChecksum": "70457ea",
+    "interpolatedPointCount": 0
+  },
+  "after": {
+    "laneChecksum": "10845acd",
+    "coordinateChecksum": "df4a32f1",
+    "fusedFragments": 18,
+    "cleanedRuns": 17,
+    "stablePhysicalDisconnections": 14,
+    "pbDisconnections": {
+      "PB0": 5,
+      "PB1": 8,
+      "PB2": 1
+    },
+    "roadSurfaceChecksum": "70457ea",
+    "roadSurfacePolygonCount": 13,
+    "interpolatedPointCount": 34,
+    "visibleGapReconstruction": {
+      "enabled": true,
+      "repairCount": 2,
+      "rejectedCount": 5,
+      "totalInsertedPoints": 34,
+      "totalGeneratedLengthM": 34.31223856298942
+    }
+  },
+  "targets": [
+    {
+      "disconnectionId": "DC-010",
+      "reconfirmed": {
+        "stage1DisconnectionId": "DC-010",
+        "stablePhysicalGapKey": "PB1|572.04|590.04",
+        "earlierAuditIds": [
+          "DC-010"
+        ],
+        "classDGapId": "CD-15",
+        "category": "safe_fusion",
+        "physicalBoundaryId": "PB1",
+        "trackId": 2,
+        "chunkId": 0,
+        "passId": 0,
+        "routeSInterval": [
+          572.0372665529105,
+          590.0372592002434
+        ],
+        "alongTrackGapM": 17.999992647332874,
+        "euclideanGapM": 18.000005530778274,
+        "lateralOffsetM": 0.021536109444747487,
+        "headingDifferenceDeg": 10.303501229274616,
+        "endpointCoordinates": {
+          "preceding": null,
+          "following": null
+        },
+        "endpointCompatibility": null,
+        "rawModelV2Support": {
+          "frameCount": 17,
+          "distinctFramesInRange": 2,
+          "observationCount": 10
+        },
+        "mappedObservations": {
+          "count": 10,
+          "distinctFrames": 2
+        },
+        "rejectedObservations": {
+          "rejectedBinCount": 7,
+          "rejectionReasons": {
+            "D6_minObsPerBin": 7
+          }
+        },
+        "alternativeTrackSupport": [
+          {
+            "laneTrackId": 0,
+            "observationCount": 9,
+            "meanLateralD": -1.7320537394962607,
+            "lateralDeltaFromCandidateM": 2.9687473195950194
+          },
+          {
+            "laneTrackId": 3,
+            "observationCount": 6,
+            "meanLateralD": 4.235693285541287,
+            "lateralDeltaFromCandidateM": 2.998999705442528
+          }
+        ],
+        "trackerContinuity": {
+          "trackSwitchDetected": false,
+          "sameTrackIdThroughout": true,
+          "laneTrackId": 2
+        },
+        "fusionBinContinuity": {
+          "acceptedBins": 1,
+          "rejectedBins": 7,
+          "primarySplit": {
+            "afterBinKey": 286,
+            "beforeBinKey": 295,
+            "gapM": 17.999992647332874,
+            "lateralDeltaM": 0.021536109444747487,
+            "reason": "D11_maxLaneFragmentGapM",
+            "bridgeRejected": "notProvenBoundaryTrack",
+            "measurement": "consecutive accepted fused bin centres (s coordinate)",
+            "thresholdM": 10
+          }
+        },
+        "cleanupDecision": {
+          "physicallyOpen": false,
+          "mirrorsFusionFragmentation": true,
+          "cleanupIsIndependentRootCause": false
+        },
+        "firstFailingStage": "fused_fragments",
+        "responsibleFunction": "fuseLaneTrackSdFragments",
+        "responsibleCondition": "D11_maxLaneFragmentGapM gapM=18.00 bridgeRejected=notProvenBoundaryTrack",
+        "laneOrderConsistent": true,
+        "competingContinuations": [],
+        "crossingRisk": false,
+        "selfIntersectionRisk": false,
+        "evidenceSupportedRecoverableLengthM": 0,
+        "unsupportedLengthM": 17.999992647332874,
+        "dashedMarkingAnalysis": {
+          "markingTypeAvailable": false,
+          "rawModelV2Continuous": true,
+          "repeatedDashSpacingSuspected": false,
+          "modelRepresentsSingleLaneObject": true,
+          "pipelineBreaksAtPaintGap": false,
+          "verdict": "not_dashed_marking"
+        },
+        "gapMechanism": "D6",
+        "verdict": "I",
+        "verdictLabel": "Insufficient evidence — remain open",
+        "repairable": false,
+        "remainOpen": true,
+        "readyForTargetedRepair": false,
+        "stage6ExpectedKey": "PB1|572.04|590.04",
+        "identityMatch": true,
+        "mismatch": null
+      },
+      "repair": {
+        "gapStableKey": "PB1|572.04|590.04",
+        "physicalBoundaryId": "PB1",
+        "laneTrackId": 2,
+        "accepted": true,
+        "verdict": "A",
+        "method": "straight",
+        "insertedPointCount": 18,
+        "generatedLengthM": 18.000005530778267,
+        "maxPointSpacingM": 0.9473687121462266,
+        "confidenceRange": [
+          0.3674283905669922,
+          0.6402466348036504
+        ],
+        "inputEndpoints": [
+          {
+            "east": -58.58531918751751,
+            "north": 165.03286340063534,
+            "s": 572.0372665529105
+          },
+          {
+            "east": -59.36193013467086,
+            "north": 183.01610767259055,
+            "s": 590.0372592002434
+          }
+        ],
+        "tangents": {
+          "before": {
+            "stable": true,
+            "tangent": {
+              "east": -0.029996690778191434,
+              "north": 0.9995499980202878
+            },
+            "headingDeg": 91.71894163106451,
+            "usedCount": 3,
+            "lookDistanceM": 8,
+            "maxSegmentHeadingDeltaDeg": 9.776281689398317,
+            "supportPoints": [
+              {
+                "east": -57.581899897067466,
+                "north": 147.05388658079727,
+                "s": 554.0369644246867
+              },
+              {
+                "east": -57.729221796947066,
+                "north": 160.37293813982365,
+                "s": 567.3471591784137
+              },
+              {
+                "east": -58.58531918751751,
+                "north": 165.03286340063534,
+                "s": 572.0372665529105
+              }
+            ]
+          },
+          "after": {
+            "stable": true,
+            "tangent": {
+              "east": -0.030284398969014182,
+              "north": 0.9995413223969709
+            },
+            "headingDeg": 91.7354335889689,
+            "usedCount": 3,
+            "lookDistanceM": 8,
+            "maxSegmentHeadingDeltaDeg": 6.362342123855598,
+            "supportPoints": [
+              {
+                "east": -59.36193013467086,
+                "north": 183.01610767259055,
+                "s": 590.0372592002434
+              },
+              {
+                "east": -59.378418205218736,
+                "north": 191.8862674889415,
+                "s": 598.8994261527549
+              },
+              {
+                "east": -59.965680832965475,
+                "north": 197.06564346776568,
+                "s": 604.0944177855548
+              }
+            ]
+          },
+          "headingDeltaDeg": 0.016491957904392507
+        },
+        "maxCurvatureDeg": 2.165510472574574e-14,
+        "maxLateralDepartureM": 7.105427357601002e-15,
+        "structuralEvidence": {
+          "accepted": true,
+          "reason": "fusionTrackerBridge",
+          "fragJoin": null,
+          "fusionBridge": {
+            "bridge": true,
+            "reason": "trackerContinuousFusionBridge",
+            "boundarySide": "positive",
+            "gapM": 17.999992647332874,
+            "obsInGap": 10,
+            "frameCount": 2
+          },
+          "gapRouteSM": 17.999992647332874,
+          "endpointCompatibility": {
+            "compatible": true,
+            "gapM": 17.999992647332874,
+            "dDelta": 0.021536109444747487,
+            "headingDelta": null,
+            "reason": null
+          }
+        }
+      },
+      "renderedContinuity": {
+        "continuous": true,
+        "maxSpacingM": 0.9473687121462266
+      },
+      "verdict": "A",
+      "verdictLabel": "Reconstructed using straight interpolation",
+      "repaired": true,
+      "repairOperation": {
+        "method": "straight",
+        "insertedPointCount": 18,
+        "generatedLengthM": 18.000005530778267,
+        "maxPointSpacingM": 0.9473687121462266,
+        "confidenceRange": [
+          0.3674283905669922,
+          0.6402466348036504
+        ],
+        "inputEndpoints": [
+          {
+            "east": -58.58531918751751,
+            "north": 165.03286340063534,
+            "s": 572.0372665529105
+          },
+          {
+            "east": -59.36193013467086,
+            "north": 183.01610767259055,
+            "s": 590.0372592002434
+          }
+        ],
+        "tangents": {
+          "before": {
+            "stable": true,
+            "tangent": {
+              "east": -0.029996690778191434,
+              "north": 0.9995499980202878
+            },
+            "headingDeg": 91.71894163106451,
+            "usedCount": 3,
+            "lookDistanceM": 8,
+            "maxSegmentHeadingDeltaDeg": 9.776281689398317,
+            "supportPoints": [
+              {
+                "east": -57.581899897067466,
+                "north": 147.05388658079727,
+                "s": 554.0369644246867
+              },
+              {
+                "east": -57.729221796947066,
+                "north": 160.37293813982365,
+                "s": 567.3471591784137
+              },
+              {
+                "east": -58.58531918751751,
+                "north": 165.03286340063534,
+                "s": 572.0372665529105
+              }
+            ]
+          },
+          "after": {
+            "stable": true,
+            "tangent": {
+              "east": -0.030284398969014182,
+              "north": 0.9995413223969709
+            },
+            "headingDeg": 91.7354335889689,
+            "usedCount": 3,
+            "lookDistanceM": 8,
+            "maxSegmentHeadingDeltaDeg": 6.362342123855598,
+            "supportPoints": [
+              {
+                "east": -59.36193013467086,
+                "north": 183.01610767259055,
+                "s": 590.0372592002434
+              },
+              {
+                "east": -59.378418205218736,
+                "north": 191.8862674889415,
+                "s": 598.8994261527549
+              },
+              {
+                "east": -59.965680832965475,
+                "north": 197.06564346776568,
+                "s": 604.0944177855548
+              }
+            ]
+          },
+          "headingDeltaDeg": 0.016491957904392507
+        },
+        "maxCurvatureDeg": 2.165510472574574e-14,
+        "maxLateralDepartureM": 7.105427357601002e-15,
+        "gapStableKey": "PB1|572.04|590.04"
+      }
+    },
+    {
+      "disconnectionId": "DC-012",
+      "reconfirmed": {
+        "stage1DisconnectionId": "DC-012",
+        "stablePhysicalGapKey": "PB1|630.57|646.89",
+        "earlierAuditIds": [
+          "DC-012"
+        ],
+        "classDGapId": "CD-17",
+        "category": "safe_fusion",
+        "physicalBoundaryId": "PB1",
+        "trackId": 2,
+        "chunkId": 0,
+        "passId": 0,
+        "routeSInterval": [
+          630.5748338730675,
+          646.8868001220607
+        ],
+        "alongTrackGapM": 16.311966248993144,
+        "euclideanGapM": 16.312233032211157,
+        "lateralOffsetM": 0.09329302690601549,
+        "headingDifferenceDeg": 6.944296991979513,
+        "endpointCoordinates": {
+          "preceding": null,
+          "following": null
+        },
+        "endpointCompatibility": null,
+        "rawModelV2Support": {
+          "frameCount": 17,
+          "distinctFramesInRange": 2,
+          "observationCount": 11
+        },
+        "mappedObservations": {
+          "count": 11,
+          "distinctFrames": 2
+        },
+        "rejectedObservations": {
+          "rejectedBinCount": 7,
+          "rejectionReasons": {
+            "D6_minObsPerBin": 7
+          }
+        },
+        "alternativeTrackSupport": [
+          {
+            "laneTrackId": 0,
+            "observationCount": 10,
+            "meanLateralD": -1.3856024401881517,
+            "lateralDeltaFromCandidateM": 2.9826496274238226
+          }
+        ],
+        "trackerContinuity": {
+          "trackSwitchDetected": false,
+          "sameTrackIdThroughout": true,
+          "laneTrackId": 2
+        },
+        "fusionBinContinuity": {
+          "acceptedBins": 1,
+          "rejectedBins": 7,
+          "primarySplit": {
+            "afterBinKey": 315,
+            "beforeBinKey": 323,
+            "gapM": 16.311966248993144,
+            "lateralDeltaM": 0.09329302690601549,
+            "reason": "D11_maxLaneFragmentGapM",
+            "bridgeRejected": "notProvenBoundaryTrack",
+            "measurement": "consecutive accepted fused bin centres (s coordinate)",
+            "thresholdM": 10
+          }
+        },
+        "cleanupDecision": {
+          "physicallyOpen": false,
+          "mirrorsFusionFragmentation": true,
+          "cleanupIsIndependentRootCause": false
+        },
+        "firstFailingStage": "fused_fragments",
+        "responsibleFunction": "fuseLaneTrackSdFragments",
+        "responsibleCondition": "D11_maxLaneFragmentGapM gapM=16.31 bridgeRejected=notProvenBoundaryTrack",
+        "laneOrderConsistent": true,
+        "competingContinuations": [],
+        "crossingRisk": false,
+        "selfIntersectionRisk": false,
+        "evidenceSupportedRecoverableLengthM": 0,
+        "unsupportedLengthM": 16.311966248993144,
+        "dashedMarkingAnalysis": {
+          "markingTypeAvailable": false,
+          "rawModelV2Continuous": true,
+          "repeatedDashSpacingSuspected": false,
+          "modelRepresentsSingleLaneObject": true,
+          "pipelineBreaksAtPaintGap": false,
+          "verdict": "not_dashed_marking"
+        },
+        "gapMechanism": "D6",
+        "verdict": "I",
+        "verdictLabel": "Insufficient evidence — remain open",
+        "repairable": false,
+        "remainOpen": true,
+        "readyForTargetedRepair": false,
+        "stage6ExpectedKey": "PB1|630.57|646.89",
+        "identityMatch": true,
+        "mismatch": null
+      },
+      "repair": {
+        "gapStableKey": "PB1|630.57|646.89",
+        "physicalBoundaryId": "PB1",
+        "laneTrackId": 2,
+        "accepted": true,
+        "verdict": "A",
+        "method": "straight",
+        "insertedPointCount": 16,
+        "generatedLengthM": 16.312233032211157,
+        "maxPointSpacingM": 0.9595431195418582,
+        "confidenceRange": [
+          0.3749542302532592,
+          0.6400106328622692
+        ],
+        "inputEndpoints": [
+          {
+            "east": -61.29671222863626,
+            "north": 223.5210086443154,
+            "s": 630.5748338730675
+          },
+          {
+            "east": -61.97183216630348,
+            "north": 239.8192649794859,
+            "s": 646.8868001220607
+          }
+        ],
+        "tangents": {
+          "before": {
+            "stable": true,
+            "tangent": {
+              "east": -0.056264288590221534,
+              "north": 0.9984159102445416
+            },
+            "headingDeg": 93.22540956620287,
+            "usedCount": 3,
+            "lookDistanceM": 8,
+            "maxSegmentHeadingDeltaDeg": 4.548852685753701,
+            "supportPoints": [
+              {
+                "east": -60.6816928006061,
+                "north": 214.48845173970506,
+                "s": 621.5319258388029
+              },
+              {
+                "east": -60.96829697380894,
+                "north": 220.8890893599847,
+                "s": 627.9389105709788
+              },
+              {
+                "east": -61.29671222863626,
+                "north": 223.5210086443154,
+                "s": 630.5748338730675
+              }
+            ]
+          },
+          "after": {
+            "stable": true,
+            "tangent": {
+              "east": -0.018386753093890783,
+              "north": 0.9998309493662738
+            },
+            "headingDeg": 91.05354271925295,
+            "usedCount": 4,
+            "lookDistanceM": 8,
+            "maxSegmentHeadingDeltaDeg": 0.6925344620878775,
+            "supportPoints": [
+              {
+                "east": -61.97183216630348,
+                "north": 239.8192649794859,
+                "s": 646.8868001220607
+              },
+              {
+                "east": -61.98377892481342,
+                "north": 243.88393766177026,
+                "s": 650.9493119674232
+              },
+              {
+                "east": -62.02880890097157,
+                "north": 246.88048281344402,
+                "s": 653.9276238215798
+              },
+              {
+                "east": -62.18864734340613,
+                "north": 253.06639455492345,
+                "s": 660.1155851513415
+              }
+            ]
+          },
+          "headingDeltaDeg": 2.171866846949925
+        },
+        "maxCurvatureDeg": 5.208158290896509e-14,
+        "maxLateralDepartureM": 0,
+        "structuralEvidence": {
+          "accepted": true,
+          "reason": "fusionTrackerBridge",
+          "fragJoin": null,
+          "fusionBridge": {
+            "bridge": true,
+            "reason": "trackerContinuousFusionBridge",
+            "boundarySide": "positive",
+            "gapM": 16.311966248993144,
+            "obsInGap": 11,
+            "frameCount": 2
+          },
+          "gapRouteSM": 16.311966248993144,
+          "endpointCompatibility": {
+            "compatible": true,
+            "gapM": 16.311966248993144,
+            "dDelta": 0.09329302690601549,
+            "headingDelta": null,
+            "reason": null
+          }
+        }
+      },
+      "renderedContinuity": {
+        "continuous": true,
+        "maxSpacingM": 0.9595431195418582
+      },
+      "verdict": "A",
+      "verdictLabel": "Reconstructed using straight interpolation",
+      "repaired": true,
+      "repairOperation": {
+        "method": "straight",
+        "insertedPointCount": 16,
+        "generatedLengthM": 16.312233032211157,
+        "maxPointSpacingM": 0.9595431195418582,
+        "confidenceRange": [
+          0.3749542302532592,
+          0.6400106328622692
+        ],
+        "inputEndpoints": [
+          {
+            "east": -61.29671222863626,
+            "north": 223.5210086443154,
+            "s": 630.5748338730675
+          },
+          {
+            "east": -61.97183216630348,
+            "north": 239.8192649794859,
+            "s": 646.8868001220607
+          }
+        ],
+        "tangents": {
+          "before": {
+            "stable": true,
+            "tangent": {
+              "east": -0.056264288590221534,
+              "north": 0.9984159102445416
+            },
+            "headingDeg": 93.22540956620287,
+            "usedCount": 3,
+            "lookDistanceM": 8,
+            "maxSegmentHeadingDeltaDeg": 4.548852685753701,
+            "supportPoints": [
+              {
+                "east": -60.6816928006061,
+                "north": 214.48845173970506,
+                "s": 621.5319258388029
+              },
+              {
+                "east": -60.96829697380894,
+                "north": 220.8890893599847,
+                "s": 627.9389105709788
+              },
+              {
+                "east": -61.29671222863626,
+                "north": 223.5210086443154,
+                "s": 630.5748338730675
+              }
+            ]
+          },
+          "after": {
+            "stable": true,
+            "tangent": {
+              "east": -0.018386753093890783,
+              "north": 0.9998309493662738
+            },
+            "headingDeg": 91.05354271925295,
+            "usedCount": 4,
+            "lookDistanceM": 8,
+            "maxSegmentHeadingDeltaDeg": 0.6925344620878775,
+            "supportPoints": [
+              {
+                "east": -61.97183216630348,
+                "north": 239.8192649794859,
+                "s": 646.8868001220607
+              },
+              {
+                "east": -61.98377892481342,
+                "north": 243.88393766177026,
+                "s": 650.9493119674232
+              },
+              {
+                "east": -62.02880890097157,
+                "north": 246.88048281344402,
+                "s": 653.9276238215798
+              },
+              {
+                "east": -62.18864734340613,
+                "north": 253.06639455492345,
+                "s": 660.1155851513415
+              }
+            ]
+          },
+          "headingDeltaDeg": 2.171866846949925
+        },
+        "maxCurvatureDeg": 5.208158290896509e-14,
+        "maxLateralDepartureM": 0,
+        "gapStableKey": "PB1|630.57|646.89"
+      }
+    }
+  ],
+  "acceptedRepairs": [
+    "DC-010",
+    "DC-012"
+  ],
+  "rejectedTargets": [],
+  "preservation": {
+    "dc015Open": true,
+    "dc014Closed": true,
+    "dashedStillOpen": [
+      {
+        "id": "DC-000",
+        "open": true
+      },
+      {
+        "id": "DC-005",
+        "open": true
+      },
+      {
+        "id": "DC-007",
+        "open": true
+      }
+    ],
+    "unsafeStillOpen": [
+      {
+        "id": "DC-002",
+        "open": true
+      },
+      {
+        "id": "DC-003",
+        "open": true
+      },
+      {
+        "id": "DC-004",
+        "open": true
+      },
+      {
+        "id": "DC-013",
+        "open": true
+      },
+      {
+        "id": "DC-015",
+        "open": true
+      },
+      {
+        "id": "DC-016",
+        "open": true
+      },
+      {
+        "id": "DC-017",
+        "open": true
+      },
+      {
+        "id": "DC-018",
+        "open": true
+      }
+    ],
+    "stage2RepairsClosed": [
+      {
+        "id": "DC-019",
+        "closed": true
+      },
+      {
+        "id": "DC-020",
+        "closed": true
+      },
+      {
+        "id": "DC-021",
+        "closed": true
+      },
+      {
+        "id": "DC-023",
+        "closed": true
+      }
+    ],
+    "controlTargetsUnchanged": [
+      {
+        "id": "DC-009",
+        "unchanged": true,
+        "maxDisplacement": 0
+      },
+      {
+        "id": "DC-011",
+        "unchanged": true,
+        "maxDisplacement": 0
+      }
+    ]
+  },
+  "displacement": {
+    "pb0": {
+      "unchanged": true,
+      "maxDisplacement": 0
+    },
+    "pb2": {
+      "unchanged": true,
+      "maxDisplacement": 0
+    },
+    "pb1OutsideRepairs": {
+      "unchanged": true,
+      "maxDisplacement": 0
+    },
+    "maxOutsideApprovedIntervalsM": 0
+  },
+  "parity": {
+    "nodeLaneChecksum": "10845acd",
+    "nodeCoordinateChecksum": "df4a32f1",
+    "nodeSurfaceChecksum": "70457ea"
+  },
+  "summary": {
+    "stage8Accepted": true,
+    "generatedGeometryLengthM": 34.31223856298942,
+    "insertedPointCount": 34,
+    "crossings": 0,
+    "selfIntersections": 0,
+    "laneOrderViolations": 0,
+    "roadSurfaceGeneratorChanged": false,
+    "rendererThresholdChanged": false,
+    "preStage8ChecksumReproduced": true
+  }
+}

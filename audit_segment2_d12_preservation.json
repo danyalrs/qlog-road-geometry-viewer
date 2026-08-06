@@ -1,0 +1,533 @@
+{
+  "generatedAt": "2026-08-04T05:33:57.960Z",
+  "segment": "qlog_f449c_2.bz2",
+  "before": {
+    "fusedFragmentCount": 33,
+    "cleanedRunCount": 30,
+    "classDCount": 19,
+    "classDTotalGapM": 380.4980587029588,
+    "acceptedFusedSpanSumM": 457.51339860272174
+  },
+  "after": {
+    "fusedFragmentCount": 33,
+    "cleanedRunCount": 28,
+    "preservedIntervalCount": 7,
+    "preservedSpanSumM": 106.93270458474751,
+    "fullyResolvedD12": [
+      "CD-00",
+      "CD-02"
+    ],
+    "partiallyResolvedD12": [
+      "CD-10",
+      "CD-12",
+      "CD-18"
+    ],
+    "tailExtensions": [
+      {
+        "gapId": "CD-10-TAIL",
+        "parentGapId": "CD-10",
+        "sourceFrameId": 3123,
+        "preservedLengthM": 4.3124715709806765,
+        "remainingOpenLengthM": 1.4657434773982345
+      },
+      {
+        "gapId": "CD-18-TAIL",
+        "parentGapId": "CD-18",
+        "sourceFrameId": 3123,
+        "preservedLengthM": 4.312400069375769,
+        "remainingOpenLengthM": 1.4754773189197294
+      }
+    ],
+    "displayCleanedSpanSumM": 564.8791079633407,
+    "acceptedFusedUnionM": 274.2957910368001,
+    "d12PreservedUnionM": 65.68276240918715,
+    "combinedSupportedUnionM": 319.8831622291069,
+    "overlapAcceptedAndPreservedM": 20.095391216880387
+  },
+  "coverageAccounting": {
+    "toleranceM": 0.05,
+    "routeSIntervalCoverage": {
+      "acceptedFusedUnionM": 274.2957910368001,
+      "d12PreservedUnionM": 65.68276240918715,
+      "overlapAcceptedAndPreservedM": 20.095391216880387,
+      "combinedSupportedUnionM": 319.8831622291069,
+      "acceptedSpanSumM": 457.51339860272174,
+      "preservedSpanSumM": 106.93270458474751,
+      "displayCleanedSpanSumM": 564.8791079633407,
+      "naiveSpanSumM": 564.4461031874692,
+      "naiveAcceptedPlusPreservedM": 564.4461031874692,
+      "displayMinusNaiveSpanSumM": 0.43300477587149544,
+      "combinedMinusNaiveSumM": -244.56294095836233,
+      "displaySpanMinusAcceptedSpanM": 107.36570936061901
+    },
+    "polylineArcLength": {
+      "acceptedFusedArcM": 462.8244860280378,
+      "d12PreservedArcM": 106.94200713911992,
+      "displayCleanedArcM": 570.3743463819775
+    },
+    "reconciliation": {
+      "combinedEqualsUnionWithinTolerance": true,
+      "spanSumReconcilesWithinTolerance": true,
+      "explanation": "combined union differs from span-sum naive total when preserved intervals overlap accepted fused spans inside merged display runs"
+    }
+  },
+  "coverageReporting": {
+    "acceptedFusedPerBoundarySpanSumM": 457.51339860272174,
+    "d12PreservedPerBoundarySpanSumM": 106.93270458474751,
+    "naiveComponentSpanSumM": 564.4461031874692,
+    "displayMergedRunSpanSumM": 564.8791079633407,
+    "displayMergeBoundaryDifferenceM": 0.43300477587149544,
+    "d12PreservedIntervalUnionM": 65.68276240918715,
+    "combinedSupportedRouteSUnionM": 319.8831622291069,
+    "acceptedFusedPolylineArcM": 462.8244860280378,
+    "d12PreservedPolylineArcM": 106.94200713911992,
+    "displayCleanedPolylineArcM": 570.3743463819775,
+    "exactRemainingD12OpenLengthM": 4.58,
+    "remainingOpenByGapM": {
+      "CD-10": 1.466,
+      "CD-12": 1.64,
+      "CD-18": 1.476
+    },
+    "unionVsSpanSumNote": "Per-boundary span sums count parallel PBs separately; route-s union removes overlap between boundaries on a single s-axis. Union is not a replacement for per-boundary mapped-lane coverage."
+  },
+  "renderingVerification": {
+    "falseVisualBridgeDetected": false,
+    "logicalCleanedRunCount": 28,
+    "drawableSubpathCount": 32,
+    "interRunBreaks": [
+      {
+        "gapId": "CD-10",
+        "physicalBoundaryId": "PB1",
+        "laneTrackId": 2,
+        "precedingRunId": 11,
+        "followingRunId": 6,
+        "precedingComponentId": "11:last",
+        "followingComponentId": "6:0",
+        "openIntervalStartS": 428.7557621001464,
+        "openIntervalEndS": 430.22150557754463,
+        "openLengthM": 1.4657434773982345,
+        "routeSDistanceM": 1.4657434773982345,
+        "euclideanDistanceM": 1.4657619530258617,
+        "labelEast": -51.52002632366036,
+        "labelNorth": 22.657949026429936,
+        "shareOneCanvasPath": false,
+        "rendererWouldBridge": false,
+        "breakReason": "unsupportedSourcePolylineGap",
+        "breakBefore": true
+      },
+      {
+        "gapId": "CD-12",
+        "physicalBoundaryId": "PB1",
+        "laneTrackId": 2,
+        "precedingRunId": 13,
+        "followingRunId": 9,
+        "precedingComponentId": "13:last",
+        "followingComponentId": "9:0",
+        "openIntervalStartS": 498.48122518574536,
+        "openIntervalEndS": 500.1206905235975,
+        "openLengthM": 1.6394653378521298,
+        "routeSDistanceM": 1.6394653378521298,
+        "euclideanDistanceM": 1.6369891257716205,
+        "labelEast": -54.62457758463428,
+        "labelNorth": 92.39963108466448,
+        "shareOneCanvasPath": false,
+        "rendererWouldBridge": false,
+        "breakReason": "unsupportedSourcePolylineGap",
+        "breakBefore": true
+      },
+      {
+        "gapId": "CD-18",
+        "physicalBoundaryId": "PB2",
+        "laneTrackId": 3,
+        "precedingRunId": 0,
+        "followingRunId": 1,
+        "precedingComponentId": "0:last",
+        "followingComponentId": "1:0",
+        "openIntervalStartS": 428.7570377828136,
+        "openIntervalEndS": 430.2325151017333,
+        "openLengthM": 1.4754773189197294,
+        "routeSDistanceM": 1.4754773189197294,
+        "euclideanDistanceM": 1.4755770535402666,
+        "labelEast": -54.353738304860585,
+        "labelNorth": 22.52980769858805,
+        "shareOneCanvasPath": false,
+        "rendererWouldBridge": false,
+        "breakReason": "unsupportedSourcePolylineGap",
+        "breakBefore": true
+      }
+    ]
+  },
+  "d12Candidates": [
+    {
+      "gapId": "CD-00",
+      "physicalBoundaryGroup": "PB0",
+      "trackId": 0,
+      "chunkId": 0,
+      "passId": 0,
+      "startS": 42.29187659366445,
+      "endS": 65.78727043441252,
+      "measuredGapLengthM": 23.495393840748072,
+      "d6RejectedBinsInGap": 7,
+      "eligibility": {
+        "passed": true,
+        "reason": null
+      },
+      "resolution": "fullyResolved",
+      "preservedLengthM": 23.495393840748072,
+      "remainingOpenLengthM": 0,
+      "preservedPointCount": 5,
+      "sourceFrameId": 2443,
+      "sourcePolylineId": "2443:L1:T0",
+      "logMonoTime": "139726594139",
+      "sourceLaneIndex": 1,
+      "sourcePolylineSRange": [
+        42.29187659366445,
+        65.78727043441252
+      ],
+      "mappedPolylineSRange": [
+        42.29187659366445,
+        65.78727043441252
+      ],
+      "originalPointCount": 26,
+      "mappedPointCount": 7,
+      "pointsInsideGap": 5,
+      "sourceConfidence": 0.9339951276779175,
+      "fullCoverage": true,
+      "compoundD12D6": true,
+      "endpointLateralDelta": null,
+      "endpointHeadingDelta": null
+    },
+    {
+      "gapId": "CD-02",
+      "physicalBoundaryGroup": "PB0",
+      "trackId": 0,
+      "chunkId": 0,
+      "passId": 0,
+      "startS": 412.4419997969666,
+      "endS": 434.9420161044949,
+      "measuredGapLengthM": 22.500016307528256,
+      "d6RejectedBinsInGap": 7,
+      "eligibility": {
+        "passed": true,
+        "reason": null
+      },
+      "resolution": "fullyResolved",
+      "preservedLengthM": 22.500016307528256,
+      "remainingOpenLengthM": 0,
+      "preservedPointCount": 5,
+      "sourceFrameId": 3083,
+      "sourcePolylineId": "3083:L1:T0",
+      "logMonoTime": "171706391399",
+      "sourceLaneIndex": 1,
+      "sourcePolylineSRange": [
+        412.4419997969666,
+        434.9420161044949
+      ],
+      "mappedPolylineSRange": [
+        412.4419997969666,
+        434.9420161044949
+      ],
+      "originalPointCount": 26,
+      "mappedPointCount": 5,
+      "pointsInsideGap": 5,
+      "sourceConfidence": 0.9377167820930481,
+      "fullCoverage": true,
+      "compoundD12D6": true,
+      "endpointLateralDelta": null,
+      "endpointHeadingDelta": null
+    },
+    {
+      "gapId": "CD-10",
+      "physicalBoundaryGroup": "PB1",
+      "trackId": 2,
+      "chunkId": 0,
+      "passId": 0,
+      "startS": 412.22180615396644,
+      "endS": 434.5339771485253,
+      "measuredGapLengthM": 22.31217099455887,
+      "d6RejectedBinsInGap": 7,
+      "eligibility": {
+        "passed": true,
+        "reason": null
+      },
+      "resolution": "partiallyResolved",
+      "preservedLengthM": 16.312529681125795,
+      "remainingOpenLengthM": 5.999641313433074,
+      "preservedPointCount": 4,
+      "sourceFrameId": 3083,
+      "sourcePolylineId": "3083:L2:T2",
+      "logMonoTime": "171706391399",
+      "sourceLaneIndex": 2,
+      "sourcePolylineSRange": [
+        412.4432324190206,
+        434.94327923214877
+      ],
+      "mappedPolylineSRange": [
+        412.4432324190206,
+        428.7557621001464
+      ],
+      "originalPointCount": 26,
+      "mappedPointCount": 5,
+      "pointsInsideGap": 4,
+      "sourceConfidence": 0.9744181632995605,
+      "fullCoverage": false,
+      "compoundD12D6": true,
+      "endpointLateralDelta": null,
+      "endpointHeadingDelta": null
+    },
+    {
+      "gapId": "CD-12",
+      "physicalBoundaryGroup": "PB1",
+      "trackId": 2,
+      "chunkId": 0,
+      "passId": 0,
+      "startS": 478.79387292483455,
+      "endS": 500.1206905235975,
+      "measuredGapLengthM": 21.326817598762943,
+      "d6RejectedBinsInGap": 6,
+      "eligibility": {
+        "passed": true,
+        "reason": null
+      },
+      "resolution": "partiallyResolved",
+      "preservedLengthM": 19.687352260910814,
+      "remainingOpenLengthM": 1.6394653378521298,
+      "preservedPointCount": 6,
+      "sourceFrameId": 3203,
+      "sourcePolylineId": "3203:L2:T2",
+      "logMonoTime": "177707085489",
+      "sourceLaneIndex": 2,
+      "sourcePolylineSRange": [
+        478.79387292483455,
+        498.48122518574536
+      ],
+      "mappedPolylineSRange": [
+        478.79387292483455,
+        498.48122518574536
+      ],
+      "originalPointCount": 26,
+      "mappedPointCount": 6,
+      "pointsInsideGap": 6,
+      "sourceConfidence": 0.9777554869651794,
+      "fullCoverage": false,
+      "compoundD12D6": true,
+      "endpointLateralDelta": null,
+      "endpointHeadingDelta": null
+    },
+    {
+      "gapId": "CD-18",
+      "physicalBoundaryGroup": "PB2",
+      "trackId": 3,
+      "chunkId": 0,
+      "passId": 0,
+      "startS": 412.2329184179182,
+      "endS": 434.5449151711091,
+      "measuredGapLengthM": 22.311996753190897,
+      "d6RejectedBinsInGap": 7,
+      "eligibility": {
+        "passed": true,
+        "reason": null
+      },
+      "resolution": "partiallyResolved",
+      "preservedLengthM": 16.312540854078122,
+      "remainingOpenLengthM": 5.999455899112775,
+      "preservedPointCount": 4,
+      "sourceFrameId": 3083,
+      "sourcePolylineId": "3083:L3:T3",
+      "logMonoTime": "171706391399",
+      "sourceLaneIndex": 3,
+      "sourcePolylineSRange": [
+        412.4444969287355,
+        434.9445474265521
+      ],
+      "mappedPolylineSRange": [
+        412.4444969287355,
+        428.7570377828136
+      ],
+      "originalPointCount": 26,
+      "mappedPointCount": 5,
+      "pointsInsideGap": 4,
+      "sourceConfidence": 0.6335176229476929,
+      "fullCoverage": false,
+      "compoundD12D6": true,
+      "endpointLateralDelta": null,
+      "endpointHeadingDelta": null
+    },
+    {
+      "gapId": "CD-10-TAIL",
+      "parentGapId": "CD-10",
+      "physicalBoundaryGroup": "PB1",
+      "trackId": 2,
+      "chunkId": 0,
+      "passId": 0,
+      "startS": 428.7557621001464,
+      "endS": 434.5339771485253,
+      "measuredGapLengthM": 5.778215048378911,
+      "eligibility": {
+        "passed": true,
+        "reason": null
+      },
+      "classification": "T2",
+      "resolution": "partiallyResolved",
+      "preservedLengthM": 4.3124715709806765,
+      "remainingOpenLengthM": 1.4657434773982345,
+      "preservedPointCount": 2,
+      "isTailExtension": true,
+      "sourceFrameId": 3123,
+      "sourcePolylineId": "3123:L2:T2",
+      "gapBeforeExtensionM": 1.4657434773982345,
+      "gapAfterExtensionM": 0
+    },
+    {
+      "gapId": "CD-12-TAIL",
+      "parentGapId": "CD-12",
+      "physicalBoundaryGroup": "PB1",
+      "trackId": 2,
+      "chunkId": 0,
+      "passId": 0,
+      "startS": 498.48122518574536,
+      "endS": 500.1206905235975,
+      "measuredGapLengthM": 1.6394653378521298,
+      "eligibility": {
+        "passed": false,
+        "reason": "insufficientPreservedPointsInOpenTail"
+      },
+      "classification": "T3",
+      "resolution": "unchanged",
+      "preservedLengthM": 0,
+      "remainingOpenLengthM": 1.6394653378521298,
+      "preservedPointCount": 0,
+      "isTailExtension": true,
+      "candidate": {
+        "sourceFrameId": 3243,
+        "sourcePolylineId": "3243:L2:T2",
+        "mappedPointCount": 1
+      }
+    },
+    {
+      "gapId": "CD-18-TAIL",
+      "parentGapId": "CD-18",
+      "physicalBoundaryGroup": "PB2",
+      "trackId": 3,
+      "chunkId": 0,
+      "passId": 0,
+      "startS": 428.7570377828136,
+      "endS": 434.5449151711091,
+      "measuredGapLengthM": 5.787877388295499,
+      "eligibility": {
+        "passed": true,
+        "reason": null
+      },
+      "classification": "T2",
+      "resolution": "partiallyResolved",
+      "preservedLengthM": 4.312400069375769,
+      "remainingOpenLengthM": 1.4754773189197294,
+      "preservedPointCount": 2,
+      "isTailExtension": true,
+      "sourceFrameId": 3123,
+      "sourcePolylineId": "3123:L3:T3",
+      "gapBeforeExtensionM": 1.4754773189197294,
+      "gapAfterExtensionM": 0
+    }
+  ],
+  "preservedIntervals": [
+    {
+      "gapId": "CD-00",
+      "sourceFrameId": 2443,
+      "sourcePolylineId": "2443:L1:T0",
+      "preservedPointCount": 5,
+      "preservedLengthM": 23.495393840748072,
+      "remainingOpenLengthM": 0,
+      "fullCoverage": true,
+      "compoundD12D6": true,
+      "resolution": "fullyResolved"
+    },
+    {
+      "gapId": "CD-02",
+      "sourceFrameId": 3083,
+      "sourcePolylineId": "3083:L1:T0",
+      "preservedPointCount": 5,
+      "preservedLengthM": 22.500016307528256,
+      "remainingOpenLengthM": 0,
+      "fullCoverage": true,
+      "compoundD12D6": true,
+      "resolution": "fullyResolved"
+    },
+    {
+      "gapId": "CD-10",
+      "sourceFrameId": 3083,
+      "sourcePolylineId": "3083:L2:T2",
+      "preservedPointCount": 4,
+      "preservedLengthM": 16.312529681125795,
+      "remainingOpenLengthM": 5.999641313433074,
+      "fullCoverage": false,
+      "compoundD12D6": true,
+      "resolution": "partiallyResolved"
+    },
+    {
+      "gapId": "CD-12",
+      "sourceFrameId": 3203,
+      "sourcePolylineId": "3203:L2:T2",
+      "preservedPointCount": 6,
+      "preservedLengthM": 19.687352260910814,
+      "remainingOpenLengthM": 1.6394653378521298,
+      "fullCoverage": false,
+      "compoundD12D6": true,
+      "resolution": "partiallyResolved"
+    },
+    {
+      "gapId": "CD-18",
+      "sourceFrameId": 3083,
+      "sourcePolylineId": "3083:L3:T3",
+      "preservedPointCount": 4,
+      "preservedLengthM": 16.312540854078122,
+      "remainingOpenLengthM": 5.999455899112775,
+      "fullCoverage": false,
+      "compoundD12D6": true,
+      "resolution": "partiallyResolved"
+    },
+    {
+      "gapId": "CD-10-TAIL",
+      "sourceFrameId": 3123,
+      "sourcePolylineId": "3123:L2:T2",
+      "preservedPointCount": 2,
+      "preservedLengthM": 4.3124715709806765,
+      "remainingOpenLengthM": 1.4657434773982345,
+      "fullCoverage": false,
+      "compoundD12D6": true,
+      "resolution": "partiallyResolved"
+    },
+    {
+      "gapId": "CD-18-TAIL",
+      "sourceFrameId": 3123,
+      "sourcePolylineId": "3123:L3:T3",
+      "preservedPointCount": 2,
+      "preservedLengthM": 4.312400069375769,
+      "remainingOpenLengthM": 1.4754773189197294,
+      "fullCoverage": false,
+      "compoundD12D6": true,
+      "resolution": "partiallyResolved"
+    }
+  ],
+  "crossings": 0,
+  "unchanged": {
+    "d6GapsOpen": [
+      "CD-03",
+      "CD-04",
+      "CD-05",
+      "CD-06",
+      "CD-07",
+      "CD-08",
+      "CD-09",
+      "CD-11",
+      "CD-13",
+      "CD-14",
+      "CD-15",
+      "CD-16",
+      "CD-17"
+    ],
+    "d10GapsOpen": [
+      "CD-01"
+    ]
+  }
+}

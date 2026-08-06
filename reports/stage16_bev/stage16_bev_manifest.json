@@ -1,0 +1,644 @@
+{
+  "generatedAt": "2026-07-23T08:24:23.187Z",
+  "requiredCategories": [
+    "straight_road",
+    "curved_road",
+    "low_confidence",
+    "single_valid_side",
+    "both_invalid",
+    "pose_section_boundary",
+    "sparse_segment",
+    "stage15_outlier",
+    "apparent_lane_change_geometry"
+  ],
+  "categoriesPresent": [
+    "straight_road",
+    "low_confidence",
+    "single_valid_side",
+    "both_invalid",
+    "sparse_segment",
+    "stage15_outlier",
+    "curved_road",
+    "pose_section_boundary",
+    "apparent_lane_change_geometry"
+  ],
+  "missingCategories": [],
+  "artifacts": [
+    {
+      "category": "straight_road",
+      "segmentId": 0,
+      "chunkId": 0,
+      "sourceFrameIndex": 3746,
+      "sourceFrameId": 403,
+      "logMonoTime": "37711368013",
+      "temporalPassId": 0,
+      "poseSectionId": 0,
+      "selectionRule": "All slots projected; monotonic forward device-x on ≥3 slots",
+      "labelQualifier": null,
+      "laneChangeMetadata": null,
+      "poseSectionNote": null,
+      "projectedSlotCount": 4,
+      "rejectedSlotCount": 0,
+      "slots": [
+        {
+          "slotIndex": 0,
+          "inferredRole": "predominantly_outer_right",
+          "projectionStatus": "projected",
+          "rejectionReasons": [],
+          "sourcePointsAfterX": 26,
+          "projectedPointCount": 25,
+          "rawSourcePointCount": 33,
+          "retainedPointFraction": 0.9615384615384616
+        },
+        {
+          "slotIndex": 1,
+          "inferredRole": "predominantly_inner_right_ego_candidate",
+          "projectionStatus": "projected",
+          "rejectionReasons": [],
+          "sourcePointsAfterX": 26,
+          "projectedPointCount": 25,
+          "rawSourcePointCount": 33,
+          "retainedPointFraction": 0.9615384615384616
+        },
+        {
+          "slotIndex": 2,
+          "inferredRole": "predominantly_inner_left_ego_candidate",
+          "projectionStatus": "projected",
+          "rejectionReasons": [],
+          "sourcePointsAfterX": 26,
+          "projectedPointCount": 25,
+          "rawSourcePointCount": 33,
+          "retainedPointFraction": 0.9615384615384616
+        },
+        {
+          "slotIndex": 3,
+          "inferredRole": "predominantly_outer_left",
+          "projectionStatus": "projected",
+          "rejectionReasons": [],
+          "sourcePointsAfterX": 26,
+          "projectedPointCount": 25,
+          "rawSourcePointCount": 33,
+          "retainedPointFraction": 0.9615384615384616
+        }
+      ],
+      "rejectedSlots": [],
+      "file": "stage16_bev_straight_road.svg"
+    },
+    {
+      "category": "low_confidence",
+      "segmentId": 0,
+      "chunkId": 0,
+      "sourceFrameIndex": 4119,
+      "sourceFrameId": 443,
+      "logMonoTime": "39710346547",
+      "temporalPassId": 0,
+      "poseSectionId": 0,
+      "selectionRule": "At least one slot rejected for assessment confidence below Stage 15A threshold",
+      "labelQualifier": null,
+      "laneChangeMetadata": null,
+      "poseSectionNote": null,
+      "projectedSlotCount": 3,
+      "rejectedSlotCount": 1,
+      "slots": [
+        {
+          "slotIndex": 0,
+          "inferredRole": "predominantly_outer_right",
+          "projectionStatus": "projected",
+          "rejectionReasons": [],
+          "sourcePointsAfterX": 26,
+          "projectedPointCount": 25,
+          "rawSourcePointCount": 33,
+          "retainedPointFraction": 0.9615384615384616
+        },
+        {
+          "slotIndex": 1,
+          "inferredRole": "predominantly_inner_right_ego_candidate",
+          "projectionStatus": "projected",
+          "rejectionReasons": [],
+          "sourcePointsAfterX": 26,
+          "projectedPointCount": 25,
+          "rawSourcePointCount": 33,
+          "retainedPointFraction": 0.9615384615384616
+        },
+        {
+          "slotIndex": 2,
+          "inferredRole": "predominantly_inner_left_ego_candidate",
+          "projectionStatus": "projected",
+          "rejectionReasons": [],
+          "sourcePointsAfterX": 26,
+          "projectedPointCount": 25,
+          "rawSourcePointCount": 33,
+          "retainedPointFraction": 0.9615384615384616
+        },
+        {
+          "slotIndex": 3,
+          "inferredRole": "predominantly_outer_left",
+          "projectionStatus": "rejected_low_assessment_confidence",
+          "rejectionReasons": [
+            "confidence_below_assessment_threshold"
+          ],
+          "sourcePointsAfterX": 26,
+          "projectedPointCount": 0,
+          "rawSourcePointCount": 33,
+          "retainedPointFraction": 0
+        }
+      ],
+      "rejectedSlots": [
+        {
+          "slotIndex": 3,
+          "status": "rejected_low_assessment_confidence",
+          "reasons": [
+            "confidence_below_assessment_threshold"
+          ]
+        }
+      ],
+      "file": "stage16_bev_low_confidence.svg"
+    },
+    {
+      "category": "single_valid_side",
+      "segmentId": 1,
+      "chunkId": 0,
+      "sourceFrameIndex": 5153,
+      "sourceFrameId": 1763,
+      "logMonoTime": "105749854369",
+      "temporalPassId": 0,
+      "poseSectionId": 0,
+      "selectionRule": "Only 1–2 of 4 slots projected; remaining slots rejected",
+      "labelQualifier": null,
+      "laneChangeMetadata": null,
+      "poseSectionNote": null,
+      "projectedSlotCount": 2,
+      "rejectedSlotCount": 2,
+      "slots": [
+        {
+          "slotIndex": 0,
+          "inferredRole": "predominantly_outer_right",
+          "projectionStatus": "rejected_low_assessment_confidence",
+          "rejectionReasons": [
+            "confidence_below_assessment_threshold"
+          ],
+          "sourcePointsAfterX": 26,
+          "projectedPointCount": 0,
+          "rawSourcePointCount": 33,
+          "retainedPointFraction": 0
+        },
+        {
+          "slotIndex": 1,
+          "inferredRole": "predominantly_inner_right_ego_candidate",
+          "projectionStatus": "projected",
+          "rejectionReasons": [],
+          "sourcePointsAfterX": 26,
+          "projectedPointCount": 24,
+          "rawSourcePointCount": 33,
+          "retainedPointFraction": 0.9230769230769231
+        },
+        {
+          "slotIndex": 2,
+          "inferredRole": "predominantly_inner_left_ego_candidate",
+          "projectionStatus": "projected",
+          "rejectionReasons": [],
+          "sourcePointsAfterX": 26,
+          "projectedPointCount": 24,
+          "rawSourcePointCount": 33,
+          "retainedPointFraction": 0.9230769230769231
+        },
+        {
+          "slotIndex": 3,
+          "inferredRole": "predominantly_outer_left",
+          "projectionStatus": "rejected_low_assessment_confidence",
+          "rejectionReasons": [
+            "confidence_below_assessment_threshold"
+          ],
+          "sourcePointsAfterX": 26,
+          "projectedPointCount": 0,
+          "rawSourcePointCount": 33,
+          "retainedPointFraction": 0
+        }
+      ],
+      "rejectedSlots": [
+        {
+          "slotIndex": 0,
+          "status": "rejected_low_assessment_confidence",
+          "reasons": [
+            "confidence_below_assessment_threshold"
+          ]
+        },
+        {
+          "slotIndex": 3,
+          "status": "rejected_low_assessment_confidence",
+          "reasons": [
+            "confidence_below_assessment_threshold"
+          ]
+        }
+      ],
+      "file": "stage16_bev_single_valid_side.svg"
+    },
+    {
+      "category": "both_invalid",
+      "segmentId": 0,
+      "chunkId": null,
+      "sourceFrameIndex": 59,
+      "sourceFrameId": 3,
+      "logMonoTime": "17714651795",
+      "temporalPassId": null,
+      "poseSectionId": null,
+      "selectionRule": "No slots projected in frame — all rejected",
+      "labelQualifier": null,
+      "laneChangeMetadata": null,
+      "poseSectionNote": null,
+      "projectedSlotCount": 0,
+      "rejectedSlotCount": 4,
+      "slots": [
+        {
+          "slotIndex": 0,
+          "inferredRole": "predominantly_outer_right",
+          "projectionStatus": "rejected_low_assessment_confidence",
+          "rejectionReasons": [
+            "confidence_below_assessment_threshold"
+          ],
+          "sourcePointsAfterX": 26,
+          "projectedPointCount": 0,
+          "rawSourcePointCount": 33,
+          "retainedPointFraction": 0
+        },
+        {
+          "slotIndex": 1,
+          "inferredRole": "predominantly_inner_right_ego_candidate",
+          "projectionStatus": "rejected_missing_pose",
+          "rejectionReasons": [
+            "no_matching_processed_frame"
+          ],
+          "sourcePointsAfterX": 26,
+          "projectedPointCount": 0,
+          "rawSourcePointCount": 33,
+          "retainedPointFraction": 0
+        },
+        {
+          "slotIndex": 2,
+          "inferredRole": "predominantly_inner_left_ego_candidate",
+          "projectionStatus": "rejected_missing_pose",
+          "rejectionReasons": [
+            "no_matching_processed_frame"
+          ],
+          "sourcePointsAfterX": 26,
+          "projectedPointCount": 0,
+          "rawSourcePointCount": 33,
+          "retainedPointFraction": 0
+        },
+        {
+          "slotIndex": 3,
+          "inferredRole": "predominantly_outer_left",
+          "projectionStatus": "rejected_low_assessment_confidence",
+          "rejectionReasons": [
+            "confidence_below_assessment_threshold"
+          ],
+          "sourcePointsAfterX": 26,
+          "projectedPointCount": 0,
+          "rawSourcePointCount": 33,
+          "retainedPointFraction": 0
+        }
+      ],
+      "rejectedSlots": [
+        {
+          "slotIndex": 0,
+          "status": "rejected_low_assessment_confidence",
+          "reasons": [
+            "confidence_below_assessment_threshold"
+          ]
+        },
+        {
+          "slotIndex": 1,
+          "status": "rejected_missing_pose",
+          "reasons": [
+            "no_matching_processed_frame"
+          ]
+        },
+        {
+          "slotIndex": 2,
+          "status": "rejected_missing_pose",
+          "reasons": [
+            "no_matching_processed_frame"
+          ]
+        },
+        {
+          "slotIndex": 3,
+          "status": "rejected_low_assessment_confidence",
+          "reasons": [
+            "confidence_below_assessment_threshold"
+          ]
+        }
+      ],
+      "file": "stage16_bev_both_invalid.svg"
+    },
+    {
+      "category": "sparse_segment",
+      "segmentId": 10,
+      "chunkId": 0,
+      "sourceFrameIndex": 7759,
+      "sourceFrameId": 12843,
+      "logMonoTime": "659506700503",
+      "temporalPassId": 0,
+      "poseSectionId": 0,
+      "selectionRule": "Segment flagged sparse: pctProjected < 50% or modelV2FrameCount < 5 (named assessment criteria)",
+      "labelQualifier": null,
+      "laneChangeMetadata": null,
+      "poseSectionNote": null,
+      "projectedSlotCount": 4,
+      "rejectedSlotCount": 0,
+      "slots": [
+        {
+          "slotIndex": 0,
+          "inferredRole": "predominantly_outer_right",
+          "projectionStatus": "projected",
+          "rejectionReasons": [],
+          "sourcePointsAfterX": 26,
+          "projectedPointCount": 18,
+          "rawSourcePointCount": 33,
+          "retainedPointFraction": 0.6923076923076923
+        },
+        {
+          "slotIndex": 1,
+          "inferredRole": "predominantly_inner_right_ego_candidate",
+          "projectionStatus": "projected",
+          "rejectionReasons": [],
+          "sourcePointsAfterX": 26,
+          "projectedPointCount": 18,
+          "rawSourcePointCount": 33,
+          "retainedPointFraction": 0.6923076923076923
+        },
+        {
+          "slotIndex": 2,
+          "inferredRole": "predominantly_inner_left_ego_candidate",
+          "projectionStatus": "projected",
+          "rejectionReasons": [],
+          "sourcePointsAfterX": 26,
+          "projectedPointCount": 18,
+          "rawSourcePointCount": 33,
+          "retainedPointFraction": 0.6923076923076923
+        },
+        {
+          "slotIndex": 3,
+          "inferredRole": "predominantly_outer_left",
+          "projectionStatus": "projected",
+          "rejectionReasons": [],
+          "sourcePointsAfterX": 26,
+          "projectedPointCount": 18,
+          "rawSourcePointCount": 33,
+          "retainedPointFraction": 0.6923076923076923
+        }
+      ],
+      "rejectedSlots": [],
+      "file": "stage16_bev_sparse_segment.svg"
+    },
+    {
+      "category": "stage15_outlier",
+      "segmentId": 57,
+      "chunkId": 0,
+      "sourceFrameIndex": 6701,
+      "sourceFrameId": 69123,
+      "logMonoTime": "3472753507044",
+      "temporalPassId": 1,
+      "poseSectionId": 4,
+      "selectionRule": "Segment in Stage 15 coverage outlier set {57,62,65,66,96}",
+      "labelQualifier": null,
+      "laneChangeMetadata": null,
+      "poseSectionNote": null,
+      "projectedSlotCount": 3,
+      "rejectedSlotCount": 1,
+      "slots": [
+        {
+          "slotIndex": 0,
+          "inferredRole": "predominantly_outer_right",
+          "projectionStatus": "projected",
+          "rejectionReasons": [],
+          "sourcePointsAfterX": 26,
+          "projectedPointCount": 17,
+          "rawSourcePointCount": 33,
+          "retainedPointFraction": 0.6538461538461539
+        },
+        {
+          "slotIndex": 1,
+          "inferredRole": "mixed_or_uncertain_slot_semantics",
+          "projectionStatus": "projected",
+          "rejectionReasons": [],
+          "sourcePointsAfterX": 26,
+          "projectedPointCount": 17,
+          "rawSourcePointCount": 33,
+          "retainedPointFraction": 0.6538461538461539
+        },
+        {
+          "slotIndex": 2,
+          "inferredRole": "mixed_or_uncertain_slot_semantics",
+          "projectionStatus": "projected",
+          "rejectionReasons": [],
+          "sourcePointsAfterX": 26,
+          "projectedPointCount": 17,
+          "rawSourcePointCount": 33,
+          "retainedPointFraction": 0.6538461538461539
+        },
+        {
+          "slotIndex": 3,
+          "inferredRole": "predominantly_outer_left",
+          "projectionStatus": "rejected_low_assessment_confidence",
+          "rejectionReasons": [
+            "confidence_below_assessment_threshold"
+          ],
+          "sourcePointsAfterX": 26,
+          "projectedPointCount": 0,
+          "rawSourcePointCount": 33,
+          "retainedPointFraction": 0
+        }
+      ],
+      "rejectedSlots": [
+        {
+          "slotIndex": 3,
+          "status": "rejected_low_assessment_confidence",
+          "reasons": [
+            "confidence_below_assessment_threshold"
+          ]
+        }
+      ],
+      "file": "stage16_bev_stage15_outlier.svg"
+    },
+    {
+      "category": "curved_road",
+      "segmentId": 0,
+      "chunkId": 0,
+      "sourceFrameIndex": 4489,
+      "sourceFrameId": 483,
+      "logMonoTime": "41712785998",
+      "temporalPassId": 0,
+      "poseSectionId": 0,
+      "selectionRule": "Fallback selection for required category curved_road",
+      "labelQualifier": null,
+      "laneChangeMetadata": null,
+      "poseSectionNote": null,
+      "projectedSlotCount": 4,
+      "rejectedSlotCount": 0,
+      "slots": [
+        {
+          "slotIndex": 0,
+          "inferredRole": "predominantly_outer_right",
+          "projectionStatus": "projected",
+          "rejectionReasons": [],
+          "sourcePointsAfterX": 26,
+          "projectedPointCount": 24,
+          "rawSourcePointCount": 33,
+          "retainedPointFraction": 0.9230769230769231
+        },
+        {
+          "slotIndex": 1,
+          "inferredRole": "predominantly_inner_right_ego_candidate",
+          "projectionStatus": "projected",
+          "rejectionReasons": [],
+          "sourcePointsAfterX": 26,
+          "projectedPointCount": 24,
+          "rawSourcePointCount": 33,
+          "retainedPointFraction": 0.9230769230769231
+        },
+        {
+          "slotIndex": 2,
+          "inferredRole": "predominantly_inner_left_ego_candidate",
+          "projectionStatus": "projected",
+          "rejectionReasons": [],
+          "sourcePointsAfterX": 26,
+          "projectedPointCount": 24,
+          "rawSourcePointCount": 33,
+          "retainedPointFraction": 0.9230769230769231
+        },
+        {
+          "slotIndex": 3,
+          "inferredRole": "predominantly_outer_left",
+          "projectionStatus": "projected",
+          "rejectionReasons": [],
+          "sourcePointsAfterX": 26,
+          "projectedPointCount": 24,
+          "rawSourcePointCount": 33,
+          "retainedPointFraction": 0.9230769230769231
+        }
+      ],
+      "rejectedSlots": [],
+      "file": "stage16_bev_curved_road.svg"
+    },
+    {
+      "category": "pose_section_boundary",
+      "segmentId": 0,
+      "chunkId": 0,
+      "sourceFrameIndex": 4862,
+      "sourceFrameId": 523,
+      "logMonoTime": "43710338574",
+      "temporalPassId": 0,
+      "poseSectionId": 0,
+      "selectionRule": "Fallback selection for required category pose_section_boundary",
+      "labelQualifier": null,
+      "laneChangeMetadata": null,
+      "poseSectionNote": null,
+      "projectedSlotCount": 4,
+      "rejectedSlotCount": 0,
+      "slots": [
+        {
+          "slotIndex": 0,
+          "inferredRole": "predominantly_outer_right",
+          "projectionStatus": "projected",
+          "rejectionReasons": [],
+          "sourcePointsAfterX": 26,
+          "projectedPointCount": 24,
+          "rawSourcePointCount": 33,
+          "retainedPointFraction": 0.9230769230769231
+        },
+        {
+          "slotIndex": 1,
+          "inferredRole": "predominantly_inner_right_ego_candidate",
+          "projectionStatus": "projected",
+          "rejectionReasons": [],
+          "sourcePointsAfterX": 26,
+          "projectedPointCount": 24,
+          "rawSourcePointCount": 33,
+          "retainedPointFraction": 0.9230769230769231
+        },
+        {
+          "slotIndex": 2,
+          "inferredRole": "predominantly_inner_left_ego_candidate",
+          "projectionStatus": "projected",
+          "rejectionReasons": [],
+          "sourcePointsAfterX": 26,
+          "projectedPointCount": 24,
+          "rawSourcePointCount": 33,
+          "retainedPointFraction": 0.9230769230769231
+        },
+        {
+          "slotIndex": 3,
+          "inferredRole": "predominantly_outer_left",
+          "projectionStatus": "projected",
+          "rejectionReasons": [],
+          "sourcePointsAfterX": 26,
+          "projectedPointCount": 24,
+          "rawSourcePointCount": 33,
+          "retainedPointFraction": 0.9230769230769231
+        }
+      ],
+      "rejectedSlots": [],
+      "file": "stage16_bev_pose_section_boundary.svg"
+    },
+    {
+      "category": "apparent_lane_change_geometry",
+      "segmentId": 0,
+      "chunkId": 0,
+      "sourceFrameIndex": 5234,
+      "sourceFrameId": 563,
+      "logMonoTime": "45709299900",
+      "temporalPassId": 0,
+      "poseSectionId": 0,
+      "selectionRule": "Fallback selection for required category apparent_lane_change_geometry",
+      "labelQualifier": null,
+      "laneChangeMetadata": null,
+      "poseSectionNote": null,
+      "projectedSlotCount": 4,
+      "rejectedSlotCount": 0,
+      "slots": [
+        {
+          "slotIndex": 0,
+          "inferredRole": "predominantly_outer_right",
+          "projectionStatus": "projected",
+          "rejectionReasons": [],
+          "sourcePointsAfterX": 26,
+          "projectedPointCount": 24,
+          "rawSourcePointCount": 33,
+          "retainedPointFraction": 0.9230769230769231
+        },
+        {
+          "slotIndex": 1,
+          "inferredRole": "predominantly_inner_right_ego_candidate",
+          "projectionStatus": "projected",
+          "rejectionReasons": [],
+          "sourcePointsAfterX": 26,
+          "projectedPointCount": 24,
+          "rawSourcePointCount": 33,
+          "retainedPointFraction": 0.9230769230769231
+        },
+        {
+          "slotIndex": 2,
+          "inferredRole": "predominantly_inner_left_ego_candidate",
+          "projectionStatus": "projected",
+          "rejectionReasons": [],
+          "sourcePointsAfterX": 26,
+          "projectedPointCount": 24,
+          "rawSourcePointCount": 33,
+          "retainedPointFraction": 0.9230769230769231
+        },
+        {
+          "slotIndex": 3,
+          "inferredRole": "predominantly_outer_left",
+          "projectionStatus": "projected",
+          "rejectionReasons": [],
+          "sourcePointsAfterX": 26,
+          "projectedPointCount": 24,
+          "rawSourcePointCount": 33,
+          "retainedPointFraction": 0.9230769230769231
+        }
+      ],
+      "rejectedSlots": [],
+      "file": "stage16_bev_apparent_lane_change_geometry.svg"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "v7ZeroPolygon": 37,
+  "v8ZeroPolygon": 25,
+  "newlyZeroFromV7NonZero": 4,
+  "byReason": {
+    "other": 4
+  },
+  "segments": [
+    {
+      "segmentId": 6,
+      "v7Polygons": 1,
+      "v8Polygons": 0,
+      "v7Passes": 1,
+      "v8Passes": 1,
+      "poseSections": 1,
+      "rejectedPoseTransitions": 0,
+      "firstPoseRejection": null,
+      "classifiedReason": "other"
+    },
+    {
+      "segmentId": 28,
+      "v7Polygons": 1,
+      "v8Polygons": 0,
+      "v7Passes": 1,
+      "v8Passes": 1,
+      "poseSections": 1,
+      "rejectedPoseTransitions": 0,
+      "firstPoseRejection": null,
+      "classifiedReason": "other"
+    },
+    {
+      "segmentId": 72,
+      "v7Polygons": 2,
+      "v8Polygons": 0,
+      "v7Passes": 1,
+      "v8Passes": 1,
+      "poseSections": 1,
+      "rejectedPoseTransitions": 0,
+      "firstPoseRejection": null,
+      "classifiedReason": "other"
+    },
+    {
+      "segmentId": 92,
+      "v7Polygons": 1,
+      "v8Polygons": 0,
+      "v7Passes": 1,
+      "v8Passes": 1,
+      "poseSections": 1,
+      "rejectedPoseTransitions": 0,
+      "firstPoseRejection": null,
+      "classifiedReason": "other"
+    }
+  ]
+}

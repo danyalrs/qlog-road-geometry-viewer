@@ -1,0 +1,200 @@
+{
+  "reportId": "2026-07-27-stage19-v4-corrective-checkpoint",
+  "generatedAt": "2026-07-27T08:35:00.000Z",
+  "status": "STAGE 19 IMPLEMENTATION READY FOR FINAL VALIDATION",
+  "rollbackCheckpoint": "checkpoints/stage19-implementation-pre-v4.json",
+  "postCheckpoint": "checkpoints/stage19-implementation-2026-07-27-stage19-v4.json",
+  "implementationCheckpoint": "2026-07-27-stage19-v4",
+  "deploymentAuthorized": false,
+  "productionLaneCountImplemented": false,
+  "hdMapSystemComplete": false,
+  "preservation": {
+    "v0": { "approved": false, "preservation": "checkpoint-only", "immutableRun": false },
+    "v1": { "approved": false, "preservation": "immutable-run", "path": "stage19_bundle/runs/2026-07-27-stage19-v1" },
+    "v2": { "approved": false, "preservation": "immutable-run-superseded", "path": "stage19_bundle/runs/2026-07-27-stage19-v2" },
+    "v3": { "approved": false, "preservation": "immutable-run-superseded", "path": "stage19_bundle/runs/2026-07-27-stage19-v3" },
+    "v4": { "approved": false, "preservation": "current-implementation", "path": "stage19_bundle/runs/2026-07-27-stage19-v4" }
+  },
+  "changedFiles": [
+    "lib/stage19_publication_fs.js",
+    "lib/stage19_publication_production.js",
+    "lib/stage19_version.js",
+    "lib/stage19_bundle_builder.js",
+    "lib/stage19_cross_pass_production.js",
+    "server.js",
+    "public/app.js",
+    "tests/stage19_publication_overlap.test.js",
+    "tests/stage19_publication_fencing.test.js",
+    "tests/stage19_partition_matrix.test.js",
+    "tests/stage19_conflict_bundle.test.js",
+    "tests/stage19_api.test.js",
+    "tests/stage19_api_http.test.js",
+    "tests/helpers/stage19_fixture_bundle.js",
+    "tests/helpers/stage19_publish_race_child.js",
+    "tests/helpers/stage19_read_pin_child.js",
+    "scripts/stage19_rerun_publication_repeat.js",
+    "checkpoints/stage19-implementation-pre-v4.json",
+    "checkpoints/stage19-implementation-2026-07-27-stage19-v4.json",
+    "audit_stage19_dataset_sensitivity.json",
+    "stage19_bundle/current.json",
+    "stage19_bundle/runs/2026-07-27-stage19-v4/"
+  ],
+  "protectedHashComparison": {
+    "immutableProtectedFiles": { "unchanged": 28, "changed": 0, "total": 28 },
+    "expectedVersionFiles": {
+      "lib/stage19_version.js": {
+        "changedIntentionally": true,
+        "preV4": "8cfa27e24072652de33136484ece05b79d60774e7032ba10c4d9f49dffbfe9ed",
+        "v4": "74962ee9708cacbfbb346d1dccf9341ac02a26ea6992156bb35ab0d1e827821b"
+      }
+    }
+  },
+  "publicationLifecycleFix": {
+    "module": "lib/stage19_publication_fs.js",
+    "behaviour": [
+      "stop heartbeat before staging-to-run rename",
+      "bounded retry for EPERM/EBUSY/EACCES transient rename errors",
+      "permanent errors propagate",
+      "validate complete replacement before current.json changes",
+      "no staging/lock/lease/heartbeat residue after success or failure"
+    ],
+    "fencing": {
+      "module": "lib/stage19_publication_production.js",
+      "functions": ["validateWriterMayPublishPointer", "atomicReplaceCurrentPointerFenced"],
+      "tests": "tests/stage19_publication_fencing.test.js — 4 tests including token change between immutable publication and pointer update"
+    }
+  },
+  "partitionMatrix": {
+    "file": "tests/stage19_partition_matrix.test.js",
+    "testCount": 17,
+    "cases": [
+      "real dataset 5809 singleton chains / 0 multi-observation",
+      "valid multi-branch chain",
+      "shared-node ownership",
+      "shared-node cleanup",
+      "duplicate observation ownership",
+      "disconnected catalog member",
+      "rejected non-overflow partition",
+      "overflow partition no branchId",
+      "explicit multiple-branch-candidate P3 selection",
+      "interval-specific P3 through buildStage19Bundle",
+      "interval-specific partition failure isolation",
+      "selected P3 output in final bundle",
+      "runP3Branch failure",
+      "applyBranchSelection failure",
+      "deterministic rerun",
+      "normative applyBranchSelection stub integration failure",
+      "singleton chain skips P3"
+    ],
+    "realDataPreserved": {
+      "singletonChains": 5809,
+      "multiObservationChains": 0,
+      "p3EligibleExecutedSelected": "0/0/0",
+      "nonTrivialPartitions": 0
+    }
+  },
+  "conflictMatrix": {
+    "file": "tests/stage19_conflict_bundle.test.js",
+    "testCount": 12,
+    "path": "cross-pass construction → detectProductionConflicts → buildStage19Bundle → semantic assessment → promotion decision → quality gates",
+    "cases": [
+      "real dataset unavailable evidence",
+      "5° vs 50°",
+      "359° vs 1° agreement",
+      "cross-interval contamination rejection",
+      "unresolved observation foreign key",
+      "unresolved interval foreign key",
+      "one-interval-only conflict propagation",
+      "available evidence zero conflict",
+      "unavailable evidence zero conflict",
+      "synthetic detectProductionConflicts",
+      "quality gates reject conflict without candidates",
+      "real data zero cross-pass candidates"
+    ]
+  },
+  "overlappingPublication": {
+    "file": "tests/stage19_publication_overlap.test.js",
+    "testCount": 11,
+    "cases": [
+      "concurrent writers one winner",
+      "quarantine reader drain",
+      "rerun same run ID no mixed artifacts",
+      "child process strict winner/loser outcomes",
+      "stale writer pointer rejection after fencing advance",
+      "stale fencing token cannot delete remote staging",
+      "heartbeat stop before failed pub cleanup",
+      "crash before immutable-run rename",
+      "concurrent reader byte-pin during pointer change",
+      "expired lease orphaned staging recovery",
+      "fenced publication rejects stale lock before current.json"
+    ],
+    "concurrencyTraces": {
+      "childRace": "exactly 1 winner (ok:true), 1 loser with permitted error code",
+      "readerPin": "reader pinned to runA manifest bytes while current.json advances to runB",
+      "stalePointer": "atomicReplaceCurrentPointerFenced rejects stale_writer_fencing_token"
+    }
+  },
+  "rerunRepetition": {
+    "script": "scripts/stage19_rerun_publication_repeat.js",
+    "repetitions": 30,
+    "pass": 30,
+    "fail": 0,
+    "errors": [],
+    "durationMs": 402019,
+    "artifact": "reports/stage19_rerun_repeat_v4.json",
+    "overlapTestIncludedInNpmTest": true
+  },
+  "browserValidation": {
+    "screenshots": [
+      "reports/stage19_browser_validation_1366x768_v4.png",
+      "reports/stage19_browser_validation_1920x1080_v4.png"
+    ],
+    "apiVerified": true,
+    "panelFieldsVerified": [
+      "Promotion decisions: hold × 5",
+      "Insufficient evidence: 5",
+      "Measured conflicts: 0 (unavailable evidence, not agreement)",
+      "Production lane counting: disabled",
+      "HD-map complete: no",
+      "Checkpoint: 2026-07-27-stage19-v4"
+    ],
+    "promotionDecisionSummary": "hold × 5",
+    "currentRunId": "2026-07-27-stage19-v4"
+  },
+  "v11Comparison": {
+    "report": "reports/stage19_v11_geometry_compare_v3.json",
+    "segmentCount": 92,
+    "geometryDifferenceCount": 0,
+    "baselineFlaggedCount": 25,
+    "baselineZeroPolygonCount": 13,
+    "processingVersion": "2026-07-24-fusion-v11"
+  },
+  "validationCommands": {
+    "npmTest": { "pass": 423, "fail": 0, "skipped": 0, "durationMs": 114646 },
+    "stage19Evidence": { "allPass": true },
+    "independentReview": { "independentReviewPass": true },
+    "stage19Audit": { "runId": "2026-07-27-stage19-v4", "exitCode": 0 },
+    "v11Compare": { "geometryDifferenceCount": 0 }
+  },
+  "publicationState": {
+    "currentJson": { "runId": "2026-07-27-stage19-v4" },
+    "manifestRunId": "2026-07-27-stage19-v4",
+    "stagingResidue": false,
+    "realData": {
+      "singletonChains": 5809,
+      "multiObservationChains": 0,
+      "crossPassCandidates": 0,
+      "conflicts": 0,
+      "conflictEvidenceAvailable": false,
+      "insufficientEvidenceIntervals": 5,
+      "promotionCounts": { "hold": 5 },
+      "p3EligibleExecutedSelected": "0/0/0",
+      "nonTrivialPartitions": 0
+    }
+  },
+  "boundaries": {
+    "stage19Spec": "Approved — Revision 37 (lib/stage19_spec/ byte-identical)",
+    "v11": "Frozen — 2026-07-24-fusion-v11",
+    "deployment": "Not authorized"
+  }
+}

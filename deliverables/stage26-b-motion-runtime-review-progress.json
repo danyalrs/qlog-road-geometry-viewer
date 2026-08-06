@@ -1,0 +1,159 @@
+{
+  "generatedAt": "2026-07-30T08:47:20.262Z",
+  "checkpoints": {
+    "priority1": {
+      "attempted": 82,
+      "completed": 0,
+      "pendingHuman": 82,
+      "resolved": 0,
+      "unresolved": 0,
+      "evidenceUnavailable": 0,
+      "confidence": {
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "continuation": {
+        "positive_continuation": 0,
+        "negative_continuation": 0,
+        "unresolved": 0
+      },
+      "identitySwap": {
+        "true": 0,
+        "false": 0,
+        "unresolved": 0
+      },
+      "geometryIssue": {
+        "true": 0,
+        "false": 0,
+        "unresolved": 0
+      },
+      "remaining": 82
+    },
+    "priority2": {
+      "attempted": 12,
+      "completed": 12,
+      "pendingHuman": 0,
+      "resolved": 0,
+      "unresolved": 12,
+      "evidenceUnavailable": 12,
+      "confidence": {
+        "high": 0,
+        "medium": 0,
+        "low": 12
+      },
+      "continuation": {
+        "positive_continuation": 0,
+        "negative_continuation": 0,
+        "unresolved": 12
+      },
+      "identitySwap": {
+        "true": 0,
+        "false": 0,
+        "unresolved": 12
+      },
+      "geometryIssue": {
+        "true": 12,
+        "false": 0,
+        "unresolved": 0
+      },
+      "remaining": 0
+    },
+    "priority3": {
+      "attempted": 40,
+      "completed": 0,
+      "pendingHuman": 40,
+      "resolved": 0,
+      "unresolved": 0,
+      "evidenceUnavailable": 0,
+      "confidence": {
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "continuation": {
+        "positive_continuation": 0,
+        "negative_continuation": 0,
+        "unresolved": 0
+      },
+      "identitySwap": {
+        "true": 0,
+        "false": 0,
+        "unresolved": 0
+      },
+      "geometryIssue": {
+        "true": 0,
+        "false": 0,
+        "unresolved": 0
+      },
+      "remaining": 40
+    },
+    "priority4": {
+      "attempted": 4,
+      "completed": 0,
+      "pendingHuman": 4,
+      "resolved": 0,
+      "unresolved": 0,
+      "evidenceUnavailable": 0,
+      "confidence": {
+        "high": 0,
+        "medium": 0,
+        "low": 0
+      },
+      "continuation": {
+        "positive_continuation": 0,
+        "negative_continuation": 0,
+        "unresolved": 0
+      },
+      "identitySwap": {
+        "true": 0,
+        "false": 0,
+        "unresolved": 0
+      },
+      "geometryIssue": {
+        "true": 0,
+        "false": 0,
+        "unresolved": 0
+      },
+      "remaining": 4
+    }
+  },
+  "totals": {
+    "attempted": 134,
+    "completed": 12,
+    "pendingHuman": 122,
+    "autoUnresolved": 12,
+    "humanCompleted": 0
+  },
+  "regressionRisk": {
+    "label": "82 regression-risk cases (legacy+/vector−) — targeted stratum",
+    "total": 82,
+    "completed": 0,
+    "pendingHuman": 82,
+    "supportLegacyAcceptance": 0,
+    "supportVectorRejection": 0,
+    "unresolved": 0,
+    "geometryIssues": 0,
+    "identitySwaps": 0,
+    "byConfidence": {
+      "high": 0,
+      "medium": 0,
+      "low": 0
+    },
+    "afterExcludingLowConfidence": {
+      "completed": 0,
+      "supportLegacyAcceptance": 0,
+      "supportVectorRejection": 0,
+      "unresolved": 0
+    },
+    "blockerNote": "Main blocker for vector_limited activation until human visual review completes"
+  },
+  "vectorRecoverySample": {
+    "label": "legacy−/vector+ representative sample — targeted stratum",
+    "total": 40,
+    "completed": 0,
+    "pendingHuman": 40,
+    "note": "Displacement/heading/segment breakdown available after human review completion"
+  },
+  "noCombinedHeadlineAccuracy": true
+}

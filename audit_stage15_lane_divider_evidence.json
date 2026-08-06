@@ -1,0 +1,5564 @@
+{
+  "auditedAt": "2026-07-23T07:56:24.316Z",
+  "stage15Status": "approved",
+  "stage15aStatus": "approved",
+  "stagePurpose": "read_only_investigation_and_design",
+  "laneCountingComplete": false,
+  "productionLaneCountImplemented": false,
+  "frozenRoadSurfaceVersion": "2026-07-24-fusion-v11",
+  "processingVersionUnchanged": "2026-07-24-fusion-v11",
+  "v11GeometryModified": false,
+  "laneCountSchemaVersion": "2026-07-24-lane-count-v0",
+  "outputSchemaTemplate": {
+    "schemaVersion": "2026-07-24-lane-count-v0",
+    "roadSurfaceBaselineVersion": "2026-07-24-fusion-v11",
+    "processingVersion": null,
+    "segmentId": null,
+    "chunkId": null,
+    "temporalPassId": null,
+    "poseSectionId": null,
+    "routeInterval": {
+      "sStartM": null,
+      "sEndM": null
+    },
+    "sameDirectionLaneCount": "unknown",
+    "confidence": null,
+    "supportingDividerIds": [],
+    "boundaryTypes": [],
+    "meanLaneWidthsM": [],
+    "sourceFrameCount": 0,
+    "uncertainty": {
+      "laneLineStdMedian": null,
+      "temporalAgreement": null
+    },
+    "rejectionOrUnknownReason": null,
+    "linkedV11PolygonIds": [],
+    "provenance": {
+      "pipelineStage": null,
+      "createdAt": null,
+      "notes": null
+    }
+  },
+  "signalInventory": {
+    "coordinateSystem": {
+      "frame": "device",
+      "units": "SI (metres, radians where applicable)",
+      "axes": {
+        "x": "forward",
+        "y": "left",
+        "z": "up"
+      },
+      "globalProjection": "GPS-interpolated east/north via existing pose pipeline (not LiveLocationKalman)",
+      "schemaReference": "cereal/log.capnp ModelDataV2, XYZTData"
+    },
+    "signals": {
+      "modelV2": {
+        "exists": true,
+        "unionTag": 73,
+        "fields": [
+          "laneLines",
+          "laneLineProbs",
+          "laneLineStds",
+          "roadEdges",
+          "roadEdgeStds",
+          "position",
+          "orientation",
+          "velocity",
+          "orientationRate",
+          "acceleration",
+          "temporalPose",
+          "meta",
+          "confidence",
+          "leads",
+          "leadsV3",
+          "frameId",
+          "timestampEof",
+          "navEnabled",
+          "locationMonoTime"
+        ],
+        "presentInSegments": {
+          "laneLines": 92,
+          "laneLineProbs": 92,
+          "laneLineStds": 92,
+          "roadEdges": 92,
+          "roadEdgeStds": 92,
+          "position": 92,
+          "orientation": 92,
+          "velocity": 92,
+          "orientationRate": 92,
+          "acceleration": 0,
+          "temporalPose": 0,
+          "meta": 92,
+          "confidence": 0,
+          "leads": 0,
+          "leadsV3": 0,
+          "frameId": 92,
+          "timestampEof": 92,
+          "navEnabled": 0,
+          "locationMonoTime": 0
+        },
+        "observationFrequency": {
+          "totalMessages": 2761,
+          "meanPerSegment": 30.01086956521739,
+          "approximateHz": "~0.5 Hz (one modelV2 per ~2 s segment window)"
+        },
+        "laneLines": {
+          "shape": "List(XYZTData) — per-line x,y,z,t arrays plus optional xStd,yStd,zStd per point",
+          "companionFields": [
+            "laneLineProbs (Float32 per line)",
+            "laneLineStds (Float32 per line, metres)"
+          ],
+          "meanLinesPerFrame": 4,
+          "slotsPerValidFrame": 4,
+          "uncertaintyFields": [
+            "laneLineStds (per line)",
+            "laneLines[].xStd/yStd/zStd (per point, unused by v11)"
+          ],
+          "note": "Not every modelV2 lane line is a physical lane divider — classification required"
+        },
+        "laneLineProbs": {
+          "shape": "Float32 per line index",
+          "units": "classification confidence [0,1]",
+          "meanLengthPerFrame": 4
+        },
+        "laneLineStds": {
+          "shape": "Float32 per line index",
+          "units": "spatial uncertainty (metres)",
+          "meanLengthPerFrame": 4,
+          "usedByV11": false
+        },
+        "roadEdges": {
+          "shape": "List(XYZTData) with roadEdgeStds (Float32 per edge, spatial uncertainty metres)",
+          "meanEdgesPerFrame": 2
+        },
+        "roadEdgeStds": {
+          "shape": "Float32 per road-edge index",
+          "units": "spatial uncertainty (metres)",
+          "meanLengthPerFrame": 2,
+          "usedByV11": true,
+          "v11Note": "Attached to edge geometry in extractModelGeometry; not a probability gate"
+        },
+        "meta": {
+          "fields": [
+            "engagedProb",
+            "desirePrediction",
+            "desireState",
+            "laneChangeState",
+            "laneChangeDirection",
+            "hardBrakePredicted",
+            "disengagePredictions"
+          ],
+          "presentInSegments": {
+            "engagedProb": 92,
+            "desirePrediction": 92,
+            "desireState": 92,
+            "laneChangeState": 0,
+            "laneChangeDirection": 0,
+            "hardBrakePredicted": 0,
+            "disengagePredictions": 0
+          },
+          "laneChangeFields": [
+            "laneChangeState",
+            "laneChangeDirection"
+          ],
+          "desireFields": [
+            "desirePrediction",
+            "desireState"
+          ]
+        },
+        "temporalPose": {
+          "exists": false,
+          "messagesWithField": 0,
+          "shape": "Pose { trans, rot, transStd, rotStd } in device frame",
+          "usedByV11": false
+        },
+        "confidence": {
+          "exists": false,
+          "messagesWithField": 0,
+          "enum": [
+            "red",
+            "yellow",
+            "green"
+          ],
+          "usedByV11": false
+        },
+        "proposedForLaneDividerPipeline": [
+          "laneLines",
+          "laneLineProbs",
+          "laneLineStds",
+          "roadEdges (context only)",
+          "meta.desireState",
+          "meta.laneChangeState",
+          "meta.laneChangeDirection"
+        ],
+        "missingOrUnused": [
+          "laneLineStds decoded but not consumed by v11 fusion pipeline",
+          "per-point xStd/yStd on lane lines decoded but not used in fusion",
+          "no dedicated lane-divider type or colour classification in modelV2",
+          "road edges are geometric context, not lane-divider ground truth"
+        ]
+      },
+      "gps": {
+        "exists": true,
+        "unionTags": [
+          20,
+          47
+        ],
+        "usedByPosePipeline": true,
+        "v11CodePaths": [
+          "lib/process_route.js → interpolateGpsAtTime",
+          "lib/pose_continuity.js"
+        ]
+      },
+      "liveLocationKalman": {
+        "exists": true,
+        "unionTag": 70,
+        "presentInSegments": 92,
+        "usedByPosePipeline": false,
+        "note": "Decoded for audit; process_route uses GPS interpolation only"
+      },
+      "liveCalibration": {
+        "exists": true,
+        "unionTags": [
+          18,
+          19
+        ],
+        "presentInSegments": 92,
+        "fields": [
+          "calStatus",
+          "calPerc",
+          "extrinsicMatrix",
+          "rpyCalib",
+          "validBlocks"
+        ],
+        "usedByGeometryPipeline": false,
+        "stage12bStatus": "BLOCKED — calibration not applied without verified decode"
+      },
+      "cameraOdometry": {
+        "exists": true,
+        "unionTag": 62,
+        "presentInSegments": 92,
+        "usedByPosePipeline": false
+      },
+      "encodeIndex": {
+        "note": "Present for HEVC frame references; Stage 12B blocked on external files",
+        "suitableForLaneCounting": false
+      }
+    },
+    "segmentCoverage": {
+      "physicalSegments": 92,
+      "segmentsWithModelV2": 92,
+      "segmentsWithLaneLineStds": 92,
+      "segmentsWithDesireMeta": 92,
+      "segmentsWithLaneChangeMeta": 0,
+      "segmentsWithTemporalPose": 0
+    },
+    "posePipelineCompatibility": {
+      "compatible": [
+        "laneLines",
+        "roadEdges",
+        "laneLineProbs",
+        "position (model path)"
+      ],
+      "requiresSeparateHandling": [
+        "laneLineStds",
+        "laneChangeState",
+        "desireState",
+        "temporalPose"
+      ],
+      "notUsed": [
+        "liveLocationKalman for projection",
+        "cameraOdometry",
+        "liveCalibration for geometry"
+      ],
+      "frozenBaseline": "2026-07-24-fusion-v11"
+    },
+    "unionTagSummary": {
+      "0": {
+        "name": "initData",
+        "count": 92
+      },
+      "1": {
+        "name": "frameData",
+        "count": 5521
+      },
+      "4": {
+        "name": "tag4",
+        "count": 449
+      },
+      "5": {
+        "name": "tag5",
+        "count": 11040
+      },
+      "6": {
+        "name": "tag6",
+        "count": 55126
+      },
+      "12": {
+        "name": "tag12",
+        "count": 22077
+      },
+      "14": {
+        "name": "tag14",
+        "count": 110400
+      },
+      "16": {
+        "name": "tag16",
+        "count": 3965
+      },
+      "18": {
+        "name": "liveCalibration",
+        "count": 5521
+      },
+      "20": {
+        "name": "gpsLocationDEPRECATED",
+        "count": 5418
+      },
+      "21": {
+        "name": "tag21",
+        "count": 55126
+      },
+      "22": {
+        "name": "tag22",
+        "count": 55126
+      },
+      "23": {
+        "name": "tag23",
+        "count": 22082
+      },
+      "32": {
+        "name": "tag32",
+        "count": 184
+      },
+      "34": {
+        "name": "tag34",
+        "count": 110406
+      },
+      "60": {
+        "name": "tag60",
+        "count": 22082
+      },
+      "62": {
+        "name": "cameraOdometry",
+        "count": 22082
+      },
+      "65": {
+        "name": "tag65",
+        "count": 1105
+      },
+      "66": {
+        "name": "tag66",
+        "count": 7494
+      },
+      "67": {
+        "name": "tag67",
+        "count": 111
+      },
+      "68": {
+        "name": "tag68",
+        "count": 5522
+      },
+      "69": {
+        "name": "tag69",
+        "count": 11043
+      },
+      "70": {
+        "name": "liveLocationKalman",
+        "count": 22082
+      },
+      "71": {
+        "name": "tag71",
+        "count": 184
+      },
+      "72": {
+        "name": "tag72",
+        "count": 5521
+      },
+      "73": {
+        "name": "modelV2",
+        "count": 2761
+      },
+      "74": {
+        "name": "tag74",
+        "count": 110400
+      },
+      "75": {
+        "name": "tag75",
+        "count": 110400
+      },
+      "76": {
+        "name": "tag76",
+        "count": 11040
+      },
+      "77": {
+        "name": "tag77",
+        "count": 435
+      },
+      "78": {
+        "name": "tag78",
+        "count": 11040
+      },
+      "79": {
+        "name": "tag79",
+        "count": 55202
+      },
+      "83": {
+        "name": "tag83",
+        "count": 103
+      },
+      "88": {
+        "name": "tag88",
+        "count": 110400
+      },
+      "90": {
+        "name": "tag90",
+        "count": 11043
+      },
+      "92": {
+        "name": "tag92",
+        "count": 22082
+      },
+      "93": {
+        "name": "tag93",
+        "count": 5521
+      },
+      "95": {
+        "name": "tag95",
+        "count": 110
+      },
+      "96": {
+        "name": "tag96",
+        "count": 5520
+      },
+      "97": {
+        "name": "tag97",
+        "count": 5522
+      },
+      "101": {
+        "name": "tag101",
+        "count": 5521
+      },
+      "104": {
+        "name": "tag104",
+        "count": 2761
+      }
+    }
+  },
+  "datasetEvidence": {
+    "physicalSegments": 92,
+    "totalRouteChunks": 97,
+    "totalModelV2Frames": 2761,
+    "framesWithLaneLines": 2761,
+    "framesWithProbFilteredLines": 2305,
+    "frameCoverageRate": 1,
+    "probFilteredCoverageRate": 0.8348424483882652,
+    "meanLinesPerFrame": {
+      "count": 92,
+      "min": 4,
+      "max": 4,
+      "mean": 4,
+      "median": 4,
+      "p10": 4,
+      "p25": 4,
+      "p75": 4,
+      "p90": 4,
+      "p95": 4
+    },
+    "classificationTotals": {
+      "ego_lane_boundaries": 4381,
+      "probable_adjacent_dividers": 697,
+      "uncertain_outer_lines": 1284,
+      "unclassifiable": 4682
+    },
+    "frameOutcomes": {
+      "two_valid_ego_candidates": 2077,
+      "right_only_valid": 153,
+      "uncertain_confidence": 457,
+      "left_only_valid": 74
+    },
+    "orderCrossings": 0,
+    "missingLineFrames": 0,
+    "continuityGaps": 0,
+    "laneChangeFrames": 0,
+    "roadEdgeIntervalMetrics": {
+      "comparableFrames": 2761,
+      "comparableLineObservations": 11044,
+      "lineObservationsInsideInterval": 8901,
+      "pctLineObservationsInside": 0.8059579862368706,
+      "framesBothRetainedEgoInside": 2076,
+      "framesAtLeastOneRetainedEgoInside": 2304
+    },
+    "edgeAgreement": {
+      "comparableFrames": 2761,
+      "comparableLineObservations": 11044,
+      "lineObservationsInsideInterval": 8901,
+      "pctLineObservationsInside": 0.8059579862368706,
+      "framesBothRetainedEgoInside": 2076,
+      "framesAtLeastOneRetainedEgoInside": 2304
+    },
+    "laneLineProb": {
+      "count": 11044,
+      "min": 0.000011798520063166507,
+      "max": 0.9968453049659729,
+      "mean": 0.5483683542501752,
+      "median": 0.648521900177002,
+      "p10": 0.005423489864915608,
+      "p25": 0.10595688037574291,
+      "p75": 0.9348586648702621,
+      "p90": 0.9758088886737823,
+      "p95": 0.9841277182102204
+    },
+    "laneLineProbHistogram": {
+      "bins": [
+        {
+          "min": 0,
+          "max": 0.1,
+          "label": "0.00-0.10",
+          "count": 2715
+        },
+        {
+          "min": 0.1,
+          "max": 0.25,
+          "label": "0.10-0.25",
+          "count": 842
+        },
+        {
+          "min": 0.25,
+          "max": 0.5,
+          "label": "0.25-0.50",
+          "count": 1125
+        },
+        {
+          "min": 0.5,
+          "max": 0.75,
+          "label": "0.50-0.75",
+          "count": 1487
+        },
+        {
+          "min": 0.75,
+          "max": 0.9,
+          "label": "0.75-0.90",
+          "count": 1466
+        },
+        {
+          "min": 0.9,
+          "max": 1.01,
+          "label": "0.90-1.00",
+          "count": 3409
+        }
+      ],
+      "counts": [
+        2715,
+        842,
+        1125,
+        1487,
+        1466,
+        3409
+      ],
+      "total": 11044
+    },
+    "laneLineStd": {
+      "count": 11044,
+      "min": 0.025367453694343567,
+      "max": 3.59092378616333,
+      "mean": 0.38535094585057855,
+      "median": 0.2941586971282959,
+      "p10": 0.05735213607549667,
+      "p25": 0.09446402452886105,
+      "p75": 0.5135080069303513,
+      "p90": 0.8520474970340732,
+      "p95": 1.0770474314689644
+    },
+    "laneLineStdHistogram": {
+      "bins": [
+        {
+          "min": 0,
+          "max": 0.05,
+          "label": "0.00-0.05",
+          "count": 609
+        },
+        {
+          "min": 0.05,
+          "max": 0.1,
+          "label": "0.05-0.10",
+          "count": 2277
+        },
+        {
+          "min": 0.1,
+          "max": 0.2,
+          "label": "0.10-0.20",
+          "count": 811
+        },
+        {
+          "min": 0.2,
+          "max": 0.4,
+          "label": "0.20-0.40",
+          "count": 3645
+        },
+        {
+          "min": 0.4,
+          "max": 0.8,
+          "label": "0.40-0.80",
+          "count": 2387
+        },
+        {
+          "min": 0.8,
+          "max": 100,
+          "label": "0.80+",
+          "count": 1315
+        }
+      ],
+      "counts": [
+        609,
+        2277,
+        811,
+        3645,
+        2387,
+        1315
+      ],
+      "total": 11044
+    },
+    "roadEdgeStd": {
+      "count": 5522,
+      "min": 0.2303893268108368,
+      "max": 4.695036888122559,
+      "mean": 1.265599083923119,
+      "median": 1.1476659774780273,
+      "p10": 0.36684627532958985,
+      "p25": 0.5302188098430634,
+      "p75": 1.8124230802059174,
+      "p90": 2.383415031433106,
+      "p95": 2.6659029245376584
+    },
+    "egoLaneWidthM": {
+      "count": 89,
+      "min": 2.5480066537857056,
+      "max": 3.6293492317199707,
+      "mean": 2.9859592773941124,
+      "median": 2.9872519969940186,
+      "p10": 2.6867874383926393,
+      "p25": 2.895386219024658,
+      "p75": 3.113632559776306,
+      "p90": 3.201816987991333,
+      "p95": 3.288851594924927
+    },
+    "adjacentLaneWidthM": {
+      "count": 89,
+      "min": 2.5480066537857056,
+      "max": 3.6293492317199707,
+      "mean": 2.9859592773941124,
+      "median": 2.9872519969940186,
+      "p10": 2.6867874383926393,
+      "p25": 2.895386219024658,
+      "p75": 3.113632559776306,
+      "p90": 3.201816987991333,
+      "p95": 3.288851594924927
+    },
+    "laneWidthHistogram": {
+      "bins": [
+        {
+          "min": 0,
+          "max": 2.5,
+          "label": "<2.5",
+          "count": 0
+        },
+        {
+          "min": 2.5,
+          "max": 3,
+          "label": "2.5-3.0",
+          "count": 46
+        },
+        {
+          "min": 3,
+          "max": 3.5,
+          "label": "3.0-3.5",
+          "count": 42
+        },
+        {
+          "min": 3.5,
+          "max": 4,
+          "label": "3.5-4.0",
+          "count": 1
+        },
+        {
+          "min": 4,
+          "max": 5,
+          "label": "4.0-5.0",
+          "count": 0
+        },
+        {
+          "min": 5,
+          "max": 100,
+          "label": "5.0+",
+          "count": 0
+        }
+      ],
+      "counts": [
+        0,
+        46,
+        42,
+        1,
+        0,
+        0
+      ],
+      "total": 89
+    }
+  },
+  "stage15aClassificationAudit": {
+    "assessmentThresholds": {
+      "evalForwardXM": 10,
+      "centerEpsilonM": 0.05,
+      "assessmentMinProb": 0.5,
+      "assessmentMaxStdM": 1.5,
+      "assessmentMinProbHigh": 0.75,
+      "assessmentMinProbLow": 0.5
+    },
+    "v11MinLaneProbUsage": {
+      "value": 0.5,
+      "configField": "minLaneProb",
+      "codePaths": [
+        {
+          "file": "lib/transform.js",
+          "function": "extractModelGeometry",
+          "default": 0.5,
+          "effect": "Filters lane lines before transform; lines with prob < minLaneProb excluded from geometry"
+        },
+        {
+          "file": "lib/transform.js",
+          "function": "transformXyztLine",
+          "default": 0.5,
+          "effect": "Per-line prob check during point projection"
+        },
+        {
+          "file": "lib/process_route.js",
+          "function": "processRoute",
+          "default": 0.5,
+          "effect": "Passed to extractModelGeometry for frame building and fusion input"
+        },
+        {
+          "file": "dataset_audit.js",
+          "function": "DEFAULT_OPTS",
+          "default": 0.5,
+          "effect": "Audit CLI default matching production pipeline"
+        },
+        {
+          "file": "lib/frame_stats.js",
+          "function": "buildFrameStats",
+          "default": 0.5,
+          "effect": "validLaneFrames counting"
+        }
+      ],
+      "note": "Stage 15 assessment tooling reuses the same default when calling extractModelGeometry for prob-filtered frame counts; this matches v11, not a separate Stage 15 invention."
+    },
+    "slotSemantics": [
+      {
+        "index": 0,
+        "totalObservations": 2761,
+        "lateralAtEvalM": {
+          "count": 2761,
+          "min": -6.227065563201904,
+          "max": -0.7754950523376465,
+          "mean": -4.477173629596328,
+          "median": -4.547513484954834,
+          "p10": -5.064057350158691,
+          "p25": -4.841987133026123,
+          "p75": -4.212405204772949,
+          "p90": -3.803293228149414,
+          "p95": -3.4607887268066406
+        },
+        "laneLineProb": {
+          "count": 2761,
+          "min": 0.00008978928963188082,
+          "max": 0.9766384959220886,
+          "mean": 0.4866757705611022,
+          "median": 0.5851303935050964,
+          "p10": 0.01180014107376337,
+          "p25": 0.10814231634140015,
+          "p75": 0.8015105724334717,
+          "p90": 0.8818525075912476,
+          "p95": 0.912554919719696
+        },
+        "laneLineStd": {
+          "count": 2761,
+          "min": 0.15584982931613922,
+          "max": 2.5447051525115967,
+          "mean": 0.4995380313186618,
+          "median": 0.36135685443878174,
+          "p10": 0.24594874680042267,
+          "p25": 0.2814702093601227,
+          "p75": 0.6537047028541565,
+          "p90": 0.9313316941261292,
+          "p95": 1.101477026939392
+        },
+        "sideFrequency": {
+          "leftOfCentre": 0,
+          "rightOfCentre": 2761,
+          "atCentre": 0,
+          "pctLeft": 0,
+          "pctRight": 1
+        },
+        "selectedAsEgoBoundary": 0,
+        "selectedAsAdjacentDivider": 640,
+        "malformedOrMissing": 0,
+        "inferredRole": "predominantly_outer_right"
+      },
+      {
+        "index": 1,
+        "totalObservations": 2761,
+        "lateralAtEvalM": {
+          "count": 2761,
+          "min": -3.716494083404541,
+          "max": 0.7323789596557617,
+          "mean": -1.5876212243108117,
+          "median": -1.6035797595977783,
+          "p10": -1.9693248271942139,
+          "p25": -1.7915143966674805,
+          "p75": -1.3782235383987427,
+          "p90": -1.200758695602417,
+          "p95": -1.0469492673873901
+        },
+        "laneLineProb": {
+          "count": 2761,
+          "min": 0.002459412906318903,
+          "max": 0.9968453049659729,
+          "mean": 0.7717717554162525,
+          "median": 0.9346247911453247,
+          "p10": 0.25231680274009705,
+          "p25": 0.6368823647499084,
+          "p75": 0.9716443419456482,
+          "p90": 0.9844607710838318,
+          "p95": 0.9892893433570862
+        },
+        "laneLineStd": {
+          "count": 2761,
+          "min": 0.025367453694343567,
+          "max": 3.115959405899048,
+          "mean": 0.2419879723351067,
+          "median": 0.09395785629749298,
+          "p10": 0.052484944462776184,
+          "p25": 0.06453812122344971,
+          "p75": 0.2711082696914673,
+          "p90": 0.6501099467277527,
+          "p95": 0.9382835626602173
+        },
+        "sideFrequency": {
+          "leftOfCentre": 10,
+          "rightOfCentre": 2750,
+          "atCentre": 1,
+          "pctLeft": 0.003621876131836291,
+          "pctRight": 0.9960159362549801
+        },
+        "selectedAsEgoBoundary": 2230,
+        "selectedAsAdjacentDivider": 0,
+        "malformedOrMissing": 0,
+        "inferredRole": "predominantly_inner_right_ego_candidate"
+      },
+      {
+        "index": 2,
+        "totalObservations": 2761,
+        "lateralAtEvalM": {
+          "count": 2761,
+          "min": -0.5317950248718262,
+          "max": 3.7910852432250977,
+          "mean": 1.446321001608965,
+          "median": 1.3937222957611084,
+          "p10": 1.121260404586792,
+          "p25": 1.245126485824585,
+          "p75": 1.5811916589736938,
+          "p90": 1.81132173538208,
+          "p95": 2.1164133548736572
+        },
+        "laneLineProb": {
+          "count": 2761,
+          "min": 0.003308379091322422,
+          "max": 0.9948632121086121,
+          "mean": 0.7506495872166713,
+          "median": 0.9266922473907471,
+          "p10": 0.21599166095256805,
+          "p25": 0.5655624866485596,
+          "p75": 0.9714928865432739,
+          "p90": 0.9833006858825684,
+          "p95": 0.9874376654624939
+        },
+        "laneLineStd": {
+          "count": 2761,
+          "min": 0.02589338831603527,
+          "max": 3.59092378616333,
+          "mean": 0.2544723934838356,
+          "median": 0.09527444839477539,
+          "p10": 0.0455356128513813,
+          "p25": 0.05834542214870453,
+          "p75": 0.3426280617713928,
+          "p90": 0.598226010799408,
+          "p95": 0.9448841214179993
+        },
+        "sideFrequency": {
+          "leftOfCentre": 2757,
+          "rightOfCentre": 3,
+          "atCentre": 1,
+          "pctLeft": 0.9985512495472655,
+          "pctRight": 0.0010865628395508873
+        },
+        "selectedAsEgoBoundary": 2151,
+        "selectedAsAdjacentDivider": 0,
+        "malformedOrMissing": 0,
+        "inferredRole": "predominantly_inner_left_ego_candidate"
+      },
+      {
+        "index": 3,
+        "totalObservations": 2761,
+        "lateralAtEvalM": {
+          "count": 2761,
+          "min": 0.9215178489685059,
+          "max": 6.189980506896973,
+          "mean": 4.25331318071898,
+          "median": 4.286559581756592,
+          "p10": 3.6887271404266357,
+          "p25": 3.9946255683898926,
+          "p75": 4.557629585266113,
+          "p90": 4.812716484069824,
+          "p95": 4.96022891998291
+        },
+        "laneLineProb": {
+          "count": 2761,
+          "min": 0.000011798520063166507,
+          "max": 0.9478994607925415,
+          "mean": 0.18437630380667483,
+          "median": 0.034507691860198975,
+          "p10": 0.0009023567545227706,
+          "p25": 0.0027489406056702137,
+          "p75": 0.28890132904052734,
+          "p90": 0.6650999188423157,
+          "p95": 0.8050355315208435
+        },
+        "laneLineStd": {
+          "count": 2761,
+          "min": 0.17606578767299652,
+          "max": 3.1905784606933594,
+          "mean": 0.5454053862647101,
+          "median": 0.40363362431526184,
+          "p10": 0.2582724988460541,
+          "p25": 0.30280712246894836,
+          "p75": 0.6952348947525024,
+          "p90": 0.9499616026878357,
+          "p95": 1.2435134649276733
+        },
+        "sideFrequency": {
+          "leftOfCentre": 2761,
+          "rightOfCentre": 0,
+          "atCentre": 0,
+          "pctLeft": 1,
+          "pctRight": 0
+        },
+        "selectedAsEgoBoundary": 0,
+        "selectedAsAdjacentDivider": 57,
+        "malformedOrMissing": 0,
+        "inferredRole": "predominantly_outer_left"
+      }
+    ],
+    "candidateAvailability": {
+      "both_valid": 2077,
+      "left_only_valid": 74,
+      "right_only_valid": 153,
+      "neither_valid": 457
+    },
+    "candidateAvailabilityRates": {
+      "both_valid": 0.7522636725823977,
+      "left_only_valid": 0.026801883375588555,
+      "right_only_valid": 0.055414704817095255,
+      "neither_valid": 0.1655197392249185
+    },
+    "frameAssessmentReasons": {
+      "accepted_both": 2077,
+      "rejected_left_uncertainty": 2,
+      "rejected_left_confidence": 152,
+      "rejected_both_confidence": 456,
+      "rejected_right_confidence": 71,
+      "rejected_right_uncertainty": 3
+    },
+    "frameAssessmentReasonRates": {
+      "accepted_both": 0.7522636725823977,
+      "rejected_left_uncertainty": 0.0007243752263672582,
+      "rejected_left_confidence": 0.055052517203911626,
+      "rejected_both_confidence": 0.16515755161173487,
+      "rejected_right_confidence": 0.02571532053603767,
+      "rejected_right_uncertainty": 0.0010865628395508873
+    },
+    "confidenceFailureSideBreakdown": {
+      "left_only": 152,
+      "right_only": 71,
+      "both": 456
+    },
+    "frameOutcomes": {
+      "two_valid_ego_candidates": 2077,
+      "right_only_valid": 153,
+      "uncertain_confidence": 457,
+      "left_only_valid": 74
+    },
+    "frameOutcomeRates": {
+      "two_valid_ego_candidates": 0.7522636725823977,
+      "right_only_valid": 0.055414704817095255,
+      "uncertain_confidence": 0.1655197392249185,
+      "left_only_valid": 0.026801883375588555
+    },
+    "classificationTotals": {
+      "ego_lane_boundaries": 4381,
+      "probable_adjacent_dividers": 697,
+      "uncertain_outer_lines": 1284,
+      "unclassifiable": 4682
+    },
+    "candidateValidityMatrix": {
+      "rows": [
+        "left_valid",
+        "left_invalid"
+      ],
+      "cols": [
+        "right_valid",
+        "right_invalid"
+      ],
+      "cells": {
+        "left_valid_right_valid": {
+          "frameCount": 2077,
+          "retainedClassificationCount": 4154,
+          "mostCommonAssessmentReason": "accepted_both",
+          "mostCommonAssessmentReasonCount": 2077,
+          "leftSlotIndexDistribution": {
+            "2": 2077
+          },
+          "rightSlotIndexDistribution": {
+            "1": 2077
+          },
+          "prob": {
+            "count": 4154,
+            "min": 0.5005250573158264,
+            "max": 0.9968453049659729,
+            "mean": 0.9103165383257428,
+            "median": 0.9556026756763458,
+            "p10": 0.73107208609581,
+            "p25": 0.9035567045211792,
+            "p75": 0.9766692221164703,
+            "p90": 0.9860544919967652,
+            "p95": 0.9895562678575516
+          },
+          "std": {
+            "count": 4154,
+            "min": 0.025367453694343567,
+            "max": 1.4124071598052979,
+            "mean": 0.125206987080727,
+            "median": 0.07359611615538597,
+            "p10": 0.04659869521856308,
+            "p25": 0.056332217529416084,
+            "p75": 0.12172549962997437,
+            "p90": 0.25422866642475145,
+            "p95": 0.3905828326940535
+          }
+        },
+        "left_valid_right_invalid": {
+          "frameCount": 74,
+          "retainedClassificationCount": 74,
+          "mostCommonAssessmentReason": "rejected_right_confidence",
+          "mostCommonAssessmentReasonCount": 71,
+          "leftSlotIndexDistribution": {
+            "2": 74
+          },
+          "rightSlotIndexDistribution": {},
+          "prob": {
+            "count": 74,
+            "min": 0.5064002275466919,
+            "max": 0.9717893600463867,
+            "mean": 0.6656307916383486,
+            "median": 0.6252178251743317,
+            "p10": 0.5154350876808167,
+            "p25": 0.5405882894992828,
+            "p75": 0.7865865975618362,
+            "p90": 0.8751266062259675,
+            "p95": 0.9024011254310608
+          },
+          "std": {
+            "count": 74,
+            "min": 0.06663570553064346,
+            "max": 1.3718798160552979,
+            "mean": 0.40292561638194163,
+            "median": 0.3295973390340805,
+            "p10": 0.13397074043750765,
+            "p25": 0.17252841591835022,
+            "p75": 0.4482005313038826,
+            "p90": 0.7921819388866425,
+            "p95": 1.207815808057784
+          }
+        },
+        "left_invalid_right_valid": {
+          "frameCount": 153,
+          "retainedClassificationCount": 153,
+          "mostCommonAssessmentReason": "rejected_left_confidence",
+          "mostCommonAssessmentReasonCount": 151,
+          "leftSlotIndexDistribution": {},
+          "rightSlotIndexDistribution": {
+            "1": 153
+          },
+          "prob": {
+            "count": 153,
+            "min": 0.5013099908828735,
+            "max": 0.9862944483757019,
+            "mean": 0.7237789802301943,
+            "median": 0.6789163947105408,
+            "p10": 0.5273766875267029,
+            "p25": 0.5860733389854431,
+            "p75": 0.8650565147399902,
+            "p90": 0.9659877896308899,
+            "p95": 0.9785025238990783
+          },
+          "std": {
+            "count": 153,
+            "min": 0.06022345647215843,
+            "max": 0.7920761108398438,
+            "mean": 0.22744123854376133,
+            "median": 0.20936425030231476,
+            "p10": 0.08570896834135056,
+            "p25": 0.1281844824552536,
+            "p75": 0.2551332712173462,
+            "p90": 0.3999901175498963,
+            "p95": 0.527691924571991
+          }
+        },
+        "left_invalid_right_invalid": {
+          "frameCount": 457,
+          "retainedClassificationCount": 0,
+          "mostCommonAssessmentReason": "rejected_both_confidence",
+          "mostCommonAssessmentReasonCount": 456,
+          "leftSlotIndexDistribution": {},
+          "rightSlotIndexDistribution": {},
+          "prob": {
+            "count": 0,
+            "min": null,
+            "max": null,
+            "mean": null,
+            "median": null,
+            "p10": null,
+            "p25": null,
+            "p75": null,
+            "p90": null,
+            "p95": null
+          },
+          "std": {
+            "count": 0,
+            "min": null,
+            "max": null,
+            "mean": null,
+            "median": null,
+            "p10": null,
+            "p25": null,
+            "p75": null,
+            "p90": null,
+            "p95": null
+          }
+        }
+      },
+      "rowTotals": {
+        "left_valid": 2151,
+        "left_invalid": 610,
+        "right_valid": 2230,
+        "right_invalid": 531
+      },
+      "columnTotals": {
+        "right_valid": 2230,
+        "right_invalid": 531
+      },
+      "grandTotal": 2761
+    },
+    "egoBoundaryReconciliation": {
+      "totalFrames": 2761,
+      "totalLineObservations": 11044,
+      "egoBoundaryClassifications": 4381,
+      "retainedEgoClassifications": 4381,
+      "egoBoundariesPerFrameMean": 1.586743933357479,
+      "bothValidFrames": 2077,
+      "bothValidRetainedClassifications": 4154,
+      "singleValidFrames": 227,
+      "singleValidRetainedClassifications": 227,
+      "reconstructedRetainedClassifications": 4381,
+      "reconstructionFormula": "2 × both_valid + left_only_valid + right_only_valid",
+      "reconstructionMatchesTotal": true,
+      "exactlyTwoEgoPerFrame": false,
+      "explanation": "Retained ego classifications reconcile: 2×2077 + 74 + 153 = 4381. Single-valid frames (227) account for classifications beyond both-valid frames."
+    },
+    "rightBoundaryCorrection": {
+      "framesCompared": 2761,
+      "correctionDiffs": {
+        "indexChanged": 2761,
+        "lateralDistanceChanged": 0,
+        "unchanged": 0
+      },
+      "sampleChanges": [
+        {
+          "logMonoTime": "17714651795",
+          "before": {
+            "rightIndex": 0,
+            "rightLateralM": -4.556737899780273
+          },
+          "after": {
+            "rightIndex": 1,
+            "rightLateralM": -2.1234025955200195
+          },
+          "outerRightIndex": 0
+        },
+        {
+          "logMonoTime": "19713793955",
+          "before": {
+            "rightIndex": 0,
+            "rightLateralM": -4.618068695068359
+          },
+          "after": {
+            "rightIndex": 1,
+            "rightLateralM": -2.024599313735962
+          },
+          "outerRightIndex": 0
+        },
+        {
+          "logMonoTime": "21721616698",
+          "before": {
+            "rightIndex": 0,
+            "rightLateralM": -5.035489082336426
+          },
+          "after": {
+            "rightIndex": 1,
+            "rightLateralM": -1.8408277034759521
+          },
+          "outerRightIndex": 0
+        },
+        {
+          "logMonoTime": "23718118690",
+          "before": {
+            "rightIndex": 0,
+            "rightLateralM": -4.5889482498168945
+          },
+          "after": {
+            "rightIndex": 1,
+            "rightLateralM": -1.5995128154754639
+          },
+          "outerRightIndex": 0
+        },
+        {
+          "logMonoTime": "25716847558",
+          "before": {
+            "rightIndex": 0,
+            "rightLateralM": -4.283385276794434
+          },
+          "after": {
+            "rightIndex": 1,
+            "rightLateralM": -1.4907408952713013
+          },
+          "outerRightIndex": 0
+        }
+      ],
+      "rule": "Before: outermost right (most negative y). After: nearest eligible right-side line (max y among y<0)."
+    },
+    "roadEdgeIntervalMetrics": {
+      "evalForwardXM": 10,
+      "comparableFrames": 2761,
+      "comparableLineObservations": 11044,
+      "lineObservationsInsideInterval": 8901,
+      "pctLineObservationsInside": 0.8059579862368706,
+      "framesBothRetainedEgoInside": 2076,
+      "framesBothRetainedEgoInsideDenominator": 2077,
+      "framesBothRetainedEgoInsideRate": 0.9995185363505056,
+      "framesAtLeastOneRetainedEgoInside": 2304,
+      "framesAtLeastOneRetainedEgoInsideDenominator": 2304,
+      "framesAtLeastOneRetainedEgoInsideRate": 1,
+      "framesWithCrossingOrMalformedEdges": 0,
+      "breakdown": {
+        "byLineIndex": {
+          "0": {
+            "comparableLineObservations": 2761,
+            "insideInterval": 2167,
+            "pctInside": 0.7848605577689243
+          },
+          "1": {
+            "comparableLineObservations": 2761,
+            "insideInterval": 2748,
+            "pctInside": 0.9952915610286128
+          },
+          "2": {
+            "comparableLineObservations": 2761,
+            "insideInterval": 2746,
+            "pctInside": 0.9945671858022456
+          },
+          "3": {
+            "comparableLineObservations": 2761,
+            "insideInterval": 1240,
+            "pctInside": 0.4491126403477001
+          }
+        },
+        "byInferredSlotRole": {
+          "predominantly_outer_right": {
+            "comparableLineObservations": 2761,
+            "insideInterval": 2167,
+            "pctInside": 0.7848605577689243
+          },
+          "predominantly_inner_right_ego_candidate": {
+            "comparableLineObservations": 2761,
+            "insideInterval": 2748,
+            "pctInside": 0.9952915610286128
+          },
+          "predominantly_inner_left_ego_candidate": {
+            "comparableLineObservations": 2761,
+            "insideInterval": 2746,
+            "pctInside": 0.9945671858022456
+          },
+          "predominantly_outer_left": {
+            "comparableLineObservations": 2761,
+            "insideInterval": 1240,
+            "pctInside": 0.4491126403477001
+          }
+        },
+        "byHeuristicClass": {
+          "unclassifiable": {
+            "comparableLineObservations": 4682,
+            "insideInterval": 2580,
+            "pctInside": 0.5510465612985903
+          },
+          "ego_lane_boundaries": {
+            "comparableLineObservations": 4381,
+            "insideInterval": 4380,
+            "pctInside": 0.9997717416115042
+          },
+          "uncertain_outer_lines": {
+            "comparableLineObservations": 1284,
+            "insideInterval": 1249,
+            "pctInside": 0.9727414330218068
+          },
+          "probable_adjacent_dividers": {
+            "comparableLineObservations": 697,
+            "insideInterval": 692,
+            "pctInside": 0.9928263988522238
+          }
+        },
+        "byEgoCandidateStatus": {
+          "not_ego_candidate": {
+            "comparableLineObservations": 5523,
+            "insideInterval": 3429,
+            "pctInside": 0.6208582292232482
+          },
+          "valid_retained_ego": {
+            "comparableLineObservations": 4381,
+            "insideInterval": 4380,
+            "pctInside": 0.9997717416115042
+          },
+          "rejected_ego_candidate": {
+            "comparableLineObservations": 1140,
+            "insideInterval": 1092,
+            "pctInside": 0.9578947368421052
+          }
+        },
+        "totals": {
+          "comparableLineObservations": 11044,
+          "insideInterval": 8901
+        }
+      },
+      "note": "Line-level inside uses all comparable observations. Frame-level inside metrics use retained valid ego candidates only; denominators are availability-based."
+    },
+    "accountingInvariants": {
+      "passed": true,
+      "errors": []
+    }
+  },
+  "v11MinLaneProbUsage": {
+    "value": 0.5,
+    "configField": "minLaneProb",
+    "codePaths": [
+      {
+        "file": "lib/transform.js",
+        "function": "extractModelGeometry",
+        "default": 0.5,
+        "effect": "Filters lane lines before transform; lines with prob < minLaneProb excluded from geometry"
+      },
+      {
+        "file": "lib/transform.js",
+        "function": "transformXyztLine",
+        "default": 0.5,
+        "effect": "Per-line prob check during point projection"
+      },
+      {
+        "file": "lib/process_route.js",
+        "function": "processRoute",
+        "default": 0.5,
+        "effect": "Passed to extractModelGeometry for frame building and fusion input"
+      },
+      {
+        "file": "dataset_audit.js",
+        "function": "DEFAULT_OPTS",
+        "default": 0.5,
+        "effect": "Audit CLI default matching production pipeline"
+      },
+      {
+        "file": "lib/frame_stats.js",
+        "function": "buildFrameStats",
+        "default": 0.5,
+        "effect": "validLaneFrames counting"
+      }
+    ],
+    "note": "Stage 15 assessment tooling reuses the same default when calling extractModelGeometry for prob-filtered frame counts; this matches v11, not a separate Stage 15 invention."
+  },
+  "segmentSummaries": [
+    {
+      "segmentId": 0,
+      "filename": "qlog_f449c_0.bz2",
+      "modelV2FrameCount": 31,
+      "chunkCount": 1,
+      "totalV11Polygons": 1,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.9192839860916138,
+      "laneLineStdMedian": 0.244474396109581,
+      "egoLaneWidthMedian": 3.149672746658325,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 62,
+        "probable_adjacent_dividers": 8,
+        "uncertain_outer_lines": 46,
+        "unclassifiable": 8
+      },
+      "edgeAgreementInsideRate": 0.9758064516129032,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 31
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 21,
+          "polygonCount": 1,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 1,
+      "filename": "qlog_f449c_1.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 2,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.772620439529419,
+      "laneLineStdMedian": 0.29978808760643005,
+      "egoLaneWidthMedian": 3.132827877998352,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 59,
+        "probable_adjacent_dividers": 2,
+        "uncertain_outer_lines": 30,
+        "unclassifiable": 29
+      },
+      "edgeAgreementInsideRate": 0.825,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 29,
+        "right_only_valid": 1
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 2,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 2,
+      "filename": "qlog_f449c_2.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 7,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.8666666666666667,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.3765741437673569,
+      "laneLineStdMedian": 0.3735027462244034,
+      "egoLaneWidthMedian": 2.9081742763519287,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 47,
+        "probable_adjacent_dividers": 0,
+        "uncertain_outer_lines": 6,
+        "unclassifiable": 67
+      },
+      "edgeAgreementInsideRate": 0.725,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 21,
+        "right_only_valid": 4,
+        "uncertain_confidence": 4,
+        "left_only_valid": 1
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 7,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 3,
+      "filename": "qlog_f449c_3.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 9,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.9666666666666667,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.605987161397934,
+      "laneLineStdMedian": 0.40159451961517334,
+      "egoLaneWidthMedian": 2.612815499305725,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 53,
+        "probable_adjacent_dividers": 1,
+        "uncertain_outer_lines": 22,
+        "unclassifiable": 44
+      },
+      "edgeAgreementInsideRate": 0.8333333333333334,
+      "frameOutcomes": {
+        "uncertain_confidence": 1,
+        "two_valid_ego_candidates": 24,
+        "left_only_valid": 4,
+        "right_only_valid": 1
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 9,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 4,
+      "filename": "qlog_f449c_4.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 8,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.6,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.2444223240017891,
+      "laneLineStdMedian": 0.6510573923587799,
+      "egoLaneWidthMedian": 2.6887816190719604,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 33,
+        "probable_adjacent_dividers": 0,
+        "uncertain_outer_lines": 5,
+        "unclassifiable": 82
+      },
+      "edgeAgreementInsideRate": 0.8166666666666667,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 15,
+        "left_only_valid": 1,
+        "uncertain_confidence": 12,
+        "right_only_valid": 2
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 8,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 5,
+      "filename": "qlog_f449c_5.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 9,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.8,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.41440311074256897,
+      "laneLineStdMedian": 0.5581588745117188,
+      "egoLaneWidthMedian": 2.6848374605178833,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 37,
+        "probable_adjacent_dividers": 0,
+        "uncertain_outer_lines": 7,
+        "unclassifiable": 76
+      },
+      "edgeAgreementInsideRate": 0.8166666666666667,
+      "frameOutcomes": {
+        "right_only_valid": 2,
+        "uncertain_confidence": 6,
+        "two_valid_ego_candidates": 13,
+        "left_only_valid": 9
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 9,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 6,
+      "filename": "qlog_f449c_6.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 2,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.23333333333333334,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.14102453738451004,
+      "laneLineStdMedian": 0.7318313419818878,
+      "egoLaneWidthMedian": 2.5480066537857056,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 8,
+        "probable_adjacent_dividers": 0,
+        "uncertain_outer_lines": 0,
+        "unclassifiable": 112
+      },
+      "edgeAgreementInsideRate": 0.6916666666666667,
+      "frameOutcomes": {
+        "uncertain_confidence": 23,
+        "right_only_valid": 6,
+        "two_valid_ego_candidates": 1
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 2,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 7,
+      "filename": "qlog_f449c_7.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 2,
+      "totalV11Polygons": 7,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.3333333333333333,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.021681630983948708,
+      "laneLineStdMedian": 0.7191890776157379,
+      "egoLaneWidthMedian": 2.5811305046081543,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 19,
+        "probable_adjacent_dividers": 0,
+        "uncertain_outer_lines": 6,
+        "unclassifiable": 95
+      },
+      "edgeAgreementInsideRate": 0.7166666666666667,
+      "frameOutcomes": {
+        "uncertain_confidence": 20,
+        "two_valid_ego_candidates": 9,
+        "left_only_valid": 1
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 9,
+          "polygonCount": 1,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        },
+        {
+          "chunkId": 1,
+          "frameCount": 21,
+          "polygonCount": 6,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 8,
+      "filename": "qlog_f449c_8.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 6,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.6,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.2507932484149933,
+      "laneLineStdMedian": 0.54194176197052,
+      "egoLaneWidthMedian": 2.7297170162200928,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 33,
+        "probable_adjacent_dividers": 0,
+        "uncertain_outer_lines": 7,
+        "unclassifiable": 80
+      },
+      "edgeAgreementInsideRate": 0.7166666666666667,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 15,
+        "left_only_valid": 1,
+        "right_only_valid": 2,
+        "uncertain_confidence": 12
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 6,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 9,
+      "filename": "qlog_f449c_9.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 0,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.41050246357917786,
+      "laneLineStdMedian": 0.4261685162782669,
+      "egoLaneWidthMedian": 2.6284193992614746,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 33,
+        "probable_adjacent_dividers": 0,
+        "uncertain_outer_lines": 2,
+        "unclassifiable": 85
+      },
+      "edgeAgreementInsideRate": 0.8666666666666667,
+      "frameOutcomes": {
+        "right_only_valid": 27,
+        "two_valid_ego_candidates": 3
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 0,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 10,
+      "filename": "qlog_f449c_10.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 15,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.5702345669269562,
+      "laneLineStdMedian": 0.335738942027092,
+      "egoLaneWidthMedian": 2.7374613285064697,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 48,
+        "probable_adjacent_dividers": 1,
+        "uncertain_outer_lines": 16,
+        "unclassifiable": 55
+      },
+      "edgeAgreementInsideRate": 0.8916666666666667,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 18,
+        "right_only_valid": 12
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 15,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 11,
+      "filename": "qlog_f449c_11.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 4,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.8333333333333334,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.2840510159730911,
+      "laneLineStdMedian": 0.46291397511959076,
+      "egoLaneWidthMedian": 3.6293492317199707,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 45,
+        "probable_adjacent_dividers": 0,
+        "uncertain_outer_lines": 3,
+        "unclassifiable": 72
+      },
+      "edgeAgreementInsideRate": 0.7333333333333333,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 20,
+        "uncertain_confidence": 5,
+        "right_only_valid": 5
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 4,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 12,
+      "filename": "qlog_f449c_12.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 15,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.8738413751125336,
+      "laneLineStdMedian": 0.24562624841928482,
+      "egoLaneWidthMedian": 2.8106632828712463,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 18,
+        "uncertain_outer_lines": 8,
+        "unclassifiable": 34
+      },
+      "edgeAgreementInsideRate": 0.7916666666666666,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 15,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 13,
+      "filename": "qlog_f449c_13.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 5,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.9004062116146088,
+      "laneLineStdMedian": 0.18642735108733177,
+      "egoLaneWidthMedian": 2.79887056350708,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 6,
+        "uncertain_outer_lines": 24,
+        "unclassifiable": 30
+      },
+      "edgeAgreementInsideRate": 0.75,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 5,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 14,
+      "filename": "qlog_f449c_14.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 1,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.8970318138599396,
+      "laneLineStdMedian": 0.1910645142197609,
+      "egoLaneWidthMedian": 2.927399516105652,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 20,
+        "uncertain_outer_lines": 9,
+        "unclassifiable": 31
+      },
+      "edgeAgreementInsideRate": 0.75,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 1,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 15,
+      "filename": "qlog_f449c_15.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 1,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.9261601269245148,
+      "laneLineStdMedian": 0.1454487331211567,
+      "egoLaneWidthMedian": 3.012616276741028,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 26,
+        "uncertain_outer_lines": 4,
+        "unclassifiable": 30
+      },
+      "edgeAgreementInsideRate": 0.75,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 1,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 16,
+      "filename": "qlog_f449c_16.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 9,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.9343926906585693,
+      "laneLineStdMedian": 0.1396208293735981,
+      "egoLaneWidthMedian": 3.082652747631073,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 22,
+        "uncertain_outer_lines": 8,
+        "unclassifiable": 30
+      },
+      "edgeAgreementInsideRate": 0.75,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 9,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 17,
+      "filename": "qlog_f449c_17.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 0,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.888982355594635,
+      "laneLineStdMedian": 0.1874721571803093,
+      "egoLaneWidthMedian": 2.922199785709381,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 21,
+        "uncertain_outer_lines": 8,
+        "unclassifiable": 31
+      },
+      "edgeAgreementInsideRate": 0.75,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 0,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 18,
+      "filename": "qlog_f449c_18.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 4,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.8537251353263855,
+      "laneLineStdMedian": 0.22416576743125916,
+      "egoLaneWidthMedian": 2.9106028079986572,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 13,
+        "uncertain_outer_lines": 18,
+        "unclassifiable": 29
+      },
+      "edgeAgreementInsideRate": 0.75,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 4,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 19,
+      "filename": "qlog_f449c_19.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 2,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.9207274615764618,
+      "laneLineStdMedian": 0.17612764984369278,
+      "egoLaneWidthMedian": 3.1727733612060547,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 31,
+        "uncertain_outer_lines": 25,
+        "unclassifiable": 4
+      },
+      "edgeAgreementInsideRate": 1,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 2,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 20,
+      "filename": "qlog_f449c_20.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 12,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.8677691221237183,
+      "laneLineStdMedian": 0.28587184846401215,
+      "egoLaneWidthMedian": 3.063897490501404,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 58,
+        "probable_adjacent_dividers": 3,
+        "uncertain_outer_lines": 48,
+        "unclassifiable": 11
+      },
+      "edgeAgreementInsideRate": 0.85,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 28,
+        "right_only_valid": 2
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 12,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 22,
+      "filename": "qlog_f449c_22.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 4,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.5333333333333333,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.20819254964590073,
+      "laneLineStdMedian": 0.6201229393482208,
+      "egoLaneWidthMedian": 2.780034840106964,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 26,
+        "probable_adjacent_dividers": 0,
+        "uncertain_outer_lines": 9,
+        "unclassifiable": 85
+      },
+      "edgeAgreementInsideRate": 0.85,
+      "frameOutcomes": {
+        "uncertain_confidence": 14,
+        "right_only_valid": 5,
+        "two_valid_ego_candidates": 10,
+        "left_only_valid": 1
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 4,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 23,
+      "filename": "qlog_f449c_23.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 3,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.4666666666666667,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.23448260873556137,
+      "laneLineStdMedian": 0.6602087318897247,
+      "egoLaneWidthMedian": 2.9872519969940186,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 27,
+        "probable_adjacent_dividers": 0,
+        "uncertain_outer_lines": 6,
+        "unclassifiable": 87
+      },
+      "edgeAgreementInsideRate": 0.8583333333333333,
+      "frameOutcomes": {
+        "uncertain_confidence": 16,
+        "right_only_valid": 1,
+        "two_valid_ego_candidates": 13
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 3,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 24,
+      "filename": "qlog_f449c_24.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 11,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.8,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.43888841569423676,
+      "laneLineStdMedian": 0.43118828535079956,
+      "egoLaneWidthMedian": 2.8491841554641724,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 45,
+        "probable_adjacent_dividers": 5,
+        "uncertain_outer_lines": 6,
+        "unclassifiable": 64
+      },
+      "edgeAgreementInsideRate": 0.825,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 21,
+        "right_only_valid": 3,
+        "uncertain_confidence": 6
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 11,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 25,
+      "filename": "qlog_f449c_25.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 2,
+      "totalV11Polygons": 4,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.5666666666666667,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.12704527378082275,
+      "laneLineStdMedian": 0.6362192928791046,
+      "egoLaneWidthMedian": 2.658353328704834,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 24,
+        "probable_adjacent_dividers": 0,
+        "uncertain_outer_lines": 5,
+        "unclassifiable": 91
+      },
+      "edgeAgreementInsideRate": 0.7916666666666666,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 7,
+        "uncertain_confidence": 13,
+        "right_only_valid": 2,
+        "left_only_valid": 8
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 28,
+          "polygonCount": 4,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        },
+        {
+          "chunkId": 1,
+          "frameCount": 2,
+          "polygonCount": 0,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 26,
+      "filename": "qlog_f449c_26.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 3,
+      "totalV11Polygons": 9,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.6666666666666666,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.1983940377831459,
+      "laneLineStdMedian": 0.6080315113067627,
+      "egoLaneWidthMedian": 3.359591841697693,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 29,
+        "probable_adjacent_dividers": 0,
+        "uncertain_outer_lines": 1,
+        "unclassifiable": 90
+      },
+      "edgeAgreementInsideRate": 0.6916666666666667,
+      "frameOutcomes": {
+        "uncertain_confidence": 10,
+        "right_only_valid": 7,
+        "two_valid_ego_candidates": 9,
+        "left_only_valid": 4
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 2,
+          "polygonCount": 0,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        },
+        {
+          "chunkId": 1,
+          "frameCount": 1,
+          "polygonCount": 0,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        },
+        {
+          "chunkId": 2,
+          "frameCount": 27,
+          "polygonCount": 9,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 27,
+      "filename": "qlog_f449c_27.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 6,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.8333333333333334,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.32924653589725494,
+      "laneLineStdMedian": 0.4579343944787979,
+      "egoLaneWidthMedian": 2.663182497024536,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 32,
+        "probable_adjacent_dividers": 1,
+        "uncertain_outer_lines": 14,
+        "unclassifiable": 73
+      },
+      "edgeAgreementInsideRate": 0.75,
+      "frameOutcomes": {
+        "right_only_valid": 18,
+        "uncertain_confidence": 5,
+        "two_valid_ego_candidates": 7
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 6,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 28,
+      "filename": "qlog_f449c_28.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 2,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.7853846251964569,
+      "laneLineStdMedian": 0.23728207498788834,
+      "egoLaneWidthMedian": 3.054006338119507,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 57,
+        "probable_adjacent_dividers": 10,
+        "uncertain_outer_lines": 23,
+        "unclassifiable": 30
+      },
+      "edgeAgreementInsideRate": 0.95,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 27,
+        "right_only_valid": 3
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 2,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 29,
+      "filename": "qlog_f449c_29.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 1,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.8845626711845398,
+      "laneLineStdMedian": 0.200033999979496,
+      "egoLaneWidthMedian": 3.0616143941879272,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 13,
+        "uncertain_outer_lines": 15,
+        "unclassifiable": 32
+      },
+      "edgeAgreementInsideRate": 0.85,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 1,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 30,
+      "filename": "qlog_f449c_30.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 9,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.9040713012218475,
+      "laneLineStdMedian": 0.14979928731918335,
+      "egoLaneWidthMedian": 2.9230483770370483,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 15,
+        "uncertain_outer_lines": 13,
+        "unclassifiable": 32
+      },
+      "edgeAgreementInsideRate": 0.75,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 9,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 31,
+      "filename": "qlog_f449c_31.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 0,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.9061634838581085,
+      "laneLineStdMedian": 0.19266051054000854,
+      "egoLaneWidthMedian": 3.0427863597869873,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 7,
+        "uncertain_outer_lines": 19,
+        "unclassifiable": 34
+      },
+      "edgeAgreementInsideRate": 0.75,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 0,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 32,
+      "filename": "qlog_f449c_32.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 2,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.920814037322998,
+      "laneLineStdMedian": 0.14356469362974167,
+      "egoLaneWidthMedian": 3.1388502717018127,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 23,
+        "uncertain_outer_lines": 7,
+        "unclassifiable": 30
+      },
+      "edgeAgreementInsideRate": 0.75,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 2,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 33,
+      "filename": "qlog_f449c_33.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 9,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.8889681398868561,
+      "laneLineStdMedian": 0.1737334057688713,
+      "egoLaneWidthMedian": 3.0661516785621643,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 25,
+        "uncertain_outer_lines": 5,
+        "unclassifiable": 30
+      },
+      "edgeAgreementInsideRate": 0.75,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 9,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 34,
+      "filename": "qlog_f449c_34.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 7,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.8659783005714417,
+      "laneLineStdMedian": 0.14874528720974922,
+      "egoLaneWidthMedian": 2.8645602464675903,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 12,
+        "uncertain_outer_lines": 18,
+        "unclassifiable": 30
+      },
+      "edgeAgreementInsideRate": 0.75,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 7,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 35,
+      "filename": "qlog_f449c_35.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 7,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.9115281701087952,
+      "laneLineStdMedian": 0.1884036660194397,
+      "egoLaneWidthMedian": 3.095175623893738,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 24,
+        "uncertain_outer_lines": 5,
+        "unclassifiable": 31
+      },
+      "edgeAgreementInsideRate": 0.75,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 7,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 36,
+      "filename": "qlog_f449c_36.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 8,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.9156002700328827,
+      "laneLineStdMedian": 0.123317401856184,
+      "egoLaneWidthMedian": 3.0589455366134644,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 17,
+        "uncertain_outer_lines": 13,
+        "unclassifiable": 30
+      },
+      "edgeAgreementInsideRate": 0.75,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 8,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 37,
+      "filename": "qlog_f449c_37.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 0,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.9251483082771301,
+      "laneLineStdMedian": 0.1813865303993225,
+      "egoLaneWidthMedian": 3.3772793412208557,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 15,
+        "uncertain_outer_lines": 15,
+        "unclassifiable": 30
+      },
+      "edgeAgreementInsideRate": 0.75,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 0,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 39,
+      "filename": "qlog_f449c_39.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 12,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.9028232991695404,
+      "laneLineStdMedian": 0.16298016905784607,
+      "egoLaneWidthMedian": 3.122620165348053,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 21,
+        "uncertain_outer_lines": 9,
+        "unclassifiable": 30
+      },
+      "edgeAgreementInsideRate": 0.75,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 12,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 40,
+      "filename": "qlog_f449c_40.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 12,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.9207704663276672,
+      "laneLineStdMedian": 0.19196975231170654,
+      "egoLaneWidthMedian": 2.97166109085083,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 18,
+        "uncertain_outer_lines": 12,
+        "unclassifiable": 30
+      },
+      "edgeAgreementInsideRate": 0.75,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 12,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 41,
+      "filename": "qlog_f449c_41.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 11,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.9293160736560822,
+      "laneLineStdMedian": 0.22265534847974777,
+      "egoLaneWidthMedian": 2.8775843381881714,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 24,
+        "uncertain_outer_lines": 6,
+        "unclassifiable": 30
+      },
+      "edgeAgreementInsideRate": 0.75,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 11,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 42,
+      "filename": "qlog_f449c_42.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 12,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.8179020583629608,
+      "laneLineStdMedian": 0.2545342892408371,
+      "egoLaneWidthMedian": 3.103598713874817,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 4,
+        "uncertain_outer_lines": 23,
+        "unclassifiable": 33
+      },
+      "edgeAgreementInsideRate": 0.75,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 12,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 43,
+      "filename": "qlog_f449c_43.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 10,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.8670088350772858,
+      "laneLineStdMedian": 0.23362109065055847,
+      "egoLaneWidthMedian": 3.1204346418380737,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 8,
+        "uncertain_outer_lines": 22,
+        "unclassifiable": 30
+      },
+      "edgeAgreementInsideRate": 0.75,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 10,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 44,
+      "filename": "qlog_f449c_44.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 12,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.8688586950302124,
+      "laneLineStdMedian": 0.22503308206796646,
+      "egoLaneWidthMedian": 3.0298953652381897,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 12,
+        "uncertain_outer_lines": 17,
+        "unclassifiable": 31
+      },
+      "edgeAgreementInsideRate": 0.75,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 12,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 45,
+      "filename": "qlog_f449c_45.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 14,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.7999715507030487,
+      "laneLineStdMedian": 0.1848536878824234,
+      "egoLaneWidthMedian": 2.9507638812065125,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 1,
+        "uncertain_outer_lines": 26,
+        "unclassifiable": 33
+      },
+      "edgeAgreementInsideRate": 0.75,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 14,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 46,
+      "filename": "qlog_f449c_46.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 14,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.7774645388126373,
+      "laneLineStdMedian": 0.2538810670375824,
+      "egoLaneWidthMedian": 2.9853713512420654,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 7,
+        "uncertain_outer_lines": 23,
+        "unclassifiable": 30
+      },
+      "edgeAgreementInsideRate": 0.8166666666666667,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 14,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 47,
+      "filename": "qlog_f449c_47.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 1,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.9666666666666667,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.7773836851119995,
+      "laneLineStdMedian": 0.3016950786113739,
+      "egoLaneWidthMedian": 3.0851149559020996,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 52,
+        "probable_adjacent_dividers": 8,
+        "uncertain_outer_lines": 14,
+        "unclassifiable": 46
+      },
+      "edgeAgreementInsideRate": 0.8333333333333334,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 23,
+        "right_only_valid": 4,
+        "uncertain_confidence": 1,
+        "left_only_valid": 2
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 1,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 48,
+      "filename": "qlog_f449c_48.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 2,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.7507685124874115,
+      "laneLineStdMedian": 0.28528326749801636,
+      "egoLaneWidthMedian": 2.895386219024658,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 59,
+        "probable_adjacent_dividers": 4,
+        "uncertain_outer_lines": 22,
+        "unclassifiable": 35
+      },
+      "edgeAgreementInsideRate": 0.9333333333333333,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 29,
+        "left_only_valid": 1
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 2,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 49,
+      "filename": "qlog_f449c_49.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 3,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.9206697046756744,
+      "laneLineStdMedian": 0.19606450200080872,
+      "egoLaneWidthMedian": 3.1118906140327454,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 16,
+        "uncertain_outer_lines": 12,
+        "unclassifiable": 32
+      },
+      "edgeAgreementInsideRate": 0.75,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 3,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 50,
+      "filename": "qlog_f449c_50.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 0,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.8674063682556152,
+      "laneLineStdMedian": 0.27025580406188965,
+      "egoLaneWidthMedian": 3.3124858736991882,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 10,
+        "uncertain_outer_lines": 31,
+        "unclassifiable": 19
+      },
+      "edgeAgreementInsideRate": 0.8583333333333333,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 17,
+          "polygonCount": 0,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 51,
+      "filename": "qlog_f449c_51.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 2,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.9666666666666667,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.5616301596164703,
+      "laneLineStdMedian": 0.38655416667461395,
+      "egoLaneWidthMedian": 2.950355648994446,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 52,
+        "probable_adjacent_dividers": 0,
+        "uncertain_outer_lines": 14,
+        "unclassifiable": 54
+      },
+      "edgeAgreementInsideRate": 0.7916666666666666,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 23,
+        "right_only_valid": 6,
+        "uncertain_confidence": 1
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 28,
+          "polygonCount": 2,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 53,
+      "filename": "qlog_f449c_53.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 5,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.8,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.6135571599006653,
+      "laneLineStdMedian": 0.38560518622398376,
+      "egoLaneWidthMedian": 2.975681781768799,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 45,
+        "probable_adjacent_dividers": 2,
+        "uncertain_outer_lines": 27,
+        "unclassifiable": 46
+      },
+      "edgeAgreementInsideRate": 0.9833333333333333,
+      "frameOutcomes": {
+        "left_only_valid": 3,
+        "two_valid_ego_candidates": 21,
+        "uncertain_confidence": 6
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 5,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 54,
+      "filename": "qlog_f449c_54.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 3,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.6276145279407501,
+      "laneLineStdMedian": 0.3375871330499649,
+      "egoLaneWidthMedian": 2.9148375391960144,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 0,
+        "uncertain_outer_lines": 5,
+        "unclassifiable": 55
+      },
+      "edgeAgreementInsideRate": 1,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 3,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 55,
+      "filename": "qlog_f449c_55.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 7,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.9333333333333333,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.714877188205719,
+      "laneLineStdMedian": 0.33785946667194366,
+      "egoLaneWidthMedian": 3.015132784843445,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 55,
+        "probable_adjacent_dividers": 8,
+        "uncertain_outer_lines": 13,
+        "unclassifiable": 44
+      },
+      "edgeAgreementInsideRate": 0.975,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 27,
+        "uncertain_confidence": 2,
+        "left_only_valid": 1
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 7,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 56,
+      "filename": "qlog_f449c_56.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 8,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.43333333333333335,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.03560980409383774,
+      "laneLineStdMedian": 0.6278563141822815,
+      "egoLaneWidthMedian": 2.6686923503875732,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 20,
+        "probable_adjacent_dividers": 0,
+        "uncertain_outer_lines": 7,
+        "unclassifiable": 93
+      },
+      "edgeAgreementInsideRate": 0.7,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 7,
+        "right_only_valid": 1,
+        "uncertain_confidence": 17,
+        "left_only_valid": 5
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 8,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 57,
+      "filename": "qlog_f449c_57.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 0,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.13333333333333333,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.0705987811088562,
+      "laneLineStdMedian": 0.801441103219986,
+      "egoLaneWidthMedian": 2.9460341036319733,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 6,
+        "probable_adjacent_dividers": 0,
+        "uncertain_outer_lines": 1,
+        "unclassifiable": 113
+      },
+      "edgeAgreementInsideRate": 0.7916666666666666,
+      "frameOutcomes": {
+        "uncertain_confidence": 26,
+        "right_only_valid": 2,
+        "two_valid_ego_candidates": 2
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 0,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 58,
+      "filename": "qlog_f449c_58.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 6,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.5666666666666667,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.2191319465637207,
+      "laneLineStdMedian": 0.5249063968658447,
+      "egoLaneWidthMedian": 2.9583882689476013,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 25,
+        "probable_adjacent_dividers": 0,
+        "uncertain_outer_lines": 7,
+        "unclassifiable": 88
+      },
+      "edgeAgreementInsideRate": 0.8666666666666667,
+      "frameOutcomes": {
+        "uncertain_confidence": 13,
+        "right_only_valid": 9,
+        "two_valid_ego_candidates": 8
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 6,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 59,
+      "filename": "qlog_f449c_59.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 1,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.56416055560112,
+      "laneLineStdMedian": 0.4257562607526779,
+      "egoLaneWidthMedian": 2.9061570167541504,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 58,
+        "probable_adjacent_dividers": 0,
+        "uncertain_outer_lines": 9,
+        "unclassifiable": 53
+      },
+      "edgeAgreementInsideRate": 0.7583333333333333,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 28,
+        "left_only_valid": 2
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 1,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 60,
+      "filename": "qlog_f449c_60.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 0,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.4765338748693466,
+      "laneLineStdMedian": 0.5413567274808884,
+      "egoLaneWidthMedian": 2.8459587693214417,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 0,
+        "uncertain_outer_lines": 0,
+        "unclassifiable": 60
+      },
+      "edgeAgreementInsideRate": 0.75,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 0,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 61,
+      "filename": "qlog_f449c_61.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 3,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.7666666666666667,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.2837933599948883,
+      "laneLineStdMedian": 0.5707834959030151,
+      "egoLaneWidthMedian": 2.9313766956329346,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 42,
+        "probable_adjacent_dividers": 0,
+        "uncertain_outer_lines": 3,
+        "unclassifiable": 75
+      },
+      "edgeAgreementInsideRate": 0.7416666666666667,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 19,
+        "right_only_valid": 4,
+        "uncertain_confidence": 7
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 3,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 62,
+      "filename": "qlog_f449c_62.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 0,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.007030258188024163,
+      "laneLineStdMedian": 1.328019142150879,
+      "egoLaneWidthMedian": null,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 0,
+        "probable_adjacent_dividers": 0,
+        "uncertain_outer_lines": 0,
+        "unclassifiable": 120
+      },
+      "edgeAgreementInsideRate": 0.5833333333333334,
+      "frameOutcomes": {
+        "uncertain_confidence": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 0,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 63,
+      "filename": "qlog_f449c_63.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 1,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.36666666666666664,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.04483557865023613,
+      "laneLineStdMedian": 0.7855316400527954,
+      "egoLaneWidthMedian": 2.8975226879119873,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 20,
+        "probable_adjacent_dividers": 1,
+        "uncertain_outer_lines": 7,
+        "unclassifiable": 92
+      },
+      "edgeAgreementInsideRate": 0.7583333333333333,
+      "frameOutcomes": {
+        "uncertain_confidence": 19,
+        "two_valid_ego_candidates": 9,
+        "left_only_valid": 1,
+        "right_only_valid": 1
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 1,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 64,
+      "filename": "qlog_f449c_64.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 7,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.4666666666666667,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.26725539565086365,
+      "laneLineStdMedian": 0.39819711446762085,
+      "egoLaneWidthMedian": 2.687274932861328,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 25,
+        "probable_adjacent_dividers": 1,
+        "uncertain_outer_lines": 10,
+        "unclassifiable": 84
+      },
+      "edgeAgreementInsideRate": 0.8,
+      "frameOutcomes": {
+        "uncertain_confidence": 16,
+        "right_only_valid": 3,
+        "two_valid_ego_candidates": 11
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 7,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 65,
+      "filename": "qlog_f449c_65.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 0,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.17131056636571884,
+      "laneLineStdMedian": 0.5717695951461792,
+      "egoLaneWidthMedian": null,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 0,
+        "probable_adjacent_dividers": 0,
+        "uncertain_outer_lines": 0,
+        "unclassifiable": 120
+      },
+      "edgeAgreementInsideRate": 0.9916666666666667,
+      "frameOutcomes": {
+        "uncertain_confidence": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 0,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 66,
+      "filename": "qlog_f449c_66.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 1,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.18773605674505234,
+      "laneLineStdMedian": 0.700569212436676,
+      "egoLaneWidthMedian": 3.1960625648498535,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 6,
+        "probable_adjacent_dividers": 0,
+        "uncertain_outer_lines": 1,
+        "unclassifiable": 113
+      },
+      "edgeAgreementInsideRate": 0.9666666666666667,
+      "frameOutcomes": {
+        "uncertain_confidence": 27,
+        "two_valid_ego_candidates": 3
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 1,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 67,
+      "filename": "qlog_f449c_67.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 2,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.6,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.262260377407074,
+      "laneLineStdMedian": 0.5705946385860443,
+      "egoLaneWidthMedian": 3.018295645713806,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 26,
+        "probable_adjacent_dividers": 0,
+        "uncertain_outer_lines": 3,
+        "unclassifiable": 91
+      },
+      "edgeAgreementInsideRate": 0.975,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 8,
+        "uncertain_confidence": 12,
+        "left_only_valid": 10
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 2,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 68,
+      "filename": "qlog_f449c_68.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 17,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.8333333333333334,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.8094693720340729,
+      "laneLineStdMedian": 0.3327964097261429,
+      "egoLaneWidthMedian": 2.9136241674423218,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 50,
+        "probable_adjacent_dividers": 3,
+        "uncertain_outer_lines": 33,
+        "unclassifiable": 34
+      },
+      "edgeAgreementInsideRate": 0.9333333333333333,
+      "frameOutcomes": {
+        "uncertain_confidence": 5,
+        "two_valid_ego_candidates": 25
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 17,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 69,
+      "filename": "qlog_f449c_69.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 7,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.5757843852043152,
+      "laneLineStdMedian": 0.3861687332391739,
+      "egoLaneWidthMedian": 2.765380561351776,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 50,
+        "probable_adjacent_dividers": 1,
+        "uncertain_outer_lines": 17,
+        "unclassifiable": 52
+      },
+      "edgeAgreementInsideRate": 0.85,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 20,
+        "right_only_valid": 10
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 7,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 71,
+      "filename": "qlog_f449c_71.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 4,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.8064632713794708,
+      "laneLineStdMedian": 0.2906779497861862,
+      "egoLaneWidthMedian": 3.224834680557251,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 59,
+        "probable_adjacent_dividers": 6,
+        "uncertain_outer_lines": 25,
+        "unclassifiable": 30
+      },
+      "edgeAgreementInsideRate": 0.875,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 29,
+        "left_only_valid": 1
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 28,
+          "polygonCount": 4,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 72,
+      "filename": "qlog_f449c_72.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 7,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.8982281982898712,
+      "laneLineStdMedian": 0.21565879881381989,
+      "egoLaneWidthMedian": 2.9814721941947937,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 13,
+        "uncertain_outer_lines": 17,
+        "unclassifiable": 30
+      },
+      "edgeAgreementInsideRate": 0.8,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 7,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 73,
+      "filename": "qlog_f449c_73.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 11,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.8112279176712036,
+      "laneLineStdMedian": 0.27068959176540375,
+      "egoLaneWidthMedian": 3.283864974975586,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 9,
+        "uncertain_outer_lines": 28,
+        "unclassifiable": 23
+      },
+      "edgeAgreementInsideRate": 0.9833333333333333,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 11,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 74,
+      "filename": "qlog_f449c_74.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 5,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.7716232240200043,
+      "laneLineStdMedian": 0.2859079986810684,
+      "egoLaneWidthMedian": 3.2249714136123657,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 59,
+        "probable_adjacent_dividers": 2,
+        "uncertain_outer_lines": 23,
+        "unclassifiable": 36
+      },
+      "edgeAgreementInsideRate": 0.875,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 29,
+        "right_only_valid": 1
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 5,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 75,
+      "filename": "qlog_f449c_75.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 2,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.5396507084369659,
+      "laneLineStdMedian": 0.31462305784225464,
+      "egoLaneWidthMedian": 3.2251946926116943,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 56,
+        "probable_adjacent_dividers": 0,
+        "uncertain_outer_lines": 8,
+        "unclassifiable": 56
+      },
+      "edgeAgreementInsideRate": 0.7166666666666667,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 26,
+        "left_only_valid": 4
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 2,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 81,
+      "filename": "qlog_f449c_81.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 19,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.9306192398071289,
+      "laneLineStdMedian": 0.1725771464407444,
+      "egoLaneWidthMedian": 3.034416079521179,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 23,
+        "uncertain_outer_lines": 7,
+        "unclassifiable": 30
+      },
+      "edgeAgreementInsideRate": 0.75,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 19,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 82,
+      "filename": "qlog_f449c_82.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 21,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.8532857298851013,
+      "laneLineStdMedian": 0.24330361932516098,
+      "egoLaneWidthMedian": 3.0009942650794983,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 6,
+        "uncertain_outer_lines": 20,
+        "unclassifiable": 34
+      },
+      "edgeAgreementInsideRate": 0.75,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 21,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 83,
+      "filename": "qlog_f449c_83.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 19,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.8128576874732971,
+      "laneLineStdMedian": 0.23094923794269562,
+      "egoLaneWidthMedian": 3.137655019760132,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 10,
+        "uncertain_outer_lines": 15,
+        "unclassifiable": 35
+      },
+      "edgeAgreementInsideRate": 0.75,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 19,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 84,
+      "filename": "qlog_f449c_84.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 17,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.852691650390625,
+      "laneLineStdMedian": 0.22952747344970703,
+      "egoLaneWidthMedian": 3.0782557129859924,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 1,
+        "uncertain_outer_lines": 27,
+        "unclassifiable": 32
+      },
+      "edgeAgreementInsideRate": 0.75,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 17,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 85,
+      "filename": "qlog_f449c_85.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 8,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.9173277020454407,
+      "laneLineStdMedian": 0.15418969467282295,
+      "egoLaneWidthMedian": 3.191740930080414,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 18,
+        "uncertain_outer_lines": 10,
+        "unclassifiable": 32
+      },
+      "edgeAgreementInsideRate": 0.75,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 8,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 86,
+      "filename": "qlog_f449c_86.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 7,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.892052948474884,
+      "laneLineStdMedian": 0.14897413179278374,
+      "egoLaneWidthMedian": 3.134679913520813,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 11,
+        "uncertain_outer_lines": 17,
+        "unclassifiable": 32
+      },
+      "edgeAgreementInsideRate": 0.75,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 7,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 87,
+      "filename": "qlog_f449c_87.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 0,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.8813909888267517,
+      "laneLineStdMedian": 0.16588744148612022,
+      "egoLaneWidthMedian": 2.9920021891593933,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 12,
+        "uncertain_outer_lines": 18,
+        "unclassifiable": 30
+      },
+      "edgeAgreementInsideRate": 0.75,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 0,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 88,
+      "filename": "qlog_f449c_88.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 4,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.886761486530304,
+      "laneLineStdMedian": 0.18591532856225967,
+      "egoLaneWidthMedian": 2.984587252140045,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 11,
+        "uncertain_outer_lines": 19,
+        "unclassifiable": 30
+      },
+      "edgeAgreementInsideRate": 0.75,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 4,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 89,
+      "filename": "qlog_f449c_89.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 3,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.8795290291309357,
+      "laneLineStdMedian": 0.2017212137579918,
+      "egoLaneWidthMedian": 3.172617256641388,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 15,
+        "uncertain_outer_lines": 14,
+        "unclassifiable": 31
+      },
+      "edgeAgreementInsideRate": 0.75,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 3,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 90,
+      "filename": "qlog_f449c_90.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 0,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.938159316778183,
+      "laneLineStdMedian": 0.17199068516492844,
+      "egoLaneWidthMedian": 3.155237853527069,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 12,
+        "uncertain_outer_lines": 18,
+        "unclassifiable": 30
+      },
+      "edgeAgreementInsideRate": 0.75,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 0,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 91,
+      "filename": "qlog_f449c_91.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 3,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.8774727880954742,
+      "laneLineStdMedian": 0.26022277772426605,
+      "egoLaneWidthMedian": 3.2921760082244873,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 14,
+        "uncertain_outer_lines": 29,
+        "unclassifiable": 17
+      },
+      "edgeAgreementInsideRate": 0.9416666666666667,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 3,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 92,
+      "filename": "qlog_f449c_92.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 7,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.7545086443424225,
+      "laneLineStdMedian": 0.29163798689842224,
+      "egoLaneWidthMedian": 3.113632559776306,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 59,
+        "probable_adjacent_dividers": 0,
+        "uncertain_outer_lines": 34,
+        "unclassifiable": 27
+      },
+      "edgeAgreementInsideRate": 0.9583333333333334,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 29,
+        "left_only_valid": 1
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 7,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 93,
+      "filename": "qlog_f449c_93.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 4,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.9350440204143524,
+      "laneLineStdMedian": 0.22024285048246384,
+      "egoLaneWidthMedian": 3.105798304080963,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 27,
+        "uncertain_outer_lines": 28,
+        "unclassifiable": 5
+      },
+      "edgeAgreementInsideRate": 0.9916666666666667,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 4,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 94,
+      "filename": "qlog_f449c_94.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 4,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.9666666666666667,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.763126790523529,
+      "laneLineStdMedian": 0.29926687479019165,
+      "egoLaneWidthMedian": 2.9122304916381836,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 52,
+        "probable_adjacent_dividers": 6,
+        "uncertain_outer_lines": 25,
+        "unclassifiable": 37
+      },
+      "edgeAgreementInsideRate": 0.8666666666666667,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 23,
+        "left_only_valid": 3,
+        "right_only_valid": 3,
+        "uncertain_confidence": 1
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 4,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 95,
+      "filename": "qlog_f449c_95.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 2,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.4666666666666667,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.2538820132613182,
+      "laneLineStdMedian": 0.6785585582256317,
+      "egoLaneWidthMedian": 2.89603328704834,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 25,
+        "probable_adjacent_dividers": 3,
+        "uncertain_outer_lines": 14,
+        "unclassifiable": 78
+      },
+      "edgeAgreementInsideRate": 0.8333333333333334,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 11,
+        "left_only_valid": 3,
+        "uncertain_confidence": 16
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 2,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 96,
+      "filename": "qlog_f449c_96.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 2,
+      "totalV11Polygons": 1,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.10449310019612312,
+      "laneLineStdMedian": 0.836458295583725,
+      "egoLaneWidthMedian": null,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 0,
+        "probable_adjacent_dividers": 0,
+        "uncertain_outer_lines": 0,
+        "unclassifiable": 120
+      },
+      "edgeAgreementInsideRate": 0.75,
+      "frameOutcomes": {
+        "uncertain_confidence": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 14,
+          "polygonCount": 0,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        },
+        {
+          "chunkId": 1,
+          "frameCount": 16,
+          "polygonCount": 1,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 97,
+      "filename": "qlog_f449c_97.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 4,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.4666666666666667,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.1745315119624138,
+      "laneLineStdMedian": 0.5322313010692596,
+      "egoLaneWidthMedian": 3.0827004313468933,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 21,
+        "probable_adjacent_dividers": 0,
+        "uncertain_outer_lines": 7,
+        "unclassifiable": 92
+      },
+      "edgeAgreementInsideRate": 0.7833333333333333,
+      "frameOutcomes": {
+        "uncertain_confidence": 17,
+        "two_valid_ego_candidates": 8,
+        "right_only_valid": 3,
+        "left_only_valid": 2
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 4,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 98,
+      "filename": "qlog_f449c_98.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 8,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 1,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.8619828820228577,
+      "laneLineStdMedian": 0.25944675505161285,
+      "egoLaneWidthMedian": 2.812927156686783,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 60,
+        "probable_adjacent_dividers": 10,
+        "uncertain_outer_lines": 22,
+        "unclassifiable": 28
+      },
+      "edgeAgreementInsideRate": 0.8166666666666667,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 30
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 8,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 99,
+      "filename": "qlog_f449c_99.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 3,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.43333333333333335,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.021115071140229702,
+      "laneLineStdMedian": 0.8250523805618286,
+      "egoLaneWidthMedian": 2.684510588645935,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 24,
+        "probable_adjacent_dividers": 0,
+        "uncertain_outer_lines": 5,
+        "unclassifiable": 91
+      },
+      "edgeAgreementInsideRate": 0.725,
+      "frameOutcomes": {
+        "left_only_valid": 1,
+        "uncertain_confidence": 17,
+        "two_valid_ego_candidates": 11,
+        "right_only_valid": 1
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 30,
+          "polygonCount": 3,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    },
+    {
+      "segmentId": 100,
+      "filename": "qlog_f449c_100.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "totalV11Polygons": 3,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.43333333333333335,
+      "linesPerFrameMean": 4,
+      "laneLineProbMedian": 0.27758705615997314,
+      "laneLineStdMedian": 0.587788850069046,
+      "egoLaneWidthMedian": 3.1573734283447266,
+      "orderCrossings": 0,
+      "missingLineFrames": 0,
+      "laneChangeFrames": 0,
+      "classificationTotals": {
+        "ego_lane_boundaries": 20,
+        "probable_adjacent_dividers": 0,
+        "uncertain_outer_lines": 4,
+        "unclassifiable": 96
+      },
+      "edgeAgreementInsideRate": 0.75,
+      "frameOutcomes": {
+        "two_valid_ego_candidates": 7,
+        "left_only_valid": 4,
+        "uncertain_confidence": 17,
+        "right_only_valid": 2
+      },
+      "chunkSummaries": [
+        {
+          "chunkId": 0,
+          "frameCount": 10,
+          "polygonCount": 3,
+          "v11PolygonIds": [],
+          "frameCoverageRate": 1
+        }
+      ]
+    }
+  ],
+  "problemDefinition": {
+    "distinctions": {
+      "visibleLaneLines": "Raw modelV2 lane line detections per frame (typically up to 4). Not equivalent to physical dividers.",
+      "laneIntervals": "Regions between ordered neighbouring divider hypotheses. N dividers yield at most N−1 intervals.",
+      "drivableLanes": "Lane intervals wide enough and temporally supported to be traversable in the same travel direction.",
+      "sameDirectionLaneCount": "Number of drivable lanes in the ego travel direction only.",
+      "totalLanesBothDirections": "Requires centre-divider or opposing-flow classification — not inferable from road width alone."
+    },
+    "initialTarget": "Estimate the number of same-direction drivable lanes supported by continuous modelV2 lane-divider evidence within each valid route interval.",
+    "mustRemainUnknown": [
+      "junctions",
+      "merges and splits",
+      "opposing traffic without centre-divider classification",
+      "missing or low-confidence lane lines",
+      "lane changes",
+      "short or fragmented evidence",
+      "inconsistent temporal observations"
+    ],
+    "constraints": [
+      "Do not infer total road lane count from road width alone",
+      "Do not assume every modelV2 lane line is a physical lane divider",
+      "Use unknown when evidence does not support a numeric lane count",
+      "No segment-ID-specific rules"
+    ]
+  },
+  "candidatePipeline": {
+    "name": "lane-divider-pipeline-v0",
+    "separateFromRoadSurface": true,
+    "frozenContext": "2026-07-24-fusion-v11",
+    "stages": [
+      {
+        "step": 1,
+        "name": "decode_lane_line_observations",
+        "reuse": "qlog_parse_once.modelV2ToJson",
+        "output": "raw laneLines, laneLineProbs, laneLineStds, roadEdges"
+      },
+      {
+        "step": 2,
+        "name": "filter_probability_uncertainty",
+        "reuse": "new — empirical thresholds from Stage 15 distributions",
+        "output": "accepted line observations per frame"
+      },
+      {
+        "step": 3,
+        "name": "associate_temporal_pass_pose_section",
+        "reuse": "passes.js, pose_continuity.js",
+        "output": "observations tagged with passId, poseSectionId"
+      },
+      {
+        "step": 4,
+        "name": "project_route_coordinates",
+        "reuse": "frozen GPS pose model (interpolateGpsAtTime)",
+        "output": "divider points in route s-lateral frame"
+      },
+      {
+        "step": 5,
+        "name": "track_divider_hypotheses",
+        "reuse": "lane_tracking.js patterns (separate track IDs)",
+        "output": "temporal divider tracks"
+      },
+      {
+        "step": 6,
+        "name": "fuse_supported_observations",
+        "reuse": "sd_fusion patterns (separate outputs)",
+        "output": "divider runs with provenance"
+      },
+      {
+        "step": 7,
+        "name": "reject_unsupported_gaps",
+        "reuse": "supported-run logic patterns",
+        "output": "explicit gap markers"
+      },
+      {
+        "step": 8,
+        "name": "order_dividers_laterally",
+        "reuse": "lane_tracking rankLanesByLateral",
+        "output": "left-to-right divider order"
+      },
+      {
+        "step": 9,
+        "name": "form_lane_intervals",
+        "reuse": "new",
+        "output": "intervals between neighbouring boundaries"
+      },
+      {
+        "step": 10,
+        "name": "estimate_lane_count",
+        "reuse": "new — only where temporal support sufficient",
+        "output": "sameDirectionLaneCount or unknown"
+      },
+      {
+        "step": 11,
+        "name": "attach_confidence_provenance",
+        "reuse": "geometry_provenance patterns",
+        "output": "confidence, rejection reasons, source frames"
+      },
+      {
+        "step": 12,
+        "name": "compare_v11_road_surface",
+        "reuse": "read-only v11 polygon bounds",
+        "output": "compatibility flags, linked polygon IDs"
+      }
+    ],
+    "infrastructureReuse": [
+      "qlog_data load/cache",
+      "pass detection and pose sections",
+      "GPS pose interpolation",
+      "lane tracking assignment framework",
+      "supported-run fusion patterns"
+    ],
+    "explicitNonReuse": [
+      "v11 road-surface polygon construction",
+      "v11 fusion thresholds",
+      "v11 polygon validation",
+      "road-edge pairing for surface polygons"
+    ]
+  },
+  "thresholdPolicy": {
+    "policy": "No production thresholds selected in Stage 15",
+    "candidates": [
+      {
+        "parameter": "minLaneLineProb",
+        "value": 0.5,
+        "datasetEffect": {
+          "retainedObservations": 6362,
+          "retainedFraction": 0.5760593987685622,
+          "note": "Fraction of raw lane-line observations that pass probability filter"
+        }
+      },
+      {
+        "parameter": "minLaneLineProb",
+        "value": 0.6,
+        "datasetEffect": {
+          "retainedObservations": 4875,
+          "retainedFraction": 0.441416153567548,
+          "note": "Fraction of raw lane-line observations that pass probability filter"
+        }
+      },
+      {
+        "parameter": "minLaneLineProb",
+        "value": 0.7,
+        "datasetEffect": {
+          "retainedObservations": 4875,
+          "retainedFraction": 0.441416153567548,
+          "note": "Fraction of raw lane-line observations that pass probability filter"
+        }
+      },
+      {
+        "parameter": "minLaneLineProb",
+        "value": 0.75,
+        "datasetEffect": {
+          "retainedObservations": 4875,
+          "retainedFraction": 0.441416153567548,
+          "note": "Fraction of raw lane-line observations that pass probability filter"
+        }
+      },
+      {
+        "parameter": "minLaneLineProb",
+        "value": 0.8,
+        "datasetEffect": {
+          "retainedObservations": 3409,
+          "retainedFraction": 0.3086743933357479,
+          "note": "Fraction of raw lane-line observations that pass probability filter"
+        }
+      },
+      {
+        "parameter": "minLaneLineProb",
+        "value": 0.9,
+        "datasetEffect": {
+          "retainedObservations": 3409,
+          "retainedFraction": 0.3086743933357479,
+          "note": "Fraction of raw lane-line observations that pass probability filter"
+        }
+      },
+      {
+        "parameter": "maxLaneLineStdM",
+        "value": 0.1,
+        "datasetEffect": {
+          "approximateRetainedObservations": 2886,
+          "note": "Approximate — lines with spatial std below threshold"
+        }
+      },
+      {
+        "parameter": "maxLaneLineStdM",
+        "value": 0.2,
+        "datasetEffect": {
+          "approximateRetainedObservations": 3697,
+          "note": "Approximate — lines with spatial std below threshold"
+        }
+      },
+      {
+        "parameter": "maxLaneLineStdM",
+        "value": 0.3,
+        "datasetEffect": {
+          "approximateRetainedObservations": 5519,
+          "note": "Approximate — lines with spatial std below threshold"
+        }
+      },
+      {
+        "parameter": "maxLaneLineStdM",
+        "value": 0.4,
+        "datasetEffect": {
+          "approximateRetainedObservations": 7342,
+          "note": "Approximate — lines with spatial std below threshold"
+        }
+      },
+      {
+        "parameter": "maxLaneLineStdM",
+        "value": 0.5,
+        "datasetEffect": {
+          "approximateRetainedObservations": 8535,
+          "note": "Approximate — lines with spatial std below threshold"
+        }
+      },
+      {
+        "parameter": "minTemporalSupportFrames",
+        "values": [
+          3,
+          5,
+          8,
+          12
+        ],
+        "datasetEffect": {
+          "note": "Requires implementation — mean modelV2 frames per segment ~25; ~0.5 Hz"
+        }
+      },
+      {
+        "parameter": "minSupportedRunLengthM",
+        "values": [
+          4,
+          8,
+          12,
+          20
+        ],
+        "datasetEffect": {
+          "note": "Reuse v11 paired-run overlap minimum (4 m) as lower bound candidate only"
+        }
+      },
+      {
+        "parameter": "minLaneWidthM",
+        "values": [
+          2.5,
+          3,
+          3.5
+        ],
+        "datasetEffect": {
+          "observedMedian": 2.9872519969940186,
+          "observedP10": 2.6867874383926393,
+          "observedP90": 3.201816987991333
+        }
+      }
+    ],
+    "distributionsReferenced": {
+      "laneLineProb": {
+        "count": 11044,
+        "min": 0.000011798520063166507,
+        "max": 0.9968453049659729,
+        "mean": 0.5483683542501752,
+        "median": 0.648521900177002,
+        "p10": 0.005423489864915608,
+        "p25": 0.10595688037574291,
+        "p75": 0.9348586648702621,
+        "p90": 0.9758088886737823,
+        "p95": 0.9841277182102204
+      },
+      "laneLineStd": {
+        "count": 11044,
+        "min": 0.025367453694343567,
+        "max": 3.59092378616333,
+        "mean": 0.38535094585057855,
+        "median": 0.2941586971282959,
+        "p10": 0.05735213607549667,
+        "p25": 0.09446402452886105,
+        "p75": 0.5135080069303513,
+        "p90": 0.8520474970340732,
+        "p95": 1.0770474314689644
+      },
+      "egoLaneWidthM": {
+        "count": 89,
+        "min": 2.5480066537857056,
+        "max": 3.6293492317199707,
+        "mean": 2.9859592773941124,
+        "median": 2.9872519969940186,
+        "p10": 2.6867874383926393,
+        "p25": 2.895386219024658,
+        "p75": 3.113632559776306,
+        "p90": 3.201816987991333,
+        "p95": 3.288851594924927
+      },
+      "adjacentLaneWidthM": {
+        "count": 89,
+        "min": 2.5480066537857056,
+        "max": 3.6293492317199707,
+        "mean": 2.9859592773941124,
+        "median": 2.9872519969940186,
+        "p10": 2.6867874383926393,
+        "p25": 2.895386219024658,
+        "p75": 3.113632559776306,
+        "p90": 3.201816987991333,
+        "p95": 3.288851594924927
+      }
+    }
+  },
+  "validationPlan": {
+    "layerA_internalConsistency": {
+      "name": "Internal consistency",
+      "checks": [
+        "divider ordering is monotonic left-to-right without unexplained crossings",
+        "lane widths within realistic bounds (typically 2.8–4.0 m per lane)",
+        "temporal stability of divider tracks across consecutive frames",
+        "lane intervals fit within v11 road-surface polygon lateral bounds",
+        "gaps between supported divider runs are explicit, not bridged silently"
+      ],
+      "automatable": true
+    },
+    "layerB_bevEvidence": {
+      "name": "BEV evidence consistency",
+      "checks": [
+        "projected lane-line observations align with fused divider runs",
+        "gaps remain explicit in BEV overlay",
+        "estimated lane count matches number of supported lane intervals",
+        "comparison with v11 fused road edges where available"
+      ],
+      "automatable": true,
+      "dependsOn": "lane-divider pipeline implementation"
+    },
+    "layerC_camera": {
+      "name": "Camera validation",
+      "status": "BLOCKED",
+      "blockers": [
+        "matching HEVC files unavailable",
+        "calibration decode not verified (Stage 12B)"
+      ],
+      "checks": [
+        "lane divider visibility in front-camera frames",
+        "physical road marking alignment",
+        "junction and merge behaviour verification"
+      ],
+      "automatable": false,
+      "note": "Do not claim physical-road accuracy without camera validation"
+    }
+  },
+  "ambiguityClasses": [
+    {
+      "class": "classification_vs_physical_divider",
+      "description": "modelV2 lane lines include road markings, edges, and phantom lines — laneLineProbs vary widely",
+      "evidence": {
+        "count": 11044,
+        "min": 0.000011798520063166507,
+        "max": 0.9968453049659729,
+        "mean": 0.5483683542501752,
+        "median": 0.648521900177002,
+        "p10": 0.005423489864915608,
+        "p25": 0.10595688037574291,
+        "p75": 0.9348586648702621,
+        "p90": 0.9758088886737823,
+        "p95": 0.9841277182102204
+      }
+    },
+    {
+      "class": "lateral_order_instability",
+      "description": "Line index order crosses between frames when ego moves or model reassigns indices",
+      "evidence": {
+        "orderCrossings": 0
+      }
+    },
+    {
+      "class": "missing_partial_lines",
+      "description": "Frames with fewer than 4 raw lines or gaps in continuity",
+      "evidence": {
+        "missingLineFrames": 0,
+        "continuityGaps": 0
+      }
+    },
+    {
+      "class": "lane_change_and_desire",
+      "description": "meta.laneChangeState and desireState active during manoeuvres",
+      "evidence": {
+        "laneChangeFrames": 0
+      }
+    },
+    {
+      "class": "edge_line_disagreement",
+      "description": "Outermost lane lines beyond road-edge bounds or inconsistent with v11 fused edges",
+      "evidence": {
+        "comparableFrames": 2761,
+        "comparableLineObservations": 11044,
+        "lineObservationsInsideInterval": 8901,
+        "pctLineObservationsInside": 0.8059579862368706,
+        "framesBothRetainedEgoInside": 2076,
+        "framesAtLeastOneRetainedEgoInside": 2304
+      }
+    },
+    {
+      "class": "multi_pass_and_pose_fragmentation",
+      "description": "Same physical road traversed multiple times or pose-section gaps break continuity",
+      "evidence": {
+        "note": "Reuse Stage 8–9 diagnostics; lane counting must respect pass/section boundaries"
+      }
+    },
+    {
+      "class": "low_confidence_outer_lines",
+      "description": "uncertain_outer_lines and unclassifiable observations",
+      "evidence": {
+        "ego_lane_boundaries": 4381,
+        "probable_adjacent_dividers": 697,
+        "uncertain_outer_lines": 1284,
+        "unclassifiable": 4682
+      }
+    }
+  ],
+  "implementationStages": [
+    {
+      "stage": "15",
+      "status": "approved",
+      "scope": "Read-only lane-divider evidence assessment and lane-counting design",
+      "permittedChanges": [
+        "read-only audit tooling",
+        "reports",
+        "tests"
+      ],
+      "frozenDependencies": [
+        "2026-07-24-fusion-v11"
+      ],
+      "deliverables": [
+        "assessment report",
+        "design report",
+        "audit JSON"
+      ],
+      "tests": [
+        "stage15_lane_divider_assessment.test.js",
+        "stage15a_classification_audit.test.js"
+      ],
+      "approvalCriteria": [
+        "signal inventory complete",
+        "accounting invariants pass",
+        "design schema with unknown default"
+      ],
+      "blockers": []
+    },
+    {
+      "stage": "15A",
+      "status": "approved",
+      "scope": "Ego-boundary classification validation audit",
+      "permittedChanges": [
+        "stage15a_classification_audit.js",
+        "fixture tests"
+      ],
+      "frozenDependencies": [
+        "2026-07-24-fusion-v11"
+      ],
+      "deliverables": [
+        "corrected ego selection",
+        "dual accounting dimensions",
+        "road-edge denominators"
+      ],
+      "tests": [
+        "stage15a_classification_audit.test.js"
+      ],
+      "approvalCriteria": [
+        "4,381 classifications reconcile",
+        "availability and reason sums = 2,761"
+      ],
+      "blockers": []
+    },
+    {
+      "stage": "16",
+      "status": "not_started",
+      "scope": "Projected lane-line observation prototype (decode + probability/uncertainty filter)",
+      "permittedChanges": [
+        "new lane-divider observation module",
+        "assessment thresholds only — not v11"
+      ],
+      "frozenDependencies": [
+        "2026-07-24-fusion-v11",
+        "passes.js",
+        "pose_continuity.js"
+      ],
+      "deliverables": [
+        "per-frame observation records",
+        "filter sensitivity report"
+      ],
+      "tests": [
+        "unit tests for decode/filter",
+        "no v11 geometry mutation"
+      ],
+      "approvalCriteria": [
+        "observations tagged with pass/section",
+        "explicit unknown on filter failure"
+      ],
+      "blockers": [
+        "Stage 15 approval required before start"
+      ]
+    },
+    {
+      "stage": "17",
+      "status": "not_started",
+      "scope": "Temporal divider association and supported-run fusion",
+      "permittedChanges": [
+        "divider tracking module",
+        "separate output files from v11 polygons"
+      ],
+      "frozenDependencies": [
+        "2026-07-24-fusion-v11",
+        "lane_tracking.js patterns"
+      ],
+      "deliverables": [
+        "divider track IDs",
+        "supported runs",
+        "explicit gap markers"
+      ],
+      "tests": [
+        "track identity stability",
+        "pass/section boundary respect"
+      ],
+      "approvalCriteria": [
+        "gaps never silently bridged",
+        "no writes to v11 polygon outputs"
+      ],
+      "blockers": [
+        "Stage 16 completion"
+      ]
+    },
+    {
+      "stage": "18",
+      "status": "not_started",
+      "scope": "Lane-interval formation and same-direction count prototype with unknown-state policy",
+      "permittedChanges": [
+        "interval builder",
+        "count estimator returning unknown by default"
+      ],
+      "frozenDependencies": [
+        "2026-07-24-fusion-v11"
+      ],
+      "deliverables": [
+        "lane-count v0 records",
+        "structured rejection reasons"
+      ],
+      "tests": [
+        "unknown not serialized as zero",
+        "count requires supporting divider evidence"
+      ],
+      "approvalCriteria": [
+        "schema compliance",
+        "junction/merge/lane-change → unknown"
+      ],
+      "blockers": [
+        "Stage 17 completion"
+      ]
+    },
+    {
+      "stage": "19",
+      "status": "not_started",
+      "scope": "Dataset-wide threshold sensitivity and BEV evidence audit",
+      "permittedChanges": [
+        "sensitivity sweeps",
+        "BEV overlay tooling",
+        "read-only v11 comparison"
+      ],
+      "frozenDependencies": [
+        "2026-07-24-fusion-v11"
+      ],
+      "deliverables": [
+        "threshold sensitivity tables",
+        "BEV consistency report"
+      ],
+      "tests": [
+        "retained/rejected/unknown coverage invariants",
+        "deterministic output"
+      ],
+      "approvalCriteria": [
+        "no production threshold selected",
+        "BEV layer A+B checks pass"
+      ],
+      "blockers": [
+        "Stage 18 completion"
+      ]
+    },
+    {
+      "stage": "20",
+      "status": "blocked",
+      "scope": "Camera and physical-road validation when HEVC footage and calibration are available",
+      "permittedChanges": [
+        "camera overlay harness",
+        "calibration application (Stage 12B path)"
+      ],
+      "frozenDependencies": [
+        "2026-07-24-fusion-v11"
+      ],
+      "deliverables": [
+        "camera validation report",
+        "physical marking alignment metrics"
+      ],
+      "tests": [
+        "frame alignment",
+        "marking visibility checks"
+      ],
+      "approvalCriteria": [
+        "matching HEVC available",
+        "calibration decode verified"
+      ],
+      "blockers": [
+        "Stage 12B blocked",
+        "matching HEVC unavailable",
+        "calibration not verified"
+      ]
+    },
+    {
+      "stage": "12B",
+      "status": "blocked",
+      "scope": "Camera validation prerequisite for physical accuracy claims",
+      "permittedChanges": [],
+      "frozenDependencies": [
+        "2026-07-24-fusion-v11"
+      ],
+      "deliverables": [
+        "calibration decode",
+        "HEVC frame matching"
+      ],
+      "tests": [
+        "imagery acquisition tests"
+      ],
+      "approvalCriteria": [
+        "usable calibration",
+        "matching camera frames"
+      ],
+      "blockers": [
+        "HEVC files unavailable",
+        "calibration decode unverified"
+      ]
+    }
+  ],
+  "coverageOutliers": [
+    {
+      "segmentId": 62,
+      "filename": "qlog_f449c_62.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0,
+      "flags": [
+        "low_prob_filtered_coverage"
+      ]
+    },
+    {
+      "segmentId": 65,
+      "filename": "qlog_f449c_65.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0,
+      "flags": [
+        "low_prob_filtered_coverage"
+      ]
+    },
+    {
+      "segmentId": 96,
+      "filename": "qlog_f449c_96.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 2,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0,
+      "flags": [
+        "low_prob_filtered_coverage"
+      ]
+    },
+    {
+      "segmentId": 66,
+      "filename": "qlog_f449c_66.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.1,
+      "flags": [
+        "low_prob_filtered_coverage"
+      ]
+    },
+    {
+      "segmentId": 57,
+      "filename": "qlog_f449c_57.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.13333333333333333,
+      "flags": [
+        "low_prob_filtered_coverage"
+      ]
+    },
+    {
+      "segmentId": 6,
+      "filename": "qlog_f449c_6.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.23333333333333334,
+      "flags": [
+        "low_prob_filtered_coverage"
+      ]
+    },
+    {
+      "segmentId": 7,
+      "filename": "qlog_f449c_7.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 2,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.3333333333333333,
+      "flags": [
+        "low_prob_filtered_coverage"
+      ]
+    },
+    {
+      "segmentId": 63,
+      "filename": "qlog_f449c_63.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.36666666666666664,
+      "flags": [
+        "low_prob_filtered_coverage"
+      ]
+    },
+    {
+      "segmentId": 56,
+      "filename": "qlog_f449c_56.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.43333333333333335,
+      "flags": [
+        "low_prob_filtered_coverage"
+      ]
+    },
+    {
+      "segmentId": 99,
+      "filename": "qlog_f449c_99.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.43333333333333335,
+      "flags": [
+        "low_prob_filtered_coverage"
+      ]
+    },
+    {
+      "segmentId": 100,
+      "filename": "qlog_f449c_100.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.43333333333333335,
+      "flags": [
+        "low_prob_filtered_coverage"
+      ]
+    },
+    {
+      "segmentId": 23,
+      "filename": "qlog_f449c_23.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.4666666666666667,
+      "flags": [
+        "low_prob_filtered_coverage"
+      ]
+    },
+    {
+      "segmentId": 64,
+      "filename": "qlog_f449c_64.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.4666666666666667,
+      "flags": [
+        "low_prob_filtered_coverage"
+      ]
+    },
+    {
+      "segmentId": 95,
+      "filename": "qlog_f449c_95.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.4666666666666667,
+      "flags": [
+        "low_prob_filtered_coverage"
+      ]
+    },
+    {
+      "segmentId": 97,
+      "filename": "qlog_f449c_97.bz2",
+      "modelV2FrameCount": 30,
+      "chunkCount": 1,
+      "frameCoverageRate": 1,
+      "probFilteredCoverageRate": 0.4666666666666667,
+      "flags": [
+        "low_prob_filtered_coverage"
+      ]
+    }
+  ],
+  "deliverableConsistency": {
+    "passed": true,
+    "errors": []
+  },
+  "feasibility": {
+    "sameDirectionLaneCounting": "feasible_with_separate_pipeline",
+    "caveats": [
+      "Requires explicit unknown handling at junctions, merges, lane changes",
+      "modelV2 lane lines are not guaranteed physical dividers",
+      "Camera validation blocked (Stage 12B)",
+      "No production thresholds selected in Stage 15"
+    ],
+    "withoutCameraImagery": "Internal and BEV consistency checks possible; physical-road accuracy unverified"
+  },
+  "segmentCount": 92,
+  "physicalRouteSegments": 92,
+  "routeChunksDiscovered": 97
+}

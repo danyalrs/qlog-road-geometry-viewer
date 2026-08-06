@@ -1,0 +1,469 @@
+{
+  "generatedAt": "2026-08-03T09:37:36.271Z",
+  "segment": "qlog_f449c_2.bz2",
+  "colorLegend": {
+    "blue": "TRACK_COLORS[0] / lane index 0 — track 0 right boundary",
+    "red": "TRACK_COLORS[1] — track 1 left boundary (early segment)",
+    "green": "TRACK_COLORS[2] — track 2 left boundary (late segment)",
+    "purple": "TRACK_COLORS[4] — track 3 outer left",
+    "observationMode": "cycles LANE_COLORS by fragment index (not track identity)"
+  },
+  "displayLayers": {
+    "observations": "All per-frame mapped lane polylines (buildObservationFragments)",
+    "tracked": "Midpoint polyline per lane track (buildTrackedPolylines)",
+    "fused": "chunk.fusedLaneLines transformed to segment-local frame",
+    "rejected": "lane_map_cleanup rejected fragments",
+    "cleaned": "Evidence-based fused track runs with gaps preserved",
+    "cleanedWithSurface": "cleaned lanes + road surface filtered to validated track pairs"
+  },
+  "rootCause": {
+    "duplicatedParallelLines": "observations mode draws every per-frame lane fragment separately (53 on seg2)",
+    "branches": "Multiple fragments per track across s-bins appear as parallel branches in observation mode",
+    "lateralJumps": "Raw frame observations vary in lateral offset; not track-associated in observation mode",
+    "stageIntroducingMess": "rendering/geometrySource=observations (default diagnostic mode)"
+  },
+  "observations": {
+    "perFrameLaneObservations": 53,
+    "tracks": [
+      {
+        "trackId": 0,
+        "frameIds": [
+          2443,
+          2483,
+          2523,
+          2563,
+          2603,
+          2643,
+          2843,
+          2883,
+          2923,
+          2963,
+          3003,
+          3043,
+          3083,
+          3123,
+          3163,
+          3203,
+          3243,
+          3283,
+          3323,
+          3363,
+          3403,
+          3443,
+          3483,
+          3523,
+          3603
+        ],
+        "frameSpan": "0-29",
+        "fusedFragments": 17,
+        "stats": {
+          "meanD": -1.9254293189288918,
+          "minS": 35.2335204264419,
+          "maxS": 689.824925750434,
+          "spanM": 654.591405323992,
+          "pointCount": 62,
+          "fragmentCount": 17
+        }
+      },
+      {
+        "trackId": 1,
+        "frameIds": [
+          2443,
+          2483,
+          2523,
+          2563,
+          2603
+        ],
+        "frameSpan": "0-4",
+        "fusedFragments": 3,
+        "stats": {
+          "meanD": 2.144292836945928,
+          "minS": 35.02186391091784,
+          "maxS": 92.49290092856977,
+          "spanM": 57.47103701765193,
+          "pointCount": 6,
+          "fragmentCount": 3
+        }
+      },
+      {
+        "trackId": 2,
+        "frameIds": [
+          2963,
+          3003,
+          3043,
+          3083,
+          3123,
+          3163,
+          3203,
+          3243,
+          3283,
+          3323,
+          3363,
+          3403,
+          3443,
+          3483,
+          3523,
+          3563,
+          3603
+        ],
+        "frameSpan": "13-29",
+        "fusedFragments": 11,
+        "stats": {
+          "meanD": 1.0861367996200881,
+          "minS": 332.4326940942537,
+          "maxS": 696.7768519320928,
+          "spanM": 364.3441578378391,
+          "pointCount": 52,
+          "fragmentCount": 11
+        }
+      },
+      {
+        "trackId": 3,
+        "frameIds": [
+          3083,
+          3123,
+          3163,
+          3323,
+          3483
+        ],
+        "frameSpan": "16-26",
+        "fusedFragments": 2,
+        "stats": {
+          "meanD": 4.076517416550587,
+          "minS": 407.7330461017007,
+          "maxS": 439.2687416968598,
+          "spanM": 31.535695595159098,
+          "pointCount": 5,
+          "fragmentCount": 2
+        }
+      },
+      {
+        "trackId": 4,
+        "frameIds": [
+          3443
+        ],
+        "frameSpan": "25-25",
+        "fusedFragments": 0,
+        "stats": null
+      }
+    ]
+  },
+  "modes": [
+    {
+      "geometrySource": "observations",
+      "laneFragmentCount": 53,
+      "laneChecksum": "fd639966",
+      "roadSurfacePolygonCount": 0,
+      "cleanupStats": null
+    },
+    {
+      "geometrySource": "tracked",
+      "laneFragmentCount": 4,
+      "laneChecksum": "a4a9beea",
+      "roadSurfacePolygonCount": 0,
+      "cleanupStats": null
+    },
+    {
+      "geometrySource": "fused",
+      "laneFragmentCount": 33,
+      "laneChecksum": "9735e727",
+      "roadSurfacePolygonCount": 13,
+      "cleanupStats": null
+    },
+    {
+      "geometrySource": "rejected",
+      "laneFragmentCount": 0,
+      "laneChecksum": "811c9dc5",
+      "roadSurfacePolygonCount": 0,
+      "cleanupStats": {
+        "fusedFragmentCount": 33,
+        "trackCount": 4,
+        "cleanedRunCount": 30,
+        "rejectedCount": 0,
+        "crossingCount": 0,
+        "suppressedTrackCount": 0
+      }
+    },
+    {
+      "geometrySource": "cleaned",
+      "laneFragmentCount": 30,
+      "laneChecksum": "417f94d0",
+      "roadSurfacePolygonCount": 0,
+      "cleanupStats": {
+        "fusedFragmentCount": 33,
+        "trackCount": 4,
+        "cleanedRunCount": 30,
+        "rejectedCount": 0,
+        "crossingCount": 0,
+        "suppressedTrackCount": 0
+      }
+    },
+    {
+      "geometrySource": "cleanedWithSurface",
+      "laneFragmentCount": 30,
+      "laneChecksum": "417f94d0",
+      "roadSurfacePolygonCount": 13,
+      "cleanupStats": {
+        "fusedFragmentCount": 33,
+        "trackCount": 4,
+        "cleanedRunCount": 30,
+        "rejectedCount": 0,
+        "crossingCount": 0,
+        "suppressedTrackCount": 0
+      }
+    }
+  ],
+  "cleanup": {
+    "stats": {
+      "fusedFragmentCount": 33,
+      "trackCount": 4,
+      "cleanedRunCount": 30,
+      "rejectedCount": 0,
+      "crossingCount": 0,
+      "suppressedTrackCount": 0
+    },
+    "mergeGroups": [
+      {
+        "trackIds": [
+          0
+        ],
+        "suppressed": false
+      },
+      {
+        "trackIds": [
+          1
+        ],
+        "suppressed": false
+      },
+      {
+        "trackIds": [
+          2
+        ],
+        "suppressed": false
+      },
+      {
+        "trackIds": [
+          3
+        ],
+        "suppressed": false
+      }
+    ],
+    "suppressedTrackIds": [],
+    "audit": [],
+    "crossingCountBefore": 0,
+    "crossingCountAfter": 0,
+    "cleanedRunCount": 30,
+    "trackCoverage": [
+      {
+        "laneTrackId": 3,
+        "lengthM": 4.500065852316362,
+        "sMin": 407.7330461017007,
+        "sMax": 412.2329184179182,
+        "lateralOrder": 0
+      },
+      {
+        "laneTrackId": 3,
+        "lengthM": 4.723826525750724,
+        "sMin": 434.5449151711091,
+        "sMax": 439.2687416968598,
+        "lateralOrder": 1
+      },
+      {
+        "laneTrackId": 1,
+        "lengthM": 6.000002119746215,
+        "sMin": 35.02186391091784,
+        "sMax": 41.01278646157863,
+        "lateralOrder": 2
+      },
+      {
+        "laneTrackId": 1,
+        "lengthM": 5.628216743560192,
+        "sMin": 65.78727043441252,
+        "sMax": 71.1020363294706,
+        "lateralOrder": 3
+      },
+      {
+        "laneTrackId": 1,
+        "lengthM": 4.062449090062024,
+        "sMin": 88.54424333219555,
+        "sMax": 92.49290092856977,
+        "lateralOrder": 4
+      },
+      {
+        "laneTrackId": 2,
+        "lengthM": 9.025455535799964,
+        "sMin": 332.4326940942537,
+        "sMax": 341.2495644385052,
+        "lateralOrder": 5
+      },
+      {
+        "laneTrackId": 2,
+        "lengthM": 56.26142001781394,
+        "sMin": 356.21769056614175,
+        "sMax": 412.22180615396644,
+        "lateralOrder": 6
+      },
+      {
+        "laneTrackId": 2,
+        "lengthM": 4.698249912610038,
+        "sMin": 434.5339771485253,
+        "sMax": 439.23222706113535,
+        "lateralOrder": 7
+      },
+      {
+        "laneTrackId": 2,
+        "lengthM": 12.065204076644937,
+        "sMin": 466.79093510592395,
+        "sMax": 478.79387292483455,
+        "lateralOrder": 8
+      },
+      {
+        "laneTrackId": 2,
+        "lengthM": 3.434806317947622,
+        "sMin": 500.1206905235975,
+        "sMax": 503.555267266108,
+        "lateralOrder": 9
+      },
+      {
+        "laneTrackId": 2,
+        "lengthM": 26.52926090604543,
+        "sMin": 527.5523303173946,
+        "sMax": 554.0369644246867,
+        "lateralOrder": 10
+      },
+      {
+        "laneTrackId": 2,
+        "lengthM": 4.7379115840729265,
+        "sMin": 567.3471591784137,
+        "sMax": 572.0372665529105,
+        "lateralOrder": 11
+      },
+      {
+        "laneTrackId": 2,
+        "lengthM": 19.76129873050263,
+        "sMin": 590.0372592002434,
+        "sMax": 609.5318972808049,
+        "lateralOrder": 12
+      },
+      {
+        "laneTrackId": 2,
+        "lengthM": 9.05938134722137,
+        "sMin": 621.5319258388029,
+        "sMax": 630.5748338730675,
+        "lateralOrder": 13
+      },
+      {
+        "laneTrackId": 2,
+        "lengthM": 50.19562184637242,
+        "sMin": 646.8868001220607,
+        "sMax": 696.7768519320928,
+        "lateralOrder": 14
+      },
+      {
+        "laneTrackId": 0,
+        "lengthM": 7.112316358132403,
+        "sMin": 35.2335204264419,
+        "sMax": 42.29187659366445,
+        "lateralOrder": 15
+      },
+      {
+        "laneTrackId": 0,
+        "lengthM": 5.726899182591866,
+        "sMin": 65.78727043441252,
+        "sMax": 71.16262034658317,
+        "lateralOrder": 16
+      },
+      {
+        "laneTrackId": 0,
+        "lengthM": 13.229314864900502,
+        "sMin": 88.60640899874842,
+        "sMax": 101.42060881322757,
+        "lateralOrder": 17
+      },
+      {
+        "laneTrackId": 0,
+        "lengthM": 9.064970144232747,
+        "sMin": 128.15150739711632,
+        "sMax": 136.89462245632075,
+        "lateralOrder": 18
+      },
+      {
+        "laneTrackId": 0,
+        "lengthM": 7.012472932446368,
+        "sMin": 260.5733446591958,
+        "sMax": 267.03391232848685,
+        "lateralOrder": 19
+      },
+      {
+        "laneTrackId": 0,
+        "lengthM": 11.854843059681173,
+        "sMin": 284.249472994103,
+        "sMax": 295.869183290206,
+        "lateralOrder": 20
+      },
+      {
+        "laneTrackId": 0,
+        "lengthM": 6.591146500552444,
+        "sMin": 332.04929966794026,
+        "sMax": 338.4892400311075,
+        "lateralOrder": 21
+      },
+      {
+        "laneTrackId": 0,
+        "lengthM": 30.950442325649647,
+        "sMin": 381.491557471317,
+        "sMax": 412.4419997969666,
+        "lateralOrder": 22
+      },
+      {
+        "laneTrackId": 0,
+        "lengthM": 4.270489867536668,
+        "sMin": 434.9420161044949,
+        "sMax": 439.19607520729676,
+        "lateralOrder": 23
+      },
+      {
+        "laneTrackId": 0,
+        "lengthM": 42.340983375935394,
+        "sMin": 461.6933880838419,
+        "sMax": 503.51347510831215,
+        "lateralOrder": 24
+      },
+      {
+        "laneTrackId": 0,
+        "lengthM": 26.797924044420988,
+        "sMin": 527.5087461105519,
+        "sMax": 554.2844207530605,
+        "lateralOrder": 25
+      },
+      {
+        "laneTrackId": 0,
+        "lengthM": 4.711053828965306,
+        "sMin": 567.3471591784137,
+        "sMax": 572.0315218311622,
+        "lateralOrder": 26
+      },
+      {
+        "laneTrackId": 0,
+        "lengthM": 19.989313806555444,
+        "sMin": 590.03142453498,
+        "sMax": 609.5384308071199,
+        "lateralOrder": 27
+      },
+      {
+        "laneTrackId": 0,
+        "lengthM": 9.06830149010541,
+        "sMin": 621.5384584633066,
+        "sMax": 630.5985379438873,
+        "lateralOrder": 28
+      },
+      {
+        "laneTrackId": 0,
+        "lengthM": 43.4644836612682,
+        "sMin": 646.9116126270657,
+        "sMax": 689.824925750434,
+        "lateralOrder": 29
+      }
+    ]
+  }
+}

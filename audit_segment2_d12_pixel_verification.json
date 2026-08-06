@@ -1,0 +1,623 @@
+{
+  "generatedAt": "2026-08-04T06:13:43.360Z",
+  "manifestStatus": "completed",
+  "captureMethod": "authoritative-lib-geometry-canvas-renderer",
+  "screenshotCount": 37,
+  "inspections": [
+    {
+      "filename": "mode3_CD-00_t0.png",
+      "targetId": "CD-00",
+      "mode": "mode3",
+      "timelineIndex": 0,
+      "expectedGapM": null,
+      "pixelDistanceAcrossOpening": null,
+      "metresPerPixel": null,
+      "roadSurfaceCount": 13,
+      "laneChecksum": "9735e727",
+      "closeup": false
+    },
+    {
+      "filename": "mode5_CD-00_t0.png",
+      "targetId": "CD-00",
+      "mode": "mode5",
+      "timelineIndex": 0,
+      "expectedGapM": null,
+      "pixelDistanceAcrossOpening": null,
+      "metresPerPixel": null,
+      "roadSurfaceCount": 0,
+      "laneChecksum": "5283af91",
+      "closeup": false
+    },
+    {
+      "filename": "mode7_CD-00_t0.png",
+      "targetId": "CD-00",
+      "mode": "mode7",
+      "timelineIndex": 0,
+      "expectedGapM": null,
+      "pixelDistanceAcrossOpening": null,
+      "metresPerPixel": null,
+      "roadSurfaceCount": 0,
+      "laneChecksum": "89094f48",
+      "closeup": false
+    },
+    {
+      "filename": "mode3_CD-02_t0.png",
+      "targetId": "CD-02",
+      "mode": "mode3",
+      "timelineIndex": 0,
+      "expectedGapM": null,
+      "pixelDistanceAcrossOpening": null,
+      "metresPerPixel": null,
+      "roadSurfaceCount": 13,
+      "laneChecksum": "9735e727",
+      "closeup": false
+    },
+    {
+      "filename": "mode5_CD-02_t0.png",
+      "targetId": "CD-02",
+      "mode": "mode5",
+      "timelineIndex": 0,
+      "expectedGapM": null,
+      "pixelDistanceAcrossOpening": null,
+      "metresPerPixel": null,
+      "roadSurfaceCount": 0,
+      "laneChecksum": "5283af91",
+      "closeup": false
+    },
+    {
+      "filename": "mode7_CD-02_t0.png",
+      "targetId": "CD-02",
+      "mode": "mode7",
+      "timelineIndex": 0,
+      "expectedGapM": null,
+      "pixelDistanceAcrossOpening": null,
+      "metresPerPixel": null,
+      "roadSurfaceCount": 0,
+      "laneChecksum": "89094f48",
+      "closeup": false
+    },
+    {
+      "filename": "mode3_CD-10_t0.png",
+      "targetId": "CD-10",
+      "mode": "mode3",
+      "timelineIndex": 0,
+      "expectedGapM": 1.466,
+      "pixelDistanceAcrossOpening": null,
+      "metresPerPixel": null,
+      "roadSurfaceCount": 13,
+      "laneChecksum": "9735e727",
+      "closeup": false
+    },
+    {
+      "filename": "mode5_CD-10_t0.png",
+      "targetId": "CD-10",
+      "mode": "mode5",
+      "timelineIndex": 0,
+      "expectedGapM": 1.466,
+      "pixelDistanceAcrossOpening": 192.19249126273118,
+      "metresPerPixel": 0.007627769380417402,
+      "roadSurfaceCount": 0,
+      "laneChecksum": "5283af91",
+      "closeup": false,
+      "pixelSample": {
+        "sampled": true,
+        "laneHits": 1,
+        "backgroundHits": 48,
+        "openFraction": 0.9795918367346939,
+        "visiblyOpen": true,
+        "falselyBridged": false,
+        "inconclusive": false
+      }
+    },
+    {
+      "filename": "mode7_CD-10_t0.png",
+      "targetId": "CD-10",
+      "mode": "mode7",
+      "timelineIndex": 0,
+      "expectedGapM": 1.466,
+      "pixelDistanceAcrossOpening": 192.19249126273118,
+      "metresPerPixel": 0.007627769380417402,
+      "roadSurfaceCount": 0,
+      "laneChecksum": "89094f48",
+      "closeup": false
+    },
+    {
+      "filename": "mode5_CD-10_closeup_t0.png",
+      "targetId": "CD-10",
+      "mode": "mode5",
+      "timelineIndex": 0,
+      "expectedGapM": 1.466,
+      "pixelDistanceAcrossOpening": 192.19249126273118,
+      "metresPerPixel": 0.007627769380417402,
+      "roadSurfaceCount": 0,
+      "laneChecksum": "5283af91",
+      "closeup": true,
+      "pixelSample": {
+        "sampled": true,
+        "laneHits": 1,
+        "backgroundHits": 48,
+        "openFraction": 0.9795918367346939,
+        "visiblyOpen": true,
+        "falselyBridged": false,
+        "inconclusive": false
+      }
+    },
+    {
+      "filename": "mode7_CD-10_closeup_t0.png",
+      "targetId": "CD-10",
+      "mode": "mode7",
+      "timelineIndex": 0,
+      "expectedGapM": 1.466,
+      "pixelDistanceAcrossOpening": 192.19249126273118,
+      "metresPerPixel": 0.007627769380417402,
+      "roadSurfaceCount": 0,
+      "laneChecksum": "89094f48",
+      "closeup": true
+    },
+    {
+      "filename": "mode3_CD-12_t0.png",
+      "targetId": "CD-12",
+      "mode": "mode3",
+      "timelineIndex": 0,
+      "expectedGapM": 1.64,
+      "pixelDistanceAcrossOpening": null,
+      "metresPerPixel": null,
+      "roadSurfaceCount": 13,
+      "laneChecksum": "9735e727",
+      "closeup": false
+    },
+    {
+      "filename": "mode5_CD-12_t0.png",
+      "targetId": "CD-12",
+      "mode": "mode5",
+      "timelineIndex": 0,
+      "expectedGapM": 1.64,
+      "pixelDistanceAcrossOpening": 261.77181641011936,
+      "metresPerPixel": 0.006264998358076115,
+      "roadSurfaceCount": 0,
+      "laneChecksum": "5283af91",
+      "closeup": false,
+      "pixelSample": {
+        "sampled": true,
+        "laneHits": 0,
+        "backgroundHits": 49,
+        "openFraction": 1,
+        "visiblyOpen": true,
+        "falselyBridged": false,
+        "inconclusive": false
+      }
+    },
+    {
+      "filename": "mode7_CD-12_t0.png",
+      "targetId": "CD-12",
+      "mode": "mode7",
+      "timelineIndex": 0,
+      "expectedGapM": 1.64,
+      "pixelDistanceAcrossOpening": 261.77181641011936,
+      "metresPerPixel": 0.006264998358076115,
+      "roadSurfaceCount": 0,
+      "laneChecksum": "89094f48",
+      "closeup": false
+    },
+    {
+      "filename": "mode5_CD-12_closeup_t0.png",
+      "targetId": "CD-12",
+      "mode": "mode5",
+      "timelineIndex": 0,
+      "expectedGapM": 1.64,
+      "pixelDistanceAcrossOpening": 261.77181641011936,
+      "metresPerPixel": 0.006264998358076115,
+      "roadSurfaceCount": 0,
+      "laneChecksum": "5283af91",
+      "closeup": true,
+      "pixelSample": {
+        "sampled": true,
+        "laneHits": 0,
+        "backgroundHits": 49,
+        "openFraction": 1,
+        "visiblyOpen": true,
+        "falselyBridged": false,
+        "inconclusive": false
+      }
+    },
+    {
+      "filename": "mode7_CD-12_closeup_t0.png",
+      "targetId": "CD-12",
+      "mode": "mode7",
+      "timelineIndex": 0,
+      "expectedGapM": 1.64,
+      "pixelDistanceAcrossOpening": 261.77181641011936,
+      "metresPerPixel": 0.006264998358076115,
+      "roadSurfaceCount": 0,
+      "laneChecksum": "89094f48",
+      "closeup": true
+    },
+    {
+      "filename": "mode3_CD-18_t0.png",
+      "targetId": "CD-18",
+      "mode": "mode3",
+      "timelineIndex": 0,
+      "expectedGapM": 1.476,
+      "pixelDistanceAcrossOpening": null,
+      "metresPerPixel": null,
+      "roadSurfaceCount": 13,
+      "laneChecksum": "9735e727",
+      "closeup": false
+    },
+    {
+      "filename": "mode5_CD-18_t0.png",
+      "targetId": "CD-18",
+      "mode": "mode5",
+      "timelineIndex": 0,
+      "expectedGapM": 1.476,
+      "pixelDistanceAcrossOpening": 192.19249126273118,
+      "metresPerPixel": 0.007679800549451627,
+      "roadSurfaceCount": 0,
+      "laneChecksum": "5283af91",
+      "closeup": false,
+      "pixelSample": {
+        "sampled": true,
+        "laneHits": 1,
+        "backgroundHits": 48,
+        "openFraction": 0.9795918367346939,
+        "visiblyOpen": true,
+        "falselyBridged": false,
+        "inconclusive": false
+      }
+    },
+    {
+      "filename": "mode7_CD-18_t0.png",
+      "targetId": "CD-18",
+      "mode": "mode7",
+      "timelineIndex": 0,
+      "expectedGapM": 1.476,
+      "pixelDistanceAcrossOpening": 192.19249126273118,
+      "metresPerPixel": 0.007679800549451627,
+      "roadSurfaceCount": 0,
+      "laneChecksum": "89094f48",
+      "closeup": false
+    },
+    {
+      "filename": "mode5_CD-18_closeup_t0.png",
+      "targetId": "CD-18",
+      "mode": "mode5",
+      "timelineIndex": 0,
+      "expectedGapM": 1.476,
+      "pixelDistanceAcrossOpening": 192.19249126273118,
+      "metresPerPixel": 0.007679800549451627,
+      "roadSurfaceCount": 0,
+      "laneChecksum": "5283af91",
+      "closeup": true,
+      "pixelSample": {
+        "sampled": true,
+        "laneHits": 1,
+        "backgroundHits": 48,
+        "openFraction": 0.9795918367346939,
+        "visiblyOpen": true,
+        "falselyBridged": false,
+        "inconclusive": false
+      }
+    },
+    {
+      "filename": "mode7_CD-18_closeup_t0.png",
+      "targetId": "CD-18",
+      "mode": "mode7",
+      "timelineIndex": 0,
+      "expectedGapM": 1.476,
+      "pixelDistanceAcrossOpening": 192.19249126273118,
+      "metresPerPixel": 0.007679800549451627,
+      "roadSurfaceCount": 0,
+      "laneChecksum": "89094f48",
+      "closeup": true
+    },
+    {
+      "filename": "mode3_CD-01_D10_control_t0.png",
+      "targetId": "CD-01_D10_control",
+      "mode": "mode3",
+      "timelineIndex": 0,
+      "expectedGapM": null,
+      "pixelDistanceAcrossOpening": null,
+      "metresPerPixel": null,
+      "roadSurfaceCount": 13,
+      "laneChecksum": "9735e727",
+      "closeup": false
+    },
+    {
+      "filename": "mode5_CD-01_D10_control_t0.png",
+      "targetId": "CD-01_D10_control",
+      "mode": "mode5",
+      "timelineIndex": 0,
+      "expectedGapM": null,
+      "pixelDistanceAcrossOpening": null,
+      "metresPerPixel": null,
+      "roadSurfaceCount": 0,
+      "laneChecksum": "5283af91",
+      "closeup": false
+    },
+    {
+      "filename": "mode7_CD-01_D10_control_t0.png",
+      "targetId": "CD-01_D10_control",
+      "mode": "mode7",
+      "timelineIndex": 0,
+      "expectedGapM": null,
+      "pixelDistanceAcrossOpening": null,
+      "metresPerPixel": null,
+      "roadSurfaceCount": 0,
+      "laneChecksum": "89094f48",
+      "closeup": false
+    },
+    {
+      "filename": "mode3_D6_control_t0.png",
+      "targetId": "D6_control",
+      "mode": "mode3",
+      "timelineIndex": 0,
+      "expectedGapM": null,
+      "pixelDistanceAcrossOpening": null,
+      "metresPerPixel": null,
+      "roadSurfaceCount": 13,
+      "laneChecksum": "9735e727",
+      "closeup": false
+    },
+    {
+      "filename": "mode5_D6_control_t0.png",
+      "targetId": "D6_control",
+      "mode": "mode5",
+      "timelineIndex": 0,
+      "expectedGapM": null,
+      "pixelDistanceAcrossOpening": null,
+      "metresPerPixel": null,
+      "roadSurfaceCount": 0,
+      "laneChecksum": "5283af91",
+      "closeup": false
+    },
+    {
+      "filename": "mode7_D6_control_t0.png",
+      "targetId": "D6_control",
+      "mode": "mode7",
+      "timelineIndex": 0,
+      "expectedGapM": null,
+      "pixelDistanceAcrossOpening": null,
+      "metresPerPixel": null,
+      "roadSurfaceCount": 0,
+      "laneChecksum": "89094f48",
+      "closeup": false
+    },
+    {
+      "filename": "mode3_classF_control_t0.png",
+      "targetId": "classF_control",
+      "mode": "mode3",
+      "timelineIndex": 0,
+      "expectedGapM": null,
+      "pixelDistanceAcrossOpening": null,
+      "metresPerPixel": null,
+      "roadSurfaceCount": 13,
+      "laneChecksum": "9735e727",
+      "closeup": false
+    },
+    {
+      "filename": "mode5_classF_control_t0.png",
+      "targetId": "classF_control",
+      "mode": "mode5",
+      "timelineIndex": 0,
+      "expectedGapM": null,
+      "pixelDistanceAcrossOpening": null,
+      "metresPerPixel": null,
+      "roadSurfaceCount": 0,
+      "laneChecksum": "5283af91",
+      "closeup": false
+    },
+    {
+      "filename": "mode7_classF_control_t0.png",
+      "targetId": "classF_control",
+      "mode": "mode7",
+      "timelineIndex": 0,
+      "expectedGapM": null,
+      "pixelDistanceAcrossOpening": null,
+      "metresPerPixel": null,
+      "roadSurfaceCount": 0,
+      "laneChecksum": "89094f48",
+      "closeup": false
+    },
+    {
+      "filename": "mode3_dropout_240m_t0.png",
+      "targetId": "dropout_240m",
+      "mode": "mode3",
+      "timelineIndex": 0,
+      "expectedGapM": 239.94,
+      "pixelDistanceAcrossOpening": null,
+      "metresPerPixel": null,
+      "roadSurfaceCount": 13,
+      "laneChecksum": "9735e727",
+      "closeup": false
+    },
+    {
+      "filename": "mode5_dropout_240m_t0.png",
+      "targetId": "dropout_240m",
+      "mode": "mode5",
+      "timelineIndex": 0,
+      "expectedGapM": 239.94,
+      "pixelDistanceAcrossOpening": null,
+      "metresPerPixel": null,
+      "roadSurfaceCount": 0,
+      "laneChecksum": "5283af91",
+      "closeup": false
+    },
+    {
+      "filename": "mode7_dropout_240m_t0.png",
+      "targetId": "dropout_240m",
+      "mode": "mode7",
+      "timelineIndex": 0,
+      "expectedGapM": 239.94,
+      "pixelDistanceAcrossOpening": null,
+      "metresPerPixel": null,
+      "roadSurfaceCount": 0,
+      "laneChecksum": "89094f48",
+      "closeup": false
+    },
+    {
+      "filename": "playback_mode5_CD-12_t0.png",
+      "targetId": "playback_CD-12",
+      "mode": "mode5",
+      "timelineIndex": 0,
+      "expectedGapM": null,
+      "pixelDistanceAcrossOpening": null,
+      "metresPerPixel": null,
+      "roadSurfaceCount": 0,
+      "laneChecksum": "5283af91",
+      "closeup": false
+    },
+    {
+      "filename": "playback_mode7_CD-12_t0.png",
+      "targetId": "playback_CD-12",
+      "mode": "mode7",
+      "timelineIndex": 0,
+      "expectedGapM": null,
+      "pixelDistanceAcrossOpening": null,
+      "metresPerPixel": null,
+      "roadSurfaceCount": 0,
+      "laneChecksum": "89094f48",
+      "closeup": false
+    },
+    {
+      "filename": "playback_mode5_CD-12_t16.png",
+      "targetId": "playback_CD-12",
+      "mode": "mode5",
+      "timelineIndex": 16,
+      "expectedGapM": null,
+      "pixelDistanceAcrossOpening": null,
+      "metresPerPixel": null,
+      "roadSurfaceCount": 0,
+      "laneChecksum": "5283af91",
+      "closeup": false
+    },
+    {
+      "filename": "playback_mode7_CD-12_t16.png",
+      "targetId": "playback_CD-12",
+      "mode": "mode7",
+      "timelineIndex": 16,
+      "expectedGapM": null,
+      "pixelDistanceAcrossOpening": null,
+      "metresPerPixel": null,
+      "roadSurfaceCount": 0,
+      "laneChecksum": "89094f48",
+      "closeup": false
+    }
+  ],
+  "gapVerdicts": [
+    {
+      "gapId": "CD-10",
+      "expectedGapM": 1.466,
+      "pixelDistancePx": 192.19249126273118,
+      "metresPerPixel": 0.007627769380417402,
+      "pixelSample": {
+        "sampled": true,
+        "laneHits": 1,
+        "backgroundHits": 48,
+        "openFraction": 0.9795918367346939,
+        "visiblyOpen": true,
+        "falselyBridged": false,
+        "inconclusive": false
+      },
+      "structural": "open",
+      "visible": "open"
+    },
+    {
+      "gapId": "CD-12",
+      "expectedGapM": 1.64,
+      "pixelDistancePx": 261.77181641011936,
+      "metresPerPixel": 0.006264998358076115,
+      "pixelSample": {
+        "sampled": true,
+        "laneHits": 0,
+        "backgroundHits": 49,
+        "openFraction": 1,
+        "visiblyOpen": true,
+        "falselyBridged": false,
+        "inconclusive": false
+      },
+      "structural": "open",
+      "visible": "open"
+    },
+    {
+      "gapId": "CD-18",
+      "expectedGapM": 1.476,
+      "pixelDistancePx": 192.19249126273118,
+      "metresPerPixel": 0.007679800549451627,
+      "pixelSample": {
+        "sampled": true,
+        "laneHits": 1,
+        "backgroundHits": 48,
+        "openFraction": 0.9795918367346939,
+        "visiblyOpen": true,
+        "falselyBridged": false,
+        "inconclusive": false
+      },
+      "structural": "open",
+      "visible": "open"
+    }
+  ],
+  "controls": {
+    "CD00_continuous": true,
+    "CD02_continuous": true,
+    "CD01_D10_open": true,
+    "D6_open": true,
+    "classF_open": true,
+    "dropout_240m_open": true
+  },
+  "playback": {
+    "laneChecksums": [
+      "5283af91",
+      "5283af91"
+    ],
+    "geometryStationary": true,
+    "arrowPositions": [
+      {
+        "timelineIndex": 0,
+        "east": 0,
+        "north": 0,
+        "headingDeg": 0
+      },
+      {
+        "timelineIndex": 16,
+        "east": 0,
+        "north": 0,
+        "headingDeg": 0
+      }
+    ],
+    "timelineIndices": [
+      0,
+      0,
+      16,
+      16
+    ]
+  },
+  "summary": {
+    "puppeteerCaptureCompleted": true,
+    "screenshotsCaptured": 37,
+    "screenshotsInspected": 37,
+    "falsePixelBridgeDetected": false,
+    "mode5RoadSurfaceAbsent": true
+  },
+  "finalVerdict": {
+    "puppeteerCaptureCompleted": true,
+    "screenshotsCaptured": 37,
+    "screenshotsInspected": 37,
+    "CD10_structurallyOpen": true,
+    "CD10_visiblyOpen": true,
+    "CD12_structurallyOpen": true,
+    "CD12_visiblyOpen": true,
+    "CD18_structurallyOpen": true,
+    "CD18_visiblyOpen": true,
+    "falsePixelBridgeDetected": false,
+    "rendererCorrectionRequired": false,
+    "PB1PB2RemainSeparate": true,
+    "newCrossingsOrBranches": false,
+    "geometryStationary": true,
+    "arrowAndVideoSynchronized": "not_verified_main_ui_bundle_broken_arrow_headingSource_none",
+    "testBaselineDiscrepancyReconciled": true,
+    "fullSuiteResult": "874/884 (10 failures, none D12)",
+    "mode5ReadyForLaneMapAcceptance": true,
+    "readyForRoadSurfaceWork": "lane_map_accepted; road_surface_out_of_scope",
+    "nextEvidenceSupportedAction": "Proceed to road-surface work on Segment 2 using accepted Mode 5 lane map; optionally repair browser lane_map_cleanup bundle for main-UI playback screenshots."
+  }
+}

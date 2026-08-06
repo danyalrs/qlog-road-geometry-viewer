@@ -1,0 +1,4131 @@
+{
+  "segment": "qlog_f449c_2.bz2",
+  "generatedAt": "2026-08-03T07:20:50.365Z",
+  "pipelineMode": "C",
+  "summary": {
+    "firstTrackFragmentationFrame": 13,
+    "firstFailingAssociationFrameId": 2963,
+    "firstRejectionGate": null,
+    "firstFusionLossFunction": "lane_tracking association",
+    "rawLaneObservations": 53,
+    "validMappedLaneFragments": 53,
+    "trackerInputs": 53,
+    "assignedObservations": 48,
+    "newTracksCreated": 3,
+    "tracksTerminated": 1,
+    "finalFusedLaneFragments": 33,
+    "finalFusedLanePoints": 125,
+    "finalRoadPolygons": 12,
+    "retentionRates": {
+      "mappedToTracked": 0.9056603773584906,
+      "trackedToFused": 0.9811320754716981,
+      "mappedToFinalFused": 0.9811320754716981
+    }
+  },
+  "observationProvenance": [
+    {
+      "elapsedIdx": 0,
+      "frameId": 2443,
+      "logMonoTime": "139726594139",
+      "laneIndex": 1,
+      "laneProbability": 0.9339951276779175,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 117.20546495667259,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 254.5254303934877,
+      "trackCandidates": [],
+      "assignmentGateThreshold": null,
+      "selectedTrackId": 0,
+      "assignmentAccepted": false,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 24,
+      "trackAgeAfter": 25,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 0,
+      "frameId": 2443,
+      "logMonoTime": "139726594139",
+      "laneIndex": 2,
+      "laneProbability": 0.9727855324745178,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 117.20618172003498,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 254.5254303934877,
+      "trackCandidates": [],
+      "assignmentGateThreshold": null,
+      "selectedTrackId": 1,
+      "assignmentAccepted": false,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 4,
+      "trackAgeAfter": 5,
+      "missedObservations": 5,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2
+      ],
+      "includedInRoadPolygon": false,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 1,
+      "frameId": 2483,
+      "logMonoTime": "141726837576",
+      "laneIndex": 1,
+      "laneProbability": 0.7666933536529541,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 118.55182690393809,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 252.84770471921937,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": 0.7326265219957689,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0.021028668521202474
+        },
+        {
+          "trackId": 1,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 3.421402743302899
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 0,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 24,
+      "trackAgeAfter": 25,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 1,
+      "frameId": 2483,
+      "logMonoTime": "141726837576",
+      "laneIndex": 2,
+      "laneProbability": 0.9764917492866516,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 118.37522055765139,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 252.84770471921937,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 3.2529111087108364
+        },
+        {
+          "trackId": 1,
+          "cost": 0.27610842105824585,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 1,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 4,
+      "trackAgeAfter": 5,
+      "missedObservations": 5,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2
+      ],
+      "includedInRoadPolygon": false,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 2,
+      "frameId": 2523,
+      "logMonoTime": "143726895711",
+      "laneIndex": 1,
+      "laneProbability": 0.6032437682151794,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 130.20717336162602,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 254.45277686735218,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": 1.4674239950303227,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0.08956003897024911
+        },
+        {
+          "trackId": 1,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 3.712667652068474
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 0,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 24,
+      "trackAgeAfter": 25,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 2,
+      "frameId": 2523,
+      "logMonoTime": "143726895711",
+      "laneIndex": 2,
+      "laneProbability": 0.852939248085022,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 128.49116073230766,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 254.45277686735218,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 3.2837459943807588
+        },
+        {
+          "trackId": 1,
+          "cost": 0.7217434025728693,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0.05262088450425587
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 1,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 4,
+      "trackAgeAfter": 5,
+      "missedObservations": 5,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2
+      ],
+      "includedInRoadPolygon": false,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 3,
+      "frameId": 2563,
+      "logMonoTime": "145723084099",
+      "laneIndex": 1,
+      "laneProbability": 0.7887699604034424,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 144.48315365925546,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 249.89231422955044,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": 1.757999421938815,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0.2052205078743239
+        },
+        {
+          "trackId": 1,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 3.2360788934522944
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 0,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 24,
+      "trackAgeAfter": 25,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 3,
+      "frameId": 2563,
+      "logMonoTime": "145723084099",
+      "laneIndex": 2,
+      "laneProbability": 0.7298612594604492,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 141.47635650334618,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 249.89231422955044,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 3.264501727085906
+        },
+        {
+          "trackId": 1,
+          "cost": 2.0717243826093856,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0.4193455616585284
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 1,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 4,
+      "trackAgeAfter": 5,
+      "missedObservations": 5,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2
+      ],
+      "includedInRoadPolygon": false,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 4,
+      "frameId": 2603,
+      "logMonoTime": "147723001692",
+      "laneIndex": 1,
+      "laneProbability": 0.920274555683136,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 147.2282076039851,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 235.80879839900078,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": 0.6829069521424835,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0
+        },
+        {
+          "trackId": 1,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 1.915668849458152
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 0,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 24,
+      "trackAgeAfter": 25,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 4,
+      "frameId": 2603,
+      "logMonoTime": "147723001692",
+      "laneIndex": 2,
+      "laneProbability": 0.5466658473014832,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 144.34370702509005,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 235.80879839900078,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 1.6057539150450497
+        },
+        {
+          "trackId": 1,
+          "cost": 1.1472553353903359,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 1,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 4,
+      "trackAgeAfter": 5,
+      "missedObservations": 5,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2
+      ],
+      "includedInRoadPolygon": false,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 5,
+      "frameId": 2643,
+      "logMonoTime": "149725764567",
+      "laneIndex": 1,
+      "laneProbability": 0.7635427713394165,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 144.349593157945,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 220.16254320454763,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": 0.796419726912117,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0
+        },
+        {
+          "trackId": 1,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 1.4004023389771623
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 0,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 24,
+      "trackAgeAfter": 25,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 10,
+      "frameId": 2843,
+      "logMonoTime": "159714019679",
+      "laneIndex": 1,
+      "laneProbability": 0.5498607158660889,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 136.34035932246553,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 87.673036309188,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": 1.9721061571069252,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 0,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 24,
+      "trackAgeAfter": 25,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 11,
+      "frameId": 2883,
+      "logMonoTime": "161715770488",
+      "laneIndex": 1,
+      "laneProbability": 0.8267959356307983,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 136.69775115792154,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 67.49817636893516,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": 0.9466215004072651,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 0,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 24,
+      "trackAgeAfter": 25,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 12,
+      "frameId": 2923,
+      "logMonoTime": "163718456147",
+      "laneIndex": 1,
+      "laneProbability": 0.8617314696311951,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 142.43749267387184,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 51.21446071019753,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": 0.7808945712068399,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 0,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 24,
+      "trackAgeAfter": 25,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 13,
+      "frameId": 2963,
+      "logMonoTime": "165711518986",
+      "laneIndex": 1,
+      "laneProbability": 0.7944315671920776,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 133.35830417213964,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 35.28680271476897,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": 0.7979719357653036,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 0,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 24,
+      "trackAgeAfter": 25,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 13,
+      "frameId": 2963,
+      "logMonoTime": "165711518986",
+      "laneIndex": 2,
+      "laneProbability": 0.6472175121307373,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 132.30798766238627,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 35.28680271476897,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": 4.588394527325724,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0.452538460305806
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 2,
+      "assignmentAccepted": false,
+      "rejectionReason": "newTrackCreated",
+      "newTrackReason": "newTrackCreated",
+      "trackAgeBefore": 16,
+      "trackAgeAfter": 17,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 14,
+      "frameId": 3003,
+      "logMonoTime": "167711351167",
+      "laneIndex": 1,
+      "laneProbability": 0.8697840571403503,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 120.8655115160959,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 18.258055401414662,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": 0.6946399583221262,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0
+        },
+        {
+          "trackId": 2,
+          "cost": 4.546346070890178,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0.464279192313136
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 0,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 24,
+      "trackAgeAfter": 25,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 14,
+      "frameId": 3003,
+      "logMonoTime": "167711351167",
+      "laneIndex": 2,
+      "laneProbability": 0.7908750772476196,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 120.81297414936044,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 18.258055401414662,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": 4.123826553843029,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0.3560368080065639
+        },
+        {
+          "trackId": 2,
+          "cost": 1.0428443340324647,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 2,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 16,
+      "trackAgeAfter": 17,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 15,
+      "frameId": 3043,
+      "logMonoTime": "169710367871",
+      "laneIndex": 1,
+      "laneProbability": 0.8152815699577332,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 117.25157040953857,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 1.9519132137177637,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": 0.7243076855744635,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0
+        },
+        {
+          "trackId": 2,
+          "cost": 4.237562198997714,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0.34651856842182105
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 0,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 24,
+      "trackAgeAfter": 25,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 15,
+      "frameId": 3043,
+      "logMonoTime": "169710367871",
+      "laneIndex": 2,
+      "laneProbability": 0.9064325094223022,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 117.23498856429717,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 1.9519132137177637,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": 4.116622529439892,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0.46069747361545704
+        },
+        {
+          "trackId": 2,
+          "cost": 0.761683464232779,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 2,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 16,
+      "trackAgeAfter": 17,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 16,
+      "frameId": 3083,
+      "logMonoTime": "171706391399",
+      "laneIndex": 1,
+      "laneProbability": 0.9377167820930481,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 117.18848380379355,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 357.31263743665573,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": 0.5552301872476596,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0
+        },
+        {
+          "trackId": 2,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 1.2946354994414297
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 0,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 24,
+      "trackAgeAfter": 25,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 16,
+      "frameId": 3083,
+      "logMonoTime": "171706391399",
+      "laneIndex": 2,
+      "laneProbability": 0.9744181632995605,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 117.18941737263137,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 357.31263743665573,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.0154991307625507
+        },
+        {
+          "trackId": 2,
+          "cost": 0.5188660047670487,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 2,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 16,
+      "trackAgeAfter": 17,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 16,
+      "frameId": 3083,
+      "logMonoTime": "171706391399",
+      "laneIndex": 3,
+      "laneProbability": 0.6335176229476929,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 117.19128471386122,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 357.31263743665573,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": null,
+          "valid": false,
+          "rejection": "laneOrderReversal",
+          "sharedAnchors": 0,
+          "anchorLatMean": null
+        },
+        {
+          "trackId": 2,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.165511518733892
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 3,
+      "assignmentAccepted": false,
+      "rejectionReason": "newTrackCreated",
+      "newTrackReason": "newTrackCreated",
+      "trackAgeBefore": 4,
+      "trackAgeAfter": 5,
+      "missedObservations": 3,
+      "fusedFragmentIds": [
+        0,
+        1
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 17,
+      "frameId": 3123,
+      "logMonoTime": "173712039287",
+      "laneIndex": 1,
+      "laneProbability": 0.9332014918327332,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 117.1891828443349,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 357.5081790603638,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": 0.5938588275873763,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0.036830245907613406
+        },
+        {
+          "trackId": 2,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.739821660144028
+        },
+        {
+          "trackId": 3,
+          "cost": null,
+          "valid": false,
+          "rejection": "laneOrderReversal",
+          "sharedAnchors": 0,
+          "anchorLatMean": null
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 0,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 24,
+      "trackAgeAfter": 25,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 17,
+      "frameId": 3123,
+      "logMonoTime": "173712039287",
+      "laneIndex": 2,
+      "laneProbability": 0.9795388579368591,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 117.18825091909345,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 357.5081790603638,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.6646781503578914
+        },
+        {
+          "trackId": 2,
+          "cost": 0.4377096198448981,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0.013177778513668496
+        },
+        {
+          "trackId": 3,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.7405435224211687
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 2,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 16,
+      "trackAgeAfter": 17,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 17,
+      "frameId": 3123,
+      "logMonoTime": "173712039287",
+      "laneIndex": 3,
+      "laneProbability": 0.7110916972160339,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 117.18876540684343,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 357.5081790603638,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": null,
+          "valid": false,
+          "rejection": "laneOrderReversal",
+          "sharedAnchors": 0,
+          "anchorLatMean": null
+        },
+        {
+          "trackId": 2,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.8133926888350906
+        },
+        {
+          "trackId": 3,
+          "cost": 1.3451608920946174,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0.05275751859480107
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 3,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 4,
+      "trackAgeAfter": 5,
+      "missedObservations": 3,
+      "fusedFragmentIds": [
+        0,
+        1
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 18,
+      "frameId": 3163,
+      "logMonoTime": "175704371479",
+      "laneIndex": 1,
+      "laneProbability": 0.9317337870597839,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 117.19556614698283,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 357.8681527829441,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": 0.5455432424151136,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0.03636071063836498
+        },
+        {
+          "trackId": 2,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.8288781344562004
+        },
+        {
+          "trackId": 3,
+          "cost": null,
+          "valid": false,
+          "rejection": "laneOrderReversal",
+          "sharedAnchors": 0,
+          "anchorLatMean": null
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 0,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 24,
+      "trackAgeAfter": 25,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 18,
+      "frameId": 3163,
+      "logMonoTime": "175704371479",
+      "laneIndex": 2,
+      "laneProbability": 0.9713971614837646,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 117.19261598576192,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 357.8681527829441,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.4705335105363964
+        },
+        {
+          "trackId": 2,
+          "cost": 0.7427803771616265,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0.15444563735826902
+        },
+        {
+          "trackId": 3,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 3.006151590071884
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 2,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 16,
+      "trackAgeAfter": 17,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 18,
+      "frameId": 3163,
+      "logMonoTime": "175704371479",
+      "laneIndex": 3,
+      "laneProbability": 0.7024208903312683,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 117.19293273236303,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 357.8681527829441,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": null,
+          "valid": false,
+          "rejection": "laneOrderReversal",
+          "sharedAnchors": 0,
+          "anchorLatMean": null
+        },
+        {
+          "trackId": 2,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.320730267022706
+        },
+        {
+          "trackId": 3,
+          "cost": 2.08730388706738,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0.3634374097677385
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 3,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 4,
+      "trackAgeAfter": 5,
+      "missedObservations": 3,
+      "fusedFragmentIds": [
+        0,
+        1
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 19,
+      "frameId": 3203,
+      "logMonoTime": "177707085489",
+      "laneIndex": 1,
+      "laneProbability": 0.9179291725158691,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 117.19649067681407,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 357.87938543676614,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": 0.5492001553433501,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0.034182364389672405
+        },
+        {
+          "trackId": 2,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.6775515379368495
+        },
+        {
+          "trackId": 3,
+          "cost": null,
+          "valid": false,
+          "rejection": "laneOrderReversal",
+          "sharedAnchors": 0,
+          "anchorLatMean": null
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 0,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 24,
+      "trackAgeAfter": 25,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 19,
+      "frameId": 3203,
+      "logMonoTime": "177707085489",
+      "laneIndex": 2,
+      "laneProbability": 0.9777554869651794,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 117.19302044805733,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 357.87938543676614,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.566762719034582
+        },
+        {
+          "trackId": 2,
+          "cost": 0.5905467221798657,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0.1024418636186651
+        },
+        {
+          "trackId": 3,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.74515604392281
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 2,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 16,
+      "trackAgeAfter": 17,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 20,
+      "frameId": 3243,
+      "logMonoTime": "179713752755",
+      "laneIndex": 1,
+      "laneProbability": 0.9009042978286743,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 117.19365655037383,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 357.5766980822572,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": 0.47121469025700896,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0
+        },
+        {
+          "trackId": 2,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.481229360135173
+        },
+        {
+          "trackId": 3,
+          "cost": null,
+          "valid": false,
+          "rejection": "laneOrderReversal",
+          "sharedAnchors": 0,
+          "anchorLatMean": null
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 0,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 24,
+      "trackAgeAfter": 25,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 20,
+      "frameId": 3243,
+      "logMonoTime": "179713752755",
+      "laneIndex": 2,
+      "laneProbability": 0.9750354290008545,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 117.18984752271297,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 357.5766980822572,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.642659958912955
+        },
+        {
+          "trackId": 2,
+          "cost": 0.47774839425640786,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0.0675502845947709
+        },
+        {
+          "trackId": 3,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.541957202195255
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 2,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 16,
+      "trackAgeAfter": 17,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 21,
+      "frameId": 3283,
+      "logMonoTime": "181701795889",
+      "laneIndex": 1,
+      "laneProbability": 0.8986271619796753,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 117.20572716527019,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 357.6347729770144,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": 0.7783250431514692,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0.1134171749982036
+        },
+        {
+          "trackId": 2,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.8030732561829415
+        },
+        {
+          "trackId": 3,
+          "cost": null,
+          "valid": false,
+          "rejection": "laneOrderReversal",
+          "sharedAnchors": 0,
+          "anchorLatMean": null
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 0,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 24,
+      "trackAgeAfter": 25,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 21,
+      "frameId": 3283,
+      "logMonoTime": "181701795889",
+      "laneIndex": 2,
+      "laneProbability": 0.9758626222610474,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 117.20182732522908,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 357.6347729770144,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.8187881218174504
+        },
+        {
+          "trackId": 2,
+          "cost": 0.6154317766623425,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0.1291320406327126
+        },
+        {
+          "trackId": 3,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.4128250215513263
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 2,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 16,
+      "trackAgeAfter": 17,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 22,
+      "frameId": 3323,
+      "logMonoTime": "183695365176",
+      "laneIndex": 1,
+      "laneProbability": 0.929695188999176,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 117.20079813553023,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 357.57211906462044,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": 0.577524385933174,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0.04648790873143525
+        },
+        {
+          "trackId": 2,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.8875671563604475
+        },
+        {
+          "trackId": 3,
+          "cost": null,
+          "valid": false,
+          "rejection": "laneOrderReversal",
+          "sharedAnchors": 0,
+          "anchorLatMean": null
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 0,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 24,
+      "trackAgeAfter": 25,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 22,
+      "frameId": 3323,
+      "logMonoTime": "183695365176",
+      "laneIndex": 2,
+      "laneProbability": 0.9788528084754944,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 117.19805650017832,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 357.57211906462044,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.9601151220868
+        },
+        {
+          "trackId": 2,
+          "cost": 0.3000295850020809,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0.009127652147844145
+        },
+        {
+          "trackId": 3,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.3827841793068125
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 2,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 16,
+      "trackAgeAfter": 17,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 22,
+      "frameId": 3323,
+      "logMonoTime": "183695365176",
+      "laneIndex": 3,
+      "laneProbability": 0.6035074591636658,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 117.20172833100926,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 357.57211906462044,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": null,
+          "valid": false,
+          "rejection": "laneOrderReversal",
+          "sharedAnchors": 0,
+          "anchorLatMean": null
+        },
+        {
+          "trackId": 2,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.949752489436024
+        },
+        {
+          "trackId": 3,
+          "cost": 2.970370094793198,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0.42830802776934157
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 3,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 4,
+      "trackAgeAfter": 5,
+      "missedObservations": 3,
+      "fusedFragmentIds": [
+        0,
+        1
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 23,
+      "frameId": 3363,
+      "logMonoTime": "185690505804",
+      "laneIndex": 1,
+      "laneProbability": 0.9139852523803711,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 117.23731926486816,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 357.4934918147574,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": 0.6011152300185607,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0.05567706603146324
+        },
+        {
+          "trackId": 2,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.825336313699337
+        },
+        {
+          "trackId": 3,
+          "cost": null,
+          "valid": false,
+          "rejection": "laneOrderReversal",
+          "sharedAnchors": 0,
+          "anchorLatMean": null
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 0,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 24,
+      "trackAgeAfter": 25,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 23,
+      "frameId": 3363,
+      "logMonoTime": "185690505804",
+      "laneIndex": 2,
+      "laneProbability": 0.9735322594642639,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 117.23332470963719,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 357.4934918147574,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.935264896348604
+        },
+        {
+          "trackId": 2,
+          "cost": 0.32985384791319877,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0.01801060194195005
+        },
+        {
+          "trackId": 3,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.8946204262858246
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 2,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 16,
+      "trackAgeAfter": 17,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 24,
+      "frameId": 3403,
+      "logMonoTime": "187679843472",
+      "laneIndex": 1,
+      "laneProbability": 0.898047685623169,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 117.35482516470985,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 357.8149900762928,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": 0.5959414574259845,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0.04143724356513343
+        },
+        {
+          "trackId": 2,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.715986150177901
+        },
+        {
+          "trackId": 3,
+          "cost": null,
+          "valid": false,
+          "rejection": "laneOrderReversal",
+          "sharedAnchors": 0,
+          "anchorLatMean": null
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 0,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 24,
+      "trackAgeAfter": 25,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 24,
+      "frameId": 3403,
+      "logMonoTime": "187679843472",
+      "laneIndex": 2,
+      "laneProbability": 0.9637811779975891,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 117.34415070253365,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 357.8149900762928,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.990736747294767
+        },
+        {
+          "trackId": 2,
+          "cost": 0.6679473705699307,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0.13439145162011862
+        },
+        {
+          "trackId": 3,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.6704347637905754
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 2,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 16,
+      "trackAgeAfter": 17,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 25,
+      "frameId": 3443,
+      "logMonoTime": "189674587404",
+      "laneIndex": 0,
+      "laneProbability": 0.6151315569877625,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 117.53563319050939,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 357.8088577919129,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.9122491937156147
+        },
+        {
+          "trackId": 2,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 5.889015561082491
+        },
+        {
+          "trackId": 3,
+          "cost": null,
+          "valid": false,
+          "rejection": "laneOrderReversal",
+          "sharedAnchors": 0,
+          "anchorLatMean": null
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 4,
+      "assignmentAccepted": false,
+      "rejectionReason": "newTrackCreated",
+      "newTrackReason": "newTrackCreated",
+      "trackAgeBefore": 0,
+      "trackAgeAfter": 1,
+      "missedObservations": 4,
+      "fusedFragmentIds": [],
+      "includedInRoadPolygon": false,
+      "finalDisposition": "tracked"
+    },
+    {
+      "elapsedIdx": 25,
+      "frameId": 3443,
+      "logMonoTime": "189674587404",
+      "laneIndex": 1,
+      "laneProbability": 0.9555996060371399,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 117.54201740242918,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 357.8088577919129,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": 3.518492879186639,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0.3571176330409073
+        },
+        {
+          "trackId": 2,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 3.333884000407784
+        },
+        {
+          "trackId": 3,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 6.007172846445152
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 0,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 24,
+      "trackAgeAfter": 25,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 25,
+      "frameId": 3443,
+      "logMonoTime": "189674587404",
+      "laneIndex": 2,
+      "laneProbability": 0.9748116135597229,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 117.53674204370488,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 357.8088577919129,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": null,
+          "valid": false,
+          "rejection": "laneOrderReversal",
+          "sharedAnchors": 0,
+          "anchorLatMean": null
+        },
+        {
+          "trackId": 2,
+          "cost": 3.2934631491657442,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0.3154085985240374
+        },
+        {
+          "trackId": 3,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.988697444561405
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 2,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 16,
+      "trackAgeAfter": 17,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 26,
+      "frameId": 3483,
+      "logMonoTime": "191667697949",
+      "laneIndex": 1,
+      "laneProbability": 0.8276240825653076,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 117.27203192831253,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 356.8593230863989,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": 0.7442608575730718,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0.04957616088293065
+        },
+        {
+          "trackId": 2,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 3.007521434122703
+        },
+        {
+          "trackId": 3,
+          "cost": null,
+          "valid": false,
+          "rejection": "laneOrderReversal",
+          "sharedAnchors": 0,
+          "anchorLatMean": null
+        },
+        {
+          "trackId": 4,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.1241722382319193
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 0,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 24,
+      "trackAgeAfter": 25,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 26,
+      "frameId": 3483,
+      "logMonoTime": "191667697949",
+      "laneIndex": 2,
+      "laneProbability": 0.8958577513694763,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 117.26751442686687,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 356.8593230863989,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.6807404388683107
+        },
+        {
+          "trackId": 2,
+          "cost": 0.4671765806207137,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0.014148728101425723
+        },
+        {
+          "trackId": 3,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.9946963316628916
+        },
+        {
+          "trackId": 4,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 5.235871999543018
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 2,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 16,
+      "trackAgeAfter": 17,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 26,
+      "frameId": 3483,
+      "logMonoTime": "191667697949",
+      "laneIndex": 3,
+      "laneProbability": 0.5659455060958862,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 117.30293591274943,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 356.8593230863989,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": null,
+          "valid": false,
+          "rejection": "laneOrderReversal",
+          "sharedAnchors": 0,
+          "anchorLatMean": null
+        },
+        {
+          "trackId": 2,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.3422486275213825
+        },
+        {
+          "trackId": 3,
+          "cost": 3.0079449213991536,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0.31471274112607217
+        },
+        {
+          "trackId": 4,
+          "cost": null,
+          "valid": false,
+          "rejection": "laneOrderReversal",
+          "sharedAnchors": 0,
+          "anchorLatMean": null
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 3,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 4,
+      "trackAgeAfter": 5,
+      "missedObservations": 3,
+      "fusedFragmentIds": [
+        0,
+        1
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 27,
+      "frameId": 3523,
+      "logMonoTime": "193663564803",
+      "laneIndex": 1,
+      "laneProbability": 0.5896987915039062,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 117.55423105531548,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 355.24327252578104,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": 0.9959356453640639,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0
+        },
+        {
+          "trackId": 2,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.642888475937999
+        },
+        {
+          "trackId": 3,
+          "cost": null,
+          "valid": false,
+          "rejection": "laneOrderReversal",
+          "sharedAnchors": 0,
+          "anchorLatMean": null
+        },
+        {
+          "trackId": 4,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 1.8410786830243797
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 0,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 24,
+      "trackAgeAfter": 25,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 27,
+      "frameId": 3523,
+      "logMonoTime": "193663564803",
+      "laneIndex": 2,
+      "laneProbability": 0.819550096988678,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 117.51519917121938,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 355.24327252578104,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.6675229360197847
+        },
+        {
+          "trackId": 2,
+          "cost": 0.5722913601603585,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0.0005911123883354658
+        },
+        {
+          "trackId": 3,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.3721160549369293
+        },
+        {
+          "trackId": 4,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 4.791834694562268
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 2,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 16,
+      "trackAgeAfter": 17,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 28,
+      "frameId": 3563,
+      "logMonoTime": "195656697046",
+      "laneIndex": 2,
+      "laneProbability": 0.8026350140571594,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 117.52534066952502,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 355.55312369472165,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.8893667697436256
+        },
+        {
+          "trackId": 2,
+          "cost": 2.8586755310887355,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0.05470300691672295
+        },
+        {
+          "trackId": 3,
+          "cost": null,
+          "valid": false,
+          "rejection": "laneOrderReversal",
+          "sharedAnchors": 0,
+          "anchorLatMean": null
+        },
+        {
+          "trackId": 4,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 4.87459248398888
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 2,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 16,
+      "trackAgeAfter": 17,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 29,
+      "frameId": 3603,
+      "logMonoTime": "197651558947",
+      "laneIndex": 1,
+      "laneProbability": 0.8509367108345032,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 117.93267500049527,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 351.5805969238281,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": 1.0741996330999264,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0.010726160993929848
+        },
+        {
+          "trackId": 2,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 1.7833578598514734
+        },
+        {
+          "trackId": 3,
+          "cost": null,
+          "valid": false,
+          "rejection": "laneOrderReversal",
+          "sharedAnchors": 0,
+          "anchorLatMean": null
+        },
+        {
+          "trackId": 4,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 1.409106523709166
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 0,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 24,
+      "trackAgeAfter": 25,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    },
+    {
+      "elapsedIdx": 29,
+      "frameId": 3603,
+      "logMonoTime": "197651558947",
+      "laneIndex": 2,
+      "laneProbability": 0.776175320148468,
+      "laneType": null,
+      "pointCount": 26,
+      "mappedLengthM": 117.8541110019442,
+      "chunkId": 0,
+      "passId": 0,
+      "poseHeadingDeg": 351.5805969238281,
+      "trackCandidates": [
+        {
+          "trackId": 0,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 2.070053587138601
+        },
+        {
+          "trackId": 2,
+          "cost": 0.7756842275390987,
+          "valid": true,
+          "rejection": null,
+          "sharedAnchors": 6,
+          "anchorLatMean": 0
+        },
+        {
+          "trackId": 3,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 1.5503994757984698
+        },
+        {
+          "trackId": 4,
+          "cost": null,
+          "valid": false,
+          "rejection": "excessiveLateralDisplacement",
+          "sharedAnchors": 6,
+          "anchorLatMean": 3.913205122976937
+        }
+      ],
+      "assignmentGateThreshold": 15,
+      "selectedTrackId": 2,
+      "assignmentAccepted": true,
+      "rejectionReason": null,
+      "newTrackReason": null,
+      "trackAgeBefore": 16,
+      "trackAgeAfter": 17,
+      "missedObservations": 0,
+      "fusedFragmentIds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "includedInRoadPolygon": true,
+      "finalDisposition": "fused"
+    }
+  ],
+  "turnAudit": {
+    "0": {
+      "elapsedIdx": 0,
+      "frameId": 2443,
+      "laneCount": 2,
+      "trackIds": [
+        0,
+        1
+      ],
+      "previousTrackIds": [
+        0,
+        1
+      ],
+      "vehicleDisplacementM": 0,
+      "headingChangeDeg": 0,
+      "assignmentResult": [],
+      "rejections": [],
+      "costMatrix": null
+    },
+    "4": {
+      "elapsedIdx": 4,
+      "frameId": 2603,
+      "laneCount": 2,
+      "trackIds": [
+        0,
+        1
+      ],
+      "previousTrackIds": [
+        0,
+        1
+      ],
+      "vehicleDisplacementM": 23.959857338015162,
+      "headingChangeDeg": -14.083515830549686,
+      "assignmentResult": [
+        {
+          "nextIdx": 0,
+          "trackId": 0,
+          "cost": 0.6829069521424835,
+          "prevTrackId": 0,
+          "resultingTrackId": 0,
+          "sharedAnchors": 6,
+          "laneOrderDiff": 0
+        },
+        {
+          "nextIdx": 1,
+          "trackId": 1,
+          "cost": 1.1472553353903359,
+          "prevTrackId": 1,
+          "resultingTrackId": 1,
+          "sharedAnchors": 6,
+          "laneOrderDiff": 0
+        }
+      ],
+      "rejections": [
+        {
+          "nextIdx": 0,
+          "trackId": 1,
+          "reason": "excessiveLateralDisplacement"
+        },
+        {
+          "nextIdx": 1,
+          "trackId": 0,
+          "reason": "excessiveLateralDisplacement"
+        }
+      ],
+      "costMatrix": [
+        [
+          0.683,
+          null
+        ],
+        [
+          null,
+          1.147
+        ]
+      ]
+    },
+    "8": {
+      "elapsedIdx": 8,
+      "frameId": 2763,
+      "laneCount": 0,
+      "trackIds": [],
+      "previousTrackIds": [],
+      "vehicleDisplacementM": 20.225426108280043,
+      "headingChangeDeg": -28.90951125304764,
+      "assignmentResult": [],
+      "rejections": [],
+      "costMatrix": null
+    },
+    "12": {
+      "elapsedIdx": 12,
+      "frameId": 2923,
+      "laneCount": 1,
+      "trackIds": [
+        0
+      ],
+      "previousTrackIds": [
+        0
+      ],
+      "vehicleDisplacementM": 23.620753530939478,
+      "headingChangeDeg": -16.283715658737606,
+      "assignmentResult": [
+        {
+          "nextIdx": 0,
+          "trackId": 0,
+          "cost": 0.7808945712068399,
+          "prevTrackId": 0,
+          "resultingTrackId": 0,
+          "sharedAnchors": 6,
+          "laneOrderDiff": 0
+        }
+      ],
+      "rejections": [],
+      "costMatrix": [
+        [
+          0.781
+        ]
+      ]
+    },
+    "16": {
+      "elapsedIdx": 16,
+      "frameId": 3083,
+      "laneCount": 3,
+      "trackIds": [
+        0,
+        2,
+        3
+      ],
+      "previousTrackIds": [
+        0,
+        2
+      ],
+      "vehicleDisplacementM": 24.79574590486669,
+      "headingChangeDeg": -4.639275777062039,
+      "assignmentResult": [
+        {
+          "nextIdx": 0,
+          "trackId": 0,
+          "cost": 0.5552301872476596,
+          "prevTrackId": 0,
+          "resultingTrackId": 0,
+          "sharedAnchors": 6,
+          "laneOrderDiff": 0
+        },
+        {
+          "nextIdx": 1,
+          "trackId": 2,
+          "cost": 0.5188660047670487,
+          "prevTrackId": 2,
+          "resultingTrackId": 2,
+          "sharedAnchors": 6,
+          "laneOrderDiff": 0
+        },
+        {
+          "nextIdx": 2,
+          "trackId": 3,
+          "cost": null,
+          "prevTrackId": null,
+          "resultingTrackId": 3,
+          "newTrack": true
+        }
+      ],
+      "rejections": [
+        {
+          "nextIdx": 0,
+          "trackId": 2,
+          "reason": "excessiveLateralDisplacement"
+        },
+        {
+          "nextIdx": 1,
+          "trackId": 0,
+          "reason": "excessiveLateralDisplacement"
+        },
+        {
+          "nextIdx": 2,
+          "trackId": 0,
+          "reason": "laneOrderReversal"
+        },
+        {
+          "nextIdx": 2,
+          "trackId": 2,
+          "reason": "excessiveLateralDisplacement"
+        }
+      ],
+      "costMatrix": [
+        [
+          0.555,
+          null
+        ],
+        [
+          null,
+          0.519
+        ],
+        [
+          null,
+          null
+        ]
+      ]
+    },
+    "20": {
+      "elapsedIdx": 20,
+      "frameId": 3243,
+      "laneCount": 2,
+      "trackIds": [
+        0,
+        2
+      ],
+      "previousTrackIds": [
+        0,
+        2
+      ],
+      "vehicleDisplacementM": 33.317473253243,
+      "headingChangeDeg": -0.30268735450886197,
+      "assignmentResult": [
+        {
+          "nextIdx": 0,
+          "trackId": 0,
+          "cost": 0.47121469025700896,
+          "prevTrackId": 0,
+          "resultingTrackId": 0,
+          "sharedAnchors": 6,
+          "laneOrderDiff": 0
+        },
+        {
+          "nextIdx": 1,
+          "trackId": 2,
+          "cost": 0.47774839425640786,
+          "prevTrackId": 2,
+          "resultingTrackId": 2,
+          "sharedAnchors": 6,
+          "laneOrderDiff": 0
+        }
+      ],
+      "rejections": [
+        {
+          "nextIdx": 0,
+          "trackId": 2,
+          "reason": "excessiveLateralDisplacement"
+        },
+        {
+          "nextIdx": 0,
+          "trackId": 3,
+          "reason": "laneOrderReversal"
+        },
+        {
+          "nextIdx": 1,
+          "trackId": 0,
+          "reason": "excessiveLateralDisplacement"
+        },
+        {
+          "nextIdx": 1,
+          "trackId": 3,
+          "reason": "excessiveLateralDisplacement"
+        }
+      ],
+      "costMatrix": [
+        [
+          0.471,
+          null,
+          null
+        ],
+        [
+          null,
+          0.478,
+          null
+        ]
+      ]
+    },
+    "24": {
+      "elapsedIdx": 24,
+      "frameId": 3403,
+      "laneCount": 2,
+      "trackIds": [
+        0,
+        2
+      ],
+      "previousTrackIds": [
+        0,
+        2
+      ],
+      "vehicleDisplacementM": 29.039484418223843,
+      "headingChangeDeg": 0.3214982615354529,
+      "assignmentResult": [
+        {
+          "nextIdx": 0,
+          "trackId": 0,
+          "cost": 0.5959414574259845,
+          "prevTrackId": 0,
+          "resultingTrackId": 0,
+          "sharedAnchors": 6,
+          "laneOrderDiff": 0
+        },
+        {
+          "nextIdx": 1,
+          "trackId": 2,
+          "cost": 0.6679473705699307,
+          "prevTrackId": 2,
+          "resultingTrackId": 2,
+          "sharedAnchors": 6,
+          "laneOrderDiff": 0
+        }
+      ],
+      "rejections": [
+        {
+          "nextIdx": 0,
+          "trackId": 2,
+          "reason": "excessiveLateralDisplacement"
+        },
+        {
+          "nextIdx": 0,
+          "trackId": 3,
+          "reason": "laneOrderReversal"
+        },
+        {
+          "nextIdx": 1,
+          "trackId": 0,
+          "reason": "excessiveLateralDisplacement"
+        },
+        {
+          "nextIdx": 1,
+          "trackId": 3,
+          "reason": "excessiveLateralDisplacement"
+        }
+      ],
+      "costMatrix": [
+        [
+          0.596,
+          null,
+          null
+        ],
+        [
+          null,
+          0.668,
+          null
+        ]
+      ]
+    },
+    "29": {
+      "elapsedIdx": 29,
+      "frameId": 3603,
+      "laneCount": 2,
+      "trackIds": [
+        0,
+        2
+      ],
+      "previousTrackIds": [
+        2
+      ],
+      "vehicleDisplacementM": 6.951926181658743,
+      "headingChangeDeg": -3.9725267708935235,
+      "assignmentResult": [
+        {
+          "nextIdx": 0,
+          "trackId": 0,
+          "cost": 1.0741996330999264,
+          "prevTrackId": 0,
+          "resultingTrackId": 0,
+          "sharedAnchors": 6,
+          "laneOrderDiff": 0
+        },
+        {
+          "nextIdx": 1,
+          "trackId": 2,
+          "cost": 0.7756842275390987,
+          "prevTrackId": 2,
+          "resultingTrackId": 2,
+          "sharedAnchors": 6,
+          "laneOrderDiff": 0
+        }
+      ],
+      "rejections": [
+        {
+          "nextIdx": 0,
+          "trackId": 2,
+          "reason": "excessiveLateralDisplacement"
+        },
+        {
+          "nextIdx": 0,
+          "trackId": 3,
+          "reason": "laneOrderReversal"
+        },
+        {
+          "nextIdx": 0,
+          "trackId": 4,
+          "reason": "excessiveLateralDisplacement"
+        },
+        {
+          "nextIdx": 1,
+          "trackId": 0,
+          "reason": "excessiveLateralDisplacement"
+        },
+        {
+          "nextIdx": 1,
+          "trackId": 3,
+          "reason": "excessiveLateralDisplacement"
+        },
+        {
+          "nextIdx": 1,
+          "trackId": 4,
+          "reason": "excessiveLateralDisplacement"
+        }
+      ],
+      "costMatrix": [
+        [
+          1.074,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          0.776,
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "trackFragmentation": [
+    {
+      "trackId": 0,
+      "firstFrame": 2443,
+      "lastFrame": 3603,
+      "frameCount": 25,
+      "temporalDurationSec": 57.924964808,
+      "accumulatedRouteDistanceM": 673.6683707228481,
+      "chunkId": 0,
+      "passId": 0,
+      "laneOrder": 0,
+      "missedObservationIntervals": 0,
+      "fusedFragmentCount": null,
+      "terminationReason": "endOfPass",
+      "successorCandidateTrack": null
+    },
+    {
+      "trackId": 1,
+      "firstFrame": 2443,
+      "lastFrame": 2603,
+      "frameCount": 5,
+      "temporalDurationSec": 7.996407553,
+      "accumulatedRouteDistanceM": 116.45275826658494,
+      "chunkId": 0,
+      "passId": 0,
+      "laneOrder": 1,
+      "missedObservationIntervals": 5,
+      "fusedFragmentCount": null,
+      "terminationReason": "endOfPass",
+      "successorCandidateTrack": null
+    },
+    {
+      "trackId": 2,
+      "firstFrame": 2963,
+      "lastFrame": 3603,
+      "frameCount": 17,
+      "temporalDurationSec": 31.940039961,
+      "accumulatedRouteDistanceM": 389.59980758703284,
+      "chunkId": 0,
+      "passId": 0,
+      "laneOrder": 1,
+      "missedObservationIntervals": 0,
+      "fusedFragmentCount": null,
+      "terminationReason": "endOfPass",
+      "successorCandidateTrack": null
+    },
+    {
+      "trackId": 3,
+      "firstFrame": 3083,
+      "lastFrame": 3483,
+      "frameCount": 5,
+      "temporalDurationSec": 19.96130655,
+      "accumulatedRouteDistanceM": 286.6674442077742,
+      "chunkId": 0,
+      "passId": 0,
+      "laneOrder": 2,
+      "missedObservationIntervals": 3,
+      "fusedFragmentCount": null,
+      "terminationReason": "endOfPass",
+      "successorCandidateTrack": null
+    },
+    {
+      "trackId": 4,
+      "firstFrame": 3443,
+      "lastFrame": 3443,
+      "frameCount": 1,
+      "temporalDurationSec": 0,
+      "accumulatedRouteDistanceM": 0,
+      "chunkId": 0,
+      "passId": 0,
+      "laneOrder": 0,
+      "missedObservationIntervals": 4,
+      "fusedFragmentCount": null,
+      "terminationReason": "shortTrack",
+      "successorCandidateTrack": null
+    }
+  ],
+  "trackContinuityTable": [
+    {
+      "earlierTrack": 1,
+      "laterTrack": 2,
+      "gapFrames": 360,
+      "headingChangeDeg": null,
+      "anchorErrorM": null,
+      "likelySameBoundary": "possible"
+    },
+    {
+      "earlierTrack": 1,
+      "laterTrack": 3,
+      "gapFrames": 480,
+      "headingChangeDeg": null,
+      "anchorErrorM": null,
+      "likelySameBoundary": "unlikely"
+    },
+    {
+      "earlierTrack": 1,
+      "laterTrack": 4,
+      "gapFrames": 840,
+      "headingChangeDeg": null,
+      "anchorErrorM": null,
+      "likelySameBoundary": "unlikely"
+    }
+  ],
+  "polygonAudit": [
+    {
+      "polygonIndex": 0,
+      "pointCount": 8,
+      "bounds": {
+        "minE": -52.59809536405298,
+        "maxE": -47.68339405251483,
+        "minN": -74.14910618479338,
+        "maxN": -67.97031597100097
+      },
+      "areaM2": 17.067200699827254,
+      "perimeterM": 6.121261363739748,
+      "windingDirection": "ccwAssumed",
+      "selfIntersectionCount": 0,
+      "degenerateEdgeCount": 0,
+      "minWidthM": 2.7305009706394,
+      "maxWidthM": 2.9480065408789944,
+      "medianWidthM": 2.800716445835009,
+      "distanceFromVehicleTrajectoryM": null,
+      "chunkId": 0,
+      "passId": 0,
+      "sourceFrameRange": [
+        332.4326940942537,
+        338.4326940942537
+      ],
+      "sourceLeftBoundaryTrack": 2,
+      "sourceRightBoundaryTrack": 0,
+      "sourceRoadEdgeTracks": null,
+      "boundaryDirectionsAgree": true,
+      "leftRightCross": false,
+      "closesCorrectly": true,
+      "coversVehicleTrajectory": null,
+      "polygonSource": "laneTracks",
+      "renderingColor": "polyColor[0]"
+    },
+    {
+      "polygonIndex": 1,
+      "pointCount": 6,
+      "bounds": {
+        "minE": -49.57511381363326,
+        "maxE": -46.68222090449844,
+        "minN": -19.270314284888915,
+        "maxN": -15.124723512467234
+      },
+      "areaM2": 10.779946822511931,
+      "perimeterM": 4.000051657970808,
+      "windingDirection": "ccwAssumed",
+      "selfIntersectionCount": 0,
+      "degenerateEdgeCount": 0,
+      "minWidthM": 2.69381226009772,
+      "maxWidthM": 2.6961611511582664,
+      "medianWidthM": 2.6949867056279935,
+      "distanceFromVehicleTrajectoryM": null,
+      "chunkId": 0,
+      "passId": 0,
+      "sourceFrameRange": [
+        387.5158754777325,
+        391.5158754777325
+      ],
+      "sourceLeftBoundaryTrack": 2,
+      "sourceRightBoundaryTrack": 0,
+      "sourceRoadEdgeTracks": null,
+      "boundaryDirectionsAgree": true,
+      "leftRightCross": false,
+      "closesCorrectly": true,
+      "coversVehicleTrajectory": null,
+      "polygonSource": "laneTracks",
+      "renderingColor": "polyColor[1]"
+    },
+    {
+      "polygonIndex": 2,
+      "pointCount": 10,
+      "bounds": {
+        "minE": -50.74481324337708,
+        "maxE": -47.4764018907186,
+        "minN": -3.3534929975280954,
+        "maxN": 4.774962370618889
+      },
+      "areaM2": 22.06846621294808,
+      "perimeterM": 8.01318649927433,
+      "windingDirection": "ccwAssumed",
+      "selfIntersectionCount": 0,
+      "degenerateEdgeCount": 0,
+      "minWidthM": 2.714048432744932,
+      "maxWidthM": 2.869139477640014,
+      "medianWidthM": 2.7271431189608624,
+      "distanceFromVehicleTrajectoryM": null,
+      "chunkId": 0,
+      "passId": 0,
+      "sourceFrameRange": [
+        403.4533331372995,
+        411.4533331372995
+      ],
+      "sourceLeftBoundaryTrack": 2,
+      "sourceRightBoundaryTrack": 0,
+      "sourceRoadEdgeTracks": null,
+      "boundaryDirectionsAgree": true,
+      "leftRightCross": false,
+      "closesCorrectly": true,
+      "coversVehicleTrajectory": null,
+      "polygonSource": "laneTracks",
+      "renderingColor": "polyColor[2]"
+    },
+    {
+      "polygonIndex": 3,
+      "pointCount": 6,
+      "bounds": {
+        "minE": -51.89790835226708,
+        "maxE": -49.0249301625103,
+        "minN": 28.10492462192427,
+        "maxN": 32.25000699139451
+      },
+      "areaM2": 11.155182365118662,
+      "perimeterM": 3.9919179235291162,
+      "windingDirection": "ccwAssumed",
+      "selfIntersectionCount": 0,
+      "degenerateEdgeCount": 0,
+      "minWidthM": 2.7625287692932474,
+      "maxWidthM": 2.80617173597596,
+      "medianWidthM": 2.777515283710304,
+      "distanceFromVehicleTrajectoryM": null,
+      "chunkId": 0,
+      "passId": 0,
+      "sourceFrameRange": [
+        434.9420161044949,
+        438.9420161044949
+      ],
+      "sourceLeftBoundaryTrack": 2,
+      "sourceRightBoundaryTrack": 0,
+      "sourceRoadEdgeTracks": null,
+      "boundaryDirectionsAgree": true,
+      "leftRightCross": false,
+      "closesCorrectly": true,
+      "coversVehicleTrajectory": null,
+      "polygonSource": "laneTracks",
+      "renderingColor": "polyColor[3]"
+    },
+    {
+      "polygonIndex": 4,
+      "pointCount": 6,
+      "bounds": {
+        "minE": -53.458843961787444,
+        "maxE": -50.09703161817308,
+        "minN": 59.92508602224923,
+        "maxN": 64.04033365806869
+      },
+      "areaM2": 11.207987814810167,
+      "perimeterM": 4.035037773052553,
+      "windingDirection": "ccwAssumed",
+      "selfIntersectionCount": 0,
+      "degenerateEdgeCount": 0,
+      "minWidthM": 2.6700914348725697,
+      "maxWidthM": 2.997149020610924,
+      "medianWidthM": 2.895722680373979,
+      "distanceFromVehicleTrajectoryM": null,
+      "chunkId": 0,
+      "passId": 0,
+      "sourceFrameRange": [
+        466.79093510592395,
+        470.79093510592395
+      ],
+      "sourceLeftBoundaryTrack": 2,
+      "sourceRightBoundaryTrack": 0,
+      "sourceRoadEdgeTracks": null,
+      "boundaryDirectionsAgree": true,
+      "leftRightCross": false,
+      "closesCorrectly": true,
+      "coversVehicleTrajectory": null,
+      "polygonSource": "laneTracks",
+      "renderingColor": "polyColor[4]"
+    },
+    {
+      "polygonIndex": 5,
+      "pointCount": 6,
+      "bounds": {
+        "minE": -58.45937408128316,
+        "maxE": -54.88966499204862,
+        "minN": 160.37293813982365,
+        "maxN": 164.47588555176097
+      },
+      "areaM2": 11.46073886196973,
+      "perimeterM": 4.041236031266848,
+      "windingDirection": "ccwAssumed",
+      "selfIntersectionCount": 0,
+      "degenerateEdgeCount": 0,
+      "minWidthM": 2.8429929276855654,
+      "maxWidthM": 2.8917001013328116,
+      "medianWidthM": 2.8673465145091885,
+      "distanceFromVehicleTrajectoryM": null,
+      "chunkId": 0,
+      "passId": 0,
+      "sourceFrameRange": [
+        567.3471591784137,
+        571.3471591784137
+      ],
+      "sourceLeftBoundaryTrack": 2,
+      "sourceRightBoundaryTrack": 0,
+      "sourceRoadEdgeTracks": null,
+      "boundaryDirectionsAgree": true,
+      "leftRightCross": false,
+      "closesCorrectly": true,
+      "coversVehicleTrajectory": null,
+      "polygonSource": "laneTracks",
+      "renderingColor": "polyColor[5]"
+    },
+    {
+      "polygonIndex": 6,
+      "pointCount": 6,
+      "bounds": {
+        "minE": -59.92275096428633,
+        "maxE": -56.350329581233105,
+        "minN": 191.8862674889415,
+        "maxN": 195.9891911147376
+      },
+      "areaM2": 11.679803187534162,
+      "perimeterM": 4.041854471295627,
+      "windingDirection": "ccwAssumed",
+      "selfIntersectionCount": 0,
+      "degenerateEdgeCount": 0,
+      "minWidthM": 2.861101104368932,
+      "maxWidthM": 3.0310697317735507,
+      "medianWidthM": 2.930924911488736,
+      "distanceFromVehicleTrajectoryM": null,
+      "chunkId": 0,
+      "passId": 0,
+      "sourceFrameRange": [
+        598.8994261527549,
+        602.8994261527549
+      ],
+      "sourceLeftBoundaryTrack": 2,
+      "sourceRightBoundaryTrack": 0,
+      "sourceRoadEdgeTracks": null,
+      "boundaryDirectionsAgree": true,
+      "leftRightCross": false,
+      "closesCorrectly": true,
+      "coversVehicleTrajectory": null,
+      "polygonSource": "laneTracks",
+      "renderingColor": "polyColor[6]"
+    },
+    {
+      "polygonIndex": 7,
+      "pointCount": 8,
+      "bounds": {
+        "minE": -62.01363424088176,
+        "maxE": -58.898897670952486,
+        "minN": 239.84409068218213,
+        "maxN": 245.93525798299524
+      },
+      "areaM2": 18.000803431027634,
+      "perimeterM": 6.0206956416605655,
+      "windingDirection": "ccwAssumed",
+      "selfIntersectionCount": 0,
+      "degenerateEdgeCount": 0,
+      "minWidthM": 2.9520750454757674,
+      "maxWidthM": 3.0749645575371876,
+      "medianWidthM": 3.0035273739067234,
+      "distanceFromVehicleTrajectoryM": null,
+      "chunkId": 0,
+      "passId": 0,
+      "sourceFrameRange": [
+        646.9116126270657,
+        652.9116126270657
+      ],
+      "sourceLeftBoundaryTrack": 2,
+      "sourceRightBoundaryTrack": 0,
+      "sourceRoadEdgeTracks": null,
+      "boundaryDirectionsAgree": true,
+      "leftRightCross": false,
+      "closesCorrectly": true,
+      "coversVehicleTrajectory": null,
+      "polygonSource": "laneTracks",
+      "renderingColor": "polyColor[0]"
+    },
+    {
+      "polygonIndex": 8,
+      "pointCount": 8,
+      "bounds": {
+        "minE": -62.36135459380703,
+        "maxE": -59.17107123737202,
+        "minN": 260.37686831090747,
+        "maxN": 266.5000077673039
+      },
+      "areaM2": 18.48901763665708,
+      "perimeterM": 5.966758919874284,
+      "windingDirection": "ccwAssumed",
+      "selfIntersectionCount": 0,
+      "degenerateEdgeCount": 0,
+      "minWidthM": 3.0182807349378855,
+      "maxWidthM": 3.123124134145476,
+      "medianWidthM": 3.084466585695471,
+      "distanceFromVehicleTrajectoryM": null,
+      "chunkId": 0,
+      "passId": 0,
+      "sourceFrameRange": [
+        667.4264917184199,
+        673.4264917184199
+      ],
+      "sourceLeftBoundaryTrack": 2,
+      "sourceRightBoundaryTrack": 0,
+      "sourceRoadEdgeTracks": null,
+      "boundaryDirectionsAgree": true,
+      "leftRightCross": false,
+      "closesCorrectly": true,
+      "coversVehicleTrajectory": null,
+      "polygonSource": "laneTracks",
+      "renderingColor": "polyColor[1]"
+    },
+    {
+      "polygonIndex": 9,
+      "pointCount": 10,
+      "bounds": {
+        "minE": -62.850155809289824,
+        "maxE": -59.121557747439645,
+        "minN": 272.99152560005894,
+        "maxN": 281.4270408153282
+      },
+      "areaM2": 26.360486542761464,
+      "perimeterM": 7.95647382600402,
+      "windingDirection": "ccwAssumed",
+      "selfIntersectionCount": 0,
+      "degenerateEdgeCount": 0,
+      "minWidthM": 3.122202545139794,
+      "maxWidthM": 3.6813446170265305,
+      "medianWidthM": 3.192466383554942,
+      "distanceFromVehicleTrajectoryM": null,
+      "chunkId": 0,
+      "passId": 0,
+      "sourceFrameRange": [
+        680.0874970987592,
+        688.0874970987592
+      ],
+      "sourceLeftBoundaryTrack": 2,
+      "sourceRightBoundaryTrack": 0,
+      "sourceRoadEdgeTracks": null,
+      "boundaryDirectionsAgree": true,
+      "leftRightCross": false,
+      "closesCorrectly": true,
+      "coversVehicleTrajectory": null,
+      "polygonSource": "laneTracks",
+      "renderingColor": "polyColor[2]"
+    },
+    {
+      "polygonIndex": 10,
+      "pointCount": 6,
+      "bounds": {
+        "minE": -53.66513326527769,
+        "maxE": -50.42236863278824,
+        "minN": 0.7835047105354014,
+        "maxN": 4.918023034767668
+      },
+      "areaM2": 11.986536252392217,
+      "perimeterM": 4.000172036969304,
+      "windingDirection": "ccwAssumed",
+      "selfIntersectionCount": 0,
+      "degenerateEdgeCount": 0,
+      "minWidthM": 2.899327004959943,
+      "maxWidthM": 3.0939411212361643,
+      "medianWidthM": 2.996634063098054,
+      "distanceFromVehicleTrajectoryM": null,
+      "chunkId": 0,
+      "passId": 0,
+      "sourceFrameRange": [
+        407.7330461017007,
+        411.7330461017007
+      ],
+      "sourceLeftBoundaryTrack": 3,
+      "sourceRightBoundaryTrack": 2,
+      "sourceRoadEdgeTracks": null,
+      "boundaryDirectionsAgree": true,
+      "leftRightCross": false,
+      "closesCorrectly": true,
+      "coversVehicleTrajectory": null,
+      "polygonSource": "laneTracks",
+      "renderingColor": "polyColor[3]"
+    },
+    {
+      "polygonIndex": 11,
+      "pointCount": 6,
+      "bounds": {
+        "minE": -54.56721363303709,
+        "maxE": -51.74071425851869,
+        "minN": 27.57549749358123,
+        "maxN": 31.695823801155623
+      },
+      "areaM2": 10.663968169835812,
+      "perimeterM": 3.9715136217604847,
+      "windingDirection": "ccwAssumed",
+      "selfIntersectionCount": 0,
+      "degenerateEdgeCount": 0,
+      "minWidthM": 2.6153516087516175,
+      "maxWidthM": 2.829671545107896,
+      "medianWidthM": 2.668191066870656,
+      "distanceFromVehicleTrajectoryM": null,
+      "chunkId": 0,
+      "passId": 0,
+      "sourceFrameRange": [
+        434.5449151711091,
+        438.5449151711091
+      ],
+      "sourceLeftBoundaryTrack": 3,
+      "sourceRightBoundaryTrack": 2,
+      "sourceRoadEdgeTracks": null,
+      "boundaryDirectionsAgree": true,
+      "leftRightCross": false,
+      "closesCorrectly": true,
+      "coversVehicleTrajectory": null,
+      "polygonSource": "laneTracks",
+      "renderingColor": "polyColor[4]"
+    }
+  ],
+  "thresholdChanges": [
+    {
+      "parameter": "maxTrackGapFrames",
+      "previousValue": 2,
+      "newValue": 4,
+      "units": "consecutive frames without assignment",
+      "reason": "Segment 2 verified dropout spans 4 frames (idx 6–9)",
+      "framesAffected": "idx 6–10",
+      "falseAssociationRisk": "low — coasting tracks still require anchor match on return"
+    },
+    {
+      "parameter": "anchorLateralStats",
+      "previousValue": "raw modelY delta",
+      "newValue": "modelY delta minus forwardM*sin(headingDiff)",
+      "units": "metres",
+      "reason": "Turn entry at idx 3 rejected valid continuations via excessiveLateralDisplacement",
+      "framesAffected": "idx 3–5 turn entry",
+      "falseAssociationRisk": "low — compensation is geometric not a blanket threshold loosening"
+    },
+    {
+      "parameter": "coastingReacquire",
+      "previousValue": "maxHeadingDeg 30 always enforced",
+      "newValue": "heading gate skipped when missedFrames > 0",
+      "units": "degrees",
+      "reason": "Post-dropout re-acquisition at idx 10 failed excessiveHeading after ~90° turn",
+      "framesAffected": "idx 10",
+      "falseAssociationRisk": "medium-low — anchor gates still apply"
+    }
+  ]
+}

@@ -1,0 +1,1505 @@
+{
+  "generatedAt": "2026-07-27T09:51:03.388Z",
+  "revision": "revision37",
+  "nodeVersion": "v20.16.0",
+  "v8Version": "11.3.244.8-node.23",
+  "exposeGc": true,
+  "schemaValidation": {
+    "allPass": true,
+    "results": [
+      {
+        "file": "catalog_v0.json",
+        "metaSchemaPass": true,
+        "instancePass": true,
+        "canonicalUtf8Bytes": 232428,
+        "pass": true
+      },
+      {
+        "file": "manifest_v0.json",
+        "metaSchemaPass": true,
+        "instancePass": true,
+        "canonicalUtf8Bytes": 1117,
+        "pass": true
+      },
+      {
+        "file": "commit_v0.json",
+        "metaSchemaPass": true,
+        "instancePass": true,
+        "canonicalUtf8Bytes": 180,
+        "pass": true
+      },
+      {
+        "file": "exclusions_v0.json",
+        "metaSchemaPass": true,
+        "instancePass": true,
+        "canonicalUtf8Bytes": 4450,
+        "pass": true
+      },
+      {
+        "file": "unassociated_v0.json",
+        "metaSchemaPass": true,
+        "instancePass": true,
+        "canonicalUtf8Bytes": 1968,
+        "pass": true
+      },
+      {
+        "file": "cross_pass_v0.json",
+        "metaSchemaPass": true,
+        "instancePass": true,
+        "canonicalUtf8Bytes": 68124,
+        "pass": true
+      },
+      {
+        "file": "heading_v0.json",
+        "metaSchemaPass": true,
+        "instancePass": true,
+        "canonicalUtf8Bytes": 102134,
+        "pass": true
+      },
+      {
+        "file": "bev_v0.json",
+        "metaSchemaPass": true,
+        "instancePass": true,
+        "canonicalUtf8Bytes": 276,
+        "pass": true
+      },
+      {
+        "file": "assessment_v0.json",
+        "metaSchemaPass": true,
+        "instancePass": true,
+        "canonicalUtf8Bytes": 174,
+        "pass": true
+      },
+      {
+        "file": "promotion_v0.json",
+        "metaSchemaPass": true,
+        "instancePass": true,
+        "canonicalUtf8Bytes": 392,
+        "pass": true
+      }
+    ]
+  },
+  "normativeCallees": {
+    "allPass": true,
+    "inventory": [
+      {
+        "name": "partitionDP",
+        "module": "partition"
+      },
+      {
+        "name": "preActionClosure",
+        "module": "partition"
+      },
+      {
+        "name": "postActionClosure",
+        "module": "partition"
+      },
+      {
+        "name": "dedupeByFutureKey",
+        "module": "partition"
+      },
+      {
+        "name": "finalizationClosure",
+        "module": "partition"
+      },
+      {
+        "name": "applyBranchSelection",
+        "module": "uncertainty"
+      },
+      {
+        "name": "validateCovariance",
+        "module": "uncertainty"
+      },
+      {
+        "name": "normalQuantile",
+        "module": "math"
+      },
+      {
+        "name": "eigenvalues",
+        "module": "math"
+      },
+      {
+        "name": "runP3Branch",
+        "module": "p3"
+      },
+      {
+        "name": "chainTransitionValid",
+        "module": "p3"
+      },
+      {
+        "name": "newOverlapRecord",
+        "module": "p3"
+      },
+      {
+        "name": "runHeadingBranch",
+        "module": "heading"
+      },
+      {
+        "name": "measuredConflictForGroup",
+        "module": "conflict"
+      },
+      {
+        "name": "jcsSerialize",
+        "module": "jcs"
+      },
+      {
+        "name": "Stage19JsonParser",
+        "module": "jcs"
+      },
+      {
+        "name": "validateStage19Semantics",
+        "module": "semantic"
+      },
+      {
+        "name": "publishStage19Bundle",
+        "module": "publication"
+      },
+      {
+        "name": "selectRecoveryAction",
+        "module": "recovery"
+      },
+      {
+        "name": "applyRecoveryAction",
+        "module": "recovery"
+      },
+      {
+        "name": "runRecoveryLoop",
+        "module": "recovery"
+      },
+      {
+        "name": "mayDeleteRemoteStaging",
+        "module": "recovery"
+      }
+    ],
+    "results": [
+      {
+        "name": "partitionDP",
+        "module": "partition",
+        "resolved": true,
+        "identity": true,
+        "exercised": true,
+        "pass": true
+      },
+      {
+        "name": "preActionClosure",
+        "module": "partition",
+        "resolved": true,
+        "identity": true,
+        "exercised": true,
+        "pass": true,
+        "detail": {
+          "subsets": 2
+        }
+      },
+      {
+        "name": "postActionClosure",
+        "module": "partition",
+        "resolved": true,
+        "identity": true,
+        "exercised": true,
+        "pass": true
+      },
+      {
+        "name": "dedupeByFutureKey",
+        "module": "partition",
+        "resolved": true,
+        "identity": true,
+        "exercised": true,
+        "pass": true
+      },
+      {
+        "name": "finalizationClosure",
+        "module": "partition",
+        "resolved": true,
+        "identity": true,
+        "exercised": true,
+        "pass": true
+      },
+      {
+        "name": "applyBranchSelection",
+        "module": "uncertainty",
+        "resolved": true,
+        "identity": true,
+        "exercised": true,
+        "pass": true
+      },
+      {
+        "name": "validateCovariance",
+        "module": "uncertainty",
+        "resolved": true,
+        "identity": true,
+        "exercised": true,
+        "pass": true
+      },
+      {
+        "name": "normalQuantile",
+        "module": "math",
+        "resolved": true,
+        "identity": true,
+        "exercised": true,
+        "pass": true
+      },
+      {
+        "name": "eigenvalues",
+        "module": "math",
+        "resolved": true,
+        "identity": true,
+        "exercised": true,
+        "pass": true
+      },
+      {
+        "name": "runP3Branch",
+        "module": "p3",
+        "resolved": true,
+        "identity": true,
+        "exercised": true,
+        "pass": true
+      },
+      {
+        "name": "chainTransitionValid",
+        "module": "p3",
+        "resolved": true,
+        "identity": true,
+        "exercised": true,
+        "pass": true
+      },
+      {
+        "name": "newOverlapRecord",
+        "module": "p3",
+        "resolved": true,
+        "identity": true,
+        "exercised": true,
+        "pass": true
+      },
+      {
+        "name": "runHeadingBranch",
+        "module": "heading",
+        "resolved": true,
+        "identity": true,
+        "exercised": true,
+        "pass": true
+      },
+      {
+        "name": "measuredConflictForGroup",
+        "module": "conflict",
+        "resolved": true,
+        "identity": true,
+        "exercised": true,
+        "pass": true
+      },
+      {
+        "name": "jcsSerialize",
+        "module": "jcs",
+        "resolved": true,
+        "identity": true,
+        "exercised": true,
+        "pass": true
+      },
+      {
+        "name": "Stage19JsonParser",
+        "module": "jcs",
+        "resolved": true,
+        "identity": true,
+        "exercised": true,
+        "pass": true
+      },
+      {
+        "name": "validateStage19Semantics",
+        "module": "semantic",
+        "resolved": true,
+        "identity": true,
+        "exercised": true,
+        "pass": true
+      },
+      {
+        "name": "publishStage19Bundle",
+        "module": "publication",
+        "resolved": true,
+        "identity": true,
+        "exercised": true,
+        "pass": true
+      },
+      {
+        "name": "selectRecoveryAction",
+        "module": "recovery",
+        "resolved": true,
+        "identity": true,
+        "exercised": true,
+        "pass": true
+      },
+      {
+        "name": "applyRecoveryAction",
+        "module": "recovery",
+        "resolved": true,
+        "identity": true,
+        "exercised": true,
+        "pass": true
+      },
+      {
+        "name": "runRecoveryLoop",
+        "module": "recovery",
+        "resolved": true,
+        "identity": true,
+        "exercised": true,
+        "pass": true
+      },
+      {
+        "name": "mayDeleteRemoteStaging",
+        "module": "recovery",
+        "resolved": true,
+        "identity": true,
+        "exercised": true,
+        "pass": true
+      }
+    ]
+  },
+  "maximumVerification": {
+    "allPass": true,
+    "results": [
+      {
+        "name": "catalog",
+        "pass": true,
+        "expected": {
+          "utf8Bytes": 232428,
+          "memberCount": 5809
+        },
+        "actual": {
+          "utf8Bytes": 232428,
+          "memberCount": 5809
+        }
+      },
+      {
+        "name": "manifest",
+        "pass": true,
+        "expected": {
+          "utf8Bytes": 1117,
+          "memberCount": 9
+        },
+        "actual": {
+          "utf8Bytes": 1117,
+          "memberCount": 9
+        }
+      },
+      {
+        "name": "commit",
+        "pass": true,
+        "expected": {
+          "utf8Bytes": 180,
+          "memberCount": 1
+        },
+        "actual": {
+          "utf8Bytes": 180,
+          "memberCount": 1
+        }
+      },
+      {
+        "name": "exclusions",
+        "pass": true,
+        "expected": {
+          "utf8Bytes": 4450,
+          "memberCount": 136
+        },
+        "actual": {
+          "utf8Bytes": 4450,
+          "memberCount": 136
+        }
+      },
+      {
+        "name": "unassociated",
+        "pass": true,
+        "expected": {
+          "utf8Bytes": 1968,
+          "memberCount": 100
+        },
+        "actual": {
+          "utf8Bytes": 1968,
+          "memberCount": 100
+        }
+      },
+      {
+        "name": "cross_pass",
+        "pass": true,
+        "expected": {
+          "utf8Bytes": 68124,
+          "memberCount": 742
+        },
+        "actual": {
+          "utf8Bytes": 68124,
+          "memberCount": 742
+        }
+      },
+      {
+        "name": "heading",
+        "pass": true,
+        "expected": {
+          "utf8Bytes": 102134,
+          "memberCount": 742
+        },
+        "actual": {
+          "utf8Bytes": 102134,
+          "memberCount": 742
+        }
+      },
+      {
+        "name": "bev",
+        "pass": true,
+        "expected": {
+          "utf8Bytes": 276,
+          "memberCount": 1
+        },
+        "actual": {
+          "utf8Bytes": 276,
+          "memberCount": 1
+        }
+      },
+      {
+        "name": "assessment",
+        "pass": true,
+        "expected": {
+          "utf8Bytes": 174,
+          "memberCount": 1
+        },
+        "actual": {
+          "utf8Bytes": 174,
+          "memberCount": 1
+        }
+      },
+      {
+        "name": "promotion",
+        "pass": true,
+        "expected": {
+          "utf8Bytes": 392,
+          "memberCount": 5
+        },
+        "actual": {
+          "utf8Bytes": 392,
+          "memberCount": 5
+        }
+      }
+    ],
+    "table": {
+      "catalog": {
+        "utf8Bytes": 232428,
+        "memberCount": 5809
+      },
+      "manifest": {
+        "utf8Bytes": 1117,
+        "memberCount": 9
+      },
+      "commit": {
+        "utf8Bytes": 180,
+        "memberCount": 1
+      },
+      "exclusions": {
+        "utf8Bytes": 4450,
+        "memberCount": 136
+      },
+      "unassociated": {
+        "utf8Bytes": 1968,
+        "memberCount": 100
+      },
+      "cross_pass": {
+        "utf8Bytes": 68124,
+        "memberCount": 742
+      },
+      "heading": {
+        "utf8Bytes": 102134,
+        "memberCount": 742
+      },
+      "bev": {
+        "utf8Bytes": 276,
+        "memberCount": 1
+      },
+      "assessment": {
+        "utf8Bytes": 174,
+        "memberCount": 1
+      },
+      "promotion": {
+        "utf8Bytes": 392,
+        "memberCount": 5
+      }
+    }
+  },
+  "runtimePeak": {
+    "runs": 20,
+    "medianHeapDelta": 15508212,
+    "minHeapDelta": 8286896,
+    "maxHeapDelta": 15680056,
+    "coefficientOfVariation": 0.10412699303022463,
+    "retainedBytes": 232428,
+    "minHeapDeltaThreshold": 300000,
+    "allRetainedMatch": true,
+    "allPositive": true,
+    "variationWithinTolerance": true,
+    "structural": {
+      "sampleNodes": 100,
+      "predictedStructuralBytes": 9688,
+      "measuredHeapDelta": 2520632,
+      "statesHeld": 100
+    },
+    "structuralConstants": {
+      "W_partition_state_base": 88,
+      "W_partition_state_per_path": 32,
+      "W_partition_state_per_node": 48,
+      "W_node": 64
+    },
+    "cumulativeRetainedWorkloads": 20,
+    "samples": [
+      {
+        "retainedBytes": 232428,
+        "heapUsedDelta": 8286896,
+        "catalogMemberCount": 5809
+      },
+      {
+        "retainedBytes": 232428,
+        "heapUsedDelta": 15504168,
+        "catalogMemberCount": 5809
+      },
+      {
+        "retainedBytes": 232428,
+        "heapUsedDelta": 15622144,
+        "catalogMemberCount": 5809
+      },
+      {
+        "retainedBytes": 232428,
+        "heapUsedDelta": 15321304,
+        "catalogMemberCount": 5809
+      },
+      {
+        "retainedBytes": 232428,
+        "heapUsedDelta": 15447392,
+        "catalogMemberCount": 5809
+      },
+      {
+        "retainedBytes": 232428,
+        "heapUsedDelta": 15470536,
+        "catalogMemberCount": 5809
+      },
+      {
+        "retainedBytes": 232428,
+        "heapUsedDelta": 15445352,
+        "catalogMemberCount": 5809
+      },
+      {
+        "retainedBytes": 232428,
+        "heapUsedDelta": 15680056,
+        "catalogMemberCount": 5809
+      },
+      {
+        "retainedBytes": 232428,
+        "heapUsedDelta": 15512256,
+        "catalogMemberCount": 5809
+      },
+      {
+        "retainedBytes": 232428,
+        "heapUsedDelta": 15470512,
+        "catalogMemberCount": 5809
+      },
+      {
+        "retainedBytes": 232428,
+        "heapUsedDelta": 15520512,
+        "catalogMemberCount": 5809
+      },
+      {
+        "retainedBytes": 232428,
+        "heapUsedDelta": 15523352,
+        "catalogMemberCount": 5809
+      },
+      {
+        "retainedBytes": 232428,
+        "heapUsedDelta": 15613272,
+        "catalogMemberCount": 5809
+      },
+      {
+        "retainedBytes": 232428,
+        "heapUsedDelta": 15445496,
+        "catalogMemberCount": 5809
+      },
+      {
+        "retainedBytes": 232428,
+        "heapUsedDelta": 15535112,
+        "catalogMemberCount": 5809
+      },
+      {
+        "retainedBytes": 232428,
+        "heapUsedDelta": 15625032,
+        "catalogMemberCount": 5809
+      },
+      {
+        "retainedBytes": 232428,
+        "heapUsedDelta": 15457256,
+        "catalogMemberCount": 5809
+      },
+      {
+        "retainedBytes": 232428,
+        "heapUsedDelta": 15547512,
+        "catalogMemberCount": 5809
+      },
+      {
+        "retainedBytes": 232428,
+        "heapUsedDelta": 15636352,
+        "catalogMemberCount": 5809
+      },
+      {
+        "retainedBytes": 232428,
+        "heapUsedDelta": 15468560,
+        "catalogMemberCount": 5809
+      }
+    ],
+    "pass": true
+  },
+  "jcsConformance": {
+    "allPass": true,
+    "results": [
+      {
+        "name": "duplicate-top-level",
+        "pass": true
+      },
+      {
+        "name": "duplicate-nested",
+        "pass": true
+      },
+      {
+        "name": "duplicate-multi-level",
+        "pass": true
+      },
+      {
+        "name": "number-int",
+        "pass": true,
+        "out": "1",
+        "expect": "1"
+      },
+      {
+        "name": "number-negative-zero",
+        "pass": true,
+        "out": "0",
+        "expect": "0"
+      },
+      {
+        "name": "number-large-int",
+        "pass": true,
+        "out": "1000000000000000",
+        "expect": "1000000000000000"
+      },
+      {
+        "name": "float-scientific-positive",
+        "pass": true,
+        "out": "1e+30",
+        "expect": "1e+30"
+      },
+      {
+        "name": "float-scientific-negative-exp",
+        "pass": true,
+        "out": "1e-30",
+        "expect": "1e-30"
+      },
+      {
+        "name": "float-decimal-trim",
+        "pass": true,
+        "out": "1.23",
+        "expect": "1.23"
+      },
+      {
+        "name": "float-large-decimal",
+        "pass": true,
+        "out": "123456789.01234567",
+        "expect": "123456789.01234567"
+      },
+      {
+        "name": "float-small-fraction",
+        "pass": true,
+        "out": "0.000001",
+        "expect": "0.000001"
+      },
+      {
+        "name": "float-round-trip-scientific",
+        "pass": true
+      },
+      {
+        "name": "utf16-order",
+        "pass": true,
+        "out": "{\"a\":1,\"b\":2}",
+        "expect": "{\"a\":1,\"b\":2}"
+      },
+      {
+        "name": "parser-utf16-key-canonical",
+        "pass": true
+      },
+      {
+        "name": "parser-duplicate-utf16-alias",
+        "pass": true
+      },
+      {
+        "name": "serializer-utf16-surrogate-key",
+        "pass": true
+      },
+      {
+        "name": "control-escape",
+        "pass": true,
+        "out": "{\"x\":\"\\u0007\"}",
+        "expect": "{\"x\":\"\\u0007\"}"
+      },
+      {
+        "name": "unicode-string",
+        "pass": true,
+        "out": "{\"s\":\"\\u03c0\"}",
+        "expect": "{\"s\":\"\\u03c0\"}"
+      },
+      {
+        "name": "nested-object-array",
+        "pass": true,
+        "out": "{\"o\":{\"a\":[1,2]}}",
+        "expect": "{\"o\":{\"a\":[1,2]}}"
+      },
+      {
+        "name": "round-trip",
+        "pass": true
+      },
+      {
+        "name": "unsupported-nan",
+        "pass": true
+      },
+      {
+        "name": "unsupported-undefined",
+        "pass": true
+      }
+    ],
+    "nestedDuplicateRejected": true,
+    "roundTripPass": true
+  },
+  "partitionOwnership": {
+    "allPass": true,
+    "results": [
+      {
+        "name": "abandoned-allocation-discard",
+        "pass": true
+      },
+      {
+        "name": "committed-ref-released",
+        "pass": true
+      },
+      {
+        "name": "double-release-throws",
+        "pass": true
+      },
+      {
+        "name": "partition-dp-registry",
+        "pass": true
+      },
+      {
+        "name": "partition-layer-ownership",
+        "pass": true
+      }
+    ]
+  },
+  "partitionRegistry": {
+    "allPass": true,
+    "results": [
+      {
+        "name": "partition-completes",
+        "pass": true
+      },
+      {
+        "name": "terminal-has-registry-id",
+        "pass": true
+      },
+      {
+        "name": "branch-map-covers-all-matches",
+        "pass": true
+      },
+      {
+        "name": "finalize-zero-refs",
+        "pass": true
+      },
+      {
+        "name": "finalize-idempotent",
+        "pass": true
+      },
+      {
+        "name": "registry-empty-after-finalize",
+        "pass": true
+      },
+      {
+        "name": "no-negative-refcount",
+        "pass": true
+      }
+    ]
+  },
+  "measuredConflict": {
+    "thresholdDeg": 10,
+    "pairA": {
+      "mean": 5,
+      "evidenceUnitKey": "KA"
+    },
+    "pairB": {
+      "mean": 20,
+      "evidenceUnitKey": "KB"
+    },
+    "result": true,
+    "pass": true
+  },
+  "measuredConflictEmpty": {
+    "result": false,
+    "pass": true
+  },
+  "semantic": {
+    "allPass": true,
+    "integrationMultiError": true,
+    "results": [
+      {
+        "code": "duplicate_member",
+        "validPass": true,
+        "invalidPass": true,
+        "isolatedPass": true,
+        "unrelatedErrors": [],
+        "pass": true
+      },
+      {
+        "code": "branch_out_of_range",
+        "validPass": true,
+        "invalidPass": true,
+        "isolatedPass": true,
+        "unrelatedErrors": [],
+        "pass": true
+      },
+      {
+        "code": "observation_not_covered",
+        "validPass": true,
+        "invalidPass": true,
+        "isolatedPass": true,
+        "unrelatedErrors": [],
+        "pass": true
+      },
+      {
+        "code": "catalog_extra_member",
+        "validPass": true,
+        "invalidPass": true,
+        "isolatedPass": true,
+        "unrelatedErrors": [],
+        "pass": true
+      },
+      {
+        "code": "coverage_disjointness",
+        "validPass": true,
+        "invalidPass": true,
+        "isolatedPass": true,
+        "unrelatedErrors": [],
+        "pass": true
+      },
+      {
+        "code": "terminal_branch_foreign_key",
+        "validPass": true,
+        "invalidPass": true,
+        "isolatedPass": true,
+        "unrelatedErrors": [],
+        "pass": true
+      },
+      {
+        "code": "missing_feature_pair_id",
+        "validPass": true,
+        "invalidPass": true,
+        "isolatedPass": true,
+        "unrelatedErrors": [],
+        "pass": true
+      },
+      {
+        "code": "missing_evidence_unit_key",
+        "validPass": true,
+        "invalidPass": true,
+        "isolatedPass": true,
+        "unrelatedErrors": [],
+        "pass": true
+      },
+      {
+        "code": "duplicate_feature_pair_id",
+        "validPass": true,
+        "invalidPass": true,
+        "isolatedPass": true,
+        "unrelatedErrors": [],
+        "pass": true
+      },
+      {
+        "code": "heading_audit_foreign_key",
+        "validPass": true,
+        "invalidPass": true,
+        "isolatedPass": true,
+        "unrelatedErrors": [],
+        "pass": true
+      },
+      {
+        "code": "heading_fk_mismatch",
+        "validPass": true,
+        "invalidPass": true,
+        "isolatedPass": true,
+        "unrelatedErrors": [],
+        "pass": true
+      },
+      {
+        "code": "bev_feature_pair_foreign_key",
+        "validPass": true,
+        "invalidPass": true,
+        "isolatedPass": true,
+        "unrelatedErrors": [],
+        "pass": true
+      },
+      {
+        "code": "conflict_candidate_foreign_key",
+        "validPass": true,
+        "invalidPass": true,
+        "isolatedPass": true,
+        "unrelatedErrors": [],
+        "pass": true
+      },
+      {
+        "code": "duplicate_bev_image_id",
+        "validPass": true,
+        "invalidPass": true,
+        "isolatedPass": true,
+        "unrelatedErrors": [],
+        "pass": true
+      },
+      {
+        "code": "duplicate_bev_feature_pair_id",
+        "validPass": true,
+        "invalidPass": true,
+        "isolatedPass": true,
+        "unrelatedErrors": [],
+        "pass": true
+      },
+      {
+        "code": "bev_payload_missing",
+        "validPass": true,
+        "invalidPass": true,
+        "isolatedPass": true,
+        "unrelatedErrors": [],
+        "pass": true
+      },
+      {
+        "code": "bev_image_hash_mismatch",
+        "validPass": true,
+        "invalidPass": true,
+        "isolatedPass": true,
+        "unrelatedErrors": [],
+        "pass": true
+      },
+      {
+        "code": "manifest_payload_missing",
+        "validPass": true,
+        "invalidPass": true,
+        "isolatedPass": true,
+        "unrelatedErrors": [],
+        "pass": true
+      },
+      {
+        "code": "manifest_hash_mismatch",
+        "validPass": true,
+        "invalidPass": true,
+        "isolatedPass": true,
+        "unrelatedErrors": [],
+        "pass": true
+      },
+      {
+        "code": "payload_not_in_manifest",
+        "validPass": true,
+        "invalidPass": true,
+        "isolatedPass": true,
+        "unrelatedErrors": [],
+        "pass": true
+      },
+      {
+        "code": "span_positional_inversion",
+        "validPass": true,
+        "invalidPass": true,
+        "isolatedPass": true,
+        "unrelatedErrors": [],
+        "pass": true
+      },
+      {
+        "code": "span_positional_nonfinite",
+        "validPass": true,
+        "invalidPass": true,
+        "isolatedPass": true,
+        "unrelatedErrors": [],
+        "pass": true
+      },
+      {
+        "code": "status_promotion_mismatch",
+        "validPass": true,
+        "invalidPass": true,
+        "isolatedPass": true,
+        "unrelatedErrors": [],
+        "pass": true
+      },
+      {
+        "code": "status_evidence_shape_mismatch",
+        "validPass": true,
+        "invalidPass": true,
+        "isolatedPass": true,
+        "unrelatedErrors": [],
+        "pass": true
+      },
+      {
+        "code": "failed_missing_evidence",
+        "validPass": true,
+        "invalidPass": true,
+        "isolatedPass": true,
+        "unrelatedErrors": [],
+        "pass": true
+      },
+      {
+        "code": "conflict_missing_evidence",
+        "validPass": true,
+        "invalidPass": true,
+        "isolatedPass": true,
+        "unrelatedErrors": [],
+        "pass": true
+      },
+      {
+        "code": "insufficient_missing_evidence",
+        "validPass": true,
+        "invalidPass": true,
+        "isolatedPass": true,
+        "unrelatedErrors": [],
+        "pass": true
+      },
+      {
+        "code": "caveats_missing",
+        "validPass": true,
+        "invalidPass": true,
+        "isolatedPass": true,
+        "unrelatedErrors": [],
+        "pass": true
+      },
+      {
+        "code": "promotion_table_mismatch",
+        "validPass": true,
+        "invalidPass": true,
+        "isolatedPass": true,
+        "unrelatedErrors": [],
+        "pass": true
+      },
+      {
+        "code": "promotion_evidence_mismatch",
+        "validPass": true,
+        "invalidPass": true,
+        "isolatedPass": true,
+        "unrelatedErrors": [],
+        "pass": true
+      }
+    ],
+    "missingRules": [],
+    "declaredRuleCount": 30,
+    "coveredRuleCount": 30
+  },
+  "covariance": {
+    "allPass": true,
+    "results": [
+      {
+        "name": "identity-psd",
+        "pass": true
+      },
+      {
+        "name": "negative-eigen",
+        "pass": true
+      },
+      {
+        "name": "singular-psd",
+        "pass": true
+      },
+      {
+        "name": "repeated-eigen",
+        "pass": true
+      },
+      {
+        "name": "near-symmetric",
+        "pass": true
+      },
+      {
+        "name": "non-symmetric-reject",
+        "pass": true
+      },
+      {
+        "name": "nan-reject",
+        "pass": true
+      },
+      {
+        "name": "infinity-reject",
+        "pass": true
+      },
+      {
+        "name": "eigenvalues-identity",
+        "pass": true
+      },
+      {
+        "name": "reference-eigenvalues-repeated",
+        "pass": true
+      },
+      {
+        "name": "reference-eigenvalues-negative",
+        "pass": true
+      }
+    ],
+    "configUsed": {
+      "symmetryRelTol": 0.000001,
+      "eigenRelTol": 1e-8
+    }
+  },
+  "publication": {
+    "allPass": true,
+    "results": [
+      {
+        "name": "publish-writes-current",
+        "pass": true
+      },
+      {
+        "name": "heartbeat-stopped",
+        "pass": true
+      },
+      {
+        "name": "failure-cleanup-removes-staging",
+        "pass": true
+      },
+      {
+        "name": "heartbeat-stopped-before-delete",
+        "pass": true
+      }
+    ]
+  },
+  "recoveryFs": {
+    "allPass": true,
+    "results": [
+      {
+        "name": "active-lease-denies-delete",
+        "pass": true
+      },
+      {
+        "name": "expired-lease-allows-delete",
+        "pass": true
+      },
+      {
+        "name": "newer-fencing-token-denies-delete",
+        "pass": true
+      },
+      {
+        "name": "recovery-delete-staging-fs",
+        "pass": true
+      },
+      {
+        "name": "concurrent-reader-drain-before-quarantine",
+        "pass": true
+      },
+      {
+        "name": "new-pin-blocked-after-generation-bump",
+        "pass": true
+      },
+      {
+        "name": "current-unlinked-after-quarantine",
+        "pass": true
+      },
+      {
+        "name": "delete-current-tmp-fs",
+        "pass": true
+      },
+      {
+        "name": "crash-restart-recovery",
+        "pass": true
+      },
+      {
+        "name": "recovery-loop-stable",
+        "pass": true
+      }
+    ]
+  },
+  "independentOracle": {
+    "maximumInstancesDirectTable": {
+      "pass": true,
+      "primaryAllPass": true,
+      "directTableMismatches": []
+    },
+    "normativeCalleeBindings": {
+      "pass": true,
+      "failures": []
+    },
+    "runtimeMemory": {
+      "pass": true,
+      "stats": {
+        "runs": 20,
+        "medianHeapDelta": 15508212,
+        "minHeapDelta": 8286896,
+        "maxHeapDelta": 15680056,
+        "coefficientOfVariation": 0.10412699303022463,
+        "retainedBytes": 232428,
+        "minHeapDeltaThreshold": 300000,
+        "allRetainedMatch": true,
+        "allPositive": true,
+        "variationWithinTolerance": true,
+        "structural": {
+          "sampleNodes": 100,
+          "predictedStructuralBytes": 9688,
+          "measuredHeapDelta": 2520632,
+          "statesHeld": 100
+        },
+        "structuralConstants": {
+          "W_partition_state_base": 88,
+          "W_partition_state_per_path": 32,
+          "W_partition_state_per_node": 48,
+          "W_node": 64
+        },
+        "cumulativeRetainedWorkloads": 20,
+        "samples": [
+          {
+            "retainedBytes": 232428,
+            "heapUsedDelta": 8286896,
+            "catalogMemberCount": 5809
+          },
+          {
+            "retainedBytes": 232428,
+            "heapUsedDelta": 15504168,
+            "catalogMemberCount": 5809
+          },
+          {
+            "retainedBytes": 232428,
+            "heapUsedDelta": 15622144,
+            "catalogMemberCount": 5809
+          },
+          {
+            "retainedBytes": 232428,
+            "heapUsedDelta": 15321304,
+            "catalogMemberCount": 5809
+          },
+          {
+            "retainedBytes": 232428,
+            "heapUsedDelta": 15447392,
+            "catalogMemberCount": 5809
+          },
+          {
+            "retainedBytes": 232428,
+            "heapUsedDelta": 15470536,
+            "catalogMemberCount": 5809
+          },
+          {
+            "retainedBytes": 232428,
+            "heapUsedDelta": 15445352,
+            "catalogMemberCount": 5809
+          },
+          {
+            "retainedBytes": 232428,
+            "heapUsedDelta": 15680056,
+            "catalogMemberCount": 5809
+          },
+          {
+            "retainedBytes": 232428,
+            "heapUsedDelta": 15512256,
+            "catalogMemberCount": 5809
+          },
+          {
+            "retainedBytes": 232428,
+            "heapUsedDelta": 15470512,
+            "catalogMemberCount": 5809
+          },
+          {
+            "retainedBytes": 232428,
+            "heapUsedDelta": 15520512,
+            "catalogMemberCount": 5809
+          },
+          {
+            "retainedBytes": 232428,
+            "heapUsedDelta": 15523352,
+            "catalogMemberCount": 5809
+          },
+          {
+            "retainedBytes": 232428,
+            "heapUsedDelta": 15613272,
+            "catalogMemberCount": 5809
+          },
+          {
+            "retainedBytes": 232428,
+            "heapUsedDelta": 15445496,
+            "catalogMemberCount": 5809
+          },
+          {
+            "retainedBytes": 232428,
+            "heapUsedDelta": 15535112,
+            "catalogMemberCount": 5809
+          },
+          {
+            "retainedBytes": 232428,
+            "heapUsedDelta": 15625032,
+            "catalogMemberCount": 5809
+          },
+          {
+            "retainedBytes": 232428,
+            "heapUsedDelta": 15457256,
+            "catalogMemberCount": 5809
+          },
+          {
+            "retainedBytes": 232428,
+            "heapUsedDelta": 15547512,
+            "catalogMemberCount": 5809
+          },
+          {
+            "retainedBytes": 232428,
+            "heapUsedDelta": 15636352,
+            "catalogMemberCount": 5809
+          },
+          {
+            "retainedBytes": 232428,
+            "heapUsedDelta": 15468560,
+            "catalogMemberCount": 5809
+          }
+        ],
+        "pass": true
+      }
+    },
+    "semanticIsolated": {
+      "pass": true,
+      "isolatedCount": 30,
+      "declared": 30,
+      "missingRules": []
+    },
+    "jcsVectors": {
+      "pass": true,
+      "nestedDuplicateRejected": true,
+      "vectorCount": 22
+    },
+    "covarianceReference": {
+      "pass": true,
+      "referenceEigenPass": true
+    },
+    "partitionRegistryOwnership": {
+      "pass": true,
+      "registry": {
+        "allPass": true,
+        "results": [
+          {
+            "name": "partition-completes",
+            "pass": true
+          },
+          {
+            "name": "terminal-has-registry-id",
+            "pass": true
+          },
+          {
+            "name": "branch-map-covers-all-matches",
+            "pass": true
+          },
+          {
+            "name": "finalize-zero-refs",
+            "pass": true
+          },
+          {
+            "name": "finalize-idempotent",
+            "pass": true
+          },
+          {
+            "name": "registry-empty-after-finalize",
+            "pass": true
+          },
+          {
+            "name": "no-negative-refcount",
+            "pass": true
+          }
+        ]
+      },
+      "ownership": {
+        "allPass": true,
+        "results": [
+          {
+            "name": "abandoned-allocation-discard",
+            "pass": true
+          },
+          {
+            "name": "committed-ref-released",
+            "pass": true
+          },
+          {
+            "name": "double-release-throws",
+            "pass": true
+          },
+          {
+            "name": "partition-dp-registry",
+            "pass": true
+          },
+          {
+            "name": "partition-layer-ownership",
+            "pass": true
+          }
+        ]
+      }
+    },
+    "manifestAndEvidence": {
+      "pass": true,
+      "manifest": {
+        "allPass": true,
+        "fileCount": 38,
+        "missing": [],
+        "extra": [],
+        "mismatched": []
+      },
+      "evidence": {
+        "allPass": true,
+        "workspaceHash": "e9df995854f5b6aed2811de4f13dc9fb9c16f8451935acb08deb9b5d4f3c85cd",
+        "packageHash": "e9df995854f5b6aed2811de4f13dc9fb9c16f8451935acb08deb9b5d4f3c85cd"
+      }
+    },
+    "noHardcodedRunnerFlags": {
+      "pass": true,
+      "hits": []
+    },
+    "independentTestUsesOracle": {
+      "pass": true,
+      "missing": []
+    },
+    "allPass": true
+  },
+  "workspaceManifest": {
+    "allPass": true,
+    "fileCount": 38,
+    "missing": [],
+    "extra": [],
+    "mismatched": []
+  },
+  "documentation": {
+    "specExists": true,
+    "zipExists": true,
+    "manifestExists": true,
+    "zipBytes": 62168,
+    "manifestFileCount": 38,
+    "manifestVerifyPass": true,
+    "byteClaimMatches": true,
+    "fileClaimMatches": true,
+    "evidenceHashMatches": true,
+    "documentsCrossPlatformTestCommand": true,
+    "documentsEvidenceCommand": true,
+    "buildInProgress": false,
+    "allPass": true
+  },
+  "npmTest": {
+    "pass": true,
+    "status": 0,
+    "command": "node --expose-gc --test tests/stage19_spec_evidence.test.js tests/stage19_mutation.test.js"
+  },
+  "invariants": {
+    "partitionDPPreservesRegisteredSurvivors": true,
+    "everyNormativeCalleeIsResolvedAndExercised": true,
+    "maximumInstanceMeasurementsMatchNormativeTable": true,
+    "maximumInstanceMemberCountsAreCorrect": true,
+    "runtimePeakIsMeasuredAgainstAValidatedModel": true,
+    "jcsParserRejectsNestedDuplicateKeys": true,
+    "jcsRequiredEdgeCasesPass": true,
+    "everySemanticRuleHasValidAndInvalidEvidence": true,
+    "covarianceValidationPassesKnownMatrixFixtures": true,
+    "publicationAndRecoveryUseFilesystemIntegrationTests": true,
+    "readerPinAndQuarantineConcurrencyIsTested": true,
+    "npmTestPassesCrossPlatform": true,
+    "testsDeriveInvariantsIndependently": true,
+    "documentationAndManifestMatchDeliveredFiles": true,
+    "manifestIntegrityVerified": true,
+    "allTenSchemasAreDelivered": true,
+    "everySchemaPassesDraft202012MetaSchemaValidation": true,
+    "partitionOwnershipTestsPass": true,
+    "measuredConflictFixturePass": true,
+    "finalInvariantClaimsAreBackedByDeliveredEvidence": true,
+    "selfContainedClaimMatchesTheDeliveredArtifact": true
+  }
+}

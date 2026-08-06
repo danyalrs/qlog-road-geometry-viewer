@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B-MOTION QC Recheck</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>B-MOTION QC Recheck</h1>
+    <p class="subtitle">Targeted quality control for completed manual reviews. Updates save to the QC artifact only.</p>
+  </header>
+
+  <section class="setup" id="setupPanel">
+    <label>QC Reviewer ID <input type="text" id="qcReviewer" placeholder="qc-reviewer-1" /></label>
+    <button id="btnStart">Start QC Recheck</button>
+  </section>
+
+  <section class="progress-bar" id="progressPanel" hidden>
+    <div id="progressText">QC: 0 / 26 reviewed (26 remaining)</div>
+    <div class="meter"><div id="progressFill"></div></div>
+  </section>
+
+  <main id="reviewPanel" hidden>
+    <div class="pair-header">
+      <h2 id="pairId">—</h2>
+      <span id="evidenceStatus" class="badge">—</span>
+      <span id="recordIndexBadge" class="badge qc-badge">Record —</span>
+    </div>
+    <p id="pairIdentityLine" class="identity-line">—</p>
+
+    <section class="qc-existing">
+      <h3>Existing Review (pre-filled below)</h3>
+      <div class="grid">
+        <div><strong>Record index</strong><span id="recordIndex">—</span></div>
+        <div><strong>Pair ID</strong><span id="reviewPairId">—</span></div>
+        <div><strong>Existing label</strong><span id="existingLabel">—</span></div>
+        <div><strong>Original reviewer</strong><span id="originalReviewer">—</span></div>
+        <div class="wide"><strong>Existing note</strong><span id="existingNote">—</span></div>
+      </div>
+    </section>
+
+    <div class="metrics grid">
+      <div><strong>Segment</strong><span id="segmentId">—</span></div>
+      <div><strong>Observation A</strong><span id="obsA">—</span></div>
+      <div><strong>Observation B</strong><span id="obsB">—</span></div>
+      <div><strong>Lane / slot A</strong><span id="slotA">—</span></div>
+      <div><strong>Lane / slot B</strong><span id="slotB">—</span></div>
+      <div><strong>Requested time A</strong><span id="requestedTimeA">—</span></div>
+      <div><strong>Requested time B</strong><span id="requestedTimeB">—</span></div>
+      <div><strong>Displayed logMonoTime</strong><span id="displayedLogMonoTime">—</span></div>
+      <div><strong>Δt (s)</strong><span id="deltaTime">—</span></div>
+      <div><strong>Displacement (m)</strong><span id="spatialM">—</span></div>
+      <div><strong>Speed (m/s)</strong><span id="speedMps">—</span></div>
+      <div><strong>Heading Δ (°)</strong><span id="headingDiff">—</span></div>
+    </div>
+
+    <section class="playback">
+      <h3>Qlog Playback</h3>
+      <p id="qlogRef">—</p>
+      <div class="legend" id="playbackLegend">
+        <span class="legend-item"><i class="swatch target"></i> Target observation divider</span>
+        <span class="legend-item"><i class="swatch muted"></i> Other lane dividers</span>
+        <span class="legend-item"><i class="swatch edge"></i> Road edges</span>
+      </div>
+      <div class="btn-row">
+        <button id="btnLoadQlog">Load qlog segment</button>
+        <button id="btnFrameA">Go to frame A</button>
+        <button id="btnFrameB">Go to frame B</button>
+        <button id="btnPrev">◀ Prev</button>
+        <button id="btnNext">Next ▶</button>
+      </div>
+      <p id="frameInfo">Frame: —</p>
+      <p id="targetInfo" class="status">Target: —</p>
+      <p id="renderStatus" class="status">Playback not loaded</p>
+      <div id="errorBanner"></div>
+      <canvas id="frameCanvas" width="960" height="540"></canvas>
+    </section>
+
+    <section class="decision">
+      <h3>QC Decision (update if needed)</h3>
+      <label>Evidence mode
+        <select id="evidenceMode">
+          <option value="qlog_playback">qlog_playback</option>
+          <option value="video">video</option>
+          <option value="combined">combined</option>
+          <option value="insufficient">insufficient</option>
+        </select>
+      </label>
+      <label>Notes <textarea id="reviewerNotes" rows="4" placeholder="Update note if needed"></textarea></label>
+      <div class="btn-row decision-buttons">
+        <button class="positive" id="btnPositive">positive_continuation</button>
+        <button class="negative" id="btnNegative">negative_non_continuation</button>
+        <button class="neutral" id="btnUnresolved">unresolved</button>
+        <button id="btnConfirm">Confirm unchanged</button>
+      </div>
+      <p id="submitStatus" class="status"></p>
+      <div id="revealPanel" class="reveal" hidden>
+        <h4>Post-review rule-derived reference (not ground truth)</h4>
+        <pre id="revealText"></pre>
+      </div>
+    </section>
+  </main>
+
+  <script src="/playback-helpers.js"></script>
+  <script src="qc-app.js"></script>
+</body>
+</html>

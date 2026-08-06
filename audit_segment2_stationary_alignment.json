@@ -1,0 +1,554 @@
+{
+  "segment": "qlog_f449c_2.bz2",
+  "referencePose": {
+    "frameIndex": 0,
+    "east": -24.055678502831913,
+    "north": -6.687047732752509,
+    "headingDeg": 254.5254303934877,
+    "logMonoTime": "139726594139",
+    "chunkId": 0,
+    "passId": 0
+  },
+  "polygonTrace": {
+    "propertyPath": "routeChunks[].roadSurfacePolygons",
+    "chunkCount": 1,
+    "polygonsInChunk0": 7,
+    "geometryDebugCount": null,
+    "statsRoadPolygonCount": 7,
+    "samplePolygon": {
+      "passId": 0,
+      "fragmentIndex": 0,
+      "ringPoints": 6,
+      "firstRingPoint": {
+        "east": -49.37839125619361,
+        "north": -19.485750729874646
+      },
+      "coordinateFrame": "global east/north (route s-d fused frame)",
+      "stats": {
+        "length": 4.019142932757858,
+        "area": 23.730821098916408,
+        "medianWidth": 5.930740375310778,
+        "minWidth": 5.863855021227103,
+        "maxWidth": 6.0054853270677535,
+        "maxVertexJump": 6.005485327067749,
+        "intersections": 0,
+        "p5Width": 5.870543556635471,
+        "p95Width": 5.998010831892056,
+        "maxWidthAt": 391.3011430991216,
+        "widthChangePerM": 0.03737247587848769,
+        "wideFlag": false,
+        "wideSamples": [],
+        "sRange": [
+          387.3011430991216,
+          391.3011430991216
+        ]
+      }
+    },
+    "inBuildSegmentLocalMap": 7,
+    "inMapBounds": false,
+    "renderedInLocalPlayback": false,
+    "layerEnabledInLocalMode": false,
+    "firstLossStage": null
+  },
+  "fragmentSummary": {
+    "totalLaneFragments": 53,
+    "totalEdgeFragments": 60,
+    "mapBounds": {
+      "minE": -106.2479417575999,
+      "maxE": 318.1099136996307,
+      "minN": -281.60675186879473,
+      "maxN": 462.68190238795154
+    },
+    "medianFragmentLengthM": 117.47982427707912,
+    "maxFragmentLengthM": 163.96846769581572,
+    "longestFive": [
+      {
+        "kind": "edge",
+        "sourceFrameIndex": 7,
+        "frameId": 2723,
+        "edgeIndex": 0,
+        "pointCount": 26,
+        "lengthM": 163.96846769581572,
+        "distToTrajectoryM": 24.319426701373764
+      },
+      {
+        "kind": "edge",
+        "sourceFrameIndex": 7,
+        "frameId": 2723,
+        "edgeIndex": 1,
+        "pointCount": 26,
+        "lengthM": 163.33598997994744,
+        "distToTrajectoryM": 12.841891729155272
+      },
+      {
+        "kind": "edge",
+        "sourceFrameIndex": 8,
+        "frameId": 2763,
+        "edgeIndex": 0,
+        "pointCount": 26,
+        "lengthM": 160.90142544307037,
+        "distToTrajectoryM": 23.57538140912332
+      },
+      {
+        "kind": "edge",
+        "sourceFrameIndex": 8,
+        "frameId": 2763,
+        "edgeIndex": 1,
+        "pointCount": 26,
+        "lengthM": 160.49527862487096,
+        "distToTrajectoryM": 12.22562033893145
+      },
+      {
+        "kind": "edge",
+        "sourceFrameIndex": 9,
+        "frameId": 2803,
+        "edgeIndex": 0,
+        "pointCount": 26,
+        "lengthM": 149.63716068935807,
+        "distToTrajectoryM": 21.403763040435084
+      }
+    ]
+  },
+  "perObservation": [
+    {
+      "elapsedIdx": 0,
+      "frameId": 2443,
+      "logMonoTime": "139726594139",
+      "modelTimestampEof": "139648813000",
+      "poseLogMonoTime": "139726594139",
+      "timestampDiffNs": -77781139,
+      "pose": {
+        "east": -24.055678502831913,
+        "north": -6.687047732752509,
+        "headingDeg": 254.5254303934877,
+        "headingSource": "interpolated"
+      },
+      "chunkId": 0,
+      "passId": 0,
+      "lane0At10m": {
+        "modelX": 9.1875,
+        "modelY": -2.212778091430664,
+        "storedGlobal": {
+          "east": -33.500514925604534,
+          "north": -7.00580795452311
+        },
+        "recomputedGlobal": {
+          "east": -33.500514925604534,
+          "north": -7.00580795452311
+        },
+        "globalDeltaM": 0,
+        "segmentLocal": {
+          "east": 9.187500000000002,
+          "north": 2.2127780914306636
+        },
+        "vehicleInRefFrame": {
+          "east": 0,
+          "north": 0,
+          "modelX": 0,
+          "modelY": 0
+        }
+      },
+      "laneTrackIds": [
+        0,
+        1
+      ]
+    },
+    {
+      "elapsedIdx": 4,
+      "frameId": 2603,
+      "logMonoTime": "147723001692",
+      "modelTimestampEof": "147643829000",
+      "poseLogMonoTime": "147723001692",
+      "timestampDiffNs": -79172692,
+      "pose": {
+        "east": -134.5313096065725,
+        "north": -42.45787285846892,
+        "headingDeg": 235.80879839900078,
+        "headingSource": "interpolated"
+      },
+      "chunkId": 0,
+      "passId": 0,
+      "lane0At10m": {
+        "modelX": 9.1875,
+        "modelY": -2.138517379760742,
+        "storedGlobal": {
+          "east": -143.33265875477014,
+          "north": -45.85193620570622
+        },
+        "recomputedGlobal": {
+          "east": -143.33265875477014,
+          "north": -45.85193620570622
+        },
+        "globalDeltaM": 0,
+        "segmentLocal": {
+          "east": 125.4026761933653,
+          "north": -5.92075254187678
+        },
+        "vehicleInRefFrame": {
+          "east": 116.01481277178966,
+          "north": -4.9980211555128555,
+          "modelX": 116.01481277178966,
+          "modelY": 4.9980211555128555
+        }
+      },
+      "laneTrackIds": [
+        2,
+        3
+      ]
+    },
+    {
+      "elapsedIdx": 12,
+      "frameId": 2923,
+      "logMonoTime": "163718456147",
+      "modelTimestampEof": "163635610000",
+      "poseLogMonoTime": "163718456147",
+      "timestampDiffNs": -82846147,
+      "pose": {
+        "east": -78.82406389572091,
+        "north": -112.77711987245836,
+        "headingDeg": 51.21446071019753,
+        "headingSource": "interpolated"
+      },
+      "chunkId": 0,
+      "passId": 0,
+      "lane0At10m": {
+        "modelX": 9.1875,
+        "modelY": -1.6909244060516357,
+        "storedGlobal": {
+          "east": -70.60323655072087,
+          "north": -108.34007362966568
+        },
+        "recomputedGlobal": {
+          "east": -70.60323655072087,
+          "north": -108.34007362966568
+        },
+        "globalDeltaM": 0,
+        "segmentLocal": {
+          "east": 71.982270865295,
+          "north": -85.54861492330193
+        },
+        "vehicleInRefFrame": {
+          "east": 81.08893593900854,
+          "north": -87.63140940000554,
+          "modelX": 81.08893593900854,
+          "modelY": 87.63140940000554
+        }
+      },
+      "laneTrackIds": [
+        5
+      ]
+    },
+    {
+      "elapsedIdx": 16,
+      "frameId": 3083,
+      "logMonoTime": "171706391399",
+      "modelTimestampEof": "171631918000",
+      "poseLogMonoTime": "171706391399",
+      "timestampDiffNs": -74473399,
+      "pose": {
+        "east": -47.721013240124606,
+        "north": -25.950260610926048,
+        "headingDeg": 357.31263743665573,
+        "headingSource": "interpolated"
+      },
+      "chunkId": 0,
+      "passId": 0,
+      "lane0At10m": {
+        "modelX": 9.1875,
+        "modelY": -1.3445838689804077,
+        "storedGlobal": {
+          "east": -46.80867440493091,
+          "north": -16.709822316098265
+        },
+        "recomputedGlobal": {
+          "east": -46.80867440493091,
+          "north": -16.709822316098265
+        },
+        "globalDeltaM": 0,
+        "segmentLocal": {
+          "east": 24.602359357776987,
+          "north": -3.5886971034483723
+        },
+        "vehicleInRefFrame": {
+          "east": 27.947072300912343,
+          "north": -12.250738280835218,
+          "modelX": 27.947072300912343,
+          "modelY": 12.250738280835218
+        }
+      },
+      "laneTrackIds": [
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "elapsedIdx": 20,
+      "frameId": 3243,
+      "logMonoTime": "179713752755",
+      "modelTimestampEof": "179628383000",
+      "poseLogMonoTime": "179713752755",
+      "timestampDiffNs": -85369755,
+      "pose": {
+        "east": -53.62748274565796,
+        "north": 93.25492747794408,
+        "headingDeg": 357.5766980822572,
+        "headingSource": "interpolated"
+      },
+      "chunkId": 0,
+      "passId": 0,
+      "lane0At10m": {
+        "modelX": 9.1875,
+        "modelY": -1.5196776390075684,
+        "storedGlobal": {
+          "east": -52.49762989995254,
+          "north": 102.49846624421487
+        },
+        "recomputedGlobal": {
+          "east": -52.49762989995254,
+          "north": 102.49846624421487
+        },
+        "globalDeltaM": 0,
+        "segmentLocal": {
+          "east": -1.7209563683851101,
+          "north": 112.81604216984756
+        },
+        "vehicleInRefFrame": {
+          "east": 1.8342127172374525,
+          "north": 104.20904797041109,
+          "modelX": 1.8342127172374525,
+          "modelY": -104.20904797041109
+        }
+      },
+      "laneTrackIds": [
+        7,
+        8
+      ]
+    },
+    {
+      "elapsedIdx": 24,
+      "frameId": 3403,
+      "logMonoTime": "187679843472",
+      "modelTimestampEof": "187601905000",
+      "poseLogMonoTime": "187679843472",
+      "timestampDiffNs": -77938472,
+      "pose": {
+        "east": -59.63266805257428,
+        "north": 220.94280479421857,
+        "headingDeg": 357.8149900762928,
+        "headingSource": "interpolated"
+      },
+      "chunkId": 0,
+      "passId": 0,
+      "lane0At10m": {
+        "modelX": 9.1875,
+        "modelY": -1.3957343101501465,
+        "storedGlobal": {
+          "east": -58.588234610376475,
+          "north": 230.17683908586756
+        },
+        "recomputedGlobal": {
+          "east": -58.588234610376475,
+          "north": 230.17683908586756
+        },
+        "globalDeltaM": 0,
+        "segmentLocal": {
+          "east": -29.917091753127615,
+          "north": 237.4909807364897
+        },
+        "vehicleInRefFrame": {
+          "east": -26.44678142472668,
+          "north": 228.87035565827617,
+          "modelX": -26.44678142472668,
+          "modelY": -228.87035565827617
+        }
+      },
+      "laneTrackIds": [
+        7,
+        8
+      ]
+    },
+    {
+      "elapsedIdx": 29,
+      "frameId": 3603,
+      "logMonoTime": "197651558947",
+      "modelTimestampEof": "197575075000",
+      "poseLogMonoTime": "197651558947",
+      "timestampDiffNs": -76483947,
+      "pose": {
+        "east": -63.2358248188893,
+        "north": 289.64567692768867,
+        "headingDeg": 351.5805969238281,
+        "headingSource": "gps"
+      },
+      "chunkId": 0,
+      "passId": 0,
+      "lane0At10m": {
+        "modelX": 9.1875,
+        "modelY": -1.423750877380371,
+        "storedGlobal": {
+          "east": -63.1726336766672,
+          "north": 298.9426242594953
+        },
+        "recomputedGlobal": {
+          "east": -63.1726336766672,
+          "north": 298.9426242594953
+        },
+        "globalDeltaM": 0,
+        "segmentLocal": {
+          "east": -43.84632558082651,
+          "north": 304.9871018866551
+        },
+        "vehicleInRefFrame": {
+          "east": -41.304900639785494,
+          "north": 296.0440385367791,
+          "modelX": -41.304900639785494,
+          "modelY": -296.0440385367791
+        }
+      },
+      "laneTrackIds": [
+        7,
+        8
+      ]
+    }
+  ],
+  "rightBoundaryAt10m": [
+    {
+      "idx": 0,
+      "frameId": 2443,
+      "localE": 9.187500000000002,
+      "localN": 2.2127780914306636
+    },
+    {
+      "idx": 4,
+      "frameId": 2603,
+      "localE": 125.4026761933653,
+      "localN": -5.92075254187678
+    },
+    {
+      "idx": 12,
+      "frameId": 2923,
+      "localE": 71.982270865295,
+      "localN": -85.54861492330193
+    },
+    {
+      "idx": 16,
+      "frameId": 3083,
+      "localE": 24.602359357776987,
+      "localN": -3.5886971034483723
+    },
+    {
+      "idx": 20,
+      "frameId": 3243,
+      "localE": -1.7209563683851101,
+      "localN": 112.81604216984756
+    },
+    {
+      "idx": 24,
+      "frameId": 3403,
+      "localE": -29.917091753127615,
+      "localN": 237.4909807364897
+    },
+    {
+      "idx": 29,
+      "frameId": 3603,
+      "localE": -43.84632558082651,
+      "localN": 304.9871018866551
+    }
+  ],
+  "boundarySpreadBetweenObservations": [
+    {
+      "fromIdx": 0,
+      "toIdx": 4,
+      "separationM": 116.49944848890011
+    },
+    {
+      "fromIdx": 4,
+      "toIdx": 12,
+      "separationM": 95.88710118076624
+    },
+    {
+      "fromIdx": 12,
+      "toIdx": 16,
+      "separationM": 94.66934109571794
+    },
+    {
+      "fromIdx": 16,
+      "toIdx": 20,
+      "separationM": 119.34395785335435
+    },
+    {
+      "fromIdx": 20,
+      "toIdx": 24,
+      "separationM": 127.82355947645456
+    },
+    {
+      "fromIdx": 24,
+      "toIdx": 29,
+      "separationM": 68.91842950433883
+    }
+  ],
+  "fanAnalysis": {
+    "hypothesis": "Each observation lane fragment originates at vehicle pose in reference frame; along a curve, origins spread along trajectory creating fan pattern",
+    "meanBoundarySpreadM": 103.85697293325535,
+    "maxBoundarySpreadM": 127.82355947645456
+  },
+  "transformConsistency": [
+    {
+      "idx": 0,
+      "globalRecomputeDeltaM": 0
+    },
+    {
+      "idx": 4,
+      "globalRecomputeDeltaM": 0
+    },
+    {
+      "idx": 12,
+      "globalRecomputeDeltaM": 0
+    },
+    {
+      "idx": 16,
+      "globalRecomputeDeltaM": 0
+    },
+    {
+      "idx": 20,
+      "globalRecomputeDeltaM": 0
+    },
+    {
+      "idx": 24,
+      "globalRecomputeDeltaM": 0
+    },
+    {
+      "idx": 29,
+      "globalRecomputeDeltaM": 0
+    }
+  ],
+  "verdict": {
+    "roadPolygonsExistInProcessedData": true,
+    "roadPolygonsReachLocalBuilder": true,
+    "roadPolygonsTransformed": false,
+    "roadPolygonsRendered": false,
+    "firstPolygonLossStage": null,
+    "storedGlobalMatchesRecomputed": true,
+    "repeatedBoundariesOverlap": false,
+    "fanPatternCause": "Per-observation global lanes transformed to fixed reference frame; each fragment anchored at its observation vehicle position along route curve",
+    "longUpperFragment": {
+      "kind": "lane",
+      "sourceFrameIndex": 29,
+      "frameId": 3603,
+      "laneIndex": 1,
+      "laneTrackId": 7,
+      "pointCount": 26,
+      "lengthM": 117.93267500049534,
+      "distToTrajectoryM": 27.095815518166503,
+      "bounds": {
+        "minE": -68.80165869883288,
+        "maxE": -42.60652385062865,
+        "minN": 295.88294700572726,
+        "maxN": 410.7225561313559
+      }
+    },
+    "viewportCompressionCause": "Fit includes all fragment vertices including long outlier polylines",
+    "firstIncorrectCoordinateStage": "accumulation — per-observation vehicle origins along curved trajectory (not a single transform bug)"
+  }
+}

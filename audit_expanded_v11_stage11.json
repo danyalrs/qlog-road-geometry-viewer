@@ -1,0 +1,1243 @@
+{
+  "auditedAt": "2026-07-23T06:22:19.061Z",
+  "processingVersion": "2026-07-24-fusion-v11",
+  "movementOnly": false,
+  "configHash": "9c27690a7bd810d3",
+  "segmentCount": 12,
+  "flaggedCount": 6,
+  "multiPassCount": 1,
+  "zeroPolygonCount": 2,
+  "medianProcessingMs": 38,
+  "totalSuppressedReversals": 16,
+  "aggregateMovementStates": {
+    "moving": 203,
+    "stationary": 45,
+    "creeping": 0,
+    "uncertain": 91
+  },
+  "results": [
+    {
+      "segmentId": 2,
+      "filename": "qlog_f449c_2.bz2",
+      "processingVersion": "2026-07-24-fusion-v11",
+      "configHash": "9c27690a7bd810d3",
+      "fileSha256": "c599657f41b00706b23f1c386bc0573e4a3fe3783f67358e887100f38287c5d5",
+      "modelV2Count": 30,
+      "durationSec": {
+        "modelV2": 57.924964808,
+        "gps": 58.939815901,
+        "kalman": 59.668327811
+      },
+      "qualification": {
+        "filename": "qlog_f449c_2.bz2",
+        "fileSha256": "c599657f41b00706b23f1c386bc0573e4a3fe3783f67358e887100f38287c5d5",
+        "flags": [],
+        "reasons": [],
+        "allowFusion": true,
+        "allowPasses": true,
+        "allowTemporalTracks": true,
+        "poseUnavailable": false,
+        "modelV2Count": 30,
+        "recordedDurationSec": 57.924964808,
+        "gpsDurationSec": 58.939815901
+      },
+      "processingMs": 83,
+      "mode": "global",
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "rejectedPoseTransitions": 0,
+      "hiddenConnectorLengthM": 0,
+      "firstPoseRejection": null,
+      "splitEvents": [],
+      "frameCounts": {
+        "rawModelV2Messages": 30,
+        "parsedModelFrames": 30,
+        "validLaneFrames": 26,
+        "validRoadEdgeFrames": 30,
+        "gpsAlignedFrames": 30,
+        "interpolatedPoseFrames": 29,
+        "vehicleRelativeFrames": 0,
+        "syntheticFrames": 0,
+        "cachedFrames": 0,
+        "displayedTimelineFrames": 30
+      },
+      "polygonCount": 7,
+      "fusedLaneCount": 33,
+      "laneTrackCount": 13,
+      "suppressedReversalCount": 1,
+      "suppressedSplitEvents": [
+        {
+          "reason": "suppressedChordSelfIntersection",
+          "wouldBeReason": "selfIntersection",
+          "frameId": 3123,
+          "movementState": "moving"
+        }
+      ],
+      "movementStates": {
+        "moving": 28,
+        "stationary": 0,
+        "creeping": 0,
+        "uncertain": 1
+      },
+      "stationaryTrajectoryCoverageM": 34.351685391660034,
+      "movingTrajectoryCoverageM": 662.4251665404328,
+      "trajectory": {
+        "pointCount": 30,
+        "maxImpliedSpeedMps": 17.690126687366064,
+        "maxStepM": 35.16873490040827,
+        "maxHeadingDeltaDeg": 29.224112794066045,
+        "lowSpeedHeadingNoiseCount": 0,
+        "stationaryDriftM": 0,
+        "stationaryPointCount": 0,
+        "flags": []
+      },
+      "severityFlags": [],
+      "poseSource": "gpsLocation"
+    },
+    {
+      "segmentId": 6,
+      "filename": "qlog_f449c_6.bz2",
+      "processingVersion": "2026-07-24-fusion-v11",
+      "configHash": "9c27690a7bd810d3",
+      "fileSha256": "e7eb0444e6169f43dbc38c1d09c307eafb4f04e36892ae519f2ea8a7c6e76744",
+      "modelV2Count": 30,
+      "durationSec": {
+        "modelV2": 58.024371274,
+        "gps": 59.038162687,
+        "kalman": 59.77817571
+      },
+      "qualification": {
+        "filename": "qlog_f449c_6.bz2",
+        "fileSha256": "e7eb0444e6169f43dbc38c1d09c307eafb4f04e36892ae519f2ea8a7c6e76744",
+        "flags": [],
+        "reasons": [],
+        "allowFusion": true,
+        "allowPasses": true,
+        "allowTemporalTracks": true,
+        "poseUnavailable": false,
+        "modelV2Count": 30,
+        "recordedDurationSec": 58.024371274,
+        "gpsDurationSec": 59.038162687
+      },
+      "processingMs": 29,
+      "mode": "global",
+      "temporalPassCount": 1,
+      "poseSectionCount": 5,
+      "rejectedPoseTransitions": 4,
+      "hiddenConnectorLengthM": 4.463718009113163,
+      "firstPoseRejection": {
+        "fromFrameId": 7603,
+        "toFrameId": 7643,
+        "fromLogMonoTime": "397593381524",
+        "toLogMonoTime": "399588854853",
+        "reason": "headingMotionDisagreement",
+        "stepM": 1.302722807098433,
+        "timeDiffSec": 1.995473329,
+        "impliedSpeedMps": 0.6528389972274257,
+        "expectedSpeedMps": 2.1531713510256694,
+        "expectedSpeedSource": "neighborMedian",
+        "headingDeltaDeg": 59.727399036886226,
+        "headingContinuityDeg": 59.727399036886226,
+        "motionDisagreementDeg": 128.00129268607344,
+        "maxAllowedStepM": 35,
+        "reportedSpeedMps": 1.382514225038487,
+        "gpsSamplingIntervalSec": 1.995473329,
+        "movementState": "moving"
+      },
+      "splitEvents": [],
+      "frameCounts": {
+        "rawModelV2Messages": 30,
+        "parsedModelFrames": 30,
+        "validLaneFrames": 7,
+        "validRoadEdgeFrames": 30,
+        "gpsAlignedFrames": 30,
+        "interpolatedPoseFrames": 29,
+        "vehicleRelativeFrames": 0,
+        "syntheticFrames": 0,
+        "cachedFrames": 0,
+        "displayedTimelineFrames": 30
+      },
+      "polygonCount": 2,
+      "fusedLaneCount": 0,
+      "laneTrackCount": 6,
+      "suppressedReversalCount": 2,
+      "suppressedSplitEvents": [
+        {
+          "reason": "suppressedDirectionReversal",
+          "wouldBeReason": "directionReversal",
+          "frameId": 7643,
+          "movementState": "moving",
+          "dot": -0.40957951293365163,
+          "step": 1.302722807098433
+        },
+        {
+          "reason": "suppressedDirectionReversal",
+          "wouldBeReason": "directionReversal",
+          "frameId": 8323,
+          "movementState": "stationary",
+          "dot": -0.7423947702036361,
+          "step": 0.52309277650903
+        }
+      ],
+      "movementStates": {
+        "moving": 9,
+        "stationary": 9,
+        "creeping": 0,
+        "uncertain": 11
+      },
+      "stationaryTrajectoryCoverageM": 18.844445619397497,
+      "movingTrajectoryCoverageM": 61.64880333394179,
+      "trajectory": {
+        "pointCount": 30,
+        "maxImpliedSpeedMps": 6.65394785752018,
+        "maxStepM": 13.318650903507237,
+        "maxHeadingDeltaDeg": 59.727399036886226,
+        "lowSpeedHeadingNoiseCount": 0,
+        "stationaryDriftM": 21.400229978970525,
+        "stationaryPointCount": 22,
+        "flags": [
+          "stationaryGpsDrift"
+        ]
+      },
+      "severityFlags": [
+        "stationaryDrift"
+      ],
+      "poseSource": "gpsLocation"
+    },
+    {
+      "segmentId": 54,
+      "filename": "qlog_f449c_54.bz2",
+      "processingVersion": "2026-07-24-fusion-v11",
+      "configHash": "9c27690a7bd810d3",
+      "fileSha256": "6fcd4025d28c0361c7909d6e8909c2232c9e64e8b359a21c11c38a3c26a2eb90",
+      "modelV2Count": 30,
+      "durationSec": {
+        "modelV2": 57.990704531,
+        "gps": 59.133768412,
+        "kalman": 59.744311862
+      },
+      "qualification": {
+        "filename": "qlog_f449c_54.bz2",
+        "fileSha256": "6fcd4025d28c0361c7909d6e8909c2232c9e64e8b359a21c11c38a3c26a2eb90",
+        "flags": [],
+        "reasons": [],
+        "allowFusion": true,
+        "allowPasses": true,
+        "allowTemporalTracks": true,
+        "poseUnavailable": false,
+        "modelV2Count": 30,
+        "recordedDurationSec": 57.990704531,
+        "gpsDurationSec": 59.133768412
+      },
+      "processingMs": 38,
+      "mode": "global",
+      "temporalPassCount": 1,
+      "poseSectionCount": 4,
+      "rejectedPoseTransitions": 3,
+      "hiddenConnectorLengthM": 5.292064627026584,
+      "firstPoseRejection": {
+        "fromFrameId": 65083,
+        "toFrameId": 65123,
+        "fromLogMonoTime": "3271022939249",
+        "toLogMonoTime": "3273024894481",
+        "reason": "headingMotionDisagreement",
+        "stepM": 2.1501410570461754,
+        "timeDiffSec": 2.001955232,
+        "impliedSpeedMps": 1.074020548850203,
+        "expectedSpeedMps": 4.151092094070339,
+        "expectedSpeedSource": "neighborMedian",
+        "headingDeltaDeg": 2.540311674002737,
+        "headingContinuityDeg": 2.540311674002737,
+        "motionDisagreementDeg": 58.52593679314754,
+        "maxAllowedStepM": 35,
+        "reportedSpeedMps": 0.48309256779063886,
+        "gpsSamplingIntervalSec": 2.001955232,
+        "movementState": "uncertain"
+      },
+      "splitEvents": [],
+      "frameCounts": {
+        "rawModelV2Messages": 30,
+        "parsedModelFrames": 30,
+        "validLaneFrames": 30,
+        "validRoadEdgeFrames": 30,
+        "gpsAlignedFrames": 30,
+        "interpolatedPoseFrames": 30,
+        "vehicleRelativeFrames": 0,
+        "syntheticFrames": 0,
+        "cachedFrames": 0,
+        "displayedTimelineFrames": 30
+      },
+      "polygonCount": 3,
+      "fusedLaneCount": 8,
+      "laneTrackCount": 10,
+      "suppressedReversalCount": 0,
+      "suppressedSplitEvents": [],
+      "movementStates": {
+        "moving": 4,
+        "stationary": 12,
+        "creeping": 0,
+        "uncertain": 13
+      },
+      "stationaryTrajectoryCoverageM": 30.762468165584227,
+      "movingTrajectoryCoverageM": 28.021007267047455,
+      "trajectory": {
+        "pointCount": 30,
+        "maxImpliedSpeedMps": 6.23383782022345,
+        "maxStepM": 12.462635881793465,
+        "maxHeadingDeltaDeg": 10.183564551894221,
+        "lowSpeedHeadingNoiseCount": 0,
+        "stationaryDriftM": 21.972388556632577,
+        "stationaryPointCount": 25,
+        "flags": [
+          "stationaryGpsDrift"
+        ]
+      },
+      "severityFlags": [
+        "stationaryDrift"
+      ],
+      "poseSource": "gpsLocation"
+    },
+    {
+      "segmentId": 58,
+      "filename": "qlog_f449c_58.bz2",
+      "processingVersion": "2026-07-24-fusion-v11",
+      "configHash": "9c27690a7bd810d3",
+      "fileSha256": "a987a0ea8402a20a44412f0169dcff8c82292e2cdb47abb2661fc59e5d06568d",
+      "modelV2Count": 30,
+      "durationSec": {
+        "modelV2": 57.960894499,
+        "gps": 58.97340833,
+        "kalman": 59.698620649
+      },
+      "qualification": {
+        "filename": "qlog_f449c_58.bz2",
+        "fileSha256": "a987a0ea8402a20a44412f0169dcff8c82292e2cdb47abb2661fc59e5d06568d",
+        "flags": [],
+        "reasons": [],
+        "allowFusion": true,
+        "allowPasses": true,
+        "allowTemporalTracks": true,
+        "poseUnavailable": false,
+        "modelV2Count": 30,
+        "recordedDurationSec": 57.960894499,
+        "gpsDurationSec": 58.97340833
+      },
+      "processingMs": 38,
+      "mode": "global",
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "rejectedPoseTransitions": 0,
+      "hiddenConnectorLengthM": 0,
+      "firstPoseRejection": null,
+      "splitEvents": [],
+      "frameCounts": {
+        "rawModelV2Messages": 30,
+        "parsedModelFrames": 30,
+        "validLaneFrames": 17,
+        "validRoadEdgeFrames": 30,
+        "gpsAlignedFrames": 30,
+        "interpolatedPoseFrames": 30,
+        "vehicleRelativeFrames": 0,
+        "syntheticFrames": 0,
+        "cachedFrames": 0,
+        "displayedTimelineFrames": 30
+      },
+      "polygonCount": 6,
+      "fusedLaneCount": 17,
+      "laneTrackCount": 13,
+      "suppressedReversalCount": 2,
+      "suppressedSplitEvents": [
+        {
+          "reason": "suppressedDirectionReversal",
+          "wouldBeReason": "directionReversal",
+          "frameId": 69923,
+          "movementState": "stationary",
+          "dot": -0.4168717160979863,
+          "step": 0.5525511048248936
+        },
+        {
+          "reason": "suppressedDirectionReversal",
+          "wouldBeReason": "directionReversal",
+          "frameId": 70083,
+          "movementState": "uncertain",
+          "dot": -0.9889733158457044,
+          "step": 1.2533586184380674
+        }
+      ],
+      "movementStates": {
+        "moving": 17,
+        "stationary": 6,
+        "creeping": 0,
+        "uncertain": 6
+      },
+      "stationaryTrajectoryCoverageM": 15.515402166001167,
+      "movingTrajectoryCoverageM": 484.27420687683133,
+      "trajectory": {
+        "pointCount": 30,
+        "maxImpliedSpeedMps": 16.74400084372647,
+        "maxStepM": 33.48316762743336,
+        "maxHeadingDeltaDeg": 16.21127042972276,
+        "lowSpeedHeadingNoiseCount": 0,
+        "stationaryDriftM": 6.982057198385234,
+        "stationaryPointCount": 11,
+        "flags": []
+      },
+      "severityFlags": [],
+      "poseSource": "gpsLocation"
+    },
+    {
+      "segmentId": 99,
+      "filename": "qlog_f449c_99.bz2",
+      "processingVersion": "2026-07-24-fusion-v11",
+      "configHash": "9c27690a7bd810d3",
+      "fileSha256": "1749b778f24ac0a208347f3f8f17576f9d4007f6308c22dc286c863acb16d421",
+      "modelV2Count": 30,
+      "durationSec": {
+        "modelV2": 57.85864454,
+        "gps": 58.868584574,
+        "kalman": 59.609753339
+      },
+      "qualification": {
+        "filename": "qlog_f449c_99.bz2",
+        "fileSha256": "1749b778f24ac0a208347f3f8f17576f9d4007f6308c22dc286c863acb16d421",
+        "flags": [],
+        "reasons": [],
+        "allowFusion": true,
+        "allowPasses": true,
+        "allowTemporalTracks": true,
+        "poseUnavailable": false,
+        "modelV2Count": 30,
+        "recordedDurationSec": 57.85864454,
+        "gpsDurationSec": 58.868584574
+      },
+      "processingMs": 38,
+      "mode": "global",
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "rejectedPoseTransitions": 0,
+      "hiddenConnectorLengthM": 0,
+      "firstPoseRejection": null,
+      "splitEvents": [],
+      "frameCounts": {
+        "rawModelV2Messages": 30,
+        "parsedModelFrames": 30,
+        "validLaneFrames": 13,
+        "validRoadEdgeFrames": 30,
+        "gpsAlignedFrames": 30,
+        "interpolatedPoseFrames": 29,
+        "vehicleRelativeFrames": 0,
+        "syntheticFrames": 0,
+        "cachedFrames": 0,
+        "displayedTimelineFrames": 30
+      },
+      "polygonCount": 3,
+      "fusedLaneCount": 11,
+      "laneTrackCount": 12,
+      "suppressedReversalCount": 2,
+      "suppressedSplitEvents": [
+        {
+          "reason": "suppressedCurveSpatialRevisit",
+          "wouldBeReason": "spatialRevisit",
+          "frameId": 119803,
+          "movementState": "moving"
+        },
+        {
+          "reason": "suppressedChordSelfIntersection",
+          "wouldBeReason": "selfIntersection",
+          "frameId": 119843,
+          "movementState": "moving"
+        }
+      ],
+      "movementStates": {
+        "moving": 28,
+        "stationary": 0,
+        "creeping": 0,
+        "uncertain": 1
+      },
+      "stationaryTrajectoryCoverageM": 22.85901889709875,
+      "movingTrajectoryCoverageM": 493.7571138507888,
+      "trajectory": {
+        "pointCount": 30,
+        "maxImpliedSpeedMps": 15.926183606589442,
+        "maxStepM": 31.64053691509025,
+        "maxHeadingDeltaDeg": 55.901261496459,
+        "lowSpeedHeadingNoiseCount": 0,
+        "stationaryDriftM": 0,
+        "stationaryPointCount": 0,
+        "flags": []
+      },
+      "severityFlags": [],
+      "poseSource": "gpsLocation"
+    },
+    {
+      "segmentId": 25,
+      "filename": "qlog_f449c_25.bz2",
+      "processingVersion": "2026-07-24-fusion-v11",
+      "configHash": "9c27690a7bd810d3",
+      "fileSha256": "20c5a4bd724913ab8444579371556e484a5e40995d04f463d98c0b53726d8a96",
+      "modelV2Count": 30,
+      "durationSec": {
+        "modelV2": 57.995600822,
+        "gps": 58.984585813,
+        "kalman": 59.750193218
+      },
+      "qualification": {
+        "filename": "qlog_f449c_25.bz2",
+        "fileSha256": "20c5a4bd724913ab8444579371556e484a5e40995d04f463d98c0b53726d8a96",
+        "flags": [],
+        "reasons": [],
+        "allowFusion": true,
+        "allowPasses": true,
+        "allowTemporalTracks": true,
+        "poseUnavailable": false,
+        "modelV2Count": 30,
+        "recordedDurationSec": 57.995600822,
+        "gpsDurationSec": 58.984585813
+      },
+      "processingMs": 34,
+      "mode": "global",
+      "temporalPassCount": 4,
+      "poseSectionCount": 5,
+      "rejectedPoseTransitions": 4,
+      "hiddenConnectorLengthM": 65.34150523972512,
+      "firstPoseRejection": {
+        "fromFrameId": 30803,
+        "toFrameId": 30843,
+        "fromLogMonoTime": "1557416656732",
+        "toLogMonoTime": "1559416915120",
+        "reason": "headingMotionDisagreement",
+        "stepM": 5.991121739529435,
+        "timeDiffSec": 2.000258388,
+        "impliedSpeedMps": 2.995173911266425,
+        "expectedSpeedMps": 6.539340165121493,
+        "expectedSpeedSource": "neighborMedianOverridesReported",
+        "headingDeltaDeg": 39.417483853552,
+        "headingContinuityDeg": 39.417483853552,
+        "motionDisagreementDeg": 76.25304617035744,
+        "maxAllowedStepM": 35,
+        "reportedSpeedMps": 2.4271261408041487,
+        "gpsSamplingIntervalSec": 2.000258388,
+        "movementState": "moving"
+      },
+      "splitEvents": [
+        {
+          "passId": 0,
+          "reason": "directionReversal",
+          "frameId": 30923,
+          "logMonoTime": "1563412863555",
+          "dot": -0.742580108871909
+        },
+        {
+          "passId": 1,
+          "reason": "directionReversal",
+          "frameId": 31003,
+          "logMonoTime": "1567413453603",
+          "dot": -0.4388166860383598
+        },
+        {
+          "passId": 2,
+          "reason": "sharpHeadingChange",
+          "frameId": 31123,
+          "logMonoTime": "1573414524795",
+          "headingDelta": 123.68485145444345
+        }
+      ],
+      "frameCounts": {
+        "rawModelV2Messages": 30,
+        "parsedModelFrames": 30,
+        "validLaneFrames": 17,
+        "validRoadEdgeFrames": 30,
+        "gpsAlignedFrames": 30,
+        "interpolatedPoseFrames": 29,
+        "vehicleRelativeFrames": 0,
+        "syntheticFrames": 0,
+        "cachedFrames": 0,
+        "displayedTimelineFrames": 30
+      },
+      "polygonCount": 4,
+      "fusedLaneCount": 5,
+      "laneTrackCount": 16,
+      "suppressedReversalCount": 0,
+      "suppressedSplitEvents": [],
+      "movementStates": {
+        "moving": 28,
+        "stationary": 0,
+        "creeping": 0,
+        "uncertain": 1
+      },
+      "stationaryTrajectoryCoverageM": 18.929958599307973,
+      "movingTrajectoryCoverageM": 361.17803173839076,
+      "trajectory": {
+        "pointCount": 30,
+        "maxImpliedSpeedMps": 13.32413587377711,
+        "maxStepM": 26.66050126569356,
+        "maxHeadingDeltaDeg": 174.06583801558907,
+        "lowSpeedHeadingNoiseCount": 0,
+        "stationaryDriftM": 1.6655488907266864,
+        "stationaryPointCount": 1,
+        "flags": []
+      },
+      "severityFlags": [
+        "multiPass"
+      ],
+      "poseSource": "gpsLocation"
+    },
+    {
+      "segmentId": 62,
+      "filename": "qlog_f449c_62.bz2",
+      "processingVersion": "2026-07-24-fusion-v11",
+      "configHash": "9c27690a7bd810d3",
+      "fileSha256": "defbea0b6ba0fd318918cae75458e30ce5441eec8d73e40b46b67a29a1cb1787",
+      "modelV2Count": 30,
+      "durationSec": {
+        "modelV2": 57.997379539,
+        "gps": 59.009035025,
+        "kalman": 59.744397585
+      },
+      "qualification": {
+        "filename": "qlog_f449c_62.bz2",
+        "fileSha256": "defbea0b6ba0fd318918cae75458e30ce5441eec8d73e40b46b67a29a1cb1787",
+        "flags": [],
+        "reasons": [],
+        "allowFusion": true,
+        "allowPasses": true,
+        "allowTemporalTracks": true,
+        "poseUnavailable": false,
+        "modelV2Count": 30,
+        "recordedDurationSec": 57.997379539,
+        "gpsDurationSec": 59.009035025
+      },
+      "processingMs": 24,
+      "mode": "global",
+      "temporalPassCount": 1,
+      "poseSectionCount": 15,
+      "rejectedPoseTransitions": 14,
+      "hiddenConnectorLengthM": 30.361412402157352,
+      "firstPoseRejection": {
+        "fromFrameId": 74523,
+        "toFrameId": 74563,
+        "fromLogMonoTime": "3742754899799",
+        "toLogMonoTime": "3744752417054",
+        "reason": "headingMotionDisagreement",
+        "stepM": 4.572462819400029,
+        "timeDiffSec": 1.997517255,
+        "impliedSpeedMps": 2.2890730019751593,
+        "expectedSpeedMps": 2.816816561006086,
+        "expectedSpeedSource": "reported",
+        "headingDeltaDeg": 104.02758658473968,
+        "headingContinuityDeg": 104.02758658473968,
+        "motionDisagreementDeg": 96.23373169632464,
+        "maxAllowedStepM": 35,
+        "reportedSpeedMps": 2.816816561006086,
+        "gpsSamplingIntervalSec": 1.997517255,
+        "movementState": "moving"
+      },
+      "splitEvents": [],
+      "frameCounts": {
+        "rawModelV2Messages": 30,
+        "parsedModelFrames": 30,
+        "validLaneFrames": 0,
+        "validRoadEdgeFrames": 30,
+        "gpsAlignedFrames": 30,
+        "interpolatedPoseFrames": 29,
+        "vehicleRelativeFrames": 0,
+        "syntheticFrames": 0,
+        "cachedFrames": 0,
+        "displayedTimelineFrames": 30
+      },
+      "polygonCount": 0,
+      "fusedLaneCount": 0,
+      "laneTrackCount": 0,
+      "suppressedReversalCount": 2,
+      "suppressedSplitEvents": [
+        {
+          "reason": "suppressedDirectionReversal",
+          "wouldBeReason": "directionReversal",
+          "frameId": 75403,
+          "movementState": "uncertain",
+          "dot": -0.6726923201994339,
+          "step": 3.272950296010786
+        },
+        {
+          "reason": "suppressedDirectionReversal",
+          "wouldBeReason": "directionReversal",
+          "frameId": 75603,
+          "movementState": "uncertain",
+          "dot": -0.9828148870077986,
+          "step": 0.8458023416956926
+        }
+      ],
+      "movementStates": {
+        "moving": 10,
+        "stationary": 0,
+        "creeping": 0,
+        "uncertain": 19
+      },
+      "stationaryTrajectoryCoverageM": 40.29597207378243,
+      "movingTrajectoryCoverageM": 61.22598175171915,
+      "trajectory": {
+        "pointCount": 30,
+        "maxImpliedSpeedMps": 5.5965169807079365,
+        "maxStepM": 11.17773233965386,
+        "maxHeadingDeltaDeg": 104.02758658473968,
+        "lowSpeedHeadingNoiseCount": 1,
+        "stationaryDriftM": 42.60543008329269,
+        "stationaryPointCount": 21,
+        "flags": [
+          "lowSpeedHeadingNoise",
+          "stationaryGpsDrift"
+        ]
+      },
+      "severityFlags": [
+        "stationaryHeadingNoise",
+        "stationaryDrift",
+        "zeroPolygons"
+      ],
+      "poseSource": "gpsLocation"
+    },
+    {
+      "segmentId": 66,
+      "filename": "qlog_f449c_66.bz2",
+      "processingVersion": "2026-07-24-fusion-v11",
+      "configHash": "9c27690a7bd810d3",
+      "fileSha256": "e1b6166d3fe63e4e909ce9d934cc183af2f74662ea9c4857a6774ee5d22a33fb",
+      "modelV2Count": 30,
+      "durationSec": {
+        "modelV2": 57.97047795,
+        "gps": 58.870740592,
+        "kalman": 59.716875955
+      },
+      "qualification": {
+        "filename": "qlog_f449c_66.bz2",
+        "fileSha256": "e1b6166d3fe63e4e909ce9d934cc183af2f74662ea9c4857a6774ee5d22a33fb",
+        "flags": [],
+        "reasons": [],
+        "allowFusion": true,
+        "allowPasses": true,
+        "allowTemporalTracks": true,
+        "poseUnavailable": false,
+        "modelV2Count": 30,
+        "recordedDurationSec": 57.97047795,
+        "gpsDurationSec": 58.870740592
+      },
+      "processingMs": 30,
+      "mode": "global",
+      "temporalPassCount": 1,
+      "poseSectionCount": 3,
+      "rejectedPoseTransitions": 2,
+      "hiddenConnectorLengthM": 3.773490707792883,
+      "firstPoseRejection": {
+        "fromFrameId": 79403,
+        "toFrameId": 79443,
+        "fromLogMonoTime": "3986607241211",
+        "toLogMonoTime": "3988608557875",
+        "reason": "headingMotionDisagreement",
+        "stepM": 2.4936156669937715,
+        "timeDiffSec": 2.001316664,
+        "impliedSpeedMps": 1.2459875600145263,
+        "expectedSpeedMps": 12,
+        "expectedSpeedSource": "conservativeFallback",
+        "headingDeltaDeg": 0,
+        "headingContinuityDeg": 0,
+        "motionDisagreementDeg": 119.83297459021594,
+        "maxAllowedStepM": 42.4213299568,
+        "reportedSpeedMps": 0.18976150092389268,
+        "gpsSamplingIntervalSec": 2.001316664,
+        "movementState": "uncertain"
+      },
+      "splitEvents": [],
+      "frameCounts": {
+        "rawModelV2Messages": 30,
+        "parsedModelFrames": 30,
+        "validLaneFrames": 3,
+        "validRoadEdgeFrames": 30,
+        "gpsAlignedFrames": 30,
+        "interpolatedPoseFrames": 29,
+        "vehicleRelativeFrames": 0,
+        "syntheticFrames": 0,
+        "cachedFrames": 0,
+        "displayedTimelineFrames": 30
+      },
+      "polygonCount": 1,
+      "fusedLaneCount": 2,
+      "laneTrackCount": 5,
+      "suppressedReversalCount": 3,
+      "suppressedSplitEvents": [
+        {
+          "reason": "suppressedDirectionReversal",
+          "wouldBeReason": "directionReversal",
+          "frameId": 79563,
+          "movementState": "uncertain",
+          "dot": -0.9698763889048645,
+          "step": 0.6907989113767407
+        },
+        {
+          "reason": "suppressedDirectionReversal",
+          "wouldBeReason": "directionReversal",
+          "frameId": 79763,
+          "movementState": "stationary",
+          "dot": -0.4112192810934531,
+          "step": 0.6681978602976268
+        },
+        {
+          "reason": "suppressedDirectionReversal",
+          "wouldBeReason": "directionReversal",
+          "frameId": 79843,
+          "movementState": "stationary",
+          "dot": -0.9666343546624858,
+          "step": 0.7458618559836274
+        }
+      ],
+      "movementStates": {
+        "moving": 4,
+        "stationary": 17,
+        "creeping": 0,
+        "uncertain": 8
+      },
+      "stationaryTrajectoryCoverageM": 21.270063694339143,
+      "movingTrajectoryCoverageM": 61.568882948754116,
+      "trajectory": {
+        "pointCount": 30,
+        "maxImpliedSpeedMps": 9.860904530930767,
+        "maxStepM": 19.726965318979854,
+        "maxHeadingDeltaDeg": 37.47568398655062,
+        "lowSpeedHeadingNoiseCount": 2,
+        "stationaryDriftM": 16.721155290623038,
+        "stationaryPointCount": 24,
+        "flags": [
+          "lowSpeedHeadingNoise",
+          "stationaryGpsDrift"
+        ]
+      },
+      "severityFlags": [
+        "stationaryHeadingNoise",
+        "stationaryDrift"
+      ],
+      "poseSource": "gpsLocation"
+    },
+    {
+      "segmentId": 96,
+      "filename": "qlog_f449c_96.bz2",
+      "processingVersion": "2026-07-24-fusion-v11",
+      "configHash": "9c27690a7bd810d3",
+      "fileSha256": "6aa4e8ecdef439045ee3abb49d9ba7e0028b1104cef46a32d04849cdf1b765be",
+      "modelV2Count": 30,
+      "durationSec": {
+        "modelV2": 57.859257984,
+        "gps": 58.87788204,
+        "kalman": 59.609165839
+      },
+      "qualification": {
+        "filename": "qlog_f449c_96.bz2",
+        "fileSha256": "6aa4e8ecdef439045ee3abb49d9ba7e0028b1104cef46a32d04849cdf1b765be",
+        "flags": [],
+        "reasons": [],
+        "allowFusion": true,
+        "allowPasses": true,
+        "allowTemporalTracks": true,
+        "poseUnavailable": false,
+        "modelV2Count": 30,
+        "recordedDurationSec": 57.859257984,
+        "gpsDurationSec": 58.87788204
+      },
+      "processingMs": 18,
+      "mode": "global",
+      "temporalPassCount": 1,
+      "poseSectionCount": 7,
+      "rejectedPoseTransitions": 6,
+      "hiddenConnectorLengthM": 8.49509421097775,
+      "firstPoseRejection": {
+        "fromFrameId": 115323,
+        "toFrameId": 115363,
+        "fromLogMonoTime": "5782302699158",
+        "toLogMonoTime": "5784301621551",
+        "reason": "headingMotionDisagreement",
+        "stepM": 1.2022631231929393,
+        "timeDiffSec": 1.998922393,
+        "impliedSpeedMps": 0.6014556279939275,
+        "expectedSpeedMps": 12,
+        "expectedSpeedSource": "conservativeFallback",
+        "headingDeltaDeg": 0,
+        "headingContinuityDeg": 0,
+        "motionDisagreementDeg": 156.12745963501476,
+        "maxAllowedStepM": 42.382542766600004,
+        "reportedSpeedMps": 0.14519258869791524,
+        "gpsSamplingIntervalSec": 1.998922393,
+        "movementState": "uncertain"
+      },
+      "splitEvents": [],
+      "frameCounts": {
+        "rawModelV2Messages": 30,
+        "parsedModelFrames": 30,
+        "validLaneFrames": 0,
+        "validRoadEdgeFrames": 30,
+        "gpsAlignedFrames": 30,
+        "interpolatedPoseFrames": 29,
+        "vehicleRelativeFrames": 0,
+        "syntheticFrames": 0,
+        "cachedFrames": 0,
+        "displayedTimelineFrames": 30
+      },
+      "polygonCount": 0,
+      "fusedLaneCount": 0,
+      "laneTrackCount": 0,
+      "suppressedReversalCount": 4,
+      "suppressedSplitEvents": [
+        {
+          "reason": "suppressedDirectionReversal",
+          "wouldBeReason": "directionReversal",
+          "frameId": 115403,
+          "movementState": "uncertain",
+          "dot": -0.7904551878652254,
+          "step": 0.8502739394594209
+        },
+        {
+          "reason": "suppressedDirectionReversal",
+          "wouldBeReason": "directionReversal",
+          "frameId": 115483,
+          "movementState": "uncertain",
+          "dot": -0.8563032956370775,
+          "step": 1.0342810711189703
+        },
+        {
+          "reason": "suppressedDirectionReversal",
+          "wouldBeReason": "directionReversal",
+          "frameId": 115523,
+          "movementState": "uncertain",
+          "dot": -0.7695822108976058,
+          "step": 0.8858258923200193
+        },
+        {
+          "reason": "suppressedDirectionReversal",
+          "wouldBeReason": "directionReversal",
+          "frameId": 115643,
+          "movementState": "uncertain",
+          "dot": -0.8217930745900437,
+          "step": 1.7700190558476172
+        }
+      ],
+      "movementStates": {
+        "moving": 0,
+        "stationary": 1,
+        "creeping": 0,
+        "uncertain": 28
+      },
+      "stationaryTrajectoryCoverageM": 28.420448693603223,
+      "movingTrajectoryCoverageM": 0,
+      "trajectory": {
+        "pointCount": 30,
+        "maxImpliedSpeedMps": 0.9477869913406148,
+        "maxStepM": 1.8958290729154401,
+        "maxHeadingDeltaDeg": 111.46084668966137,
+        "lowSpeedHeadingNoiseCount": 1,
+        "stationaryDriftM": 28.420448693603223,
+        "stationaryPointCount": 29,
+        "flags": [
+          "lowSpeedHeadingNoise",
+          "stationaryGpsDrift"
+        ]
+      },
+      "severityFlags": [
+        "stationaryHeadingNoise",
+        "stationaryDrift",
+        "zeroPolygons"
+      ],
+      "poseSource": "gpsLocation"
+    },
+    {
+      "segmentId": 0,
+      "filename": "qlog_f449c_0.bz2",
+      "processingVersion": "2026-07-24-fusion-v11",
+      "configHash": "9c27690a7bd810d3",
+      "fileSha256": "9ddfc49b6061357e648a096d13749e30f9597827fd86786951241f098ea29fa5",
+      "modelV2Count": 31,
+      "durationSec": {
+        "modelV2": 59.985315153,
+        "gps": 39.003324336,
+        "kalman": 60.238113178
+      },
+      "qualification": {
+        "filename": "qlog_f449c_0.bz2",
+        "fileSha256": "9ddfc49b6061357e648a096d13749e30f9597827fd86786951241f098ea29fa5",
+        "flags": [],
+        "reasons": [],
+        "allowFusion": true,
+        "allowPasses": true,
+        "allowTemporalTracks": true,
+        "poseUnavailable": false,
+        "modelV2Count": 31,
+        "recordedDurationSec": 59.985315153,
+        "gpsDurationSec": 39.003324336
+      },
+      "processingMs": 55,
+      "mode": "global",
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "rejectedPoseTransitions": 0,
+      "hiddenConnectorLengthM": 0,
+      "firstPoseRejection": null,
+      "splitEvents": [],
+      "frameCounts": {
+        "rawModelV2Messages": 31,
+        "parsedModelFrames": 31,
+        "validLaneFrames": 31,
+        "validRoadEdgeFrames": 31,
+        "gpsAlignedFrames": 21,
+        "interpolatedPoseFrames": 19,
+        "vehicleRelativeFrames": 0,
+        "syntheticFrames": 0,
+        "cachedFrames": 0,
+        "displayedTimelineFrames": 21
+      },
+      "polygonCount": 1,
+      "fusedLaneCount": 65,
+      "laneTrackCount": 5,
+      "suppressedReversalCount": 0,
+      "suppressedSplitEvents": [],
+      "movementStates": {
+        "moving": 19,
+        "stationary": 0,
+        "creeping": 0,
+        "uncertain": 1
+      },
+      "stationaryTrajectoryCoverageM": 43.40926295231755,
+      "movingTrajectoryCoverageM": 757.4525109530779,
+      "trajectory": {
+        "pointCount": 21,
+        "maxImpliedSpeedMps": 22.81869858327627,
+        "maxStepM": 45.69306226363021,
+        "maxHeadingDeltaDeg": 3.097814861949729,
+        "lowSpeedHeadingNoiseCount": 0,
+        "stationaryDriftM": 0,
+        "stationaryPointCount": 0,
+        "flags": []
+      },
+      "severityFlags": [],
+      "poseSource": "gpsLocation"
+    },
+    {
+      "segmentId": 10,
+      "filename": "qlog_f449c_10.bz2",
+      "processingVersion": "2026-07-24-fusion-v11",
+      "configHash": "9c27690a7bd810d3",
+      "fileSha256": "760603c18df65e7ed997b932851dcbc77511b03a0a88d02a5067f44f288bae1d",
+      "modelV2Count": 30,
+      "durationSec": {
+        "modelV2": 57.788994565,
+        "gps": 58.806149583,
+        "kalman": 59.539772512
+      },
+      "qualification": {
+        "filename": "qlog_f449c_10.bz2",
+        "fileSha256": "760603c18df65e7ed997b932851dcbc77511b03a0a88d02a5067f44f288bae1d",
+        "flags": [],
+        "reasons": [],
+        "allowFusion": true,
+        "allowPasses": true,
+        "allowTemporalTracks": true,
+        "poseUnavailable": false,
+        "modelV2Count": 30,
+        "recordedDurationSec": 57.788994565,
+        "gpsDurationSec": 58.806149583
+      },
+      "processingMs": 46,
+      "mode": "global",
+      "temporalPassCount": 1,
+      "poseSectionCount": 2,
+      "rejectedPoseTransitions": 1,
+      "hiddenConnectorLengthM": 1.0056801161984945,
+      "firstPoseRejection": {
+        "fromFrameId": 13083,
+        "toFrameId": 13123,
+        "fromLogMonoTime": "671513900172",
+        "toLogMonoTime": "673511373396",
+        "reason": "headingMotionDisagreement",
+        "stepM": 1.0056801161984945,
+        "timeDiffSec": 1.997473224,
+        "impliedSpeedMps": 0.5034761438176327,
+        "expectedSpeedMps": 5.767291421947178,
+        "expectedSpeedSource": "neighborMedian",
+        "headingDeltaDeg": 0,
+        "headingContinuityDeg": 0,
+        "motionDisagreementDeg": 60.57586735276703,
+        "maxAllowedStepM": 35,
+        "reportedSpeedMps": 0.14492722156213167,
+        "gpsSamplingIntervalSec": 1.997473224,
+        "movementState": "moving"
+      },
+      "splitEvents": [],
+      "frameCounts": {
+        "rawModelV2Messages": 30,
+        "parsedModelFrames": 30,
+        "validLaneFrames": 30,
+        "validRoadEdgeFrames": 30,
+        "gpsAlignedFrames": 30,
+        "interpolatedPoseFrames": 29,
+        "vehicleRelativeFrames": 0,
+        "syntheticFrames": 0,
+        "cachedFrames": 0,
+        "displayedTimelineFrames": 30
+      },
+      "polygonCount": 15,
+      "fusedLaneCount": 17,
+      "laneTrackCount": 10,
+      "suppressedReversalCount": 0,
+      "suppressedSplitEvents": [],
+      "movementStates": {
+        "moving": 28,
+        "stationary": 0,
+        "creeping": 0,
+        "uncertain": 1
+      },
+      "stationaryTrajectoryCoverageM": 6.393977606887261,
+      "movingTrajectoryCoverageM": 422.3575865033228,
+      "trajectory": {
+        "pointCount": 30,
+        "maxImpliedSpeedMps": 13.577257764031769,
+        "maxStepM": 26.925244101662,
+        "maxHeadingDeltaDeg": 3.3490840361120604,
+        "lowSpeedHeadingNoiseCount": 0,
+        "stationaryDriftM": 4.275448620419705,
+        "stationaryPointCount": 5,
+        "flags": []
+      },
+      "severityFlags": [],
+      "poseSource": "gpsLocation"
+    },
+    {
+      "segmentId": 30,
+      "filename": "qlog_f449c_30.bz2",
+      "processingVersion": "2026-07-24-fusion-v11",
+      "configHash": "9c27690a7bd810d3",
+      "fileSha256": "27a433d479f6b43ee736740da07c43000561d74d0ab4b43f609df07337845fed",
+      "modelV2Count": 30,
+      "durationSec": {
+        "modelV2": 57.966161292,
+        "gps": 58.966253461,
+        "kalman": 59.715005752
+      },
+      "qualification": {
+        "filename": "qlog_f449c_30.bz2",
+        "fileSha256": "27a433d479f6b43ee736740da07c43000561d74d0ab4b43f609df07337845fed",
+        "flags": [],
+        "reasons": [],
+        "allowFusion": true,
+        "allowPasses": true,
+        "allowTemporalTracks": true,
+        "poseUnavailable": false,
+        "modelV2Count": 30,
+        "recordedDurationSec": 57.966161292,
+        "gpsDurationSec": 58.966253461
+      },
+      "processingMs": 70,
+      "mode": "global",
+      "temporalPassCount": 1,
+      "poseSectionCount": 1,
+      "rejectedPoseTransitions": 0,
+      "hiddenConnectorLengthM": 0,
+      "firstPoseRejection": null,
+      "splitEvents": [],
+      "frameCounts": {
+        "rawModelV2Messages": 30,
+        "parsedModelFrames": 30,
+        "validLaneFrames": 30,
+        "validRoadEdgeFrames": 30,
+        "gpsAlignedFrames": 30,
+        "interpolatedPoseFrames": 29,
+        "vehicleRelativeFrames": 0,
+        "syntheticFrames": 0,
+        "cachedFrames": 0,
+        "displayedTimelineFrames": 30
+      },
+      "polygonCount": 9,
+      "fusedLaneCount": 74,
+      "laneTrackCount": 3,
+      "suppressedReversalCount": 0,
+      "suppressedSplitEvents": [],
+      "movementStates": {
+        "moving": 28,
+        "stationary": 0,
+        "creeping": 0,
+        "uncertain": 1
+      },
+      "stationaryTrajectoryCoverageM": 36.20687614531723,
+      "movingTrajectoryCoverageM": 1187.342793600169,
+      "trajectory": {
+        "pointCount": 30,
+        "maxImpliedSpeedMps": 23.677635299185095,
+        "maxStepM": 47.28032219295611,
+        "maxHeadingDeltaDeg": 5.323465001681825,
+        "lowSpeedHeadingNoiseCount": 0,
+        "stationaryDriftM": 0,
+        "stationaryPointCount": 0,
+        "flags": []
+      },
+      "severityFlags": [],
+      "poseSource": "gpsLocation"
+    }
+  ],
+  "flaggedRanked": [
+    {
+      "segmentId": 62,
+      "severityFlags": [
+        "stationaryHeadingNoise",
+        "stationaryDrift",
+        "zeroPolygons"
+      ],
+      "temporalPassCount": 1,
+      "polygonCount": 0,
+      "splitReasons": []
+    },
+    {
+      "segmentId": 96,
+      "severityFlags": [
+        "stationaryHeadingNoise",
+        "stationaryDrift",
+        "zeroPolygons"
+      ],
+      "temporalPassCount": 1,
+      "polygonCount": 0,
+      "splitReasons": []
+    },
+    {
+      "segmentId": 66,
+      "severityFlags": [
+        "stationaryHeadingNoise",
+        "stationaryDrift"
+      ],
+      "temporalPassCount": 1,
+      "polygonCount": 1,
+      "splitReasons": []
+    },
+    {
+      "segmentId": 6,
+      "severityFlags": [
+        "stationaryDrift"
+      ],
+      "temporalPassCount": 1,
+      "polygonCount": 2,
+      "splitReasons": []
+    },
+    {
+      "segmentId": 54,
+      "severityFlags": [
+        "stationaryDrift"
+      ],
+      "temporalPassCount": 1,
+      "polygonCount": 3,
+      "splitReasons": []
+    },
+    {
+      "segmentId": 25,
+      "severityFlags": [
+        "multiPass"
+      ],
+      "temporalPassCount": 4,
+      "polygonCount": 4,
+      "splitReasons": [
+        "directionReversal",
+        "sharpHeadingChange"
+      ]
+    }
+  ]
+}

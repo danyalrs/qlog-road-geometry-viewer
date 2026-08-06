@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hdmap.local/schemas/stage19/promotion_v0.json",
+  "title": "Stage19PromotionV0",
+  "type": "object",
+  "required": ["schemaVersion", "runId", "decisions"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "const": "stage19_promotion_v0" },
+    "runId": { "type": "string", "minLength": 1 },
+    "decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["intervalId", "status", "promotion"],
+        "additionalProperties": false,
+        "properties": {
+          "intervalId": { "type": "string", "minLength": 1 },
+          "status": {
+            "type": "string",
+            "enum": ["failed", "conflict", "insufficient_evidence", "accepted_with_caveats", "accepted"]
+          },
+          "promotion": {
+            "type": "string",
+            "enum": ["reject", "hold", "promote_with_caveats", "promote"]
+          }
+        }
+      }
+    }
+  }
+}

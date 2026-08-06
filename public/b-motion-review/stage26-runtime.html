@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stage 26 B-MOTION Runtime Manual Review</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Stage 26 B-MOTION Runtime Manual Review</h1>
+    <p class="subtitle">Targeted validation only — do not infer physical identity from sourceSlotIndex.</p>
+  </header>
+
+  <section class="setup">
+    <label>Reviewer ID <input type="text" id="reviewerId" placeholder="reviewer-1" /></label>
+    <label>Priority filter
+      <select id="priorityFilter">
+        <option value="">All priorities</option>
+        <option value="1">Priority 1: legacy+/vector−</option>
+        <option value="2">Priority 2: fallback</option>
+        <option value="3">Priority 3: legacy−/vector+ sample</option>
+        <option value="4">Priority 4: damaged dev indices</option>
+      </select>
+    </label>
+    <button id="btnStart">Start / Resume</button>
+  </section>
+
+  <section class="progress-bar" id="progressPanel" hidden>
+    <div id="progressText">—</div>
+    <div class="meter"><div id="progressFill"></div></div>
+  </section>
+
+  <main id="reviewPanel" hidden>
+    <div class="pair-header">
+      <h2 id="pairId">—</h2>
+      <span id="groupBadge" class="badge">—</span>
+    </div>
+
+    <div class="metrics grid">
+      <div><strong>Segment</strong><span id="segmentId">—</span></div>
+      <div><strong>Observation A</strong><span id="obsA">—</span></div>
+      <div><strong>Observation B</strong><span id="obsB">—</span></div>
+      <div><strong>Slot A (metadata)</strong><span id="slotA">—</span></div>
+      <div><strong>Slot B (metadata)</strong><span id="slotB">—</span></div>
+      <div><strong>Legacy decision</strong><span id="legacyDecision">—</span></div>
+      <div><strong>Vector decision</strong><span id="vectorDecision">—</span></div>
+      <div><strong>Legacy residual (m)</strong><span id="legacyResidual">—</span></div>
+      <div><strong>Vector residual (m)</strong><span id="vectorResidual">—</span></div>
+    </div>
+
+    <section class="playback">
+      <h3>Frame A / Frame B</h3>
+      <div class="legend">
+        <span class="legend-item"><i class="swatch target"></i> Target divider</span>
+        <span class="legend-item"><i class="swatch muted"></i> Other dividers</span>
+        <span class="legend-item"><i class="swatch edge"></i> Road edges (separate layer)</span>
+      </div>
+      <div class="btn-row">
+        <button id="btnLoadQlog">Load qlog</button>
+        <button id="btnFrameA">Frame A</button>
+        <button id="btnFrameB">Frame B</button>
+      </div>
+      <p id="renderStatus">—</p>
+      <div class="dual-canvas">
+        <div><h4>Frame A</h4><canvas id="canvasA" width="640" height="480"></canvas></div>
+        <div><h4>Frame B</h4><canvas id="canvasB" width="640" height="480"></canvas></div>
+      </div>
+    </section>
+
+    <section class="decision">
+      <h3>Manual labels</h3>
+      <label>Temporal continuation
+        <select id="temporalContinuation">
+          <option value="">—</option>
+          <option value="positive_continuation">positive_continuation</option>
+          <option value="negative_continuation">negative_continuation</option>
+          <option value="unresolved">unresolved</option>
+        </select>
+      </label>
+      <label>Identity swap
+        <select id="identitySwap">
+          <option value="">—</option>
+          <option value="true">true</option>
+          <option value="false">false</option>
+          <option value="unresolved">unresolved</option>
+        </select>
+      </label>
+      <label>Geometry issue
+        <select id="geometryIssue">
+          <option value="">—</option>
+          <option value="true">true</option>
+          <option value="false">false</option>
+          <option value="unresolved">unresolved</option>
+        </select>
+      </label>
+      <label>Evidence available
+        <select id="evidenceAvailable">
+          <option value="">—</option>
+          <option value="true">true</option>
+          <option value="false">false</option>
+        </select>
+      </label>
+      <label>Confidence
+        <select id="confidence">
+          <option value="">—</option>
+          <option value="high">high</option>
+          <option value="medium">medium</option>
+          <option value="low">low</option>
+        </select>
+      </label>
+      <label>Reviewer note <textarea id="reviewerNote" rows="3"></textarea></label>
+      <div class="btn-row">
+        <button id="btnSubmit">Submit review</button>
+        <button id="btnNext">Next pending</button>
+      </div>
+      <p id="submitStatus"></p>
+    </section>
+  </main>
+
+  <script src="/api/stage26/playback-script.js"></script>
+  <script src="stage26-runtime-app.js"></script>
+</body>
+</html>

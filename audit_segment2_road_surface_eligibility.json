@@ -1,0 +1,1594 @@
+{
+  "generatedAt": "2026-08-04T07:10:56.564Z",
+  "segment": "qlog_f449c_2.bz2",
+  "widthDistribution": {
+    "minPlausibleM": 2.291674926475565,
+    "maxPlausibleM": 4.433842608764521,
+    "observed": {
+      "count": 100,
+      "min": 2.615126816536577,
+      "p05": 2.6960881487947828,
+      "median": 3.001001910558844,
+      "p95": 3.855515311969149,
+      "max": 4.512532930409266
+    }
+  },
+  "summary": {
+    "candidateBoundaryPairs": 2,
+    "eligibleBoundaryPairs": 2,
+    "rejectedBoundaryPairs": 0,
+    "polygonsGenerated": 14,
+    "totalSupportedPolygonLengthM": 177.43816728941687,
+    "totalPolygonAreaM2": 537.7370751005418,
+    "polygonComponents": 14,
+    "unsupportedBreaksRetained": 44,
+    "selfIntersections": 0,
+    "polygonOverlaps": 0,
+    "extrapolatedPoints": 58
+  },
+  "eligibilityAudit": {
+    "candidateBoundaryPairs": 2,
+    "eligibleBoundaryPairs": 2,
+    "rejectedBoundaryPairs": 0,
+    "candidates": [
+      {
+        "candidatePairId": "BP-PB1-PB0",
+        "leftPb": "PB1",
+        "rightPb": "PB0",
+        "leftTrackIds": [
+          1,
+          2
+        ],
+        "rightTrackIds": [
+          0
+        ],
+        "leftCleanedRunIds": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "rightCleanedRunIds": [
+          15,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "chunkId": 0,
+        "passId": 0,
+        "sharedRouteSStart": 65.78727043441252,
+        "sharedRouteSEnd": 689.824925750434,
+        "sharedSupportedLengthM": 168.2511573245411,
+        "medianLaneWidthM": 3.056428384690806,
+        "minLaneWidthM": 2.670091434872571,
+        "maxLaneWidthM": 4.06217757761413,
+        "widthVariationM": 0.9466341211910332,
+        "relativeHeadingDifferenceDeg": null,
+        "boundaryOrderConsistent": true,
+        "crossingCount": 0,
+        "openIntervalsOnLeft": 21,
+        "openIntervalsOnRight": 21,
+        "competingBoundaryEvidence": null,
+        "eligibilityResult": "eligible",
+        "rejectionReason": null,
+        "eligibleIntervals": [
+          {
+            "startS": 88.60640899874842,
+            "endS": 92.49290092856977,
+            "sharedLengthM": 3.8864919298213465,
+            "medianWidthM": 3.957465105944425,
+            "minWidthM": 3.852752634274719,
+            "maxWidthM": 4.06217757761413,
+            "widthVariationM": 0.20942494333941086,
+            "sampleCount": 2,
+            "leftRunIds": [
+              2
+            ],
+            "rightRunIds": [
+              22
+            ]
+          },
+          {
+            "startS": 65.78727043441252,
+            "endS": 71.1020363294706,
+            "sharedLengthM": 5.314765895058073,
+            "medianWidthM": 3.790016102633372,
+            "minWidthM": 3.6690580611554267,
+            "maxWidthM": 3.9118827124311086,
+            "widthVariationM": 0.24282465127568198,
+            "sampleCount": 3,
+            "leftRunIds": [
+              3
+            ],
+            "rightRunIds": [
+              29
+            ]
+          },
+          {
+            "startS": 621.5384584633066,
+            "endS": 630.5748338730675,
+            "sharedLengthM": 9.036375409760922,
+            "medianWidthM": 3.029084168312112,
+            "minWidthM": 2.998231261135574,
+            "maxWidthM": 3.057949475917902,
+            "widthVariationM": 0.05971821478232764,
+            "sampleCount": 5,
+            "leftRunIds": [
+              5
+            ],
+            "rightRunIds": [
+              18
+            ]
+          },
+          {
+            "startS": 434.9420161044949,
+            "endS": 439.19607520729676,
+            "sharedLengthM": 4.254059102801875,
+            "medianWidthM": 2.777506507078683,
+            "minWidthM": 2.7625287692932505,
+            "maxWidthM": 2.8061483625314487,
+            "widthVariationM": 0.043619593238198195,
+            "sampleCount": 3,
+            "leftRunIds": [
+              6
+            ],
+            "rightRunIds": [
+              15
+            ]
+          },
+          {
+            "startS": 590.0372592002434,
+            "endS": 609.5318972808049,
+            "sharedLengthM": 19.494638080561458,
+            "medianWidthM": 2.9763617318551523,
+            "minWidthM": 2.8310012148703154,
+            "maxWidthM": 3.022847039035465,
+            "widthVariationM": 0.19184582416514973,
+            "sampleCount": 10,
+            "leftRunIds": [
+              7
+            ],
+            "rightRunIds": [
+              19
+            ]
+          },
+          {
+            "startS": 646.9116126270657,
+            "endS": 689.824925750434,
+            "sharedLengthM": 42.91331312336831,
+            "medianWidthM": 3.0837726010694997,
+            "minWidthM": 2.9520750454757647,
+            "maxWidthM": 3.898709166666798,
+            "widthVariationM": 0.9466341211910332,
+            "sampleCount": 22,
+            "leftRunIds": [
+              8
+            ],
+            "rightRunIds": [
+              25
+            ]
+          },
+          {
+            "startS": 500.1206905235975,
+            "endS": 503.51347510831215,
+            "sharedLengthM": 3.3927845847146614,
+            "medianWidthM": 3.5018768189508878,
+            "minWidthM": 3.150511686706186,
+            "maxWidthM": 3.853241951195589,
+            "widthVariationM": 0.7027302644894031,
+            "sampleCount": 2,
+            "leftRunIds": [
+              9
+            ],
+            "rightRunIds": [
+              27
+            ]
+          },
+          {
+            "startS": 527.5523303173946,
+            "endS": 554.0369644246867,
+            "sharedLengthM": 26.484634107292095,
+            "medianWidthM": 3.1310273426168993,
+            "minWidthM": 2.7232202280098967,
+            "maxWidthM": 3.1978357215474955,
+            "widthVariationM": 0.4746154935375988,
+            "sampleCount": 14,
+            "leftRunIds": [
+              10
+            ],
+            "rightRunIds": [
+              23
+            ]
+          },
+          {
+            "startS": 381.491557471317,
+            "endS": 412.22180615396644,
+            "sharedLengthM": 30.73024868264946,
+            "medianWidthM": 2.707092839299324,
+            "minWidthM": 2.693846757635273,
+            "maxWidthM": 2.8705125721432645,
+            "widthVariationM": 0.17666581450799157,
+            "sampleCount": 16,
+            "leftRunIds": [
+              11
+            ],
+            "rightRunIds": [
+              15
+            ]
+          },
+          {
+            "startS": 567.3471591784137,
+            "endS": 572.0315218311622,
+            "sharedLengthM": 4.6843626527485185,
+            "medianWidthM": 2.867338357626513,
+            "minWidthM": 2.84299292768557,
+            "maxWidthM": 2.891695971254148,
+            "widthVariationM": 0.04870304356857824,
+            "sampleCount": 3,
+            "leftRunIds": [
+              12
+            ],
+            "rightRunIds": [
+              21
+            ]
+          },
+          {
+            "startS": 466.79093510592395,
+            "endS": 478.79387292483455,
+            "sharedLengthM": 12.002937818910596,
+            "medianWidthM": 3.3178288432952963,
+            "minWidthM": 2.670091434872571,
+            "maxWidthM": 3.3949724661016254,
+            "widthVariationM": 0.7248810312290543,
+            "sampleCount": 7,
+            "leftRunIds": [
+              13
+            ],
+            "rightRunIds": [
+              27
+            ]
+          },
+          {
+            "startS": 332.4326940942537,
+            "endS": 338.4892400311075,
+            "sharedLengthM": 6.056545936853809,
+            "medianWidthM": 2.800716445835005,
+            "minWidthM": 2.7305009706394014,
+            "maxWidthM": 2.948006540879,
+            "widthVariationM": 0.2175055702395987,
+            "sampleCount": 4,
+            "leftRunIds": [
+              14
+            ],
+            "rightRunIds": [
+              20
+            ]
+          }
+        ],
+        "laneLabel": "mainLane_PB1_left_PB0_right"
+      },
+      {
+        "candidatePairId": "BP-PB2-PB1",
+        "leftPb": "PB2",
+        "rightPb": "PB1",
+        "leftTrackIds": [
+          3
+        ],
+        "rightTrackIds": [
+          1,
+          2
+        ],
+        "leftCleanedRunIds": [
+          0,
+          1
+        ],
+        "rightCleanedRunIds": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "chunkId": 0,
+        "passId": 0,
+        "sharedRouteSStart": 407.7330461017007,
+        "sharedRouteSEnd": 439.23222706113535,
+        "sharedSupportedLengthM": 9.187009964875756,
+        "medianLaneWidthM": 2.8322745284296036,
+        "minLaneWidthM": 2.615126816536577,
+        "maxLaneWidthM": 3.093941121236166,
+        "widthVariationM": 0.21531670776594947,
+        "relativeHeadingDifferenceDeg": null,
+        "boundaryOrderConsistent": true,
+        "crossingCount": 0,
+        "openIntervalsOnLeft": 2,
+        "openIntervalsOnRight": 21,
+        "competingBoundaryEvidence": null,
+        "eligibilityResult": "eligible",
+        "rejectionReason": null,
+        "eligibleIntervals": [
+          {
+            "startS": 407.7330461017007,
+            "endS": 412.22180615396644,
+            "sharedLengthM": 4.488760052265718,
+            "medianWidthM": 2.9966340630980515,
+            "minWidthM": 2.8993270049599444,
+            "maxWidthM": 3.093941121236166,
+            "widthVariationM": 0.1946141162762216,
+            "sampleCount": 3,
+            "leftRunIds": [
+              0
+            ],
+            "rightRunIds": [
+              11
+            ]
+          },
+          {
+            "startS": 434.5339771485253,
+            "endS": 439.23222706113535,
+            "sharedLengthM": 4.698249912610038,
+            "medianWidthM": 2.6679149937611557,
+            "minWidthM": 2.615126816536577,
+            "maxWidthM": 2.8304435243025265,
+            "widthVariationM": 0.21531670776594947,
+            "sampleCount": 3,
+            "leftRunIds": [
+              1
+            ],
+            "rightRunIds": [
+              6
+            ]
+          }
+        ],
+        "laneLabel": "outerLane_PB2_left_PB1_right"
+      }
+    ],
+    "rejected": [],
+    "eligible": [
+      {
+        "candidatePairId": "BP-PB1-PB0",
+        "leftPb": "PB1",
+        "rightPb": "PB0",
+        "leftTrackIds": [
+          1,
+          2
+        ],
+        "rightTrackIds": [
+          0
+        ],
+        "leftCleanedRunIds": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "rightCleanedRunIds": [
+          15,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29
+        ],
+        "chunkId": 0,
+        "passId": 0,
+        "sharedRouteSStart": 65.78727043441252,
+        "sharedRouteSEnd": 689.824925750434,
+        "sharedSupportedLengthM": 168.2511573245411,
+        "medianLaneWidthM": 3.056428384690806,
+        "minLaneWidthM": 2.670091434872571,
+        "maxLaneWidthM": 4.06217757761413,
+        "widthVariationM": 0.9466341211910332,
+        "relativeHeadingDifferenceDeg": null,
+        "boundaryOrderConsistent": true,
+        "crossingCount": 0,
+        "openIntervalsOnLeft": 21,
+        "openIntervalsOnRight": 21,
+        "competingBoundaryEvidence": null,
+        "eligibilityResult": "eligible",
+        "rejectionReason": null,
+        "eligibleIntervals": [
+          {
+            "startS": 88.60640899874842,
+            "endS": 92.49290092856977,
+            "sharedLengthM": 3.8864919298213465,
+            "medianWidthM": 3.957465105944425,
+            "minWidthM": 3.852752634274719,
+            "maxWidthM": 4.06217757761413,
+            "widthVariationM": 0.20942494333941086,
+            "sampleCount": 2,
+            "leftRunIds": [
+              2
+            ],
+            "rightRunIds": [
+              22
+            ]
+          },
+          {
+            "startS": 65.78727043441252,
+            "endS": 71.1020363294706,
+            "sharedLengthM": 5.314765895058073,
+            "medianWidthM": 3.790016102633372,
+            "minWidthM": 3.6690580611554267,
+            "maxWidthM": 3.9118827124311086,
+            "widthVariationM": 0.24282465127568198,
+            "sampleCount": 3,
+            "leftRunIds": [
+              3
+            ],
+            "rightRunIds": [
+              29
+            ]
+          },
+          {
+            "startS": 621.5384584633066,
+            "endS": 630.5748338730675,
+            "sharedLengthM": 9.036375409760922,
+            "medianWidthM": 3.029084168312112,
+            "minWidthM": 2.998231261135574,
+            "maxWidthM": 3.057949475917902,
+            "widthVariationM": 0.05971821478232764,
+            "sampleCount": 5,
+            "leftRunIds": [
+              5
+            ],
+            "rightRunIds": [
+              18
+            ]
+          },
+          {
+            "startS": 434.9420161044949,
+            "endS": 439.19607520729676,
+            "sharedLengthM": 4.254059102801875,
+            "medianWidthM": 2.777506507078683,
+            "minWidthM": 2.7625287692932505,
+            "maxWidthM": 2.8061483625314487,
+            "widthVariationM": 0.043619593238198195,
+            "sampleCount": 3,
+            "leftRunIds": [
+              6
+            ],
+            "rightRunIds": [
+              15
+            ]
+          },
+          {
+            "startS": 590.0372592002434,
+            "endS": 609.5318972808049,
+            "sharedLengthM": 19.494638080561458,
+            "medianWidthM": 2.9763617318551523,
+            "minWidthM": 2.8310012148703154,
+            "maxWidthM": 3.022847039035465,
+            "widthVariationM": 0.19184582416514973,
+            "sampleCount": 10,
+            "leftRunIds": [
+              7
+            ],
+            "rightRunIds": [
+              19
+            ]
+          },
+          {
+            "startS": 646.9116126270657,
+            "endS": 689.824925750434,
+            "sharedLengthM": 42.91331312336831,
+            "medianWidthM": 3.0837726010694997,
+            "minWidthM": 2.9520750454757647,
+            "maxWidthM": 3.898709166666798,
+            "widthVariationM": 0.9466341211910332,
+            "sampleCount": 22,
+            "leftRunIds": [
+              8
+            ],
+            "rightRunIds": [
+              25
+            ]
+          },
+          {
+            "startS": 500.1206905235975,
+            "endS": 503.51347510831215,
+            "sharedLengthM": 3.3927845847146614,
+            "medianWidthM": 3.5018768189508878,
+            "minWidthM": 3.150511686706186,
+            "maxWidthM": 3.853241951195589,
+            "widthVariationM": 0.7027302644894031,
+            "sampleCount": 2,
+            "leftRunIds": [
+              9
+            ],
+            "rightRunIds": [
+              27
+            ]
+          },
+          {
+            "startS": 527.5523303173946,
+            "endS": 554.0369644246867,
+            "sharedLengthM": 26.484634107292095,
+            "medianWidthM": 3.1310273426168993,
+            "minWidthM": 2.7232202280098967,
+            "maxWidthM": 3.1978357215474955,
+            "widthVariationM": 0.4746154935375988,
+            "sampleCount": 14,
+            "leftRunIds": [
+              10
+            ],
+            "rightRunIds": [
+              23
+            ]
+          },
+          {
+            "startS": 381.491557471317,
+            "endS": 412.22180615396644,
+            "sharedLengthM": 30.73024868264946,
+            "medianWidthM": 2.707092839299324,
+            "minWidthM": 2.693846757635273,
+            "maxWidthM": 2.8705125721432645,
+            "widthVariationM": 0.17666581450799157,
+            "sampleCount": 16,
+            "leftRunIds": [
+              11
+            ],
+            "rightRunIds": [
+              15
+            ]
+          },
+          {
+            "startS": 567.3471591784137,
+            "endS": 572.0315218311622,
+            "sharedLengthM": 4.6843626527485185,
+            "medianWidthM": 2.867338357626513,
+            "minWidthM": 2.84299292768557,
+            "maxWidthM": 2.891695971254148,
+            "widthVariationM": 0.04870304356857824,
+            "sampleCount": 3,
+            "leftRunIds": [
+              12
+            ],
+            "rightRunIds": [
+              21
+            ]
+          },
+          {
+            "startS": 466.79093510592395,
+            "endS": 478.79387292483455,
+            "sharedLengthM": 12.002937818910596,
+            "medianWidthM": 3.3178288432952963,
+            "minWidthM": 2.670091434872571,
+            "maxWidthM": 3.3949724661016254,
+            "widthVariationM": 0.7248810312290543,
+            "sampleCount": 7,
+            "leftRunIds": [
+              13
+            ],
+            "rightRunIds": [
+              27
+            ]
+          },
+          {
+            "startS": 332.4326940942537,
+            "endS": 338.4892400311075,
+            "sharedLengthM": 6.056545936853809,
+            "medianWidthM": 2.800716445835005,
+            "minWidthM": 2.7305009706394014,
+            "maxWidthM": 2.948006540879,
+            "widthVariationM": 0.2175055702395987,
+            "sampleCount": 4,
+            "leftRunIds": [
+              14
+            ],
+            "rightRunIds": [
+              20
+            ]
+          }
+        ],
+        "laneLabel": "mainLane_PB1_left_PB0_right"
+      },
+      {
+        "candidatePairId": "BP-PB2-PB1",
+        "leftPb": "PB2",
+        "rightPb": "PB1",
+        "leftTrackIds": [
+          3
+        ],
+        "rightTrackIds": [
+          1,
+          2
+        ],
+        "leftCleanedRunIds": [
+          0,
+          1
+        ],
+        "rightCleanedRunIds": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        "chunkId": 0,
+        "passId": 0,
+        "sharedRouteSStart": 407.7330461017007,
+        "sharedRouteSEnd": 439.23222706113535,
+        "sharedSupportedLengthM": 9.187009964875756,
+        "medianLaneWidthM": 2.8322745284296036,
+        "minLaneWidthM": 2.615126816536577,
+        "maxLaneWidthM": 3.093941121236166,
+        "widthVariationM": 0.21531670776594947,
+        "relativeHeadingDifferenceDeg": null,
+        "boundaryOrderConsistent": true,
+        "crossingCount": 0,
+        "openIntervalsOnLeft": 2,
+        "openIntervalsOnRight": 21,
+        "competingBoundaryEvidence": null,
+        "eligibilityResult": "eligible",
+        "rejectionReason": null,
+        "eligibleIntervals": [
+          {
+            "startS": 407.7330461017007,
+            "endS": 412.22180615396644,
+            "sharedLengthM": 4.488760052265718,
+            "medianWidthM": 2.9966340630980515,
+            "minWidthM": 2.8993270049599444,
+            "maxWidthM": 3.093941121236166,
+            "widthVariationM": 0.1946141162762216,
+            "sampleCount": 3,
+            "leftRunIds": [
+              0
+            ],
+            "rightRunIds": [
+              11
+            ]
+          },
+          {
+            "startS": 434.5339771485253,
+            "endS": 439.23222706113535,
+            "sharedLengthM": 4.698249912610038,
+            "medianWidthM": 2.6679149937611557,
+            "minWidthM": 2.615126816536577,
+            "maxWidthM": 2.8304435243025265,
+            "widthVariationM": 0.21531670776594947,
+            "sampleCount": 3,
+            "leftRunIds": [
+              1
+            ],
+            "rightRunIds": [
+              6
+            ]
+          }
+        ],
+        "laneLabel": "outerLane_PB2_left_PB1_right"
+      }
+    ]
+  },
+  "splits": [
+    {
+      "splitId": "D12-CD-10",
+      "routeS": 429.48863383884554,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "D12_remaining_open",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 1.4657434773982345,
+      "sourceEvidence": "CD-10",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "D12-CD-12",
+      "routeS": 499.3009578546714,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "D12_remaining_open",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 1.6394653378521298,
+      "sourceEvidence": "CD-12",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "CD-01",
+      "routeS": 114.78605810517195,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "D10_control_gap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 26.730898583888745,
+      "sourceEvidence": "CD-01",
+      "physicalBoundaryId": "PB0"
+    },
+    {
+      "splitId": "CD-03",
+      "routeS": 450.44473164556933,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "D6_rejected_gap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 22.497312876545152,
+      "sourceEvidence": "CD-03",
+      "physicalBoundaryId": "PB0"
+    },
+    {
+      "splitId": "CD-04",
+      "routeS": 515.5111106094321,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "D6_rejected_gap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 23.995271002239747,
+      "sourceEvidence": "CD-04",
+      "physicalBoundaryId": "PB0"
+    },
+    {
+      "splitId": "CD-05",
+      "routeS": 560.8157899657372,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "D6_rejected_gap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 13.062738425353132,
+      "sourceEvidence": "CD-05",
+      "physicalBoundaryId": "PB0"
+    },
+    {
+      "splitId": "CD-06",
+      "routeS": 581.0314731830711,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "D6_rejected_gap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 17.99990270381784,
+      "sourceEvidence": "CD-06",
+      "physicalBoundaryId": "PB0"
+    },
+    {
+      "splitId": "CD-07",
+      "routeS": 615.5384446352132,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "D6_rejected_gap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 12.000027656186717,
+      "sourceEvidence": "CD-07",
+      "physicalBoundaryId": "PB0"
+    },
+    {
+      "splitId": "CD-08",
+      "routeS": 638.7550752854766,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "D6_rejected_gap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 16.313074683178343,
+      "sourceEvidence": "CD-08",
+      "physicalBoundaryId": "PB0"
+    },
+    {
+      "splitId": "CD-09",
+      "routeS": 53.400028447995574,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "D6_rejected_gap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 24.77448397283389,
+      "sourceEvidence": "CD-09",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "CD-11",
+      "routeS": 453.0115810835297,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "D6_rejected_gap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 27.558708044788602,
+      "sourceEvidence": "CD-11",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "CD-13",
+      "routeS": 515.5537987917513,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "D6_rejected_gap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 23.99706305128666,
+      "sourceEvidence": "CD-13",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "CD-14",
+      "routeS": 560.6920618015502,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "D6_rejected_gap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 13.310194753726933,
+      "sourceEvidence": "CD-14",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "CD-15",
+      "routeS": 581.037262876577,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "D6_rejected_gap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 17.999992647332874,
+      "sourceEvidence": "CD-15",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "CD-16",
+      "routeS": 615.5319115598038,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "D6_rejected_gap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 12.000028557998007,
+      "sourceEvidence": "CD-16",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "CD-17",
+      "routeS": 638.730816997564,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "D6_rejected_gap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 16.311966248993144,
+      "sourceEvidence": "CD-17",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "SEP-PB0-42.3",
+      "routeS": 54.03957351403848,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "sparseFusionGap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 23.495393840748072,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB0"
+    },
+    {
+      "splitId": "SEP-PB0-71.2",
+      "routeS": 79.8845146726658,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "headingMismatch",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 17.443788652165253,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB0"
+    },
+    {
+      "splitId": "SEP-PB0-101.4",
+      "routeS": 114.78605810517195,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "sparseFusionGap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 26.730898583888745,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB0"
+    },
+    {
+      "splitId": "SEP-PB0-136.9",
+      "routeS": 198.73398355775828,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "dropoutScaleGap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 123.67872220287506,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB0"
+    },
+    {
+      "splitId": "SEP-PB0-267.0",
+      "routeS": 275.6416926612949,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "lateralMismatch",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 17.215560665616124,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB0"
+    },
+    {
+      "splitId": "SEP-PB0-295.9",
+      "routeS": 313.95924147907317,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "dropoutScaleGap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 36.18011637773424,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB0"
+    },
+    {
+      "splitId": "SEP-PB0-338.5",
+      "routeS": 359.99039875121224,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "dropoutScaleGap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 43.00231744020948,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB0"
+    },
+    {
+      "splitId": "SEP-PB0-412.4",
+      "routeS": 423.6920079507307,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "sparseFusionGap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 22.500016307528256,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB0"
+    },
+    {
+      "splitId": "SEP-PB0-439.2",
+      "routeS": 450.44473164556933,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "sparseFusionGap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 22.497312876545152,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB0"
+    },
+    {
+      "splitId": "SEP-PB0-503.5",
+      "routeS": 515.5111106094321,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "sparseFusionGap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 23.995271002239747,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB0"
+    },
+    {
+      "splitId": "SEP-PB0-554.3",
+      "routeS": 560.8157899657372,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "sparseFusionGap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 13.062738425353132,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB0"
+    },
+    {
+      "splitId": "SEP-PB0-572.0",
+      "routeS": 581.0314731830711,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "sparseFusionGap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 17.99990270381784,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB0"
+    },
+    {
+      "splitId": "SEP-PB0-609.5",
+      "routeS": 615.5384446352132,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "sparseFusionGap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 12.000027656186717,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB0"
+    },
+    {
+      "splitId": "SEP-PB0-630.6",
+      "routeS": 638.7550752854766,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "sparseFusionGap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 16.313074683178343,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB0"
+    },
+    {
+      "splitId": "SEP-PB1-41.0",
+      "routeS": 53.400028447995574,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "sparseFusionGap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 24.77448397283389,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "SEP-PB1-71.1",
+      "routeS": 79.82313983083307,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "headingMismatch",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 17.442207002724956,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "SEP-PB1-92.5",
+      "routeS": 212.46279751141174,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "dropoutScaleGap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 239.9397931656839,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "SEP-PB1-341.2",
+      "routeS": 348.7336275023235,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "lateralMismatch",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 14.968126127636538,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "SEP-PB1-412.2",
+      "routeS": 423.3778916512459,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "sparseFusionGap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 22.31217099455887,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "SEP-PB1-439.2",
+      "routeS": 453.0115810835297,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "sparseFusionGap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 27.558708044788602,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "SEP-PB1-478.8",
+      "routeS": 489.45728172421605,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "sparseFusionGap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 21.326817598762943,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "SEP-PB1-503.6",
+      "routeS": 515.5537987917513,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "sparseFusionGap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 23.99706305128666,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "SEP-PB1-554.0",
+      "routeS": 560.6920618015502,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "sparseFusionGap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 13.310194753726933,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "SEP-PB1-572.0",
+      "routeS": 581.037262876577,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "sparseFusionGap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 17.999992647332874,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "SEP-PB1-609.5",
+      "routeS": 615.5319115598038,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "sparseFusionGap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 12.000028557998007,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "SEP-PB1-630.6",
+      "routeS": 638.730816997564,
+      "boundaryPairId": "BP-PB1-PB0",
+      "reason": "sparseFusionGap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 16.311966248993144,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "D12-CD-10",
+      "routeS": 429.48863383884554,
+      "boundaryPairId": "BP-PB2-PB1",
+      "reason": "D12_remaining_open",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 1.4657434773982345,
+      "sourceEvidence": "CD-10",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "D12-CD-12",
+      "routeS": 499.3009578546714,
+      "boundaryPairId": "BP-PB2-PB1",
+      "reason": "D12_remaining_open",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 1.6394653378521298,
+      "sourceEvidence": "CD-12",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "D12-CD-18",
+      "routeS": 429.49477644227346,
+      "boundaryPairId": "BP-PB2-PB1",
+      "reason": "D12_remaining_open",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 1.4754773189197294,
+      "sourceEvidence": "CD-18",
+      "physicalBoundaryId": "PB2"
+    },
+    {
+      "splitId": "CD-09",
+      "routeS": 53.400028447995574,
+      "boundaryPairId": "BP-PB2-PB1",
+      "reason": "D6_rejected_gap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 24.77448397283389,
+      "sourceEvidence": "CD-09",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "CD-11",
+      "routeS": 453.0115810835297,
+      "boundaryPairId": "BP-PB2-PB1",
+      "reason": "D6_rejected_gap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 27.558708044788602,
+      "sourceEvidence": "CD-11",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "CD-13",
+      "routeS": 515.5537987917513,
+      "boundaryPairId": "BP-PB2-PB1",
+      "reason": "D6_rejected_gap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 23.99706305128666,
+      "sourceEvidence": "CD-13",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "CD-14",
+      "routeS": 560.6920618015502,
+      "boundaryPairId": "BP-PB2-PB1",
+      "reason": "D6_rejected_gap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 13.310194753726933,
+      "sourceEvidence": "CD-14",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "CD-15",
+      "routeS": 581.037262876577,
+      "boundaryPairId": "BP-PB2-PB1",
+      "reason": "D6_rejected_gap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 17.999992647332874,
+      "sourceEvidence": "CD-15",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "CD-16",
+      "routeS": 615.5319115598038,
+      "boundaryPairId": "BP-PB2-PB1",
+      "reason": "D6_rejected_gap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 12.000028557998007,
+      "sourceEvidence": "CD-16",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "CD-17",
+      "routeS": 638.730816997564,
+      "boundaryPairId": "BP-PB2-PB1",
+      "reason": "D6_rejected_gap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 16.311966248993144,
+      "sourceEvidence": "CD-17",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "SEP-PB1-41.0",
+      "routeS": 53.400028447995574,
+      "boundaryPairId": "BP-PB2-PB1",
+      "reason": "sparseFusionGap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 24.77448397283389,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "SEP-PB1-71.1",
+      "routeS": 79.82313983083307,
+      "boundaryPairId": "BP-PB2-PB1",
+      "reason": "headingMismatch",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 17.442207002724956,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "SEP-PB1-92.5",
+      "routeS": 212.46279751141174,
+      "boundaryPairId": "BP-PB2-PB1",
+      "reason": "dropoutScaleGap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 239.9397931656839,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "SEP-PB1-341.2",
+      "routeS": 348.7336275023235,
+      "boundaryPairId": "BP-PB2-PB1",
+      "reason": "lateralMismatch",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 14.968126127636538,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "SEP-PB1-412.2",
+      "routeS": 423.3778916512459,
+      "boundaryPairId": "BP-PB2-PB1",
+      "reason": "sparseFusionGap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 22.31217099455887,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "SEP-PB1-439.2",
+      "routeS": 453.0115810835297,
+      "boundaryPairId": "BP-PB2-PB1",
+      "reason": "sparseFusionGap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 27.558708044788602,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "SEP-PB1-478.8",
+      "routeS": 489.45728172421605,
+      "boundaryPairId": "BP-PB2-PB1",
+      "reason": "sparseFusionGap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 21.326817598762943,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "SEP-PB1-503.6",
+      "routeS": 515.5537987917513,
+      "boundaryPairId": "BP-PB2-PB1",
+      "reason": "sparseFusionGap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 23.99706305128666,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "SEP-PB1-554.0",
+      "routeS": 560.6920618015502,
+      "boundaryPairId": "BP-PB2-PB1",
+      "reason": "sparseFusionGap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 13.310194753726933,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "SEP-PB1-572.0",
+      "routeS": 581.037262876577,
+      "boundaryPairId": "BP-PB2-PB1",
+      "reason": "sparseFusionGap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 17.999992647332874,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "SEP-PB1-609.5",
+      "routeS": 615.5319115598038,
+      "boundaryPairId": "BP-PB2-PB1",
+      "reason": "sparseFusionGap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 12.000028557998007,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "SEP-PB1-630.6",
+      "routeS": 638.730816997564,
+      "boundaryPairId": "BP-PB2-PB1",
+      "reason": "sparseFusionGap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 16.311966248993144,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB1"
+    },
+    {
+      "splitId": "SEP-PB2-412.2",
+      "routeS": 423.38891679451365,
+      "boundaryPairId": "BP-PB2-PB1",
+      "reason": "sparseFusionGap",
+      "precedingPolygonId": null,
+      "followingPolygonId": null,
+      "openLengthM": 22.311996753190897,
+      "sourceEvidence": "cleaned_run_separation",
+      "physicalBoundaryId": "PB2"
+    }
+  ],
+  "gapControls": {
+    "CD-10": {
+      "startS": 428.7557621001464,
+      "endS": 430.22150557754463,
+      "openLengthM": 1.4657434773982345,
+      "polygonSpans": false
+    },
+    "CD-12": {
+      "startS": 498.48122518574536,
+      "endS": 500.1206905235975,
+      "openLengthM": 1.6394653378521298,
+      "polygonSpans": false
+    },
+    "CD-18": {
+      "startS": 428.7570377828136,
+      "endS": 430.2325151017333,
+      "openLengthM": 1.4754773189197294,
+      "polygonSpans": false
+    },
+    "CD-01": {
+      "startS": 101.42060881322757,
+      "endS": 128.15150739711632,
+      "openLengthM": 26.730898583888745,
+      "polygonSpans": false
+    },
+    "dropout_240m": {
+      "startS": 92.49290092856977,
+      "endS": 332.4326940942537,
+      "openLengthM": 239.9397931656839,
+      "polygonSpans": false
+    },
+    "classF_gaps": [
+      {
+        "startS": 71.16262034658317,
+        "endS": 88.60640899874842,
+        "openLengthM": 17.443788652165253,
+        "polygonSpans": false
+      },
+      {
+        "startS": 267.03391232848685,
+        "endS": 284.249472994103,
+        "openLengthM": 17.215560665616124,
+        "polygonSpans": false
+      },
+      {
+        "startS": 71.1020363294706,
+        "endS": 88.54424333219555,
+        "openLengthM": 17.442207002724956,
+        "polygonSpans": false
+      },
+      {
+        "startS": 341.2495644385052,
+        "endS": 356.21769056614175,
+        "openLengthM": 14.968126127636538,
+        "polygonSpans": false
+      }
+    ],
+    "D6_gaps": [
+      {
+        "gapId": "CD-03",
+        "physicalBoundaryGroup": "PB0",
+        "startS": 439.19607520729676,
+        "endS": 461.6933880838419,
+        "polygonSpans": false
+      },
+      {
+        "gapId": "CD-04",
+        "physicalBoundaryGroup": "PB0",
+        "startS": 503.51347510831215,
+        "endS": 527.5087461105519,
+        "polygonSpans": false
+      },
+      {
+        "gapId": "CD-05",
+        "physicalBoundaryGroup": "PB0",
+        "startS": 554.2844207530605,
+        "endS": 567.3471591784137,
+        "polygonSpans": false
+      },
+      {
+        "gapId": "CD-06",
+        "physicalBoundaryGroup": "PB0",
+        "startS": 572.0315218311622,
+        "endS": 590.03142453498,
+        "polygonSpans": false
+      },
+      {
+        "gapId": "CD-07",
+        "physicalBoundaryGroup": "PB0",
+        "startS": 609.5384308071199,
+        "endS": 621.5384584633066,
+        "polygonSpans": false
+      },
+      {
+        "gapId": "CD-08",
+        "physicalBoundaryGroup": "PB0",
+        "startS": 630.5985379438873,
+        "endS": 646.9116126270657,
+        "polygonSpans": false
+      },
+      {
+        "gapId": "CD-09",
+        "physicalBoundaryGroup": "PB1",
+        "startS": 41.01278646157863,
+        "endS": 65.78727043441252,
+        "polygonSpans": false
+      },
+      {
+        "gapId": "CD-11",
+        "physicalBoundaryGroup": "PB1",
+        "startS": 439.23222706113535,
+        "endS": 466.79093510592395,
+        "polygonSpans": false
+      },
+      {
+        "gapId": "CD-13",
+        "physicalBoundaryGroup": "PB1",
+        "startS": 503.555267266108,
+        "endS": 527.5523303173946,
+        "polygonSpans": false
+      },
+      {
+        "gapId": "CD-14",
+        "physicalBoundaryGroup": "PB1",
+        "startS": 554.0369644246867,
+        "endS": 567.3471591784137,
+        "polygonSpans": false
+      },
+      {
+        "gapId": "CD-15",
+        "physicalBoundaryGroup": "PB1",
+        "startS": 572.0372665529105,
+        "endS": 590.0372592002434,
+        "polygonSpans": false
+      },
+      {
+        "gapId": "CD-16",
+        "physicalBoundaryGroup": "PB1",
+        "startS": 609.5318972808049,
+        "endS": 621.5319258388029,
+        "polygonSpans": false
+      },
+      {
+        "gapId": "CD-17",
+        "physicalBoundaryGroup": "PB1",
+        "startS": 630.5748338730675,
+        "endS": 646.8868001220607,
+        "polygonSpans": false
+      }
+    ]
+  },
+  "mode5Baseline": {
+    "laneChecksumBefore": "5283af91",
+    "laneChecksumAfter": "5283af91",
+    "laneChecksumUnchanged": true,
+    "roadSurfaceCount": 0,
+    "cleanedRunCount": 28,
+    "fusedFragmentCount": 33
+  },
+  "prototypeMode": {
+    "geometrySource": "cleanedWithStage1Surface",
+    "roadSurfacePolygonCount": 14,
+    "laneChecksum": "5283af91"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "checkpoint": "2026-07-27-stage19-v3",
+  "createdAt": "2026-07-27T07:25:41.404Z",
+  "priorCheckpoint": "stage19-implementation-pre-v3",
+  "stage19ImplementationCheckpoint": "2026-07-27-stage19-v3",
+  "frozenV11ProcessingVersion": "2026-07-24-fusion-v11",
+  "immutableProtectedFiles": {
+    "lib/version.js": "09444cdec775828371e681b858aa99e2ea0bacfd122ba936f84775eab5f6a235",
+    "lib/process_route.js": "08383ff1455707b7f42ed3c6d50c0840db2db04817b0c176d140112833359800",
+    "lib/stage18_lane_interval_audit.js": "a061092d9bc8ce6b7d720b4bee9dc0509f96eae6ab1d7a3d46a02165564591bd",
+    "lib/stage15_lane_counting_design.js": "83ddd10723dca9a62976cece863620e9049f60efac0fa099098f4740e6819add",
+    "lib/stage17_divider_association.js": "86a20c6a92c0e8c96534d350c96a4c0174579edd901abb2dd648be530841c948",
+    "lib/stage18_lane_interval_schema.js": "6e766757d2ebfd4158c8e2f5ba5f89d833ec4a653ff40cbd267e747dfff524f8",
+    "lib/stage19_spec/canonical.js": "97a6c35674128dab0950fccc55e5fb163682938da7ac64352a20f3b1479d53e3",
+    "lib/stage19_spec/config.js": "227b1754acabc7ec1792f3ca7236421c716ef35f909bd4d8825b714a5f426b2a",
+    "lib/stage19_spec/conflict.js": "19de30e4c725b787e317947678e9adfc1eb9a4ec03e06ecc35fdc79f26ad2bb4",
+    "lib/stage19_spec/crypto_util.js": "f329dfbc4f10f986f1afbf6ada1c88ada1134ab5865df358d66a8505f2fb68ff",
+    "lib/stage19_spec/geometry.js": "f2728069cfe3f6980ece69b8cffad64ea0cd7185a1bce86db4d0705ac3d2d6b4",
+    "lib/stage19_spec/heading.js": "e605f75ed1c6b32ea4f26a81472f6fd3844b34a7884add7309e2780af5587432",
+    "lib/stage19_spec/independent_oracle.js": "09e8d1341b33a899080864d21021e57d009b789a8d2c224cb01c7b25c04f8c8f",
+    "lib/stage19_spec/index.js": "7419f5844c3b525750b305ff4b4eae0ea2a1fcb6fd03ba3dab653a2bd2defb6e",
+    "lib/stage19_spec/jcs.js": "b77446a62fb4efc89ba064a6cc90f67fdadaa5d1d1142f1ea4827f62b778a052",
+    "lib/stage19_spec/manifest_integrity.js": "0f29c00acab266aadace7430dd0ad70f5da0d943dcb59818c568d4fe2191f6c2",
+    "lib/stage19_spec/math.js": "9869f52b7c02cac7833336e04a19404fa211a0c91a5e6d0c379c133cb83e505b",
+    "lib/stage19_spec/maximum_instances.js": "0b06f056d24122ac0b13a0339daea9115517b8351df22fd7909d50979cd7f6e5",
+    "lib/stage19_spec/normative_inventory.js": "181872fc02499e7a09e9bf5063ded5b66e114ac165861f137f940fbe9a195cc4",
+    "lib/stage19_spec/p3.js": "4067bcd2aa6af44345e71fbd8d3376bb10ef7770a68eb59400dd302adda95d63",
+    "lib/stage19_spec/partition.js": "1f29328a908041132664edd989a4649ef03c49cd8f5e04f68ba45f739bb239e3",
+    "lib/stage19_spec/publication.js": "d6d224d50d1c14e1e4b676791834f9dc7664248f016f0465cc9ab3991a582988",
+    "lib/stage19_spec/recovery.js": "a2c1b47e67011ec26bd8e8a99b6a65a82f6f19d31ebcd695b2dbe560edbf0dd4",
+    "lib/stage19_spec/recovery_fs.js": "056df7cb8b2a9b2869b397552f27a4ac86e0b1a063f4460c61290d18fadd41b2",
+    "lib/stage19_spec/runtime_memory.js": "4e304cd3d9f9170ee36b72ef2c303968335c2298e786b1fb4971129525744489",
+    "lib/stage19_spec/semantic.js": "8a6f785ed18c62cde082bc57b808d111524253ad869d38b8095ff11c038397d8",
+    "lib/stage19_spec/uncertainty.js": "adb217cb79a6080cadf5dadf7316dad90da55f4b38a18b25e5819715e89c9643",
+    "docs/stage19_revision37_specification.md": "60ed791c1348fd4bdefae067dbb1282ea3116dcb7ed5c844473b20b4b70cc60b"
+  },
+  "immutableComparison": {
+    "unchanged": 28,
+    "changed": 0,
+    "total": 28
+  },
+  "expectedVersionFiles": {
+    "lib/stage19_version.js": "8cfa27e24072652de33136484ece05b79d60774e7032ba10c4d9f49dffbfe9ed"
+  },
+  "expectedVersionChanged": true,
+  "v0Preservation": {
+    "approved": false,
+    "preservation": "checkpoint-only",
+    "immutableRun": false
+  },
+  "v1Preservation": {
+    "approved": false,
+    "preservation": "immutable-run-preserved"
+  },
+  "v2Preservation": {
+    "approved": false,
+    "preservation": "superseded-validation-checkpoint-immutable-run-preserved"
+  },
+  "productionLaneCountImplemented": false,
+  "hdMapSystemComplete": false,
+  "deploymentAuthorized": false
+}

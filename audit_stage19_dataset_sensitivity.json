@@ -1,0 +1,1028 @@
+{
+  "auditedAt": "2026-07-27T09:31:47.201Z",
+  "stage19Status": "implementation_pending_validation",
+  "stage19ImplementationCheckpoint": "2026-07-27-stage19-v5",
+  "stagePurpose": "dataset_wide_lane_interval_sensitivity_and_bev_evidence_audit",
+  "productionLaneCountImplemented": false,
+  "physicalRoadValidationComplete": false,
+  "hdMapSystemComplete": false,
+  "v11GeometryModified": false,
+  "stage15Through18Modified": false,
+  "frozenRoadSurfaceVersion": "2026-07-24-fusion-v11",
+  "frozenV11ProcessingVersion": "2026-07-24-fusion-v11",
+  "stage19ProcessingVersion": "2026-07-24-dataset-sensitivity-bev-audit-v0",
+  "stage18ProcessingVersion": "2026-07-24-lane-interval-assessment-v0",
+  "stage17InputVersion": "2026-07-24-lane-divider-tracking-v0",
+  "stage17ProcessingVersion": "2026-07-24-lane-divider-tracking-v0",
+  "stage16InputChecksum": "c2bbfe2354f632bc8104909c4aca1f34e3d9c864f7463dd15bba53aa7be3cf91",
+  "datasetBounds": {
+    "N_obs": 5809,
+    "N_gap": 136,
+    "P_cp_max": 742,
+    "N_interval": 5
+  },
+  "normativeVerification": {
+    "ok": true,
+    "packageFileCount": 21,
+    "workspaceFileCount": 21,
+    "missing": [],
+    "extra": [],
+    "mismatched": []
+  },
+  "schemaValidation": {
+    "ok": true
+  },
+  "runId": "2026-07-27-stage19-v5",
+  "manifestSha256": "72e16122fae6eecc8d12a4a4f869b949dc2aba53f7cb3be7868efab902ab35f6",
+  "semanticValidation": {
+    "ok": true
+  },
+  "productionQualityGates": {
+    "ok": true
+  },
+  "productionAudit": {
+    "bev": {
+      "schemaVersion": "stage19_bev_production_audit_v0",
+      "runId": "2026-07-27-stage19-v5",
+      "generatedAt": "2026-07-27T09:31:47.200Z",
+      "entries": [
+        {
+          "imageId": "bev-stable_one_lane_interval",
+          "category": "stable_one_lane_interval",
+          "laneIntervalId": "0:0:2:interval:0:0:2:22:run:0:0:0:2:21:run:0:244.2:294.5",
+          "countAssessmentId": null,
+          "sourceArtifact": "stage18_bev_stable_one_lane_interval.svg",
+          "sourceSvgPath": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\reports\\stage18_bev\\stage18_bev_stable_one_lane_interval.svg",
+          "sourceSvgSha256": "6d5e41de96330c41c660406a10bea1873084c94bb74e5c2e8e6230d31a152ac5",
+          "pngPayloadPath": "payloads/stage18_bev_stable_one_lane_interval.png",
+          "pngSha256": "96552c5c2ac8ae167815c9c93b721a1af996c687edd45e4444b229661d8eea4b",
+          "widthPx": 1067,
+          "heightPx": 693,
+          "bytes": 54454,
+          "mime": "image/png",
+          "layerValidation": {
+            "layerA": {
+              "sourceExists": true,
+              "sourceSvgHashVerified": true,
+              "pngSignatureValid": true,
+              "conversionProvenancePresent": true
+            },
+            "layerB": {
+              "linkedIntervalOrAssessment": true,
+              "nonEmptyPayload": true,
+              "dimensionsValid": true,
+              "mimeMatchesBytes": true,
+              "hashVerified": true
+            },
+            "layerAPass": true,
+            "layerBPass": true,
+            "pass": true
+          },
+          "provenance": {
+            "generator": "stage18_bev_inspection",
+            "sourceArtifact": "stage18_bev_stable_one_lane_interval.svg",
+            "sourceSvgPath": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\reports\\stage18_bev\\stage18_bev_stable_one_lane_interval.svg",
+            "sourceSvgSha256": "6d5e41de96330c41c660406a10bea1873084c94bb74e5c2e8e6230d31a152ac5",
+            "stage18GeneratedAt": "2026-07-24T02:38:48.466Z",
+            "selectionRule": "Accepted prototype interval with assessed lane count of 1",
+            "processingVersion": "2026-07-24-lane-interval-assessment-v0",
+            "conversionTool": "sharp",
+            "conversionToolVersion": "0.35.3",
+            "sourceFormat": "image/svg+xml",
+            "outputFormat": "image/png",
+            "density": 96
+          }
+        },
+        {
+          "imageId": "bev-stable_two_lane_assessment",
+          "category": "stable_two_lane_assessment",
+          "laneIntervalId": null,
+          "countAssessmentId": "0:0:4:assess:1.3:160.3",
+          "sourceArtifact": "stage18_bev_stable_two_lane_assessment.svg",
+          "sourceSvgPath": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\reports\\stage18_bev\\stage18_bev_stable_two_lane_assessment.svg",
+          "sourceSvgSha256": "bd3a7d67fdace21f19f7c20ed86e4cfa515757d006e8c74e8560bb4046619454",
+          "pngPayloadPath": "payloads/stage18_bev_stable_two_lane_assessment.png",
+          "pngSha256": "4d7bf37687068734518346857862f18271e83c1af486ebc3ad14617708d0ff8c",
+          "widthPx": 1067,
+          "heightPx": 693,
+          "bytes": 22152,
+          "mime": "image/png",
+          "layerValidation": {
+            "layerA": {
+              "sourceExists": true,
+              "sourceSvgHashVerified": true,
+              "pngSignatureValid": true,
+              "conversionProvenancePresent": true
+            },
+            "layerB": {
+              "linkedIntervalOrAssessment": true,
+              "nonEmptyPayload": true,
+              "dimensionsValid": true,
+              "mimeMatchesBytes": true,
+              "hashVerified": true
+            },
+            "layerAPass": true,
+            "layerBPass": true,
+            "pass": true
+          },
+          "provenance": {
+            "generator": "stage18_bev_inspection",
+            "sourceArtifact": "stage18_bev_stable_two_lane_assessment.svg",
+            "sourceSvgPath": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\reports\\stage18_bev\\stage18_bev_stable_two_lane_assessment.svg",
+            "sourceSvgSha256": "bd3a7d67fdace21f19f7c20ed86e4cfa515757d006e8c74e8560bb4046619454",
+            "stage18GeneratedAt": "2026-07-24T02:38:48.466Z",
+            "selectionRule": "Assessed count run with laneCountCandidate = 2",
+            "processingVersion": "2026-07-24-lane-interval-assessment-v0",
+            "conversionTool": "sharp",
+            "conversionToolVersion": "0.35.3",
+            "sourceFormat": "image/svg+xml",
+            "outputFormat": "image/png",
+            "density": 96
+          }
+        },
+        {
+          "imageId": "bev-curved_road_intervals",
+          "category": "curved_road_intervals",
+          "laneIntervalId": "0:0:4:interval:0:0:4:1:run:0:0:0:4:0:run:0:1.3:160.3",
+          "countAssessmentId": null,
+          "sourceArtifact": "stage18_bev_curved_road_intervals.svg",
+          "sourceSvgPath": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\reports\\stage18_bev\\stage18_bev_curved_road_intervals.svg",
+          "sourceSvgSha256": "cdd3c4a9e7709834d5ec8adc220b9086194f38d951c5c29832d8fbd351f93acc",
+          "pngPayloadPath": "payloads/stage18_bev_curved_road_intervals.png",
+          "pngSha256": "f0b385a54cac28faed707379c28e84f6089946f0956fd225c8e2a4e4f49af630",
+          "widthPx": 1067,
+          "heightPx": 693,
+          "bytes": 79427,
+          "mime": "image/png",
+          "layerValidation": {
+            "layerA": {
+              "sourceExists": true,
+              "sourceSvgHashVerified": true,
+              "pngSignatureValid": true,
+              "conversionProvenancePresent": true
+            },
+            "layerB": {
+              "linkedIntervalOrAssessment": true,
+              "nonEmptyPayload": true,
+              "dimensionsValid": true,
+              "mimeMatchesBytes": true,
+              "hashVerified": true
+            },
+            "layerAPass": true,
+            "layerBPass": true,
+            "pass": true
+          },
+          "provenance": {
+            "generator": "stage18_bev_inspection",
+            "sourceArtifact": "stage18_bev_curved_road_intervals.svg",
+            "sourceSvgPath": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\reports\\stage18_bev\\stage18_bev_curved_road_intervals.svg",
+            "sourceSvgSha256": "cdd3c4a9e7709834d5ec8adc220b9086194f38d951c5c29832d8fbd351f93acc",
+            "stage18GeneratedAt": "2026-07-24T02:38:48.466Z",
+            "selectionRule": "Longest route-s span accepted interval",
+            "processingVersion": "2026-07-24-lane-interval-assessment-v0",
+            "conversionTool": "sharp",
+            "conversionToolVersion": "0.35.3",
+            "sourceFormat": "image/svg+xml",
+            "outputFormat": "image/png",
+            "density": 96
+          }
+        },
+        {
+          "imageId": "bev-missing_outer_boundary",
+          "category": "missing_outer_boundary",
+          "laneIntervalId": null,
+          "countAssessmentId": "0:0:0:assess:0.0:1399.1",
+          "sourceArtifact": "stage18_bev_missing_outer_boundary.svg",
+          "sourceSvgPath": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\reports\\stage18_bev\\stage18_bev_missing_outer_boundary.svg",
+          "sourceSvgSha256": "aa8875aacaa0b999892bb8cdc116bea391449a7c77a047317b385c55fbe36b0f",
+          "pngPayloadPath": "payloads/stage18_bev_missing_outer_boundary.png",
+          "pngSha256": "21137ab2223c6df954fdfaacdd4536c61d0617c4f704a79c77b2ea8bfcc1de4a",
+          "widthPx": 1067,
+          "heightPx": 693,
+          "bytes": 23607,
+          "mime": "image/png",
+          "layerValidation": {
+            "layerA": {
+              "sourceExists": true,
+              "sourceSvgHashVerified": true,
+              "pngSignatureValid": true,
+              "conversionProvenancePresent": true
+            },
+            "layerB": {
+              "linkedIntervalOrAssessment": true,
+              "nonEmptyPayload": true,
+              "dimensionsValid": true,
+              "mimeMatchesBytes": true,
+              "hashVerified": true
+            },
+            "layerAPass": true,
+            "layerBPass": true,
+            "pass": true
+          },
+          "provenance": {
+            "generator": "stage18_bev_inspection",
+            "sourceArtifact": "stage18_bev_missing_outer_boundary.svg",
+            "sourceSvgPath": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\reports\\stage18_bev\\stage18_bev_missing_outer_boundary.svg",
+            "sourceSvgSha256": "aa8875aacaa0b999892bb8cdc116bea391449a7c77a047317b385c55fbe36b0f",
+            "stage18GeneratedAt": "2026-07-24T02:38:48.466Z",
+            "selectionRule": "Count assessment with incomplete outer boundary",
+            "processingVersion": "2026-07-24-lane-interval-assessment-v0",
+            "conversionTool": "sharp",
+            "conversionToolVersion": "0.35.3",
+            "sourceFormat": "image/svg+xml",
+            "outputFormat": "image/png",
+            "density": 96
+          }
+        },
+        {
+          "imageId": "bev-stage16_stage17_coverage_outlier",
+          "category": "stage16_stage17_coverage_outlier",
+          "laneIntervalId": "0:1:4:interval:0:1:4:3:run:0:0:1:4:2:run:0:89.2:115.2",
+          "countAssessmentId": null,
+          "sourceArtifact": "stage18_bev_stage16_stage17_coverage_outlier.svg",
+          "sourceSvgPath": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\reports\\stage18_bev\\stage18_bev_stage16_stage17_coverage_outlier.svg",
+          "sourceSvgSha256": "add594e19d55f2aa8ecb6a5d4844926fc3bd7646600675b3d72972a2cb689050",
+          "pngPayloadPath": "payloads/stage18_bev_stage16_stage17_coverage_outlier.png",
+          "pngSha256": "6a5c6fa3a3789b0b00ed1d48e76461cc0471305c9ab43da19e945846c8bea23b",
+          "widthPx": 1067,
+          "heightPx": 693,
+          "bytes": 42731,
+          "mime": "image/png",
+          "layerValidation": {
+            "layerA": {
+              "sourceExists": true,
+              "sourceSvgHashVerified": true,
+              "pngSignatureValid": true,
+              "conversionProvenancePresent": true
+            },
+            "layerB": {
+              "linkedIntervalOrAssessment": true,
+              "nonEmptyPayload": true,
+              "dimensionsValid": true,
+              "mimeMatchesBytes": true,
+              "hashVerified": true
+            },
+            "layerAPass": true,
+            "layerBPass": true,
+            "pass": true
+          },
+          "provenance": {
+            "generator": "stage18_bev_inspection",
+            "sourceArtifact": "stage18_bev_stage16_stage17_coverage_outlier.svg",
+            "sourceSvgPath": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\reports\\stage18_bev\\stage18_bev_stage16_stage17_coverage_outlier.svg",
+            "sourceSvgSha256": "add594e19d55f2aa8ecb6a5d4844926fc3bd7646600675b3d72972a2cb689050",
+            "stage18GeneratedAt": "2026-07-24T02:38:48.466Z",
+            "selectionRule": "Interval in Stage 16/17 coverage outlier segment",
+            "processingVersion": "2026-07-24-lane-interval-assessment-v0",
+            "conversionTool": "sharp",
+            "conversionToolVersion": "0.35.3",
+            "sourceFormat": "image/svg+xml",
+            "outputFormat": "image/png",
+            "density": 96
+          }
+        }
+      ]
+    },
+    "p3": {
+      "schemaVersion": "stage19_p3_production_audit_v0",
+      "runId": "2026-07-27-stage19-v5",
+      "eligible": 0,
+      "executed": 0,
+      "selected": 0,
+      "failed": 0,
+      "singletonSkipped": 5809,
+      "records": []
+    }
+  },
+  "observationCount": 5809,
+  "catalogMemberCount": 5809,
+  "genuineCrossPassCandidateCount": 0,
+  "crossPassBundleCount": 5,
+  "gapExclusionCount": 136,
+  "unassociatedCount": 0,
+  "acceptedIntervalCount": 5,
+  "assessmentCount": 5,
+  "assessmentStatusCounts": {
+    "insufficient_evidence": 5
+  },
+  "promotionCounts": {
+    "hold": 5
+  },
+  "crossPassConflictCount": 0,
+  "conflictEvidenceAvailable": false,
+  "insufficientEvidenceIntervalCount": 5,
+  "insufficientCrossPassCandidateCount": 0,
+  "partitionStats": {
+    "totalUnits": 799,
+    "totalChains": 5809,
+    "singleObservationChains": 5809,
+    "multiObservationChains": 0,
+    "successfulPartitions": 0,
+    "failedPartitions": 0,
+    "overflowPartitions": 0,
+    "rejectedPartitions": 0,
+    "trivialSingleAssignments": 5809,
+    "p3Eligible": 0,
+    "p3Executed": 0,
+    "p3Selected": 0,
+    "p3Failed": 0
+  },
+  "partitionBySegment": {
+    "0": {
+      "chains": 75,
+      "failed": 0,
+      "overflow": 0
+    },
+    "1": {
+      "chains": 88,
+      "failed": 0,
+      "overflow": 0
+    },
+    "2": {
+      "chains": 51,
+      "failed": 0,
+      "overflow": 0
+    },
+    "3": {
+      "chains": 68,
+      "failed": 0,
+      "overflow": 0
+    },
+    "4": {
+      "chains": 37,
+      "failed": 0,
+      "overflow": 0
+    },
+    "5": {
+      "chains": 33,
+      "failed": 0,
+      "overflow": 0
+    },
+    "6": {
+      "chains": 1,
+      "failed": 0,
+      "overflow": 0
+    },
+    "7": {
+      "chains": 22,
+      "failed": 0,
+      "overflow": 0
+    },
+    "8": {
+      "chains": 36,
+      "failed": 0,
+      "overflow": 0
+    },
+    "10": {
+      "chains": 56,
+      "failed": 0,
+      "overflow": 0
+    },
+    "11": {
+      "chains": 45,
+      "failed": 0,
+      "overflow": 0
+    },
+    "12": {
+      "chains": 83,
+      "failed": 0,
+      "overflow": 0
+    },
+    "13": {
+      "chains": 87,
+      "failed": 0,
+      "overflow": 0
+    },
+    "14": {
+      "chains": 86,
+      "failed": 0,
+      "overflow": 0
+    },
+    "15": {
+      "chains": 87,
+      "failed": 0,
+      "overflow": 0
+    },
+    "16": {
+      "chains": 87,
+      "failed": 0,
+      "overflow": 0
+    },
+    "17": {
+      "chains": 86,
+      "failed": 0,
+      "overflow": 0
+    },
+    "18": {
+      "chains": 87,
+      "failed": 0,
+      "overflow": 0
+    },
+    "19": {
+      "chains": 112,
+      "failed": 0,
+      "overflow": 0
+    },
+    "20": {
+      "chains": 106,
+      "failed": 0,
+      "overflow": 0
+    },
+    "22": {
+      "chains": 35,
+      "failed": 0,
+      "overflow": 0
+    },
+    "23": {
+      "chains": 31,
+      "failed": 0,
+      "overflow": 0
+    },
+    "24": {
+      "chains": 53,
+      "failed": 0,
+      "overflow": 0
+    },
+    "25": {
+      "chains": 22,
+      "failed": 0,
+      "overflow": 0
+    },
+    "26": {
+      "chains": 28,
+      "failed": 0,
+      "overflow": 0
+    },
+    "27": {
+      "chains": 42,
+      "failed": 0,
+      "overflow": 0
+    },
+    "28": {
+      "chains": 86,
+      "failed": 0,
+      "overflow": 0
+    },
+    "29": {
+      "chains": 85,
+      "failed": 0,
+      "overflow": 0
+    },
+    "30": {
+      "chains": 85,
+      "failed": 0,
+      "overflow": 0
+    },
+    "31": {
+      "chains": 83,
+      "failed": 0,
+      "overflow": 0
+    },
+    "32": {
+      "chains": 87,
+      "failed": 0,
+      "overflow": 0
+    },
+    "33": {
+      "chains": 87,
+      "failed": 0,
+      "overflow": 0
+    },
+    "34": {
+      "chains": 87,
+      "failed": 0,
+      "overflow": 0
+    },
+    "35": {
+      "chains": 86,
+      "failed": 0,
+      "overflow": 0
+    },
+    "36": {
+      "chains": 87,
+      "failed": 0,
+      "overflow": 0
+    },
+    "37": {
+      "chains": 87,
+      "failed": 0,
+      "overflow": 0
+    },
+    "39": {
+      "chains": 87,
+      "failed": 0,
+      "overflow": 0
+    },
+    "40": {
+      "chains": 87,
+      "failed": 0,
+      "overflow": 0
+    },
+    "41": {
+      "chains": 87,
+      "failed": 0,
+      "overflow": 0
+    },
+    "42": {
+      "chains": 84,
+      "failed": 0,
+      "overflow": 0
+    },
+    "43": {
+      "chains": 87,
+      "failed": 0,
+      "overflow": 0
+    },
+    "44": {
+      "chains": 86,
+      "failed": 0,
+      "overflow": 0
+    },
+    "45": {
+      "chains": 84,
+      "failed": 0,
+      "overflow": 0
+    },
+    "46": {
+      "chains": 87,
+      "failed": 0,
+      "overflow": 0
+    },
+    "47": {
+      "chains": 71,
+      "failed": 0,
+      "overflow": 0
+    },
+    "48": {
+      "chains": 83,
+      "failed": 0,
+      "overflow": 0
+    },
+    "49": {
+      "chains": 86,
+      "failed": 0,
+      "overflow": 0
+    },
+    "50": {
+      "chains": 58,
+      "failed": 0,
+      "overflow": 0
+    },
+    "51": {
+      "chains": 52,
+      "failed": 0,
+      "overflow": 0
+    },
+    "53": {
+      "chains": 69,
+      "failed": 0,
+      "overflow": 0
+    },
+    "54": {
+      "chains": 17,
+      "failed": 0,
+      "overflow": 0
+    },
+    "55": {
+      "chains": 71,
+      "failed": 0,
+      "overflow": 0
+    },
+    "56": {
+      "chains": 27,
+      "failed": 0,
+      "overflow": 0
+    },
+    "57": {
+      "chains": 6,
+      "failed": 0,
+      "overflow": 0
+    },
+    "58": {
+      "chains": 29,
+      "failed": 0,
+      "overflow": 0
+    },
+    "59": {
+      "chains": 42,
+      "failed": 0,
+      "overflow": 0
+    },
+    "60": {
+      "chains": 5,
+      "failed": 0,
+      "overflow": 0
+    },
+    "61": {
+      "chains": 25,
+      "failed": 0,
+      "overflow": 0
+    },
+    "63": {
+      "chains": 26,
+      "failed": 0,
+      "overflow": 0
+    },
+    "64": {
+      "chains": 34,
+      "failed": 0,
+      "overflow": 0
+    },
+    "66": {
+      "chains": 5,
+      "failed": 0,
+      "overflow": 0
+    },
+    "67": {
+      "chains": 15,
+      "failed": 0,
+      "overflow": 0
+    },
+    "68": {
+      "chains": 84,
+      "failed": 0,
+      "overflow": 0
+    },
+    "69": {
+      "chains": 66,
+      "failed": 0,
+      "overflow": 0
+    },
+    "71": {
+      "chains": 82,
+      "failed": 0,
+      "overflow": 0
+    },
+    "72": {
+      "chains": 88,
+      "failed": 0,
+      "overflow": 0
+    },
+    "73": {
+      "chains": 94,
+      "failed": 0,
+      "overflow": 0
+    },
+    "74": {
+      "chains": 81,
+      "failed": 0,
+      "overflow": 0
+    },
+    "75": {
+      "chains": 62,
+      "failed": 0,
+      "overflow": 0
+    },
+    "81": {
+      "chains": 87,
+      "failed": 0,
+      "overflow": 0
+    },
+    "82": {
+      "chains": 83,
+      "failed": 0,
+      "overflow": 0
+    },
+    "83": {
+      "chains": 82,
+      "failed": 0,
+      "overflow": 0
+    },
+    "84": {
+      "chains": 85,
+      "failed": 0,
+      "overflow": 0
+    },
+    "85": {
+      "chains": 85,
+      "failed": 0,
+      "overflow": 0
+    },
+    "86": {
+      "chains": 85,
+      "failed": 0,
+      "overflow": 0
+    },
+    "87": {
+      "chains": 87,
+      "failed": 0,
+      "overflow": 0
+    },
+    "88": {
+      "chains": 87,
+      "failed": 0,
+      "overflow": 0
+    },
+    "89": {
+      "chains": 86,
+      "failed": 0,
+      "overflow": 0
+    },
+    "90": {
+      "chains": 87,
+      "failed": 0,
+      "overflow": 0
+    },
+    "91": {
+      "chains": 99,
+      "failed": 0,
+      "overflow": 0
+    },
+    "92": {
+      "chains": 90,
+      "failed": 0,
+      "overflow": 0
+    },
+    "93": {
+      "chains": 113,
+      "failed": 0,
+      "overflow": 0
+    },
+    "94": {
+      "chains": 81,
+      "failed": 0,
+      "overflow": 0
+    },
+    "95": {
+      "chains": 41,
+      "failed": 0,
+      "overflow": 0
+    },
+    "97": {
+      "chains": 26,
+      "failed": 0,
+      "overflow": 0
+    },
+    "98": {
+      "chains": 89,
+      "failed": 0,
+      "overflow": 0
+    },
+    "99": {
+      "chains": 26,
+      "failed": 0,
+      "overflow": 0
+    },
+    "100": {
+      "chains": 19,
+      "failed": 0,
+      "overflow": 0
+    }
+  },
+  "partitionFailureCount": 0,
+  "partitionOverflowCount": 0,
+  "nonTrivialPartitionCount": 0,
+  "singletonChainCount": 5809,
+  "failedObservationCount": 0,
+  "fallbackOrFailurePct": 0,
+  "branchCounts": {
+    "0": 5809
+  },
+  "p3Stats": {
+    "eligible": 0,
+    "executed": 0,
+    "selected": 0,
+    "failed": 0
+  },
+  "bevImageCount": 5,
+  "bevArtifacts": [
+    {
+      "imageId": "bev-stable_one_lane_interval",
+      "category": "stable_one_lane_interval",
+      "laneIntervalId": "0:0:2:interval:0:0:2:22:run:0:0:0:2:21:run:0:244.2:294.5",
+      "sourceArtifact": "stage18_bev_stable_one_lane_interval.svg",
+      "sourceSvgSha256": "6d5e41de96330c41c660406a10bea1873084c94bb74e5c2e8e6230d31a152ac5",
+      "pngSha256": "96552c5c2ac8ae167815c9c93b721a1af996c687edd45e4444b229661d8eea4b",
+      "mime": "image/png",
+      "bytes": 54454,
+      "widthPx": 1067,
+      "heightPx": 693,
+      "layerValidation": {
+        "layerA": {
+          "sourceExists": true,
+          "sourceSvgHashVerified": true,
+          "pngSignatureValid": true,
+          "conversionProvenancePresent": true
+        },
+        "layerB": {
+          "linkedIntervalOrAssessment": true,
+          "nonEmptyPayload": true,
+          "dimensionsValid": true,
+          "mimeMatchesBytes": true,
+          "hashVerified": true
+        },
+        "layerAPass": true,
+        "layerBPass": true,
+        "pass": true
+      },
+      "provenance": {
+        "generator": "stage18_bev_inspection",
+        "sourceArtifact": "stage18_bev_stable_one_lane_interval.svg",
+        "sourceSvgPath": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\reports\\stage18_bev\\stage18_bev_stable_one_lane_interval.svg",
+        "sourceSvgSha256": "6d5e41de96330c41c660406a10bea1873084c94bb74e5c2e8e6230d31a152ac5",
+        "stage18GeneratedAt": "2026-07-24T02:38:48.466Z",
+        "selectionRule": "Accepted prototype interval with assessed lane count of 1",
+        "processingVersion": "2026-07-24-lane-interval-assessment-v0",
+        "conversionTool": "sharp",
+        "conversionToolVersion": "0.35.3",
+        "sourceFormat": "image/svg+xml",
+        "outputFormat": "image/png",
+        "density": 96
+      }
+    },
+    {
+      "imageId": "bev-stable_two_lane_assessment",
+      "category": "stable_two_lane_assessment",
+      "laneIntervalId": null,
+      "sourceArtifact": "stage18_bev_stable_two_lane_assessment.svg",
+      "sourceSvgSha256": "bd3a7d67fdace21f19f7c20ed86e4cfa515757d006e8c74e8560bb4046619454",
+      "pngSha256": "4d7bf37687068734518346857862f18271e83c1af486ebc3ad14617708d0ff8c",
+      "mime": "image/png",
+      "bytes": 22152,
+      "widthPx": 1067,
+      "heightPx": 693,
+      "layerValidation": {
+        "layerA": {
+          "sourceExists": true,
+          "sourceSvgHashVerified": true,
+          "pngSignatureValid": true,
+          "conversionProvenancePresent": true
+        },
+        "layerB": {
+          "linkedIntervalOrAssessment": true,
+          "nonEmptyPayload": true,
+          "dimensionsValid": true,
+          "mimeMatchesBytes": true,
+          "hashVerified": true
+        },
+        "layerAPass": true,
+        "layerBPass": true,
+        "pass": true
+      },
+      "provenance": {
+        "generator": "stage18_bev_inspection",
+        "sourceArtifact": "stage18_bev_stable_two_lane_assessment.svg",
+        "sourceSvgPath": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\reports\\stage18_bev\\stage18_bev_stable_two_lane_assessment.svg",
+        "sourceSvgSha256": "bd3a7d67fdace21f19f7c20ed86e4cfa515757d006e8c74e8560bb4046619454",
+        "stage18GeneratedAt": "2026-07-24T02:38:48.466Z",
+        "selectionRule": "Assessed count run with laneCountCandidate = 2",
+        "processingVersion": "2026-07-24-lane-interval-assessment-v0",
+        "conversionTool": "sharp",
+        "conversionToolVersion": "0.35.3",
+        "sourceFormat": "image/svg+xml",
+        "outputFormat": "image/png",
+        "density": 96
+      }
+    },
+    {
+      "imageId": "bev-curved_road_intervals",
+      "category": "curved_road_intervals",
+      "laneIntervalId": "0:0:4:interval:0:0:4:1:run:0:0:0:4:0:run:0:1.3:160.3",
+      "sourceArtifact": "stage18_bev_curved_road_intervals.svg",
+      "sourceSvgSha256": "cdd3c4a9e7709834d5ec8adc220b9086194f38d951c5c29832d8fbd351f93acc",
+      "pngSha256": "f0b385a54cac28faed707379c28e84f6089946f0956fd225c8e2a4e4f49af630",
+      "mime": "image/png",
+      "bytes": 79427,
+      "widthPx": 1067,
+      "heightPx": 693,
+      "layerValidation": {
+        "layerA": {
+          "sourceExists": true,
+          "sourceSvgHashVerified": true,
+          "pngSignatureValid": true,
+          "conversionProvenancePresent": true
+        },
+        "layerB": {
+          "linkedIntervalOrAssessment": true,
+          "nonEmptyPayload": true,
+          "dimensionsValid": true,
+          "mimeMatchesBytes": true,
+          "hashVerified": true
+        },
+        "layerAPass": true,
+        "layerBPass": true,
+        "pass": true
+      },
+      "provenance": {
+        "generator": "stage18_bev_inspection",
+        "sourceArtifact": "stage18_bev_curved_road_intervals.svg",
+        "sourceSvgPath": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\reports\\stage18_bev\\stage18_bev_curved_road_intervals.svg",
+        "sourceSvgSha256": "cdd3c4a9e7709834d5ec8adc220b9086194f38d951c5c29832d8fbd351f93acc",
+        "stage18GeneratedAt": "2026-07-24T02:38:48.466Z",
+        "selectionRule": "Longest route-s span accepted interval",
+        "processingVersion": "2026-07-24-lane-interval-assessment-v0",
+        "conversionTool": "sharp",
+        "conversionToolVersion": "0.35.3",
+        "sourceFormat": "image/svg+xml",
+        "outputFormat": "image/png",
+        "density": 96
+      }
+    },
+    {
+      "imageId": "bev-missing_outer_boundary",
+      "category": "missing_outer_boundary",
+      "laneIntervalId": null,
+      "sourceArtifact": "stage18_bev_missing_outer_boundary.svg",
+      "sourceSvgSha256": "aa8875aacaa0b999892bb8cdc116bea391449a7c77a047317b385c55fbe36b0f",
+      "pngSha256": "21137ab2223c6df954fdfaacdd4536c61d0617c4f704a79c77b2ea8bfcc1de4a",
+      "mime": "image/png",
+      "bytes": 23607,
+      "widthPx": 1067,
+      "heightPx": 693,
+      "layerValidation": {
+        "layerA": {
+          "sourceExists": true,
+          "sourceSvgHashVerified": true,
+          "pngSignatureValid": true,
+          "conversionProvenancePresent": true
+        },
+        "layerB": {
+          "linkedIntervalOrAssessment": true,
+          "nonEmptyPayload": true,
+          "dimensionsValid": true,
+          "mimeMatchesBytes": true,
+          "hashVerified": true
+        },
+        "layerAPass": true,
+        "layerBPass": true,
+        "pass": true
+      },
+      "provenance": {
+        "generator": "stage18_bev_inspection",
+        "sourceArtifact": "stage18_bev_missing_outer_boundary.svg",
+        "sourceSvgPath": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\reports\\stage18_bev\\stage18_bev_missing_outer_boundary.svg",
+        "sourceSvgSha256": "aa8875aacaa0b999892bb8cdc116bea391449a7c77a047317b385c55fbe36b0f",
+        "stage18GeneratedAt": "2026-07-24T02:38:48.466Z",
+        "selectionRule": "Count assessment with incomplete outer boundary",
+        "processingVersion": "2026-07-24-lane-interval-assessment-v0",
+        "conversionTool": "sharp",
+        "conversionToolVersion": "0.35.3",
+        "sourceFormat": "image/svg+xml",
+        "outputFormat": "image/png",
+        "density": 96
+      }
+    },
+    {
+      "imageId": "bev-stage16_stage17_coverage_outlier",
+      "category": "stage16_stage17_coverage_outlier",
+      "laneIntervalId": "0:1:4:interval:0:1:4:3:run:0:0:1:4:2:run:0:89.2:115.2",
+      "sourceArtifact": "stage18_bev_stage16_stage17_coverage_outlier.svg",
+      "sourceSvgSha256": "add594e19d55f2aa8ecb6a5d4844926fc3bd7646600675b3d72972a2cb689050",
+      "pngSha256": "6a5c6fa3a3789b0b00ed1d48e76461cc0471305c9ab43da19e945846c8bea23b",
+      "mime": "image/png",
+      "bytes": 42731,
+      "widthPx": 1067,
+      "heightPx": 693,
+      "layerValidation": {
+        "layerA": {
+          "sourceExists": true,
+          "sourceSvgHashVerified": true,
+          "pngSignatureValid": true,
+          "conversionProvenancePresent": true
+        },
+        "layerB": {
+          "linkedIntervalOrAssessment": true,
+          "nonEmptyPayload": true,
+          "dimensionsValid": true,
+          "mimeMatchesBytes": true,
+          "hashVerified": true
+        },
+        "layerAPass": true,
+        "layerBPass": true,
+        "pass": true
+      },
+      "provenance": {
+        "generator": "stage18_bev_inspection",
+        "sourceArtifact": "stage18_bev_stage16_stage17_coverage_outlier.svg",
+        "sourceSvgPath": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\reports\\stage18_bev\\stage18_bev_stage16_stage17_coverage_outlier.svg",
+        "sourceSvgSha256": "add594e19d55f2aa8ecb6a5d4844926fc3bd7646600675b3d72972a2cb689050",
+        "stage18GeneratedAt": "2026-07-24T02:38:48.466Z",
+        "selectionRule": "Interval in Stage 16/17 coverage outlier segment",
+        "processingVersion": "2026-07-24-lane-interval-assessment-v0",
+        "conversionTool": "sharp",
+        "conversionToolVersion": "0.35.3",
+        "sourceFormat": "image/svg+xml",
+        "outputFormat": "image/png",
+        "density": 96
+      }
+    }
+  ],
+  "sensitivitySummary": {
+    "rowCount": 7,
+    "baseline": {
+      "crossPassCount": 0,
+      "conflictCount": 0,
+      "insufficientCount": 0,
+      "assessmentStatusCounts": {
+        "insufficient_evidence": 5
+      },
+      "partitionFailed": 0,
+      "multiObservationChains": 0
+    },
+    "authorityNote": "Revision 37 authorizes baseline config constants only; no alternate parameter ranges are defined.",
+    "empiricalLimitation": "Dataset has 0 cross-pass candidates and 0 multi-observation chains; sensitivity rows record baseline outcomes only."
+  },
+  "publicationState": "published",
+  "publicationRoot": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\stage19_bundle",
+  "runDir": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\stage19_bundle\\runs\\2026-07-27-stage19-v5"
+}

@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hdmap.local/schemas/stage19/assessment_v0.json",
+  "title": "Stage19AssessmentV0",
+  "type": "object",
+  "required": ["schemaVersion", "runId", "intervalId", "status", "promotion", "partition"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "const": "stage19_assessment_v0" },
+    "runId": { "type": "string", "minLength": 1 },
+    "intervalId": { "type": "string", "minLength": 1 },
+    "status": {
+      "type": "string",
+      "enum": ["failed", "conflict", "insufficient_evidence", "accepted_with_caveats", "accepted"]
+    },
+    "promotion": {
+      "type": "string",
+      "enum": ["reject", "hold", "promote_with_caveats", "promote"]
+    },
+    "partition": {
+      "type": "object",
+      "required": ["numPaths", "totalExtensionCost"],
+      "additionalProperties": false,
+      "properties": {
+        "numPaths": { "type": "integer", "minimum": 1 },
+        "totalExtensionCost": { "type": "number", "minimum": 0 }
+      }
+    },
+    "failureReason": { "type": "string" },
+    "failureDetail": { "type": "object" },
+    "crossPassConflict": { "type": "object" },
+    "insufficientEvidence": { "type": "object" },
+    "caveats": { "type": "array", "items": { "type": "string" } }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "failed" } }, "required": ["status"] },
+      "then": { "required": ["failureReason", "failureDetail"] }
+    },
+    {
+      "if": { "properties": { "status": { "const": "conflict" } }, "required": ["status"] },
+      "then": { "required": ["crossPassConflict"] }
+    },
+    {
+      "if": { "properties": { "status": { "const": "insufficient_evidence" } }, "required": ["status"] },
+      "then": { "required": ["insufficientEvidence"] }
+    },
+    {
+      "if": { "properties": { "status": { "const": "accepted_with_caveats" } }, "required": ["status"] },
+      "then": { "required": ["caveats"] }
+    }
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "classifiedAt": "2026-07-27T07:17:10.678Z",
+  "v0Preservation": {
+    "checkpointOnly": true,
+    "immutableRun": false,
+    "note": "v0 was never published through the immutable run system; checkpoint-only preservation"
+  },
+  "entries": [
+    {
+      "directory": ".staging",
+      "path": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\stage19_bundle\\.staging",
+      "fileCount": 0,
+      "hasManifest": false,
+      "hasCommit": false,
+      "classification": "empty_directory",
+      "relationship": "none",
+      "manifestSha256": null
+    },
+    {
+      "directory": "perf-run-0",
+      "path": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\stage19_bundle\\perf-run-0",
+      "fileCount": 14,
+      "hasManifest": true,
+      "hasCommit": true,
+      "classification": "non_authoritative_perf_output",
+      "relationship": "v2_validation_harness",
+      "manifestSha256": "1547f74ec86ebba9579cbd41c3272373d17371b52677c79c15f5de5526df1a73"
+    },
+    {
+      "directory": "perf-run-1",
+      "path": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\stage19_bundle\\perf-run-1",
+      "fileCount": 14,
+      "hasManifest": true,
+      "hasCommit": true,
+      "classification": "non_authoritative_perf_output",
+      "relationship": "v2_validation_harness",
+      "manifestSha256": "eee4f0e0133cfcec46b98c09e3243842ee4dc103a09085ad9033764d34c8bc51"
+    },
+    {
+      "directory": "perf-run-2",
+      "path": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\stage19_bundle\\perf-run-2",
+      "fileCount": 14,
+      "hasManifest": true,
+      "hasCommit": true,
+      "classification": "non_authoritative_perf_output",
+      "relationship": "v2_validation_harness",
+      "manifestSha256": "93e766f373fbe7744126248a7f74531a4394fcad6da67b8afc874a3c6b2634ae"
+    },
+    {
+      "directory": "2026-07-27-stage19-v1",
+      "path": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\stage19_bundle\\runs\\2026-07-27-stage19-v1",
+      "fileCount": 16,
+      "hasManifest": true,
+      "hasCommit": true,
+      "classification": "authoritative_published_run",
+      "relationship": "v1",
+      "manifestSha256": "29c87f924087aa346fcaba87b7d24eed0c533cac3c48fd5821e246d46e832d81"
+    },
+    {
+      "directory": "2026-07-27-stage19-v2",
+      "path": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\stage19_bundle\\runs\\2026-07-27-stage19-v2",
+      "fileCount": 16,
+      "hasManifest": true,
+      "hasCommit": true,
+      "classification": "authoritative_published_run",
+      "relationship": "v2",
+      "manifestSha256": "ea04796ad2004d42ad6bb5263edd253b16ca0031326f350b783730918a0489c9"
+    },
+    {
+      "directory": "stage19-2026-07-27T04-56-43-772Z",
+      "path": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\stage19_bundle\\stage19-2026-07-27T04-56-43-772Z",
+      "fileCount": 14,
+      "hasManifest": true,
+      "hasCommit": true,
+      "classification": "legacy_dual_write_output",
+      "relationship": "v0_development_artifact",
+      "manifestSha256": "3419d27b43cc063a7777fd58d03e2593350f0da7ef09b7ec71e1714dff81ada1"
+    },
+    {
+      "directory": "stage19-2026-07-27T04-57-10-703Z",
+      "path": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\stage19_bundle\\stage19-2026-07-27T04-57-10-703Z",
+      "fileCount": 14,
+      "hasManifest": true,
+      "hasCommit": true,
+      "classification": "legacy_dual_write_output",
+      "relationship": "v0_development_artifact",
+      "manifestSha256": "5b021018f6020900afd6f99086e7419287af93369258a0a883e85627ac0cce40"
+    },
+    {
+      "directory": "stage19-2026-07-27T05-01-03-857Z",
+      "path": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\stage19_bundle\\stage19-2026-07-27T05-01-03-857Z",
+      "fileCount": 14,
+      "hasManifest": true,
+      "hasCommit": true,
+      "classification": "legacy_dual_write_output",
+      "relationship": "v0_development_artifact",
+      "manifestSha256": "2fb305f5c6b9ef734d4e042df64960fc4ba7bf58e321c451702df56beb57e55e"
+    },
+    {
+      "directory": "stage19-2026-07-27T05-18-10-863Z",
+      "path": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\stage19_bundle\\stage19-2026-07-27T05-18-10-863Z",
+      "fileCount": 14,
+      "hasManifest": true,
+      "hasCommit": true,
+      "classification": "legacy_dual_write_output",
+      "relationship": "v0_development_artifact",
+      "manifestSha256": "255c69bde24a151c10befcda29eb6d2f80480ed6b30fb2c7b40ac79ef8d48a74"
+    }
+  ],
+  "actions": [
+    {
+      "action": "archived",
+      "from": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\stage19_bundle\\perf-run-0",
+      "to": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\stage19_bundle\\legacy_archive\\perf-run-0",
+      "classification": "non_authoritative_perf_output"
+    },
+    {
+      "action": "archived",
+      "from": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\stage19_bundle\\perf-run-1",
+      "to": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\stage19_bundle\\legacy_archive\\perf-run-1",
+      "classification": "non_authoritative_perf_output"
+    },
+    {
+      "action": "archived",
+      "from": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\stage19_bundle\\perf-run-2",
+      "to": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\stage19_bundle\\legacy_archive\\perf-run-2",
+      "classification": "non_authoritative_perf_output"
+    },
+    {
+      "action": "archived",
+      "from": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\stage19_bundle\\stage19-2026-07-27T04-56-43-772Z",
+      "to": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\stage19_bundle\\legacy_archive\\stage19-2026-07-27T04-56-43-772Z",
+      "classification": "legacy_dual_write_output"
+    },
+    {
+      "action": "archived",
+      "from": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\stage19_bundle\\stage19-2026-07-27T04-57-10-703Z",
+      "to": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\stage19_bundle\\legacy_archive\\stage19-2026-07-27T04-57-10-703Z",
+      "classification": "legacy_dual_write_output"
+    },
+    {
+      "action": "archived",
+      "from": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\stage19_bundle\\stage19-2026-07-27T05-01-03-857Z",
+      "to": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\stage19_bundle\\legacy_archive\\stage19-2026-07-27T05-01-03-857Z",
+      "classification": "legacy_dual_write_output"
+    },
+    {
+      "action": "archived",
+      "from": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\stage19_bundle\\stage19-2026-07-27T05-18-10-863Z",
+      "to": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\stage19_bundle\\legacy_archive\\stage19-2026-07-27T05-18-10-863Z",
+      "classification": "legacy_dual_write_output"
+    }
+  ]
+}

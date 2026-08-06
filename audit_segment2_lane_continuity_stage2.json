@@ -1,0 +1,329 @@
+{
+  "generatedAt": "2026-08-05T05:56:34.194Z",
+  "segment": "qlog_f449c_2.bz2",
+  "stage": 2,
+  "scope": "pb0_fusion_pairing_repair",
+  "baseline": {
+    "laneChecksum": "5283af91",
+    "cleanedRunCount": 28,
+    "fusedFragmentCount": 33,
+    "roadSurfaceChecksum": "26ae09b9"
+  },
+  "after": {
+    "laneChecksum": "fa3dac79",
+    "cleanedRunCount": 22,
+    "fusedFragmentCount": 23,
+    "finalFragmentCount": 22,
+    "visibleDisconnections": 19,
+    "roadSurfaceChecksum": "cd437093",
+    "roadSurfaceChecksumBefore": "cd437093",
+    "roadSurfacePolygonCount": 13,
+    "frozenReferenceSurfaceChecksum": "26ae09b9",
+    "roadSurfaceSemanticallyOutdated": true
+  },
+  "summary": {
+    "pb0CandidatesInvestigated": 7,
+    "commonFusionRootCause": "D11_maxLaneFragmentGapM with tracker continuity present; bridge via canBridgeTrackerContinuousFusionGap on outer-boundary track",
+    "responsibleFunction": "lib/sd_fusion.js fuseLaneTrackSdFragments",
+    "responsibleCondition": "ds > maxLaneFragmentGapM (10m) without tracker-continuity bridge approval",
+    "safeCandidatesTargeted": 7,
+    "safeCandidatesRepaired": 4,
+    "safeCandidatesUnresolved": [
+      "DC-014",
+      "DC-022",
+      "DC-024"
+    ],
+    "unsafeGapsStillOpen": [
+      "DC-002",
+      "DC-003",
+      "DC-004",
+      "DC-013",
+      "DC-015",
+      "DC-016",
+      "DC-017",
+      "DC-018"
+    ],
+    "fusedFragmentsBefore": 33,
+    "fusedFragmentsAfter": 23,
+    "finalFragmentsBefore": 28,
+    "finalFragmentsAfter": 22,
+    "visibleDisconnectionsBefore": 25,
+    "visibleDisconnectionsAfter": 19,
+    "maxCoordinateDisplacementOutsideIntervals": 0,
+    "coordinatesChangedOutsideApprovedIntervals": false,
+    "outsideChangeCount": 0,
+    "geometryModified": true
+  },
+  "fusionTrace": [
+    {
+      "disconnectionId": "DC-014",
+      "sourceFragmentId": 22,
+      "candidateContinuationFragmentId": 28,
+      "trackId": 0,
+      "chunkId": 0,
+      "passId": 0,
+      "routeSInterval": [
+        101.42060881322757,
+        128.15150739711632
+      ],
+      "alongTrackGapM": 26.730898583888745,
+      "euclideanGapM": 27.357892765568067,
+      "lateralOffsetM": 0.7453879742243847,
+      "headingDifferenceDeg": 36.77016762395749,
+      "observationSupport": {
+        "mappedObsInGap": 21,
+        "modelV2Frames": 25
+      },
+      "fusionSplit": null,
+      "rejectionCondition": "D11_maxLaneFragmentGapM",
+      "responsibleFunction": "fuseLaneTrackSdFragments / canBridgeTrackerContinuousFusionGap",
+      "failureKind": "fragment_construction",
+      "trackerContinuous": true
+    },
+    {
+      "disconnectionId": "DC-019",
+      "sourceFragmentId": 15,
+      "candidateContinuationFragmentId": 27,
+      "trackId": 0,
+      "chunkId": 0,
+      "passId": 0,
+      "routeSInterval": [
+        439.19607520729676,
+        461.6933880838419
+      ],
+      "alongTrackGapM": 22.497312876545152,
+      "euclideanGapM": 22.500092378328105,
+      "lateralOffsetM": 0.3536528921614539,
+      "headingDifferenceDeg": 0.06861608765939309,
+      "observationSupport": {
+        "mappedObsInGap": 12,
+        "modelV2Frames": 25
+      },
+      "fusionSplit": null,
+      "rejectionCondition": "D11_maxLaneFragmentGapM",
+      "responsibleFunction": "fuseLaneTrackSdFragments / canBridgeTrackerContinuousFusionGap",
+      "failureKind": "fragment_construction",
+      "trackerContinuous": true
+    },
+    {
+      "disconnectionId": "DC-020",
+      "sourceFragmentId": 27,
+      "candidateContinuationFragmentId": 23,
+      "trackId": 0,
+      "chunkId": 0,
+      "passId": 0,
+      "routeSInterval": [
+        503.51347510831215,
+        527.5087461105519
+      ],
+      "alongTrackGapM": 23.995271002239747,
+      "euclideanGapM": 24.00458739006952,
+      "lateralOffsetM": 0.6687191462466706,
+      "headingDifferenceDeg": 14.249772868340187,
+      "observationSupport": {
+        "mappedObsInGap": 13,
+        "modelV2Frames": 25
+      },
+      "fusionSplit": null,
+      "rejectionCondition": "D11_maxLaneFragmentGapM",
+      "responsibleFunction": "fuseLaneTrackSdFragments / canBridgeTrackerContinuousFusionGap",
+      "failureKind": "fragment_construction",
+      "trackerContinuous": true
+    },
+    {
+      "disconnectionId": "DC-021",
+      "sourceFragmentId": 23,
+      "candidateContinuationFragmentId": 21,
+      "trackId": 0,
+      "chunkId": 0,
+      "passId": 0,
+      "routeSInterval": [
+        554.2844207530605,
+        567.3471591784137
+      ],
+      "alongTrackGapM": 13.062738425353132,
+      "euclideanGapM": 13.063607987497786,
+      "lateralOffsetM": 0.1507265133241389,
+      "headingDifferenceDeg": 7.334519551146286,
+      "observationSupport": {
+        "mappedObsInGap": 10,
+        "modelV2Frames": 25
+      },
+      "fusionSplit": {
+        "afterBinKey": 64,
+        "beforeBinKey": 70,
+        "gapM": 10.968090632469028,
+        "lateralDeltaM": 6.978304513491639,
+        "reason": "D11_maxLaneFragmentGapM",
+        "bridgeRejected": "lateralMismatch",
+        "measurement": "consecutive accepted fused bin centres (s coordinate)",
+        "thresholdM": 10
+      },
+      "rejectionCondition": "lateralMismatch",
+      "responsibleFunction": "fuseLaneTrackSdFragments / canBridgeTrackerContinuousFusionGap",
+      "failureKind": "compatibility_rejection",
+      "trackerContinuous": true
+    },
+    {
+      "disconnectionId": "DC-022",
+      "sourceFragmentId": 21,
+      "candidateContinuationFragmentId": 19,
+      "trackId": 0,
+      "chunkId": 0,
+      "passId": 0,
+      "routeSInterval": [
+        572.0315218311622,
+        590.03142453498
+      ],
+      "alongTrackGapM": 17.99990270381784,
+      "euclideanGapM": 18.000027225732865,
+      "lateralOffsetM": 0.06695356760992599,
+      "headingDifferenceDeg": 10.183904070656467,
+      "observationSupport": {
+        "mappedObsInGap": 10,
+        "modelV2Frames": 25
+      },
+      "fusionSplit": {
+        "afterBinKey": 36,
+        "beforeBinKey": 44,
+        "gapM": 17.443788652165253,
+        "lateralDeltaM": 0.2795206821059384,
+        "reason": "D11_maxLaneFragmentGapM",
+        "bridgeRejected": "headingMismatch",
+        "measurement": "consecutive accepted fused bin centres (s coordinate)",
+        "thresholdM": 10
+      },
+      "rejectionCondition": "headingMismatch",
+      "responsibleFunction": "fuseLaneTrackSdFragments / canBridgeTrackerContinuousFusionGap",
+      "failureKind": "compatibility_rejection",
+      "trackerContinuous": true
+    },
+    {
+      "disconnectionId": "DC-023",
+      "sourceFragmentId": 19,
+      "candidateContinuationFragmentId": 18,
+      "trackId": 0,
+      "chunkId": 0,
+      "passId": 0,
+      "routeSInterval": [
+        609.5384308071199,
+        621.5384584633066
+      ],
+      "alongTrackGapM": 12.000027656186717,
+      "euclideanGapM": 12.000027662204548,
+      "lateralOffsetM": 0.00038003726161295326,
+      "headingDifferenceDeg": 0.20005482311955802,
+      "observationSupport": {
+        "mappedObsInGap": 6,
+        "modelV2Frames": 25
+      },
+      "fusionSplit": {
+        "afterBinKey": 64,
+        "beforeBinKey": 70,
+        "gapM": 10.968090632469028,
+        "lateralDeltaM": 6.978304513491639,
+        "reason": "D11_maxLaneFragmentGapM",
+        "bridgeRejected": "lateralMismatch",
+        "measurement": "consecutive accepted fused bin centres (s coordinate)",
+        "thresholdM": 10
+      },
+      "rejectionCondition": "lateralMismatch",
+      "responsibleFunction": "fuseLaneTrackSdFragments / canBridgeTrackerContinuousFusionGap",
+      "failureKind": "compatibility_rejection",
+      "trackerContinuous": true
+    },
+    {
+      "disconnectionId": "DC-024",
+      "sourceFragmentId": 18,
+      "candidateContinuationFragmentId": 25,
+      "trackId": 0,
+      "chunkId": 0,
+      "passId": 0,
+      "routeSInterval": [
+        630.5985379438873,
+        646.9116126270657
+      ],
+      "alongTrackGapM": 16.313074683178343,
+      "euclideanGapM": 16.313090523829167,
+      "lateralOffsetM": 0.022733668664361772,
+      "headingDifferenceDeg": 6.378745542810634,
+      "observationSupport": {
+        "mappedObsInGap": 11,
+        "modelV2Frames": 25
+      },
+      "fusionSplit": {
+        "afterBinKey": 36,
+        "beforeBinKey": 44,
+        "gapM": 17.443788652165253,
+        "lateralDeltaM": 0.2795206821059384,
+        "reason": "D11_maxLaneFragmentGapM",
+        "bridgeRejected": "headingMismatch",
+        "measurement": "consecutive accepted fused bin centres (s coordinate)",
+        "thresholdM": 10
+      },
+      "rejectionCondition": "headingMismatch",
+      "responsibleFunction": "fuseLaneTrackSdFragments / canBridgeTrackerContinuousFusionGap",
+      "failureKind": "compatibility_rejection",
+      "trackerContinuous": true
+    }
+  ],
+  "repaired": [
+    "DC-019",
+    "DC-020",
+    "DC-021",
+    "DC-023"
+  ],
+  "unresolved": [
+    "DC-014",
+    "DC-022",
+    "DC-024"
+  ],
+  "unsafeStillOpen": [
+    {
+      "disconnectionId": "DC-002",
+      "stillOpen": true,
+      "alongTrackGapM": 17.442207002724956
+    },
+    {
+      "disconnectionId": "DC-003",
+      "stillOpen": true,
+      "alongTrackGapM": 239.9397931656839
+    },
+    {
+      "disconnectionId": "DC-004",
+      "stillOpen": true,
+      "alongTrackGapM": 14.968126127636538
+    },
+    {
+      "disconnectionId": "DC-013",
+      "stillOpen": true,
+      "alongTrackGapM": 17.443788652165253
+    },
+    {
+      "disconnectionId": "DC-015",
+      "stillOpen": true,
+      "alongTrackGapM": 123.67872220287506
+    },
+    {
+      "disconnectionId": "DC-016",
+      "stillOpen": true,
+      "alongTrackGapM": 17.215560665616124
+    },
+    {
+      "disconnectionId": "DC-017",
+      "stillOpen": true,
+      "alongTrackGapM": 36.18011637773424
+    },
+    {
+      "disconnectionId": "DC-018",
+      "stillOpen": true,
+      "alongTrackGapM": 43.00231744020948
+    }
+  ],
+  "outsideChanges": [],
+  "pb2DashedSuspects": [
+    "DC-000",
+    "DC-005",
+    "DC-007"
+  ]
+}

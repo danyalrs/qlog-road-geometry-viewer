@@ -1,0 +1,4945 @@
+{
+  "generatedAt": "2026-07-30T08:25:38.239Z",
+  "stage": "stage24-b-motion-pipeline-shadow",
+  "terminology": "Development-set shadow integration — not final model performance",
+  "pipelineIntegration": {
+    "entryFunction": "evaluatePairAtPipeline",
+    "module": "lib/stage24_b_motion_pipeline_shadow.js",
+    "authoritativeClassification": "classifyPair (lib/stage20_b_motion_pair_pipeline.js)",
+    "authoritativeContinuation": "deriveAutomaticContinuationDecision (lib/stage20_b_motion_baseline_compare.js)",
+    "shadowHook": "evaluateBMotionDecision with decisionMode=vector_shadow (lib/stage23_b_motion_vector_residual.js)",
+    "callers": [
+      "scripts/stage24_b_motion_pipeline_shadow.js",
+      "scripts/stage20_b_motion_review_manifest_build.js (classifyPair source)"
+    ],
+    "consumers": [
+      "Stage 20 manual review manifest and UI (diagnostic only in shadow mode)",
+      "Stage 19 partition uses staticBranchCandidateEdge separately — not modified in shadow mode",
+      "processRoute / lane_tracking — unchanged in shadow mode"
+    ],
+    "diagnosticAttachment": "comparisonDiagnostics on evaluateBMotionDecision return; stage24 runtime diagnostics artifact"
+  },
+  "featureFlag": {
+    "defaultEnabled": false,
+    "defaultMode": "legacy_scalar",
+    "shadowMode": "vector_shadow",
+    "note": "vector_limited not activated globally; shadow mode keeps legacy authoritative"
+  },
+  "segmentDiscovery": {
+    "discoveredCount": 92,
+    "expectedCount": 92,
+    "files": [
+      "qlog_f449c_0.bz2",
+      "qlog_f449c_1.bz2",
+      "qlog_f449c_2.bz2",
+      "qlog_f449c_3.bz2",
+      "qlog_f449c_4.bz2",
+      "qlog_f449c_5.bz2",
+      "qlog_f449c_6.bz2",
+      "qlog_f449c_7.bz2",
+      "qlog_f449c_8.bz2",
+      "qlog_f449c_9.bz2",
+      "qlog_f449c_10.bz2",
+      "qlog_f449c_11.bz2",
+      "qlog_f449c_12.bz2",
+      "qlog_f449c_13.bz2",
+      "qlog_f449c_14.bz2",
+      "qlog_f449c_15.bz2",
+      "qlog_f449c_16.bz2",
+      "qlog_f449c_17.bz2",
+      "qlog_f449c_18.bz2",
+      "qlog_f449c_19.bz2",
+      "qlog_f449c_20.bz2",
+      "qlog_f449c_22.bz2",
+      "qlog_f449c_23.bz2",
+      "qlog_f449c_24.bz2",
+      "qlog_f449c_25.bz2",
+      "qlog_f449c_26.bz2",
+      "qlog_f449c_27.bz2",
+      "qlog_f449c_28.bz2",
+      "qlog_f449c_29.bz2",
+      "qlog_f449c_30.bz2",
+      "qlog_f449c_31.bz2",
+      "qlog_f449c_32.bz2",
+      "qlog_f449c_33.bz2",
+      "qlog_f449c_34.bz2",
+      "qlog_f449c_35.bz2",
+      "qlog_f449c_36.bz2",
+      "qlog_f449c_37.bz2",
+      "qlog_f449c_39.bz2",
+      "qlog_f449c_40.bz2",
+      "qlog_f449c_41.bz2",
+      "qlog_f449c_42.bz2",
+      "qlog_f449c_43.bz2",
+      "qlog_f449c_44.bz2",
+      "qlog_f449c_45.bz2",
+      "qlog_f449c_46.bz2",
+      "qlog_f449c_47.bz2",
+      "qlog_f449c_48.bz2",
+      "qlog_f449c_49.bz2",
+      "qlog_f449c_50.bz2",
+      "qlog_f449c_51.bz2",
+      "qlog_f449c_53.bz2",
+      "qlog_f449c_54.bz2",
+      "qlog_f449c_55.bz2",
+      "qlog_f449c_56.bz2",
+      "qlog_f449c_57.bz2",
+      "qlog_f449c_58.bz2",
+      "qlog_f449c_59.bz2",
+      "qlog_f449c_60.bz2",
+      "qlog_f449c_61.bz2",
+      "qlog_f449c_62.bz2",
+      "qlog_f449c_63.bz2",
+      "qlog_f449c_64.bz2",
+      "qlog_f449c_65.bz2",
+      "qlog_f449c_66.bz2",
+      "qlog_f449c_67.bz2",
+      "qlog_f449c_68.bz2",
+      "qlog_f449c_69.bz2",
+      "qlog_f449c_71.bz2",
+      "qlog_f449c_72.bz2",
+      "qlog_f449c_73.bz2",
+      "qlog_f449c_74.bz2",
+      "qlog_f449c_75.bz2",
+      "qlog_f449c_81.bz2",
+      "qlog_f449c_82.bz2",
+      "qlog_f449c_83.bz2",
+      "qlog_f449c_84.bz2",
+      "qlog_f449c_85.bz2",
+      "qlog_f449c_86.bz2",
+      "qlog_f449c_87.bz2",
+      "qlog_f449c_88.bz2",
+      "qlog_f449c_89.bz2",
+      "qlog_f449c_90.bz2",
+      "qlog_f449c_91.bz2",
+      "qlog_f449c_92.bz2",
+      "qlog_f449c_93.bz2",
+      "qlog_f449c_94.bz2",
+      "qlog_f449c_95.bz2",
+      "qlog_f449c_96.bz2",
+      "qlog_f449c_97.bz2",
+      "qlog_f449c_98.bz2",
+      "qlog_f449c_99.bz2",
+      "qlog_f449c_100.bz2"
+    ]
+  },
+  "segmentQualificationSummary": {
+    "processed": 92,
+    "failed": 0,
+    "qualifiedForFusion": 92,
+    "failures": []
+  },
+  "pairEnumeration": {
+    "totalConsecutivePairs": 5010,
+    "segmentsRepresented": 87
+  },
+  "downstreamEquivalence": {
+    "segmentSnapshotHashesIdentical": true,
+    "note": "processRoute segment snapshots are mode-independent; shadow diagnostics do not alter geometry pipeline",
+    "legacyAuthoritativeMismatches": 0,
+    "authoritativeMismatchExamples": [],
+    "segmentProcessedCount": 92,
+    "segmentFailureCount": 0,
+    "segmentSnapshotHashes": [
+      {
+        "segmentId": 0,
+        "segmentFile": "qlog_f449c_0.bz2",
+        "snapshotHash": "3ba3d482d6db1966d1449fdaceb80fc4e98729fa60085ba861bed2f206a437b8",
+        "frameCount": 21,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 1,
+        "segmentFile": "qlog_f449c_1.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 2,
+        "segmentFile": "qlog_f449c_2.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 3,
+        "segmentFile": "qlog_f449c_3.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 4,
+        "segmentFile": "qlog_f449c_4.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 5,
+        "segmentFile": "qlog_f449c_5.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 6,
+        "segmentFile": "qlog_f449c_6.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 7,
+        "segmentFile": "qlog_f449c_7.bz2",
+        "snapshotHash": "6c70ee9094b6ef9ed17fb1e223559f4fdebfee97d385ddf541a967713f7ee1b9",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 8,
+        "segmentFile": "qlog_f449c_8.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 9,
+        "segmentFile": "qlog_f449c_9.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 10,
+        "segmentFile": "qlog_f449c_10.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 11,
+        "segmentFile": "qlog_f449c_11.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 12,
+        "segmentFile": "qlog_f449c_12.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 13,
+        "segmentFile": "qlog_f449c_13.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 14,
+        "segmentFile": "qlog_f449c_14.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 15,
+        "segmentFile": "qlog_f449c_15.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 16,
+        "segmentFile": "qlog_f449c_16.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 17,
+        "segmentFile": "qlog_f449c_17.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 18,
+        "segmentFile": "qlog_f449c_18.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 19,
+        "segmentFile": "qlog_f449c_19.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 20,
+        "segmentFile": "qlog_f449c_20.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 22,
+        "segmentFile": "qlog_f449c_22.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 23,
+        "segmentFile": "qlog_f449c_23.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 24,
+        "segmentFile": "qlog_f449c_24.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 25,
+        "segmentFile": "qlog_f449c_25.bz2",
+        "snapshotHash": "4220c08af4925e3d73916a2eb070eebcda9984f1df01b458877bfaac53a1e545",
+        "frameCount": 30,
+        "passCount": 4,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 26,
+        "segmentFile": "qlog_f449c_26.bz2",
+        "snapshotHash": "db1694531be10baa55a5584d6eb0a0c37ce5c924dbbf22ed0b94839456600b7d",
+        "frameCount": 30,
+        "passCount": 2,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 27,
+        "segmentFile": "qlog_f449c_27.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 28,
+        "segmentFile": "qlog_f449c_28.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 29,
+        "segmentFile": "qlog_f449c_29.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 30,
+        "segmentFile": "qlog_f449c_30.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 31,
+        "segmentFile": "qlog_f449c_31.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 32,
+        "segmentFile": "qlog_f449c_32.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 33,
+        "segmentFile": "qlog_f449c_33.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 34,
+        "segmentFile": "qlog_f449c_34.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 35,
+        "segmentFile": "qlog_f449c_35.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 36,
+        "segmentFile": "qlog_f449c_36.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 37,
+        "segmentFile": "qlog_f449c_37.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 39,
+        "segmentFile": "qlog_f449c_39.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 40,
+        "segmentFile": "qlog_f449c_40.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 41,
+        "segmentFile": "qlog_f449c_41.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 42,
+        "segmentFile": "qlog_f449c_42.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 43,
+        "segmentFile": "qlog_f449c_43.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 44,
+        "segmentFile": "qlog_f449c_44.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 45,
+        "segmentFile": "qlog_f449c_45.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 46,
+        "segmentFile": "qlog_f449c_46.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 47,
+        "segmentFile": "qlog_f449c_47.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 48,
+        "segmentFile": "qlog_f449c_48.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 49,
+        "segmentFile": "qlog_f449c_49.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 50,
+        "segmentFile": "qlog_f449c_50.bz2",
+        "snapshotHash": "004b9baebe73fdc3c0b1f466c0f88af006fc3015d923d7b21359ceffb73cad9c",
+        "frameCount": 17,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 51,
+        "segmentFile": "qlog_f449c_51.bz2",
+        "snapshotHash": "f0c5309038f5105f66f373a4b405501cc62fc580f0537e4087d26a492a9db660",
+        "frameCount": 28,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 53,
+        "segmentFile": "qlog_f449c_53.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 54,
+        "segmentFile": "qlog_f449c_54.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 55,
+        "segmentFile": "qlog_f449c_55.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 56,
+        "segmentFile": "qlog_f449c_56.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 57,
+        "segmentFile": "qlog_f449c_57.bz2",
+        "snapshotHash": "05c53285c51b50560770feab8bc716e45bb3509f630808f97b13162e255fe9c9",
+        "frameCount": 30,
+        "passCount": 2,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 58,
+        "segmentFile": "qlog_f449c_58.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 59,
+        "segmentFile": "qlog_f449c_59.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 60,
+        "segmentFile": "qlog_f449c_60.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 61,
+        "segmentFile": "qlog_f449c_61.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 62,
+        "segmentFile": "qlog_f449c_62.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 63,
+        "segmentFile": "qlog_f449c_63.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 64,
+        "segmentFile": "qlog_f449c_64.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 65,
+        "segmentFile": "qlog_f449c_65.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 66,
+        "segmentFile": "qlog_f449c_66.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 67,
+        "segmentFile": "qlog_f449c_67.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 68,
+        "segmentFile": "qlog_f449c_68.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 69,
+        "segmentFile": "qlog_f449c_69.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 71,
+        "segmentFile": "qlog_f449c_71.bz2",
+        "snapshotHash": "f0c5309038f5105f66f373a4b405501cc62fc580f0537e4087d26a492a9db660",
+        "frameCount": 28,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 72,
+        "segmentFile": "qlog_f449c_72.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 73,
+        "segmentFile": "qlog_f449c_73.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 74,
+        "segmentFile": "qlog_f449c_74.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 75,
+        "segmentFile": "qlog_f449c_75.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 81,
+        "segmentFile": "qlog_f449c_81.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 82,
+        "segmentFile": "qlog_f449c_82.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 83,
+        "segmentFile": "qlog_f449c_83.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 84,
+        "segmentFile": "qlog_f449c_84.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 85,
+        "segmentFile": "qlog_f449c_85.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 86,
+        "segmentFile": "qlog_f449c_86.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 87,
+        "segmentFile": "qlog_f449c_87.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 88,
+        "segmentFile": "qlog_f449c_88.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 89,
+        "segmentFile": "qlog_f449c_89.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 90,
+        "segmentFile": "qlog_f449c_90.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 91,
+        "segmentFile": "qlog_f449c_91.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 92,
+        "segmentFile": "qlog_f449c_92.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 93,
+        "segmentFile": "qlog_f449c_93.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 94,
+        "segmentFile": "qlog_f449c_94.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 95,
+        "segmentFile": "qlog_f449c_95.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 96,
+        "segmentFile": "qlog_f449c_96.bz2",
+        "snapshotHash": "6c70ee9094b6ef9ed17fb1e223559f4fdebfee97d385ddf541a967713f7ee1b9",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 97,
+        "segmentFile": "qlog_f449c_97.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 98,
+        "segmentFile": "qlog_f449c_98.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 99,
+        "segmentFile": "qlog_f449c_99.bz2",
+        "snapshotHash": "748391dca324af68e7257a24653f73d3ba28f394c71c32ba18f8ecee00d9c8df",
+        "frameCount": 30,
+        "passCount": 1,
+        "laneTrackCount": 0
+      },
+      {
+        "segmentId": 100,
+        "segmentFile": "qlog_f449c_100.bz2",
+        "snapshotHash": "0fca4ca5288f3dcc75ed10713a56acce8bbf3da4d14ecc45b8367adcb078b449",
+        "frameCount": 10,
+        "passCount": 1,
+        "laneTrackCount": 0
+      }
+    ]
+  },
+  "aggregateShadowStats": {
+    "totalDecisions": 5010,
+    "legacyPositive": 3673,
+    "legacyNegative": 1337,
+    "vectorPositive": 3776,
+    "vectorNegative": 1234,
+    "samePositive": 3591,
+    "sameNegative": 1152,
+    "legacyPositiveVectorNegative": 82,
+    "legacyNegativeVectorPositive": 185,
+    "totalChangedDecisions": 267,
+    "changeRate": 0.0533,
+    "geometryAvailableCount": 4998,
+    "geometryAvailableRate": 0.9976,
+    "fallbackCount": 12,
+    "fallbackRate": 0.0024,
+    "unavailableReasonCounts": {
+      "anchor_geometry_unavailable": 12
+    },
+    "vectorResidualDistributionByCategory": {
+      "same_positive": {
+        "count": 3591,
+        "min": 0.0022,
+        "max": 11.7684,
+        "median": 0.1539
+      },
+      "same_negative": {
+        "count": 1140,
+        "min": 0,
+        "max": 136.0685,
+        "median": 0.4293
+      },
+      "legacy_positive_vector_negative": {
+        "count": 82,
+        "min": 12.1484,
+        "max": 126.7199,
+        "median": 24.298
+      },
+      "legacy_negative_vector_positive": {
+        "count": 185,
+        "min": 0.0026,
+        "max": 10.431,
+        "median": 0.213
+      }
+    },
+    "segmentLevelChangeCounts": [
+      {
+        "segmentId": 29,
+        "changeCount": 15
+      },
+      {
+        "segmentId": 94,
+        "changeCount": 14
+      },
+      {
+        "segmentId": 74,
+        "changeCount": 11
+      },
+      {
+        "segmentId": 75,
+        "changeCount": 11
+      },
+      {
+        "segmentId": 51,
+        "changeCount": 9
+      },
+      {
+        "segmentId": 99,
+        "changeCount": 9
+      },
+      {
+        "segmentId": 2,
+        "changeCount": 7
+      },
+      {
+        "segmentId": 23,
+        "changeCount": 7
+      },
+      {
+        "segmentId": 28,
+        "changeCount": 6
+      },
+      {
+        "segmentId": 93,
+        "changeCount": 6
+      },
+      {
+        "segmentId": 11,
+        "changeCount": 5
+      },
+      {
+        "segmentId": 19,
+        "changeCount": 5
+      },
+      {
+        "segmentId": 20,
+        "changeCount": 5
+      },
+      {
+        "segmentId": 25,
+        "changeCount": 5
+      },
+      {
+        "segmentId": 58,
+        "changeCount": 5
+      },
+      {
+        "segmentId": 69,
+        "changeCount": 5
+      },
+      {
+        "segmentId": 92,
+        "changeCount": 5
+      },
+      {
+        "segmentId": 0,
+        "changeCount": 4
+      },
+      {
+        "segmentId": 22,
+        "changeCount": 4
+      },
+      {
+        "segmentId": 24,
+        "changeCount": 4
+      },
+      {
+        "segmentId": 3,
+        "changeCount": 4
+      },
+      {
+        "segmentId": 47,
+        "changeCount": 4
+      },
+      {
+        "segmentId": 53,
+        "changeCount": 4
+      },
+      {
+        "segmentId": 61,
+        "changeCount": 4
+      },
+      {
+        "segmentId": 63,
+        "changeCount": 4
+      },
+      {
+        "segmentId": 71,
+        "changeCount": 4
+      },
+      {
+        "segmentId": 88,
+        "changeCount": 4
+      },
+      {
+        "segmentId": 91,
+        "changeCount": 4
+      },
+      {
+        "segmentId": 100,
+        "changeCount": 3
+      },
+      {
+        "segmentId": 14,
+        "changeCount": 3
+      },
+      {
+        "segmentId": 18,
+        "changeCount": 3
+      },
+      {
+        "segmentId": 30,
+        "changeCount": 3
+      },
+      {
+        "segmentId": 33,
+        "changeCount": 3
+      },
+      {
+        "segmentId": 34,
+        "changeCount": 3
+      },
+      {
+        "segmentId": 37,
+        "changeCount": 3
+      },
+      {
+        "segmentId": 44,
+        "changeCount": 3
+      },
+      {
+        "segmentId": 48,
+        "changeCount": 3
+      },
+      {
+        "segmentId": 50,
+        "changeCount": 3
+      },
+      {
+        "segmentId": 64,
+        "changeCount": 3
+      },
+      {
+        "segmentId": 7,
+        "changeCount": 3
+      },
+      {
+        "segmentId": 81,
+        "changeCount": 3
+      },
+      {
+        "segmentId": 85,
+        "changeCount": 3
+      },
+      {
+        "segmentId": 86,
+        "changeCount": 3
+      },
+      {
+        "segmentId": 87,
+        "changeCount": 3
+      },
+      {
+        "segmentId": 1,
+        "changeCount": 2
+      },
+      {
+        "segmentId": 13,
+        "changeCount": 2
+      },
+      {
+        "segmentId": 12,
+        "changeCount": 2
+      },
+      {
+        "segmentId": 15,
+        "changeCount": 2
+      },
+      {
+        "segmentId": 45,
+        "changeCount": 2
+      },
+      {
+        "segmentId": 5,
+        "changeCount": 2
+      },
+      {
+        "segmentId": 66,
+        "changeCount": 2
+      },
+      {
+        "segmentId": 72,
+        "changeCount": 2
+      },
+      {
+        "segmentId": 73,
+        "changeCount": 2
+      },
+      {
+        "segmentId": 8,
+        "changeCount": 2
+      },
+      {
+        "segmentId": 84,
+        "changeCount": 2
+      },
+      {
+        "segmentId": 89,
+        "changeCount": 2
+      },
+      {
+        "segmentId": 95,
+        "changeCount": 2
+      },
+      {
+        "segmentId": 97,
+        "changeCount": 2
+      },
+      {
+        "segmentId": 98,
+        "changeCount": 2
+      },
+      {
+        "segmentId": 10,
+        "changeCount": 1
+      },
+      {
+        "segmentId": 16,
+        "changeCount": 1
+      },
+      {
+        "segmentId": 17,
+        "changeCount": 1
+      },
+      {
+        "segmentId": 26,
+        "changeCount": 1
+      },
+      {
+        "segmentId": 31,
+        "changeCount": 1
+      },
+      {
+        "segmentId": 32,
+        "changeCount": 1
+      },
+      {
+        "segmentId": 35,
+        "changeCount": 1
+      },
+      {
+        "segmentId": 36,
+        "changeCount": 1
+      },
+      {
+        "segmentId": 39,
+        "changeCount": 1
+      },
+      {
+        "segmentId": 46,
+        "changeCount": 1
+      },
+      {
+        "segmentId": 55,
+        "changeCount": 1
+      },
+      {
+        "segmentId": 57,
+        "changeCount": 1
+      },
+      {
+        "segmentId": 82,
+        "changeCount": 1
+      },
+      {
+        "segmentId": 83,
+        "changeCount": 1
+      },
+      {
+        "segmentId": 90,
+        "changeCount": 1
+      }
+    ]
+  },
+  "concentrationPatterns": {
+    "nearBoundaryChanges": 5,
+    "highDisplacementChanges": 124,
+    "stationaryOrLowSpeedChanges": 0,
+    "sessionOrChunkChanges": 0,
+    "headingInstabilityChanges": 30,
+    "roadEdgeOverlapChanges": 6,
+    "repeatedObservationPairClusters": [
+      {
+        "observationPairKey": "73700718671|75701987372",
+        "changedDecisionCount": 4
+      },
+      {
+        "observationPairKey": "1213505750614|1215507244096",
+        "changedDecisionCount": 4
+      },
+      {
+        "observationPairKey": "3253025888165|3255024134462",
+        "changedDecisionCount": 4
+      },
+      {
+        "observationPairKey": "5532395104332|5534393365343",
+        "changedDecisionCount": 4
+      },
+      {
+        "observationPairKey": "5652343576938|5654346828277",
+        "changedDecisionCount": 4
+      },
+      {
+        "observationPairKey": "733508839570|735503551407",
+        "changedDecisionCount": 3
+      },
+      {
+        "observationPairKey": "913471747531|915475852901",
+        "changedDecisionCount": 3
+      },
+      {
+        "observationPairKey": "1153529242344|1155528490263",
+        "changedDecisionCount": 3
+      },
+      {
+        "observationPairKey": "1273421306391|1275420367375",
+        "changedDecisionCount": 3
+      },
+      {
+        "observationPairKey": "1513419259837|1515417778205",
+        "changedDecisionCount": 3
+      },
+      {
+        "observationPairKey": "1519414164181|1521415688621",
+        "changedDecisionCount": 3
+      },
+      {
+        "observationPairKey": "1783361831645|1785353722352",
+        "changedDecisionCount": 3
+      },
+      {
+        "observationPairKey": "1813330375034|1815324553007",
+        "changedDecisionCount": 3
+      },
+      {
+        "observationPairKey": "253601536849|255605391742",
+        "changedDecisionCount": 3
+      },
+      {
+        "observationPairKey": "2053268348348|2055266337406",
+        "changedDecisionCount": 3
+      },
+      {
+        "observationPairKey": "2113281672121|2115281766102",
+        "changedDecisionCount": 3
+      },
+      {
+        "observationPairKey": "2293225612083|2295224356991",
+        "changedDecisionCount": 3
+      },
+      {
+        "observationPairKey": "3091052949720|3093047736871",
+        "changedDecisionCount": 3
+      },
+      {
+        "observationPairKey": "3828733650245|3830733561817",
+        "changedDecisionCount": 3
+      },
+      {
+        "observationPairKey": "3888684125103|3890684386945",
+        "changedDecisionCount": 3
+      }
+    ],
+    "topSegmentsByChange": [
+      {
+        "segmentId": 29,
+        "changeCount": 15
+      },
+      {
+        "segmentId": 94,
+        "changeCount": 14
+      },
+      {
+        "segmentId": 74,
+        "changeCount": 11
+      },
+      {
+        "segmentId": 75,
+        "changeCount": 11
+      },
+      {
+        "segmentId": 51,
+        "changeCount": 9
+      },
+      {
+        "segmentId": 99,
+        "changeCount": 9
+      },
+      {
+        "segmentId": 2,
+        "changeCount": 7
+      },
+      {
+        "segmentId": 23,
+        "changeCount": 7
+      },
+      {
+        "segmentId": 28,
+        "changeCount": 6
+      },
+      {
+        "segmentId": 93,
+        "changeCount": 6
+      },
+      {
+        "segmentId": 11,
+        "changeCount": 5
+      },
+      {
+        "segmentId": 19,
+        "changeCount": 5
+      },
+      {
+        "segmentId": 20,
+        "changeCount": 5
+      },
+      {
+        "segmentId": 25,
+        "changeCount": 5
+      },
+      {
+        "segmentId": 58,
+        "changeCount": 5
+      }
+    ]
+  },
+  "developmentSetRevalidation": {
+    "reproductionPassed": true,
+    "reproductionErrors": [],
+    "metrics": {
+      "confusionMatrix": {
+        "tp": 158,
+        "tn": 1,
+        "fp": 10,
+        "fn": 6
+      },
+      "accuracy": {
+        "rate": 0.9086,
+        "numerator": 159,
+        "denominator": 175
+      },
+      "positivePrecision": {
+        "rate": 0.9405,
+        "numerator": 158,
+        "denominator": 168
+      },
+      "positiveRecall": {
+        "rate": 0.9634,
+        "numerator": 158,
+        "denominator": 164
+      },
+      "positiveF1": {
+        "rate": 0.9518
+      },
+      "negativePrecision": {
+        "rate": 0.1429,
+        "numerator": 1,
+        "denominator": 7
+      },
+      "negativeRecall": {
+        "rate": 0.0909,
+        "numerator": 1,
+        "denominator": 11
+      },
+      "negativeF1": {
+        "rate": 0.1111
+      },
+      "balancedAccuracy": {
+        "rate": 0.5272
+      },
+      "macroF1": {
+        "rate": 0.5315
+      },
+      "classSupport": {
+        "manualPositive": 164,
+        "manualNegative": 11,
+        "totalResolved": 175
+      },
+      "metricConvention": "zero_division_equals_zero",
+      "deltaFromBaseline": {
+        "tp": 16,
+        "tn": 1,
+        "fp": -1,
+        "fn": -16
+      },
+      "correctedRecordIndices": [
+        0,
+        1,
+        2,
+        3,
+        121,
+        123,
+        124,
+        125,
+        126,
+        128,
+        129,
+        131,
+        139,
+        140,
+        142,
+        145,
+        186,
+        187,
+        206,
+        207,
+        210
+      ],
+      "newlyDamagedRecordIndices": [
+        111,
+        112,
+        120,
+        191
+      ],
+      "netCorrectImprovement": 17,
+      "truePositiveProtection": {
+        "baselineTpRetained": 138,
+        "baselineTpTotal": 142,
+        "allManualPositiveRetained": 158,
+        "allManualPositiveTotal": 164
+      },
+      "baselineCorrect": 142,
+      "candidateCorrect": 159
+    },
+    "expected": {
+      "tp": 158,
+      "tn": 1,
+      "fp": 10,
+      "fn": 6,
+      "accuracy": 0.9086,
+      "positiveF1": 0.9518,
+      "negativeF1": 0.1111,
+      "macroF1": 0.5315,
+      "balancedAccuracy": 0.5272,
+      "baselineTpRetained": 138,
+      "baselineTpTotal": 142,
+      "allManualPositiveRetained": 158,
+      "allManualPositiveTotal": 164,
+      "correctedIndices": [
+        0,
+        1,
+        2,
+        3,
+        121,
+        123,
+        124,
+        125,
+        126,
+        128,
+        129,
+        131,
+        139,
+        140,
+        142,
+        145,
+        186,
+        187,
+        206,
+        207,
+        210
+      ],
+      "damagedIndices": [
+        111,
+        112,
+        120,
+        191
+      ],
+      "netCorrectImprovement": 17,
+      "baselineCorrect": 142,
+      "configBCorrect": 159
+    }
+  },
+  "record207Sensitivity": {
+    "recordIndex": 207,
+    "labelUnchanged": true,
+    "limitedDecision": "positive",
+    "excluding207NetImprovement": 16,
+    "metricDelta": {
+      "accuracyDelta": -0.0006,
+      "macroF1Delta": -0.0002,
+      "correctedCountDelta": -1,
+      "netCorrectImprovementDelta": -1
+    }
+  },
+  "manualReviewSample": {
+    "selectionRules": [
+      "All legacy-positive/vector-negative up to cap 500",
+      "Representative legacy-negative/vector-positive sample (~40) with stride sampling",
+      "All fallback cases",
+      "All unavailable-geometry cases",
+      "Up to 30 cases closest to 12 m vector residual boundary",
+      "Up to 5 changed decisions from each of top 5 change segments",
+      "Known damaged development indices 111, 112, 120, 191",
+      "No automatic labelling — evidence references only"
+    ],
+    "sampleSize": 178,
+    "breakdown": {
+      "legacyPositiveVectorNegative": 78,
+      "legacyNegativeVectorPositiveRepresentative": 47,
+      "fallback": 12,
+      "unavailableGeometry": 0,
+      "nearBoundary": 25,
+      "highChangeSegment": 12,
+      "knownDamagedDevelopment": 4,
+      "developmentRecords": 12,
+      "runtimeOnly": 166
+    },
+    "records": [
+      {
+        "reviewPairId": "11:0:705517612650:1|11:0:707521227257:2",
+        "segmentId": 11,
+        "recordIndex": 120,
+        "selectionReason": "known_damaged_development_index",
+        "priority": 0,
+        "developmentRecord": true,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_11.bz2",
+          "logMonoTimeA": "705517612650",
+          "logMonoTimeB": "707521227257",
+          "observationIdA": "11:0:705517612650:1",
+          "observationIdB": "11:0:707521227257:2"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 126.7199,
+        "legacyScalarResidualM": 2.171
+      },
+      {
+        "reviewPairId": "2:0:161715770488:1|2:0:163718456147:1",
+        "segmentId": 2,
+        "recordIndex": 112,
+        "selectionReason": "known_damaged_development_index",
+        "priority": 0,
+        "developmentRecord": true,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_2.bz2",
+          "logMonoTimeA": "161715770488",
+          "logMonoTimeB": "163718456147",
+          "observationIdA": "2:0:161715770488:1",
+          "observationIdB": "2:0:163718456147:1"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 36.1545,
+        "legacyScalarResidualM": 5.967
+      },
+      {
+        "reviewPairId": "2:0:163718456147:1|2:0:165711518986:1",
+        "segmentId": 2,
+        "recordIndex": 111,
+        "selectionReason": "known_damaged_development_index",
+        "priority": 0,
+        "developmentRecord": true,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_2.bz2",
+          "logMonoTimeA": "163718456147",
+          "logMonoTimeB": "165711518986",
+          "observationIdA": "2:0:163718456147:1",
+          "observationIdB": "2:0:165711518986:1"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 32.4143,
+        "legacyScalarResidualM": 6.092
+      },
+      {
+        "reviewPairId": "51:0:3127050401601:1|51:0:3129048085909:1",
+        "segmentId": 51,
+        "recordIndex": 191,
+        "selectionReason": "known_damaged_development_index",
+        "priority": 0,
+        "developmentRecord": true,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_51.bz2",
+          "logMonoTimeA": "3127050401601",
+          "logMonoTimeB": "3129048085909",
+          "observationIdA": "51:0:3127050401601:1",
+          "observationIdB": "51:0:3129048085909:1"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 19.1475,
+        "legacyScalarResidualM": 5.814
+      },
+      {
+        "reviewPairId": "100:0:6018094386519:0|100:0:6022077326406:1",
+        "segmentId": 100,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_100.bz2",
+          "logMonoTimeA": "6018094386519",
+          "logMonoTimeB": "6022077326406",
+          "observationIdA": "100:0:6018094386519:0",
+          "observationIdB": "100:0:6022077326406:1"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 14.884,
+        "legacyScalarResidualM": 0.049
+      },
+      {
+        "reviewPairId": "100:0:6018094386519:1|100:0:6020086444562:1",
+        "segmentId": 100,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_100.bz2",
+          "logMonoTimeA": "6018094386519",
+          "logMonoTimeB": "6020086444562",
+          "observationIdA": "100:0:6018094386519:1",
+          "observationIdB": "100:0:6020086444562:1"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 21.8896,
+        "legacyScalarResidualM": 7.244
+      },
+      {
+        "reviewPairId": "100:0:6018094386519:2|100:0:6020086444562:2",
+        "segmentId": 100,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_100.bz2",
+          "logMonoTimeA": "6018094386519",
+          "logMonoTimeB": "6020086444562",
+          "observationIdA": "100:0:6018094386519:2",
+          "observationIdB": "100:0:6020086444562:2"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 28.1201,
+        "legacyScalarResidualM": 7.217
+      },
+      {
+        "reviewPairId": "19:0:1159528341293:2|19:0:1161528059432:2",
+        "segmentId": 19,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_19.bz2",
+          "logMonoTimeA": "1159528341293",
+          "logMonoTimeB": "1161528059432",
+          "observationIdA": "19:0:1159528341293:2",
+          "observationIdB": "19:0:1161528059432:2"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 17.5266,
+        "legacyScalarResidualM": 0.001
+      },
+      {
+        "reviewPairId": "2:0:165711518986:1|2:0:167711351167:1",
+        "segmentId": 2,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_2.bz2",
+          "logMonoTimeA": "165711518986",
+          "logMonoTimeB": "167711351167",
+          "observationIdA": "2:0:165711518986:1",
+          "observationIdB": "2:0:167711351167:1"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 58.2142,
+        "legacyScalarResidualM": 11.905
+      },
+      {
+        "reviewPairId": "2:0:169710367871:2|2:0:171706391399:1",
+        "segmentId": 2,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_2.bz2",
+          "logMonoTimeA": "169710367871",
+          "logMonoTimeB": "171706391399",
+          "observationIdA": "2:0:169710367871:2",
+          "observationIdB": "2:0:171706391399:1"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 117.0762,
+        "legacyScalarResidualM": 0.805
+      },
+      {
+        "reviewPairId": "2:0:189674587404:1|2:0:191667697949:1",
+        "segmentId": 2,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_2.bz2",
+          "logMonoTimeA": "189674587404",
+          "logMonoTimeB": "191667697949",
+          "observationIdA": "2:0:189674587404:1",
+          "observationIdB": "2:0:191667697949:1"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 117.4331,
+        "legacyScalarResidualM": 5.741
+      },
+      {
+        "reviewPairId": "2:0:189674587404:2|2:0:191667697949:2",
+        "segmentId": 2,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_2.bz2",
+          "logMonoTimeA": "189674587404",
+          "logMonoTimeB": "191667697949",
+          "observationIdA": "2:0:189674587404:2",
+          "observationIdB": "2:0:191667697949:2"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 117.4986,
+        "legacyScalarResidualM": 5.772
+      },
+      {
+        "reviewPairId": "20:0:1219505601616:2|20:0:1221503579476:2",
+        "segmentId": 20,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_20.bz2",
+          "logMonoTimeA": "1219505601616",
+          "logMonoTimeB": "1221503579476",
+          "observationIdA": "20:0:1219505601616:2",
+          "observationIdB": "20:0:1221503579476:2"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 19.5934,
+        "legacyScalarResidualM": 0.007
+      },
+      {
+        "reviewPairId": "20:0:1219505601616:3|20:0:1221503579476:3",
+        "segmentId": 20,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_20.bz2",
+          "logMonoTimeA": "1219505601616",
+          "logMonoTimeB": "1221503579476",
+          "observationIdA": "20:0:1219505601616:3",
+          "observationIdB": "20:0:1221503579476:3"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 25.7666,
+        "legacyScalarResidualM": 8.054
+      },
+      {
+        "reviewPairId": "22:0:1345349314118:0|22:0:1347352674262:0",
+        "segmentId": 22,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_22.bz2",
+          "logMonoTimeA": "1345349314118",
+          "logMonoTimeB": "1347352674262",
+          "observationIdA": "22:0:1345349314118:0",
+          "observationIdB": "22:0:1347352674262:0"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 25.9965,
+        "legacyScalarResidualM": 6.056
+      },
+      {
+        "reviewPairId": "22:0:1345349314118:1|22:0:1347352674262:2",
+        "segmentId": 22,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_22.bz2",
+          "logMonoTimeA": "1345349314118",
+          "logMonoTimeB": "1347352674262",
+          "observationIdA": "22:0:1345349314118:1",
+          "observationIdB": "22:0:1347352674262:2"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 21.1153,
+        "legacyScalarResidualM": 6.445
+      },
+      {
+        "reviewPairId": "22:0:1347352674262:1|22:0:1349346019940:1",
+        "segmentId": 22,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_22.bz2",
+          "logMonoTimeA": "1347352674262",
+          "logMonoTimeB": "1349346019940",
+          "observationIdA": "22:0:1347352674262:1",
+          "observationIdB": "22:0:1349346019940:1"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 16.7079,
+        "legacyScalarResidualM": 0.004
+      },
+      {
+        "reviewPairId": "22:0:1347352674262:2|22:0:1349346019940:2",
+        "segmentId": 22,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_22.bz2",
+          "logMonoTimeA": "1347352674262",
+          "logMonoTimeB": "1349346019940",
+          "observationIdA": "22:0:1347352674262:2",
+          "observationIdB": "22:0:1349346019940:2"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 18.346,
+        "legacyScalarResidualM": 0.07
+      },
+      {
+        "reviewPairId": "23:0:1439415077717:1|23:0:1441411491613:1",
+        "segmentId": 23,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_23.bz2",
+          "logMonoTimeA": "1439415077717",
+          "logMonoTimeB": "1441411491613",
+          "observationIdA": "23:0:1439415077717:1",
+          "observationIdB": "23:0:1441411491613:1"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 15.5283,
+        "legacyScalarResidualM": 0.114
+      },
+      {
+        "reviewPairId": "23:0:1439415077717:2|23:0:1441411491613:2",
+        "segmentId": 23,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_23.bz2",
+          "logMonoTimeA": "1439415077717",
+          "logMonoTimeB": "1441411491613",
+          "observationIdA": "23:0:1439415077717:2",
+          "observationIdB": "23:0:1441411491613:2"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 27.2624,
+        "legacyScalarResidualM": 0.208
+      },
+      {
+        "reviewPairId": "23:0:1441411491613:2|23:0:1443411301091:1",
+        "segmentId": 23,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_23.bz2",
+          "logMonoTimeA": "1441411491613",
+          "logMonoTimeB": "1443411301091",
+          "observationIdA": "23:0:1441411491613:2",
+          "observationIdB": "23:0:1443411301091:1"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 43.515,
+        "legacyScalarResidualM": 6.3
+      },
+      {
+        "reviewPairId": "23:0:1449414290885:1|23:0:1451415306316:2",
+        "segmentId": 23,
+        "recordIndex": 131,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": true,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_23.bz2",
+          "logMonoTimeA": "1449414290885",
+          "logMonoTimeB": "1451415306316",
+          "observationIdA": "23:0:1449414290885:1",
+          "observationIdB": "23:0:1451415306316:2"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 26.1295,
+        "legacyScalarResidualM": 11.256
+      },
+      {
+        "reviewPairId": "23:0:1451415306316:1|23:0:1453415666350:2",
+        "segmentId": 23,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_23.bz2",
+          "logMonoTimeA": "1451415306316",
+          "logMonoTimeB": "1453415666350",
+          "observationIdA": "23:0:1451415306316:1",
+          "observationIdB": "23:0:1453415666350:2"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 15.8433,
+        "legacyScalarResidualM": 0.487
+      },
+      {
+        "reviewPairId": "24:0:1505418419523:1|24:0:1507419387811:0",
+        "segmentId": 24,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_24.bz2",
+          "logMonoTimeA": "1505418419523",
+          "logMonoTimeB": "1507419387811",
+          "observationIdA": "24:0:1505418419523:1",
+          "observationIdB": "24:0:1507419387811:0"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 14.014,
+        "legacyScalarResidualM": 7.711
+      },
+      {
+        "reviewPairId": "25:0:1519414164181:0|25:0:1521415688621:0",
+        "segmentId": 25,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_25.bz2",
+          "logMonoTimeA": "1519414164181",
+          "logMonoTimeB": "1521415688621",
+          "observationIdA": "25:0:1519414164181:0",
+          "observationIdB": "25:0:1521415688621:0"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 16.1114,
+        "legacyScalarResidualM": 6.554
+      },
+      {
+        "reviewPairId": "25:0:1519414164181:1|25:0:1521415688621:1",
+        "segmentId": 25,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_25.bz2",
+          "logMonoTimeA": "1519414164181",
+          "logMonoTimeB": "1521415688621",
+          "observationIdA": "25:0:1519414164181:1",
+          "observationIdB": "25:0:1521415688621:1"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 17.5912,
+        "legacyScalarResidualM": 6.539
+      },
+      {
+        "reviewPairId": "25:0:1519414164181:2|25:0:1521415688621:2",
+        "segmentId": 25,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_25.bz2",
+          "logMonoTimeA": "1519414164181",
+          "logMonoTimeB": "1521415688621",
+          "observationIdA": "25:0:1519414164181:2",
+          "observationIdB": "25:0:1521415688621:2"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 17.3201,
+        "legacyScalarResidualM": 6.536
+      },
+      {
+        "reviewPairId": "25:0:1539412329251:1|25:0:1541413987791:1",
+        "segmentId": 25,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_25.bz2",
+          "logMonoTimeA": "1539412329251",
+          "logMonoTimeB": "1541413987791",
+          "observationIdA": "25:0:1539412329251:1",
+          "observationIdB": "25:0:1541413987791:1"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 12.7165,
+        "legacyScalarResidualM": 2.222
+      },
+      {
+        "reviewPairId": "25:0:1543414501520:2|25:0:1545414038574:1",
+        "segmentId": 25,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_25.bz2",
+          "logMonoTimeA": "1543414501520",
+          "logMonoTimeB": "1545414038574",
+          "observationIdA": "25:0:1543414501520:2",
+          "observationIdB": "25:0:1545414038574:1"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 15.8295,
+        "legacyScalarResidualM": 0.975
+      },
+      {
+        "reviewPairId": "29:0:1795344254654:1|29:0:1797341899671:1",
+        "segmentId": 29,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_29.bz2",
+          "logMonoTimeA": "1795344254654",
+          "logMonoTimeB": "1797341899671",
+          "observationIdA": "29:0:1795344254654:1",
+          "observationIdB": "29:0:1797341899671:1"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 30.4902,
+        "legacyScalarResidualM": 1.01
+      },
+      {
+        "reviewPairId": "29:0:1795344254654:2|29:0:1797341899671:2",
+        "segmentId": 29,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_29.bz2",
+          "logMonoTimeA": "1795344254654",
+          "logMonoTimeB": "1797341899671",
+          "observationIdA": "29:0:1795344254654:2",
+          "observationIdB": "29:0:1797341899671:2"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 31.1562,
+        "legacyScalarResidualM": 1.095
+      },
+      {
+        "reviewPairId": "29:0:1797341899671:1|29:0:1799335959872:1",
+        "segmentId": 29,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_29.bz2",
+          "logMonoTimeA": "1797341899671",
+          "logMonoTimeB": "1799335959872",
+          "observationIdA": "29:0:1797341899671:1",
+          "observationIdB": "29:0:1799335959872:1"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 63.5253,
+        "legacyScalarResidualM": 9.799
+      },
+      {
+        "reviewPairId": "29:0:1797341899671:2|29:0:1799335959872:2",
+        "segmentId": 29,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_29.bz2",
+          "logMonoTimeA": "1797341899671",
+          "logMonoTimeB": "1799335959872",
+          "observationIdA": "29:0:1797341899671:2",
+          "observationIdB": "29:0:1799335959872:2"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 63.9994,
+        "legacyScalarResidualM": 8.739
+      },
+      {
+        "reviewPairId": "51:0:3131047159548:2|51:0:3133049116628:1",
+        "segmentId": 51,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_51.bz2",
+          "logMonoTimeA": "3131047159548",
+          "logMonoTimeB": "3133049116628",
+          "observationIdA": "51:0:3131047159548:2",
+          "observationIdB": "51:0:3133049116628:1"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 32.5381,
+        "legacyScalarResidualM": 11.802
+      },
+      {
+        "reviewPairId": "57:0:3470755342540:1|57:0:3472753507044:2",
+        "segmentId": 57,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_57.bz2",
+          "logMonoTimeA": "3470755342540",
+          "logMonoTimeB": "3472753507044",
+          "observationIdA": "57:0:3470755342540:1",
+          "observationIdB": "57:0:3472753507044:2"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 117.0633,
+        "legacyScalarResidualM": 5.694
+      },
+      {
+        "reviewPairId": "58:0:3538705320498:1|58:0:3540702253401:1",
+        "segmentId": 58,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_58.bz2",
+          "logMonoTimeA": "3538705320498",
+          "logMonoTimeB": "3540702253401",
+          "observationIdA": "58:0:3538705320498:1",
+          "observationIdB": "58:0:3540702253401:1"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 36.6924,
+        "legacyScalarResidualM": 6.294
+      },
+      {
+        "reviewPairId": "58:0:3540702253401:1|58:0:3542700685235:1",
+        "segmentId": 58,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_58.bz2",
+          "logMonoTimeA": "3540702253401",
+          "logMonoTimeB": "3542700685235",
+          "observationIdA": "58:0:3540702253401:1",
+          "observationIdB": "58:0:3542700685235:1"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 12.8317,
+        "legacyScalarResidualM": 6.469
+      },
+      {
+        "reviewPairId": "61:0:3728757120849:3|61:0:3730755877684:3",
+        "segmentId": 61,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_61.bz2",
+          "logMonoTimeA": "3728757120849",
+          "logMonoTimeB": "3730755877684",
+          "observationIdA": "61:0:3728757120849:3",
+          "observationIdB": "61:0:3730755877684:3"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 13.4514,
+        "legacyScalarResidualM": 6.709
+      },
+      {
+        "reviewPairId": "61:0:3730755877684:1|61:0:3732752611943:1",
+        "segmentId": 61,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_61.bz2",
+          "logMonoTimeA": "3730755877684",
+          "logMonoTimeB": "3732752611943",
+          "observationIdA": "61:0:3730755877684:1",
+          "observationIdB": "61:0:3732752611943:1"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 24.5373,
+        "legacyScalarResidualM": 12.445
+      },
+      {
+        "reviewPairId": "61:0:3730755877684:2|61:0:3732752611943:2",
+        "segmentId": 61,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_61.bz2",
+          "logMonoTimeA": "3730755877684",
+          "logMonoTimeB": "3732752611943",
+          "observationIdA": "61:0:3730755877684:2",
+          "observationIdB": "61:0:3732752611943:2"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 24.213,
+        "legacyScalarResidualM": 12.678
+      },
+      {
+        "reviewPairId": "61:0:3730755877684:3|61:0:3734754844808:3",
+        "segmentId": 61,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_61.bz2",
+          "logMonoTimeA": "3730755877684",
+          "logMonoTimeB": "3734754844808",
+          "observationIdA": "61:0:3730755877684:3",
+          "observationIdB": "61:0:3734754844808:3"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 49.3263,
+        "legacyScalarResidualM": 29.077
+      },
+      {
+        "reviewPairId": "63:0:3824739189378:2|63:0:3826734097808:2",
+        "segmentId": 63,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_63.bz2",
+          "logMonoTimeA": "3824739189378",
+          "logMonoTimeB": "3826734097808",
+          "observationIdA": "63:0:3824739189378:2",
+          "observationIdB": "63:0:3826734097808:2"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 40.8231,
+        "legacyScalarResidualM": 4.031
+      },
+      {
+        "reviewPairId": "63:0:3828733650245:1|63:0:3830733561817:1",
+        "segmentId": 63,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_63.bz2",
+          "logMonoTimeA": "3828733650245",
+          "logMonoTimeB": "3830733561817",
+          "observationIdA": "63:0:3828733650245:1",
+          "observationIdB": "63:0:3830733561817:1"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 121.5551,
+        "legacyScalarResidualM": 2.266
+      },
+      {
+        "reviewPairId": "63:0:3828733650245:2|63:0:3830733561817:2",
+        "segmentId": 63,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_63.bz2",
+          "logMonoTimeA": "3828733650245",
+          "logMonoTimeB": "3830733561817",
+          "observationIdA": "63:0:3828733650245:2",
+          "observationIdB": "63:0:3830733561817:2"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 121.5323,
+        "legacyScalarResidualM": 2.108
+      },
+      {
+        "reviewPairId": "63:0:3828733650245:3|63:0:3830733561817:3",
+        "segmentId": 63,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_63.bz2",
+          "logMonoTimeA": "3828733650245",
+          "logMonoTimeB": "3830733561817",
+          "observationIdA": "63:0:3828733650245:3",
+          "observationIdB": "63:0:3830733561817:3"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 121.314,
+        "legacyScalarResidualM": 2.43
+      },
+      {
+        "reviewPairId": "69:0:4158702388431:0|69:0:4160697443690:0",
+        "segmentId": 69,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_69.bz2",
+          "logMonoTimeA": "4158702388431",
+          "logMonoTimeB": "4160697443690",
+          "observationIdA": "69:0:4158702388431:0",
+          "observationIdB": "69:0:4160697443690:0"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 13.7674,
+        "legacyScalarResidualM": 6.129
+      },
+      {
+        "reviewPairId": "69:0:4158702388431:1|69:0:4160697443690:1",
+        "segmentId": 69,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_69.bz2",
+          "logMonoTimeA": "4158702388431",
+          "logMonoTimeB": "4160697443690",
+          "observationIdA": "69:0:4158702388431:1",
+          "observationIdB": "69:0:4160697443690:1"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 18.2403,
+        "legacyScalarResidualM": 6.092
+      },
+      {
+        "reviewPairId": "69:0:4158702388431:2|69:0:4160697443690:2",
+        "segmentId": 69,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_69.bz2",
+          "logMonoTimeA": "4158702388431",
+          "logMonoTimeB": "4160697443690",
+          "observationIdA": "69:0:4158702388431:2",
+          "observationIdB": "69:0:4160697443690:2"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 18.465,
+        "legacyScalarResidualM": 6.039
+      },
+      {
+        "reviewPairId": "71:0:4282693694959:1|71:0:4284691704125:2",
+        "segmentId": 71,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_71.bz2",
+          "logMonoTimeA": "4282693694959",
+          "logMonoTimeB": "4284691704125",
+          "observationIdA": "71:0:4282693694959:1",
+          "observationIdB": "71:0:4284691704125:2"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 23.0422,
+        "legacyScalarResidualM": 0.9
+      },
+      {
+        "reviewPairId": "71:0:4282693694959:2|71:0:4284691704125:3",
+        "segmentId": 71,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_71.bz2",
+          "logMonoTimeA": "4282693694959",
+          "logMonoTimeB": "4284691704125",
+          "observationIdA": "71:0:4282693694959:2",
+          "observationIdB": "71:0:4284691704125:3"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 22.0563,
+        "legacyScalarResidualM": 0.936
+      },
+      {
+        "reviewPairId": "73:0:4398668929179:1|72:0:4338678115070:0",
+        "segmentId": 73,
+        "recordIndex": 209,
+        "selectionReason": "fallback_case",
+        "priority": 1,
+        "developmentRecord": true,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_73.bz2",
+          "logMonoTimeA": "4398668929179",
+          "logMonoTimeB": "4338678115070",
+          "observationIdA": "73:0:4398668929179:1",
+          "observationIdB": "72:0:4338678115070:0"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": null,
+        "legacyScalarResidualM": 0.125
+      },
+      {
+        "reviewPairId": "73:0:4400666149338:1|72:0:4342674695822:0",
+        "segmentId": 73,
+        "recordIndex": null,
+        "selectionReason": "fallback_case",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_73.bz2",
+          "logMonoTimeA": "4400666149338",
+          "logMonoTimeB": "4342674695822",
+          "observationIdA": "73:0:4400666149338:1",
+          "observationIdB": "72:0:4342674695822:0"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": null,
+        "legacyScalarResidualM": 3.32
+      },
+      {
+        "reviewPairId": "73:0:4402668506485:1|72:0:4344674028192:0",
+        "segmentId": 73,
+        "recordIndex": null,
+        "selectionReason": "fallback_case",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_73.bz2",
+          "logMonoTimeA": "4402668506485",
+          "logMonoTimeB": "4344674028192",
+          "observationIdA": "73:0:4402668506485:1",
+          "observationIdB": "72:0:4344674028192:0"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": null,
+        "legacyScalarResidualM": 6.623
+      },
+      {
+        "reviewPairId": "73:0:4404668463234:1|72:0:4346672710695:0",
+        "segmentId": 73,
+        "recordIndex": null,
+        "selectionReason": "fallback_case",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_73.bz2",
+          "logMonoTimeA": "4404668463234",
+          "logMonoTimeB": "4346672710695",
+          "observationIdA": "73:0:4404668463234:1",
+          "observationIdB": "72:0:4346672710695:0"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": null,
+        "legacyScalarResidualM": 12.257
+      },
+      {
+        "reviewPairId": "73:0:4406666021582:1|72:0:4348672254786:0",
+        "segmentId": 73,
+        "recordIndex": null,
+        "selectionReason": "fallback_case",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_73.bz2",
+          "logMonoTimeA": "4406666021582",
+          "logMonoTimeB": "4348672254786",
+          "observationIdA": "73:0:4406666021582:1",
+          "observationIdB": "72:0:4348672254786:0"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": null,
+        "legacyScalarResidualM": 14.676
+      },
+      {
+        "reviewPairId": "73:0:4408665438137:1|72:0:4350669932019:0",
+        "segmentId": 73,
+        "recordIndex": null,
+        "selectionReason": "fallback_case",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_73.bz2",
+          "logMonoTimeA": "4408665438137",
+          "logMonoTimeB": "4350669932019",
+          "observationIdA": "73:0:4408665438137:1",
+          "observationIdB": "72:0:4350669932019:0"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": null,
+        "legacyScalarResidualM": 17.677
+      },
+      {
+        "reviewPairId": "73:0:4410662928878:1|72:0:4352670461703:0",
+        "segmentId": 73,
+        "recordIndex": null,
+        "selectionReason": "fallback_case",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_73.bz2",
+          "logMonoTimeA": "4410662928878",
+          "logMonoTimeB": "4352670461703",
+          "observationIdA": "73:0:4410662928878:1",
+          "observationIdB": "72:0:4352670461703:0"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": null,
+        "legacyScalarResidualM": 22.143
+      },
+      {
+        "reviewPairId": "73:0:4412662420231:1|72:0:4354670734384:0",
+        "segmentId": 73,
+        "recordIndex": null,
+        "selectionReason": "fallback_case",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_73.bz2",
+          "logMonoTimeA": "4412662420231",
+          "logMonoTimeB": "4354670734384",
+          "observationIdA": "73:0:4412662420231:1",
+          "observationIdB": "72:0:4354670734384:0"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": null,
+        "legacyScalarResidualM": 23.281
+      },
+      {
+        "reviewPairId": "73:0:4414665499561:1|72:0:4356671002264:0",
+        "segmentId": 73,
+        "recordIndex": null,
+        "selectionReason": "fallback_case",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_73.bz2",
+          "logMonoTimeA": "4414665499561",
+          "logMonoTimeB": "4356671002264",
+          "observationIdA": "73:0:4414665499561:1",
+          "observationIdB": "72:0:4356671002264:0"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": null,
+        "legacyScalarResidualM": 26.365
+      },
+      {
+        "reviewPairId": "73:0:4418668599048:1|72:0:4358669804254:0",
+        "segmentId": 73,
+        "recordIndex": null,
+        "selectionReason": "fallback_case",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_73.bz2",
+          "logMonoTimeA": "4418668599048",
+          "logMonoTimeB": "4358669804254",
+          "observationIdA": "73:0:4418668599048:1",
+          "observationIdB": "72:0:4358669804254:0"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": null,
+        "legacyScalarResidualM": 30.934
+      },
+      {
+        "reviewPairId": "74:0:4502493204901:0|74:0:4504491486321:0",
+        "segmentId": 74,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_74.bz2",
+          "logMonoTimeA": "4502493204901",
+          "logMonoTimeB": "4504491486321",
+          "observationIdA": "74:0:4502493204901:0",
+          "observationIdB": "74:0:4504491486321:0"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 99.4944,
+        "legacyScalarResidualM": 8.497
+      },
+      {
+        "reviewPairId": "74:0:4502493204901:1|74:0:4504491486321:1",
+        "segmentId": 74,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_74.bz2",
+          "logMonoTimeA": "4502493204901",
+          "logMonoTimeB": "4504491486321",
+          "observationIdA": "74:0:4502493204901:1",
+          "observationIdB": "74:0:4504491486321:1"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 98.5561,
+        "legacyScalarResidualM": 0.803
+      },
+      {
+        "reviewPairId": "74:0:4504491486321:1|74:0:4506489621998:0",
+        "segmentId": 74,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_74.bz2",
+          "logMonoTimeA": "4504491486321",
+          "logMonoTimeB": "4506489621998",
+          "observationIdA": "74:0:4504491486321:1",
+          "observationIdB": "74:0:4506489621998:0"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 18.1525,
+        "legacyScalarResidualM": 0.144
+      },
+      {
+        "reviewPairId": "74:0:4506489621998:0|74:0:4508488973992:0",
+        "segmentId": 74,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_74.bz2",
+          "logMonoTimeA": "4506489621998",
+          "logMonoTimeB": "4508488973992",
+          "observationIdA": "74:0:4506489621998:0",
+          "observationIdB": "74:0:4508488973992:0"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 42.2123,
+        "legacyScalarResidualM": 7.609
+      },
+      {
+        "reviewPairId": "74:0:4506489621998:1|74:0:4508488973992:1",
+        "segmentId": 74,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_74.bz2",
+          "logMonoTimeA": "4506489621998",
+          "logMonoTimeB": "4508488973992",
+          "observationIdA": "74:0:4506489621998:1",
+          "observationIdB": "74:0:4508488973992:1"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 33.0194,
+        "legacyScalarResidualM": 0.109
+      },
+      {
+        "reviewPairId": "74:0:4506489621998:2|74:0:4508488973992:2",
+        "segmentId": 74,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_74.bz2",
+          "logMonoTimeA": "4506489621998",
+          "logMonoTimeB": "4508488973992",
+          "observationIdA": "74:0:4506489621998:2",
+          "observationIdB": "74:0:4508488973992:2"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 40.3096,
+        "legacyScalarResidualM": 0.117
+      },
+      {
+        "reviewPairId": "74:0:4508488973992:0|74:0:4510485746781:1",
+        "segmentId": 74,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_74.bz2",
+          "logMonoTimeA": "4508488973992",
+          "logMonoTimeB": "4510485746781",
+          "observationIdA": "74:0:4508488973992:0",
+          "observationIdB": "74:0:4510485746781:1"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 38.4499,
+        "legacyScalarResidualM": 0.08
+      },
+      {
+        "reviewPairId": "74:0:4508488973992:2|74:0:4510485746781:2",
+        "segmentId": 74,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_74.bz2",
+          "logMonoTimeA": "4508488973992",
+          "logMonoTimeB": "4510485746781",
+          "observationIdA": "74:0:4508488973992:2",
+          "observationIdB": "74:0:4510485746781:2"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 25.5131,
+        "legacyScalarResidualM": 7.032
+      },
+      {
+        "reviewPairId": "75:0:4538464035378:2|75:0:4540458101065:3",
+        "segmentId": 75,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_75.bz2",
+          "logMonoTimeA": "4538464035378",
+          "logMonoTimeB": "4540458101065",
+          "observationIdA": "75:0:4538464035378:2",
+          "observationIdB": "75:0:4540458101065:3"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 120.1707,
+        "legacyScalarResidualM": 7.139
+      },
+      {
+        "reviewPairId": "75:0:4542461670046:1|75:0:4544462639267:1",
+        "segmentId": 75,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_75.bz2",
+          "logMonoTimeA": "4542461670046",
+          "logMonoTimeB": "4544462639267",
+          "observationIdA": "75:0:4542461670046:1",
+          "observationIdB": "75:0:4544462639267:1"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 121.9019,
+        "legacyScalarResidualM": 3.564
+      },
+      {
+        "reviewPairId": "75:0:4542461670046:2|75:0:4544462639267:2",
+        "segmentId": 75,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_75.bz2",
+          "logMonoTimeA": "4542461670046",
+          "logMonoTimeB": "4544462639267",
+          "observationIdA": "75:0:4542461670046:2",
+          "observationIdB": "75:0:4544462639267:2"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 122.1378,
+        "legacyScalarResidualM": 2.726
+      },
+      {
+        "reviewPairId": "8:0:499582776159:1|8:0:501586556604:2",
+        "segmentId": 8,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_8.bz2",
+          "logMonoTimeA": "499582776159",
+          "logMonoTimeB": "501586556604",
+          "observationIdA": "8:0:499582776159:1",
+          "observationIdB": "8:0:501586556604:2"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 19.5877,
+        "legacyScalarResidualM": 0.033
+      },
+      {
+        "reviewPairId": "8:0:499582776159:2|8:0:501586556604:3",
+        "segmentId": 8,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_8.bz2",
+          "logMonoTimeA": "499582776159",
+          "logMonoTimeB": "501586556604",
+          "observationIdA": "8:0:499582776159:2",
+          "observationIdB": "8:0:501586556604:3"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 14.6235,
+        "legacyScalarResidualM": 0.009
+      },
+      {
+        "reviewPairId": "92:0:5538393362908:2|93:0:5598259796207:3",
+        "segmentId": 92,
+        "recordIndex": null,
+        "selectionReason": "fallback_case",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_92.bz2",
+          "logMonoTimeA": "5538393362908",
+          "logMonoTimeB": "5598259796207",
+          "observationIdA": "92:0:5538393362908:2",
+          "observationIdB": "93:0:5598259796207:3"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": null,
+        "legacyScalarResidualM": 92.004
+      },
+      {
+        "reviewPairId": "92:0:5540395424489:2|93:0:5602262124972:3",
+        "segmentId": 92,
+        "recordIndex": null,
+        "selectionReason": "fallback_case",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_92.bz2",
+          "logMonoTimeA": "5540395424489",
+          "logMonoTimeB": "5602262124972",
+          "observationIdA": "92:0:5540395424489:2",
+          "observationIdB": "93:0:5602262124972:3"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": null,
+        "legacyScalarResidualM": 108.577
+      },
+      {
+        "reviewPairId": "94:0:5658352707153:1|94:0:5660349001935:1",
+        "segmentId": 94,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_94.bz2",
+          "logMonoTimeA": "5658352707153",
+          "logMonoTimeB": "5660349001935",
+          "observationIdA": "94:0:5658352707153:1",
+          "observationIdB": "94:0:5660349001935:1"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 16.5873,
+        "legacyScalarResidualM": 0.25
+      },
+      {
+        "reviewPairId": "94:0:5658352707153:2|94:0:5660349001935:2",
+        "segmentId": 94,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_94.bz2",
+          "logMonoTimeA": "5658352707153",
+          "logMonoTimeB": "5660349001935",
+          "observationIdA": "94:0:5658352707153:2",
+          "observationIdB": "94:0:5660349001935:2"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 16.2431,
+        "legacyScalarResidualM": 0.152
+      },
+      {
+        "reviewPairId": "94:0:5658352707153:3|94:0:5660349001935:3",
+        "segmentId": 94,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_94.bz2",
+          "logMonoTimeA": "5658352707153",
+          "logMonoTimeB": "5660349001935",
+          "observationIdA": "94:0:5658352707153:3",
+          "observationIdB": "94:0:5660349001935:3"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 15.9774,
+        "legacyScalarResidualM": 0.075
+      },
+      {
+        "reviewPairId": "94:0:5660349001935:2|94:0:5662349672355:2",
+        "segmentId": 94,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_94.bz2",
+          "logMonoTimeA": "5660349001935",
+          "logMonoTimeB": "5662349672355",
+          "observationIdA": "94:0:5660349001935:2",
+          "observationIdB": "94:0:5662349672355:2"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 12.9317,
+        "legacyScalarResidualM": 0.021
+      },
+      {
+        "reviewPairId": "94:0:5660349001935:3|94:0:5662349672355:3",
+        "segmentId": 94,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_94.bz2",
+          "logMonoTimeA": "5660349001935",
+          "logMonoTimeB": "5662349672355",
+          "observationIdA": "94:0:5660349001935:3",
+          "observationIdB": "94:0:5662349672355:3"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 18.8732,
+        "legacyScalarResidualM": 0.017
+      },
+      {
+        "reviewPairId": "94:0:5686302739186:2|94:0:5688291124529:1",
+        "segmentId": 94,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_94.bz2",
+          "logMonoTimeA": "5686302739186",
+          "logMonoTimeB": "5688291124529",
+          "observationIdA": "94:0:5686302739186:2",
+          "observationIdB": "94:0:5688291124529:1"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 26.6031,
+        "legacyScalarResidualM": 21.42
+      },
+      {
+        "reviewPairId": "94:0:5686302739186:3|94:0:5688291124529:2",
+        "segmentId": 94,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_94.bz2",
+          "logMonoTimeA": "5686302739186",
+          "logMonoTimeB": "5688291124529",
+          "observationIdA": "94:0:5686302739186:3",
+          "observationIdB": "94:0:5688291124529:2"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 27.898,
+        "legacyScalarResidualM": 28.317
+      },
+      {
+        "reviewPairId": "95:0:5718253353253:1|95:0:5720253632512:2",
+        "segmentId": 95,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_95.bz2",
+          "logMonoTimeA": "5718253353253",
+          "logMonoTimeB": "5720253632512",
+          "observationIdA": "95:0:5718253353253:1",
+          "observationIdB": "95:0:5720253632512:2"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 16.0908,
+        "legacyScalarResidualM": 0.606
+      },
+      {
+        "reviewPairId": "95:0:5718253353253:2|95:0:5720253632512:3",
+        "segmentId": 95,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_95.bz2",
+          "logMonoTimeA": "5718253353253",
+          "logMonoTimeB": "5720253632512",
+          "observationIdA": "95:0:5718253353253:2",
+          "observationIdB": "95:0:5720253632512:3"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 22.2364,
+        "legacyScalarResidualM": 0.92
+      },
+      {
+        "reviewPairId": "97:0:5876192342289:3|97:0:5878204467484:2",
+        "segmentId": 97,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_97.bz2",
+          "logMonoTimeA": "5876192342289",
+          "logMonoTimeB": "5878204467484",
+          "observationIdA": "97:0:5876192342289:3",
+          "observationIdB": "97:0:5878204467484:2"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 55.2377,
+        "legacyScalarResidualM": 3.551
+      },
+      {
+        "reviewPairId": "99:0:6002165859956:1|99:0:6004152559199:1",
+        "segmentId": 99,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_99.bz2",
+          "logMonoTimeA": "6002165859956",
+          "logMonoTimeB": "6004152559199",
+          "observationIdA": "99:0:6002165859956:1",
+          "observationIdB": "99:0:6004152559199:1"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 13.0452,
+        "legacyScalarResidualM": 7.513
+      },
+      {
+        "reviewPairId": "99:0:6004152559199:1|99:0:6006146226986:1",
+        "segmentId": 99,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_99.bz2",
+          "logMonoTimeA": "6004152559199",
+          "logMonoTimeB": "6006146226986",
+          "observationIdA": "99:0:6004152559199:1",
+          "observationIdB": "99:0:6006146226986:1"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 20.5907,
+        "legacyScalarResidualM": 6.496
+      },
+      {
+        "reviewPairId": "99:0:6004152559199:2|99:0:6006146226986:2",
+        "segmentId": 99,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_99.bz2",
+          "logMonoTimeA": "6004152559199",
+          "logMonoTimeB": "6006146226986",
+          "observationIdA": "99:0:6004152559199:2",
+          "observationIdB": "99:0:6006146226986:2"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 20.7021,
+        "legacyScalarResidualM": 0.416
+      },
+      {
+        "reviewPairId": "99:0:6006146226986:1|99:0:6008132831636:0",
+        "segmentId": 99,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_99.bz2",
+          "logMonoTimeA": "6006146226986",
+          "logMonoTimeB": "6008132831636",
+          "observationIdA": "99:0:6006146226986:1",
+          "observationIdB": "99:0:6008132831636:0"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 14.3401,
+        "legacyScalarResidualM": 2.022
+      },
+      {
+        "reviewPairId": "99:0:6006146226986:2|99:0:6008132831636:1",
+        "segmentId": 99,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_99.bz2",
+          "logMonoTimeA": "6006146226986",
+          "logMonoTimeB": "6008132831636",
+          "observationIdA": "99:0:6006146226986:2",
+          "observationIdB": "99:0:6008132831636:1"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 14.2583,
+        "legacyScalarResidualM": 4.507
+      },
+      {
+        "reviewPairId": "99:0:6008132831636:0|99:0:6010123028355:0",
+        "segmentId": 99,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_99.bz2",
+          "logMonoTimeA": "6008132831636",
+          "logMonoTimeB": "6010123028355",
+          "observationIdA": "99:0:6008132831636:0",
+          "observationIdB": "99:0:6010123028355:0"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 12.4419,
+        "legacyScalarResidualM": 1.525
+      },
+      {
+        "reviewPairId": "99:0:6008132831636:1|99:0:6010123028355:1",
+        "segmentId": 99,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_99.bz2",
+          "logMonoTimeA": "6008132831636",
+          "logMonoTimeB": "6010123028355",
+          "observationIdA": "99:0:6008132831636:1",
+          "observationIdB": "99:0:6010123028355:1"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 12.1484,
+        "legacyScalarResidualM": 1.278
+      },
+      {
+        "reviewPairId": "99:0:6010123028355:1|99:0:6012113032948:1",
+        "segmentId": 99,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_99.bz2",
+          "logMonoTimeA": "6010123028355",
+          "logMonoTimeB": "6012113032948",
+          "observationIdA": "99:0:6010123028355:1",
+          "observationIdB": "99:0:6012113032948:1"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 24.4975,
+        "legacyScalarResidualM": 7.317
+      },
+      {
+        "reviewPairId": "99:0:6010123028355:2|99:0:6012113032948:2",
+        "segmentId": 99,
+        "recordIndex": null,
+        "selectionReason": "legacy_positive_vector_negative",
+        "priority": 1,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_99.bz2",
+          "logMonoTimeA": "6010123028355",
+          "logMonoTimeB": "6012113032948",
+          "observationIdA": "99:0:6010123028355:2",
+          "observationIdB": "99:0:6012113032948:2"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 24.3829,
+        "legacyScalarResidualM": 7.304
+      },
+      {
+        "reviewPairId": "0:0:73700718671:1|0:0:75701987372:1",
+        "segmentId": 0,
+        "recordIndex": 1,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": true,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_0.bz2",
+          "logMonoTimeA": "73700718671",
+          "logMonoTimeB": "75701987372",
+          "observationIdA": "0:0:73700718671:1",
+          "observationIdB": "0:0:75701987372:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.0859,
+        "legacyScalarResidualM": 37.6
+      },
+      {
+        "reviewPairId": "1:0:133729706353:1|1:0:135727605110:1",
+        "segmentId": 1,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_1.bz2",
+          "logMonoTimeA": "133729706353",
+          "logMonoTimeB": "135727605110",
+          "observationIdA": "1:0:133729706353:1",
+          "observationIdB": "1:0:135727605110:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.1323,
+        "legacyScalarResidualM": 28.141
+      },
+      {
+        "reviewPairId": "11:0:733508839570:1|11:0:735503551407:1",
+        "segmentId": 11,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_11.bz2",
+          "logMonoTimeA": "733508839570",
+          "logMonoTimeB": "735503551407",
+          "observationIdA": "11:0:733508839570:1",
+          "observationIdB": "11:0:735503551407:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.0842,
+        "legacyScalarResidualM": 23.035
+      },
+      {
+        "reviewPairId": "12:0:793454278280:2|12:0:795456783476:2",
+        "segmentId": 12,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_12.bz2",
+          "logMonoTimeA": "793454278280",
+          "logMonoTimeB": "795456783476",
+          "observationIdA": "12:0:793454278280:2",
+          "observationIdB": "12:0:795456783476:2"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.0264,
+        "legacyScalarResidualM": 36.095
+      },
+      {
+        "reviewPairId": "14:0:913471747531:2|14:0:915475852901:2",
+        "segmentId": 14,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_14.bz2",
+          "logMonoTimeA": "913471747531",
+          "logMonoTimeB": "915475852901",
+          "observationIdA": "14:0:913471747531:2",
+          "observationIdB": "14:0:915475852901:2"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.149,
+        "legacyScalarResidualM": 44.076
+      },
+      {
+        "reviewPairId": "16:0:1033550223452:2|16:0:1035551637598:2",
+        "segmentId": 16,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_16.bz2",
+          "logMonoTimeA": "1033550223452",
+          "logMonoTimeB": "1035551637598",
+          "observationIdA": "16:0:1033550223452:2",
+          "observationIdB": "16:0:1035551637598:2"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.0065,
+        "legacyScalarResidualM": 46.934
+      },
+      {
+        "reviewPairId": "18:0:1153529242344:2|18:0:1155528490263:2",
+        "segmentId": 18,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_18.bz2",
+          "logMonoTimeA": "1153529242344",
+          "logMonoTimeB": "1155528490263",
+          "observationIdA": "18:0:1153529242344:2",
+          "observationIdB": "18:0:1155528490263:2"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.1562,
+        "legacyScalarResidualM": 37.378
+      },
+      {
+        "reviewPairId": "19:0:1213505750614:3|19:0:1215507244096:3",
+        "segmentId": 19,
+        "recordIndex": 123,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": true,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_19.bz2",
+          "logMonoTimeA": "1213505750614",
+          "logMonoTimeB": "1215507244096",
+          "observationIdA": "19:0:1213505750614:3",
+          "observationIdB": "19:0:1215507244096:3"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.2133,
+        "legacyScalarResidualM": 26.558
+      },
+      {
+        "reviewPairId": "20:0:1273421306391:3|20:0:1275420367375:3",
+        "segmentId": 20,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_20.bz2",
+          "logMonoTimeA": "1273421306391",
+          "logMonoTimeB": "1275420367375",
+          "observationIdA": "20:0:1273421306391:3",
+          "observationIdB": "20:0:1275420367375:3"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.0291,
+        "legacyScalarResidualM": 28.431
+      },
+      {
+        "reviewPairId": "24:0:1513419259837:1|24:0:1515417778205:1",
+        "segmentId": 24,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_24.bz2",
+          "logMonoTimeA": "1513419259837",
+          "logMonoTimeB": "1515417778205",
+          "observationIdA": "24:0:1513419259837:1",
+          "observationIdB": "24:0:1515417778205:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.7512,
+        "legacyScalarResidualM": 18.405
+      },
+      {
+        "reviewPairId": "28:0:1699399391588:2|28:0:1701396164543:2",
+        "segmentId": 28,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_28.bz2",
+          "logMonoTimeA": "1699399391588",
+          "logMonoTimeB": "1701396164543",
+          "observationIdA": "28:0:1699399391588:2",
+          "observationIdB": "28:0:1701396164543:2"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.1357,
+        "legacyScalarResidualM": 13.754
+      },
+      {
+        "reviewPairId": "28:0:1753390726877:2|28:0:1755395170363:2",
+        "segmentId": 28,
+        "recordIndex": 139,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": true,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_28.bz2",
+          "logMonoTimeA": "1753390726877",
+          "logMonoTimeB": "1755395170363",
+          "observationIdA": "28:0:1753390726877:2",
+          "observationIdB": "28:0:1755395170363:2"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.1002,
+        "legacyScalarResidualM": 36.06
+      },
+      {
+        "reviewPairId": "29:0:1785353722352:0|29:0:1787355096362:0",
+        "segmentId": 29,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_29.bz2",
+          "logMonoTimeA": "1785353722352",
+          "logMonoTimeB": "1787355096362",
+          "observationIdA": "29:0:1785353722352:0",
+          "observationIdB": "29:0:1787355096362:0"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.5223,
+        "legacyScalarResidualM": 18.31
+      },
+      {
+        "reviewPairId": "29:0:1809333214995:2|29:0:1811330471260:2",
+        "segmentId": 29,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_29.bz2",
+          "logMonoTimeA": "1809333214995",
+          "logMonoTimeB": "1811330471260",
+          "observationIdA": "29:0:1809333214995:2",
+          "observationIdB": "29:0:1811330471260:2"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.4781,
+        "legacyScalarResidualM": 40.738
+      },
+      {
+        "reviewPairId": "3:0:253601536849:1|3:0:255605391742:1",
+        "segmentId": 3,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_3.bz2",
+          "logMonoTimeA": "253601536849",
+          "logMonoTimeB": "255605391742",
+          "observationIdA": "3:0:253601536849:1",
+          "observationIdB": "3:0:255605391742:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.0598,
+        "legacyScalarResidualM": 18.136
+      },
+      {
+        "reviewPairId": "30:0:1871289162564:0|30:0:1875287357159:0",
+        "segmentId": 30,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_30.bz2",
+          "logMonoTimeA": "1871289162564",
+          "logMonoTimeB": "1875287357159",
+          "observationIdA": "30:0:1871289162564:0",
+          "observationIdB": "30:0:1875287357159:0"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.5171,
+        "legacyScalarResidualM": 38.601
+      },
+      {
+        "reviewPairId": "32:0:1993244700227:2|32:0:1995244384457:2",
+        "segmentId": 32,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_32.bz2",
+          "logMonoTimeA": "1993244700227",
+          "logMonoTimeB": "1995244384457",
+          "observationIdA": "32:0:1993244700227:2",
+          "observationIdB": "32:0:1995244384457:2"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.1272,
+        "legacyScalarResidualM": 33.695
+      },
+      {
+        "reviewPairId": "34:0:2113281672121:2|34:0:2115281766102:2",
+        "segmentId": 34,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_34.bz2",
+          "logMonoTimeA": "2113281672121",
+          "logMonoTimeB": "2115281766102",
+          "observationIdA": "34:0:2113281672121:2",
+          "observationIdB": "34:0:2115281766102:2"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.0616,
+        "legacyScalarResidualM": 28.43
+      },
+      {
+        "reviewPairId": "36:0:2233277527111:2|36:0:2235281138212:2",
+        "segmentId": 36,
+        "recordIndex": 142,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": true,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_36.bz2",
+          "logMonoTimeA": "2233277527111",
+          "logMonoTimeB": "2235281138212",
+          "observationIdA": "36:0:2233277527111:2",
+          "observationIdB": "36:0:2235281138212:2"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.3569,
+        "legacyScalarResidualM": 39.961
+      },
+      {
+        "reviewPairId": "39:0:2413096001137:0|39:0:2415089745183:0",
+        "segmentId": 39,
+        "recordIndex": 145,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": true,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_39.bz2",
+          "logMonoTimeA": "2413096001137",
+          "logMonoTimeB": "2415089745183",
+          "observationIdA": "39:0:2413096001137:0",
+          "observationIdB": "39:0:2415089745183:0"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.2664,
+        "legacyScalarResidualM": 16.281
+      },
+      {
+        "reviewPairId": "45:0:2773068940332:1|45:0:2775071001390:1",
+        "segmentId": 45,
+        "recordIndex": 186,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": true,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_45.bz2",
+          "logMonoTimeA": "2773068940332",
+          "logMonoTimeB": "2775071001390",
+          "observationIdA": "45:0:2773068940332:1",
+          "observationIdB": "45:0:2775071001390:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.0119,
+        "legacyScalarResidualM": 16.253
+      },
+      {
+        "reviewPairId": "47:0:2881067757386:1|47:0:2883064461663:1",
+        "segmentId": 47,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_47.bz2",
+          "logMonoTimeA": "2881067757386",
+          "logMonoTimeB": "2883064461663",
+          "observationIdA": "47:0:2881067757386:1",
+          "observationIdB": "47:0:2883064461663:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.4541,
+        "legacyScalarResidualM": 16.307
+      },
+      {
+        "reviewPairId": "48:0:2953066188141:1|48:0:2955067276403:1",
+        "segmentId": 48,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_48.bz2",
+          "logMonoTimeA": "2953066188141",
+          "logMonoTimeB": "2955067276403",
+          "observationIdA": "48:0:2953066188141:1",
+          "observationIdB": "48:0:2955067276403:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.1437,
+        "legacyScalarResidualM": 28.347
+      },
+      {
+        "reviewPairId": "50:0:3033057715163:0|50:0:3035060916082:0",
+        "segmentId": 50,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_50.bz2",
+          "logMonoTimeA": "3033057715163",
+          "logMonoTimeB": "3035060916082",
+          "observationIdA": "50:0:3033057715163:0",
+          "observationIdB": "50:0:3035060916082:0"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.3161,
+        "legacyScalarResidualM": 18.347
+      },
+      {
+        "reviewPairId": "51:0:3101049790072:1|51:0:3103046833769:1",
+        "segmentId": 51,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_51.bz2",
+          "logMonoTimeA": "3101049790072",
+          "logMonoTimeB": "3103046833769",
+          "observationIdA": "51:0:3101049790072:1",
+          "observationIdB": "51:0:3103046833769:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.1908,
+        "legacyScalarResidualM": 12.978
+      },
+      {
+        "reviewPairId": "51:0:3101049790072:2|51:0:3103046833769:2",
+        "segmentId": 51,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_51.bz2",
+          "logMonoTimeA": "3101049790072",
+          "logMonoTimeB": "3103046833769",
+          "observationIdA": "51:0:3101049790072:2",
+          "observationIdB": "51:0:3103046833769:2"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.2645,
+        "legacyScalarResidualM": 12.755
+      },
+      {
+        "reviewPairId": "53:0:3253025888165:0|53:0:3255024134462:0",
+        "segmentId": 53,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_53.bz2",
+          "logMonoTimeA": "3253025888165",
+          "logMonoTimeB": "3255024134462",
+          "observationIdA": "53:0:3253025888165:0",
+          "observationIdB": "53:0:3255024134462:0"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.365,
+        "legacyScalarResidualM": 18.285
+      },
+      {
+        "reviewPairId": "58:0:3552693754645:1|58:0:3554693465941:1",
+        "segmentId": 58,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_58.bz2",
+          "logMonoTimeA": "3552693754645",
+          "logMonoTimeB": "3554693465941",
+          "observationIdA": "58:0:3552693754645:1",
+          "observationIdB": "58:0:3554693465941:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.4915,
+        "legacyScalarResidualM": 28.021
+      },
+      {
+        "reviewPairId": "64:0:3888684125103:2|64:0:3890684386945:2",
+        "segmentId": 64,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_64.bz2",
+          "logMonoTimeA": "3888684125103",
+          "logMonoTimeB": "3890684386945",
+          "observationIdA": "64:0:3888684125103:2",
+          "observationIdB": "64:0:3890684386945:2"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.0404,
+        "legacyScalarResidualM": 12.724
+      },
+      {
+        "reviewPairId": "69:0:4202564938022:1|69:0:4204562341519:1",
+        "segmentId": 69,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_69.bz2",
+          "logMonoTimeA": "4202564938022",
+          "logMonoTimeB": "4204562341519",
+          "observationIdA": "69:0:4202564938022:1",
+          "observationIdB": "69:0:4204562341519:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.3373,
+        "legacyScalarResidualM": 17.253
+      },
+      {
+        "reviewPairId": "71:0:4332677475180:0|71:0:4334675679285:1",
+        "segmentId": 71,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_71.bz2",
+          "logMonoTimeA": "4332677475180",
+          "logMonoTimeB": "4334675679285",
+          "observationIdA": "71:0:4332677475180:0",
+          "observationIdB": "71:0:4334675679285:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 3.4011,
+        "legacyScalarResidualM": 29.157
+      },
+      {
+        "reviewPairId": "73:0:4452591716559:2|73:0:4454585395645:3",
+        "segmentId": 73,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_73.bz2",
+          "logMonoTimeA": "4452591716559",
+          "logMonoTimeB": "4454585395645",
+          "observationIdA": "73:0:4452591716559:2",
+          "observationIdB": "73:0:4454585395645:3"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 2.2062,
+        "legacyScalarResidualM": 18.032
+      },
+      {
+        "reviewPairId": "74:0:4510485746781:0|74:0:4514481283201:0",
+        "segmentId": 74,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_74.bz2",
+          "logMonoTimeA": "4510485746781",
+          "logMonoTimeB": "4514481283201",
+          "observationIdA": "74:0:4510485746781:0",
+          "observationIdB": "74:0:4514481283201:0"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 9.1911,
+        "legacyScalarResidualM": 30.678
+      },
+      {
+        "reviewPairId": "75:0:4534469145061:2|75:0:4536463317778:2",
+        "segmentId": 75,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_75.bz2",
+          "logMonoTimeA": "4534469145061",
+          "logMonoTimeB": "4536463317778",
+          "observationIdA": "75:0:4534469145061:2",
+          "observationIdB": "75:0:4536463317778:2"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.7357,
+        "legacyScalarResidualM": 50.106
+      },
+      {
+        "reviewPairId": "75:0:4572476175247:2|75:0:4574482836255:2",
+        "segmentId": 75,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_75.bz2",
+          "logMonoTimeA": "4572476175247",
+          "logMonoTimeB": "4574482836255",
+          "observationIdA": "75:0:4572476175247:2",
+          "observationIdB": "75:0:4574482836255:2"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.124,
+        "legacyScalarResidualM": 16.512
+      },
+      {
+        "reviewPairId": "82:0:4986341599299:0|82:0:4988346654758:0",
+        "segmentId": 82,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_82.bz2",
+          "logMonoTimeA": "4986341599299",
+          "logMonoTimeB": "4988346654758",
+          "observationIdA": "82:0:4986341599299:0",
+          "observationIdB": "82:0:4988346654758:0"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.2517,
+        "legacyScalarResidualM": 13.427
+      },
+      {
+        "reviewPairId": "84:0:5112307125482:2|84:0:5114302691607:2",
+        "segmentId": 84,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_84.bz2",
+          "logMonoTimeA": "5112307125482",
+          "logMonoTimeB": "5114302691607",
+          "observationIdA": "84:0:5112307125482:2",
+          "observationIdB": "84:0:5114302691607:2"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.0576,
+        "legacyScalarResidualM": 19.668
+      },
+      {
+        "reviewPairId": "86:0:5232369528489:2|86:0:5234370899045:2",
+        "segmentId": 86,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_86.bz2",
+          "logMonoTimeA": "5232369528489",
+          "logMonoTimeB": "5234370899045",
+          "observationIdA": "86:0:5232369528489:2",
+          "observationIdB": "86:0:5234370899045:2"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.2392,
+        "legacyScalarResidualM": 46.483
+      },
+      {
+        "reviewPairId": "87:0:5292447815192:2|87:0:5294450301318:2",
+        "segmentId": 87,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_87.bz2",
+          "logMonoTimeA": "5292447815192",
+          "logMonoTimeB": "5294450301318",
+          "observationIdA": "87:0:5292447815192:2",
+          "observationIdB": "87:0:5294450301318:2"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.2166,
+        "legacyScalarResidualM": 38.421
+      },
+      {
+        "reviewPairId": "88:0:5352341709363:2|88:0:5354332532243:2",
+        "segmentId": 88,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_88.bz2",
+          "logMonoTimeA": "5352341709363",
+          "logMonoTimeB": "5354332532243",
+          "observationIdA": "88:0:5352341709363:2",
+          "observationIdB": "88:0:5354332532243:2"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.0944,
+        "legacyScalarResidualM": 37.109
+      },
+      {
+        "reviewPairId": "91:0:5532395104332:1|91:0:5534393365343:1",
+        "segmentId": 91,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_91.bz2",
+          "logMonoTimeA": "5532395104332",
+          "logMonoTimeB": "5534393365343",
+          "observationIdA": "91:0:5532395104332:1",
+          "observationIdB": "91:0:5534393365343:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.1104,
+        "legacyScalarResidualM": 30.891
+      },
+      {
+        "reviewPairId": "92:0:5592264937858:2|92:0:5594261127441:1",
+        "segmentId": 92,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_92.bz2",
+          "logMonoTimeA": "5592264937858",
+          "logMonoTimeB": "5594261127441",
+          "observationIdA": "92:0:5592264937858:2",
+          "observationIdB": "92:0:5594261127441:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 2.8895,
+        "legacyScalarResidualM": 14.091
+      },
+      {
+        "reviewPairId": "92:0:5592264937858:3|92:0:5594261127441:2",
+        "segmentId": 92,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_92.bz2",
+          "logMonoTimeA": "5592264937858",
+          "logMonoTimeB": "5594261127441",
+          "observationIdA": "92:0:5592264937858:3",
+          "observationIdB": "92:0:5594261127441:2"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 2.7021,
+        "legacyScalarResidualM": 15.089
+      },
+      {
+        "reviewPairId": "93:0:5652343576938:1|93:0:5654346828277:1",
+        "segmentId": 93,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_93.bz2",
+          "logMonoTimeA": "5652343576938",
+          "logMonoTimeB": "5654346828277",
+          "observationIdA": "93:0:5652343576938:1",
+          "observationIdB": "93:0:5654346828277:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.2969,
+        "legacyScalarResidualM": 16.102
+      },
+      {
+        "reviewPairId": "94:0:5664349609971:2|94:0:5666350862110:1",
+        "segmentId": 94,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_94.bz2",
+          "logMonoTimeA": "5664349609971",
+          "logMonoTimeB": "5666350862110",
+          "observationIdA": "94:0:5664349609971:2",
+          "observationIdB": "94:0:5666350862110:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 2.9902,
+        "legacyScalarResidualM": 14.383
+      },
+      {
+        "reviewPairId": "94:0:5712259794477:1|94:0:5714256748274:1",
+        "segmentId": 94,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_94.bz2",
+          "logMonoTimeA": "5712259794477",
+          "logMonoTimeB": "5714256748274",
+          "observationIdA": "94:0:5712259794477:1",
+          "observationIdB": "94:0:5714256748274:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.0873,
+        "legacyScalarResidualM": 33.119
+      },
+      {
+        "reviewPairId": "98:0:5952236098110:1|98:0:5954235459245:1",
+        "segmentId": 98,
+        "recordIndex": null,
+        "selectionReason": "legacy_negative_vector_positive_representative_sample",
+        "priority": 2,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_98.bz2",
+          "logMonoTimeA": "5952236098110",
+          "logMonoTimeB": "5954235459245",
+          "observationIdA": "98:0:5952236098110:1",
+          "observationIdB": "98:0:5954235459245:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.1785,
+        "legacyScalarResidualM": 25.197
+      },
+      {
+        "reviewPairId": "20:0:1221503579476:1|19:0:1161528059432:1",
+        "segmentId": 20,
+        "recordIndex": null,
+        "selectionReason": "near_12m_boundary",
+        "priority": 3,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_20.bz2",
+          "logMonoTimeA": "1221503579476",
+          "logMonoTimeB": "1161528059432",
+          "observationIdA": "20:0:1221503579476:1",
+          "observationIdB": "19:0:1161528059432:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 12.9479,
+        "legacyScalarResidualM": 8.457
+      },
+      {
+        "reviewPairId": "20:0:1223509002329:1|19:0:1163522673872:1",
+        "segmentId": 20,
+        "recordIndex": null,
+        "selectionReason": "near_12m_boundary",
+        "priority": 3,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_20.bz2",
+          "logMonoTimeA": "1223509002329",
+          "logMonoTimeB": "1163522673872",
+          "observationIdA": "20:0:1223509002329:1",
+          "observationIdB": "19:0:1163522673872:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 12.931,
+        "legacyScalarResidualM": 16.507
+      },
+      {
+        "reviewPairId": "20:0:1227505430664:1|18:0:1105576798945:1",
+        "segmentId": 20,
+        "recordIndex": null,
+        "selectionReason": "near_12m_boundary",
+        "priority": 3,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_20.bz2",
+          "logMonoTimeA": "1227505430664",
+          "logMonoTimeB": "1105576798945",
+          "observationIdA": "20:0:1227505430664:1",
+          "observationIdB": "18:0:1105576798945:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 12.9463,
+        "legacyScalarResidualM": 38.233
+      },
+      {
+        "reviewPairId": "20:0:1229505642481:1|19:0:1169517271748:1",
+        "segmentId": 20,
+        "recordIndex": null,
+        "selectionReason": "near_12m_boundary",
+        "priority": 3,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_20.bz2",
+          "logMonoTimeA": "1229505642481",
+          "logMonoTimeB": "1169517271748",
+          "observationIdA": "20:0:1229505642481:1",
+          "observationIdB": "19:0:1169517271748:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 12.9473,
+        "legacyScalarResidualM": 24.267
+      },
+      {
+        "reviewPairId": "20:0:1231503102569:1|18:0:1107582939753:1",
+        "segmentId": 20,
+        "recordIndex": null,
+        "selectionReason": "near_12m_boundary",
+        "priority": 3,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_20.bz2",
+          "logMonoTimeA": "1231503102569",
+          "logMonoTimeB": "1107582939753",
+          "observationIdA": "20:0:1231503102569:1",
+          "observationIdB": "18:0:1107582939753:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 12.9468,
+        "legacyScalarResidualM": 39.961
+      },
+      {
+        "reviewPairId": "20:0:1233500623922:1|19:0:1171519934634:1",
+        "segmentId": 20,
+        "recordIndex": null,
+        "selectionReason": "near_12m_boundary",
+        "priority": 3,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_20.bz2",
+          "logMonoTimeA": "1233500623922",
+          "logMonoTimeB": "1171519934634",
+          "observationIdA": "20:0:1233500623922:1",
+          "observationIdB": "19:0:1171519934634:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 12.9356,
+        "legacyScalarResidualM": 24.044
+      },
+      {
+        "reviewPairId": "20:0:1235502863145:1|19:0:1173517360530:1",
+        "segmentId": 20,
+        "recordIndex": null,
+        "selectionReason": "near_12m_boundary",
+        "priority": 3,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_20.bz2",
+          "logMonoTimeA": "1235502863145",
+          "logMonoTimeB": "1173517360530",
+          "observationIdA": "20:0:1235502863145:1",
+          "observationIdB": "19:0:1173517360530:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 12.9483,
+        "legacyScalarResidualM": 24.17
+      },
+      {
+        "reviewPairId": "20:0:1237502228093:1|18:0:1111582293346:1",
+        "segmentId": 20,
+        "recordIndex": null,
+        "selectionReason": "near_12m_boundary",
+        "priority": 3,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_20.bz2",
+          "logMonoTimeA": "1237502228093",
+          "logMonoTimeB": "1111582293346",
+          "observationIdA": "20:0:1237502228093:1",
+          "observationIdB": "18:0:1111582293346:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 12.9648,
+        "legacyScalarResidualM": 39.598
+      },
+      {
+        "reviewPairId": "20:0:1239504626810:1|19:0:1175516215071:1",
+        "segmentId": 20,
+        "recordIndex": null,
+        "selectionReason": "near_12m_boundary",
+        "priority": 3,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_20.bz2",
+          "logMonoTimeA": "1239504626810",
+          "logMonoTimeB": "1175516215071",
+          "observationIdA": "20:0:1239504626810:1",
+          "observationIdB": "19:0:1175516215071:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 12.9758,
+        "legacyScalarResidualM": 24.141
+      },
+      {
+        "reviewPairId": "20:0:1241504837515:1|18:0:1113579700728:1",
+        "segmentId": 20,
+        "recordIndex": null,
+        "selectionReason": "near_12m_boundary",
+        "priority": 3,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_20.bz2",
+          "logMonoTimeA": "1241504837515",
+          "logMonoTimeB": "1113579700728",
+          "observationIdA": "20:0:1241504837515:1",
+          "observationIdB": "18:0:1113579700728:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 12.9297,
+        "legacyScalarResidualM": 36.937
+      },
+      {
+        "reviewPairId": "20:0:1243499943430:1|19:0:1179517929072:1",
+        "segmentId": 20,
+        "recordIndex": null,
+        "selectionReason": "near_12m_boundary",
+        "priority": 3,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_20.bz2",
+          "logMonoTimeA": "1243499943430",
+          "logMonoTimeB": "1179517929072",
+          "observationIdA": "20:0:1243499943430:1",
+          "observationIdB": "19:0:1179517929072:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 12.9266,
+        "legacyScalarResidualM": 24.019
+      },
+      {
+        "reviewPairId": "20:0:1245495833918:1|18:0:1115576195624:1",
+        "segmentId": 20,
+        "recordIndex": null,
+        "selectionReason": "near_12m_boundary",
+        "priority": 3,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_20.bz2",
+          "logMonoTimeA": "1245495833918",
+          "logMonoTimeB": "1115576195624",
+          "observationIdA": "20:0:1245495833918:1",
+          "observationIdB": "18:0:1115576195624:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 12.9315,
+        "legacyScalarResidualM": 37.876
+      },
+      {
+        "reviewPairId": "20:0:1247490361314:1|19:0:1181515917501:1",
+        "segmentId": 20,
+        "recordIndex": null,
+        "selectionReason": "near_12m_boundary",
+        "priority": 3,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_20.bz2",
+          "logMonoTimeA": "1247490361314",
+          "logMonoTimeB": "1181515917501",
+          "observationIdA": "20:0:1247490361314:1",
+          "observationIdB": "19:0:1181515917501:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 12.9104,
+        "legacyScalarResidualM": 31.315
+      },
+      {
+        "reviewPairId": "20:0:1249482938333:1|18:0:1117574197990:1",
+        "segmentId": 20,
+        "recordIndex": null,
+        "selectionReason": "near_12m_boundary",
+        "priority": 3,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_20.bz2",
+          "logMonoTimeA": "1249482938333",
+          "logMonoTimeB": "1117574197990",
+          "observationIdA": "20:0:1249482938333:1",
+          "observationIdB": "18:0:1117574197990:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 12.9496,
+        "legacyScalarResidualM": 36.509
+      },
+      {
+        "reviewPairId": "20:0:1251475554923:1|19:0:1183513325786:1",
+        "segmentId": 20,
+        "recordIndex": null,
+        "selectionReason": "near_12m_boundary",
+        "priority": 3,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_20.bz2",
+          "logMonoTimeA": "1251475554923",
+          "logMonoTimeB": "1183513325786",
+          "observationIdA": "20:0:1251475554923:1",
+          "observationIdB": "19:0:1183513325786:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 12.9539,
+        "legacyScalarResidualM": 24.039
+      },
+      {
+        "reviewPairId": "20:0:1257459758062:1|19:0:1187511272747:1",
+        "segmentId": 20,
+        "recordIndex": null,
+        "selectionReason": "near_12m_boundary",
+        "priority": 3,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_20.bz2",
+          "logMonoTimeA": "1257459758062",
+          "logMonoTimeB": "1187511272747",
+          "observationIdA": "20:0:1257459758062:1",
+          "observationIdB": "19:0:1187511272747:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 12.9563,
+        "legacyScalarResidualM": 16.439
+      },
+      {
+        "reviewPairId": "20:0:1261450812114:1|19:0:1191509831096:1",
+        "segmentId": 20,
+        "recordIndex": null,
+        "selectionReason": "near_12m_boundary",
+        "priority": 3,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_20.bz2",
+          "logMonoTimeA": "1261450812114",
+          "logMonoTimeB": "1191509831096",
+          "observationIdA": "20:0:1261450812114:1",
+          "observationIdB": "19:0:1191509831096:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 12.9527,
+        "legacyScalarResidualM": 24.09
+      },
+      {
+        "reviewPairId": "20:0:1263444682673:1|18:0:1125558174543:1",
+        "segmentId": 20,
+        "recordIndex": null,
+        "selectionReason": "near_12m_boundary",
+        "priority": 3,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_20.bz2",
+          "logMonoTimeA": "1263444682673",
+          "logMonoTimeB": "1125558174543",
+          "observationIdA": "20:0:1263444682673:1",
+          "observationIdB": "18:0:1125558174543:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 12.9373,
+        "legacyScalarResidualM": 32.392
+      },
+      {
+        "reviewPairId": "20:0:1265447224148:1|19:0:1193513893539:1",
+        "segmentId": 20,
+        "recordIndex": null,
+        "selectionReason": "near_12m_boundary",
+        "priority": 3,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_20.bz2",
+          "logMonoTimeA": "1265447224148",
+          "logMonoTimeB": "1193513893539",
+          "observationIdA": "20:0:1265447224148:1",
+          "observationIdB": "19:0:1193513893539:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 12.946,
+        "legacyScalarResidualM": 15.335
+      },
+      {
+        "reviewPairId": "20:0:1267431665513:1|18:0:1127559617826:1",
+        "segmentId": 20,
+        "recordIndex": null,
+        "selectionReason": "near_12m_boundary",
+        "priority": 3,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_20.bz2",
+          "logMonoTimeA": "1267431665513",
+          "logMonoTimeB": "1127559617826",
+          "observationIdA": "20:0:1267431665513:1",
+          "observationIdB": "18:0:1127559617826:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 12.9375,
+        "legacyScalarResidualM": 27.951
+      },
+      {
+        "reviewPairId": "20:0:1269429665879:1|19:0:1197509793558:1",
+        "segmentId": 20,
+        "recordIndex": null,
+        "selectionReason": "near_12m_boundary",
+        "priority": 3,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_20.bz2",
+          "logMonoTimeA": "1269429665879",
+          "logMonoTimeB": "1197509793558",
+          "observationIdA": "20:0:1269429665879:1",
+          "observationIdB": "19:0:1197509793558:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 12.9499,
+        "legacyScalarResidualM": 8.142
+      },
+      {
+        "reviewPairId": "20:0:1271425507362:1|18:0:1129554993609:1",
+        "segmentId": 20,
+        "recordIndex": null,
+        "selectionReason": "near_12m_boundary",
+        "priority": 3,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_20.bz2",
+          "logMonoTimeA": "1271425507362",
+          "logMonoTimeB": "1129554993609",
+          "observationIdA": "20:0:1271425507362:1",
+          "observationIdB": "18:0:1129554993609:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 12.9388,
+        "legacyScalarResidualM": 25.301
+      },
+      {
+        "reviewPairId": "20:0:1273421306391:1|18:0:1131554485669:1",
+        "segmentId": 20,
+        "recordIndex": null,
+        "selectionReason": "near_12m_boundary",
+        "priority": 3,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_20.bz2",
+          "logMonoTimeA": "1273421306391",
+          "logMonoTimeB": "1131554485669",
+          "observationIdA": "20:0:1273421306391:1",
+          "observationIdB": "18:0:1131554485669:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 12.9402,
+        "legacyScalarResidualM": 29.238
+      },
+      {
+        "reviewPairId": "20:0:1275420367375:1|19:0:1203512836830:1",
+        "segmentId": 20,
+        "recordIndex": null,
+        "selectionReason": "near_12m_boundary",
+        "priority": 3,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_20.bz2",
+          "logMonoTimeA": "1275420367375",
+          "logMonoTimeB": "1203512836830",
+          "observationIdA": "20:0:1275420367375:1",
+          "observationIdB": "19:0:1203512836830:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "negative",
+        "vectorResidualM": 12.9501,
+        "legacyScalarResidualM": 28.253
+      },
+      {
+        "reviewPairId": "99:0:6008132831636:2|99:0:6010123028355:2",
+        "segmentId": 99,
+        "recordIndex": null,
+        "selectionReason": "near_12m_boundary",
+        "priority": 3,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_99.bz2",
+          "logMonoTimeA": "6008132831636",
+          "logMonoTimeB": "6010123028355",
+          "observationIdA": "99:0:6008132831636:2",
+          "observationIdB": "99:0:6010123028355:2"
+        },
+        "legacyDecision": "positive",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 11.7684,
+        "legacyScalarResidualM": 1.057
+      },
+      {
+        "reviewPairId": "29:0:1783361831645:0|29:0:1785353722352:0",
+        "segmentId": 29,
+        "recordIndex": null,
+        "selectionReason": "high_change_segment",
+        "priority": 4,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_29.bz2",
+          "logMonoTimeA": "1783361831645",
+          "logMonoTimeB": "1785353722352",
+          "observationIdA": "29:0:1783361831645:0",
+          "observationIdB": "29:0:1785353722352:0"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.4709,
+        "legacyScalarResidualM": 22.524
+      },
+      {
+        "reviewPairId": "29:0:1783361831645:1|29:0:1785353722352:1",
+        "segmentId": 29,
+        "recordIndex": null,
+        "selectionReason": "high_change_segment",
+        "priority": 4,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_29.bz2",
+          "logMonoTimeA": "1783361831645",
+          "logMonoTimeB": "1785353722352",
+          "observationIdA": "29:0:1783361831645:1",
+          "observationIdB": "29:0:1785353722352:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.1495,
+        "legacyScalarResidualM": 15.164
+      },
+      {
+        "reviewPairId": "29:0:1783361831645:2|29:0:1785353722352:2",
+        "segmentId": 29,
+        "recordIndex": null,
+        "selectionReason": "high_change_segment",
+        "priority": 4,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_29.bz2",
+          "logMonoTimeA": "1783361831645",
+          "logMonoTimeB": "1785353722352",
+          "observationIdA": "29:0:1783361831645:2",
+          "observationIdB": "29:0:1785353722352:2"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.0849,
+        "legacyScalarResidualM": 15.336
+      },
+      {
+        "reviewPairId": "51:0:3091052949720:1|51:0:3093047736871:1",
+        "segmentId": 51,
+        "recordIndex": null,
+        "selectionReason": "high_change_segment",
+        "priority": 4,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_51.bz2",
+          "logMonoTimeA": "3091052949720",
+          "logMonoTimeB": "3093047736871",
+          "observationIdA": "51:0:3091052949720:1",
+          "observationIdB": "51:0:3093047736871:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.3121,
+        "legacyScalarResidualM": 12.253
+      },
+      {
+        "reviewPairId": "51:0:3091052949720:2|51:0:3093047736871:2",
+        "segmentId": 51,
+        "recordIndex": null,
+        "selectionReason": "high_change_segment",
+        "priority": 4,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_51.bz2",
+          "logMonoTimeA": "3091052949720",
+          "logMonoTimeB": "3093047736871",
+          "observationIdA": "51:0:3091052949720:2",
+          "observationIdB": "51:0:3093047736871:2"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.1966,
+        "legacyScalarResidualM": 18.266
+      },
+      {
+        "reviewPairId": "51:0:3091052949720:3|51:0:3093047736871:3",
+        "segmentId": 51,
+        "recordIndex": null,
+        "selectionReason": "high_change_segment",
+        "priority": 4,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_51.bz2",
+          "logMonoTimeA": "3091052949720",
+          "logMonoTimeB": "3093047736871",
+          "observationIdA": "51:0:3091052949720:3",
+          "observationIdB": "51:0:3093047736871:3"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 0.6997,
+        "legacyScalarResidualM": 12.012
+      },
+      {
+        "reviewPairId": "51:0:3095053417104:3|51:0:3099048253857:2",
+        "segmentId": 51,
+        "recordIndex": null,
+        "selectionReason": "high_change_segment",
+        "priority": 4,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_51.bz2",
+          "logMonoTimeA": "3095053417104",
+          "logMonoTimeB": "3099048253857",
+          "observationIdA": "51:0:3095053417104:3",
+          "observationIdB": "51:0:3099048253857:2"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 2.7078,
+        "legacyScalarResidualM": 14.398
+      },
+      {
+        "reviewPairId": "74:0:4510485746781:1|74:0:4514481283201:1",
+        "segmentId": 74,
+        "recordIndex": null,
+        "selectionReason": "high_change_segment",
+        "priority": 4,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_74.bz2",
+          "logMonoTimeA": "4510485746781",
+          "logMonoTimeB": "4514481283201",
+          "observationIdA": "74:0:4510485746781:1",
+          "observationIdB": "74:0:4514481283201:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 9.5355,
+        "legacyScalarResidualM": 31.113
+      },
+      {
+        "reviewPairId": "75:0:4518482830178:2|75:0:4520480070957:1",
+        "segmentId": 75,
+        "recordIndex": null,
+        "selectionReason": "high_change_segment",
+        "priority": 4,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_75.bz2",
+          "logMonoTimeA": "4518482830178",
+          "logMonoTimeB": "4520480070957",
+          "observationIdA": "75:0:4518482830178:2",
+          "observationIdB": "75:0:4520480070957:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 4.2152,
+        "legacyScalarResidualM": 13.256
+      },
+      {
+        "reviewPairId": "75:0:4534469145061:1|75:0:4536463317778:1",
+        "segmentId": 75,
+        "recordIndex": null,
+        "selectionReason": "high_change_segment",
+        "priority": 4,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_75.bz2",
+          "logMonoTimeA": "4534469145061",
+          "logMonoTimeB": "4536463317778",
+          "observationIdA": "75:0:4534469145061:1",
+          "observationIdB": "75:0:4536463317778:1"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 1.0923,
+        "legacyScalarResidualM": 48.78
+      },
+      {
+        "reviewPairId": "75:0:4536463317778:1|75:0:4538464035378:3",
+        "segmentId": 75,
+        "recordIndex": null,
+        "selectionReason": "high_change_segment",
+        "priority": 4,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_75.bz2",
+          "logMonoTimeA": "4536463317778",
+          "logMonoTimeB": "4538464035378",
+          "observationIdA": "75:0:4536463317778:1",
+          "observationIdB": "75:0:4538464035378:3"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 6.7239,
+        "legacyScalarResidualM": 22.8
+      },
+      {
+        "reviewPairId": "94:0:5664349609971:1|94:0:5666350862110:0",
+        "segmentId": 94,
+        "recordIndex": null,
+        "selectionReason": "high_change_segment",
+        "priority": 4,
+        "developmentRecord": false,
+        "evidenceReference": {
+          "qlogReference": "qlog_f449c_94.bz2",
+          "logMonoTimeA": "5664349609971",
+          "logMonoTimeB": "5666350862110",
+          "observationIdA": "94:0:5664349609971:1",
+          "observationIdB": "94:0:5666350862110:0"
+        },
+        "legacyDecision": "negative",
+        "vectorShadowDecision": "positive",
+        "vectorResidualM": 2.9836,
+        "legacyScalarResidualM": 14.386
+      }
+    ]
+  },
+  "outputEquivalencePassed": true
+}

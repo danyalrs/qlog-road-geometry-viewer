@@ -1,0 +1,105 @@
+{
+  "generatedAt": "2026-07-29T04:42:42.921Z",
+  "manifestSchemaVersion": "stage20-b-motion-evidence-review-manifest-v1",
+  "reviewsSchemaVersion": "stage20-b-motion-manual-reviews-v1",
+  "totalPairs": 220,
+  "completed": 25,
+  "pending": 195,
+  "positive": 24,
+  "negative": 1,
+  "unresolved": 0,
+  "videoReviewed": 0,
+  "qlogOnlyReviewed": 25,
+  "invalidReviewRecords": 0,
+  "invalidReviewIssues": [],
+  "ruleDerivedPositiveContinuations": 20,
+  "note": "ruleDerivedPositiveContinuations are not manual positives",
+  "approvalGates": {
+    "minReviewedPairs": 200,
+    "minPositive": 30,
+    "minNegative": 80,
+    "maxUnresolvedFraction": 0.2
+  },
+  "remaining": {
+    "reviewedPairs": 175,
+    "positive": 6,
+    "negative": 79
+  },
+  "unresolvedFraction": 0,
+  "thresholdCalibrationBlocked": true,
+  "thresholdCalibrationBlockedReason": "threshold_approval_minimums_not_met",
+  "qlogCoverage": {
+    "qlogFilesInWorkspace": 92,
+    "pairsWithQlogAvailable": 220
+  },
+  "completedPairIds": [
+    "0:0:47709620393:0|0:0:49707759802:1",
+    "0:0:49707759802:0|0:0:51710515128:0",
+    "0:0:49707759802:1|0:0:51710515128:1",
+    "0:0:49707759802:2|0:0:51710515128:2",
+    "0:0:51710515128:0|0:0:53706292912:0",
+    "0:0:51710515128:1|0:0:53706292912:1",
+    "0:0:51710515128:2|0:0:53706292912:2",
+    "0:0:51710515128:3|0:0:53706292912:3",
+    "0:0:53706292912:0|0:0:55708851946:0",
+    "0:0:53706292912:1|0:0:55708851946:1",
+    "0:0:53706292912:2|0:0:55708851946:2",
+    "0:0:53706292912:3|0:0:55708851946:3",
+    "0:0:61705567632:1|0:0:63702876083:1",
+    "0:0:61705567632:2|0:0:63702876083:2",
+    "0:0:61705567632:3|0:0:63702876083:3",
+    "0:0:67702076235:1|0:0:69704610186:1",
+    "0:0:67702076235:2|0:0:69704610186:2",
+    "0:0:71704779595:0|0:0:73700718671:0",
+    "0:0:71704779595:1|0:0:73700718671:1",
+    "0:0:71704779595:2|0:0:73700718671:2",
+    "0:0:71704779595:3|0:0:73700718671:3",
+    "0:0:73700718671:0|0:0:75701987372:0",
+    "0:0:73700718671:1|0:0:75701987372:1",
+    "0:0:73700718671:2|0:0:75701987372:2",
+    "0:0:73700718671:3|0:0:75701987372:3"
+  ],
+  "split": {
+    "seed": "stage20-b-motion-calibration-validation-v1",
+    "calibrationPairCount": 133,
+    "validationPairCount": 87,
+    "coverage": {
+      "calibration": {
+        "displacement": {
+          "gt_35m": 73,
+          "12_35m": 17,
+          "lt_12m": 43
+        },
+        "speed": {
+          "normal": 81,
+          "high": 37,
+          "low": 9,
+          "stationary": 6
+        },
+        "timeGap": {
+          "lt_2s": 53,
+          "2_4s": 56,
+          "gt_4s": 24
+        }
+      },
+      "validation": {
+        "displacement": {
+          "lt_12m": 31,
+          "gt_35m": 44,
+          "12_35m": 12
+        },
+        "speed": {
+          "normal": 53,
+          "high": 24,
+          "low": 9,
+          "stationary": 1
+        },
+        "timeGap": {
+          "2_4s": 45,
+          "gt_4s": 20,
+          "lt_2s": 22
+        }
+      }
+    }
+  }
+}

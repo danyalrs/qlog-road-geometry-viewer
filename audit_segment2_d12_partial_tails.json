@@ -1,0 +1,467 @@
+{
+  "generatedAt": "2026-08-04T05:10:08.236Z",
+  "segment": "qlog_f449c_2.bz2",
+  "coverageAccounting": {
+    "toleranceM": 0.05,
+    "routeSIntervalCoverage": {
+      "acceptedFusedUnionM": 274.2957910368001,
+      "d12PreservedUnionM": 65.68276240918715,
+      "overlapAcceptedAndPreservedM": 20.095391216880387,
+      "combinedSupportedUnionM": 319.8831622291069,
+      "acceptedSpanSumM": 457.51339860272174,
+      "preservedSpanSumM": 106.93270458474751,
+      "displayCleanedSpanSumM": 564.8791079633407,
+      "naiveSpanSumM": 564.4461031874692,
+      "naiveAcceptedPlusPreservedM": 564.4461031874692,
+      "displayMinusNaiveSpanSumM": 0.43300477587149544,
+      "combinedMinusNaiveSumM": -244.56294095836233,
+      "displaySpanMinusAcceptedSpanM": 107.36570936061901
+    },
+    "polylineArcLength": {
+      "acceptedFusedArcM": 462.8244860280378,
+      "d12PreservedArcM": 106.94200713911992,
+      "displayCleanedArcM": 570.3743463819775
+    },
+    "reconciliation": {
+      "combinedEqualsUnionWithinTolerance": true,
+      "spanSumReconcilesWithinTolerance": true,
+      "explanation": "combined union differs from span-sum naive total when preserved intervals overlap accepted fused spans inside merged display runs"
+    }
+  },
+  "discrepancyAnalysis": {
+    "acceptedFusedSpanSumM": 457.51339860272174,
+    "preservedSpanSumM": 106.93270458474751,
+    "displayCleanedSpanSumM": 564.8791079633407,
+    "naiveSpanSumM": 564.4461031874692,
+    "displayMinusNaiveM": 0.43300477587149544,
+    "acceptedFusedUnionM": 274.2957910368001,
+    "preservedUnionM": 65.68276240918715,
+    "combinedUnionM": 319.8831622291069,
+    "overlapM": 20.095391216880387,
+    "cause": "displayCleanedSpanSum sums merged run s-spans; combinedSupportedUnionM uses interval union without double-counting overlap at gap boundaries"
+  },
+  "d12Summary": {
+    "originalIntervalLengthM": 111.94639549478904,
+    "preservedUnionM": 65.68276240918715,
+    "remainingOpenLengthM": 5.013690910041532,
+    "tailExtensionCount": 2
+  },
+  "tailClassifications": [
+    {
+      "parentGapId": "CD-10",
+      "classification": "T2",
+      "preservedLengthM": 4.3124715709806765,
+      "remainingOpenLengthM": 1.4657434773982345,
+      "sourceFrameId": 3123,
+      "eligibility": {
+        "passed": true,
+        "reason": null
+      }
+    },
+    {
+      "parentGapId": "CD-12",
+      "classification": "T3",
+      "preservedLengthM": 0,
+      "remainingOpenLengthM": 1.6394653378521298,
+      "eligibility": {
+        "passed": false,
+        "reason": "insufficientPreservedPointsInOpenTail"
+      }
+    },
+    {
+      "parentGapId": "CD-18",
+      "classification": "T2",
+      "preservedLengthM": 4.312400069375769,
+      "remainingOpenLengthM": 1.4754773189197294,
+      "sourceFrameId": 3123,
+      "eligibility": {
+        "passed": true,
+        "reason": null
+      }
+    }
+  ],
+  "partialTailAudits": [
+    {
+      "gapId": "CD-10",
+      "physicalBoundaryGroup": "PB1",
+      "trackId": 2,
+      "chunkId": 0,
+      "passId": 0,
+      "openInterval": {
+        "startS": 428.7557621001464,
+        "endS": 434.5339771485253,
+        "lengthM": 5.778215048378911
+      },
+      "primaryPreservation": {
+        "sourceFrameId": 3083,
+        "sourcePolylineId": "3083:L2:T2",
+        "preservedEndS": 428.7557621001464,
+        "finalMappedPoint": {
+          "east": -51.4890097492575,
+          "north": 21.925724677034985,
+          "s": 428.7557621001464,
+          "d": 1.2679535060166478,
+          "originalPointIndex": 16,
+          "sourceConfidence": 0.9744181632995605,
+          "provenanceType": "sourcePolylinePreserved",
+          "provenance": {
+            "provenanceType": "sourcePolylinePreserved",
+            "gapId": "CD-10",
+            "sourceFrameId": 3083,
+            "logMonoTime": "171706391399",
+            "sourceLaneIndex": 2,
+            "sourcePolylineId": "3083:L2:T2",
+            "physicalBoundaryGroup": "PB1",
+            "trackId": 2,
+            "chunkId": 0,
+            "passId": 0,
+            "originalPointIndex": 16,
+            "sourceConfidence": 0.9744181632995605,
+            "mappedS": 428.7557621001464,
+            "mappedD": 1.2679535060166478,
+            "preservationReason": "D12_partialSpan"
+          }
+        }
+      },
+      "surroundingFusedFragments": {
+        "prevRunId": 11,
+        "prevRunSMax": 412.22180615396644,
+        "nextRunId": 6,
+        "nextRunSMin": 434.5339771485253,
+        "nextAcceptedFusedPoint": {
+          "s": 434.5339771485253,
+          "d": 1.2449048014549564,
+          "frameCount": 2,
+          "binKey": 217
+        }
+      },
+      "inspectedSourceFrames": [
+        2963,
+        3003,
+        3043,
+        3083,
+        3123,
+        3163,
+        3203,
+        3243,
+        3283,
+        3323,
+        3363,
+        3403,
+        3443,
+        3483,
+        3523,
+        3563,
+        3603
+      ],
+      "candidateSourcePolylines": [
+        {
+          "sourceFrameId": 3083,
+          "logMonoTime": "171706391399",
+          "sourceLaneIndex": 2,
+          "sourcePolylineId": "3083:L2:T2",
+          "mappedSRange": [
+            428.7557621001464,
+            434.94327923214877
+          ],
+          "mappedPointCount": 2,
+          "pointsInOpenInterval": 1,
+          "pointsInOpenSRange": [
+            428.7557621001464,
+            428.7557621001464
+          ],
+          "sourceConfidence": 0.9744181632995605,
+          "meanD": 1.2679535060166478,
+          "entersOpenTailInterior": false,
+          "distanceFromMappedEndpointToOpenStartM": 0,
+          "rejectionReason": "alreadyUsedPrimaryPreservation"
+        },
+        {
+          "sourceFrameId": 3123,
+          "logMonoTime": "173712039287",
+          "sourceLaneIndex": 2,
+          "sourcePolylineId": "3123:L2:T2",
+          "mappedSRange": [
+            430.22150557754463,
+            434.5339771485253
+          ],
+          "mappedPointCount": 2,
+          "pointsInOpenInterval": 2,
+          "pointsInOpenSRange": [
+            430.22150557754463,
+            434.5339771485253
+          ],
+          "sourceConfidence": 0.9795388579368591,
+          "meanD": 1.2527494321866361,
+          "entersOpenTailInterior": true,
+          "distanceFromMappedEndpointToOpenStartM": 1.4657434773982345,
+          "rejectionReason": null
+        }
+      ],
+      "tailExtension": {
+        "gapId": "CD-10-TAIL",
+        "sourceFrameId": 3123,
+        "preservedLengthM": 4.3124715709806765,
+        "remainingOpenAfterExtensionM": 1.4657434773982345
+      }
+    },
+    {
+      "gapId": "CD-12",
+      "physicalBoundaryGroup": "PB1",
+      "trackId": 2,
+      "chunkId": 0,
+      "passId": 0,
+      "openInterval": {
+        "startS": 498.48122518574536,
+        "endS": 500.1206905235975,
+        "lengthM": 1.6394653378521298
+      },
+      "primaryPreservation": {
+        "sourceFrameId": 3203,
+        "sourcePolylineId": "3203:L2:T2",
+        "preservedEndS": 498.48122518574536,
+        "finalMappedPoint": {
+          "east": -54.491869997205654,
+          "north": 91.59196652204426,
+          "s": 498.48122518574536,
+          "d": 0.9299889147829123,
+          "originalPointIndex": 13,
+          "sourceConfidence": 0.9777554869651794,
+          "provenanceType": "sourcePolylinePreserved",
+          "provenance": {
+            "provenanceType": "sourcePolylinePreserved",
+            "gapId": "CD-12",
+            "sourceFrameId": 3203,
+            "logMonoTime": "177707085489",
+            "sourceLaneIndex": 2,
+            "sourcePolylineId": "3203:L2:T2",
+            "physicalBoundaryGroup": "PB1",
+            "trackId": 2,
+            "chunkId": 0,
+            "passId": 0,
+            "originalPointIndex": 13,
+            "sourceConfidence": 0.9777554869651794,
+            "mappedS": 498.48122518574536,
+            "mappedD": 0.9299889147829123,
+            "preservationReason": "D12_partialSpan"
+          }
+        }
+      },
+      "surroundingFusedFragments": {
+        "prevRunId": 13,
+        "prevRunSMax": 478.79387292483455,
+        "nextRunId": 9,
+        "nextRunSMin": 500.1206905235975,
+        "nextAcceptedFusedPoint": {
+          "s": 500.1206905235975,
+          "d": 1.130739343279151,
+          "frameCount": 2,
+          "binKey": 250
+        }
+      },
+      "inspectedSourceFrames": [
+        2963,
+        3003,
+        3043,
+        3083,
+        3123,
+        3163,
+        3203,
+        3243,
+        3283,
+        3323,
+        3363,
+        3403,
+        3443,
+        3483,
+        3523,
+        3563,
+        3603
+      ],
+      "candidateSourcePolylines": [
+        {
+          "sourceFrameId": 3163,
+          "logMonoTime": "175704371479",
+          "sourceLaneIndex": 2,
+          "sourcePolylineId": "3163:L2:T2",
+          "mappedSRange": [
+            500.10840835916696,
+            500.10840835916696
+          ],
+          "mappedPointCount": 3,
+          "pointsInOpenInterval": 3,
+          "pointsInOpenSRange": [
+            500.10840835916696,
+            500.10840835916696
+          ],
+          "sourceConfidence": 0.9713971614837646,
+          "meanD": 0.10575150143781016,
+          "entersOpenTailInterior": false,
+          "distanceFromMappedEndpointToOpenStartM": 1.6271831734215993,
+          "rejectionReason": "collapsedSpanInOpenInterval"
+        },
+        {
+          "sourceFrameId": 3203,
+          "logMonoTime": "177707085489",
+          "sourceLaneIndex": 2,
+          "sourcePolylineId": "3203:L2:T2",
+          "mappedSRange": [
+            498.48122518574536,
+            498.48122518574536
+          ],
+          "mappedPointCount": 1,
+          "pointsInOpenInterval": 1,
+          "pointsInOpenSRange": [
+            498.48122518574536,
+            498.48122518574536
+          ],
+          "sourceConfidence": 0.9777554869651794,
+          "meanD": 0.9299889147829123,
+          "entersOpenTailInterior": false,
+          "distanceFromMappedEndpointToOpenStartM": 0,
+          "rejectionReason": "alreadyUsedPrimaryPreservation"
+        },
+        {
+          "sourceFrameId": 3243,
+          "logMonoTime": "179713752755",
+          "sourceLaneIndex": 2,
+          "sourcePolylineId": "3243:L2:T2",
+          "mappedSRange": [
+            500.1206905235975,
+            500.3080504009555
+          ],
+          "mappedPointCount": 2,
+          "pointsInOpenInterval": 1,
+          "pointsInOpenSRange": [
+            500.1206905235975,
+            500.1206905235975
+          ],
+          "sourceConfidence": 0.9750354290008545,
+          "meanD": 1.147658670470633,
+          "entersOpenTailInterior": false,
+          "distanceFromMappedEndpointToOpenStartM": 1.6394653378521298,
+          "rejectionReason": "insufficientPointsInOpenInterval"
+        }
+      ],
+      "tailExtension": null
+    },
+    {
+      "gapId": "CD-18",
+      "physicalBoundaryGroup": "PB2",
+      "trackId": 3,
+      "chunkId": 0,
+      "passId": 0,
+      "openInterval": {
+        "startS": 428.7570377828136,
+        "endS": 434.5449151711091,
+        "lengthM": 5.787877388295499
+      },
+      "primaryPreservation": {
+        "sourceFrameId": 3083,
+        "sourcePolylineId": "3083:L3:T3",
+        "preservedEndS": 428.7570377828136,
+        "finalMappedPoint": {
+          "east": -54.31024745142154,
+          "north": 21.793302127732822,
+          "s": 428.7570377828136,
+          "d": 4.092297018465027,
+          "originalPointIndex": 16,
+          "sourceConfidence": 0.6335176229476929,
+          "provenanceType": "sourcePolylinePreserved",
+          "provenance": {
+            "provenanceType": "sourcePolylinePreserved",
+            "gapId": "CD-18",
+            "sourceFrameId": 3083,
+            "logMonoTime": "171706391399",
+            "sourceLaneIndex": 3,
+            "sourcePolylineId": "3083:L3:T3",
+            "physicalBoundaryGroup": "PB2",
+            "trackId": 3,
+            "chunkId": 0,
+            "passId": 0,
+            "originalPointIndex": 16,
+            "sourceConfidence": 0.6335176229476929,
+            "mappedS": 428.7570377828136,
+            "mappedD": 4.092297018465027,
+            "preservationReason": "D12_partialSpan"
+          }
+        }
+      },
+      "surroundingFusedFragments": {
+        "prevRunId": 0,
+        "prevRunSMax": 412.2329184179182,
+        "nextRunId": 1,
+        "nextRunSMin": 434.5449151711091,
+        "nextAcceptedFusedPoint": {
+          "s": 434.5449151711091,
+          "d": 4.075261602692861,
+          "frameCount": 2,
+          "binKey": 217
+        }
+      },
+      "inspectedSourceFrames": [
+        3083,
+        3123,
+        3163,
+        3323,
+        3483
+      ],
+      "candidateSourcePolylines": [
+        {
+          "sourceFrameId": 3083,
+          "logMonoTime": "171706391399",
+          "sourceLaneIndex": 3,
+          "sourcePolylineId": "3083:L3:T3",
+          "mappedSRange": [
+            428.7570377828136,
+            434.9445474265521
+          ],
+          "mappedPointCount": 2,
+          "pointsInOpenInterval": 1,
+          "pointsInOpenSRange": [
+            428.7570377828136,
+            428.7570377828136
+          ],
+          "sourceConfidence": 0.6335176229476929,
+          "meanD": 4.092297018465027,
+          "entersOpenTailInterior": false,
+          "distanceFromMappedEndpointToOpenStartM": 0,
+          "rejectionReason": "alreadyUsedPrimaryPreservation"
+        },
+        {
+          "sourceFrameId": 3123,
+          "logMonoTime": "173712039287",
+          "sourceLaneIndex": 3,
+          "sourcePolylineId": "3123:L3:T3",
+          "mappedSRange": [
+            430.2325151017333,
+            434.5449151711091
+          ],
+          "mappedPointCount": 2,
+          "pointsInOpenInterval": 2,
+          "pointsInOpenSRange": [
+            430.2325151017333,
+            434.5449151711091
+          ],
+          "sourceConfidence": 0.7110916972160339,
+          "meanD": 4.092357222446278,
+          "entersOpenTailInterior": true,
+          "distanceFromMappedEndpointToOpenStartM": 1.4754773189197294,
+          "rejectionReason": null
+        }
+      ],
+      "tailExtension": {
+        "gapId": "CD-18-TAIL",
+        "sourceFrameId": 3123,
+        "preservedLengthM": 4.312400069375769,
+        "remainingOpenAfterExtensionM": 1.4754773189197294
+      }
+    }
+  ],
+  "beforeAfter": {
+    "cleanedRunCountBefore": 30,
+    "cleanedRunCountAfter": 28,
+    "fusedFragmentCount": 33,
+    "preservedIntervalCount": 7
+  }
+}

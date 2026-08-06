@@ -1,0 +1,106 @@
+{
+  "baselineVersion": "2026-07-24-pose-v8",
+  "currentVersion": "2026-07-24-pose-v9",
+  "segmentCount": 92,
+  "baselineMultiPass": 4,
+  "currentMultiPass": 2,
+  "baselineMedianMs": 561.5,
+  "currentMedianMs": 564.5,
+  "failuresBefore": 0,
+  "failuresAfter": 0,
+  "passCountChanges": 2,
+  "improvements": 2,
+  "regressions": 0,
+  "stabilityGroupRegressions": [],
+  "largestPassIncreases": [],
+  "largestPassDecreases": [
+    {
+      "segmentId": 2,
+      "passCountBefore": 2,
+      "passCountAfter": 1,
+      "passDelta": -1,
+      "polygonDelta": -1,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "selfIntersection",
+          "frameId": 3123,
+          "logMonoTime": "173712039287"
+        }
+      ],
+      "splitAfter": [],
+      "suppressedAfter": 1,
+      "changeReason": "passes reduced 2→1; suppressed 1 reversal candidate(s); splits now: none; was: selfIntersection",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 99,
+      "passCountBefore": 2,
+      "passCountAfter": 1,
+      "passDelta": -1,
+      "polygonDelta": -2,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "spatialRevisit",
+          "frameId": 119803,
+          "logMonoTime": "6006146226986"
+        }
+      ],
+      "splitAfter": [],
+      "suppressedAfter": 2,
+      "changeReason": "passes reduced 2→1; suppressed 2 reversal candidate(s); splits now: none; was: spatialRevisit",
+      "inStabilityGroup": false
+    }
+  ],
+  "allPassChanges": [
+    {
+      "segmentId": 2,
+      "passCountBefore": 2,
+      "passCountAfter": 1,
+      "passDelta": -1,
+      "polygonDelta": -1,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "selfIntersection",
+          "frameId": 3123,
+          "logMonoTime": "173712039287"
+        }
+      ],
+      "splitAfter": [],
+      "suppressedAfter": 1,
+      "changeReason": "passes reduced 2→1; suppressed 1 reversal candidate(s); splits now: none; was: selfIntersection",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 99,
+      "passCountBefore": 2,
+      "passCountAfter": 1,
+      "passDelta": -1,
+      "polygonDelta": -2,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "spatialRevisit",
+          "frameId": 119803,
+          "logMonoTime": "6006146226986"
+        }
+      ],
+      "splitAfter": [],
+      "suppressedAfter": 2,
+      "changeReason": "passes reduced 2→1; suppressed 2 reversal candidate(s); splits now: none; was: spatialRevisit",
+      "inStabilityGroup": false
+    }
+  ],
+  "movementAggregate": {
+    "baselineSuppressedReversals": 0,
+    "currentSuppressedReversals": 32,
+    "currentMovementStates": {
+      "moving": 2166,
+      "stationary": 152,
+      "creeping": 0,
+      "uncertain": 304
+    }
+  }
+}

@@ -1,0 +1,3048 @@
+{
+  "generatedAt": "2026-08-04T03:19:44.878Z",
+  "segment": "qlog_f449c_2.bz2",
+  "chunkId": 0,
+  "passId": 0,
+  "physicalBoundaryGroups": [
+    {
+      "physicalBoundaryId": "PB0",
+      "trackIds": [
+        0
+      ],
+      "meanD": -1.9254293189288918,
+      "side": "right",
+      "complementary": false
+    },
+    {
+      "physicalBoundaryId": "PB1",
+      "trackIds": [
+        1,
+        2
+      ],
+      "meanD": 2.144292836945928,
+      "side": "left",
+      "complementary": true
+    },
+    {
+      "physicalBoundaryId": "PB2",
+      "trackIds": [
+        3
+      ],
+      "meanD": 4.076517416550587,
+      "side": "left",
+      "complementary": false
+    }
+  ],
+  "runCount": 30,
+  "separationCount": 27,
+  "runs": [
+    {
+      "runId": 0,
+      "physicalBoundaryId": "PB2",
+      "sourceTrackIds": [
+        3
+      ],
+      "primaryTrackId": 3,
+      "chunkId": 0,
+      "passId": 0,
+      "laneSide": "left",
+      "lateralOrder": 0,
+      "startElapsedIdx": 16,
+      "endElapsedIdx": 26,
+      "startFrameId": 3083,
+      "endFrameId": 3483,
+      "startS": 407.7330461017007,
+      "endS": 412.2329184179182,
+      "lengthM": 4.500065852316362,
+      "fusedBinCount": 1,
+      "contributingObservationCount": 4,
+      "distinctSupportingFrameCount": 5,
+      "meanConfidence": 0.6432966351509094,
+      "minConfidence": null,
+      "meanD": 4.269464426770293,
+      "lateralRangeD": {
+        "min": 4.248596910606714,
+        "max": 4.2903319429338715
+      },
+      "meanHeadingDeg": 92.18185480089956,
+      "curvature": {
+        "maxHeadingDeltaDeg": 0,
+        "meanAbsCurvature": 0
+      },
+      "startCoord": {
+        "east": -53.51284132708016,
+        "north": 0.7835047105354014
+      },
+      "endCoord": {
+        "east": -53.6841648962497,
+        "north": 5.2803081207181055
+      },
+      "gapToPrecedingCompatibleRunM": null,
+      "gapToNextCompatibleRunM": 22.311996753190897,
+      "lateralDeltaAtPrecedingEndpoint": null,
+      "headingDeltaAtPrecedingEndpoint": null,
+      "joinToPreceding": null,
+      "joinToNext": null,
+      "sourceFusedLengthM": 4.500065852316362,
+      "cleanedLengthM": 4.500065852316362,
+      "renderedLengthM": 4.500065852316362,
+      "sourcePointCount": 2,
+      "cleanedPointCount": 2,
+      "renderedPointCount": 2,
+      "supportStatus": "supported"
+    },
+    {
+      "runId": 1,
+      "physicalBoundaryId": "PB2",
+      "sourceTrackIds": [
+        3
+      ],
+      "primaryTrackId": 3,
+      "chunkId": 0,
+      "passId": 0,
+      "laneSide": "left",
+      "lateralOrder": 1,
+      "startElapsedIdx": 16,
+      "endElapsedIdx": 26,
+      "startFrameId": 3083,
+      "endFrameId": 3483,
+      "startS": 434.5449151711091,
+      "endS": 439.2687416968598,
+      "lengthM": 4.723826525750724,
+      "fusedBinCount": 1,
+      "contributingObservationCount": 6,
+      "distinctSupportingFrameCount": 5,
+      "meanConfidence": 0.6432966351509094,
+      "minConfidence": null,
+      "meanD": 3.947886076404116,
+      "lateralRangeD": {
+        "min": 3.8334574622830795,
+        "max": 4.075261602692861
+      },
+      "meanHeadingDeg": 90.11807629139741,
+      "curvature": {
+        "maxHeadingDeltaDeg": 3.435660757598325,
+        "meanAbsCurvature": 3.435660757598325
+      },
+      "startCoord": {
+        "east": -54.56721363303709,
+        "north": 27.57549749358123
+      },
+      "endCoord": {
+        "east": -54.57688722330227,
+        "north": 32.26953982617972
+      },
+      "gapToPrecedingCompatibleRunM": 22.311996753190897,
+      "gapToNextCompatibleRunM": null,
+      "lateralDeltaAtPrecedingEndpoint": 0.17333530791385243,
+      "headingDeltaAtPrecedingEndpoint": null,
+      "joinToPreceding": null,
+      "joinToNext": null,
+      "sourceFusedLengthM": 4.696606145466439,
+      "cleanedLengthM": 4.723826525750724,
+      "renderedLengthM": 4.723826525750724,
+      "sourcePointCount": 3,
+      "cleanedPointCount": 3,
+      "renderedPointCount": 3,
+      "supportStatus": "supported"
+    },
+    {
+      "runId": 2,
+      "physicalBoundaryId": "PB1",
+      "sourceTrackIds": [
+        1,
+        2
+      ],
+      "primaryTrackId": 2,
+      "chunkId": 0,
+      "passId": 0,
+      "laneSide": "left",
+      "lateralOrder": 4,
+      "startElapsedIdx": 0,
+      "endElapsedIdx": 4,
+      "startFrameId": 2443,
+      "endFrameId": 2603,
+      "startS": 35.02186391091784,
+      "endS": 41.01278646157863,
+      "lengthM": 6.000002119746215,
+      "fusedBinCount": 1,
+      "contributingObservationCount": 4,
+      "distinctSupportingFrameCount": 5,
+      "meanConfidence": 0.8157487273216247,
+      "minConfidence": null,
+      "meanD": 1.6133671752661551,
+      "lateralRangeD": {
+        "min": 1.4483880637527364,
+        "max": 1.778346286779574
+      },
+      "meanHeadingDeg": -162.89586664844344,
+      "curvature": {
+        "maxHeadingDeltaDeg": 0,
+        "meanAbsCurvature": 0
+      },
+      "startCoord": {
+        "east": -57.16589522337874,
+        "north": -18.433016854767743
+      },
+      "endCoord": {
+        "east": -62.9005280497779,
+        "north": -20.197673133861294
+      },
+      "gapToPrecedingCompatibleRunM": null,
+      "gapToNextCompatibleRunM": 24.77448397283389,
+      "lateralDeltaAtPrecedingEndpoint": null,
+      "headingDeltaAtPrecedingEndpoint": null,
+      "joinToPreceding": null,
+      "joinToNext": null,
+      "sourceFusedLengthM": 6.000002119746215,
+      "cleanedLengthM": 6.000002119746215,
+      "renderedLengthM": 6.000002119746215,
+      "sourcePointCount": 2,
+      "cleanedPointCount": 2,
+      "renderedPointCount": 2,
+      "supportStatus": "supported"
+    },
+    {
+      "runId": 3,
+      "physicalBoundaryId": "PB1",
+      "sourceTrackIds": [
+        1,
+        2
+      ],
+      "primaryTrackId": 2,
+      "chunkId": 0,
+      "passId": 0,
+      "laneSide": "left",
+      "lateralOrder": 3,
+      "startElapsedIdx": 0,
+      "endElapsedIdx": 4,
+      "startFrameId": 2443,
+      "endFrameId": 2603,
+      "startS": 65.78727043441252,
+      "endS": 71.1020363294706,
+      "lengthM": 5.628216743560192,
+      "fusedBinCount": 1,
+      "contributingObservationCount": 5,
+      "distinctSupportingFrameCount": 5,
+      "meanConfidence": 0.8157487273216247,
+      "minConfidence": null,
+      "meanD": 2.238830986939896,
+      "lateralRangeD": {
+        "min": 1.243807670539045,
+        "max": 3.2338543033407476
+      },
+      "meanHeadingDeg": -143.00339065911842,
+      "curvature": {
+        "maxHeadingDeltaDeg": 0,
+        "meanAbsCurvature": 0
+      },
+      "startCoord": {
+        "east": -87.07302958558094,
+        "north": -25.652116932641775
+      },
+      "endCoord": {
+        "east": -91.56812377241026,
+        "north": -29.038996316975464
+      },
+      "gapToPrecedingCompatibleRunM": 24.77448397283389,
+      "gapToNextCompatibleRunM": 17.442207002724956,
+      "lateralDeltaAtPrecedingEndpoint": 0.534538616240529,
+      "headingDeltaAtPrecedingEndpoint": null,
+      "joinToPreceding": null,
+      "joinToNext": null,
+      "sourceFusedLengthM": 5.628216743560192,
+      "cleanedLengthM": 5.628216743560192,
+      "renderedLengthM": 5.628216743560192,
+      "sourcePointCount": 2,
+      "cleanedPointCount": 2,
+      "renderedPointCount": 2,
+      "supportStatus": "supported"
+    },
+    {
+      "runId": 4,
+      "physicalBoundaryId": "PB1",
+      "sourceTrackIds": [
+        1,
+        2
+      ],
+      "primaryTrackId": 2,
+      "chunkId": 0,
+      "passId": 0,
+      "laneSide": "left",
+      "lateralOrder": 2,
+      "startElapsedIdx": 0,
+      "endElapsedIdx": 4,
+      "startFrameId": 2443,
+      "endFrameId": 2603,
+      "startS": 88.54424333219555,
+      "endS": 92.49290092856977,
+      "lengthM": 4.062449090062024,
+      "fusedBinCount": 1,
+      "contributingObservationCount": 5,
+      "distinctSupportingFrameCount": 5,
+      "meanConfidence": 0.8157487273216247,
+      "minConfidence": null,
+      "meanD": 2.5806803486317333,
+      "lateralRangeD": {
+        "min": 2.1032927189370714,
+        "max": 3.0580679783263953
+      },
+      "meanHeadingDeg": -177.31430201638395,
+      "curvature": {
+        "maxHeadingDeltaDeg": 0,
+        "meanAbsCurvature": 0
+      },
+      "startCoord": {
+        "east": -108.36033416878828,
+        "north": -33.759500099596956
+      },
+      "endCoord": {
+        "east": -112.418321074625,
+        "north": -33.94985471972355
+      },
+      "gapToPrecedingCompatibleRunM": 17.442207002724956,
+      "gapToNextCompatibleRunM": 239.9397931656839,
+      "lateralDeltaAtPrecedingEndpoint": 0.17578632501435232,
+      "headingDeltaAtPrecedingEndpoint": null,
+      "joinToPreceding": null,
+      "joinToNext": null,
+      "sourceFusedLengthM": 4.062449090062024,
+      "cleanedLengthM": 4.062449090062024,
+      "renderedLengthM": 4.062449090062024,
+      "sourcePointCount": 2,
+      "cleanedPointCount": 2,
+      "renderedPointCount": 2,
+      "supportStatus": "supported"
+    },
+    {
+      "runId": 5,
+      "physicalBoundaryId": "PB1",
+      "sourceTrackIds": [
+        1,
+        2
+      ],
+      "primaryTrackId": 2,
+      "chunkId": 0,
+      "passId": 0,
+      "laneSide": "left",
+      "lateralOrder": 14,
+      "startElapsedIdx": 13,
+      "endElapsedIdx": 29,
+      "startFrameId": 2963,
+      "endFrameId": 3603,
+      "startS": 332.4326940942537,
+      "endS": 341.2495644385052,
+      "lengthM": 9.025455535799964,
+      "fusedBinCount": 1,
+      "contributingObservationCount": 8,
+      "distinctSupportingFrameCount": 17,
+      "meanConfidence": 0.9049252271652222,
+      "minConfidence": null,
+      "meanD": 0.5248660667677914,
+      "lateralRangeD": {
+        "min": -0.5239651533118745,
+        "max": 1.3845672837086596
+      },
+      "meanHeadingDeg": 67.82522514701893,
+      "curvature": {
+        "maxHeadingDeltaDeg": 3.4189840203313953,
+        "meanAbsCurvature": 2.7815849747586485
+      },
+      "startCoord": {
+        "east": -52.59809536405298,
+        "north": -73.67132191196374
+      },
+      "endCoord": {
+        "east": -49.19324483491406,
+        "north": -65.31747898761307
+      },
+      "gapToPrecedingCompatibleRunM": 239.9397931656839,
+      "gapToNextCompatibleRunM": 14.968126127636538,
+      "lateralDeltaAtPrecedingEndpoint": 0.7187254352284118,
+      "headingDeltaAtPrecedingEndpoint": null,
+      "joinToPreceding": null,
+      "joinToNext": null,
+      "sourceFusedLengthM": 9.025455535799964,
+      "cleanedLengthM": 9.025455535799964,
+      "renderedLengthM": 9.025455535799964,
+      "sourcePointCount": 4,
+      "cleanedPointCount": 4,
+      "renderedPointCount": 4,
+      "supportStatus": "supported"
+    },
+    {
+      "runId": 6,
+      "physicalBoundaryId": "PB1",
+      "sourceTrackIds": [
+        1,
+        2
+      ],
+      "primaryTrackId": 2,
+      "chunkId": 0,
+      "passId": 0,
+      "laneSide": "left",
+      "lateralOrder": 11,
+      "startElapsedIdx": 13,
+      "endElapsedIdx": 29,
+      "startFrameId": 2963,
+      "endFrameId": 3603,
+      "startS": 356.21769056614175,
+      "endS": 412.22180615396644,
+      "lengthM": 56.26142001781394,
+      "fusedBinCount": 2,
+      "contributingObservationCount": 23,
+      "distinctSupportingFrameCount": 17,
+      "meanConfidence": 0.9049252271652222,
+      "minConfidence": null,
+      "meanD": 1.029292647374245,
+      "lateralRangeD": {
+        "min": -0.2991109888386264,
+        "max": 1.3731528701363043
+      },
+      "meanHeadingDeg": 92.4330114367859,
+      "curvature": {
+        "maxHeadingDeltaDeg": 20.078570344619035,
+        "meanAbsCurvature": 4.939744430692456
+      },
+      "startCoord": {
+        "east": -48.4356467310738,
+        "north": -50.5088631226136
+      },
+      "endCoord": {
+        "east": -50.811418314500926,
+        "north": 5.405324077050274
+      },
+      "gapToPrecedingCompatibleRunM": 14.968126127636538,
+      "gapToNextCompatibleRunM": 22.31217099455887,
+      "lateralDeltaAtPrecedingEndpoint": 1.7890362984584525,
+      "headingDeltaAtPrecedingEndpoint": null,
+      "joinToPreceding": null,
+      "joinToNext": null,
+      "sourceFusedLengthM": 45.573818767677594,
+      "cleanedLengthM": 56.26142001781394,
+      "renderedLengthM": 56.26142001781394,
+      "sourcePointCount": 11,
+      "cleanedPointCount": 11,
+      "renderedPointCount": 11,
+      "supportStatus": "supported"
+    },
+    {
+      "runId": 7,
+      "physicalBoundaryId": "PB1",
+      "sourceTrackIds": [
+        1,
+        2
+      ],
+      "primaryTrackId": 2,
+      "chunkId": 0,
+      "passId": 0,
+      "laneSide": "left",
+      "lateralOrder": 6,
+      "startElapsedIdx": 13,
+      "endElapsedIdx": 29,
+      "startFrameId": 2963,
+      "endFrameId": 3603,
+      "startS": 434.5339771485253,
+      "endS": 439.23222706113535,
+      "lengthM": 4.698249912610038,
+      "fusedBinCount": 1,
+      "contributingObservationCount": 6,
+      "distinctSupportingFrameCount": 17,
+      "meanConfidence": 0.9049252271652222,
+      "minConfidence": null,
+      "meanD": 1.2432187062574185,
+      "lateralRangeD": {
+        "min": 1.1482666252479592,
+        "max": 1.3364846920693398
+      },
+      "meanHeadingDeg": 91.88713922678365,
+      "curvature": {
+        "maxHeadingDeltaDeg": 6.913159480794792,
+        "meanAbsCurvature": 6.913159480794792
+      },
+      "startCoord": {
+        "east": -51.73951199410851,
+        "north": 27.698553187688933
+      },
+      "endCoord": {
+        "east": -51.89390116544494,
+        "north": 32.38429592955823
+      },
+      "gapToPrecedingCompatibleRunM": 22.31217099455887,
+      "gapToNextCompatibleRunM": 27.558708044788602,
+      "lateralDeltaAtPrecedingEndpoint": 0.12824806868134786,
+      "headingDeltaAtPrecedingEndpoint": null,
+      "joinToPreceding": null,
+      "joinToNext": null,
+      "sourceFusedLengthM": 4.694588613898076,
+      "cleanedLengthM": 4.698249912610038,
+      "renderedLengthM": 4.698249912610038,
+      "sourcePointCount": 3,
+      "cleanedPointCount": 3,
+      "renderedPointCount": 3,
+      "supportStatus": "supported"
+    },
+    {
+      "runId": 8,
+      "physicalBoundaryId": "PB1",
+      "sourceTrackIds": [
+        1,
+        2
+      ],
+      "primaryTrackId": 2,
+      "chunkId": 0,
+      "passId": 0,
+      "laneSide": "left",
+      "lateralOrder": 13,
+      "startElapsedIdx": 13,
+      "endElapsedIdx": 29,
+      "startFrameId": 2963,
+      "endFrameId": 3603,
+      "startS": 466.79093510592395,
+      "endS": 478.79387292483455,
+      "lengthM": 12.065204076644937,
+      "fusedBinCount": 1,
+      "contributingObservationCount": 8,
+      "distinctSupportingFrameCount": 17,
+      "meanConfidence": 0.9049252271652222,
+      "minConfidence": null,
+      "meanD": 0.9248598043740237,
+      "lateralRangeD": {
+        "min": 0.6898668064934821,
+        "max": 1.0097932421596945
+      },
+      "meanHeadingDeg": 93.81032377669996,
+      "curvature": {
+        "maxHeadingDeltaDeg": 18.897599143630345,
+        "meanAbsCurvature": 9.460199297771647
+      },
+      "startCoord": {
+        "east": -52.98815916156061,
+        "north": 59.92508602224923
+      },
+      "endCoord": {
+        "east": -53.78683688523775,
+        "north": 71.91708059894708
+      },
+      "gapToPrecedingCompatibleRunM": 27.558708044788602,
+      "gapToNextCompatibleRunM": 21.326817598762943,
+      "lateralDeltaAtPrecedingEndpoint": 0.4583998187544771,
+      "headingDeltaAtPrecedingEndpoint": null,
+      "joinToPreceding": null,
+      "joinToNext": null,
+      "sourceFusedLengthM": 12.065204076644937,
+      "cleanedLengthM": 12.065204076644937,
+      "renderedLengthM": 12.065204076644937,
+      "sourcePointCount": 4,
+      "cleanedPointCount": 4,
+      "renderedPointCount": 4,
+      "supportStatus": "supported"
+    },
+    {
+      "runId": 9,
+      "physicalBoundaryId": "PB1",
+      "sourceTrackIds": [
+        1,
+        2
+      ],
+      "primaryTrackId": 2,
+      "chunkId": 0,
+      "passId": 0,
+      "laneSide": "left",
+      "lateralOrder": 9,
+      "startElapsedIdx": 13,
+      "endElapsedIdx": 29,
+      "startFrameId": 2963,
+      "endFrameId": 3603,
+      "startS": 500.1206905235975,
+      "endS": 503.555267266108,
+      "lengthM": 3.434806317947622,
+      "fusedBinCount": 1,
+      "contributingObservationCount": 4,
+      "distinctSupportingFrameCount": 17,
+      "meanConfidence": 0.9049252271652222,
+      "minConfidence": null,
+      "meanD": 1.1108833516219563,
+      "lateralRangeD": {
+        "min": 1.0910273599647615,
+        "max": 1.130739343279151
+      },
+      "meanHeadingDeg": 92.37400626037392,
+      "curvature": {
+        "maxHeadingDeltaDeg": 0,
+        "meanAbsCurvature": 0
+      },
+      "startCoord": {
+        "east": -54.7572851720629,
+        "north": 93.2072956472847
+      },
+      "endCoord": {
+        "east": -54.89956299383308,
+        "north": 96.63915395776974
+      },
+      "gapToPrecedingCompatibleRunM": 21.326817598762943,
+      "gapToNextCompatibleRunM": 23.99706305128666,
+      "lateralDeltaAtPrecedingEndpoint": 0.12094610111945658,
+      "headingDeltaAtPrecedingEndpoint": null,
+      "joinToPreceding": null,
+      "joinToNext": null,
+      "sourceFusedLengthM": 3.434806317947622,
+      "cleanedLengthM": 3.434806317947622,
+      "renderedLengthM": 3.434806317947622,
+      "sourcePointCount": 2,
+      "cleanedPointCount": 2,
+      "renderedPointCount": 2,
+      "supportStatus": "supported"
+    },
+    {
+      "runId": 10,
+      "physicalBoundaryId": "PB1",
+      "sourceTrackIds": [
+        1,
+        2
+      ],
+      "primaryTrackId": 2,
+      "chunkId": 0,
+      "passId": 0,
+      "laneSide": "left",
+      "lateralOrder": 10,
+      "startElapsedIdx": 13,
+      "endElapsedIdx": 29,
+      "startFrameId": 2963,
+      "endFrameId": 3603,
+      "startS": 527.5523303173946,
+      "endS": 554.0369644246867,
+      "lengthM": 26.52926090604543,
+      "fusedBinCount": 1,
+      "contributingObservationCount": 11,
+      "distinctSupportingFrameCount": 17,
+      "meanConfidence": 0.9049252271652222,
+      "minConfidence": null,
+      "meanD": 1.077881444854426,
+      "lateralRangeD": {
+        "min": 0.4850541955987382,
+        "max": 1.2774892125372892
+      },
+      "meanHeadingDeg": 94.3643214745993,
+      "curvature": {
+        "maxHeadingDeltaDeg": 6.023650598681784,
+        "meanAbsCurvature": 2.034126122721919
+      },
+      "startCoord": {
+        "east": -55.5655966110443,
+        "north": 120.63462515097832
+      },
+      "endCoord": {
+        "east": -57.581899897067466,
+        "north": 147.05388658079727
+      },
+      "gapToPrecedingCompatibleRunM": 23.99706305128666,
+      "gapToNextCompatibleRunM": 13.310194753726933,
+      "lateralDeltaAtPrecedingEndpoint": 0.6059731643660233,
+      "headingDeltaAtPrecedingEndpoint": null,
+      "joinToPreceding": null,
+      "joinToNext": null,
+      "sourceFusedLengthM": 26.52926090604543,
+      "cleanedLengthM": 26.52926090604543,
+      "renderedLengthM": 26.52926090604543,
+      "sourcePointCount": 5,
+      "cleanedPointCount": 5,
+      "renderedPointCount": 5,
+      "supportStatus": "supported"
+    },
+    {
+      "runId": 11,
+      "physicalBoundaryId": "PB1",
+      "sourceTrackIds": [
+        1,
+        2
+      ],
+      "primaryTrackId": 2,
+      "chunkId": 0,
+      "passId": 0,
+      "laneSide": "left",
+      "lateralOrder": 12,
+      "startElapsedIdx": 13,
+      "endElapsedIdx": 29,
+      "startFrameId": 2963,
+      "endFrameId": 3603,
+      "startS": 567.3471591784137,
+      "endS": 572.0372665529105,
+      "lengthM": 4.7379115840729265,
+      "fusedBinCount": 1,
+      "contributingObservationCount": 4,
+      "distinctSupportingFrameCount": 17,
+      "meanConfidence": 0.9049252271652222,
+      "minConfidence": null,
+      "meanD": 0.9876536675005648,
+      "lateralRangeD": {
+        "min": 0.6633411568744021,
+        "max": 1.3119661781267276
+      },
+      "meanHeadingDeg": 100.41000390636513,
+      "curvature": {
+        "maxHeadingDeltaDeg": 0,
+        "meanAbsCurvature": 0
+      },
+      "startCoord": {
+        "east": -57.729221796947066,
+        "north": 160.37293813982365
+      },
+      "endCoord": {
+        "east": -58.58531918751751,
+        "north": 165.03286340063534
+      },
+      "gapToPrecedingCompatibleRunM": 13.310194753726933,
+      "gapToNextCompatibleRunM": 17.999992647332874,
+      "lateralDeltaAtPrecedingEndpoint": 0.5074975783665627,
+      "headingDeltaAtPrecedingEndpoint": null,
+      "joinToPreceding": null,
+      "joinToNext": null,
+      "sourceFusedLengthM": 4.7379115840729265,
+      "cleanedLengthM": 4.7379115840729265,
+      "renderedLengthM": 4.7379115840729265,
+      "sourcePointCount": 2,
+      "cleanedPointCount": 2,
+      "renderedPointCount": 2,
+      "supportStatus": "supported"
+    },
+    {
+      "runId": 12,
+      "physicalBoundaryId": "PB1",
+      "sourceTrackIds": [
+        1,
+        2
+      ],
+      "primaryTrackId": 2,
+      "chunkId": 0,
+      "passId": 0,
+      "laneSide": "left",
+      "lateralOrder": 7,
+      "startElapsedIdx": 13,
+      "endElapsedIdx": 29,
+      "startFrameId": 2963,
+      "endFrameId": 3603,
+      "startS": 590.0372592002434,
+      "endS": 609.5318972808049,
+      "lengthM": 19.76129873050263,
+      "fusedBinCount": 1,
+      "contributingObservationCount": 10,
+      "distinctSupportingFrameCount": 17,
+      "meanConfidence": 0.9049252271652222,
+      "minConfidence": null,
+      "meanD": 1.2234922979700755,
+      "lateralRangeD": {
+        "min": 0.9135959806661693,
+        "max": 1.3136130590602415
+      },
+      "meanHeadingDeg": 92.46176392370472,
+      "curvature": {
+        "maxHeadingDeltaDeg": 67.87106496848108,
+        "meanAbsCurvature": 44.65247390281888
+      },
+      "startCoord": {
+        "east": -59.36193013467086,
+        "north": 183.01610767259055
+      },
+      "endCoord": {
+        "east": -60.19950729625666,
+        "north": 202.4981146913436
+      },
+      "gapToPrecedingCompatibleRunM": 17.999992647332874,
+      "gapToNextCompatibleRunM": 12.000028557998007,
+      "lateralDeltaAtPrecedingEndpoint": 0.021536109444747487,
+      "headingDeltaAtPrecedingEndpoint": null,
+      "joinToPreceding": null,
+      "joinToNext": null,
+      "sourceFusedLengthM": 19.76129873050263,
+      "cleanedLengthM": 19.76129873050263,
+      "renderedLengthM": 19.76129873050263,
+      "sourcePointCount": 5,
+      "cleanedPointCount": 5,
+      "renderedPointCount": 5,
+      "supportStatus": "supported"
+    },
+    {
+      "runId": 13,
+      "physicalBoundaryId": "PB1",
+      "sourceTrackIds": [
+        1,
+        2
+      ],
+      "primaryTrackId": 2,
+      "chunkId": 0,
+      "passId": 0,
+      "laneSide": "left",
+      "lateralOrder": 5,
+      "startElapsedIdx": 13,
+      "endElapsedIdx": 29,
+      "startFrameId": 2963,
+      "endFrameId": 3603,
+      "startS": 621.5319258388029,
+      "endS": 630.5748338730675,
+      "lengthM": 9.05938134722137,
+      "fusedBinCount": 1,
+      "contributingObservationCount": 6,
+      "distinctSupportingFrameCount": 17,
+      "meanConfidence": 0.9049252271652222,
+      "minConfidence": null,
+      "meanD": 1.4050892372571087,
+      "lateralRangeD": {
+        "min": 1.3075446133712139,
+        "max": 1.5710144678027789
+      },
+      "meanHeadingDeg": 93.89521071431759,
+      "curvature": {
+        "maxHeadingDeltaDeg": 4.818837726646869,
+        "meanAbsCurvature": 4.818837726646869
+      },
+      "startCoord": {
+        "east": -60.6816928006061,
+        "north": 214.48845173970506
+      },
+      "endCoord": {
+        "east": -61.29671222863626,
+        "north": 223.5210086443154
+      },
+      "gapToPrecedingCompatibleRunM": 12.000028557998007,
+      "gapToNextCompatibleRunM": 16.311966248993144,
+      "lateralDeltaAtPrecedingEndpoint": 0.00003385640925701594,
+      "headingDeltaAtPrecedingEndpoint": null,
+      "joinToPreceding": null,
+      "joinToNext": null,
+      "sourceFusedLengthM": 9.05938134722137,
+      "cleanedLengthM": 9.05938134722137,
+      "renderedLengthM": 9.05938134722137,
+      "sourcePointCount": 3,
+      "cleanedPointCount": 3,
+      "renderedPointCount": 3,
+      "supportStatus": "supported"
+    },
+    {
+      "runId": 14,
+      "physicalBoundaryId": "PB1",
+      "sourceTrackIds": [
+        1,
+        2
+      ],
+      "primaryTrackId": 2,
+      "chunkId": 0,
+      "passId": 0,
+      "laneSide": "left",
+      "lateralOrder": 8,
+      "startElapsedIdx": 13,
+      "endElapsedIdx": 29,
+      "startFrameId": 2963,
+      "endFrameId": 3603,
+      "startS": 646.8868001220607,
+      "endS": 696.7768519320928,
+      "lengthM": 50.19562184637242,
+      "fusedBinCount": 1,
+      "contributingObservationCount": 30,
+      "distinctSupportingFrameCount": 17,
+      "meanConfidence": 0.9049252271652222,
+      "minConfidence": null,
+      "meanD": 1.2083941839730374,
+      "lateralRangeD": {
+        "min": 0.0931828508987127,
+        "max": 1.6643074947087944
+      },
+      "meanHeadingDeg": 92.99938612940171,
+      "curvature": {
+        "maxHeadingDeltaDeg": 36.61384144346846,
+        "meanAbsCurvature": 7.711126623914169
+      },
+      "startCoord": {
+        "east": -61.97183216630348,
+        "north": 239.8192649794859
+      },
+      "endCoord": {
+        "east": -64.5779186630827,
+        "north": 289.55655368371487
+      },
+      "gapToPrecedingCompatibleRunM": 16.311966248993144,
+      "gapToNextCompatibleRunM": null,
+      "lateralDeltaAtPrecedingEndpoint": 0.09329302690601549,
+      "headingDeltaAtPrecedingEndpoint": null,
+      "joinToPreceding": null,
+      "joinToNext": null,
+      "sourceFusedLengthM": 50.19562184637242,
+      "cleanedLengthM": 50.19562184637242,
+      "renderedLengthM": 50.19562184637242,
+      "sourcePointCount": 13,
+      "cleanedPointCount": 13,
+      "renderedPointCount": 13,
+      "supportStatus": "supported"
+    },
+    {
+      "runId": 15,
+      "physicalBoundaryId": "PB0",
+      "sourceTrackIds": [
+        0
+      ],
+      "primaryTrackId": 0,
+      "chunkId": 0,
+      "passId": 0,
+      "laneSide": "right",
+      "lateralOrder": 29,
+      "startElapsedIdx": 0,
+      "endElapsedIdx": 29,
+      "startFrameId": 2443,
+      "endFrameId": 3603,
+      "startS": 35.2335204264419,
+      "endS": 42.29187659366445,
+      "lengthM": 7.112316358132403,
+      "fusedBinCount": 1,
+      "contributingObservationCount": 4,
+      "distinctSupportingFrameCount": 25,
+      "meanConfidence": 0.8392041945457458,
+      "minConfidence": null,
+      "meanD": -2.773853072471735,
+      "lateralRangeD": {
+        "min": -3.211075039780417,
+        "max": -2.336631105163054
+      },
+      "meanHeadingDeg": -173.11058632618682,
+      "curvature": {
+        "maxHeadingDeltaDeg": 0,
+        "meanAbsCurvature": 0
+      },
+      "startCoord": {
+        "east": -58.28388887795176,
+        "north": -14.810689042716737
+      },
+      "endCoord": {
+        "east": -65.3448509138316,
+        "north": -15.663835633884569
+      },
+      "gapToPrecedingCompatibleRunM": null,
+      "gapToNextCompatibleRunM": 23.495393840748072,
+      "lateralDeltaAtPrecedingEndpoint": null,
+      "headingDeltaAtPrecedingEndpoint": null,
+      "joinToPreceding": null,
+      "joinToNext": null,
+      "sourceFusedLengthM": 7.112316358132403,
+      "cleanedLengthM": 7.112316358132403,
+      "renderedLengthM": 7.112316358132403,
+      "sourcePointCount": 2,
+      "cleanedPointCount": 2,
+      "renderedPointCount": 2,
+      "supportStatus": "supported"
+    },
+    {
+      "runId": 16,
+      "physicalBoundaryId": "PB0",
+      "sourceTrackIds": [
+        0
+      ],
+      "primaryTrackId": 0,
+      "chunkId": 0,
+      "passId": 0,
+      "laneSide": "right",
+      "lateralOrder": 17,
+      "startElapsedIdx": 0,
+      "endElapsedIdx": 29,
+      "startFrameId": 2443,
+      "endFrameId": 3603,
+      "startS": 65.78727043441252,
+      "endS": 71.16262034658317,
+      "lengthM": 5.726899182591866,
+      "fusedBinCount": 1,
+      "contributingObservationCount": 5,
+      "distinctSupportingFrameCount": 25,
+      "meanConfidence": 0.8392041945457458,
+      "minConfidence": null,
+      "meanD": -1.5824354031074566,
+      "lateralRangeD": {
+        "min": -2.4252503906163803,
+        "max": -0.7396204155985331
+      },
+      "meanHeadingDeg": -146.6244709412237,
+      "curvature": {
+        "maxHeadingDeltaDeg": 0,
+        "meanAbsCurvature": 0
+      },
+      "startCoord": {
+        "east": -87.95765209208308,
+        "north": -22.091298195733156
+      },
+      "endCoord": {
+        "east": -92.74008765006676,
+        "north": -25.24180361253611
+      },
+      "gapToPrecedingCompatibleRunM": 23.495393840748072,
+      "gapToNextCompatibleRunM": 17.443788652165253,
+      "lateralDeltaAtPrecedingEndpoint": 0.7858246491640366,
+      "headingDeltaAtPrecedingEndpoint": null,
+      "joinToPreceding": null,
+      "joinToNext": null,
+      "sourceFusedLengthM": 5.726899182591866,
+      "cleanedLengthM": 5.726899182591866,
+      "renderedLengthM": 5.726899182591866,
+      "sourcePointCount": 2,
+      "cleanedPointCount": 2,
+      "renderedPointCount": 2,
+      "supportStatus": "supported"
+    },
+    {
+      "runId": 17,
+      "physicalBoundaryId": "PB0",
+      "sourceTrackIds": [
+        0
+      ],
+      "primaryTrackId": 0,
+      "chunkId": 0,
+      "passId": 0,
+      "laneSide": "right",
+      "lateralOrder": 22,
+      "startElapsedIdx": 0,
+      "endElapsedIdx": 29,
+      "startFrameId": 2443,
+      "endFrameId": 3603,
+      "startS": 88.60640899874842,
+      "endS": 101.42060881322757,
+      "lengthM": 13.229314864900502,
+      "fusedBinCount": 1,
+      "contributingObservationCount": 9,
+      "distinctSupportingFrameCount": 25,
+      "meanConfidence": 0.8392041945457458,
+      "minConfidence": null,
+      "meanD": -1.9164580140766176,
+      "lateralRangeD": {
+        "min": -2.968338480247656,
+        "max": -1.0191410977044715
+      },
+      "meanHeadingDeg": -165.41006090420078,
+      "curvature": {
+        "maxHeadingDeltaDeg": 3.7139616773480397,
+        "meanAbsCurvature": 3.6933679338496965
+      },
+      "startCoord": {
+        "east": -109.56289416897796,
+        "north": -29.863175181714695
+      },
+      "endCoord": {
+        "east": -122.33192611855523,
+        "north": -33.18686465905057
+      },
+      "gapToPrecedingCompatibleRunM": 17.443788652165253,
+      "gapToNextCompatibleRunM": 26.730898583888745,
+      "lateralDeltaAtPrecedingEndpoint": 0.2795206821059384,
+      "headingDeltaAtPrecedingEndpoint": null,
+      "joinToPreceding": null,
+      "joinToNext": null,
+      "sourceFusedLengthM": 13.229314864900502,
+      "cleanedLengthM": 13.229314864900502,
+      "renderedLengthM": 13.229314864900502,
+      "sourcePointCount": 4,
+      "cleanedPointCount": 4,
+      "renderedPointCount": 4,
+      "supportStatus": "supported"
+    },
+    {
+      "runId": 18,
+      "physicalBoundaryId": "PB0",
+      "sourceTrackIds": [
+        0
+      ],
+      "primaryTrackId": 0,
+      "chunkId": 0,
+      "passId": 0,
+      "laneSide": "right",
+      "lateralOrder": 28,
+      "startElapsedIdx": 0,
+      "endElapsedIdx": 29,
+      "startFrameId": 2443,
+      "endFrameId": 3603,
+      "startS": 128.15150739711632,
+      "endS": 136.89462245632075,
+      "lengthM": 9.064970144232747,
+      "fusedBinCount": 1,
+      "contributingObservationCount": 4,
+      "distinctSupportingFrameCount": 25,
+      "meanConfidence": 0.8392041945457458,
+      "minConfidence": null,
+      "meanD": -2.516686064871108,
+      "lateralRangeD": {
+        "min": -3.7137264544720407,
+        "max": -1.3196456752701753
+      },
+      "meanHeadingDeg": -125.01374151733542,
+      "curvature": {
+        "maxHeadingDeltaDeg": 0,
+        "meanAbsCurvature": 0
+      },
+      "startCoord": {
+        "east": -145.9067342708378,
+        "north": -47.06788469200899
+      },
+      "endCoord": {
+        "east": -151.10796830626978,
+        "north": -54.492226294097016
+      },
+      "gapToPrecedingCompatibleRunM": 26.730898583888745,
+      "gapToNextCompatibleRunM": 123.67872220287506,
+      "lateralDeltaAtPrecedingEndpoint": 0.7453879742243847,
+      "headingDeltaAtPrecedingEndpoint": null,
+      "joinToPreceding": null,
+      "joinToNext": null,
+      "sourceFusedLengthM": 9.064970144232747,
+      "cleanedLengthM": 9.064970144232747,
+      "renderedLengthM": 9.064970144232747,
+      "sourcePointCount": 2,
+      "cleanedPointCount": 2,
+      "renderedPointCount": 2,
+      "supportStatus": "supported"
+    },
+    {
+      "runId": 19,
+      "physicalBoundaryId": "PB0",
+      "sourceTrackIds": [
+        0
+      ],
+      "primaryTrackId": 0,
+      "chunkId": 0,
+      "passId": 0,
+      "laneSide": "right",
+      "lateralOrder": 24,
+      "startElapsedIdx": 0,
+      "endElapsedIdx": 29,
+      "startFrameId": 2443,
+      "endFrameId": 3603,
+      "startS": 260.5733446591958,
+      "endS": 267.03391232848685,
+      "lengthM": 7.012472932446368,
+      "fusedBinCount": 1,
+      "contributingObservationCount": 6,
+      "distinctSupportingFrameCount": 25,
+      "meanConfidence": 0.8392041945457458,
+      "minConfidence": null,
+      "meanD": -1.9958593197335486,
+      "lateralRangeD": {
+        "min": -2.6288678289567815,
+        "max": -1.4425073557306312
+      },
+      "meanHeadingDeg": 19.74624748945258,
+      "curvature": {
+        "maxHeadingDeltaDeg": 1.2394416135461788,
+        "meanAbsCurvature": 1.2394416135461788
+      },
+      "startCoord": {
+        "east": -98.96043523413093,
+        "north": -126.01540296021949
+      },
+      "endCoord": {
+        "east": -92.36076819001295,
+        "north": -123.64636831553565
+      },
+      "gapToPrecedingCompatibleRunM": 123.67872220287506,
+      "gapToNextCompatibleRunM": 17.215560665616124,
+      "lateralDeltaAtPrecedingEndpoint": 0.12286168046045587,
+      "headingDeltaAtPrecedingEndpoint": null,
+      "joinToPreceding": null,
+      "joinToNext": null,
+      "sourceFusedLengthM": 7.012472932446368,
+      "cleanedLengthM": 7.012472932446368,
+      "renderedLengthM": 7.012472932446368,
+      "sourcePointCount": 3,
+      "cleanedPointCount": 3,
+      "renderedPointCount": 3,
+      "supportStatus": "supported"
+    },
+    {
+      "runId": 20,
+      "physicalBoundaryId": "PB0",
+      "sourceTrackIds": [
+        0
+      ],
+      "primaryTrackId": 0,
+      "chunkId": 0,
+      "passId": 0,
+      "laneSide": "right",
+      "lateralOrder": 26,
+      "startElapsedIdx": 0,
+      "endElapsedIdx": 29,
+      "startFrameId": 2443,
+      "endFrameId": 3603,
+      "startS": 284.249472994103,
+      "endS": 295.869183290206,
+      "lengthM": 11.854843059681173,
+      "fusedBinCount": 1,
+      "contributingObservationCount": 6,
+      "distinctSupportingFrameCount": 25,
+      "meanConfidence": 0.8392041945457458,
+      "minConfidence": null,
+      "meanD": -2.1404124026742504,
+      "lateralRangeD": {
+        "min": -3.4682975398434976,
+        "max": -1.135706698470298
+      },
+      "meanHeadingDeg": 34.13458776218024,
+      "curvature": {
+        "maxHeadingDeltaDeg": 3.1659231452335828,
+        "meanAbsCurvature": 3.1659231452335828
+      },
+      "startCoord": {
+        "east": -77.97539908359595,
+        "north": -113.53386560949667
+      },
+      "endCoord": {
+        "east": -68.16563406785541,
+        "north": -106.88351541311044
+      },
+      "gapToPrecedingCompatibleRunM": 17.215560665616124,
+      "gapToNextCompatibleRunM": 36.18011637773424,
+      "lateralDeltaAtPrecedingEndpoint": 1.4931611304864836,
+      "headingDeltaAtPrecedingEndpoint": null,
+      "joinToPreceding": null,
+      "joinToNext": null,
+      "sourceFusedLengthM": 11.854843059681173,
+      "cleanedLengthM": 11.854843059681173,
+      "renderedLengthM": 11.854843059681173,
+      "sourcePointCount": 3,
+      "cleanedPointCount": 3,
+      "renderedPointCount": 3,
+      "supportStatus": "supported"
+    },
+    {
+      "runId": 21,
+      "physicalBoundaryId": "PB0",
+      "sourceTrackIds": [
+        0
+      ],
+      "primaryTrackId": 0,
+      "chunkId": 0,
+      "passId": 0,
+      "laneSide": "right",
+      "lateralOrder": 20,
+      "startElapsedIdx": 0,
+      "endElapsedIdx": 29,
+      "startFrameId": 2443,
+      "endFrameId": 3603,
+      "startS": 332.04929966794026,
+      "endS": 338.4892400311075,
+      "lengthM": 6.591146500552444,
+      "fusedBinCount": 1,
+      "contributingObservationCount": 6,
+      "distinctSupportingFrameCount": 25,
+      "meanConfidence": 0.8392041945457458,
+      "minConfidence": null,
+      "meanD": -1.8542573036452905,
+      "lateralRangeD": {
+        "min": -2.5607749971719063,
+        "max": -1.2443747185839635
+      },
+      "meanHeadingDeg": 68.48645567621168,
+      "curvature": {
+        "maxHeadingDeltaDeg": 9.971070552315492,
+        "meanAbsCurvature": 9.971070552315492
+      },
+      "startCoord": {
+        "east": -50.075097997900095,
+        "north": -74.50367497883629
+      },
+      "endCoord": {
+        "east": -47.66460040356495,
+        "north": -68.38850998332542
+      },
+      "gapToPrecedingCompatibleRunM": 36.18011637773424,
+      "gapToNextCompatibleRunM": 43.00231744020948,
+      "lateralDeltaAtPrecedingEndpoint": 2.223922821259534,
+      "headingDeltaAtPrecedingEndpoint": null,
+      "joinToPreceding": null,
+      "joinToNext": null,
+      "sourceFusedLengthM": 6.591146500552444,
+      "cleanedLengthM": 6.591146500552444,
+      "renderedLengthM": 6.591146500552444,
+      "sourcePointCount": 3,
+      "cleanedPointCount": 3,
+      "renderedPointCount": 3,
+      "supportStatus": "supported"
+    },
+    {
+      "runId": 22,
+      "physicalBoundaryId": "PB0",
+      "sourceTrackIds": [
+        0
+      ],
+      "primaryTrackId": 0,
+      "chunkId": 0,
+      "passId": 0,
+      "laneSide": "right",
+      "lateralOrder": 15,
+      "startElapsedIdx": 0,
+      "endElapsedIdx": 29,
+      "startFrameId": 2443,
+      "endFrameId": 3603,
+      "startS": 381.491557471317,
+      "endS": 412.4419997969666,
+      "lengthM": 30.950442325649647,
+      "fusedBinCount": 2,
+      "contributingObservationCount": 13,
+      "distinctSupportingFrameCount": 25,
+      "meanConfidence": 0.8392041945457458,
+      "minConfidence": null,
+      "meanD": -1.4733784988332694,
+      "lateralRangeD": {
+        "min": -1.5388076814338354,
+        "max": -1.395266238710981
+      },
+      "meanHeadingDeg": 92.88975133349471,
+      "curvature": {
+        "maxHeadingDeltaDeg": 0.5066800221118543,
+        "meanAbsCurvature": 0.16934339390202496
+      },
+      "startCoord": {
+        "east": -46.36915057230325,
+        "north": -25.135961666817767
+      },
+      "endCoord": {
+        "east": -47.9288515674105,
+        "north": 5.762370916007041
+      },
+      "gapToPrecedingCompatibleRunM": 43.00231744020948,
+      "gapToNextCompatibleRunM": 22.500016307528256,
+      "lateralDeltaAtPrecedingEndpoint": 1.1655087584609252,
+      "headingDeltaAtPrecedingEndpoint": null,
+      "joinToPreceding": null,
+      "joinToNext": null,
+      "sourceFusedLengthM": 20.250143634596235,
+      "cleanedLengthM": 30.950442325649647,
+      "renderedLengthM": 30.950442325649647,
+      "sourcePointCount": 6,
+      "cleanedPointCount": 6,
+      "renderedPointCount": 6,
+      "supportStatus": "supported"
+    },
+    {
+      "runId": 23,
+      "physicalBoundaryId": "PB0",
+      "sourceTrackIds": [
+        0
+      ],
+      "primaryTrackId": 0,
+      "chunkId": 0,
+      "passId": 0,
+      "laneSide": "right",
+      "lateralOrder": 16,
+      "startElapsedIdx": 0,
+      "endElapsedIdx": 29,
+      "startFrameId": 2443,
+      "endFrameId": 3603,
+      "startS": 434.9420161044949,
+      "endS": 439.19607520729676,
+      "lengthM": 4.270489867536668,
+      "fusedBinCount": 1,
+      "contributingObservationCount": 6,
+      "distinctSupportingFrameCount": 25,
+      "meanConfidence": 0.8392041945457458,
+      "minConfidence": null,
+      "meanD": -1.5329372700672657,
+      "lateralRangeD": {
+        "min": -1.6235060094524036,
+        "max": -1.48324506371618
+      },
+      "meanHeadingDeg": 91.3361281102258,
+      "curvature": {
+        "maxHeadingDeltaDeg": 2.9888408682376415,
+        "meanAbsCurvature": 2.9888408682376415
+      },
+      "startCoord": {
+        "east": -49.0249301625103,
+        "north": 28.23569528063779
+      },
+      "endCoord": {
+        "east": -49.12449113358395,
+        "north": 32.50428997289991
+      },
+      "gapToPrecedingCompatibleRunM": 22.500016307528256,
+      "gapToNextCompatibleRunM": 22.497312876545152,
+      "lateralDeltaAtPrecedingEndpoint": 0.031023305830319314,
+      "headingDeltaAtPrecedingEndpoint": null,
+      "joinToPreceding": null,
+      "joinToNext": null,
+      "sourceFusedLengthM": 4.270489867536668,
+      "cleanedLengthM": 4.270489867536668,
+      "renderedLengthM": 4.270489867536668,
+      "sourcePointCount": 3,
+      "cleanedPointCount": 3,
+      "renderedPointCount": 3,
+      "supportStatus": "supported"
+    },
+    {
+      "runId": 24,
+      "physicalBoundaryId": "PB0",
+      "sourceTrackIds": [
+        0
+      ],
+      "primaryTrackId": 0,
+      "chunkId": 0,
+      "passId": 0,
+      "laneSide": "right",
+      "lateralOrder": 27,
+      "startElapsedIdx": 0,
+      "endElapsedIdx": 29,
+      "startFrameId": 2443,
+      "endFrameId": 3603,
+      "startS": 461.6933880838419,
+      "endS": 503.51347510831215,
+      "lengthM": 42.340983375935394,
+      "fusedBinCount": 2,
+      "contributingObservationCount": 16,
+      "distinctSupportingFrameCount": 25,
+      "meanConfidence": 0.8392041945457458,
+      "minConfidence": null,
+      "meanD": -2.14722378423546,
+      "lateralRangeD": {
+        "min": -2.722437949167663,
+        "max": -1.4904446388007397
+      },
+      "meanHeadingDeg": 93.01495389290943,
+      "curvature": {
+        "maxHeadingDeltaDeg": 47.97800593458482,
+        "meanAbsCurvature": 19.706085681325373
+      },
+      "startCoord": {
+        "east": -50.038304392495306,
+        "north": 54.98581799839534
+      },
+      "endCoord": {
+        "east": -52.23739807925949,
+        "north": 96.73851968565688
+      },
+      "gapToPrecedingCompatibleRunM": 22.497312876545152,
+      "gapToNextCompatibleRunM": 23.995271002239747,
+      "lateralDeltaAtPrecedingEndpoint": 0.3536528921614539,
+      "headingDeltaAtPrecedingEndpoint": null,
+      "joinToPreceding": null,
+      "joinToNext": null,
+      "sourceFusedLengthM": 30.34051098586978,
+      "cleanedLengthM": 42.340983375935394,
+      "renderedLengthM": 42.340983375935394,
+      "sourcePointCount": 8,
+      "cleanedPointCount": 8,
+      "renderedPointCount": 8,
+      "supportStatus": "supported"
+    },
+    {
+      "runId": 25,
+      "physicalBoundaryId": "PB0",
+      "sourceTrackIds": [
+        0
+      ],
+      "primaryTrackId": 0,
+      "chunkId": 0,
+      "passId": 0,
+      "laneSide": "right",
+      "lateralOrder": 23,
+      "startElapsedIdx": 0,
+      "endElapsedIdx": 29,
+      "startFrameId": 2443,
+      "endFrameId": 3603,
+      "startS": 527.5087461105519,
+      "endS": 554.2844207530605,
+      "lengthM": 26.797924044420988,
+      "fusedBinCount": 1,
+      "contributingObservationCount": 11,
+      "distinctSupportingFrameCount": 25,
+      "meanConfidence": 0.8392041945457458,
+      "minConfidence": null,
+      "meanD": -1.9735951310086357,
+      "lateralRangeD": {
+        "min": -2.241382645937344,
+        "max": -1.6545149418744263
+      },
+      "meanHeadingDeg": 93.33560213659138,
+      "curvature": {
+        "maxHeadingDeltaDeg": 6.769901861560238,
+        "meanAbsCurvature": 3.063623744380894
+      },
+      "startCoord": {
+        "east": -52.840678880601686,
+        "north": 120.7355250830438
+      },
+      "endCoord": {
+        "east": -54.39816589587941,
+        "north": 147.4583146377986
+      },
+      "gapToPrecedingCompatibleRunM": 23.995271002239747,
+      "gapToNextCompatibleRunM": 13.062738425353132,
+      "lateralDeltaAtPrecedingEndpoint": 0.6687191462466706,
+      "headingDeltaAtPrecedingEndpoint": null,
+      "joinToPreceding": null,
+      "joinToNext": null,
+      "sourceFusedLengthM": 26.797924044420988,
+      "cleanedLengthM": 26.797924044420988,
+      "renderedLengthM": 26.797924044420988,
+      "sourcePointCount": 5,
+      "cleanedPointCount": 5,
+      "renderedPointCount": 5,
+      "supportStatus": "supported"
+    },
+    {
+      "runId": 26,
+      "physicalBoundaryId": "PB0",
+      "sourceTrackIds": [
+        0
+      ],
+      "primaryTrackId": 0,
+      "chunkId": 0,
+      "passId": 0,
+      "laneSide": "right",
+      "lateralOrder": 21,
+      "startElapsedIdx": 0,
+      "endElapsedIdx": 29,
+      "startFrameId": 2443,
+      "endFrameId": 3603,
+      "startS": 567.3471591784137,
+      "endS": 572.0315218311622,
+      "lengthM": 4.711053828965306,
+      "fusedBinCount": 1,
+      "contributingObservationCount": 4,
+      "distinctSupportingFrameCount": 25,
+      "meanConfidence": 0.8392041945457458,
+      "minConfidence": null,
+      "meanD": -1.884256755531801,
+      "lateralRangeD": {
+        "min": -2.179651770811163,
+        "max": -1.588861740252439
+      },
+      "meanHeadingDeg": 99.74518658501479,
+      "curvature": {
+        "maxHeadingDeltaDeg": 0,
+        "meanAbsCurvature": 0
+      },
+      "startCoord": {
+        "east": -54.88966499204862,
+        "north": 160.51267338457282
+      },
+      "endCoord": {
+        "east": -55.68708955898244,
+        "north": 165.15574803823273
+      },
+      "gapToPrecedingCompatibleRunM": 13.062738425353132,
+      "gapToNextCompatibleRunM": 17.99990270381784,
+      "lateralDeltaAtPrecedingEndpoint": 0.1507265133241389,
+      "headingDeltaAtPrecedingEndpoint": null,
+      "joinToPreceding": null,
+      "joinToNext": null,
+      "sourceFusedLengthM": 4.711053828965306,
+      "cleanedLengthM": 4.711053828965306,
+      "renderedLengthM": 4.711053828965306,
+      "sourcePointCount": 2,
+      "cleanedPointCount": 2,
+      "renderedPointCount": 2,
+      "supportStatus": "supported"
+    },
+    {
+      "runId": 27,
+      "physicalBoundaryId": "PB0",
+      "sourceTrackIds": [
+        0
+      ],
+      "primaryTrackId": 0,
+      "chunkId": 0,
+      "passId": 0,
+      "laneSide": "right",
+      "lateralOrder": 19,
+      "startElapsedIdx": 0,
+      "endElapsedIdx": 29,
+      "startFrameId": 2443,
+      "endFrameId": 3603,
+      "startS": 590.03142453498,
+      "endS": 609.5384308071199,
+      "lengthM": 19.989313806555444,
+      "fusedBinCount": 1,
+      "contributingObservationCount": 10,
+      "distinctSupportingFrameCount": 25,
+      "meanConfidence": 0.8392041945457458,
+      "minConfidence": null,
+      "meanD": -1.7258832585474777,
+      "lateralRangeD": {
+        "min": -2.1174737511073816,
+        "max": -1.4844360940508732
+      },
+      "meanHeadingDeg": 92.30788414429337,
+      "curvature": {
+        "maxHeadingDeltaDeg": 76.04472203863101,
+        "meanAbsCurvature": 51.16228233772649
+      },
+      "startCoord": {
+        "east": -56.41832372867406,
+        "north": 183.14091628087644
+      },
+      "endCoord": {
+        "east": -57.20357651952881,
+        "north": 202.62514184755653
+      },
+      "gapToPrecedingCompatibleRunM": 17.99990270381784,
+      "gapToNextCompatibleRunM": 12.000027656186717,
+      "lateralDeltaAtPrecedingEndpoint": 0.06695356760992599,
+      "headingDeltaAtPrecedingEndpoint": null,
+      "joinToPreceding": null,
+      "joinToNext": null,
+      "sourceFusedLengthM": 19.989313806555444,
+      "cleanedLengthM": 19.989313806555444,
+      "renderedLengthM": 19.989313806555444,
+      "sourcePointCount": 5,
+      "cleanedPointCount": 5,
+      "renderedPointCount": 5,
+      "supportStatus": "supported"
+    },
+    {
+      "runId": 28,
+      "physicalBoundaryId": "PB0",
+      "sourceTrackIds": [
+        0
+      ],
+      "primaryTrackId": 0,
+      "chunkId": 0,
+      "passId": 0,
+      "laneSide": "right",
+      "lateralOrder": 18,
+      "startElapsedIdx": 0,
+      "endElapsedIdx": 29,
+      "startFrameId": 2443,
+      "endFrameId": 3603,
+      "startS": 621.5384584633066,
+      "endS": 630.5985379438873,
+      "lengthM": 9.06830149010541,
+      "fusedBinCount": 1,
+      "contributingObservationCount": 6,
+      "distinctSupportingFrameCount": 25,
+      "meanConfidence": 0.8392041945457458,
+      "minConfidence": null,
+      "meanD": -1.616695624557454,
+      "lateralRangeD": {
+        "min": -1.725226559483243,
+        "max": -1.4342034023429115
+      },
+      "meanHeadingDeg": 93.84972490764909,
+      "curvature": {
+        "maxHeadingDeltaDeg": 6.554064142603754,
+        "meanAbsCurvature": 6.554064142603754
+      },
+      "startCoord": {
+        "east": -57.68617554699262,
+        "north": 214.61546136258053
+      },
+      "endCoord": {
+        "east": -58.29425264278137,
+        "north": 223.65190083401583
+      },
+      "gapToPrecedingCompatibleRunM": 12.000027656186717,
+      "gapToNextCompatibleRunM": 16.313074683178343,
+      "lateralDeltaAtPrecedingEndpoint": 0.00038003726161295326,
+      "headingDeltaAtPrecedingEndpoint": null,
+      "joinToPreceding": null,
+      "joinToNext": null,
+      "sourceFusedLengthM": 9.06830149010541,
+      "cleanedLengthM": 9.06830149010541,
+      "renderedLengthM": 9.06830149010541,
+      "sourcePointCount": 3,
+      "cleanedPointCount": 3,
+      "renderedPointCount": 3,
+      "supportStatus": "supported"
+    },
+    {
+      "runId": 29,
+      "physicalBoundaryId": "PB0",
+      "sourceTrackIds": [
+        0
+      ],
+      "primaryTrackId": 0,
+      "chunkId": 0,
+      "passId": 0,
+      "laneSide": "right",
+      "lateralOrder": 25,
+      "startElapsedIdx": 0,
+      "endElapsedIdx": 29,
+      "startFrameId": 2443,
+      "endFrameId": 3603,
+      "startS": 646.9116126270657,
+      "endS": 689.824925750434,
+      "lengthM": 43.4644836612682,
+      "fusedBinCount": 1,
+      "contributingObservationCount": 24,
+      "distinctSupportingFrameCount": 25,
+      "meanConfidence": 0.8392041945457458,
+      "minConfidence": null,
+      "meanD": -2.0236712862384802,
+      "lateralRangeD": {
+        "min": -4.046417172599103,
+        "max": -1.4114697336785498
+      },
+      "meanHeadingDeg": 89.82057873891009,
+      "curvature": {
+        "maxHeadingDeltaDeg": 14.622729689114855,
+        "meanAbsCurvature": 5.059299399657646
+      },
+      "startCoord": {
+        "east": -58.898897670952486,
+        "north": 239.95378191653367
+      },
+      "endCoord": {
+        "east": -58.763356372313424,
+        "north": 283.23694094485995
+      },
+      "gapToPrecedingCompatibleRunM": 16.313074683178343,
+      "gapToNextCompatibleRunM": null,
+      "lateralDeltaAtPrecedingEndpoint": 0.022733668664361772,
+      "headingDeltaAtPrecedingEndpoint": null,
+      "joinToPreceding": null,
+      "joinToNext": null,
+      "sourceFusedLengthM": 43.4644836612682,
+      "cleanedLengthM": 43.4644836612682,
+      "renderedLengthM": 43.4644836612682,
+      "sourcePointCount": 11,
+      "cleanedPointCount": 11,
+      "renderedPointCount": 11,
+      "supportStatus": "supported"
+    }
+  ],
+  "separations": [
+    {
+      "classification": "D",
+      "gapM": 23.495393840748072,
+      "physicalBoundaryId": "PB0",
+      "sourceTrackIds": [
+        0
+      ],
+      "sourceEvidenceInGap": null,
+      "competingLaneEvidence": null,
+      "currentRejectionCondition": "sparseFusionGap",
+      "safeToJoin": false,
+      "reason": "sparseFusionGap",
+      "prevRunS": 42.29187659366445,
+      "nextRunS": 65.78727043441252
+    },
+    {
+      "classification": "F",
+      "gapM": 17.443788652165253,
+      "physicalBoundaryId": "PB0",
+      "sourceTrackIds": [
+        0
+      ],
+      "sourceEvidenceInGap": null,
+      "competingLaneEvidence": null,
+      "currentRejectionCondition": "headingMismatch",
+      "safeToJoin": false,
+      "reason": "headingMismatch",
+      "prevRunS": 71.16262034658317,
+      "nextRunS": 88.60640899874842
+    },
+    {
+      "classification": "D",
+      "gapM": 26.730898583888745,
+      "physicalBoundaryId": "PB0",
+      "sourceTrackIds": [
+        0
+      ],
+      "sourceEvidenceInGap": null,
+      "competingLaneEvidence": null,
+      "currentRejectionCondition": "sparseFusionGap",
+      "safeToJoin": false,
+      "reason": "sparseFusionGap",
+      "prevRunS": 101.42060881322757,
+      "nextRunS": 128.15150739711632
+    },
+    {
+      "classification": "A",
+      "gapM": 123.67872220287506,
+      "physicalBoundaryId": "PB0",
+      "sourceTrackIds": [
+        0
+      ],
+      "sourceEvidenceInGap": null,
+      "competingLaneEvidence": null,
+      "currentRejectionCondition": "dropoutScaleGap",
+      "safeToJoin": false,
+      "reason": "dropoutScaleGap",
+      "prevRunS": 136.89462245632075,
+      "nextRunS": 260.5733446591958
+    },
+    {
+      "classification": "F",
+      "gapM": 17.215560665616124,
+      "physicalBoundaryId": "PB0",
+      "sourceTrackIds": [
+        0
+      ],
+      "sourceEvidenceInGap": null,
+      "competingLaneEvidence": null,
+      "currentRejectionCondition": "lateralMismatch",
+      "safeToJoin": false,
+      "reason": "lateralMismatch",
+      "prevRunS": 267.03391232848685,
+      "nextRunS": 284.249472994103
+    },
+    {
+      "classification": "A",
+      "gapM": 36.18011637773424,
+      "physicalBoundaryId": "PB0",
+      "sourceTrackIds": [
+        0
+      ],
+      "sourceEvidenceInGap": null,
+      "competingLaneEvidence": null,
+      "currentRejectionCondition": "dropoutScaleGap",
+      "safeToJoin": false,
+      "reason": "dropoutScaleGap",
+      "prevRunS": 295.869183290206,
+      "nextRunS": 332.04929966794026
+    },
+    {
+      "classification": "A",
+      "gapM": 43.00231744020948,
+      "physicalBoundaryId": "PB0",
+      "sourceTrackIds": [
+        0
+      ],
+      "sourceEvidenceInGap": null,
+      "competingLaneEvidence": null,
+      "currentRejectionCondition": "dropoutScaleGap",
+      "safeToJoin": false,
+      "reason": "dropoutScaleGap",
+      "prevRunS": 338.4892400311075,
+      "nextRunS": 381.491557471317
+    },
+    {
+      "classification": "D",
+      "gapM": 22.500016307528256,
+      "physicalBoundaryId": "PB0",
+      "sourceTrackIds": [
+        0
+      ],
+      "sourceEvidenceInGap": null,
+      "competingLaneEvidence": null,
+      "currentRejectionCondition": "sparseFusionGap",
+      "safeToJoin": false,
+      "reason": "sparseFusionGap",
+      "prevRunS": 412.4419997969666,
+      "nextRunS": 434.9420161044949
+    },
+    {
+      "classification": "D",
+      "gapM": 22.497312876545152,
+      "physicalBoundaryId": "PB0",
+      "sourceTrackIds": [
+        0
+      ],
+      "sourceEvidenceInGap": null,
+      "competingLaneEvidence": null,
+      "currentRejectionCondition": "sparseFusionGap",
+      "safeToJoin": false,
+      "reason": "sparseFusionGap",
+      "prevRunS": 439.19607520729676,
+      "nextRunS": 461.6933880838419
+    },
+    {
+      "classification": "D",
+      "gapM": 23.995271002239747,
+      "physicalBoundaryId": "PB0",
+      "sourceTrackIds": [
+        0
+      ],
+      "sourceEvidenceInGap": null,
+      "competingLaneEvidence": null,
+      "currentRejectionCondition": "sparseFusionGap",
+      "safeToJoin": false,
+      "reason": "sparseFusionGap",
+      "prevRunS": 503.51347510831215,
+      "nextRunS": 527.5087461105519
+    },
+    {
+      "classification": "D",
+      "gapM": 13.062738425353132,
+      "physicalBoundaryId": "PB0",
+      "sourceTrackIds": [
+        0
+      ],
+      "sourceEvidenceInGap": null,
+      "competingLaneEvidence": null,
+      "currentRejectionCondition": "sparseFusionGap",
+      "safeToJoin": false,
+      "reason": "sparseFusionGap",
+      "prevRunS": 554.2844207530605,
+      "nextRunS": 567.3471591784137
+    },
+    {
+      "classification": "D",
+      "gapM": 17.99990270381784,
+      "physicalBoundaryId": "PB0",
+      "sourceTrackIds": [
+        0
+      ],
+      "sourceEvidenceInGap": null,
+      "competingLaneEvidence": null,
+      "currentRejectionCondition": "sparseFusionGap",
+      "safeToJoin": false,
+      "reason": "sparseFusionGap",
+      "prevRunS": 572.0315218311622,
+      "nextRunS": 590.03142453498
+    },
+    {
+      "classification": "D",
+      "gapM": 12.000027656186717,
+      "physicalBoundaryId": "PB0",
+      "sourceTrackIds": [
+        0
+      ],
+      "sourceEvidenceInGap": null,
+      "competingLaneEvidence": null,
+      "currentRejectionCondition": "sparseFusionGap",
+      "safeToJoin": false,
+      "reason": "sparseFusionGap",
+      "prevRunS": 609.5384308071199,
+      "nextRunS": 621.5384584633066
+    },
+    {
+      "classification": "D",
+      "gapM": 16.313074683178343,
+      "physicalBoundaryId": "PB0",
+      "sourceTrackIds": [
+        0
+      ],
+      "sourceEvidenceInGap": null,
+      "competingLaneEvidence": null,
+      "currentRejectionCondition": "sparseFusionGap",
+      "safeToJoin": false,
+      "reason": "sparseFusionGap",
+      "prevRunS": 630.5985379438873,
+      "nextRunS": 646.9116126270657
+    },
+    {
+      "classification": "D",
+      "gapM": 24.77448397283389,
+      "physicalBoundaryId": "PB1",
+      "sourceTrackIds": [
+        1,
+        2
+      ],
+      "sourceEvidenceInGap": null,
+      "competingLaneEvidence": null,
+      "currentRejectionCondition": "sparseFusionGap",
+      "safeToJoin": false,
+      "reason": "sparseFusionGap",
+      "prevRunS": 41.01278646157863,
+      "nextRunS": 65.78727043441252
+    },
+    {
+      "classification": "F",
+      "gapM": 17.442207002724956,
+      "physicalBoundaryId": "PB1",
+      "sourceTrackIds": [
+        1,
+        2
+      ],
+      "sourceEvidenceInGap": null,
+      "competingLaneEvidence": null,
+      "currentRejectionCondition": "headingMismatch",
+      "safeToJoin": false,
+      "reason": "headingMismatch",
+      "prevRunS": 71.1020363294706,
+      "nextRunS": 88.54424333219555
+    },
+    {
+      "classification": "A",
+      "gapM": 239.9397931656839,
+      "physicalBoundaryId": "PB1",
+      "sourceTrackIds": [
+        1,
+        2
+      ],
+      "sourceEvidenceInGap": null,
+      "competingLaneEvidence": null,
+      "currentRejectionCondition": "dropoutScaleGap",
+      "safeToJoin": false,
+      "reason": "dropoutScaleGap",
+      "prevRunS": 92.49290092856977,
+      "nextRunS": 332.4326940942537
+    },
+    {
+      "classification": "F",
+      "gapM": 14.968126127636538,
+      "physicalBoundaryId": "PB1",
+      "sourceTrackIds": [
+        1,
+        2
+      ],
+      "sourceEvidenceInGap": null,
+      "competingLaneEvidence": null,
+      "currentRejectionCondition": "lateralMismatch",
+      "safeToJoin": false,
+      "reason": "lateralMismatch",
+      "prevRunS": 341.2495644385052,
+      "nextRunS": 356.21769056614175
+    },
+    {
+      "classification": "D",
+      "gapM": 22.31217099455887,
+      "physicalBoundaryId": "PB1",
+      "sourceTrackIds": [
+        1,
+        2
+      ],
+      "sourceEvidenceInGap": null,
+      "competingLaneEvidence": null,
+      "currentRejectionCondition": "sparseFusionGap",
+      "safeToJoin": false,
+      "reason": "sparseFusionGap",
+      "prevRunS": 412.22180615396644,
+      "nextRunS": 434.5339771485253
+    },
+    {
+      "classification": "D",
+      "gapM": 27.558708044788602,
+      "physicalBoundaryId": "PB1",
+      "sourceTrackIds": [
+        1,
+        2
+      ],
+      "sourceEvidenceInGap": null,
+      "competingLaneEvidence": null,
+      "currentRejectionCondition": "sparseFusionGap",
+      "safeToJoin": false,
+      "reason": "sparseFusionGap",
+      "prevRunS": 439.23222706113535,
+      "nextRunS": 466.79093510592395
+    },
+    {
+      "classification": "D",
+      "gapM": 21.326817598762943,
+      "physicalBoundaryId": "PB1",
+      "sourceTrackIds": [
+        1,
+        2
+      ],
+      "sourceEvidenceInGap": null,
+      "competingLaneEvidence": null,
+      "currentRejectionCondition": "sparseFusionGap",
+      "safeToJoin": false,
+      "reason": "sparseFusionGap",
+      "prevRunS": 478.79387292483455,
+      "nextRunS": 500.1206905235975
+    },
+    {
+      "classification": "D",
+      "gapM": 23.99706305128666,
+      "physicalBoundaryId": "PB1",
+      "sourceTrackIds": [
+        1,
+        2
+      ],
+      "sourceEvidenceInGap": null,
+      "competingLaneEvidence": null,
+      "currentRejectionCondition": "sparseFusionGap",
+      "safeToJoin": false,
+      "reason": "sparseFusionGap",
+      "prevRunS": 503.555267266108,
+      "nextRunS": 527.5523303173946
+    },
+    {
+      "classification": "D",
+      "gapM": 13.310194753726933,
+      "physicalBoundaryId": "PB1",
+      "sourceTrackIds": [
+        1,
+        2
+      ],
+      "sourceEvidenceInGap": null,
+      "competingLaneEvidence": null,
+      "currentRejectionCondition": "sparseFusionGap",
+      "safeToJoin": false,
+      "reason": "sparseFusionGap",
+      "prevRunS": 554.0369644246867,
+      "nextRunS": 567.3471591784137
+    },
+    {
+      "classification": "D",
+      "gapM": 17.999992647332874,
+      "physicalBoundaryId": "PB1",
+      "sourceTrackIds": [
+        1,
+        2
+      ],
+      "sourceEvidenceInGap": null,
+      "competingLaneEvidence": null,
+      "currentRejectionCondition": "sparseFusionGap",
+      "safeToJoin": false,
+      "reason": "sparseFusionGap",
+      "prevRunS": 572.0372665529105,
+      "nextRunS": 590.0372592002434
+    },
+    {
+      "classification": "D",
+      "gapM": 12.000028557998007,
+      "physicalBoundaryId": "PB1",
+      "sourceTrackIds": [
+        1,
+        2
+      ],
+      "sourceEvidenceInGap": null,
+      "competingLaneEvidence": null,
+      "currentRejectionCondition": "sparseFusionGap",
+      "safeToJoin": false,
+      "reason": "sparseFusionGap",
+      "prevRunS": 609.5318972808049,
+      "nextRunS": 621.5319258388029
+    },
+    {
+      "classification": "D",
+      "gapM": 16.311966248993144,
+      "physicalBoundaryId": "PB1",
+      "sourceTrackIds": [
+        1,
+        2
+      ],
+      "sourceEvidenceInGap": null,
+      "competingLaneEvidence": null,
+      "currentRejectionCondition": "sparseFusionGap",
+      "safeToJoin": false,
+      "reason": "sparseFusionGap",
+      "prevRunS": 630.5748338730675,
+      "nextRunS": 646.8868001220607
+    },
+    {
+      "classification": "D",
+      "gapM": 22.311996753190897,
+      "physicalBoundaryId": "PB2",
+      "sourceTrackIds": [
+        3
+      ],
+      "sourceEvidenceInGap": null,
+      "competingLaneEvidence": null,
+      "currentRejectionCondition": "sparseFusionGap",
+      "safeToJoin": false,
+      "reason": "sparseFusionGap",
+      "prevRunS": 412.2329184179182,
+      "nextRunS": 434.5449151711091
+    }
+  ],
+  "classificationSummary": {
+    "D": {
+      "count": 19,
+      "totalGapM": 380.4980587029588
+    },
+    "F": {
+      "count": 4,
+      "totalGapM": 67.06968244814287
+    },
+    "A": {
+      "count": 4,
+      "totalGapM": 442.8009491865027
+    }
+  },
+  "beforeAfter": {
+    "cleanedRunCountBefore": 30,
+    "cleanedRunCountAfter": 30,
+    "physicalBoundaryGroupCount": 3,
+    "joinsPerformed": 3,
+    "joinsRejected": 27
+  },
+  "physicalBoundaryVerification": [
+    {
+      "physicalBoundaryId": "PB0",
+      "trackIds": [
+        0
+      ],
+      "meanD": -1.9254293189288918,
+      "side": "right",
+      "complementary": false,
+      "trackStats": [
+        {
+          "meanD": -1.9254293189288918,
+          "minS": 35.2335204264419,
+          "maxS": 689.824925750434,
+          "spanM": 654.591405323992,
+          "pointCount": 62,
+          "fragmentCount": 17
+        }
+      ]
+    },
+    {
+      "physicalBoundaryId": "PB1",
+      "trackIds": [
+        1,
+        2
+      ],
+      "meanD": 2.144292836945928,
+      "side": "left",
+      "complementary": true,
+      "trackStats": [
+        {
+          "meanD": 2.144292836945928,
+          "minS": 35.02186391091784,
+          "maxS": 92.49290092856977,
+          "spanM": 57.47103701765193,
+          "pointCount": 6,
+          "fragmentCount": 3
+        },
+        {
+          "meanD": 1.0861367996200881,
+          "minS": 332.4326940942537,
+          "maxS": 696.7768519320928,
+          "spanM": 364.3441578378391,
+          "pointCount": 52,
+          "fragmentCount": 11
+        }
+      ]
+    },
+    {
+      "physicalBoundaryId": "PB2",
+      "trackIds": [
+        3
+      ],
+      "meanD": 4.076517416550587,
+      "side": "left",
+      "complementary": false,
+      "trackStats": [
+        {
+          "meanD": 4.076517416550587,
+          "minS": 407.7330461017007,
+          "maxS": 439.2687416968598,
+          "spanM": 31.535695595159098,
+          "pointCount": 5,
+          "fragmentCount": 2
+        }
+      ]
+    }
+  ],
+  "adaptiveJoinInfo": [
+    {
+      "physicalBoundaryId": "PB0",
+      "adaptiveJoinGapM": 12,
+      "p90IntraGapM": 17.99990270381784,
+      "sampleCount": 114,
+      "hardCap": 18,
+      "defaultMergeGapM": 12
+    },
+    {
+      "physicalBoundaryId": "PB1",
+      "adaptiveJoinGapM": 12,
+      "p90IntraGapM": 17.999992647332874,
+      "sampleCount": 108,
+      "hardCap": 18,
+      "defaultMergeGapM": 12
+    },
+    {
+      "physicalBoundaryId": "PB2",
+      "adaptiveJoinGapM": 12,
+      "p90IntraGapM": 22.311996753190897,
+      "sampleCount": 8,
+      "hardCap": 18,
+      "defaultMergeGapM": 12
+    }
+  ],
+  "fusionBinRejection": {
+    "rejectedBinSummary": {
+      "no raw support": 5
+    },
+    "rejectedBins": [
+      {
+        "trackId": 0,
+        "chunkId": 0,
+        "passId": 0,
+        "binIndex": null,
+        "binStartS": null,
+        "binEndS": null,
+        "binCentreS": null,
+        "supportCount": 0,
+        "sourceFrameIds": [],
+        "sourceElapsedIdx": [],
+        "contributingRawPoints": 0,
+        "confidenceValues": [],
+        "fusedLateralD": null,
+        "accepted": false,
+        "rejectionReason": "no raw support"
+      },
+      {
+        "trackId": 1,
+        "chunkId": 0,
+        "passId": 0,
+        "binIndex": null,
+        "binStartS": null,
+        "binEndS": null,
+        "binCentreS": null,
+        "supportCount": 0,
+        "sourceFrameIds": [],
+        "sourceElapsedIdx": [],
+        "contributingRawPoints": 0,
+        "confidenceValues": [],
+        "fusedLateralD": null,
+        "accepted": false,
+        "rejectionReason": "no raw support"
+      },
+      {
+        "trackId": 2,
+        "chunkId": 0,
+        "passId": 0,
+        "binIndex": null,
+        "binStartS": null,
+        "binEndS": null,
+        "binCentreS": null,
+        "supportCount": 0,
+        "sourceFrameIds": [],
+        "sourceElapsedIdx": [],
+        "contributingRawPoints": 0,
+        "confidenceValues": [],
+        "fusedLateralD": null,
+        "accepted": false,
+        "rejectionReason": "no raw support"
+      },
+      {
+        "trackId": 3,
+        "chunkId": 0,
+        "passId": 0,
+        "binIndex": null,
+        "binStartS": null,
+        "binEndS": null,
+        "binCentreS": null,
+        "supportCount": 0,
+        "sourceFrameIds": [],
+        "sourceElapsedIdx": [],
+        "contributingRawPoints": 0,
+        "confidenceValues": [],
+        "fusedLateralD": null,
+        "accepted": false,
+        "rejectionReason": "no raw support"
+      },
+      {
+        "trackId": 4,
+        "chunkId": 0,
+        "passId": 0,
+        "binIndex": null,
+        "binStartS": null,
+        "binEndS": null,
+        "binCentreS": null,
+        "supportCount": 0,
+        "sourceFrameIds": [],
+        "sourceElapsedIdx": [],
+        "contributingRawPoints": 0,
+        "confidenceValues": [],
+        "fusedLateralD": null,
+        "accepted": false,
+        "rejectionReason": "no raw support"
+      }
+    ],
+    "trackSummaries": [
+      {
+        "startS": null,
+        "endS": null,
+        "expectedBins": 1,
+        "acceptedBins": 0,
+        "coverage": 0,
+        "largestGapM": 0
+      },
+      {
+        "startS": null,
+        "endS": null,
+        "expectedBins": 1,
+        "acceptedBins": 0,
+        "coverage": 0,
+        "largestGapM": 0
+      },
+      {
+        "startS": null,
+        "endS": null,
+        "expectedBins": 1,
+        "acceptedBins": 0,
+        "coverage": 0,
+        "largestGapM": 0
+      },
+      {
+        "startS": null,
+        "endS": null,
+        "expectedBins": 1,
+        "acceptedBins": 0,
+        "coverage": 0,
+        "largestGapM": 0
+      },
+      {
+        "startS": null,
+        "endS": null,
+        "expectedBins": 1,
+        "acceptedBins": 0,
+        "coverage": 0,
+        "largestGapM": 0
+      }
+    ]
+  },
+  "polylineSourceTraces": [
+    {
+      "runId": 0,
+      "physicalBoundaryId": "PB2",
+      "trackIds": [
+        3
+      ],
+      "representation": "full fused lane geometry (all sdPoints from joined fused fragments projected to map)",
+      "usesObservationMidpoints": false,
+      "usesEndpointsOnly": false,
+      "fusedFragmentCount": 1,
+      "fusedPointCount": 2,
+      "sdPointCount": 2,
+      "sourceFusedLengthM": 4.500065852316362,
+      "cleanedLengthM": 4.500065852316362,
+      "renderedLengthM": 4.500065852316362,
+      "lengthRetention": 1
+    },
+    {
+      "runId": 1,
+      "physicalBoundaryId": "PB2",
+      "trackIds": [
+        3
+      ],
+      "representation": "full fused lane geometry (all sdPoints from joined fused fragments projected to map)",
+      "usesObservationMidpoints": false,
+      "usesEndpointsOnly": false,
+      "fusedFragmentCount": 1,
+      "fusedPointCount": 3,
+      "sdPointCount": 3,
+      "sourceFusedLengthM": 4.696606145466439,
+      "cleanedLengthM": 4.723826525750724,
+      "renderedLengthM": 4.723826525750724,
+      "lengthRetention": 1.005795755369132
+    },
+    {
+      "runId": 2,
+      "physicalBoundaryId": "PB1",
+      "trackIds": [
+        1,
+        2
+      ],
+      "representation": "full fused lane geometry (all sdPoints from joined fused fragments projected to map)",
+      "usesObservationMidpoints": false,
+      "usesEndpointsOnly": false,
+      "fusedFragmentCount": 1,
+      "fusedPointCount": 2,
+      "sdPointCount": 2,
+      "sourceFusedLengthM": 4.062449090062024,
+      "cleanedLengthM": 4.062449090062024,
+      "renderedLengthM": 4.062449090062024,
+      "lengthRetention": 1
+    },
+    {
+      "runId": 1,
+      "physicalBoundaryId": "PB1",
+      "trackIds": [
+        1,
+        2
+      ],
+      "representation": "full fused lane geometry (all sdPoints from joined fused fragments projected to map)",
+      "usesObservationMidpoints": false,
+      "usesEndpointsOnly": false,
+      "fusedFragmentCount": 1,
+      "fusedPointCount": 2,
+      "sdPointCount": 2,
+      "sourceFusedLengthM": 5.628216743560192,
+      "cleanedLengthM": 5.628216743560192,
+      "renderedLengthM": 5.628216743560192,
+      "lengthRetention": 1
+    },
+    {
+      "runId": 0,
+      "physicalBoundaryId": "PB1",
+      "trackIds": [
+        1,
+        2
+      ],
+      "representation": "full fused lane geometry (all sdPoints from joined fused fragments projected to map)",
+      "usesObservationMidpoints": false,
+      "usesEndpointsOnly": false,
+      "fusedFragmentCount": 1,
+      "fusedPointCount": 2,
+      "sdPointCount": 2,
+      "sourceFusedLengthM": 6.000002119746215,
+      "cleanedLengthM": 6.000002119746215,
+      "renderedLengthM": 6.000002119746215,
+      "lengthRetention": 1
+    },
+    {
+      "runId": 11,
+      "physicalBoundaryId": "PB1",
+      "trackIds": [
+        1,
+        2
+      ],
+      "representation": "full fused lane geometry (all sdPoints from joined fused fragments projected to map)",
+      "usesObservationMidpoints": false,
+      "usesEndpointsOnly": false,
+      "fusedFragmentCount": 1,
+      "fusedPointCount": 3,
+      "sdPointCount": 3,
+      "sourceFusedLengthM": 9.05938134722137,
+      "cleanedLengthM": 9.05938134722137,
+      "renderedLengthM": 9.05938134722137,
+      "lengthRetention": 1
+    },
+    {
+      "runId": 5,
+      "physicalBoundaryId": "PB1",
+      "trackIds": [
+        1,
+        2
+      ],
+      "representation": "full fused lane geometry (all sdPoints from joined fused fragments projected to map)",
+      "usesObservationMidpoints": false,
+      "usesEndpointsOnly": false,
+      "fusedFragmentCount": 1,
+      "fusedPointCount": 3,
+      "sdPointCount": 3,
+      "sourceFusedLengthM": 4.694588613898076,
+      "cleanedLengthM": 4.698249912610038,
+      "renderedLengthM": 4.698249912610038,
+      "lengthRetention": 1.0007798976679496
+    },
+    {
+      "runId": 10,
+      "physicalBoundaryId": "PB1",
+      "trackIds": [
+        1,
+        2
+      ],
+      "representation": "full fused lane geometry (all sdPoints from joined fused fragments projected to map)",
+      "usesObservationMidpoints": false,
+      "usesEndpointsOnly": false,
+      "fusedFragmentCount": 1,
+      "fusedPointCount": 5,
+      "sdPointCount": 5,
+      "sourceFusedLengthM": 19.76129873050263,
+      "cleanedLengthM": 19.76129873050263,
+      "renderedLengthM": 19.76129873050263,
+      "lengthRetention": 1
+    },
+    {
+      "runId": 12,
+      "physicalBoundaryId": "PB1",
+      "trackIds": [
+        1,
+        2
+      ],
+      "representation": "full fused lane geometry (all sdPoints from joined fused fragments projected to map)",
+      "usesObservationMidpoints": false,
+      "usesEndpointsOnly": false,
+      "fusedFragmentCount": 1,
+      "fusedPointCount": 13,
+      "sdPointCount": 13,
+      "sourceFusedLengthM": 50.19562184637242,
+      "cleanedLengthM": 50.19562184637242,
+      "renderedLengthM": 50.19562184637242,
+      "lengthRetention": 1
+    },
+    {
+      "runId": 7,
+      "physicalBoundaryId": "PB1",
+      "trackIds": [
+        1,
+        2
+      ],
+      "representation": "full fused lane geometry (all sdPoints from joined fused fragments projected to map)",
+      "usesObservationMidpoints": false,
+      "usesEndpointsOnly": false,
+      "fusedFragmentCount": 1,
+      "fusedPointCount": 2,
+      "sdPointCount": 2,
+      "sourceFusedLengthM": 3.434806317947622,
+      "cleanedLengthM": 3.434806317947622,
+      "renderedLengthM": 3.434806317947622,
+      "lengthRetention": 1
+    },
+    {
+      "runId": 8,
+      "physicalBoundaryId": "PB1",
+      "trackIds": [
+        1,
+        2
+      ],
+      "representation": "full fused lane geometry (all sdPoints from joined fused fragments projected to map)",
+      "usesObservationMidpoints": false,
+      "usesEndpointsOnly": false,
+      "fusedFragmentCount": 1,
+      "fusedPointCount": 5,
+      "sdPointCount": 5,
+      "sourceFusedLengthM": 26.52926090604543,
+      "cleanedLengthM": 26.52926090604543,
+      "renderedLengthM": 26.52926090604543,
+      "lengthRetention": 1
+    },
+    {
+      "runId": 4,
+      "physicalBoundaryId": "PB1",
+      "trackIds": [
+        1,
+        2
+      ],
+      "representation": "full fused lane geometry (all sdPoints from joined fused fragments projected to map)",
+      "usesObservationMidpoints": false,
+      "usesEndpointsOnly": false,
+      "fusedFragmentCount": 2,
+      "fusedPointCount": 11,
+      "sdPointCount": 11,
+      "sourceFusedLengthM": 45.573818767677594,
+      "cleanedLengthM": 56.26142001781394,
+      "renderedLengthM": 56.26142001781394,
+      "lengthRetention": 1.2345118653457308
+    },
+    {
+      "runId": 9,
+      "physicalBoundaryId": "PB1",
+      "trackIds": [
+        1,
+        2
+      ],
+      "representation": "full fused lane geometry (all sdPoints from joined fused fragments projected to map)",
+      "usesObservationMidpoints": false,
+      "usesEndpointsOnly": false,
+      "fusedFragmentCount": 1,
+      "fusedPointCount": 2,
+      "sdPointCount": 2,
+      "sourceFusedLengthM": 4.7379115840729265,
+      "cleanedLengthM": 4.7379115840729265,
+      "renderedLengthM": 4.7379115840729265,
+      "lengthRetention": 1
+    },
+    {
+      "runId": 6,
+      "physicalBoundaryId": "PB1",
+      "trackIds": [
+        1,
+        2
+      ],
+      "representation": "full fused lane geometry (all sdPoints from joined fused fragments projected to map)",
+      "usesObservationMidpoints": false,
+      "usesEndpointsOnly": false,
+      "fusedFragmentCount": 1,
+      "fusedPointCount": 4,
+      "sdPointCount": 4,
+      "sourceFusedLengthM": 12.065204076644937,
+      "cleanedLengthM": 12.065204076644937,
+      "renderedLengthM": 12.065204076644937,
+      "lengthRetention": 1
+    },
+    {
+      "runId": 3,
+      "physicalBoundaryId": "PB1",
+      "trackIds": [
+        1,
+        2
+      ],
+      "representation": "full fused lane geometry (all sdPoints from joined fused fragments projected to map)",
+      "usesObservationMidpoints": false,
+      "usesEndpointsOnly": false,
+      "fusedFragmentCount": 1,
+      "fusedPointCount": 4,
+      "sdPointCount": 4,
+      "sourceFusedLengthM": 9.025455535799964,
+      "cleanedLengthM": 9.025455535799964,
+      "renderedLengthM": 9.025455535799964,
+      "lengthRetention": 1
+    },
+    {
+      "runId": 7,
+      "physicalBoundaryId": "PB0",
+      "trackIds": [
+        0
+      ],
+      "representation": "full fused lane geometry (all sdPoints from joined fused fragments projected to map)",
+      "usesObservationMidpoints": false,
+      "usesEndpointsOnly": false,
+      "fusedFragmentCount": 2,
+      "fusedPointCount": 6,
+      "sdPointCount": 6,
+      "sourceFusedLengthM": 20.250143634596235,
+      "cleanedLengthM": 30.950442325649647,
+      "renderedLengthM": 30.950442325649647,
+      "lengthRetention": 1.5284060638845323
+    },
+    {
+      "runId": 8,
+      "physicalBoundaryId": "PB0",
+      "trackIds": [
+        0
+      ],
+      "representation": "full fused lane geometry (all sdPoints from joined fused fragments projected to map)",
+      "usesObservationMidpoints": false,
+      "usesEndpointsOnly": false,
+      "fusedFragmentCount": 1,
+      "fusedPointCount": 3,
+      "sdPointCount": 3,
+      "sourceFusedLengthM": 4.270489867536668,
+      "cleanedLengthM": 4.270489867536668,
+      "renderedLengthM": 4.270489867536668,
+      "lengthRetention": 1
+    },
+    {
+      "runId": 1,
+      "physicalBoundaryId": "PB0",
+      "trackIds": [
+        0
+      ],
+      "representation": "full fused lane geometry (all sdPoints from joined fused fragments projected to map)",
+      "usesObservationMidpoints": false,
+      "usesEndpointsOnly": false,
+      "fusedFragmentCount": 1,
+      "fusedPointCount": 2,
+      "sdPointCount": 2,
+      "sourceFusedLengthM": 5.726899182591866,
+      "cleanedLengthM": 5.726899182591866,
+      "renderedLengthM": 5.726899182591866,
+      "lengthRetention": 1
+    },
+    {
+      "runId": 13,
+      "physicalBoundaryId": "PB0",
+      "trackIds": [
+        0
+      ],
+      "representation": "full fused lane geometry (all sdPoints from joined fused fragments projected to map)",
+      "usesObservationMidpoints": false,
+      "usesEndpointsOnly": false,
+      "fusedFragmentCount": 1,
+      "fusedPointCount": 3,
+      "sdPointCount": 3,
+      "sourceFusedLengthM": 9.06830149010541,
+      "cleanedLengthM": 9.06830149010541,
+      "renderedLengthM": 9.06830149010541,
+      "lengthRetention": 1
+    },
+    {
+      "runId": 12,
+      "physicalBoundaryId": "PB0",
+      "trackIds": [
+        0
+      ],
+      "representation": "full fused lane geometry (all sdPoints from joined fused fragments projected to map)",
+      "usesObservationMidpoints": false,
+      "usesEndpointsOnly": false,
+      "fusedFragmentCount": 1,
+      "fusedPointCount": 5,
+      "sdPointCount": 5,
+      "sourceFusedLengthM": 19.989313806555444,
+      "cleanedLengthM": 19.989313806555444,
+      "renderedLengthM": 19.989313806555444,
+      "lengthRetention": 1
+    },
+    {
+      "runId": 6,
+      "physicalBoundaryId": "PB0",
+      "trackIds": [
+        0
+      ],
+      "representation": "full fused lane geometry (all sdPoints from joined fused fragments projected to map)",
+      "usesObservationMidpoints": false,
+      "usesEndpointsOnly": false,
+      "fusedFragmentCount": 1,
+      "fusedPointCount": 3,
+      "sdPointCount": 3,
+      "sourceFusedLengthM": 6.591146500552444,
+      "cleanedLengthM": 6.591146500552444,
+      "renderedLengthM": 6.591146500552444,
+      "lengthRetention": 1
+    },
+    {
+      "runId": 11,
+      "physicalBoundaryId": "PB0",
+      "trackIds": [
+        0
+      ],
+      "representation": "full fused lane geometry (all sdPoints from joined fused fragments projected to map)",
+      "usesObservationMidpoints": false,
+      "usesEndpointsOnly": false,
+      "fusedFragmentCount": 1,
+      "fusedPointCount": 2,
+      "sdPointCount": 2,
+      "sourceFusedLengthM": 4.711053828965306,
+      "cleanedLengthM": 4.711053828965306,
+      "renderedLengthM": 4.711053828965306,
+      "lengthRetention": 1
+    },
+    {
+      "runId": 2,
+      "physicalBoundaryId": "PB0",
+      "trackIds": [
+        0
+      ],
+      "representation": "full fused lane geometry (all sdPoints from joined fused fragments projected to map)",
+      "usesObservationMidpoints": false,
+      "usesEndpointsOnly": false,
+      "fusedFragmentCount": 1,
+      "fusedPointCount": 4,
+      "sdPointCount": 4,
+      "sourceFusedLengthM": 13.229314864900502,
+      "cleanedLengthM": 13.229314864900502,
+      "renderedLengthM": 13.229314864900502,
+      "lengthRetention": 1
+    },
+    {
+      "runId": 10,
+      "physicalBoundaryId": "PB0",
+      "trackIds": [
+        0
+      ],
+      "representation": "full fused lane geometry (all sdPoints from joined fused fragments projected to map)",
+      "usesObservationMidpoints": false,
+      "usesEndpointsOnly": false,
+      "fusedFragmentCount": 1,
+      "fusedPointCount": 5,
+      "sdPointCount": 5,
+      "sourceFusedLengthM": 26.797924044420988,
+      "cleanedLengthM": 26.797924044420988,
+      "renderedLengthM": 26.797924044420988,
+      "lengthRetention": 1
+    },
+    {
+      "runId": 4,
+      "physicalBoundaryId": "PB0",
+      "trackIds": [
+        0
+      ],
+      "representation": "full fused lane geometry (all sdPoints from joined fused fragments projected to map)",
+      "usesObservationMidpoints": false,
+      "usesEndpointsOnly": false,
+      "fusedFragmentCount": 1,
+      "fusedPointCount": 3,
+      "sdPointCount": 3,
+      "sourceFusedLengthM": 7.012472932446368,
+      "cleanedLengthM": 7.012472932446368,
+      "renderedLengthM": 7.012472932446368,
+      "lengthRetention": 1
+    },
+    {
+      "runId": 14,
+      "physicalBoundaryId": "PB0",
+      "trackIds": [
+        0
+      ],
+      "representation": "full fused lane geometry (all sdPoints from joined fused fragments projected to map)",
+      "usesObservationMidpoints": false,
+      "usesEndpointsOnly": false,
+      "fusedFragmentCount": 1,
+      "fusedPointCount": 11,
+      "sdPointCount": 11,
+      "sourceFusedLengthM": 43.4644836612682,
+      "cleanedLengthM": 43.4644836612682,
+      "renderedLengthM": 43.4644836612682,
+      "lengthRetention": 1
+    },
+    {
+      "runId": 5,
+      "physicalBoundaryId": "PB0",
+      "trackIds": [
+        0
+      ],
+      "representation": "full fused lane geometry (all sdPoints from joined fused fragments projected to map)",
+      "usesObservationMidpoints": false,
+      "usesEndpointsOnly": false,
+      "fusedFragmentCount": 1,
+      "fusedPointCount": 3,
+      "sdPointCount": 3,
+      "sourceFusedLengthM": 11.854843059681173,
+      "cleanedLengthM": 11.854843059681173,
+      "renderedLengthM": 11.854843059681173,
+      "lengthRetention": 1
+    },
+    {
+      "runId": 9,
+      "physicalBoundaryId": "PB0",
+      "trackIds": [
+        0
+      ],
+      "representation": "full fused lane geometry (all sdPoints from joined fused fragments projected to map)",
+      "usesObservationMidpoints": false,
+      "usesEndpointsOnly": false,
+      "fusedFragmentCount": 2,
+      "fusedPointCount": 8,
+      "sdPointCount": 8,
+      "sourceFusedLengthM": 30.34051098586978,
+      "cleanedLengthM": 42.340983375935394,
+      "renderedLengthM": 42.340983375935394,
+      "lengthRetention": 1.3955263771152202
+    },
+    {
+      "runId": 3,
+      "physicalBoundaryId": "PB0",
+      "trackIds": [
+        0
+      ],
+      "representation": "full fused lane geometry (all sdPoints from joined fused fragments projected to map)",
+      "usesObservationMidpoints": false,
+      "usesEndpointsOnly": false,
+      "fusedFragmentCount": 1,
+      "fusedPointCount": 2,
+      "sdPointCount": 2,
+      "sourceFusedLengthM": 9.064970144232747,
+      "cleanedLengthM": 9.064970144232747,
+      "renderedLengthM": 9.064970144232747,
+      "lengthRetention": 1
+    },
+    {
+      "runId": 0,
+      "physicalBoundaryId": "PB0",
+      "trackIds": [
+        0
+      ],
+      "representation": "full fused lane geometry (all sdPoints from joined fused fragments projected to map)",
+      "usesObservationMidpoints": false,
+      "usesEndpointsOnly": false,
+      "fusedFragmentCount": 1,
+      "fusedPointCount": 2,
+      "sdPointCount": 2,
+      "sourceFusedLengthM": 7.112316358132403,
+      "cleanedLengthM": 7.112316358132403,
+      "renderedLengthM": 7.112316358132403,
+      "lengthRetention": 1
+    }
+  ],
+  "mode6Diagnosis": {
+    "cleanedLeftRightPairCount": 2,
+    "pairs": [
+      {
+        "pairId": "L1-R0",
+        "leftTrackId": 1,
+        "rightTrackId": 0,
+        "leftPhysicalBoundaryId": "PB1",
+        "rightPhysicalBoundaryId": "PB0",
+        "polygonCount": 2,
+        "overlapIntervals": [
+          [
+            35.2335204264419,
+            39.2335204264419
+          ],
+          [
+            65.78727043441252,
+            69.78727043441252
+          ]
+        ],
+        "totalArea": 31.816656613238365
+      },
+      {
+        "pairId": "L2-R0",
+        "leftTrackId": 2,
+        "rightTrackId": 0,
+        "leftPhysicalBoundaryId": "PB1",
+        "rightPhysicalBoundaryId": "PB0",
+        "polygonCount": 9,
+        "overlapIntervals": [
+          [
+            332.4326940942537,
+            338.4326940942537
+          ],
+          [
+            381.491557471317,
+            411.4533331372995
+          ],
+          [
+            434.9420161044949,
+            438.9420161044949
+          ],
+          [
+            466.79093510592395,
+            476.79093510592395
+          ],
+          [
+            527.5523303173946,
+            553.5523303173946
+          ],
+          [
+            567.3471591784137,
+            571.3471591784137
+          ],
+          [
+            590.0372592002434,
+            608.0372592002434
+          ],
+          [
+            621.5384584633066,
+            629.5384584633066
+          ],
+          [
+            646.9116126270657,
+            688.9116126270657
+          ]
+        ],
+        "totalArea": 440.98863044221974
+      }
+    ],
+    "polygonPipeline": {
+      "generatedInChunk": 13,
+      "reachingFrontendAfterFilter": 13,
+      "reachingCleanedWithSurfaceMap": 13,
+      "passingValidation": 13,
+      "surfaceTypes": [
+        "egoLaneCorridor"
+      ],
+      "sRanges": [
+        [
+          332.4326940942537,
+          338.4326940942537
+        ],
+        [
+          381.491557471317,
+          411.4533331372995
+        ],
+        [
+          434.9420161044949,
+          438.9420161044949
+        ],
+        [
+          466.79093510592395,
+          476.79093510592395
+        ],
+        [
+          527.5523303173946,
+          553.5523303173946
+        ],
+        [
+          567.3471591784137,
+          571.3471591784137
+        ],
+        [
+          590.0372592002434,
+          608.0372592002434
+        ],
+        [
+          621.5384584633066,
+          629.5384584633066
+        ],
+        [
+          646.9116126270657,
+          688.9116126270657
+        ],
+        [
+          35.2335204264419,
+          39.2335204264419
+        ],
+        [
+          65.78727043441252,
+          69.78727043441252
+        ],
+        [
+          407.7330461017007,
+          411.7330461017007
+        ],
+        [
+          434.5449151711091,
+          438.5449151711091
+        ]
+      ],
+      "bounds": {
+        "minE": -43.43012330317786,
+        "maxE": 69.77597394346844,
+        "minN": -288.35980707871283,
+        "maxN": 58.12693855506338,
+        "finite": true
+      },
+      "medianWidth": 3.0877548159529704
+    },
+    "likelyInvisibleReason": [
+      "surfaceOnlyCoversPostDropoutRegion (s~332+)",
+      "fillOpacityRgba035MayBeLowAgainstGreyBackground",
+      "laneLinesDrawnAboveSurfaceMayObscureNarrowFill"
+    ],
+    "primaryCause": "Road surface polygons only exist where track 2 (post-dropout left) overlaps track 0 (right); pre-dropout region has no L/R pair with fused overlap, so Mode 6 appears identical to Mode 5 except for faint fill after s~332"
+  },
+  "crossings": {
+    "before": 0,
+    "after": 0
+  }
+}

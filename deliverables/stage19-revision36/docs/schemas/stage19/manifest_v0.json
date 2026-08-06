@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hdmap.local/schemas/stage19/manifest_v0.json",
+  "title": "Stage19ManifestV0",
+  "type": "object",
+  "required": ["schemaVersion", "runId", "files", "createdAt", "processingVersion"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "const": "stage19_manifest_v0" },
+    "runId": { "type": "string", "minLength": 1 },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "processingVersion": { "type": "string", "minLength": 1 },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "sha256", "bytes"],
+        "additionalProperties": false,
+        "properties": {
+          "path": { "type": "string", "minLength": 1 },
+          "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+          "bytes": { "type": "integer", "minimum": 0 }
+        }
+      }
+    }
+  }
+}

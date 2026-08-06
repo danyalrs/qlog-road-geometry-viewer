@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hdmap.local/schemas/stage19/unassociated_v0.json",
+  "title": "Stage19UnassociatedV0",
+  "type": "object",
+  "required": ["schemaVersion", "runId", "unassociated"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "const": "stage19_unassociated_v0" },
+    "runId": { "type": "string", "minLength": 1 },
+    "unassociated": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["matchId"],
+        "additionalProperties": false,
+        "properties": {
+          "matchId": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}

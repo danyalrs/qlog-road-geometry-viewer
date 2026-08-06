@@ -1,0 +1,292 @@
+{
+  "file": "qlog_f449c_6.bz2",
+  "pipelineMode": "C",
+  "validModelFrames": 30,
+  "chunkId": 0,
+  "passes": [
+    {
+      "passId": 0,
+      "frameCount": 10,
+      "pathLengthM": 67.29144700118218,
+      "polygons": 1,
+      "tracking": {
+        "createdTracks": 1,
+        "continuedTracks": 1,
+        "terminatedTracks": 0,
+        "oneFrameTracks": 0,
+        "twoFrameTracks": 1,
+        "threePlusFrameTracks": 0,
+        "medianTrackDurationFrames": 2,
+        "maxTrackDurationFrames": 2,
+        "fragmentationRate": 0,
+        "observationAssociationPct": 50,
+        "rejectedMatches": 0,
+        "ambiguousMatches": 0,
+        "meanMatchCost": 2.199439622033409
+      },
+      "framePairAudits": [
+        {
+          "prevFrameId": 7563,
+          "nextFrameId": 7603,
+          "prevTimestamp": "395597204227",
+          "nextTimestamp": "397593381524",
+          "prevLaneCount": 1,
+          "nextLaneCount": 1,
+          "costMatrix": [
+            [
+              2.199
+            ]
+          ],
+          "candidates": [
+            {
+              "nextIdx": 0,
+              "trackIdx": 0,
+              "trackId": 0,
+              "valid": true,
+              "cost": 2.199439622033409,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.175205319798182
+            }
+          ],
+          "assignments": [
+            {
+              "nextIdx": 0,
+              "trackId": 0,
+              "cost": 2.199439622033409,
+              "prevTrackId": 0,
+              "resultingTrackId": 0,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 0
+            }
+          ],
+          "rejections": [],
+          "threshold": 15,
+          "passId": 0
+        }
+      ],
+      "tracks": [
+        {
+          "trackId": 0,
+          "frameIds": [
+            7563,
+            7603
+          ],
+          "frameCount": 2,
+          "coveredDistanceM": 4.101369711327584,
+          "laneOrder": 0
+        }
+      ],
+      "geometryLayers": {
+        "accepted": 0,
+        "laneOnly": 1,
+        "rejected": 0
+      },
+      "laneOnlyCount": 1
+    },
+    {
+      "passId": 1,
+      "frameCount": 17,
+      "pathLengthM": 10.098083071531793,
+      "polygons": 1,
+      "tracking": {
+        "createdTracks": 4,
+        "continuedTracks": 0,
+        "terminatedTracks": 1,
+        "oneFrameTracks": 4,
+        "twoFrameTracks": 0,
+        "threePlusFrameTracks": 0,
+        "medianTrackDurationFrames": 1,
+        "maxTrackDurationFrames": 1,
+        "fragmentationRate": 1,
+        "observationAssociationPct": 0,
+        "rejectedMatches": 0,
+        "ambiguousMatches": 0,
+        "meanMatchCost": 0
+      },
+      "framePairAudits": [
+        {
+          "prevFrameId": 7803,
+          "nextFrameId": 7843,
+          "prevTimestamp": "407594670099",
+          "nextTimestamp": "409598603360",
+          "prevLaneCount": 1,
+          "nextLaneCount": 0,
+          "costMatrix": [],
+          "candidates": [],
+          "assignments": [],
+          "rejections": [],
+          "threshold": 15,
+          "passId": 1
+        },
+        {
+          "prevFrameId": 8123,
+          "nextFrameId": 8163,
+          "prevTimestamp": "423597942294",
+          "nextTimestamp": "425599248111",
+          "prevLaneCount": 1,
+          "nextLaneCount": 0,
+          "costMatrix": [],
+          "candidates": [],
+          "assignments": [],
+          "rejections": [],
+          "threshold": 15,
+          "passId": 1
+        },
+        {
+          "prevFrameId": 8203,
+          "nextFrameId": 8243,
+          "prevTimestamp": "427603716095",
+          "nextTimestamp": "429602457287",
+          "prevLaneCount": 2,
+          "nextLaneCount": 0,
+          "costMatrix": [],
+          "candidates": [],
+          "assignments": [],
+          "rejections": [],
+          "threshold": 15,
+          "passId": 1
+        }
+      ],
+      "tracks": [
+        {
+          "trackId": 0,
+          "frameIds": [
+            7803
+          ],
+          "frameCount": 1,
+          "coveredDistanceM": 0,
+          "laneOrder": 0
+        },
+        {
+          "trackId": 1,
+          "frameIds": [
+            8123
+          ],
+          "frameCount": 1,
+          "coveredDistanceM": 0,
+          "laneOrder": 0
+        },
+        {
+          "trackId": 2,
+          "frameIds": [
+            8203
+          ],
+          "frameCount": 1,
+          "coveredDistanceM": 0,
+          "laneOrder": 0
+        },
+        {
+          "trackId": 3,
+          "frameIds": [
+            8203
+          ],
+          "frameCount": 1,
+          "coveredDistanceM": 0,
+          "laneOrder": 1
+        }
+      ],
+      "geometryLayers": {
+        "accepted": 0,
+        "laneOnly": 1,
+        "rejected": 0
+      },
+      "laneOnlyCount": 1
+    },
+    {
+      "passId": 2,
+      "frameCount": 3,
+      "pathLengthM": 1.277903297017858,
+      "polygons": 0,
+      "tracking": {
+        "createdTracks": 1,
+        "continuedTracks": 1,
+        "terminatedTracks": 0,
+        "oneFrameTracks": 0,
+        "twoFrameTracks": 1,
+        "threePlusFrameTracks": 0,
+        "medianTrackDurationFrames": 2,
+        "maxTrackDurationFrames": 2,
+        "fragmentationRate": 0,
+        "observationAssociationPct": 50,
+        "rejectedMatches": 0,
+        "ambiguousMatches": 0,
+        "meanMatchCost": 1.8361660478439803
+      },
+      "framePairAudits": [
+        {
+          "prevFrameId": 8323,
+          "nextFrameId": 8363,
+          "prevTimestamp": "433604820723",
+          "nextTimestamp": "435602674392",
+          "prevLaneCount": 1,
+          "nextLaneCount": 1,
+          "costMatrix": [
+            [
+              1.836
+            ]
+          ],
+          "candidates": [
+            {
+              "nextIdx": 0,
+              "trackIdx": 0,
+              "trackId": 0,
+              "valid": true,
+              "cost": 1.8361660478439803,
+              "rejection": null,
+              "sharedAnchors": 6,
+              "anchorLatMean": 0.05750789530349504
+            }
+          ],
+          "assignments": [
+            {
+              "nextIdx": 0,
+              "trackId": 0,
+              "cost": 1.8361660478439803,
+              "prevTrackId": 0,
+              "resultingTrackId": 0,
+              "sharedAnchors": 6,
+              "laneOrderDiff": 0
+            }
+          ],
+          "rejections": [],
+          "threshold": 15,
+          "passId": 2
+        },
+        {
+          "prevFrameId": 8363,
+          "nextFrameId": 8403,
+          "prevTimestamp": "435602674392",
+          "nextTimestamp": "437597776181",
+          "prevLaneCount": 1,
+          "nextLaneCount": 0,
+          "costMatrix": [],
+          "candidates": [],
+          "assignments": [],
+          "rejections": [],
+          "threshold": 15,
+          "passId": 2
+        }
+      ],
+      "tracks": [
+        {
+          "trackId": 0,
+          "frameIds": [
+            8323,
+            8363
+          ],
+          "frameCount": 2,
+          "coveredDistanceM": 0.8314325798682247,
+          "laneOrder": 0
+        }
+      ],
+      "geometryLayers": {
+        "accepted": 0,
+        "laneOnly": 1,
+        "rejected": 0
+      },
+      "laneOnlyCount": 1
+    }
+  ],
+  "suspiciousFragments": []
+}

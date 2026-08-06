@@ -1,0 +1,50 @@
+{
+  "auditedAt": "2026-07-27T05:16:29.833Z",
+  "stage19Status": "implementation_pending_validation",
+  "stage19ImplementationCheckpoint": "2026-07-27-stage19-v0",
+  "stagePurpose": "dataset_wide_lane_interval_sensitivity_and_bev_evidence_audit",
+  "productionLaneCountImplemented": false,
+  "physicalRoadValidationComplete": false,
+  "hdMapSystemComplete": false,
+  "v11GeometryModified": false,
+  "stage15Through18Modified": false,
+  "frozenRoadSurfaceVersion": "2026-07-24-fusion-v11",
+  "frozenV11ProcessingVersion": "2026-07-24-fusion-v11",
+  "stage19ProcessingVersion": "2026-07-24-dataset-sensitivity-bev-audit-v0",
+  "stage18ProcessingVersion": "2026-07-24-lane-interval-assessment-v0",
+  "stage17InputVersion": "2026-07-24-lane-divider-tracking-v0",
+  "stage17ProcessingVersion": "2026-07-24-lane-divider-tracking-v0",
+  "stage16InputChecksum": "c2bbfe2354f632bc8104909c4aca1f34e3d9c864f7463dd15bba53aa7be3cf91",
+  "datasetBounds": {
+    "N_obs": 5809,
+    "N_gap": 136,
+    "P_cp": 742,
+    "N_interval": 5
+  },
+  "runId": "perf-run-2",
+  "manifestSha256": "93e766f373fbe7744126248a7f74531a4394fcad6da67b8afc874a3c6b2634ae",
+  "semanticValidation": {
+    "ok": true
+  },
+  "observationCount": 5809,
+  "crossPassCount": 742,
+  "gapExclusionCount": 136,
+  "unassociatedCount": 0,
+  "acceptedIntervalCount": 5,
+  "assessmentCount": 5,
+  "assessmentStatusCounts": {
+    "accepted_with_caveats": 5
+  },
+  "promotionCounts": {
+    "promote_with_caveats": 5
+  },
+  "crossPassConflictCount": 0,
+  "partitionGroupCount": 799,
+  "partitionFailureCount": 301,
+  "catalogMemberCount": 5809,
+  "bundleSummary": {
+    "catalogBytes": 312360,
+    "crossPassBytes": 76965,
+    "headingBytes": 357834
+  }
+}

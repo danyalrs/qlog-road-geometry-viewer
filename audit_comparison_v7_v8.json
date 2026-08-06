@@ -1,0 +1,483 @@
+{
+  "baselineVersion": "2026-07-24-pose-v7",
+  "currentVersion": "2026-07-24-pose-v8",
+  "segmentCount": 92,
+  "baselineMultiPass": 4,
+  "currentMultiPass": 4,
+  "baselineMedianMs": 577,
+  "currentMedianMs": 561.5,
+  "failuresBefore": 0,
+  "failuresAfter": 0,
+  "passCountChanges": 33,
+  "improvements": 0,
+  "regressions": 0,
+  "stabilityGroupRegressions": [],
+  "largestPassIncreases": [],
+  "largestPassDecreases": [],
+  "allPassChanges": [
+    {
+      "segmentId": 0,
+      "passCountBefore": 1,
+      "passCountAfter": 1,
+      "passDelta": 0,
+      "polygonDelta": -1,
+      "splitBefore": [],
+      "splitAfter": [],
+      "suppressedAfter": 0,
+      "changeReason": "unchanged",
+      "inStabilityGroup": true
+    },
+    {
+      "segmentId": 2,
+      "passCountBefore": 2,
+      "passCountAfter": 2,
+      "passDelta": 0,
+      "polygonDelta": 1,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "selfIntersection",
+          "frameId": 3123,
+          "logMonoTime": "173712039287"
+        }
+      ],
+      "splitAfter": [
+        {
+          "passId": 0,
+          "reason": "selfIntersection",
+          "frameId": 3123,
+          "logMonoTime": "173712039287"
+        }
+      ],
+      "suppressedAfter": 0,
+      "changeReason": "unchanged",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 6,
+      "passCountBefore": 1,
+      "passCountAfter": 1,
+      "passDelta": 0,
+      "polygonDelta": 1,
+      "splitBefore": [],
+      "splitAfter": [],
+      "suppressedAfter": 2,
+      "changeReason": "unchanged",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 13,
+      "passCountBefore": 1,
+      "passCountAfter": 1,
+      "passDelta": 0,
+      "polygonDelta": 1,
+      "splitBefore": [],
+      "splitAfter": [],
+      "suppressedAfter": 0,
+      "changeReason": "unchanged",
+      "inStabilityGroup": true
+    },
+    {
+      "segmentId": 14,
+      "passCountBefore": 1,
+      "passCountAfter": 1,
+      "passDelta": 0,
+      "polygonDelta": -1,
+      "splitBefore": [],
+      "splitAfter": [],
+      "suppressedAfter": 0,
+      "changeReason": "unchanged",
+      "inStabilityGroup": true
+    },
+    {
+      "segmentId": 15,
+      "passCountBefore": 1,
+      "passCountAfter": 1,
+      "passDelta": 0,
+      "polygonDelta": -1,
+      "splitBefore": [],
+      "splitAfter": [],
+      "suppressedAfter": 0,
+      "changeReason": "unchanged",
+      "inStabilityGroup": true
+    },
+    {
+      "segmentId": 16,
+      "passCountBefore": 1,
+      "passCountAfter": 1,
+      "passDelta": 0,
+      "polygonDelta": -1,
+      "splitBefore": [],
+      "splitAfter": [],
+      "suppressedAfter": 0,
+      "changeReason": "unchanged",
+      "inStabilityGroup": true
+    },
+    {
+      "segmentId": 17,
+      "passCountBefore": 1,
+      "passCountAfter": 1,
+      "passDelta": 0,
+      "polygonDelta": -1,
+      "splitBefore": [],
+      "splitAfter": [],
+      "suppressedAfter": 0,
+      "changeReason": "unchanged",
+      "inStabilityGroup": true
+    },
+    {
+      "segmentId": 18,
+      "passCountBefore": 1,
+      "passCountAfter": 1,
+      "passDelta": 0,
+      "polygonDelta": -1,
+      "splitBefore": [],
+      "splitAfter": [],
+      "suppressedAfter": 0,
+      "changeReason": "unchanged",
+      "inStabilityGroup": true
+    },
+    {
+      "segmentId": 25,
+      "passCountBefore": 4,
+      "passCountAfter": 4,
+      "passDelta": 0,
+      "polygonDelta": -1,
+      "splitBefore": [
+        {
+          "passId": 0,
+          "reason": "directionReversal",
+          "frameId": 30923,
+          "logMonoTime": "1563412863555",
+          "dot": -0.742580108871909
+        },
+        {
+          "passId": 1,
+          "reason": "directionReversal",
+          "frameId": 31003,
+          "logMonoTime": "1567413453603",
+          "dot": -0.4388166860383598
+        },
+        {
+          "passId": 2,
+          "reason": "sharpHeadingChange",
+          "frameId": 31123,
+          "logMonoTime": "1573414524795",
+          "headingDelta": 123.68485145444345
+        }
+      ],
+      "splitAfter": [
+        {
+          "passId": 0,
+          "reason": "directionReversal",
+          "frameId": 30923,
+          "logMonoTime": "1563412863555",
+          "dot": -0.742580108871909
+        },
+        {
+          "passId": 1,
+          "reason": "directionReversal",
+          "frameId": 31003,
+          "logMonoTime": "1567413453603",
+          "dot": -0.4388166860383598
+        },
+        {
+          "passId": 2,
+          "reason": "sharpHeadingChange",
+          "frameId": 31123,
+          "logMonoTime": "1573414524795",
+          "headingDelta": 123.68485145444345
+        }
+      ],
+      "suppressedAfter": 0,
+      "changeReason": "unchanged",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 28,
+      "passCountBefore": 1,
+      "passCountAfter": 1,
+      "passDelta": 0,
+      "polygonDelta": 1,
+      "splitBefore": [],
+      "splitAfter": [],
+      "suppressedAfter": 0,
+      "changeReason": "unchanged",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 29,
+      "passCountBefore": 1,
+      "passCountAfter": 1,
+      "passDelta": 0,
+      "polygonDelta": -1,
+      "splitBefore": [],
+      "splitAfter": [],
+      "suppressedAfter": 0,
+      "changeReason": "unchanged",
+      "inStabilityGroup": true
+    },
+    {
+      "segmentId": 30,
+      "passCountBefore": 1,
+      "passCountAfter": 1,
+      "passDelta": 0,
+      "polygonDelta": -1,
+      "splitBefore": [],
+      "splitAfter": [],
+      "suppressedAfter": 0,
+      "changeReason": "unchanged",
+      "inStabilityGroup": true
+    },
+    {
+      "segmentId": 31,
+      "passCountBefore": 1,
+      "passCountAfter": 1,
+      "passDelta": 0,
+      "polygonDelta": -1,
+      "splitBefore": [],
+      "splitAfter": [],
+      "suppressedAfter": 0,
+      "changeReason": "unchanged",
+      "inStabilityGroup": true
+    },
+    {
+      "segmentId": 32,
+      "passCountBefore": 1,
+      "passCountAfter": 1,
+      "passDelta": 0,
+      "polygonDelta": -1,
+      "splitBefore": [],
+      "splitAfter": [],
+      "suppressedAfter": 0,
+      "changeReason": "unchanged",
+      "inStabilityGroup": true
+    },
+    {
+      "segmentId": 34,
+      "passCountBefore": 1,
+      "passCountAfter": 1,
+      "passDelta": 0,
+      "polygonDelta": 2,
+      "splitBefore": [],
+      "splitAfter": [],
+      "suppressedAfter": 0,
+      "changeReason": "unchanged",
+      "inStabilityGroup": true
+    },
+    {
+      "segmentId": 35,
+      "passCountBefore": 1,
+      "passCountAfter": 1,
+      "passDelta": 0,
+      "polygonDelta": -1,
+      "splitBefore": [],
+      "splitAfter": [],
+      "suppressedAfter": 0,
+      "changeReason": "unchanged",
+      "inStabilityGroup": true
+    },
+    {
+      "segmentId": 36,
+      "passCountBefore": 1,
+      "passCountAfter": 1,
+      "passDelta": 0,
+      "polygonDelta": 1,
+      "splitBefore": [],
+      "splitAfter": [],
+      "suppressedAfter": 0,
+      "changeReason": "unchanged",
+      "inStabilityGroup": true
+    },
+    {
+      "segmentId": 37,
+      "passCountBefore": 1,
+      "passCountAfter": 1,
+      "passDelta": 0,
+      "polygonDelta": -1,
+      "splitBefore": [],
+      "splitAfter": [],
+      "suppressedAfter": 0,
+      "changeReason": "unchanged",
+      "inStabilityGroup": true
+    },
+    {
+      "segmentId": 48,
+      "passCountBefore": 1,
+      "passCountAfter": 1,
+      "passDelta": 0,
+      "polygonDelta": 1,
+      "splitBefore": [],
+      "splitAfter": [],
+      "suppressedAfter": 0,
+      "changeReason": "unchanged",
+      "inStabilityGroup": true
+    },
+    {
+      "segmentId": 49,
+      "passCountBefore": 1,
+      "passCountAfter": 1,
+      "passDelta": 0,
+      "polygonDelta": -1,
+      "splitBefore": [],
+      "splitAfter": [],
+      "suppressedAfter": 0,
+      "changeReason": "unchanged",
+      "inStabilityGroup": true
+    },
+    {
+      "segmentId": 53,
+      "passCountBefore": 1,
+      "passCountAfter": 1,
+      "passDelta": 0,
+      "polygonDelta": 1,
+      "splitBefore": [],
+      "splitAfter": [],
+      "suppressedAfter": 0,
+      "changeReason": "unchanged",
+      "inStabilityGroup": true
+    },
+    {
+      "segmentId": 55,
+      "passCountBefore": 1,
+      "passCountAfter": 1,
+      "passDelta": 0,
+      "polygonDelta": 1,
+      "splitBefore": [],
+      "splitAfter": [],
+      "suppressedAfter": 0,
+      "changeReason": "unchanged",
+      "inStabilityGroup": true
+    },
+    {
+      "segmentId": 59,
+      "passCountBefore": 1,
+      "passCountAfter": 1,
+      "passDelta": 0,
+      "polygonDelta": 1,
+      "splitBefore": [],
+      "splitAfter": [],
+      "suppressedAfter": 1,
+      "changeReason": "unchanged",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 67,
+      "passCountBefore": 1,
+      "passCountAfter": 1,
+      "passDelta": 0,
+      "polygonDelta": 1,
+      "splitBefore": [],
+      "splitAfter": [],
+      "suppressedAfter": 1,
+      "changeReason": "unchanged",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 72,
+      "passCountBefore": 1,
+      "passCountAfter": 1,
+      "passDelta": 0,
+      "polygonDelta": 2,
+      "splitBefore": [],
+      "splitAfter": [],
+      "suppressedAfter": 0,
+      "changeReason": "unchanged",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 75,
+      "passCountBefore": 1,
+      "passCountAfter": 1,
+      "passDelta": 0,
+      "polygonDelta": 1,
+      "splitBefore": [],
+      "splitAfter": [],
+      "suppressedAfter": 0,
+      "changeReason": "unchanged",
+      "inStabilityGroup": true
+    },
+    {
+      "segmentId": 85,
+      "passCountBefore": 1,
+      "passCountAfter": 1,
+      "passDelta": 0,
+      "polygonDelta": 1,
+      "splitBefore": [],
+      "splitAfter": [],
+      "suppressedAfter": 0,
+      "changeReason": "unchanged",
+      "inStabilityGroup": true
+    },
+    {
+      "segmentId": 88,
+      "passCountBefore": 1,
+      "passCountAfter": 1,
+      "passDelta": 0,
+      "polygonDelta": -1,
+      "splitBefore": [],
+      "splitAfter": [],
+      "suppressedAfter": 0,
+      "changeReason": "unchanged",
+      "inStabilityGroup": true
+    },
+    {
+      "segmentId": 89,
+      "passCountBefore": 1,
+      "passCountAfter": 1,
+      "passDelta": 0,
+      "polygonDelta": -1,
+      "splitBefore": [],
+      "splitAfter": [],
+      "suppressedAfter": 0,
+      "changeReason": "unchanged",
+      "inStabilityGroup": true
+    },
+    {
+      "segmentId": 90,
+      "passCountBefore": 1,
+      "passCountAfter": 1,
+      "passDelta": 0,
+      "polygonDelta": -1,
+      "splitBefore": [],
+      "splitAfter": [],
+      "suppressedAfter": 0,
+      "changeReason": "unchanged",
+      "inStabilityGroup": true
+    },
+    {
+      "segmentId": 92,
+      "passCountBefore": 1,
+      "passCountAfter": 1,
+      "passDelta": 0,
+      "polygonDelta": 1,
+      "splitBefore": [],
+      "splitAfter": [],
+      "suppressedAfter": 0,
+      "changeReason": "unchanged",
+      "inStabilityGroup": false
+    },
+    {
+      "segmentId": 93,
+      "passCountBefore": 1,
+      "passCountAfter": 1,
+      "passDelta": 0,
+      "polygonDelta": 2,
+      "splitBefore": [],
+      "splitAfter": [],
+      "suppressedAfter": 0,
+      "changeReason": "unchanged",
+      "inStabilityGroup": true
+    }
+  ],
+  "movementAggregate": {
+    "baselineSuppressedReversals": 0,
+    "currentSuppressedReversals": 29,
+    "currentMovementStates": {
+      "moving": 2166,
+      "stationary": 152,
+      "creeping": 0,
+      "uncertain": 304
+    }
+  }
+}

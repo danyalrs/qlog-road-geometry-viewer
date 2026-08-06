@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+<rect width="100%" height="100%" fill="#111"/>
+<text x="12" y="24" fill="#fff" font-size="14">Segment 84 — 17 polygons (v10 1)</text>
+<path d="M31.2,701.5 L61.8,685.9 L89.5,672.4 L109.5,661.4 L125.5,655.9 L147.2,647.4 L177.5,630.0 L217.7,614.0 L259.3,596.6 L304.4,573.7 L349.4,557.8 L389.7,544.7 L431.2,527.5 L474.1,505.6 L522.9,485.3 L574.8,461.8 L626.8,433.9 L674.0,406.8 L707.9,384.5 L739.3,369.8 L769.1,357.0 L805.4,336.5 L849.6,310.0 L892.1,282.9 L936.9,253.7 L977.8,222.8 L1021.8,190.5 L1067.8,153.9 L1117.5,119.1 L1165.5,85.2" fill="none" stroke="#888" stroke-width="1.5" stroke-dasharray="4,3"/>
+<path d="M61.8,675.2 L66.0,674.4 L70.1,672.6 L74.1,670.4 L78.2,719.0 L74.2,721.0 L70.1,723.1 L66.0,725.3 Z" fill="#e6194b55" stroke="#e6194b" stroke-width="1.2"/>
+<text x="61.8" y="675.2" fill="#e6194b" font-size="10">f0</text>
+<line x1="74.11997476547953" y1="670.4114055954842" x2="119.30101901555327" y2="648.574083014956" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="96.7" y="659.5" fill="#ff0" font-size="9">gap 22.1m</text>
+<path d="M119.3,648.6 L123.4,646.4 L127.5,646.8 L131.6,645.3 L134.7,689.3 L130.6,691.0 L126.4,696.3 L122.4,700.1 Z" fill="#3cb44b55" stroke="#3cb44b" stroke-width="1.2"/>
+<text x="119.3" y="648.6" fill="#3cb44b" font-size="10">f1</text>
+<line x1="131.6494597238132" y1="645.3336898340909" x2="148.12002818636736" y2="638.4607526385266" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="139.9" y="641.9" fill="#ff0" font-size="9">gap 8.2m</text>
+<path d="M148.1,638.5 L152.2,636.7 L156.3,635.0 L160.4,633.3 L164.9,677.7 L160.8,679.7 L156.7,681.5 L152.6,682.8 Z" fill="#4363d855" stroke="#4363d8" stroke-width="1.2"/>
+<text x="148.1" y="638.5" fill="#4363d8" font-size="10">f2</text>
+<line x1="160.44136905191044" y1="633.2988951306481" x2="258.48936378391" y2="585.8302935103966" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="209.5" y="609.6" fill="#ff0" font-size="9">gap 48.0m</text>
+<path d="M258.5,585.8 L262.4,583.8 L266.5,581.8 L270.6,579.8 L275.0,629.9 L270.8,630.5 L266.6,631.0 L261.8,630.7 Z" fill="#f5823155" stroke="#f58231" stroke-width="1.2"/>
+<text x="258.5" y="585.8" fill="#f58231" font-size="10">f3</text>
+<line x1="270.5531256132031" y1="579.7556606965719" x2="435.5123891285565" y2="515.748893947021" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="353.0" y="547.8" fill="#ff0" font-size="9">gap 80.3m</text>
+<path d="M435.5,515.7 L439.6,514.0 L443.7,512.2 L447.9,559.7 L443.8,560.8 L439.6,562.0 Z" fill="#911eb455" stroke="#911eb4" stroke-width="1.2"/>
+<text x="435.5" y="515.7" fill="#911eb4" font-size="10">f4</text>
+<line x1="443.706502094457" y1="512.2064105638888" x2="473.25931855402877" y2="496.5343502915035" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="458.5" y="504.4" fill="#ff0" font-size="9">gap 14.5m</text>
+<path d="M473.3,496.5 L477.5,495.0 L481.6,493.6 L485.0,540.0 L480.9,541.5 L477.7,546.1 Z" fill="#42d4f455" stroke="#42d4f4" stroke-width="1.2"/>
+<text x="473.3" y="496.5" fill="#42d4f4" font-size="10">f5</text>
+<line x1="481.63770538060567" y1="493.55007406502665" x2="495.47210743162833" y2="486.7631646477596" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="488.6" y="490.2" fill="#ff0" font-size="9">gap 6.8m</text>
+<path d="M495.5,486.8 L499.6,484.9 L503.6,483.0 L507.0,529.5 L503.0,531.6 L498.9,533.7 Z" fill="#f032e655" stroke="#f032e6" stroke-width="1.2"/>
+<text x="495.5" y="486.8" fill="#f032e6" font-size="10">f6</text>
+<line x1="503.6433927116084" y1="482.96117075305557" x2="522.0243810076406" y2="472.9122029227072" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="512.8" y="477.9" fill="#ff0" font-size="9">gap 9.0m</text>
+<path d="M522.0,472.9 L526.2,473.1 L530.4,472.4 L534.5,470.8 L538.4,520.6 L534.3,522.4 L530.1,522.0 L525.4,519.3 Z" fill="#bfef4555" stroke="#bfef45" stroke-width="1.2"/>
+<text x="522.0" y="472.9" fill="#bfef45" font-size="10">f7</text>
+<line x1="534.4854754187373" y1="470.77755985270755" x2="568.6829284601644" y2="456.02429069495054" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="551.6" y="463.4" fill="#ff0" font-size="9">gap 16.7m</text>
+<path d="M568.7,456.0 L572.6,452.6 L576.6,450.5 L580.7,449.4 L584.9,448.5 L589.6,498.5 L585.3,498.4 L581.1,498.4 L576.5,501.5 L572.7,506.5 Z" fill="#fabed455" stroke="#fabed4" stroke-width="1.2"/>
+<text x="568.7" y="456.0" fill="#fabed4" font-size="10">f8</text>
+<line x1="584.909525175921" y1="448.49516107704414" x2="767.8773343718275" y2="340.1023475163299" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="676.4" y="394.3" fill="#ff0" font-size="9">gap 90.5m</text>
+<path d="M767.9,340.1 L771.9,341.7 L776.3,343.0 L780.4,341.3 L784.5,339.2 L788.6,337.2 L793.1,383.4 L789.0,385.5 L785.0,387.4 L780.9,389.2 L776.6,388.9 L771.5,389.0 Z" fill="#46999055" stroke="#469990" stroke-width="1.2"/>
+<text x="767.9" y="340.1" fill="#469990" font-size="10">f9</text>
+<line x1="788.5707923637897" y1="337.17226486690714" x2="804.4586969386072" y2="327.0293484011905" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="796.5" y="332.1" fill="#ff0" font-size="9">gap 7.9m</text>
+<path d="M804.5,327.0 L808.6,326.1 L812.8,325.1 L816.9,323.5 L821.0,321.4 L825.9,368.5 L821.8,370.5 L817.7,372.1 L813.5,372.9 L809.1,373.9 Z" fill="#dcbeff55" stroke="#dcbeff" stroke-width="1.2"/>
+<text x="804.5" y="327.0" fill="#dcbeff" font-size="10">f10</text>
+<line x1="820.9730312188208" y1="321.4480406189784" x2="842.636273377685" y2="311.6496775901385" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="831.8" y="316.5" fill="#ff0" font-size="9">gap 10.6m</text>
+<path d="M842.6,311.6 L846.2,304.5 L849.8,298.4 L854.0,297.5 L858.2,296.5 L863.4,343.2 L859.3,345.6 L855.3,348.1 L851.3,353.1 L847.6,359.2 Z" fill="#9A632455" stroke="#9A6324" stroke-width="1.2"/>
+<text x="842.6" y="311.6" fill="#9A6324" font-size="10">f11</text>
+<line x1="858.1572772434496" y1="296.4966546307893" x2="891.7584513111792" y2="279.6394893805865" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="875.0" y="288.1" fill="#ff0" font-size="9">gap 16.5m</text>
+<path d="M891.8,279.6 L894.9,269.6 L899.2,269.6 L904.9,319.4 L900.8,321.3 L896.8,324.6 Z" fill="#80000055" stroke="#800000" stroke-width="1.2"/>
+<text x="891.8" y="279.6" fill="#800000" font-size="10">f12</text>
+<line x1="899.2311178026598" y1="269.5627455925112" x2="944.2352439267562" y2="237.07557599306665" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="921.7" y="253.3" fill="#ff0" font-size="9">gap 22.7m</text>
+<path d="M944.2,237.1 L948.3,234.5 L952.3,232.0 L959.2,284.1 L955.1,286.7 L951.1,289.3 Z" fill="#aaffc355" stroke="#aaffc3" stroke-width="1.2"/>
+<text x="944.2" y="237.1" fill="#aaffc3" font-size="10">f13</text>
+<line x1="952.2917130368727" y1="231.98861215573174" x2="972.5636065819623" y2="218.93034191871402" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="962.4" y="225.5" fill="#ff0" font-size="9">gap 10.1m</text>
+<path d="M972.6,218.9 L976.6,216.7 L980.2,210.1 L984.3,208.6 L988.6,208.1 L995.3,260.6 L991.3,263.3 L987.3,265.9 L983.0,265.3 L979.4,270.8 Z" fill="#80800055" stroke="#808000" stroke-width="1.2"/>
+<text x="972.6" y="218.9" fill="#808000" font-size="10">f14</text>
+<line x1="988.6092658810971" y1="208.0696805732465" x2="1021.6902905542652" y2="186.253018312039" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="1005.1" y="197.2" fill="#ff0" font-size="9">gap 16.5m</text>
+<path d="M1021.7,186.3 L1025.4,181.5 L1029.1,176.8 L1036.3,228.0 L1032.1,229.6 L1027.9,231.1 Z" fill="#ffd8b155" stroke="#ffd8b1" stroke-width="1.2"/>
+<text x="1021.7" y="186.3" fill="#ffd8b1" font-size="10">f15</text>
+<line x1="1029.1422354225801" y1="176.7698244436499" x2="1150.615381800788" y2="82.83152820324142" stroke="#ff0" stroke-width="2" stroke-dasharray="6,4"/>
+<text x="1089.9" y="129.8" fill="#ff0" font-size="9">gap 61.3m</text>
+<path d="M1150.6,82.8 L1154.6,80.0 L1158.6,77.2 L1162.6,74.7 L1168.8,124.7 L1165.0,129.1 L1161.0,131.8 L1157.0,134.6 Z" fill="#00007555" stroke="#000075" stroke-width="1.2"/>
+<text x="1150.6" y="82.8" fill="#000075" font-size="10">f16</text>
+</svg>

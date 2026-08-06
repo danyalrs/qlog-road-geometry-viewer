@@ -1,0 +1,16 @@
+{
+  "generatedAt": "2026-07-30T07:47:18.860Z",
+  "records": [
+    {
+      "recordIndex": 207,
+      "reviewPairId": "72:0:4392664981322:1|72:0:4394669147870:0",
+      "disagreementType": "false_negative",
+      "manualLabel": "positive_continuation",
+      "reason": "structured evidence conflicts with reviewer note or label",
+      "note": "Both endpoints load at the requested timestamps. The pink target remains between the same two grey dividers and preserves the same order relative to both orange road edges. Its geometry changes smoothly without any crossing, abrupt jump, or identity swap.",
+      "rankStable": false,
+      "doNotAutoRevise": true
+    }
+  ],
+  "note": "Do not auto-revise manual labels; visual recheck only"
+}
