@@ -1,6 +1,6 @@
 # Experiments and Measurements
 
-**Last updated:** 2026-07-28
+**Last updated:** 2026-08-11
 
 Reproducible experiments with configuration, scope, commands, metrics, interpretation, and classification.
 
@@ -266,6 +266,36 @@ Reproducible experiments with configuration, scope, commands, metrics, interpret
 | **Metrics** | 576 candidate pairs; 454 stage17_gap; 122 session_boundary; 0 valid_same_track in sample |
 | **Limitations** | No video; insufficient for Amendment B precision/recall targets |
 | **Source** | `reports/stage20_link_ground_truth_sample.json` — **rule-derived candidate sample, not manual ground truth** (see `reports/stage20_link_candidate_pair_sample_v1.terminology.md`) |
+
+---
+
+## E-019: Constructed lane-boundary fragments (experimental display layer)
+
+| Field | Value |
+|-------|-------|
+| **Classification** | **AUD** (display-only; not production) |
+| **Module** | `lib/constructed_fragments.js` + browser mirror `public/constructed_fragments.js` |
+| **Design** | Accumulated Point dots → short reliable local polylines: group by physical boundary (chunk/pass/groupTrackId), order by along-track `s`, connect only when all local checks pass, split on gaps/conflicts/revisit/support, 5-pt moving-average smoothing (endpoints kept, shift capped 0.8 m), residuals reported |
+| **Segments** | 0, 13, 14, 22, 50 (sample) |
+| **Metrics** | 160 fragments; median length ~27 m (seg 14: 42.8 m); median fragment residual ~0.13 m; source points unmodified in all segments; split reasons balanced (direction 75, temporal 69, step 62, lateral 55, spatial gap 52, revisit 34) |
+| **Tuning notes** | Temporal gates are deliberately tolerant (cadence ~2 s, skips to 4 s; backward interleave up to ~4 s); `minSupportCount` 2 excludes single-observation outliers from fragments while dots keep them; curve apexes split by design |
+| **Limitations** | Cross-fragment joining out of scope; `groupTrackId` can be reassigned mid-pass on some segments; causal playback rebuilds fragments at draw time so counts differ from "complete map" |
+| **Source** | `reports/constructed_fragments_experimental.md`; `scripts/audit_constructed_fragments.js`; `tests/constructed_fragments.test.js` |
+
+---
+
+## E-020: Lane-boundary fragment joining (experimental stage)
+
+| Field | Value |
+|-------|-------|
+| **Classification** | **AUD** (display-only; not production) |
+| **Module** | `lib/lane_joining.js` + browser mirror `public/lane_joining.js` |
+| **Design** | Hard prohibitions (revisit, discontinuity, boundary/identity mismatch, unsupported gap, crossing); bounded spatial candidate generation (40 m grid); 10 connection checks; evidence-corridor classification (directly/weakly/occluded/unsupported); composite score; mutual-best selection with ambiguity margin and no branching; chaining into disjoint polylines; cubic tangent-continuous connectors |
+| **Segments (threshold basis)** | 14, 16 only |
+| **Metrics** | Seg14: 42 candidates → 19 accepted / 11 ambiguous / 6 polylines / 12 unjoined; connector gaps min 0.65, med 1.09, max 4.81 m. Seg16: 14 → 13 accepted / 4 polylines / 0 unjoined; gaps med 1.07, max 3.98 m. All 10 validation checks PASS |
+| **Regression** | Seg 2 (6 accepted within distinct boundaries), 6/54/58/99 (0 accepted — hard prohibitions dominate). No mixing, crossing, reversal or unsupported bridging anywhere |
+| **Limitations** | Conservative on noisy segments by design; pre-existing fragment-tip kinks visible (connector adds none); no fork/merge topology yet; thresholds fixed from Seg14/16 |
+| **Source** | `reports/lane_joining_stage.md`; `reports/lane_joining/*.json`; `screenshots/lane_joining/*.png`; `tests/lane_joining.test.js` (16/16) |
 
 ---
 

@@ -215,7 +215,7 @@ describe('Local road surface ribbon — grey path and render order', () => {
   it('13. grey route renders above the surface ribbon', () => {
     const methodSlice = renderSrc.slice(
       renderSrc.indexOf('_drawStationaryLocalMap(d, elapsedIdx)'),
-      renderSrc.indexOf('_drawStationaryLocalMap(d, elapsedIdx)') + 14000,
+      renderSrc.indexOf('_drawStationaryLocalMap(d, elapsedIdx)') + 20000,
     );
     const surfaceIdx = methodSlice.indexOf('if (this.layers.roadSurface)');
     const pathIdx = methodSlice.indexOf('this._drawLocalVehiclePathOverlay(map);', surfaceIdx);
@@ -225,7 +225,7 @@ describe('Local road surface ribbon — grey path and render order', () => {
   it('14. blue arrow renders above the grey route', () => {
     const methodSlice = renderSrc.slice(
       renderSrc.indexOf('_drawStationaryLocalMap(d, elapsedIdx)'),
-      renderSrc.indexOf('_drawStationaryLocalMap(d, elapsedIdx)') + 14000,
+      renderSrc.indexOf('_drawStationaryLocalMap(d, elapsedIdx)') + 20000,
     );
     const pathIdx = methodSlice.indexOf('this._drawLocalVehiclePathOverlay(map);');
     const arrowIdx = methodSlice.lastIndexOf('this._drawLocalPlaybackArrow(null, this.playbackPose)');
@@ -233,7 +233,10 @@ describe('Local road surface ribbon — grey path and render order', () => {
   });
 
   it('renderer uses trajectory ribbon as default surface display source', () => {
-    assert.match(renderSrc, /surfaceDisplaySource:\s*'trajectoryRibbon'/);
+    // Ribbon remains the default surface source. Stationary local polygons are
+    // a fallback only when no trajectory ribbon can be built (fully stationary
+    // segment), so the trajectoryRibbon literal must still be the default branch.
+    assert.match(renderSrc, /surfaceDisplaySource:.*'trajectoryRibbon'/);
     assert.match(renderSrc, /buildTrajectoryRoadSurfaceRibbons/);
     assert.match(renderSrc, /localRoadSurfaceRibbonFallbackHalfWidthM\s*=\s*7\.5/);
     assert.match(renderSrc, /localRoadSurfaceRibbonMinHalfWidthM\s*=\s*3/);
@@ -293,9 +296,9 @@ describe('Local road surface ribbon — modes and checksums', () => {
     assert.equal(fusedAgain.roadSurfaceChecksum, fused.roadSurfaceChecksum);
   });
 
-  it('dropdown still contains exactly two Local geometry modes', () => {
-    assert.deepEqual(LOCAL_GEOMETRY_VISIBLE_MODES, ['observations', 'fused']);
-    assert.equal(localGeometryDropdownOptions().length, 2);
+  it('dropdown contains all visible Local geometry modes', () => {
+    assert.deepEqual(LOCAL_GEOMETRY_VISIBLE_MODES, ['observations', 'fused', 'pointAccumulated']);
+    assert.equal(localGeometryDropdownOptions().length, 3);
   });
 
   it('index.html loads ribbon module before render.js', () => {

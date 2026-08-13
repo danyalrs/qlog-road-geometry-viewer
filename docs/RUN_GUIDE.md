@@ -1,6 +1,6 @@
 # Run Guide
 
-**Last updated:** 2026-07-28
+**Last updated:** 2026-08-11
 
 Verified commands from `package.json`, scripts, and specification docs. Mark **(uncertain)** where environment-specific or data-dependent.
 
@@ -148,6 +148,41 @@ node reports/stage19_dataset_sensitivity_investigation_runner.js
 - `reports/stage19_dataset_sensitivity_investigation.md`
 
 Source: `reports/stage19_dataset_sensitivity_investigation_runner.js` header.
+
+---
+
+## Constructed-Fragments Audit (Experimental, Display-Only)
+
+```bash
+node scripts/audit_constructed_fragments.js
+```
+
+Runs the constructed lane-boundary fragment layer across a sample of segments
+(default: 0, 7, 13, 14, 22, 50) and reports fragment counts, lengths, residuals,
+split reasons, and source-point preservation. Specify a custom sample with filenames
+or indices, e.g. `node scripts/audit_constructed_fragments.js qlog_f449c_14.bz2` or
+`node scripts/audit_constructed_fragments.js 2 13 22`.
+
+**Experimental output only** — the constructed-fragment layer is a display-only
+diagnostic and never feeds production lane geometry. See
+`reports/constructed_fragments_experimental.md`.
+
+---
+
+## Lane-Joining Validation (Experimental, Display-Only)
+
+```bash
+node scripts/validate_lane_joining.js      # Segments 14, 16 — all K-checks
+node scripts/regression_lane_joining.js    # Segments 2, 6, 54, 58, 99
+node scripts/capture_lane_joining.js       # before/after + video screenshots
+node --test tests/lane_joining.test.js     # 16 unit tests
+```
+
+The joining stage (`lib/lane_joining.js`) joins only compatible constructed fragments
+(same chunk/pass/physical boundary, forward in s, evidence corridor, mutual-best, no
+branching). Thresholds are fixed in `JOINING_DEFAULTS` and were derived from Segments
+14/16 only. Output is experimental and never feeds production geometry. See
+`reports/lane_joining_stage.md`.
 
 ---
 

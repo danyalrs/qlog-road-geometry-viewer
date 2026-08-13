@@ -201,8 +201,8 @@ describe('Stage 16 integration', () => {
     assert.equal(d.totalModelV2Frames, 2761);
     assert.equal(d.decodedObservations, 11044);
     assert.equal(d.decodedObservations, d.projectedObservations + d.rejectedObservations);
-    assert.equal(d.projectedObservations, 5809);
-    assert.equal(d.projectedPointCount, 122439);
+    assert.equal(d.projectedObservations, 5774);
+    assert.equal(d.projectedPointCount, 121998);
     assert.equal(d.pointAccounting.reconciliationPassed, true);
     assert.equal(d.pointAccounting.reconciliationDelta, 0);
     assert.ok(d.pctProjected > 0);

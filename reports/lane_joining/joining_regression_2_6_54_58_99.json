@@ -1,0 +1,254 @@
+[
+  {
+    "seg": "2",
+    "stats": {
+      "fragmentCount": 33,
+      "candidatePairCount": 48,
+      "hardRejectedCount": 28,
+      "hardRejectedByReason": {
+        "hard_prohibit_split_largeSpatialGap": 1,
+        "along_track_gap_too_large": 2,
+        "hard_prohibit_split_lateralJump": 3,
+        "curvature_kink": 9,
+        "hard_prohibit_split_temporalGap": 4,
+        "hard_prohibit_split_temporalRevisit": 4,
+        "hard_prohibit_split_sharpDirectionChange": 1,
+        "tangent_incompatible": 4
+      },
+      "scoredCandidateCount": 20,
+      "acceptedConnectionCount": 6,
+      "ambiguousCount": 14,
+      "joinedPolylineCount": 27,
+      "unjoinedFragmentCount": 0,
+      "connectorGapMax": 9.38,
+      "connectorGapMedian": 0.89
+    },
+    "checks": {
+      "no_boundary_mixing": {
+        "pass": true,
+        "detail": "mixing connections: 0"
+      },
+      "no_crossing": {
+        "pass": true,
+        "detail": "crossings: 0"
+      },
+      "no_reversal": {
+        "pass": true,
+        "detail": "s-reversals: 0"
+      },
+      "no_unsupported_large_gap": {
+        "pass": true,
+        "detail": "unsupported large-gap connections: 0"
+      },
+      "source_unchanged": {
+        "pass": true,
+        "detail": "fragments snapshot stable (33)"
+      }
+    },
+    "attention": {
+      "boundaries": 3,
+      "joinedPerBoundary": {
+        "0:0:2:3": 4,
+        "0:0:0:1": 11,
+        "0:0:1:2": 12
+      }
+    }
+  },
+  {
+    "seg": "6",
+    "stats": {
+      "fragmentCount": 4,
+      "candidatePairCount": 6,
+      "hardRejectedCount": 6,
+      "hardRejectedByReason": {
+        "hard_prohibit_split_temporalRevisit": 3,
+        "tangent_incompatible": 1,
+        "hard_prohibit_split_temporalGap": 2
+      },
+      "scoredCandidateCount": 0,
+      "acceptedConnectionCount": 0,
+      "ambiguousCount": 0,
+      "joinedPolylineCount": 4,
+      "unjoinedFragmentCount": 0,
+      "connectorGapMax": null,
+      "connectorGapMedian": null
+    },
+    "checks": {
+      "no_boundary_mixing": {
+        "pass": true,
+        "detail": "mixing connections: 0"
+      },
+      "no_crossing": {
+        "pass": true,
+        "detail": "crossings: 0"
+      },
+      "no_reversal": {
+        "pass": true,
+        "detail": "s-reversals: 0"
+      },
+      "no_unsupported_large_gap": {
+        "pass": true,
+        "detail": "unsupported large-gap connections: 0"
+      },
+      "source_unchanged": {
+        "pass": true,
+        "detail": "fragments snapshot stable (4)"
+      }
+    },
+    "attention": {
+      "maxConnectorGap": null,
+      "connections": 0,
+      "largeGapConns": []
+    }
+  },
+  {
+    "seg": "54",
+    "stats": {
+      "fragmentCount": 24,
+      "candidatePairCount": 69,
+      "hardRejectedCount": 69,
+      "hardRejectedByReason": {
+        "hard_prohibit_split_temporalRevisit": 29,
+        "hard_prohibit_split_temporalGap": 20,
+        "tangent_incompatible": 11,
+        "hard_prohibit_split_largeStep": 2,
+        "curvature_kink": 2,
+        "hard_prohibit_split_lateralJump": 4,
+        "hard_prohibit_split_largeSpatialGap": 1
+      },
+      "scoredCandidateCount": 0,
+      "acceptedConnectionCount": 0,
+      "ambiguousCount": 0,
+      "joinedPolylineCount": 24,
+      "unjoinedFragmentCount": 0,
+      "connectorGapMax": null,
+      "connectorGapMedian": null
+    },
+    "checks": {
+      "no_boundary_mixing": {
+        "pass": true,
+        "detail": "mixing connections: 0"
+      },
+      "no_crossing": {
+        "pass": true,
+        "detail": "crossings: 0"
+      },
+      "no_reversal": {
+        "pass": true,
+        "detail": "s-reversals: 0"
+      },
+      "no_unsupported_large_gap": {
+        "pass": true,
+        "detail": "unsupported large-gap connections: 0"
+      },
+      "source_unchanged": {
+        "pass": true,
+        "detail": "fragments snapshot stable (24)"
+      }
+    },
+    "attention": {
+      "boundaries": 4,
+      "accepted": 0
+    }
+  },
+  {
+    "seg": "58",
+    "stats": {
+      "fragmentCount": 18,
+      "candidatePairCount": 23,
+      "hardRejectedCount": 16,
+      "hardRejectedByReason": {
+        "curvature_kink": 4,
+        "hard_prohibit_split_temporalGap": 1,
+        "hard_prohibit_split_sharpDirectionChange": 3,
+        "hard_prohibit_split_lateralJump": 1,
+        "large_gap_insufficient_evidence": 1,
+        "tangent_incompatible": 6
+      },
+      "scoredCandidateCount": 7,
+      "acceptedConnectionCount": 0,
+      "ambiguousCount": 7,
+      "joinedPolylineCount": 18,
+      "unjoinedFragmentCount": 0,
+      "connectorGapMax": null,
+      "connectorGapMedian": null
+    },
+    "checks": {
+      "no_boundary_mixing": {
+        "pass": true,
+        "detail": "mixing connections: 0"
+      },
+      "no_crossing": {
+        "pass": true,
+        "detail": "crossings: 0"
+      },
+      "no_reversal": {
+        "pass": true,
+        "detail": "s-reversals: 0"
+      },
+      "no_unsupported_large_gap": {
+        "pass": true,
+        "detail": "unsupported large-gap connections: 0"
+      },
+      "source_unchanged": {
+        "pass": true,
+        "detail": "fragments snapshot stable (18)"
+      }
+    },
+    "attention": {
+      "fragmentsPerTrack": {
+        "0": 9,
+        "1": 3,
+        "2": 6
+      },
+      "accepted": 0
+    }
+  },
+  {
+    "seg": "99",
+    "stats": {
+      "fragmentCount": 9,
+      "candidatePairCount": 3,
+      "hardRejectedCount": 3,
+      "hardRejectedByReason": {
+        "along_track_gap_too_large": 2,
+        "tangent_incompatible": 1
+      },
+      "scoredCandidateCount": 0,
+      "acceptedConnectionCount": 0,
+      "ambiguousCount": 0,
+      "joinedPolylineCount": 9,
+      "unjoinedFragmentCount": 0,
+      "connectorGapMax": null,
+      "connectorGapMedian": null
+    },
+    "checks": {
+      "no_boundary_mixing": {
+        "pass": true,
+        "detail": "mixing connections: 0"
+      },
+      "no_crossing": {
+        "pass": true,
+        "detail": "crossings: 0"
+      },
+      "no_reversal": {
+        "pass": true,
+        "detail": "s-reversals: 0"
+      },
+      "no_unsupported_large_gap": {
+        "pass": true,
+        "detail": "unsupported large-gap connections: 0"
+      },
+      "source_unchanged": {
+        "pass": true,
+        "detail": "fragments snapshot stable (9)"
+      }
+    },
+    "attention": {
+      "revisitRejections": 0,
+      "accepted": 0,
+      "maxConnectorDeviation": 0,
+      "revisitConnections": 0
+    }
+  }
+]

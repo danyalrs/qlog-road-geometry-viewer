@@ -15,7 +15,7 @@
     "stage19:build": "node scripts/build_stage19_deliverable.js",
     "stage19:audit": "node stage19_dataset_sensitivity_audit.js",
     "start": "node server.js",
-    "bundle:browser": "node scripts/bundle_segment2_browser_audit_data.js && node scripts/bundle_lane_map_cleanup.js && node scripts/bundle_road_surface_stage1.js && node scripts/sync_segment_local_map_public.js",
+    "bundle:browser": "node scripts/bundle_segment2_browser_audit_data.js && node scripts/bundle_lane_map_cleanup.js && node scripts/bundle_road_surface_stage1.js && node scripts/sync_constructed_fragments_public.js && node scripts/sync_lane_joining_public.js && node scripts/sync_segment_local_map_public.js",
     "b-motion:validate-manifest": "node scripts/stage20_b_motion_manifest_validate.js",
     "b-motion:review-batches": "node scripts/stage20_b_motion_review_batches.js",
     "b-motion:review-progress": "node scripts/stage20_b_motion_review_progress.js",

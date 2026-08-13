@@ -45,24 +45,17 @@ describe('Stage 14 delivery readiness', () => {
     assert.equal(audit.datasetResults.validButShortFragments, 233);
   });
 
-  it('attributes 16-polygon difference entirely to segments 7, 26, 96', () => {
-    assert.equal(diff.difference, 16);
-    assert.equal(diff.attributedDifference, 16);
-    assert.deepEqual(diff.fullyAttributedToSegments.sort((x, y) => x - y), [7, 26, 96]);
-    const bySeg = Object.fromEntries(diff.attribution.map((d) => [d.segmentId, d.attributedPolygonDifference]));
-    assert.equal(bySeg[7], 6);
-    assert.equal(bySeg[26], 9);
-    assert.equal(bySeg[96], 1);
+  it('attributes 0-polygon difference (all-chunk output reconciled, pose-lock corrected)', () => {
+    assert.equal(diff.difference, 0);
+    assert.equal(diff.attributedDifference, 0);
+    assert.deepEqual(diff.fullyAttributedToSegments.sort((x, y) => x - y), []);
   });
 
-  it('removes segments 26 and 96 from all-chunk zero-polygon total', () => {
-    assert.ok(!b.zeroPolygonSegmentIds.includes(26));
-    assert.ok(!b.zeroPolygonSegmentIds.includes(96));
-    assert.ok(a.zeroPolygonSegmentIds.includes(26));
-    assert.ok(a.zeroPolygonSegmentIds.includes(96));
+  it('no segment removed from all-chunk zero-polygon total (pose-lock corrected)', () => {
+    // With the two-pass stationary pose lock, the first-chunk/all-chunk polygon
+    // difference is reconciled: no segment needs removal.
     const removed = audit.zeroPolygonClassification.segmentsRemovedFromAllChunkZero;
-    assert.equal(removed.length, 2);
-    assert.deepEqual(removed.map((r) => r.segmentId).sort((x, y) => x - y), [26, 96]);
+    assert.equal(removed.length, 0);
   });
 
   it('classifies 13 first-chunk zero-polygon segments', () => {
@@ -75,11 +68,11 @@ describe('Stage 14 delivery readiness', () => {
     }
   });
 
-  it('counts 5 first-chunk insufficient-evidence and 3 all-chunk insufficient-evidence', () => {
+  it('counts 4 first-chunk insufficient-evidence and 4 all-chunk insufficient-evidence (pose-lock corrected)', () => {
     const first = a.rejectionClassAccounting.correctly_rejected_for_insufficient_evidence.sort((x, y) => x - y);
     const all = b.rejectionClassAccounting.correctly_rejected_for_insufficient_evidence.sort((x, y) => x - y);
-    assert.deepEqual(first, [9, 26, 60, 62, 96]);
-    assert.deepEqual(all, [9, 60, 62]);
+    assert.deepEqual(first, [9, 60, 62, 96]);
+    assert.deepEqual(all, [9, 60, 62, 96]);
   });
 
   it('fails consistency if all-chunk zero segment has polygons', () => {

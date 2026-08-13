@@ -1,0 +1,912 @@
+[
+  {
+    "seg": 0,
+    "frames": 21,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 800.9,
+    "mapTravel": 800.9,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 1,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 1106.1,
+    "mapTravel": 1106.1,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 2,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 696.8,
+    "mapTravel": 696.8,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 3,
+    "frames": 30,
+    "locked": 7,
+    "lockedFrac": 0.23,
+    "rawTravel": 319.5,
+    "mapTravel": 318,
+    "savedTravelM": 1.5,
+    "class": "unchanged"
+  },
+  {
+    "seg": 4,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 425.9,
+    "mapTravel": 425.9,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 5,
+    "frames": 30,
+    "locked": 8,
+    "lockedFrac": 0.27,
+    "rawTravel": 279.8,
+    "mapTravel": 276.7,
+    "savedTravelM": 3,
+    "class": "unchanged"
+  },
+  {
+    "seg": 6,
+    "frames": 30,
+    "locked": 20,
+    "lockedFrac": 0.67,
+    "rawTravel": 80.5,
+    "mapTravel": 67.3,
+    "savedTravelM": 13.2,
+    "class": "stop-and-go"
+  },
+  {
+    "seg": 7,
+    "frames": 30,
+    "locked": 10,
+    "lockedFrac": 0.33,
+    "rawTravel": 257.5,
+    "mapTravel": 235.8,
+    "savedTravelM": 21.7,
+    "class": "stop-and-go"
+  },
+  {
+    "seg": 8,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 399.4,
+    "mapTravel": 399.4,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 9,
+    "frames": 30,
+    "locked": 30,
+    "lockedFrac": 1,
+    "rawTravel": 12.1,
+    "mapTravel": 0,
+    "savedTravelM": 12.1,
+    "class": "fully-stationary"
+  },
+  {
+    "seg": 10,
+    "frames": 30,
+    "locked": 5,
+    "lockedFrac": 0.17,
+    "rawTravel": 428.8,
+    "mapTravel": 424.5,
+    "savedTravelM": 4.3,
+    "class": "unchanged"
+  },
+  {
+    "seg": 11,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 604.3,
+    "mapTravel": 604.3,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 12,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 798.6,
+    "mapTravel": 798.6,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 13,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 1067.6,
+    "mapTravel": 1067.6,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 14,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 1345.2,
+    "mapTravel": 1345.2,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 15,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 1253.7,
+    "mapTravel": 1253.7,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 16,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 1377.2,
+    "mapTravel": 1377.2,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 17,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 1332.6,
+    "mapTravel": 1332.6,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 18,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 1399.1,
+    "mapTravel": 1399.1,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 19,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 1036.8,
+    "mapTravel": 1036.8,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 20,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 828.3,
+    "mapTravel": 828.3,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 22,
+    "frames": 30,
+    "locked": 8,
+    "lockedFrac": 0.27,
+    "rawTravel": 276,
+    "mapTravel": 258.5,
+    "savedTravelM": 17.5,
+    "class": "unchanged"
+  },
+  {
+    "seg": 23,
+    "frames": 30,
+    "locked": 9,
+    "lockedFrac": 0.3,
+    "rawTravel": 353.2,
+    "mapTravel": 347.4,
+    "savedTravelM": 5.8,
+    "class": "stop-and-go"
+  },
+  {
+    "seg": 24,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 516.8,
+    "mapTravel": 516.8,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 25,
+    "frames": 30,
+    "locked": 4,
+    "lockedFrac": 0.13,
+    "rawTravel": 380.1,
+    "mapTravel": 344.8,
+    "savedTravelM": 35.3,
+    "class": "drift-reduced"
+  },
+  {
+    "seg": 26,
+    "frames": 30,
+    "locked": 5,
+    "lockedFrac": 0.17,
+    "rawTravel": 416.1,
+    "mapTravel": 384.5,
+    "savedTravelM": 31.7,
+    "class": "drift-reduced"
+  },
+  {
+    "seg": 27,
+    "frames": 30,
+    "locked": 11,
+    "lockedFrac": 0.37,
+    "rawTravel": 221.4,
+    "mapTravel": 219.3,
+    "savedTravelM": 2,
+    "class": "stop-and-go"
+  },
+  {
+    "seg": 28,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 876.1,
+    "mapTravel": 876.1,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 29,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 998.9,
+    "mapTravel": 998.9,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 30,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 1223.5,
+    "mapTravel": 1223.5,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 31,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 1360,
+    "mapTravel": 1360,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 32,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 1191.3,
+    "mapTravel": 1191.3,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 33,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 1015.3,
+    "mapTravel": 1015.3,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 34,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 1022,
+    "mapTravel": 1022,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 35,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 1133.5,
+    "mapTravel": 1133.5,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 36,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 1108.8,
+    "mapTravel": 1108.8,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 37,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 1226.2,
+    "mapTravel": 1226.2,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 39,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 443.8,
+    "mapTravel": 443.8,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 40,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 379.8,
+    "mapTravel": 379.8,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 41,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 368.1,
+    "mapTravel": 368.1,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 42,
+    "frames": 30,
+    "locked": 3,
+    "lockedFrac": 0.1,
+    "rawTravel": 310.3,
+    "mapTravel": 303.5,
+    "savedTravelM": 6.8,
+    "class": "unchanged"
+  },
+  {
+    "seg": 43,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 297.5,
+    "mapTravel": 297.5,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 44,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 390.8,
+    "mapTravel": 390.8,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 45,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 480.8,
+    "mapTravel": 480.8,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 46,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 643.6,
+    "mapTravel": 643.6,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 47,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 1041.8,
+    "mapTravel": 1041.8,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 48,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 991.2,
+    "mapTravel": 991.2,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 49,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 1210.7,
+    "mapTravel": 1210.7,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 50,
+    "frames": 17,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 689,
+    "mapTravel": 689,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 51,
+    "frames": 28,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 683.9,
+    "mapTravel": 683.9,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 53,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 734.8,
+    "mapTravel": 734.8,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 54,
+    "frames": 30,
+    "locked": 24,
+    "lockedFrac": 0.8,
+    "rawTravel": 58.8,
+    "mapTravel": 40.5,
+    "savedTravelM": 18.3,
+    "class": "fully-stationary"
+  },
+  {
+    "seg": 55,
+    "frames": 30,
+    "locked": 4,
+    "lockedFrac": 0.13,
+    "rawTravel": 633,
+    "mapTravel": 632.2,
+    "savedTravelM": 0.8,
+    "class": "unchanged"
+  },
+  {
+    "seg": 56,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 383.2,
+    "mapTravel": 383.2,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 57,
+    "frames": 30,
+    "locked": 15,
+    "lockedFrac": 0.5,
+    "rawTravel": 367.4,
+    "mapTravel": 341.3,
+    "savedTravelM": 26.1,
+    "class": "stop-and-go"
+  },
+  {
+    "seg": 58,
+    "frames": 30,
+    "locked": 12,
+    "lockedFrac": 0.4,
+    "rawTravel": 499.8,
+    "mapTravel": 491.9,
+    "savedTravelM": 7.9,
+    "class": "stop-and-go"
+  },
+  {
+    "seg": 59,
+    "frames": 30,
+    "locked": 15,
+    "lockedFrac": 0.5,
+    "rawTravel": 403.5,
+    "mapTravel": 388.1,
+    "savedTravelM": 15.5,
+    "class": "stop-and-go"
+  },
+  {
+    "seg": 60,
+    "frames": 30,
+    "locked": 30,
+    "lockedFrac": 1,
+    "rawTravel": 18.2,
+    "mapTravel": 0,
+    "savedTravelM": 18.2,
+    "class": "fully-stationary"
+  },
+  {
+    "seg": 61,
+    "frames": 30,
+    "locked": 16,
+    "lockedFrac": 0.53,
+    "rawTravel": 234.2,
+    "mapTravel": 224.3,
+    "savedTravelM": 9.9,
+    "class": "stop-and-go"
+  },
+  {
+    "seg": 62,
+    "frames": 30,
+    "locked": 17,
+    "lockedFrac": 0.57,
+    "rawTravel": 101.5,
+    "mapTravel": 72.8,
+    "savedTravelM": 28.7,
+    "class": "stop-and-go"
+  },
+  {
+    "seg": 63,
+    "frames": 30,
+    "locked": 6,
+    "lockedFrac": 0.2,
+    "rawTravel": 308.7,
+    "mapTravel": 304.5,
+    "savedTravelM": 4.2,
+    "class": "unchanged"
+  },
+  {
+    "seg": 64,
+    "frames": 30,
+    "locked": 18,
+    "lockedFrac": 0.6,
+    "rawTravel": 176.1,
+    "mapTravel": 159.2,
+    "savedTravelM": 16.9,
+    "class": "stop-and-go"
+  },
+  {
+    "seg": 65,
+    "frames": 30,
+    "locked": 30,
+    "lockedFrac": 1,
+    "rawTravel": 10.8,
+    "mapTravel": 0,
+    "savedTravelM": 10.8,
+    "class": "fully-stationary"
+  },
+  {
+    "seg": 66,
+    "frames": 30,
+    "locked": 25,
+    "lockedFrac": 0.83,
+    "rawTravel": 82.8,
+    "mapTravel": 66.1,
+    "savedTravelM": 16.8,
+    "class": "fully-stationary"
+  },
+  {
+    "seg": 67,
+    "frames": 30,
+    "locked": 21,
+    "lockedFrac": 0.7,
+    "rawTravel": 116.2,
+    "mapTravel": 87.7,
+    "savedTravelM": 28.5,
+    "class": "stop-and-go"
+  },
+  {
+    "seg": 68,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 526.4,
+    "mapTravel": 526.4,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 69,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 409.1,
+    "mapTravel": 409.1,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 71,
+    "frames": 28,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 700,
+    "mapTravel": 700,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 72,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 884.8,
+    "mapTravel": 884.8,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 73,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 655.7,
+    "mapTravel": 655.7,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 74,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 844.1,
+    "mapTravel": 844.1,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 75,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 839.7,
+    "mapTravel": 839.7,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 81,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 577.6,
+    "mapTravel": 577.6,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 82,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 517.9,
+    "mapTravel": 517.9,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 83,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 548.3,
+    "mapTravel": 548.3,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 84,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 559.8,
+    "mapTravel": 559.8,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 85,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 1041.6,
+    "mapTravel": 1041.6,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 86,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 1182.6,
+    "mapTravel": 1182.6,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 87,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 1140,
+    "mapTravel": 1140,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 88,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 1298.5,
+    "mapTravel": 1298.5,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 89,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 1339,
+    "mapTravel": 1339,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 90,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 1269.9,
+    "mapTravel": 1269.9,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 91,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 1060.7,
+    "mapTravel": 1060.7,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 92,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 952,
+    "mapTravel": 952,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 93,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 906.1,
+    "mapTravel": 906.1,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 94,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 901.8,
+    "mapTravel": 901.8,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 95,
+    "frames": 30,
+    "locked": 15,
+    "lockedFrac": 0.5,
+    "rawTravel": 394.8,
+    "mapTravel": 367.9,
+    "savedTravelM": 26.9,
+    "class": "stop-and-go"
+  },
+  {
+    "seg": 96,
+    "frames": 30,
+    "locked": 30,
+    "lockedFrac": 1,
+    "rawTravel": 28.4,
+    "mapTravel": 0,
+    "savedTravelM": 28.4,
+    "class": "fully-stationary"
+  },
+  {
+    "seg": 97,
+    "frames": 30,
+    "locked": 7,
+    "lockedFrac": 0.23,
+    "rawTravel": 404.3,
+    "mapTravel": 400.1,
+    "savedTravelM": 4.2,
+    "class": "unchanged"
+  },
+  {
+    "seg": 98,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 856.2,
+    "mapTravel": 856.2,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  },
+  {
+    "seg": 99,
+    "frames": 30,
+    "locked": 0,
+    "lockedFrac": 0,
+    "rawTravel": 516.6,
+    "mapTravel": 516.6,
+    "savedTravelM": 0,
+    "class": "unchanged"
+  }
+]

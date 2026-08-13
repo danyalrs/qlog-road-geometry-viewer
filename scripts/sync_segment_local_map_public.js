@@ -14,6 +14,26 @@ let body = lib
     /const RSS = typeof require[\s\S]*?;\r?\n/,
     'const RSS = global.RoadSurfaceStage1;\n',
   )
+  .replace(
+    /const PointAccumulation = typeof require[\s\S]*?;\r?\n/,
+    'const PointAccumulation = global.PointAccumulation;\n',
+  )
+  .replace(
+    /const MappingReliability = typeof require[\s\S]*?;\r?\n/,
+    'const MappingReliability = global.MappingReliability;\n',
+  )
+  .replace(
+    /const ExperimentalBoundaries = typeof require[\s\S]*?;\r?\n/,
+    'const ExperimentalBoundaries = global.ExperimentalBoundaries;\n',
+  )
+  .replace(
+    /const ConstructedFragments = typeof require[\s\S]*?;\r?\n/,
+    'const ConstructedFragments = global.ConstructedFragments;\n',
+  )
+  .replace(
+    /const LaneJoining = typeof require[\s\S]*?;\r?\n/,
+    'const LaneJoining = global.LaneJoining;\n',
+  )
   .replace(/function loadD12ClassGaps\(\) \{[\s\S]*?\}\r?\n\r?\nfunction loadAllClassDGaps/, `function loadD12ClassGaps() {
   if (global.Segment2BrowserAuditData?.classDGaps) {
     return global.Segment2BrowserAuditData.classDGaps.filter((g) => g.primaryMechanism === 'D12');
@@ -38,12 +58,20 @@ const out = `'use strict';
 (function initSegmentLocalMap(global) {
   const LP = global.LocalPlayback;
   const LMC = global.LaneMapCleanup;
+  const SD = global.SdFusion;
+  const buildReferenceTrajectory = global.Trajectory?.buildReferenceTrajectory
+    || ((path) => {
+      if (!path?.length) return null;
+      return { points: path, sAt: (i) => path[i]?.s ?? i };
+    });
+  const resolveCleanupOptions = (d) => d?.processingOptions || {};
   if (!LP) {
     console.error('SegmentLocalMap: LocalPlayback not loaded');
     return;
   }
   const globalToVehicleDisplay = (...args) => LP.globalToVehicleDisplay(...args);
   const interpolateTimedPath = (...args) => LP.interpolateTimedPath(...args);
+  const headingDegForVehicleIcon = (...args) => LP.headingDegForVehicleIcon(...args);
   const MIN_HEADING_DISPLACEMENT_M = LP.MIN_HEADING_DISPLACEMENT_M;
 ${body}
   global.SegmentLocalMap = api;

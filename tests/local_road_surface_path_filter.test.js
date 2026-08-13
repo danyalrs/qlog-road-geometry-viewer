@@ -142,7 +142,7 @@ describe('Local road surface path filter — grey path preservation', () => {
   it('road surface ribbon renders before geometry and grey dashed path', () => {
     const methodSlice = renderSrc.slice(
       renderSrc.indexOf('_drawStationaryLocalMap(d, elapsedIdx)'),
-      renderSrc.indexOf('_drawStationaryLocalMap(d, elapsedIdx)') + 14000,
+      renderSrc.indexOf('_drawStationaryLocalMap(d, elapsedIdx)') + 20000,
     );
     const surfaceIdx = methodSlice.indexOf('if (this.layers.roadSurface)');
     const laneIdx = methodSlice.indexOf('if (this.layers.fused)', surfaceIdx);
@@ -206,8 +206,8 @@ describe('Local road surface path filter — playback and checksums', () => {
     assert.doesNotMatch(appSrc.match(/function switchLocalGeometryLayer[\s\S]*?\n\}/)?.[0] ?? '', /refreshLocalPlaybackVideo/);
   });
 
-  it('dropdown still contains exactly two Local geometry modes', () => {
-    assert.deepEqual(LOCAL_GEOMETRY_VISIBLE_MODES, ['observations', 'fused']);
-    assert.equal(localGeometryDropdownOptions().length, 2);
+  it('dropdown contains all visible Local geometry modes', () => {
+    assert.deepEqual(LOCAL_GEOMETRY_VISIBLE_MODES, ['observations', 'fused', 'pointAccumulated']);
+    assert.equal(localGeometryDropdownOptions().length, 3);
   });
 });

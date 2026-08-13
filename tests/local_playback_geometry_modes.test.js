@@ -61,18 +61,18 @@ function buildModeMap(data, geometrySource) {
   return SLM.buildSegmentLocalMap(data, { geometrySource, timelineIndex: 0 });
 }
 
-describe('Local geometry UI — two-mode dropdown', () => {
+describe('Local geometry UI — three-mode dropdown', () => {
   it('1. Local geometry dropdown remains visible in index.html', () => {
     assert.match(read(INDEX_HTML), /id="localGeometryMode"/);
     assert.match(read(INDEX_HTML), /class="local-only-control"/);
   });
 
-  it('2. dropdown contains exactly two options', () => {
+  it('2. dropdown contains exactly three options', () => {
     const opts = localGeometryDropdownOptions();
-    assert.equal(opts.length, 2);
+    assert.equal(opts.length, 3);
     const html = read(INDEX_HTML);
-    const optionCount = (html.match(/<option value="(observations|fused)"/g) || []).length;
-    assert.equal(optionCount, 2);
+    const optionCount = (html.match(/<option value="(observations|fused|pointAccumulated)"/g) || []).length;
+    assert.equal(optionCount, 3);
   });
 
   it('3. Raw mapped observations is present and enabled', () => {
@@ -87,7 +87,13 @@ describe('Local geometry UI — two-mode dropdown', () => {
     assert.ok(isVisibleLocalGeometryMode('fused'));
   });
 
-  it('5. Fused lane lines is the default for new or invalid state', () => {
+  it('5. Point-accumulated geometry is present and enabled', () => {
+    const html = read(INDEX_HTML);
+    assert.match(html, /value="pointAccumulated"[^>]*>Point-accumulated geometry/);
+    assert.ok(isVisibleLocalGeometryMode('pointAccumulated'));
+  });
+
+  it('6. Fused lane lines is the default for new or invalid state', () => {
     assert.equal(LOCAL_GEOMETRY_DEFAULT_MODE, 'fused');
     assert.equal(normalizeLocalGeometrySelection(undefined), 'fused');
     assert.equal(normalizeLocalGeometrySelection(null), 'fused');
@@ -95,12 +101,12 @@ describe('Local geometry UI — two-mode dropdown', () => {
     assert.match(read(INDEX_HTML), /value="fused" selected/);
   });
 
-  it('6. Raw and fused remain separate modes', () => {
-    assert.deepEqual(LOCAL_GEOMETRY_VISIBLE_MODES, ['observations', 'fused']);
-    assert.notEqual(
-      localGeometryDropdownOptions()[0].value,
-      localGeometryDropdownOptions()[1].value,
-    );
+  it('7. Raw, fused and point-accumulated remain separate modes', () => {
+    assert.deepEqual(LOCAL_GEOMETRY_VISIBLE_MODES, ['observations', 'fused', 'pointAccumulated']);
+    const values = localGeometryDropdownOptions().map((o) => o.value);
+    assert.equal(new Set(values).size, 3);
+    assert.notEqual(values[0], values[1]);
+    assert.notEqual(values[1], values[2]);
   });
 
   it('21. hidden saved modes fall back to Fused lane lines', () => {
@@ -182,7 +188,9 @@ describe('Local geometry UI — switching implementation', () => {
   it('16. arrow renders above geometry and vehicle path', () => {
     const methodStart = renderSrc.indexOf('_drawStationaryLocalMap(d, elapsedIdx)');
     assert.ok(methodStart >= 0);
-    const methodSlice = renderSrc.slice(methodStart, methodStart + 12000);
+    // Generous window to include the diagnostics overlay after the added
+    // point-mode / observation-debug / stationary-local-polygon drawing blocks.
+    const methodSlice = renderSrc.slice(methodStart, methodStart + 20000);
     const roadIdx = methodSlice.indexOf('if (this.layers.roadSurface)');
     const laneIdx = methodSlice.indexOf('if (this.layers.fused)', roadIdx);
     const pathIdx = methodSlice.indexOf('this._drawLocalVehiclePathOverlay(map);', laneIdx);
@@ -302,7 +310,7 @@ describe('Local playback — grey dashed vehicle path overlay', () => {
 
   it('is a permanent overlay, not a Local geometry dropdown option', () => {
     const opts = localGeometryDropdownOptions();
-    assert.equal(opts.length, 2);
+    assert.equal(opts.length, 3);
     const html = read(INDEX_HTML);
     const selectBlock = html.match(/id="localGeometryMode"[\s\S]*?<\/select>/)?.[0] ?? '';
     assert.doesNotMatch(selectBlock, /value="(vehicle|trajectory|path)"/);
@@ -438,6 +446,6 @@ describe('Local geometry UI — browser module parity', () => {
   });
 
   it('PROCESSING_VERSION bumped for cache invalidation', () => {
-    assert.equal(PROCESSING_VERSION, '2026-07-24-fusion-v15');
+    assert.equal(PROCESSING_VERSION, '2026-07-24-fusion-v16');
   });
 });

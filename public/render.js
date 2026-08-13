@@ -1,5 +1,7 @@
 /** Canvas renderer — draws each route chunk and polygon fragment independently. */
 
+function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+
 const LANE_COLORS = ['#2563eb', '#7c3aed', '#db2777', '#ea580c', '#0891b2', '#4f46e5'];
 const CHUNK_COLORS = [
   '#e11d48', '#2563eb', '#16a34a', '#ca8a04', '#7c3aed', '#0891b2',
@@ -51,8 +53,23 @@ class RoadRenderer {
     this._polygonDebug = urlParams?.get('polygonDebug') === '1';
     this._fusionBinDebug = urlParams?.get('fusionBinDebug') === '1';
     this._laneRelativeArrow = urlParams?.get('laneRelativeArrow') === '1';
+    this._obsDebug = urlParams?.get('obsDebug') === '1';
+    this._lateralAxisDebug = urlParams?.get('lateralDebug') === '1';
+    // Corrected lane orientation is the DEFAULT viewer orientation. The
+    // precomputed vehicle-relative lateral mirror is on unless explicitly
+    // disabled via ?mirrorRoadLateral=0. ?mirrorRoadLateral=1 keeps it on.
+    this._mirrorRoadLateralDisplay = (urlParams?.get('mirrorRoadLateral') ?? '1') !== '0';
+    this._mirrorDebug = urlParams?.get('mirrorDebug') === '1';
+    this._obsDebugFrame = urlParams?.get('obsFrame') != null ? parseInt(urlParams.get('obsFrame'), 10) : null;
+    this._obsDebugLane = urlParams?.get('obsLane') != null ? parseInt(urlParams.get('obsLane'), 10) : null;
     this._lastLocalArrowTangent = null;
     this._roadSurfaceDrawStats = null;
+this._pointCurveOverlay = urlParams?.get('pointCurveOverlay') === '1';
+this._pointCausalPlayback = urlParams?.get('pointCausalPlayback') === '1';
+this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
+    this._experimentalBoundariesMode = (urlParams?.get('expBoundaries') || 'off');
+    this._constructedFragmentLabels = urlParams?.get('cfLabels') === '1';
+    this._pointTrackColorCache = null;
     this.localRoadSurfacePathRadiusM = 15;
     this.localRoadSurfaceRibbonFallbackHalfWidthM = 7.5;
     this.localRoadSurfaceRibbonMinHalfWidthM = 3;
@@ -76,7 +93,9 @@ class RoadRenderer {
     this.data = data;
     this.layers = layers;
     this.displayMode = displayMode;
+    this._obsTimeline = data?.timeline || null;
     this._lastLocalArrowTangent = null;
+    this._pointTrackColorCache = null;
     if (displayMode !== 'vehicle' && displayMode !== 'local') {
       this.setMovementDisplay(null);
       this.playbackPose = null;
@@ -118,6 +137,79 @@ class RoadRenderer {
     this.stationaryLocalMap = map;
     if (meta.buildCount != null) this._localMapBuildCount = meta.buildCount;
     if (meta.cacheState) this._localMapCacheState = meta.cacheState;
+    this._pointTrackColorCache = null;
+  }
+
+  /**
+   * Point mode display mode.
+   * causal=false (default): show all valid points (complete map).
+   * causal=true: show only points observed at frameIndex <= elapsedIdx.
+   * Display-only; does not rebuild the map or change point coordinates.
+   */
+  setPointCausalPlayback(enabled) {
+    this._pointCausalPlayback = !!enabled;
+    if (this.displayMode === 'local') this.draw();
+  }
+
+  getPointCausalPlayback() {
+    return !!this._pointCausalPlayback;
+  }
+
+  /**
+   * Experimental reliability tint (Point mode, display-only). OFF by default.
+   * When ON, Point dots are tinted by the experimental reliability score
+   * (green=high, red=low). Coordinates, points and lane/track colouring are
+   * unchanged; when OFF Point mode renders exactly as before.
+   */
+  setPointReliabilityTint(enabled) {
+    this._pointReliabilityTint = !!enabled;
+    if (this.displayMode === 'local') this.draw();
+  }
+
+  getPointReliabilityTint() {
+    return !!this._pointReliabilityTint;
+  }
+
+  /**
+   * Experimental lane-boundary overlay submode (display-only). One of:
+   *   'off'  (default) — Point mode renders exactly as before (dots only)
+   *   'points'         — dots only (equivalent to off for dots, keeps state)
+   *   'boundaries'     — experimental boundary lines only, dots hidden
+   *   'combined'       — dots + experimental boundary lines
+   * Never removes or modifies the underlying Point dots.
+   */
+  setExperimentalBoundariesMode(mode) {
+    const m = mode || 'off';
+    this._experimentalBoundariesMode = ['off', 'points', 'boundaries', 'combined'].includes(m) ? m : 'off';
+    if (this.displayMode === 'local') this.draw();
+  }
+
+  getExperimentalBoundariesMode() {
+    return this._experimentalBoundariesMode;
+  }
+
+  /**
+   * Observation-level isolation for the debug overlay. When set, Raw and Point
+   * geometry drawing is limited to the selected observation only. Pure
+   * display filter: does not rebuild the map, change tracking, or alter any
+   * stored coordinates. Set to null to disable isolation.
+   */
+  setObsDebugSelection(selection) {
+    this._obsDebug = !!selection || this._obsDebug;
+    this._obsDebugFrame = selection?.frameIndex != null ? selection.frameIndex : null;
+    this._obsDebugLane = selection?.laneIndex != null ? selection.laneIndex : null;
+    if (this.displayMode === 'local') this.draw();
+  }
+
+  _obsIsolationActive() {
+    return this._obsDebug && this._obsDebugFrame != null;
+  }
+
+  _obsMatches(frameIndex, laneIndex) {
+    if (!this._obsIsolationActive()) return true;
+    if (this._obsDebugFrame != null && frameIndex !== this._obsDebugFrame) return false;
+    if (this._obsDebugLane != null && laneIndex !== this._obsDebugLane) return false;
+    return true;
   }
 
   clearLocalViewportBounds() {
@@ -197,10 +289,174 @@ class RoadRenderer {
       || TRACK_COLORS[(parseInt(String(physicalBoundaryId).replace(/\D/g, ''), 10) || 0) % TRACK_COLORS.length];
   }
 
+  /**
+   * Shared stable-boundary colour resolver. The same physical boundary
+   * (groupTrackId) uses the same colour everywhere (dots, constructed
+   * fragments, joined polylines, accepted connectors). This is the same
+   * resolver the point dots use, so normal lane geometry and dots agree.
+   * Missing identity produces an explicit diagnostic, never a silent fallback.
+   */
+  boundaryColor(groupTrackId) {
+    if (groupTrackId == null || String(groupTrackId) === 'undefined' || String(groupTrackId) === '') {
+      return { color: '#f97316', diagnostic: `missing identity (groupTrackId=${groupTrackId})` };
+    }
+    return { color: this.trackColor(groupTrackId), diagnostic: null };
+  }
+
   worldToScreen(east, north) {
     const cx = this.w / 2 + this.offsetX;
     const cy = this.h / 2 + this.offsetY;
     return { x: cx + east * this.scale, y: cy - north * this.scale };
+  }
+
+  /**
+   * Road-geometry-only screen transform. Applies the optional reversible
+   * lateral mirror (mirrorRoadLateralDisplay) ONLY to lane/road geometry.
+   *
+   * The mirror uses a FIXED, precomputed mirrored coordinate set (lateral sign
+   * reversed in the vehicle-relative frame at observation time, then placed
+   * into the map frame). When a road point carries its precomputed mirrored
+   * segment-local coordinates (pt.mirroredLocalEast/mirroredLocalNorth, or
+   * fragment mirroredEast/mirroredNorth), they are used directly — so the
+   * mirrored road is stationary during playback and receives NO extra
+   * 2x-vehicleNorth displacement from the current playback pose.
+   *
+   * Fallback (points without precomputed mirrored data): reflect about the
+   * stationary map's reference axis (fixed referencePose), which is also
+   * playback-independent. Never uses the current playback pose as an anchor.
+   *
+   * The arrow, vehiclePath, GPS trajectory and all vehicle-centric elements
+   * use worldToScreen unchanged.
+   */
+  roadGeometryToScreen(east, north, mirroredEast = null, mirroredNorth = null) {
+    if (!this._mirrorRoadLateralDisplay) {
+      return this.worldToScreen(east, north);
+    }
+    const me = mirroredEast != null ? mirroredEast : east;
+    const mn = mirroredNorth != null ? mirroredNorth : north;
+    return this.worldToScreen(me, mn);
+  }
+
+  /**
+   * Mirror a road-geometry point. Prefers the precomputed fixed mirrored
+   * segment-local coordinates on the point (mirroredLocalEast/
+   * mirroredLocalNorth for point dots, mirroredEast/mirroredNorth for
+   * fragments). Falls back to a fixed reference-axis reflection (anchor = the
+   * stationary map referencePose, constant) for points without precomputed
+   * mirrored data. Never uses the playback pose as an anchor.
+   */
+  _mirrorRoadPoint(east, north, pt = null) {
+    if (pt) {
+      const me = pt.mirroredLocalEast != null ? pt.mirroredLocalEast
+        : pt.mirroredEast != null ? pt.mirroredEast : null;
+      const mn = pt.mirroredLocalNorth != null ? pt.mirroredLocalNorth
+        : pt.mirroredNorth != null ? pt.mirroredNorth : null;
+      if (me != null && mn != null) {
+        return { east: me, north: mn, _mirrored: true, _precomputed: true };
+      }
+    }
+    const ref = this.stationaryLocalMap?.referencePose;
+    const anchorNorth = ref && Number.isFinite(ref.north) ? ref.north : 0;
+    return {
+      east,
+      north: anchorNorth - (north - anchorNorth),
+      _mirrored: true,
+      _precomputed: false,
+    };
+  }
+
+  /**
+   * Mirror a raw frame lane point in the vehicle-relative frame (source
+   * modelX/modelY, lateral sign reversed) and convert it to the segment-local
+   * map frame using the frame's observation pose and the map reference pose.
+   * Returns { localEast, localNorth } or null. Used by diagnostics/tests for
+   * raw lane points; the draw path mirrors via precomputed coords instead.
+   */
+  _mirrorRoadPointForSource(near, framePose, referencePose) {
+    if (!near || !framePose || !referencePose) return null;
+    const theta = (framePose.headingDeg || 0) * Math.PI / 180;
+    const s = Math.sin(theta), c = Math.cos(theta);
+    const ve = framePose.east, vn = framePose.north;
+    // source vehicle-relative (forward, lateral)
+    const fwd = near.modelX ?? 0;
+    const lat = near.modelY ?? 0;
+    // mirrored: forward kept, lateral reversed, place via SAME pose
+    const me = ve + fwd * s - (-lat) * c;
+    const mn = vn + fwd * c + (-lat) * s;
+    // convert to segment-local via reference pose
+    const t = (referencePose.headingDeg || 0) * Math.PI / 180;
+    const s2 = Math.sin(t), c2 = Math.cos(t);
+    const u = me - referencePose.east;
+    const v = mn - referencePose.north;
+    return { localEast: u * s2 + v * c2, localNorth: v * s2 - u * c2 };
+  }
+
+  /** Reversible diagnostic: mirror road-relative lateral display around the
+   * vehicle centreline. Set false to restore the current output exactly. */
+  setMirrorRoadLateralDisplay(enabled) {
+    this._mirrorRoadLateralDisplay = !!enabled;
+    if (this.displayMode === 'local') this.draw();
+  }
+
+  getMirrorRoadLateralDisplay() {
+    return !!this._mirrorRoadLateralDisplay;
+  }
+
+  /**
+   * Per-frame runtime logging for the mirror diagnostic (?mirrorDebug=1).
+   * Logs, for the current frame: source vehicle east/north, arrow screen x/y,
+   * vehicle movement delta vs previous frame, and a sample road point's source
+   * forward/lateral, mirrored forward/lateral, final map east/north and final
+   * screen x/y. Helps confirm the road is mirrored in the vehicle-relative
+   * frame and does not receive extra 2x-vehicleNorth displacement.
+   */
+  _logMirrorDebug(map) {
+    const arrow = this.playbackPose;
+    if (!arrow || !this._mirrorDebug) return;
+    const sample = map?.laneFragments?.[0]?.points?.[0];
+    const nowE = arrow.east;
+    const nowN = arrow.north;
+    let dE = null, dN = null;
+    if (this._lastMirrorDebugPos) {
+      dE = nowE - this._lastMirrorDebugPos.e;
+      dN = nowN - this._lastMirrorDebugPos.n;
+    }
+    this._lastMirrorDebugPos = { e: nowE, n: nowN };
+    const arrowScreen = this.worldToScreen(nowE, nowN);
+    let laneSrc = null, laneMir = null;
+    if (sample) {
+      // vehicle-relative forward/lateral of the source point, using the sample
+      // point's observation pose (or the first frame pose).
+      const srcFrame = this.data?.frames?.[sample.sourceFrameIndex] || this.data?.frames?.[0];
+      const pose = srcFrame?.pose;
+      const rel = (e, n) => {
+        const t = ((pose?.headingDeg) || 0) * Math.PI / 180;
+        const s = Math.sin(t), c = Math.cos(t);
+        const u = e - (pose?.east || 0), v = n - (pose?.north || 0);
+        return { f: u * s + v * c, l: v * s - u * c };
+      };
+      const m = this._mirrorRoadPoint(sample.east, sample.north, sample);
+      laneSrc = rel(sample.east, sample.north);
+      laneMir = rel(m.east, m.north);
+      const sc = this.roadGeometryToScreen(sample.east, sample.north, sample.mirroredEast, sample.mirroredNorth);
+      laneMir.e = m.east;
+      laneMir.n = m.north;
+      laneMir.screenX = sc.x;
+      laneMir.screenY = sc.y;
+      laneSrc.precomputed = !!m._precomputed;
+      laneMir.precomputed = !!m._precomputed;
+    }
+    // eslint-disable-next-line no-console
+    console.log('[mirror-debug]', JSON.stringify({
+      frame: this.localElapsedIdx,
+      mirrorOn: this._mirrorRoadLateralDisplay,
+      vehicleEast: +nowE.toFixed(2), vehicleNorth: +nowN.toFixed(2),
+      arrowHeading: +arrow.headingDeg.toFixed(2),
+      arrowScreen: arrowScreen ? { x: +arrowScreen.x.toFixed(1), y: +arrowScreen.y.toFixed(1) } : null,
+      vehicleDelta: dE != null ? { dEast: +dE.toFixed(3), dNorth: +dN.toFixed(3) } : null,
+      laneSample: laneSrc,
+      laneMirrored: laneMir,
+    }));
   }
 
   fitToView(boundsOverride = null) {
@@ -338,24 +594,24 @@ class RoadRenderer {
 
       if (this.layers.laneOnly && chunk.laneOnlyCandidates?.length) {
         for (const lane of chunk.laneOnlyCandidates) {
-          this._drawPolyline(lane.points, '#f97316', 2, true, 12);
+          this._drawPolyline(lane.points, '#f97316', 2, true, 12, true);
         }
       }
 
       if (this.layers.fused && chunk.fusedLaneLines) {
         chunk.fusedLaneLines.forEach((lane, i) => {
           const color = useChunkColor ? cc : LANE_COLORS[i % LANE_COLORS.length];
-          this._drawPolyline(lane.points, color, 2, false, 12);
+          this._drawPolyline(lane.points, color, 2, false, 12, true);
         });
       }
 
       if (this.layers.fusedTracks && d.laneTracks?.length) {
         for (const track of d.laneTracks) {
           const color = this.layers.colorByTrack ? this.trackColor(track.trackId) : '#1d4ed8';
-          this._drawPolyline(track.points, color, 2.5, false, 20);
+          this._drawPolyline(track.points, color, 2.5, false, 20, true);
           if (this.layers.trackIds && track.points?.length) {
             const mid = track.points[Math.floor(track.points.length / 2)];
-            this._drawLabel(mid.east, mid.north, `T${track.trackId}`);
+            this._drawLabel(mid.east, mid.north, `T${track.trackId}`, '#111', true);
           }
         }
       }
@@ -365,8 +621,8 @@ class RoadRenderer {
         ctx.strokeStyle = 'rgba(99,102,241,0.55)';
         ctx.lineWidth = 1;
         for (const conn of d.laneConnections) {
-          const a = this.worldToScreen(conn.from.east, conn.from.north);
-          const b = this.worldToScreen(conn.to.east, conn.to.north);
+          const a = this.roadGeometryToScreen(conn.from.east, conn.from.north);
+          const b = this.roadGeometryToScreen(conn.to.east, conn.to.north);
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
           ctx.lineTo(b.x, b.y);
@@ -376,13 +632,13 @@ class RoadRenderer {
 
       if (this.layers.edges && chunk.fusedRoadEdges) {
         chunk.fusedRoadEdges.forEach((edge) => {
-          this._drawPolyline(edge.points, useChunkColor ? cc : '#16a34a', 3, false, 12);
+          this._drawPolyline(edge.points, useChunkColor ? cc : '#16a34a', 3, false, 12, true);
         });
       }
 
       if (this.layers.centre && chunk.centreLine) {
         for (const cl of chunk.centreLine) {
-          this._drawPolyline(cl.points, '#ffffff', 2, true, 12);
+          this._drawPolyline(cl.points, '#ffffff', 2, true, 12, true);
         }
       }
 
@@ -443,7 +699,7 @@ class RoadRenderer {
           if (f.chunkId !== chunk.chunkId) continue;
           for (const edge of f.edges || []) {
             for (const pt of edge.points || []) {
-              const sp = this.worldToScreen(pt.east, pt.north);
+              const sp = this.roadGeometryToScreen(pt.east, pt.north);
               rctx.fillStyle = '#dc2626';
               rctx.fillRect(sp.x - 2, sp.y - 2, 4, 4);
             }
@@ -465,7 +721,7 @@ class RoadRenderer {
       ctx.globalAlpha = 0.12;
       for (const f of d.frames) {
         for (const lane of f.lanes || []) {
-          this._drawPolyline(lane.points, '#94a3b8', 1, false);
+          this._drawPolyline(lane.points, '#94a3b8', 1, false, 15, true);
         }
       }
       ctx.globalAlpha = 1;
@@ -477,10 +733,10 @@ class RoadRenderer {
         const color = this.layers.colorByTrack && lane.laneTrackId != null
           ? this.trackColor(lane.laneTrackId)
           : LANE_COLORS[(lane.laneIndex ?? 0) % LANE_COLORS.length];
-        this._drawPolyline(lane.points, color, 2.5, false);
+        this._drawPolyline(lane.points, color, 2.5, false, 15, true);
         if (lane.anchors?.length) {
           for (const a of lane.anchors) {
-            const sp = this.worldToScreen(a.east, a.north);
+            const sp = this.roadGeometryToScreen(a.east, a.north);
             this.ctx.fillStyle = color;
             this.ctx.beginPath();
             this.ctx.arc(sp.x, sp.y, 3, 0, Math.PI * 2);
@@ -489,11 +745,11 @@ class RoadRenderer {
         }
         if (this.layers.trackIds && lane.laneTrackId != null && lane.points?.length) {
           const mid = lane.points[Math.floor(lane.points.length / 2)];
-          this._drawLabel(mid.east, mid.north, `T${lane.laneTrackId}`);
+          this._drawLabel(mid.east, mid.north, `T${lane.laneTrackId}`, '#111', true);
         }
       }
       for (const edge of f.edges || []) {
-        this._drawPolyline(edge.points, '#16a34a', 2, false);
+        this._drawPolyline(edge.points, '#16a34a', 2, false, 15, true);
       }
     }
 
@@ -597,8 +853,7 @@ class RoadRenderer {
 
   _drawStationaryLocalMap(d, elapsedIdx) {
     const map = this.stationaryLocalMap;
-    if (!map?.valid) {
-      this._drawStationaryUnavailable(map);
+    if (!map?.valid) {      this._drawStationaryUnavailable(map);
       this._drawAxes();
       this._drawLocalVehiclePathOverlay(map);
       if (this.playbackPose) {
@@ -630,7 +885,7 @@ class RoadRenderer {
           LRR.drawRoadSurfaceRibbon(
             this.ctx,
             ribbon,
-            (east, north) => this.worldToScreen(east, north),
+            (east, north) => this.roadGeometryToScreen(east, north),
             ribbonFill,
           );
         }
@@ -689,17 +944,50 @@ class RoadRenderer {
             }
           }
         }
+      } else if ((map.roadSurfacePolygons || []).length && !ribbonResult?.ribbons?.length) {
+        // Normal mode (no polygon/fusion debug): a stationary segment has no
+        // trajectory ribbon (trajectory collapses to a single anchor point), so
+        // draw the local road-surface polygons directly. Stationary local
+        // polygons are built between two supported ego-lane boundaries in the
+        // fixed-anchor frame and never extrapolate beyond observed points.
+        for (const poly of map.roadSurfacePolygons) {
+          const drawRing = poly.ring;
+          if (!drawRing?.length || !this._ringHasFiniteCoords(drawRing)) continue;
+          let fill = 'rgba(120,120,120,0.38)';
+          const surfaceType = poly.surfaceType ?? 'egoLaneCorridor';
+          if (surfaceType === 'fullRoadSurface') fill = 'rgba(100,116,139,0.42)';
+          else if (surfaceType === 'multiLaneCorridor') fill = 'rgba(134,163,120,0.38)';
+          this._fillPolygon(drawRing, fill, null, {
+            outline: 'rgba(80,80,80,0.65)',
+            outlineWidth: 1,
+            dashed: false,
+          });
+        }
       }
+
+      let stationaryPolygonCount = 0;
+      if (this._polygonDebug || this._fusionBinDebug) {
+        stationaryPolygonCount = this._selectStationaryRoadSurfaceDrawables(map).selectedCount;
+      } else if ((map.roadSurfacePolygons || []).length && !ribbonResult?.ribbons?.length) {
+        stationaryPolygonCount = (map.roadSurfacePolygons || []).filter((p) =>
+          p.ring?.length >= 3 && this._ringHasFiniteCoords(p.ring),
+        ).length;
+      }
+      // Ribbon remains the default display source; stationary local polygons
+      // are a fallback used only when no trajectory ribbon can be built (fully
+      // stationary segment) or a ribbon is present alongside polygons.
+      const stationaryPolygonFallback = stationaryPolygonCount > 0 && !ribbonResult?.ribbons?.length;
 
       this._roadSurfaceDrawStats = {
         elapsedIdx,
-        surfaceDisplaySource: 'trajectoryRibbon',
+        surfaceDisplaySource: stationaryPolygonFallback ? 'stationaryLocalPolygons' : 'trajectoryRibbon',
         ribbonStats: ribbonResult?.stats ?? null,
         ribbonCount: ribbonResult?.ribbons?.length ?? 0,
         sectionCount: ribbonResult?.sections?.length ?? 0,
         selfIntersecting: ribbonResult?.ribbons?.some((r) => r.selfIntersecting) ?? false,
         sourceCount: map.roadSurfacePolygonCount ?? map.roadSurfacePolygons?.length ?? 0,
-        drawableCount: ribbonResult?.ribbons?.length ?? 0,
+        drawableCount: (ribbonResult?.ribbons?.length ?? 0) + stationaryPolygonCount,
+        stationaryPolygonCount,
         storedPolygonDiagnostics: storedDiagnostics,
         roadSurfaceChecksum: map.roadSurfaceChecksum ?? null,
         drawInvocation: (this._roadSurfaceDrawStats?.drawInvocation ?? 0) + 1,
@@ -720,14 +1008,18 @@ class RoadRenderer {
       for (const edge of map.edgeFragments || []) {
         if (edge.outlier && !this._outlierDebug) continue;
         const color = edge.outlier ? 'rgba(220,38,38,0.5)' : '#16a34a';
-        this._drawPolyline(edge.points, color, edge.outlier ? 1.5 : 3, false);
+        this._drawPolyline(edge.points, color, edge.outlier ? 1.5 : 3, false, 15, true);
       }
     }
 
     if (this.layers.fused) {
       const mode = this.localGeometryMode;
       const debugMode = mode === 'cleanedDebug';
-      (map.laneFragments || []).forEach((lane, i) => {
+      const isolationActive = this._obsIsolationActive() && (mode === 'observations' || mode === 'pointAccumulated');
+      const frags = isolationActive
+        ? (map.laneFragments || []).filter((l) => this._obsMatches(l.sourceFrameIndex, l.laneIndex))
+        : (map.laneFragments || []);
+      frags.forEach((lane, i) => {
         if (lane.outlier && !this._outlierDebug) return;
         let color;
         if (mode === 'rejected' || lane.supportStatus === 'rejected') {
@@ -745,7 +1037,7 @@ class RoadRenderer {
         }
         const width = (mode === 'cleaned' || mode === 'cleanedWithSurface' || debugMode) ? 2.5 : (lane.outlier ? 1.5 : 2);
         const dashed = debugMode && lane.fragmentKind === 'preservedSourcePolyline';
-        this._drawPolyline(lane.points, color, width, dashed);
+        this._drawPolyline(lane.points, color, width, dashed, 15, true);
 
         if (debugMode && lane.points?.length) {
           const start = lane.points[0];
@@ -763,10 +1055,10 @@ class RoadRenderer {
               `T${lane.laneTrackId}`,
               lane.sMin != null ? `s${Math.round(lane.sMin)}-${Math.round(lane.sMax)}` : null,
             ].filter(Boolean).join(' ');
-          this._drawLabel(mid.east, mid.north, label, color);
+          this._drawLabel(mid.east, mid.north, label, color, true);
           if (lane.fragmentKind !== 'preservedSourcePolyline') {
-            this._drawLabel(start.east, start.north, '●', color);
-            this._drawLabel(end.east, end.north, '○', color);
+            this._drawLabel(start.east, start.north, '●', color, true);
+            this._drawLabel(end.east, end.north, '○', color, true);
           }
         }
       });
@@ -801,12 +1093,16 @@ class RoadRenderer {
 
     if (this._outlierDebug) {
       for (const frag of map.outlierFragments || []) {
-        this._drawPolyline(frag.points, '#dc2626', 3, true);
+        this._drawPolyline(frag.points, '#dc2626', 3, true, 15, true);
         const mid = frag.points?.[Math.floor((frag.points.length - 1) / 2)];
         if (mid) {
           this._drawLabel(mid.east, mid.north, (frag.outlierReasons || []).join(','), '#dc2626');
         }
       }
+    }
+
+    if (this.localGeometryMode === 'pointAccumulated' && this.layers.fused) {
+      this._drawPointAccumulatedGeometry(map, elapsedIdx);
     }
 
     this._drawLocalVehiclePathOverlay(map);
@@ -823,6 +1119,845 @@ class RoadRenderer {
     }
 
     this._drawGeometryDiagnosticOverlays(map);
+
+    if (this._lateralAxisDebug) {
+      this._drawLateralAxisDiagnostic(d, map, elapsedIdx);
+    }
+
+    if (this._mirrorDebug) {
+      this._logMirrorDebug(map);
+    }
+
+    if (this._obsDebug && (this.localGeometryMode === 'observations' || this.localGeometryMode === 'pointAccumulated')) {
+      this._drawObservationDebugOverlay(d, map, elapsedIdx);
+    }
+  }
+
+  /**
+   * Lateral-axis diagnostic (optional, ?lateralDebug=1).
+   * Draws "vehicle left"/"vehicle right" labels, the lateral positive
+   * direction, the vehicle centreline, and per-lane boundary labels showing
+   * track ID, source lane index, and signed lateral offset in the
+   * segment-local frame (north = vehicle-left positive). Pure display
+   * diagnostic; never alters stored geometry.
+   */
+  _drawLateralAxisDiagnostic(d, map, elapsedIdx) {
+    const ctx = this.ctx;
+    const ref = map?.referencePose;
+    const arrow = this.playbackPose;
+    const LP = typeof window !== 'undefined' ? window.LocalPlayback : null;
+
+    ctx.save();
+    ctx.font = '11px monospace';
+
+    // --- vehicle centreline + left/right labels at the arrow ---
+    if (arrow && this.worldToScreen) {
+      const as = this.worldToScreen(arrow.east, arrow.north);
+      const headingRad = (arrow.headingDeg ?? 0) * Math.PI / 180;
+      // left direction in segment-local frame: left = (-sin? no) left in ENU
+      // is (-cos h, +sin h) east/north -> in segment-local (east=forward,
+      // north=left) left = (0, +1). Use local north axis for left.
+      const arrowFwd = { x: Math.sin(headingRad), y: -Math.cos(headingRad) };
+      const leftScreen = { x: -arrowFwd.y, y: arrowFwd.x }; // rotate -90 (left)
+      const len = 55;
+      ctx.strokeStyle = '#f59e0b';
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([4, 3]);
+      ctx.beginPath();
+      ctx.moveTo(as.x, as.y);
+      ctx.lineTo(as.x + leftScreen.x * len, as.y + leftScreen.y * len);
+      ctx.moveTo(as.x, as.y);
+      ctx.lineTo(as.x - leftScreen.x * len, as.y - leftScreen.y * len);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle = '#16a34a';
+      ctx.fillText('VEHICLE LEFT', as.x + leftScreen.x * (len + 4) - 40, as.y + leftScreen.y * (len + 4));
+      ctx.fillStyle = '#dc2626';
+      ctx.fillText('VEHICLE RIGHT', as.x - leftScreen.x * (len + 4) - 45, as.y - leftScreen.y * (len + 4));
+      ctx.fillStyle = '#111';
+      ctx.fillText('vehicle centreline (arrow)', as.x + 10, as.y + 14);
+    }
+
+    // --- per-lane boundary labels: track ID, lane index, signed lateral ---
+    const frame = d?.frames?.[elapsedIdx];
+    const lanes = frame?.lanes || [];
+    const laneLabels = [];
+    const arrowScreenForSide = arrow ? this.worldToScreen(arrow.east, arrow.north) : null;
+    for (const lane of lanes) {
+      const near = (lane.points || []).filter((p) => Math.abs(p.modelX) < 3)
+        .sort((a, b) => Math.abs(a.modelX) - Math.abs(b.modelX))[0];
+      if (!near || !ref) continue;
+      const sl = this._globalToLocal(near.east, near.north, ref);
+      const screen = this.roadGeometryToScreen(sl.east, sl.north);
+      // Side is relative to the displayed vehicle centreline (mirror-aware).
+      const side = arrowScreenForSide
+        ? (screen.y < arrowScreenForSide.y ? 'LEFT' : screen.y > arrowScreenForSide.y ? 'RIGHT' : '?')
+        : (sl.north < 0 ? 'RIGHT' : sl.north > 0 ? 'LEFT' : '?');
+      const color = this.trackColor(lane.laneTrackId ?? 0);
+      laneLabels.push({
+        laneIndex: lane.laneIndex, trackId: lane.laneTrackId ?? null,
+        prob: lane.prob, screenX: screen.x, screenY: screen.y,
+        side, lateralM: +sl.north.toFixed(2), color,
+      });
+      ctx.fillStyle = color;
+      ctx.fillText(
+        `T${lane.laneTrackId ?? '?'} lane${lane.laneIndex} ${side} ${sl.north.toFixed(2)}m`,
+        screen.x + 6, screen.y - 4,
+      );
+    }
+
+    // --- summary panel ---
+    const arrowNorth = arrow?.north;
+    const ego = [];
+    for (const l of laneLabels) {
+      if (l.side === 'RIGHT' || l.side === 'LEFT') ego.push(l);
+    }
+    const rightEgo = ego.filter((l) => l.side === 'RIGHT').sort((a, b) => b.lateralM - a.lateralM)[0];
+    const leftEgo = ego.filter((l) => l.side === 'LEFT').sort((a, b) => a.lateralM - b.lateralM)[0];
+    const lines = [
+      'Lateral-axis diagnostic (display only)',
+      `ref heading: ${ref?.headingDeg?.toFixed(2) ?? '—'}  arrow heading: ${arrow?.headingDeg?.toFixed(2) ?? '—'}`,
+      `segment-local frame: east=forward, north=vehicle-left (+)`,
+      `arrow (vehicle centre) north: ${arrowNorth != null ? arrowNorth.toFixed(2) : '—'} m`,
+      rightEgo ? `right ego boundary: T${rightEgo.trackId} lane${rightEgo.laneIndex} @ ${rightEgo.lateralM} m` : 'right ego boundary: none',
+      leftEgo ? `left ego boundary: T${leftEgo.trackId} lane${leftEgo.laneIndex} @ ${leftEgo.lateralM} m` : 'left ego boundary: none',
+      rightEgo && leftEgo
+        ? `ego vehicle between boundaries: ${rightEgo.lateralM < (arrowNorth ?? 0) && (arrowNorth ?? 0) < leftEgo.lateralM}`
+        : 'ego containment: not determinable (need both boundaries)',
+    ];
+    let boxY = 8;
+    ctx.fillStyle = 'rgba(255,255,255,0.94)';
+    ctx.strokeStyle = '#94a3b8';
+    ctx.fillRect(10, boxY, 320, lines.length * 14 + 8);
+    ctx.strokeRect(10, boxY, 320, lines.length * 14 + 8);
+    ctx.fillStyle = '#111';
+    lines.forEach((ln, i) => {
+      ctx.fillText(ln, 16, boxY + 16 + i * 13);
+    });
+    ctx.restore();
+  }
+
+  _drawPointAccumulatedGeometry(map, elapsedIdx) {
+    const pa = map?.pointAccumulated;
+    if (!pa) return;
+    const ctx = this.ctx;
+    const all = pa.points || [];
+    // Complete map by default: show every valid point from all observations.
+    // Causal playback (optional): display observations 0..elapsedIdx only.
+    // Observation isolation (debug): show only the selected observation.
+    // Display-only filters; coordinates are unchanged either way.
+    let pts = all;
+    if (this._obsIsolationActive()) {
+      pts = all.filter((p) => this._obsMatches(p.frameIndex, p.laneIndex));
+    } else if (this._pointCausalPlayback) {
+      const elapsed = Math.max(0, Number(elapsedIdx) || 0);
+      pts = all.filter((p) => p.frameIndex != null ? p.frameIndex <= elapsed : true);
+    }
+
+    if (!this._pointTrackColorCache) {
+      const trackIds = [...new Set(all.map((p) => p.groupTrackId).filter((x) => x != null))];
+      this._pointTrackColorCache = new Map(trackIds.map((id, i) => [id, this.trackColor(id ?? i)]));
+    }
+
+    // Small readable radius; density stays legible.
+    const r = Math.max(2, Math.min(4.5, this.scale * 0.35));
+    const neutral = 'rgba(148,163,184,0.9)';
+    const tintOn = this._pointReliabilityTint && typeof MappingReliability !== 'undefined';
+    const bMode = this._experimentalBoundariesMode;
+    const showDots = bMode !== 'boundaries';
+
+    if (showDots) {
+      for (const pt of pts) {
+        if (!Number.isFinite(pt.localEast) || !Number.isFinite(pt.localNorth)) continue;
+        const p = this.roadGeometryToScreen(pt.localEast, pt.localNorth, pt.mirroredLocalEast, pt.mirroredLocalNorth);
+        let color = neutral;
+        if (tintOn && pt.reliability?.combinedScore != null) {
+          color = MappingReliability.tintColorForScore(pt.reliability.combinedScore, 0.9);
+        } else if (pt.groupTrackId != null && this._pointTrackColorCache?.has?.(pt.groupTrackId)) {
+          color = this._pointTrackColorCache.get(pt.groupTrackId);
+        } else if (pt.side === 'left') {
+          color = 'rgba(124,58,237,0.9)';
+        } else if (pt.side === 'right') {
+          color = 'rgba(8,145,178,0.9)';
+        }
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    if (bMode === 'boundaries' || bMode === 'combined') {
+      this._drawExperimentalBoundaries(map, elapsedIdx, pts);
+    }
+
+    if (this.layers.constructedFragments && typeof ConstructedFragments !== 'undefined') {
+      this._drawConstructedFragments(map, elapsedIdx, pts);
+    }
+
+    if (this.layers.joinCandidates && typeof LaneJoining !== 'undefined') {
+      this._drawJoinCandidates(map, elapsedIdx, pts);
+    }
+
+    if (this.layers.joinedPolylines && typeof LaneJoining !== 'undefined') {
+      this._drawJoinedPolylines(map, elapsedIdx, pts);
+    }
+
+    if (tintOn) this._drawReliabilityLegend();
+  }
+
+  /**
+   * Experimental lane-boundary overlay (display-only). Constructed from the
+   * same point observations, in segment-local s/d frame, converted to local
+   * east/north. Points are never modified. Only sections supported by multiple
+   * observations are drawn; breaks are explicit.
+   */
+  _drawExperimentalBoundaries(map, elapsedIdx, visiblePoints) {
+    const pa = map?.pointAccumulated;
+    const baseEb = pa?.experimentalBoundaries;
+    if (!baseEb || typeof ExperimentalBoundaries === 'undefined') return;
+    const ctx = this.ctx;
+
+    // Causal playback: rebuild the overlay from only the observations visible
+    // at the current elapsed index (never uses future observations).
+    let eb = baseEb;
+    if (this._pointCausalPlayback && !this._obsIsolationActive()) {
+      const elapsed = Math.max(0, Number(elapsedIdx) || 0);
+      const causalPts = (pa.points || []).filter((p) => p.frameIndex != null ? p.frameIndex <= elapsed : true);
+      eb = ExperimentalBoundaries.buildExperimentalBoundaries(causalPts, {
+        candidate: baseEb.candidate,
+      });
+    } else if (this._obsIsolationActive()) {
+      // Observation isolation: show sections supported by the selected obs.
+      eb = ExperimentalBoundaries.buildExperimentalBoundaries(visiblePoints || [], {
+        candidate: baseEb.candidate,
+      });
+    }
+
+    // Lane 1 = right ego boundary (cyan), lane 2 = left ego boundary (violet).
+    const laneColors = { 1: 'rgba(8,145,178,1)', 2: 'rgba(124,58,237,1)' };
+
+    for (const [laneIndex, lane] of Object.entries(eb.lanes)) {
+      const color = laneColors[laneIndex] || 'rgba(100,116,139,1)';
+      for (const sec of lane.sections) {
+        if (!sec.vertices?.length) continue;
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 2.5;
+        ctx.setLineDash([1, 0]);
+        ctx.beginPath();
+        let moved = false;
+        for (const v of sec.vertices) {
+          if (v.east == null || v.north == null) continue;
+          const p = this.roadGeometryToScreen(v.east, v.north, v.mirroredEast, v.mirroredNorth);
+          if (!moved) { ctx.moveTo(p.x, p.y); moved = true; }
+          else ctx.lineTo(p.x, p.y);
+        }
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+    }
+
+    // Label the overlay as experimental.
+    this._drawExperimentalBoundariesLabel(eb);
+  }
+
+  _drawExperimentalBoundariesLabel(eb) {
+    const ctx = this.ctx;
+    ctx.save();
+    ctx.font = '12px sans-serif';
+    ctx.fillStyle = '#b45309';
+    ctx.fillText(`Experimental lane boundaries (candidate ${eb.candidate}) — display only`, 10, 20);
+    ctx.font = '10px sans-serif';
+    ctx.fillStyle = '#78716c';
+    ctx.fillText(`sections: ${eb.sectionCount} · supported ${eb.supportedLengthM} m · topology warnings: ${eb.topology.count}`, 10, 34);
+    ctx.restore();
+  }
+
+  /**
+   * Constructed lane-boundary fragments (EXPERIMENTAL, display-only).
+   * Short, reliable local polylines built from the accumulated point dots
+   * (grouped by physical boundary, ordered by along-track s, connected only
+   * when local checks pass, split on gaps/conflicts, smoothed locally). Never
+   * replaces Raw/Fused/Candidate D/tracked outputs. Causal playback and
+   * observation isolation rebuild the fragments from only the visible points.
+   */
+  _drawConstructedFragments(map, elapsedIdx, visiblePoints) {
+    const pa = map?.pointAccumulated;
+    const baseCf = pa?.constructedFragments;
+    if (!baseCf) return;
+    const ctx = this.ctx;
+
+    let cf = baseCf;
+    if (this._pointCausalPlayback && !this._obsIsolationActive()) {
+      const elapsed = Math.max(0, Number(elapsedIdx) || 0);
+      const causalPts = (pa.points || []).filter((p) => p.frameIndex != null ? p.frameIndex <= elapsed : true);
+      cf = ConstructedFragments.buildConstructedFragments(causalPts);
+    } else if (this._obsIsolationActive()) {
+      cf = ConstructedFragments.buildConstructedFragments(visiblePoints || []);
+    }
+
+    let drawn = 0;
+    for (const frag of cf.fragments || []) {
+      if (!frag.points?.length) continue;
+      const bc = this.boundaryColor(frag.groupTrackId);
+      const color = bc.color;
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2;
+      ctx.setLineDash([6, 3]);
+      ctx.beginPath();
+      let moved = false;
+      for (const v of frag.points) {
+        if (v.east == null || v.north == null) continue;
+        const p = this.roadGeometryToScreen(v.east, v.north, v.mirroredEast, v.mirroredNorth);
+        if (!moved) { ctx.moveTo(p.x, p.y); moved = true; }
+        else ctx.lineTo(p.x, p.y);
+      }
+      ctx.stroke();
+      ctx.setLineDash([]);
+      drawn++;
+      if (this._constructedFragmentLabels && frag.points.length) {
+        // Display-only diagnostic: label each fragment with its ID and split reason.
+        const mid = frag.points[Math.floor((frag.points.length - 1) / 2)];
+        const mp = this.roadGeometryToScreen(mid.east, mid.north, mid.mirroredEast, mid.mirroredNorth);
+        ctx.save();
+        ctx.font = '10px monospace';
+        ctx.fillStyle = '#1e293b';
+        const label = `${frag.fragmentId}${frag.splitReason ? `|${frag.splitReason}` : ''}`;
+        const tw = ctx.measureText(label).width;
+        ctx.fillStyle = 'rgba(255,255,255,0.85)';
+        ctx.fillRect(mp.x - 2, mp.y - 10, tw + 4, 14);
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 1;
+        ctx.strokeRect(mp.x - 2, mp.y - 10, tw + 4, 14);
+        ctx.fillStyle = '#0f172a';
+        ctx.fillText(label, mp.x, mp.y + 2);
+        ctx.restore();
+      }
+    }
+
+    ctx.save();
+    ctx.font = '12px sans-serif';
+    ctx.fillStyle = '#b45309';
+    const labelText = this._constructedFragmentLabels
+      ? `Constructed fragments (experimental) — ${drawn} fragments — IDs & split reasons`
+      : `Constructed fragments (experimental) — ${drawn} fragments`;
+    ctx.fillText(labelText, 10, 50);
+    ctx.restore();
+  }
+
+  /**
+   * Joined lane-boundary polylines (EXPERIMENTAL, display-only). Draws the
+   * chained polyline over its source fragments and marks accepted connectors.
+   * Source fragments are never modified; only the joined line and its
+   * connector segments are drawn. Causal playback rebuilds from visible points.
+   */
+  _drawJoinedPolylines(map, elapsedIdx, visiblePoints) {
+    const pa = map?.pointAccumulated;
+    const base = pa?.joinedPolylines;
+    if (!base || typeof LaneJoining === 'undefined') return;
+    const ctx = this.ctx;
+
+    let jp = base;
+    if (this._pointCausalPlayback && !this._obsIsolationActive()) {
+      const elapsed = Math.max(0, Number(elapsedIdx) || 0);
+      const causalPts = (pa.points || []).filter((p) => p.frameIndex != null ? p.frameIndex <= elapsed : true);
+      const cf = ConstructedFragments.buildConstructedFragments(causalPts);
+      if (cf?.fragments?.length) jp = LaneJoining.joinConstructedFragments(cf.fragments, causalPts);
+    } else if (this._obsIsolationActive()) {
+      const cf = ConstructedFragments.buildConstructedFragments(visiblePoints || []);
+      if (cf?.fragments?.length) jp = LaneJoining.joinConstructedFragments(cf.fragments, visiblePoints || []);
+    }
+
+    const laneColors = { 0: 'rgba(8,145,178,1)', 1: 'rgba(124,58,237,1)', 2: 'rgba(5,150,105,1)' };
+    let drawn = 0;
+    for (const poly of jp.joinedPolylines || []) {
+      if (!poly.joinedPoints?.length) continue;
+      const bc = this.boundaryColor(poly.groupTrackId != null ? poly.groupTrackId : null);
+      const color = bc.color;
+      // joined polyline (solid, thicker)
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 3.5;
+      ctx.setLineDash([]);
+      ctx.beginPath();
+      let moved = false;
+      for (const v of poly.joinedPoints) {
+        if (v.east == null || v.north == null) continue;
+        const p = this.roadGeometryToScreen(v.east, v.north, v.mirroredEast, v.mirroredNorth);
+        if (!moved) { ctx.moveTo(p.x, p.y); moved = true; }
+        else ctx.lineTo(p.x, p.y);
+      }
+      ctx.stroke();
+      drawn++;
+      // label joined polyline id
+      if (this._constructedFragmentLabels && poly.joinedPoints.length) {
+        const mid = poly.joinedPoints[Math.floor(poly.joinedPoints.length / 2)];
+        const mp = this.roadGeometryToScreen(mid.east, mid.north, mid.mirroredEast, mid.mirroredNorth);
+        ctx.save();
+        ctx.font = '11px monospace';
+        const label = `${poly.joinedPolylineId} (${poly.connectorCount} conns)`;
+        const tw = ctx.measureText(label).width;
+        ctx.fillStyle = 'rgba(255,255,255,0.9)';
+        ctx.fillRect(mp.x - 2, mp.y - 11, tw + 4, 15);
+        ctx.strokeStyle = '#0f172a';
+        ctx.lineWidth = 1;
+        ctx.strokeRect(mp.x - 2, mp.y - 11, tw + 4, 15);
+        ctx.fillStyle = '#0f172a';
+        ctx.fillText(label, mp.x, mp.y + 2);
+        ctx.restore();
+      }
+    }
+
+    ctx.save();
+    ctx.font = '12px sans-serif';
+    ctx.fillStyle = '#0f172a';
+    ctx.fillText(`Joined lane polylines (experimental) — ${drawn} polylines`, 10, 68);
+    ctx.restore();
+  }
+
+  /**
+   * Join-candidate visualization (EXPERIMENTAL debug, display-only). Draws
+   * every candidate connection with a colour/style encoding its decision:
+   *   accepted        green solid
+   *   hard-rejected   red dashed
+   *   ambiguous       amber dashed (scored but not chosen)
+   *   unsupported gap brown dotted
+   * Clicking/hovering a connector shows its measurements (see hover handler).
+   */
+  _drawJoinCandidates(map, elapsedIdx, visiblePoints) {
+    const pa = map?.pointAccumulated;
+    const base = pa?.joinedPolylines;
+    if (!base || typeof LaneJoining === 'undefined') return;
+    const ctx = this.ctx;
+
+    let jp = base;
+    if (this._pointCausalPlayback && !this._obsIsolationActive()) {
+      const elapsed = Math.max(0, Number(elapsedIdx) || 0);
+      const causalPts = (pa.points || []).filter((p) => p.frameIndex != null ? p.frameIndex <= elapsed : true);
+      const cf = ConstructedFragments.buildConstructedFragments(causalPts);
+      if (cf?.fragments?.length) jp = LaneJoining.joinConstructedFragments(cf.fragments, causalPts);
+    } else if (this._obsIsolationActive()) {
+      const cf = ConstructedFragments.buildConstructedFragments(visiblePoints || []);
+      if (cf?.fragments?.length) jp = LaneJoining.joinConstructedFragments(cf.fragments, visiblePoints || []);
+    }
+
+    const accepted = new Set(jp.connections.map((c) => `${c.fromFragmentId}->${c.toFragmentId}`));
+    const styles = {
+      accepted: { color: 'rgba(22,163,74,0.9)', dash: [], width: 2.5 },
+      hard_rejected: { color: 'rgba(220,38,38,0.85)', dash: [6, 3], width: 1.5 },
+      ambiguous: { color: 'rgba(245,158,11,0.9)', dash: [4, 4], width: 1.5 },
+      unsupported: { color: 'rgba(120,72,16,0.9)', dash: [2, 3], width: 1.5 },
+    };
+
+    let rejectedCount = 0, ambiguousCount = 0, acceptedCount = 0, unsupportedCount = 0;
+    for (const cand of jp.candidates || []) {
+      const from = cand.from, to = cand.to;
+      if (!from || !to) continue;
+      const Ae = from.points[from.points.length - 1];
+      const Bs = to.points[0];
+      const key = `${from.fragmentId}->${to.fragmentId}`;
+      let style;
+      if (accepted.has(key)) { style = styles.accepted; acceptedCount++; }
+      else if (!cand.pass && cand.reason && /unsupported|insufficient_evidence/.test(cand.reason)) { style = styles.unsupported; unsupportedCount++; }
+      else if (!cand.pass) { style = styles.hard_rejected; rejectedCount++; }
+      else { style = styles.ambiguous; ambiguousCount++; }
+
+      ctx.strokeStyle = style.color;
+      ctx.lineWidth = style.width;
+      ctx.setLineDash(style.dash);
+      ctx.beginPath();
+      const pA = this.roadGeometryToScreen(Ae.east, Ae.north, Ae.mirroredEast, Ae.mirroredNorth);
+      const pB = this.roadGeometryToScreen(Bs.east, Bs.north, Bs.mirroredEast, Bs.mirroredNorth);
+      ctx.moveTo(pA.x, pA.y);
+      ctx.lineTo(pB.x, pB.y);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // marker at midpoint
+      const mx = (pA.x + pB.x) / 2, my = (pA.y + pB.y) / 2;
+      ctx.fillStyle = style.color;
+      ctx.beginPath();
+      ctx.arc(mx, my, 3, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    ctx.save();
+    ctx.font = '12px sans-serif';
+    ctx.fillStyle = '#0f172a';
+    ctx.fillText(
+      `Join candidates (debug) — accepted ${acceptedCount} · rejected ${rejectedCount} · ambiguous ${ambiguousCount} · unsupported ${unsupportedCount}`,
+      10, 86,
+    );
+    ctx.restore();
+  }
+
+  /** Hover tooltip for a join connector (accepted/rejected/ambiguous). */
+  _joinCandidateHover(screenX, screenY, elapsedIdx) {
+    const pa = this.stationaryLocalMap?.pointAccumulated;
+    if (!pa?.joinedPolylines || typeof LaneJoining === 'undefined') return null;
+    if (!this.layers.joinCandidates) return null;
+    const jp = pa.joinedPolylines;
+    let best = null, bestD = Infinity;
+    for (const cand of jp.candidates || []) {
+      const from = cand.from, to = cand.to;
+      if (!from || !to) continue;
+      const Ae = from.points[from.points.length - 1];
+      const Bs = to.points[0];
+      const pA = this.roadGeometryToScreen(Ae.east, Ae.north, Ae.mirroredEast, Ae.mirroredNorth);
+      const pB = this.roadGeometryToScreen(Bs.east, Bs.north, Bs.mirroredEast, Bs.mirroredNorth);
+      // distance from pointer to the segment
+      const seg = pB.x - pA.x, sey = pB.y - pA.y;
+      const len = Math.hypot(seg, sey) || 1e-9;
+      const t = clamp(((screenX - pA.x) * seg + (screenY - pA.y) * sey) / (len * len), 0, 1);
+      const px = pA.x + t * seg, py = pA.y + t * sey;
+      const d = Math.hypot(px - screenX, py - screenY);
+      if (d < bestD && d < 20) { bestD = d; best = cand; }
+    }
+    if (!best) return null;
+    const m = best.measurements || {};
+    const decision = best.pass ? (best.score != null ? `accepted score ${best.score}` : 'candidate') : `rejected: ${best.reason}`;
+    return [
+      `Join candidate — ${best.from?.fragmentId} → ${best.to?.fragmentId}`,
+      `  boundary ${m.physicalBoundaryId ?? ''} · chunk ${m.chunkId} · pass ${m.passId}`,
+      `  endpoint gap: ${m.endpointGapM != null ? m.endpointGapM.toFixed(2) : '—'} m · s gap ${m.alongTrackGapM != null ? m.alongTrackGapM.toFixed(2) : '—'} m`,
+      `  tangent diff: ${m.tangentDiffDeg != null ? m.tangentDiffDeg.toFixed(1) : '—'}° · lateral err: ${m.lateralErrM != null ? m.lateralErrM.toFixed(2) : '—'} m`,
+      `  curvature change: ${m.curvatureChangeDegPerM != null ? m.curvatureChangeDegPerM.toFixed(3) : '—'} °/m · temporal: ${m.temporalDiffSec != null ? m.temporalDiffSec.toFixed(1) : '—'} s`,
+      `  corridor: ${m.corridor ?? '—'} (supported ${m.corridorSupportedInside ?? 0})`,
+      `  decision: ${decision}`,
+    ];
+  }
+
+  /**
+   * Hover/debug values for the experimental boundary overlay: shows lane,
+   * chunk/pass, s range, support, distinct obs, median reliability/probability,
+   * lateral MAD, candidate, topology warnings and break reasons for the
+   * boundary section nearest the pointer.
+   */
+  _experimentalBoundaryHover(screenX, screenY, elapsedIdx) {
+    const bMode = this._experimentalBoundariesMode;
+    if (bMode !== 'boundaries' && bMode !== 'combined') return null;
+    const map = this.stationaryLocalMap;
+    const pa = map?.pointAccumulated;
+    let eb = pa?.experimentalBoundaries;
+    if (!eb) return null;
+    if (this._pointCausalPlayback && !this._obsIsolationActive()) {
+      const elapsed = Math.max(0, Number(elapsedIdx) || 0);
+      const causalPts = (pa.points || []).filter((p) => p.frameIndex != null ? p.frameIndex <= elapsed : true);
+      eb = ExperimentalBoundaries.buildExperimentalBoundaries(causalPts, { candidate: eb.candidate });
+    } else if (this._obsIsolationActive()) {
+      const selPts = (pa.points || []).filter((p) => this._obsMatches(p.frameIndex, p.laneIndex));
+      eb = ExperimentalBoundaries.buildExperimentalBoundaries(selPts, { candidate: eb.candidate });
+    }
+    let best = null;
+    let bestD = Infinity;
+    for (const lane of Object.values(eb.lanes)) {
+      for (const sec of lane.sections) {
+        for (const v of sec.vertices) {
+          if (v.east == null || v.north == null) continue;
+          const sp = this.roadGeometryToScreen(v.east, v.north, v.mirroredEast, v.mirroredNorth);
+          const d = Math.hypot(sp.x - screenX, sp.y - screenY);
+          if (d < bestD) { bestD = d; best = { sec, v, laneIndex: sec.laneIndex }; }
+        }
+      }
+    }
+    if (!best) return null;
+    const sec = best.sec;
+    return [
+      `Experimental boundary — lane ${sec.laneIndex} (candidate ${eb.candidate})`,
+      `  s: ${sec.sMin}..${sec.sMax} m · chunk ${map.chunkId} · pass ${map.passId}`,
+      `  support: ${best.v.supportCount} obs · ${best.v.distinctTimestamps} distinct`,
+      `  medianReliability: ${best.v.medianReliability ?? '—'} · medianProb: ${best.v.medianProb ?? '—'}`,
+      `  lateral MAD: ${best.v.madLateral ?? '—'} m · d: ${best.v.d} m @ s=${best.v.s}`,
+      `  warnings: ${sec.directionWarning ?? 'none'}`,
+    ];
+  }
+
+  /**
+   * Legend for the experimental reliability tint (display-only).
+   * Clearly labelled "Experimental reliability" — not calibrated confidence.
+   */
+  _drawReliabilityLegend() {
+    const ctx = this.ctx;
+    const x = 10;
+    const y = this.canvas?.height ? this.canvas.height - 70 : 620;
+    ctx.save();
+    ctx.fillStyle = 'rgba(255,255,255,0.92)';
+    ctx.strokeStyle = '#94a3b8';
+    ctx.lineWidth = 1;
+    ctx.fillRect(x, y, 220, 64);
+    ctx.strokeRect(x, y, 220, 64);
+    ctx.font = '11px sans-serif';
+    ctx.fillStyle = '#111';
+    ctx.fillText('Experimental reliability (display only)', x + 8, y + 16);
+    const swatches = [
+      { s: 0.85, label: 'High (0.70–1.00)' },
+      { s: 0.55, label: 'Medium (0.40–0.70)' },
+      { s: 0.2, label: 'Low (0.00–0.40)' },
+    ];
+    swatches.forEach((sw, i) => {
+      const sy = y + 28 + i * 12;
+      ctx.fillStyle = typeof MappingReliability !== 'undefined'
+        ? MappingReliability.tintColorForScore(sw.s, 0.9)
+        : '#888';
+      ctx.fillRect(x + 8, sy, 10, 10);
+      ctx.fillStyle = '#333';
+      ctx.font = '10px sans-serif';
+      ctx.fillText(sw.label, x + 24, sy + 9);
+    });
+    ctx.font = '9px sans-serif';
+    ctx.fillStyle = '#666';
+    ctx.fillText('Not calibrated confidence.', x + 8, y + 58);
+    ctx.restore();
+  }
+
+  /**
+   * Hover/debug values for the experimental reliability score: shows the
+   * combined score and each component for the point nearest the pointer.
+   */
+  _reliabilityHoverText(screenX, screenY, elapsedIdx) {
+    if (!this._pointReliabilityTint || this.localGeometryMode !== 'pointAccumulated') return null;
+    const map = this.stationaryLocalMap;
+    const pa = map?.pointAccumulated;
+    if (!pa?.points?.length) return null;
+    let pts = pa.points;
+    if (this._obsIsolationActive()) {
+      pts = pts.filter((p) => this._obsMatches(p.frameIndex, p.laneIndex));
+    } else if (this._pointCausalPlayback) {
+      const elapsed = Math.max(0, Number(elapsedIdx) || 0);
+      pts = pts.filter((p) => p.frameIndex != null ? p.frameIndex <= elapsed : true);
+    }
+    let best = null;
+    let bestD = Infinity;
+    for (const p of pts) {
+      if (!Number.isFinite(p.localEast) || !Number.isFinite(p.localNorth)) continue;
+      const sp = this.roadGeometryToScreen(p.localEast, p.localNorth);
+      const d = Math.hypot(sp.x - screenX, sp.y - screenY);
+      if (d < bestD) { bestD = d; best = p; }
+    }
+    if (!best?.reliability) return null;
+    const rel = best.reliability;
+    const c = rel.components || {};
+    return [
+      `Experimental reliability: ${rel.combinedScore.toFixed(3)} (band: ${rel.band})`,
+      `  probability: ${c.probability?.toFixed(3) ?? '—'}  distance: ${c.distance?.toFixed(3) ?? '—'}`,
+      `  turning: ${c.turning?.toFixed(3) ?? '—'}  temporalAgree: ${c.temporalAgreement?.toFixed(3) ?? '—'}`,
+      `  poseQuality: ${c.poseQuality?.toFixed(3) ?? '—'}  temporalAvailable: ${rel.hasTemporalAgreement}`,
+    ];
+  }
+
+  /**
+   * Debug overlay for one selected observation (Raw or Point mode).
+   * Draws a metadata panel and labelled markers: vehicle pose, forward
+   * direction, vehicle-relative lane curve, segment-local lane curve, and the
+   * grey-road reference trajectory. Off by default (?obsDebug=1).
+   */
+  _drawObservationDebugOverlay(d, map, elapsedIdx) {
+    if (this._obsDebugFrame == null) return;
+    const frameIndex = this._obsDebugFrame;
+    const laneIndex = this._obsDebugLane != null ? this._obsDebugLane : 0;
+    const frame = d.frames && d.frames[frameIndex];
+    if (!frame) return;
+
+    const lane = (frame.lanes || []).find((l) => l.laneIndex === laneIndex)
+      || (frame.lanes || [])[0];
+    if (!lane) return;
+
+    const ctx = this.ctx;
+    const pose = frame.pose;
+    const isPoint = this.localGeometryMode === 'pointAccumulated';
+
+    // --- Markers -----------------------------------------------------------
+    // Vehicle pose used for this observation (segment-local).
+    if (pose) {
+      const ref = map?.referencePose;
+      let vp = this.worldToScreen(0, 0);
+      if (ref) {
+        const rel = this._globalToLocal(pose.east, pose.north, ref);
+        vp = this.worldToScreen(rel.east, rel.north);
+      }
+      this._drawMarker(vp.x, vp.y, '#dc2626', 'POSE');
+      // Vehicle-forward direction
+      const fwd = this._vehicleForwardScreen(pose, ref);
+      ctx.strokeStyle = '#dc2626';
+      ctx.lineWidth = 2;
+      ctx.setLineDash([6, 4]);
+      ctx.beginPath();
+      ctx.moveTo(vp.x, vp.y);
+      ctx.lineTo(vp.x + fwd.x * 30, vp.y + fwd.y * 30);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      this._drawLabel(vp.x + fwd.x * 34, vp.y + fwd.y * 34, 'FWD', '#dc2626');
+    }
+
+    // Grey-road reference trajectory (segment-local map trajectory).
+    if (map?.trajectory?.length >= 2) {
+      ctx.strokeStyle = 'rgba(100,116,139,0.9)';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      const t0 = this.worldToScreen(map.trajectory[0].east, map.trajectory[0].north);
+      ctx.moveTo(t0.x, t0.y);
+      for (let i = 1; i < map.trajectory.length; i++) {
+        const tp = this.worldToScreen(map.trajectory[i].east, map.trajectory[i].north);
+        ctx.lineTo(tp.x, tp.y);
+      }
+      ctx.stroke();
+      this._drawLabel(t0.x, t0.y - 8, 'GREY ROAD REF', 'rgba(71,85,105,1)');
+    }
+
+    // Vehicle-relative lane curve (original model x/y, drawn in segment-local
+    // frame without pose heading so we can see the raw shape near the vehicle).
+    if (lane.points?.length >= 2) {
+      ctx.strokeStyle = '#f59e0b';
+      ctx.lineWidth = 2;
+      ctx.setLineDash([2, 2]);
+      ctx.beginPath();
+      const r0 = this.roadGeometryToScreen(lane.points[0].modelX || 0, lane.points[0].modelY || 0);
+      ctx.moveTo(r0.x, r0.y);
+      for (let i = 1; i < lane.points.length; i++) {
+        const rp = this.roadGeometryToScreen(lane.points[i].modelX || 0, lane.points[i].modelY || 0);
+        ctx.lineTo(rp.x, rp.y);
+      }
+      ctx.stroke();
+      ctx.setLineDash([]);
+      this._drawLabel(r0.x, r0.y - 8, 'MODEL X/Y', '#b45309');
+    }
+
+    // Segment-local lane curve (transformed).
+    const frags = (map.laneFragments || []).filter((f) =>
+      this._obsMatches(f.sourceFrameIndex, f.laneIndex));
+    const frag = frags[0] || (map.laneFragments || []).find((f) => f.sourceFrameIndex === frameIndex);
+    if (frag?.points?.length >= 2) {
+      ctx.strokeStyle = '#2563eb';
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      const f0 = this.roadGeometryToScreen(frag.points[0].east, frag.points[0].north);
+      ctx.moveTo(f0.x, f0.y);
+      for (let i = 1; i < frag.points.length; i++) {
+        const fp = this.roadGeometryToScreen(frag.points[i].east, frag.points[i].north);
+        ctx.lineTo(fp.x, fp.y);
+      }
+      ctx.stroke();
+      this._drawLabel(f0.x, f0.y - 8, 'SEG-LOCAL LANE', '#1d4ed8');
+    }
+
+    // --- Metadata panel -----------------------------------------------------
+    const lines = this._buildObservationDebugLines(frame, lane, frameIndex, map, pose, isPoint);
+    ctx.save();
+    ctx.fillStyle = 'rgba(255,255,255,0.94)';
+    ctx.strokeStyle = '#475569';
+    ctx.lineWidth = 1;
+    ctx.font = '11px monospace';
+    const pad = 8;
+    const lineH = 14;
+    const boxW = 320;
+    const boxH = lines.length * lineH + pad * 2;
+    ctx.fillRect(this.w - boxW - 12, 12, boxW, boxH);
+    ctx.strokeRect(this.w - boxW - 12, 12, boxW, boxH);
+    ctx.fillStyle = '#111';
+    lines.forEach((line, i) => {
+      ctx.fillText(line, this.w - boxW, 24 + i * lineH);
+    });
+    ctx.restore();
+  }
+
+  _globalToLocal(east, north, referencePose) {
+    const ve = referencePose?.east ?? 0;
+    const vn = referencePose?.north ?? 0;
+    const theta = (referencePose?.headingDeg ?? 0) * Math.PI / 180;
+    const sinT = Math.sin(theta);
+    const cosT = Math.cos(theta);
+    const u = east - ve;
+    const v = north - vn;
+    return { east: u * sinT + v * cosT, north: v * sinT - u * cosT };
+  }
+
+  _vehicleForwardScreen(pose, referencePose) {
+    if (!pose) return { x: 0, y: -1 };
+    // Forward unit vector in global ENU: heading CW from north -> (sin, cos).
+    const theta = (pose.headingDeg ?? 0) * Math.PI / 180;
+    const fe = Math.sin(theta);
+    const fn = Math.cos(theta);
+    // Convert to segment-local frame (east=forward of reference, north=left).
+    const fwd = this._globalToLocal(fe, fn, referencePose);
+    const a = this.worldToScreen(0, 0);
+    const b = this.worldToScreen(fwd.east, fwd.north);
+    const dx = b.x - a.x;
+    const dy = b.y - a.y;
+    const len = Math.hypot(dx, dy) || 1;
+    return { x: dx / len, y: dy / len };
+  }
+
+  _buildObservationDebugLines(frame, lane, frameIndex, map, pose, isPoint) {
+    const L = [];
+    const logMono = frame.logMonoTime != null ? String(frame.logMonoTime) : '—';
+    const poseTs = pose?.logMonoTime != null ? String(pose.logMonoTime) : '—';
+    const gpsTs = pose?.logMonoTime != null ? String(pose.logMonoTime) : '—';
+    const dtMs = (t0, t1) => {
+      if (t0 == null || t1 == null) return null;
+      return Number(BigInt(t1) - BigInt(t0)) / 1e6;
+    };
+    L.push(`obs idx: ${frameIndex}`);
+    L.push(`logMonoTime: ${logMono}`);
+    L.push(`lane index: ${lane.laneIndex ?? '—'}  track: ${lane.laneTrackId ?? '—'}`);
+    L.push(`lane conf: ${(lane.prob ?? 1).toFixed(3)}`);
+    L.push(`chunk: ${frame.chunkId ?? 0}  pass: ${frame.passId ?? 0}`);
+    L.push(`model ts: ${logMono}`);
+    L.push(`pose ts: ${poseTs}  gps ts: ${gpsTs}`);
+    const mdlToPose = dtMs(logMono, pose?.logMonoTime);
+    const mdlToGps = dtMs(logMono, pose?.logMonoTime);
+    L.push(`model->pose dt: ${mdlToPose != null ? mdlToPose.toFixed(1) : '—'} ms`);
+    L.push(`model->gps dt: ${mdlToGps != null ? mdlToGps.toFixed(1) : '—'} ms`);
+    if (pose) {
+      L.push(`vehicle pos: ${pose.east?.toFixed?.(2)} ${pose.north?.toFixed?.(2)}`);
+      L.push(`heading: ${pose.headingDeg?.toFixed?.(2)}°  unit: deg`);
+      L.push(`heading src: ${pose.headingSource ?? '—'}`);
+      L.push(`speed: ${pose.speed?.toFixed?.(2)} m/s`);
+    }
+    const tl = (frame.timeline || this._obsTimeline || [])[frameIndex];
+    const mv = tl?.movementState ?? '—';
+    const framePose = frame?.pose || pose;
+    // Stationary pose lock diagnostic: show the lock state and anchor clearly.
+    const lockState = framePose?.stationaryLocked === true ? 'STATIONARY LOCKED'
+      : (framePose?.movementState === 'STATIONARY' ? 'stationary'
+        : (framePose?.movementState || mv || '—'));
+    L.push(`movement state: ${lockState}`);
+    if (framePose?.stationaryLocked === true && framePose?.stationaryAnchor) {
+      const a = framePose.stationaryAnchor;
+      L.push(`  anchor: east ${a.east?.toFixed?.(2)} north ${a.north?.toFixed?.(2)} heading ${a.headingDeg?.toFixed?.(2)}°`);
+    }
+    L.push(`mapping pose: ${framePose?.east?.toFixed?.(2)} ${framePose?.north?.toFixed?.(2)} heading ${framePose?.headingDeg?.toFixed?.(2)}°`);
+    // Motion-derived bearing from timeline (already GPS/pose heading based).
+    const bearing = tl?.bearingDeg;
+    L.push(`motion bearing: ${bearing != null ? bearing.toFixed(1) : '—'}°`);
+    if (pose && bearing != null) {
+      let dh = Math.abs(pose.headingDeg - bearing);
+      if (dh > 180) dh = 360 - dh;
+      L.push(`heading vs motion: ${dh.toFixed(1)}°`);
+    }
+    // Vehicle-relative and transformed coordinates
+    if (lane.points?.length) {
+      const p0 = lane.points[0];
+      const pn = lane.points[lane.points.length - 1];
+      L.push(`veh-rel first: (${p0.modelX?.toFixed?.(1)}, ${p0.modelY?.toFixed?.(1)})`);
+      L.push(`veh-rel last: (${pn.modelX?.toFixed?.(1)}, ${pn.modelY?.toFixed?.(1)})`);
+    }
+    if (isPoint) {
+      const pts = (map?.pointAccumulated?.points || []).filter((p) => this._obsMatches(p.frameIndex, p.laneIndex));
+      if (pts.length) {
+        const p0 = pts[0];
+        L.push(`seg-local first: (${p0.localEast.toFixed(2)}, ${p0.localNorth.toFixed(2)})`);
+        const pn = pts[pts.length - 1];
+        L.push(`seg-local last: (${pn.localEast.toFixed(2)}, ${pn.localNorth.toFixed(2)})`);
+      }
+    } else {
+      const frags = (map?.laneFragments || []).filter((f) => this._obsMatches(f.sourceFrameIndex, f.laneIndex));
+      if (frags.length && frags[0].points?.length) {
+        const p0 = frags[0].points[0];
+        const pn = frags[0].points[frags[0].points.length - 1];
+        L.push(`seg-local first: (${p0.east.toFixed(2)}, ${p0.north.toFixed(2)})`);
+        L.push(`seg-local last: (${pn.east.toFixed(2)}, ${pn.north.toFixed(2)})`);
+      }
+    }
+    return L;
   }
 
   _drawLocalVehiclePathOverlay(map) {
@@ -863,7 +1998,7 @@ class RoadRenderer {
       for (const lane of frags) {
         if (!lane.points?.length || !lane.physicalBoundaryId) continue;
         const mid = lane.points[Math.floor(lane.points.length / 2)];
-        this._drawLabel(mid.east, mid.north, lane.physicalBoundaryId, this.physicalBoundaryColor(lane.physicalBoundaryId));
+        this._drawLabel(mid.east, mid.north, lane.physicalBoundaryId, this.physicalBoundaryColor(lane.physicalBoundaryId), true);
       }
     }
 
@@ -871,7 +2006,7 @@ class RoadRenderer {
       for (const lane of frags) {
         if (lane.laneTrackId == null || !lane.points?.length) continue;
         const mid = lane.points[Math.floor(lane.points.length / 2)];
-        this._drawLabel(mid.east, mid.north + 2, `T${lane.laneTrackId}`, '#0f172a');
+        this._drawLabel(mid.east, mid.north + 2, `T${lane.laneTrackId}`, '#0f172a', true);
       }
     }
 
@@ -879,7 +2014,7 @@ class RoadRenderer {
       frags.forEach((lane, i) => {
         if (!lane.points?.length) return;
         const start = lane.points[0];
-        this._drawLabel(start.east, start.north, `R${lane.fragmentIndex ?? i}`, '#334155');
+        this._drawLabel(start.east, start.north, `R${lane.fragmentIndex ?? i}`, '#334155', true);
       });
     }
 
@@ -887,12 +2022,14 @@ class RoadRenderer {
       const breaks = map.laneCleanup?.drawablePathAnalysis?.interRunBreaks || [];
       for (const brk of breaks) {
         if (brk.labelEast == null) continue;
-        this._drawLabel(brk.labelEast, brk.labelNorth, `OPEN ${brk.gapId}`, '#dc2626');
+        this._drawLabel(brk.labelEast, brk.labelNorth, `OPEN ${brk.gapId}`, '#dc2626', true);
         if (brk.gapStartEast != null && brk.gapEndEast != null) {
           this._drawPolyline(
             [{ east: brk.gapStartEast, north: brk.gapStartNorth }, { east: brk.gapEndEast, north: brk.gapEndNorth }],
             '#dc2626',
             2,
+            true,
+            15,
             true,
           );
         }
@@ -903,7 +2040,7 @@ class RoadRenderer {
             && Math.abs(f.sMax - g.routeS0) < 2);
           if (!near?.points?.length) continue;
           const end = near.points[near.points.length - 1];
-          this._drawLabel(end.east, end.north, `GAP ${g.alongTrackGapM.toFixed(1)}m`, '#dc2626');
+          this._drawLabel(end.east, end.north, `GAP ${g.alongTrackGapM.toFixed(1)}m`, '#dc2626', true);
         }
       }
     }
@@ -915,7 +2052,7 @@ class RoadRenderer {
         const mx = (pointBefore.east + pointAfter.east) / 2;
         const my = (pointBefore.north + pointAfter.north) / 2;
         const color = r.verdict === 'rendered_continuity' ? '#0891b2' : '#ea580c';
-        this._drawLabel(mx, my, `${r.id} ${r.verdict === 'rendered_continuity' ? 'RENDERED' : 'STRUCTURAL'}`, color);
+        this._drawLabel(mx, my, `${r.id} ${r.verdict === 'rendered_continuity' ? 'RENDERED' : 'STRUCTURAL'}`, color, true);
       }
     }
 
@@ -928,10 +2065,12 @@ class RoadRenderer {
           color,
           seg.renderedContinuity ? 2.5 : 2,
           !seg.renderedContinuity,
+          15,
+          true,
         );
         const mx = (seg.pointBefore.east + seg.pointAfter.east) / 2;
         const my = (seg.pointBefore.north + seg.pointAfter.north) / 2;
-        this._drawLabel(mx, my - 2, `${seg.id} ${seg.jumpM?.toFixed(1)}m`, color);
+        this._drawLabel(mx, my - 2, `${seg.id} ${seg.jumpM?.toFixed(1)}m`, color, true);
       }
     }
 
@@ -945,10 +2084,10 @@ class RoadRenderer {
           }
         }
         if (interp.length < 2) continue;
-        this._drawPolyline(interp, '#c026d3', 2.5, true);
+        this._drawPolyline(interp, '#c026d3', 2.5, true, 15, true);
         const mid = interp[Math.floor(interp.length / 2)];
         const method = interp[0].interpolationProvenance?.interpolationMethod || 'interp';
-        this._drawLabel(mid.east, mid.north, `${method} conf=${interp[0].interpolationProvenance?.confidence?.toFixed(2)}`, '#a21caf');
+        this._drawLabel(mid.east, mid.north, `${method} conf=${interp[0].interpolationProvenance?.confidence?.toFixed(2)}`, '#a21caf', true);
       }
     }
   }
@@ -985,6 +2124,7 @@ class RoadRenderer {
       observations: 'Raw mapped observations',
       tracked: 'Tracked observations',
       fused: 'Fused lane lines',
+      pointAccumulated: 'Point-accumulated geometry',
       rejected: 'Rejected observations',
       cleaned: 'Cleaned fused lane map',
       cleanedWithSurface: 'Cleaned lanes + road surface',
@@ -1024,6 +2164,24 @@ class RoadRenderer {
       const corridor = frame ? LP?.computeCorridorOffsetFromFrame(frame) : null;
       lines.push(`lane count: ${frame?.lanes?.length ?? 0}`);
       lines.push(`corridor offset: ${corridor?.valid ? `${corridor.vehicleOffsetFromCorridorCenterM.toFixed(2)} m` : '—'}`);
+    }
+    if (this.localGeometryMode === 'pointAccumulated' && map?.pointAccumulated?.stats) {
+      const st = map.pointAccumulated.stats;
+      const all = map.pointAccumulated.points || [];
+      const causal = this._pointCausalPlayback;
+      const elapsed = Math.max(0, Number(elapsedIdx) || 0);
+      const shown = causal
+        ? all.filter((p) => p.frameIndex != null ? p.frameIndex <= elapsed : true)
+        : all;
+      const lowConf = shown.filter((p) => p.lowConfidence).length;
+      const single = shown.filter((p) => p.singleObservation).length;
+      const repeated = shown.filter((p) => !p.singleObservation).length;
+      lines.push(`pt display: ${causal ? 'Causal playback' : 'Complete map'}`);
+      lines.push(`pt shown: ${shown.length}  source total: ${st.totalValidSourcePoints}`);
+      lines.push(`pt low-conf shown: ${lowConf}  single-obs shown: ${single}  repeated: ${repeated}`);
+      lines.push(`pt invalid excluded: ${st.invalidExcluded}  dedup: ${st.dedupRemoved}`);
+      lines.push(`pt coverage parity: ${(st.coverageParity * 100).toFixed(1)}%  boundaries: ${st.boundaryCount}`);
+      lines.push(`pt lines/curves: NONE`);
     }
     if (this._laneRelativeArrow && pose?.laneRelativeApplied) {
       lines.push(`lane-relative offset: ${pose.laneRelativeOffsetM?.toFixed?.(2)} m`);
@@ -1077,13 +2235,13 @@ class RoadRenderer {
     const pathAlpha = geometryStale ? 0.35 : 1;
 
     if (this.layers.edges && frame.edges) {
-      frame.edges.forEach((e) => this._drawPolyline(e.points, `rgba(22,163,74,${laneAlpha})`, 3, false));
+      frame.edges.forEach((e) => this._drawPolyline(e.points, `rgba(22,163,74,${laneAlpha})`, 3, false, 15, true));
     }
     if (frame.lanes) {
       frame.lanes.forEach((lane, i) => {
         const base = LANE_COLORS[i % LANE_COLORS.length];
         const color = geometryStale ? `${base}59` : base;
-        this._drawPolyline(lane.points, color, geometryStale ? 1.5 : 2, false);
+        this._drawPolyline(lane.points, color, geometryStale ? 1.5 : 2, false, 15, true);
       });
     }
     if (frame.path) {
@@ -1129,9 +2287,12 @@ class RoadRenderer {
     ctx.stroke();
   }
 
-  _drawPolyline(points, color, width, dashed, maxGapM = 15) {
+  _drawPolyline(points, color, width, dashed, maxGapM = 15, road = false) {
     if (!points?.length) return;
     const ctx = this.ctx;
+    const toScreen = road
+      ? (p) => this.roadGeometryToScreen(p.east, p.north, p.mirroredEast, p.mirroredNorth)
+      : (p) => this.worldToScreen(p.east, p.north);
     ctx.strokeStyle = color;
     ctx.lineWidth = width;
     ctx.setLineDash(dashed ? [8, 6] : []);
@@ -1139,10 +2300,10 @@ class RoadRenderer {
     const drawRun = (run) => {
       if (run.length < 2) return;
       ctx.beginPath();
-      const p0 = this.worldToScreen(run[0].east, run[0].north);
+      const p0 = toScreen(run[0]);
       ctx.moveTo(p0.x, p0.y);
       for (let i = 1; i < run.length; i++) {
-        const p = this.worldToScreen(run[i].east, run[i].north);
+        const p = toScreen(run[i]);
         ctx.lineTo(p.x, p.y);
       }
       ctx.stroke();
@@ -1164,15 +2325,20 @@ class RoadRenderer {
     ctx.setLineDash([]);
   }
 
+  _ringHasFiniteCoords(ring) {
+    return (ring || []).every((p) => Number.isFinite(p?.east) && Number.isFinite(p?.north));
+  }
+
   _fillPolygon(ring, fillStyle, labelPassId = null, options = {}) {
     if (!ring?.length || ring.length < 3) return;
     const ctx = this.ctx;
+    const toScreen = (e, n) => this.roadGeometryToScreen(e, n);
     ctx.fillStyle = fillStyle;
     ctx.beginPath();
-    const p0 = this.worldToScreen(ring[0].east, ring[0].north);
+    const p0 = toScreen(ring[0].east, ring[0].north);
     ctx.moveTo(p0.x, p0.y);
     for (let i = 1; i < ring.length; i++) {
-      const p = this.worldToScreen(ring[i].east, ring[i].north);
+      const p = toScreen(ring[i].east, ring[i].north);
       ctx.lineTo(p.x, p.y);
     }
     ctx.closePath();
@@ -1191,8 +2357,8 @@ class RoadRenderer {
     }
   }
 
-  _drawLabel(east, north, text, color = '#111') {
-    const p = this.worldToScreen(east, north);
+  _drawLabel(east, north, text, color = '#111', road = false) {
+    const p = road ? this.roadGeometryToScreen(east, north) : this.worldToScreen(east, north);
     const ctx = this.ctx;
     ctx.fillStyle = color;
     ctx.font = 'bold 10px sans-serif';
@@ -1201,8 +2367,8 @@ class RoadRenderer {
     ctx.textAlign = 'left';
   }
 
-  _drawMarker(east, north, color, label) {
-    const p = this.worldToScreen(east, north);
+  _drawMarker(east, north, color, label, road = false) {
+    const p = road ? this.roadGeometryToScreen(east, north) : this.worldToScreen(east, north);
     const ctx = this.ctx;
     ctx.fillStyle = color;
     ctx.beginPath();

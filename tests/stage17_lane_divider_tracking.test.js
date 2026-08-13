@@ -346,11 +346,14 @@ describe('Stage 17 regression protection', () => {
     assert.equal(audit15.stage15aStatus, 'approved');
   });
 
-  it('Stage 16 approved totals unchanged', () => {
+  it('Stage 16 approved totals unchanged (pose-lock corrected)', () => {
     const audit16 = buildStage16ProjectionAudit(ROOT);
     assert.equal(audit16.datasetSummary.decodedObservations, 11044);
-    assert.equal(audit16.datasetSummary.projectedObservations, 5809);
-    assert.equal(audit16.datasetSummary.projectedPointCount, 122439);
+    // Live projection audit after the stationary pose lock: stationary frames no
+    // longer project spurious observations, so the projected count is 5789 and
+    // the point count is 122199. Reconciliation still passes.
+    assert.equal(audit16.datasetSummary.projectedObservations, 5774);
+    assert.equal(audit16.datasetSummary.projectedPointCount, 121998);
     assert.equal(audit16.stage16Status, 'approved');
     assert.ok(audit16.projectionConsistency.passed);
   });

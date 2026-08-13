@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-08-05T05:56:36.804Z",
+  "generatedAt": "2026-08-13T04:25:57.824Z",
   "segment": "qlog_f449c_2.bz2",
   "stage": 7,
   "scope": "pb1_supported_fusion_gap_repair",
   "productionGeometryModified": true,
-  "processingVersion": "2026-07-24-fusion-v15",
+  "processingVersion": "2026-07-24-fusion-v16",
   "repairRule": {
     "productionFunction": "lib/sd_fusion.js canBridgeTrackerContinuousFusionGap",
     "fusionStage": "fuseLaneTrackSdFragments",

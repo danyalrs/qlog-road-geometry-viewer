@@ -1,6 +1,6 @@
 # Technical Decisions
 
-**Last updated:** 2026-07-28
+**Last updated:** 2026-08-11
 
 Major technical decisions with context, alternatives, evidence, risks, and current status.
 
@@ -352,3 +352,29 @@ Major technical decisions with context, alternatives, evidence, risks, and curre
 | **Decision** | Re-join permitted audit-only; normative cross-pass requires v1 explicit fields |
 | **Alternatives** | Continue silent re-join in Stage 19 (rejected — masks schema defect) |
 | **Status** | **Draft specification** |
+
+---
+
+## D-028: Constructed fragments as an independent experimental layer
+
+| Field | Detail |
+|-------|--------|
+| **Context** | The Point-accumulated dots are unstructured; no layer showed reliable local boundary polylines without relying on the fused/tracked pipeline |
+| **Decision** | Add a separate experimental layer (`lib/constructed_fragments.js`) that converts the accumulated dots into short, reliable local polylines. Grouped by physical boundary (chunk/pass/groupTrackId), ordered by along-track `s`, connected only when all local checks pass, split on gaps/conflicts, smoothed conservatively. Display-only; never replaces Raw/Fused/Candidate D/tracked outputs; never modifies source points |
+| **Alternatives** | (a) Reuse the fused/tracked pipeline (rejected — not independent of the pipeline under study); (b) draw straight segments between dots (rejected — noise, no residual/confidence reporting); (c) attempt one continuous boundary line (rejected — cross-fragment joining explicitly out of scope for a conservative local layer) |
+| **Evidence** | `reports/constructed_fragments_experimental.md`; `scripts/audit_constructed_fragments.js` (5 segments, 160 fragments, median length ~27 m, median residual ~0.13 m, source points unmodified); `tests/constructed_fragments.test.js` (17 passing) |
+| **Risks** | Tuning thresholds are segment-dependent; `groupTrackId` identity can be reassigned mid-pass on some segments (splits then, conservatively); curve apexes are split points by design |
+| **Status** | **Accepted as EXPERIMENTAL display-only layer (ES)** — not production |
+
+---
+
+## D-029: Conservative fragment joining (mutual-best, evidence-gated)
+
+| Field | Detail |
+|-------|--------|
+| **Context** | Constructed fragments split at curve apexes (tiny gaps, compatible tangents) and at real coverage gaps (15–31 m). A joining stage must reconnect only the former, never bridge revisits, discontinuities, unsupported gaps, or mix boundaries |
+| **Decision** | Join via hard prohibitions first, then a composite score and mutual-best selection with a clear ambiguity margin; each fragment has ≤1 predecessor and ≤1 successor (no branching). Connectors are cubic, tangent-continuous with robust endpoint tangents, and stay inside the supported evidence corridor. Source fragments are preserved byte-for-byte; joined polylines reference them. Thresholds derived from Segments 14/16 only |
+| **Alternatives** | (a) Global nearest-neighbour joining (rejected — bridges gaps and mixes boundaries); (b) score-only with no mutual-best (rejected — non-mutual joins like CF19→CF20); (c) straight connectors (rejected — kinks); (d) tune thresholds on all segments (rejected — regression segments are held out) |
+| **Evidence** | Seg14: 42 candidates → 19 accepted / 11 ambiguous / 6 polylines; Seg16: 14 → 13 accepted / 4 polylines. All K-checks PASS. Regression segments 6/54/58/99 left unjoined by hard prohibitions (conservative by design). `reports/lane_joining_stage.md` |
+| **Risks** | Over-conservative on noisy segments (6/54/58/99); pre-existing fragment-tip kinks remain visible in joined polylines (connector itself adds no kink); future topology stage owns forks/merges |
+| **Status** | **Accepted as EXPERIMENTAL display-only layer (ES)** — not production |

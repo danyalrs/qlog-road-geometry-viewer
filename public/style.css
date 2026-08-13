@@ -91,6 +91,17 @@ main {
   font-weight: 600;
 }
 .hidden { display: none; }
+.local-point-only-control { display: none; }
+.local-point-only-control.visible { display: inline-block; }
+#pointDisplayModeLabel.local-point-only-control.visible { display: block; }
+#pointReliabilityTint.local-point-only-control.visible { display: inline-block; margin-left: 8px; }
+#pointReliabilityTint:hover { cursor: help; }
+#expBoundariesMode.local-point-only-control.visible { display: inline-block; margin-left: 4px; }
+.obs-debug-control { display: none; }
+.obs-debug-control.visible { display: block; }
+.obs-debug-control h3 { margin: 8px 0 4px; font-size: 0.8rem; }
+.obs-debug-control label { font-size: 0.75rem; }
+.obs-debug-control input { width: 70px; }
 .banner-local {
   background: #e0f2fe;
   border-color: #38bdf8;

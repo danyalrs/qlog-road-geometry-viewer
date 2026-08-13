@@ -1,0 +1,72 @@
+{
+  "seg9": {
+    "mapValid": true,
+    "mapReason": null,
+    "pointCount": 910,
+    "boundaryCount": 3,
+    "displayedPoints": 910,
+    "coverageParity": 1,
+    "singleObservationCount": 3,
+    "repeatedSupportCount": 907,
+    "constructedFragments": [
+      {
+        "id": "CF0",
+        "groupTrackId": "0",
+        "laneIndex": 1,
+        "points": 25,
+        "lengthM": 60.75,
+        "splitReason": "temporalRevisit"
+      },
+      {
+        "id": "CF1",
+        "groupTrackId": "1",
+        "laneIndex": 2,
+        "points": 25,
+        "lengthM": 75,
+        "splitReason": "sharpDirectionChange"
+      },
+      {
+        "id": "CF2",
+        "groupTrackId": "2",
+        "laneIndex": 0,
+        "points": 23,
+        "lengthM": 99.2,
+        "splitReason": "sharpDirectionChange"
+      }
+    ],
+    "experimentalBoundaryLanes": [
+      "0",
+      "1",
+      "2"
+    ],
+    "joinedPolylines": 0,
+    "trajectoryPoints": 1,
+    "roadSurfacePolygons": 0,
+    "bounds": {
+      "minE": -9.375000000000002,
+      "maxE": 126.56250000000001,
+      "minN": -9.514386653900146,
+      "maxN": 7.992503166198723
+    },
+    "pointForwardRangeM": {
+      "min": 0,
+      "max": 117.19
+    },
+    "pointLateralRangeM": {
+      "min": -4.51,
+      "max": 2.99
+    },
+    "referencePose": {
+      "east": -0.262,
+      "north": 1.849,
+      "headingDeg": 57.29
+    }
+  },
+  "causalPlaybackCounts": {
+    "elapsed0": 26,
+    "elapsed5": 182,
+    "elapsed15": 442,
+    "elapsed29": 910,
+    "total": 910
+  }
+}

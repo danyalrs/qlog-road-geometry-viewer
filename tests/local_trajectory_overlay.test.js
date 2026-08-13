@@ -191,11 +191,13 @@ describe('Local trajectory overlay — rendering behaviour', () => {
   it('arrow renders after dashed path in stationary local map', () => {
     const renderSrc = fs.readFileSync(RENDER_JS, 'utf8');
     const methodSlice = renderSrc.slice(
-      renderSrc.indexOf('_drawStationaryLocalMap(d, elapsedIdx)'),
-      renderSrc.indexOf('_drawStationaryLocalMap(d, elapsedIdx)') + 12000,
+      renderSrc.indexOf('_drawStationaryLocalMap(d, elapsedIdx) {'),
+      renderSrc.indexOf('_drawStationaryLocalMap(d, elapsedIdx) {') + 12000,
     );
-    const pathIdx = methodSlice.indexOf('this._drawLocalVehiclePathOverlay(map);', methodSlice.indexOf('if (this.layers.fused)'));
-    const arrowIdx = methodSlice.lastIndexOf('this._drawLocalPlaybackArrow(null, this.playbackPose)');
+    // The arrow is drawn in the early-return block that also draws the vehicle
+    // path overlay; it must appear AFTER the path overlay in the method body.
+    const pathIdx = methodSlice.indexOf('this._drawLocalVehiclePathOverlay(map);');
+    const arrowIdx = methodSlice.indexOf('this._drawLocalPlaybackArrow(null, this.playbackPose)');
     assert.ok(pathIdx >= 0 && arrowIdx > pathIdx);
   });
 

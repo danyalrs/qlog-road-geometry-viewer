@@ -17,7 +17,7 @@ function localGeometryUI() {
   return window.LocalGeometryUI || {
     LOCAL_GEOMETRY_DEFAULT_MODE: 'fused',
     LOCAL_GEOMETRY_STORAGE_KEY: 'qlogLocalGeometryMode',
-    normalizeLocalGeometrySelection: (v) => (v === 'observations' || v === 'fused' ? v : 'fused'),
+    normalizeLocalGeometrySelection: (v) => (v === 'observations' || v === 'fused' || v === 'pointAccumulated' ? v : 'fused'),
   };
 }
 
@@ -87,6 +87,9 @@ function getLayers() {
     passBoundaries: $('layerPassBoundaries').checked,
     suspiciousGps: $('layerSuspiciousGps').checked,
     rejectedObs: $('layerRejectedObs').checked,
+    constructedFragments: $('layerConstructedFragments')?.checked === true,
+    joinedPolylines: $('layerJoinedPolylines')?.checked === true,
+    joinCandidates: $('layerJoinCandidates')?.checked === true,
     diagPhysicalBoundary: $('layerDiagPhysicalBoundary')?.checked,
     diagTrackIds: $('layerDiagTrackIds')?.checked,
     diagFragmentIds: $('layerDiagFragmentIds')?.checked,
@@ -553,9 +556,64 @@ function switchLocalGeometryLayer() {
   if (!isLocalPlaybackMode() || !processData || !renderer) return;
   const mode = getLocalGeometryMode();
   persistLocalGeometryMode(mode);
+  updatePointOnlyControlVisibility(mode);
   const idx = parseInt($('timeline').value, 10);
   updateLocalPlayback(idx, { preserveViewport: true });
   renderer.draw();
+}
+
+function updatePointOnlyControlVisibility(mode) {
+  const isPoint = mode === 'pointAccumulated';
+  document.querySelectorAll('.local-point-only-control').forEach((el) => {
+    el.classList.toggle('visible', isPoint);
+  });
+  const obsDebugOn = (typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('obsDebug') === '1');
+  const obsControls = document.querySelector('.obs-debug-control');
+  if (obsControls) obsControls.classList.toggle('visible', obsDebugOn);
+}
+
+function updatePointDisplayModeLabel() {
+  const label = $('pointDisplayModeLabel');
+  if (!label) return;
+  const causal = renderer?.getPointCausalPlayback?.() === true;
+  label.textContent = causal ? 'Causal playback' : 'Complete map';
+}
+
+function initPointCausalToggle() {
+  const cb = $('pointCausalPlayback');
+  if (!cb) return;
+  cb.checked = renderer?.getPointCausalPlayback?.() === true;
+  cb.addEventListener('change', () => {
+    renderer.setPointCausalPlayback(cb.checked);
+    updatePointDisplayModeLabel();
+  });
+}
+
+function initPointReliabilityTint() {
+  const cb = $('pointReliabilityTint');
+  if (!cb) return;
+  cb.checked = renderer?.getPointReliabilityTint?.() === true;
+  cb.addEventListener('change', () => {
+    renderer.setPointReliabilityTint(cb.checked);
+  });
+}
+
+function initExperimentalBoundariesMode() {
+  const sel = $('expBoundariesMode');
+  if (!sel) return;
+  sel.value = renderer?.getExperimentalBoundariesMode?.() || 'off';
+  sel.addEventListener('change', () => {
+    renderer.setExperimentalBoundariesMode(sel.value);
+  });
+}
+
+function initMirrorRoadLateralDisplay() {
+  const cb = $('mirrorRoadLateral');
+  if (!cb) return;
+  cb.checked = renderer?.getMirrorRoadLateralDisplay?.() === true;
+  cb.addEventListener('change', () => {
+    renderer.setMirrorRoadLateralDisplay(cb.checked);
+  });
 }
 
 function applyVisualization() {
@@ -585,6 +643,12 @@ function applyVisualization() {
   let preserveViewport = false;
   if (displayMode === 'local') {
     initLocalGeometryModeSelect();
+    updatePointOnlyControlVisibility(getLocalGeometryMode());
+    initPointCausalToggle();
+    initPointReliabilityTint();
+    initExperimentalBoundariesMode();
+    initMirrorRoadLateralDisplay();
+    updatePointDisplayModeLabel();
     if (lastLocalPlaybackState) {
       timelineIdx = Math.min(
         Math.max(0, lastLocalPlaybackState.timelineIndex),
@@ -1035,11 +1099,21 @@ function setupCanvasInteraction() {
       renderer.draw();
     }
     const rect = canvas.getBoundingClientRect();
-    const pt = renderer.findNearestPoint(e.clientX - rect.left, e.clientY - rect.top);
+    const mx = e.clientX - rect.left;
+    const my = e.clientY - rect.top;
+    const pt = renderer.findNearestPoint(mx, my);
     renderer.hoverPoint = pt;
     renderer.draw();
+    const tl = parseInt($('timeline')?.value || '0', 10);
+    const joinHover = renderer._joinCandidateHover?.(mx, my, tl);
+    if (joinHover?.length) {
+      $('hoverInfo').textContent = joinHover.join('\n');
+      return;
+    }
     if (pt) {
-      $('hoverInfo').textContent = [
+      const relHover = renderer._reliabilityHoverText?.(mx, my, tl);
+      const bndHover = renderer._experimentalBoundaryHover?.(mx, my, tl);
+      const lines = [
         `east: ${pt.east?.toFixed(2)} m`,
         `north: ${pt.north?.toFixed(2)} m`,
         `chunk: ${pt.chunkId ?? '—'}`,
@@ -1047,7 +1121,10 @@ function setupCanvasInteraction() {
         `track: ${pt.laneTrackId ?? '—'}`,
         `lane: ${pt.laneIndex ?? '—'}`,
         `frameId: ${pt.frameId ?? '—'}`,
-      ].join('\n');
+      ];
+      if (bndHover?.length) lines.push(...bndHover);
+      else if (relHover?.length) lines.push(...relHover);
+      $('hoverInfo').textContent = lines.join('\n');
     } else {
       $('hoverInfo').textContent = '—';
     }
@@ -1070,6 +1147,22 @@ function bindEvents() {
   $('localGeometryMode')?.addEventListener('change', () => {
     switchLocalGeometryLayer();
   });
+
+  const obsDebugFrame = $('obsDebugFrame');
+  const obsDebugLane = $('obsDebugLane');
+  if (obsDebugFrame && obsDebugLane) {
+    $('btnObsDebugShow').onclick = () => {
+      const frameIndex = parseInt(obsDebugFrame.value, 10);
+      const laneIndex = parseInt(obsDebugLane.value, 10);
+      renderer.setObsDebugSelection({
+        frameIndex: Number.isFinite(frameIndex) ? frameIndex : 0,
+        laneIndex: Number.isFinite(laneIndex) ? laneIndex : null,
+      });
+    };
+    $('btnObsDebugClear').onclick = () => {
+      renderer.setObsDebugSelection(null);
+    };
+  }
 
   $('btnPlay').onclick = () => togglePlayback();
   $('playSpeed').onchange = () => {

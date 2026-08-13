@@ -1,6 +1,6 @@
 # Development Log
 
-**Last updated:** 2026-07-28
+**Last updated:** 2026-08-12
 
 Chronological record of confirmed work. Entries cite checkpoints, reports, audits, or source where possible. Failed or superseded work is recorded as such.
 
@@ -336,6 +336,151 @@ Chronological record of confirmed work. Entries cite checkpoints, reports, audit
 | **Threshold** | `RESIDUAL_CAP_M` not approved — calibration blocked until manual review |
 | **Regression** | 483 tests (+3 hardening); flaky concurrent-publication on 2/2 runs |
 | **Not authorized** | B-MOTION/B-TRAV implementation, production promotion, P3, lane counting |
+
+---
+
+## 2026-08-10 — Constructed lane-boundary fragments (experimental display layer)
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Add a separate, toggleable experimental layer that converts the accumulated Point dots into short, reliable local boundary polylines without touching the fused/tracked pipeline or the dots |
+| **Work** | New `lib/constructed_fragments.js` (+ browser mirror + sync script): group by physical boundary, order by along-track `s`, connect only when all local checks pass, split on gaps/conflicts/revisit/support, 5-pt moving-average smoothing (endpoints kept, shift capped 0.8 m), residual/confidence reporting. Wired `constructedFragments` into `buildPointAccumulatedFragments`; renderer layer `layerConstructedFragments`; causal/isolation rebuild at draw time. Pre-existing `headingDegForVehicleIcon` bundle bug fixed in `scripts/sync_segment_local_map_public.js`. 17 new tests in `tests/constructed_fragments.test.js` |
+| **Components** | `lib/constructed_fragments.js`, `public/constructed_fragments.js`, `scripts/sync_constructed_fragments_public.js`, `scripts/audit_constructed_fragments.js`, `lib/segment_local_map.js`, `public/render.js`, `public/index.html`, `public/app.js`, `tests/constructed_fragments.test.js`, `reports/constructed_fragments_experimental.md` |
+| **Results** | 160 fragments across 5-segment sample; median length ~27 m (seg 14: 42.8 m); median fragment residual ~0.13 m; source points unmodified in all segments; split reasons balanced |
+| **Status** | **EXPERIMENTAL (ES) — display-only, never production** |
+| **Evidence** | `reports/constructed_fragments_experimental.md`, `scripts/audit_constructed_fragments.js`, `tests/constructed_fragments.test.js` (17/17) |
+
+---
+
+## 2026-08-11 — Constructed fragments acceptance validation (evidence completion)
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Complete the acceptance evidence for the constructed-fragments layer on the seven required segments (14, 16, 54, 2, 58, 99, 6) without tuning the algorithm or joining fragments |
+| **Work** | Added rejection-record diagnostics (source point IDs, spatial/lateral/direction/temporal deltas) to `lib/constructed_fragments.js` (pure measurement, no threshold change). Added `scripts/validate_constructed_fragments.js` (per-segment stats + 10 structural checks), `scripts/regression_constructed_fragments.js` (segments 2/6/54/58/99), `scripts/capture_constructed_fragments.js` + `scripts/verify_constructed_fragments_capture.js` (visual comparisons). Added display-only `?cfLabels=1` fragment-ID/split-reason labels in `public/render.js`. Documented the pre-existing browser-bundle repair separately |
+| **Results** | All 10 structural checks PASS for segments 14 and 16 (boundary separation, no crossing, no unsupported-gap bridging, no order reversal/interior zigzag, smoothing within 0.8 m cap, evidence-supported endpoints, vehicle-between-boundaries, corrected orientation unchanged). Regression invariants hold on 2/6/54/58/99. 8 synchronized captures + programmatic pixel verification. Full rejected-connection records exported |
+| **Baseline** | Full suite: 1,506 tests, 1,479 pass / 27 fail — same failure set as before (the 26→27 delta is the known-flaky Stage 19 concurrent-publication test that passes in isolation). No new failure added |
+| **Status** | **EXPERIMENTAL (ES)** — evidence complete; no commit/merge/push |
+| **Evidence** | `reports/constructed_fragments_validation_evidence.md`, `reports/constructed_fragments_validation/*.json`, `screenshots/constructed_fragments/*.png` |
+
+---
+
+## 2026-08-11 — Lane-boundary fragment joining stage (experimental)
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Join only compatible constructed fragments (same chunk/pass/physical boundary, forward in s, evidence corridor, mutual-best, no branching) into longer lane-boundary polylines; keep real gaps, revisits, discontinuities and ambiguity separated |
+| **Work** | New `lib/lane_joining.js` (+ browser mirror + sync): hard prohibitions, bounded spatial candidate generation, 10 connection checks, evidence-corridor classification, composite score, mutual-best selection with ambiguity margin and ≤1 pred/succ (no branching), chaining into disjoint polylines, cubic tangent-continuous connectors. Thresholds derived only from Segments 14/16 (`JOINING_DEFAULTS`). Wired `joinedPolylines` into `buildPointAccumulatedFragments` (additive). Viewer layers `layerJoinedPolylines` + `layerJoinCandidates` with connector colours and hover. 16 new tests. Validation/regression/capture scripts |
+| **Results** | Seg 14: 42 candidates → 19 accepted, 11 ambiguous, 6 polylines, 12 unjoined; Seg 16: 14 → 13 accepted, 4 polylines, 0 unjoined. All 10 K-checks PASS on both (no boundary mixing, no reversal, no connector crossing, no unsupported gap, no kink, evidence-close, ambiguity unjoined, source fragments byte-identical, mirror + arrow unchanged). Regression on 2/6/54/58/99: all invariants PASS; segments 6/54/58/99 left unjoined (hard prohibitions) by design |
+| **Baseline** | Full suite after joining: 1,522 tests, 1,495 pass / 27 fail — identical pre-existing failure set, 16 new joining tests all pass, no new failure |
+| **Status** | **EXPERIMENTAL (ES)** — separate toggleable layer; no commit/merge/push |
+| **Evidence** | `reports/lane_joining_stage.md`, `reports/lane_joining/*.json`, `screenshots/lane_joining/*.png`, `tests/lane_joining.test.js` (16/16) |
+
+---
+
+## 2026-08-11 — Mirror-alignment fix for constructed/joined layers
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Fix a visual mirror regression: with "Mirror road lateral display" checked, the constructed fragments and joined lane polylines rendered at the legacy (uncorrected) lane positions while the dots were mirrored |
+| **Work** | Traced the coordinate flow: the dots carry precomputed `mirroredLocalEast/mirroredLocalNorth` and pass them through `roadGeometryToScreen(e,n,me,mn)`, but the constructed/joined/connector/EB layers carried only canonical `{east,north}` and called the selector with 2 args → with mirror on they used the unmirrored coords. Fixed by propagating the precomputed mirrored coords onto every derived-layer point and passing them through the same selector (no new reflection formula). Changed `lib/constructed_fragments.js`, `lib/lane_joining.js`, `lib/experimental_boundaries.js`, `public/render.js` + bundle sync scripts |
+| **Results** | All road layers move together on toggle (L0 4.5px, L1 1.8px, L2 1.2px, joined 1.4px, EB 1.7px); arrow shift 0.00px; fresh load restores corrected default; dot-vs-fragment ≤ 0.4 px in both mirror states. Canonical joining decisions unchanged (seg14: 19 accepted / 6 polylines / 12 unjoined). New `tests/mirror_alignment.test.js` (10/10) compares actual screen coordinates |
+| **Baseline** | Full suite after fix: 1,532 tests, 1,505 pass / 27 fail — same pre-existing failure set; 10 new tests pass; no new failure |
+| **Status** | **EXPERIMENTAL (ES)** — fixed; no commit/merge/push |
+| **Evidence** | `reports/mirror_alignment_fix.md`, `screenshots/mirror_verify/*.png`, `tests/mirror_alignment.test.js` |
+
+---
+
+## 2026-08-11 — Endpoint coverage fix for constructed/joined layers
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Recover visible accumulated boundary dots at the temporal/spatial route START that were excluded from constructed fragments (and therefore from joined polylines); keep end tails conservative |
+| **Work** | Diagnosed: the 42 m start gap on Segments 14/16 is the first temporal frame's observations (support=1, monotonic, geometrically consistent continuation) rejected by the global `minSupportCount` gate. End tails are noisy/cross-lane (seg16 alternating −5.1/−3.9) or sparse (seg14 2 unique points) and should NOT be bridged. Added a one-sided endpoint-extension pass in `lib/constructed_fragments.js` (`extendEndpoints`/`applyEndpointExtensions`): extends only the first/last fragment of a boundary using raw accumulated points, gated by boundary identity, monotonic ordering, consecutive-observation count, bounded gaps, lateral continuity + tight per-step lateral, lateral monotonicity, confidence floor, span cap, and never extrapolates beyond observed dots. `minSupportCount` not lowered globally |
+| **Results** | Seg14/16 start gaps 42 m → 0 m (15 pts/boundary recovered); joined polylines now start at the route start. End tails left unextended (conservative). All 10 constructed-fragment validation checks PASS; 0 crossing/reversal/bridge; Seg6/99 hard splits intact; canonical+mirrored pairing preserved. Joining decisions unchanged (seg14 19 conns / 6 polylines, seg16 13 / 4) |
+| **Baseline** | Full suite after fix: 1,538 tests, 1,512 pass / 26 fail — 6 new endpoint tests pass; failing set byte-identical to before (27→26 delta = flaky Stage 19 concurrent-publication passing this run). No new failure |
+| **Status** | **EXPERIMENTAL (ES)** — diagnosed + fixed; no commit/merge/push |
+| **Evidence** | `reports/endpoint_coverage_fix.md`, `reports/constructed_fragments_validation/endpoint_coverage_*.json`, `screenshots/endpoint_coverage/*.png`, `tests/constructed_fragments.test.js` (23/23) |
+
+---
+
+## 2026-08-12 — Joined-output consistency & lane-colour diagnosis
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | (1) Every valid constructed fragment must appear in the solid "Joined lane polylines" layer; (2) establish the meaning of orange lane geometry |
+| **Work** | Diagnosed incomplete solid coverage: `joinConstructedFragments` only built polylines from accepted-connection chains with no singleton treatment — chain heads and isolated fragments (e.g. CF0@0.0) were omitted (seg14: 12/37 missing, seg20: 45/80). Fixed by treating all fragments as graph nodes, accepted connectors as edges, building disjoint components, and folding every unconnected fragment into a one-fragment singleton. Established orange = `trackColor(3)` = groupTrackId 3, a legitimate intermittent outer-left 4th boundary (own identity/observations/lateral position), preserved. Fixed a colour-selection inconsistency: fragments/joined used a hard-coded `laneColors[laneIndex]` map while dots used `trackColor(groupTrackId)`; added a shared `boundaryColor(groupTrackId)` resolver so all normal layers use the stable boundary colour. Debug decision colours remain confined to "Join candidates (debug)" |
+| **Results** | Every valid fragment now appears exactly once in joined output (missing=0, duplicate=0) on Segments 14/16/20/2/6/54/58/99. Joined geometry covers 100% of fragment points (solid follows dashed exactly). Joined polylines start at the route start for every boundary. Fragments, joined and dots share one colour per boundary. All constructed-fragment validation checks PASS; regression invariants PASS; Seg6/54/58/99 fragments now visible as singletons. Mirror + arrow protections verified (arrow shift 0.00 px) |
+| **Baseline** | Full suite after fix: 1,546 tests, 1,519 pass / 27 fail — 8 new joining tests pass; failing set identical to baseline; no new failure |
+| **Status** | **EXPERIMENTAL (ES)** — no commit/merge/push |
+| **Evidence** | `reports/joined_output_consistency.md`, `screenshots/joined_consistency/*.png`, `tests/lane_joining.test.js` (24/24) |
+
+---
+
+## 2026-08-12 — Lane-viewer rendering regression fix (`drawn` ReferenceError)
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Repair the viewer regression after the singleton + shared-boundary-colour changes: first processed segment's geometry appeared retained, the vehicle arrow disappeared, only the blue dashed boundary rendered, no solid joined polylines |
+| **Work** | Reproduced in the browser and captured the browser-console error: `ReferenceError: drawn is not defined`, thrown on every fragment draw. Root cause: the colour fix removed `let drawn = 0` (alongside the old `laneColors` const) from `_drawConstructedFragments`, but the method still referenced `drawn` in the label count. Every fragment draw threw, aborting the point-accumulated canvas function — hiding the arrow (drawn later), the joined solid polylines (drawn after fragments), and all boundaries except the first fragment's (blue). Segment state replacement itself was correct (verified: frag/joined counts and arrow position change per segment). Fixed by restoring `let drawn = 0`. Added `tests/viewer_state_regression.test.js` (12 tests) pinning the fix + invariants |
+| **Results** | All boundary colours render (blue/red/green/orange per groupTrackId), joined solid polylines render, the vehicle arrow renders and moves across segments, segment switches fully replace geometry (no first-segment retention). Numeric/string groupTrackId resolve identically; debug amber confined to the candidates layer |
+| **Baseline** | Full suite after fix: 1,558 tests, 1,531 pass / 26-27 fail — 12 new viewer tests pass; failing set identical to baseline; no new failure |
+| **Status** | **EXPERIMENTAL (ES)** — no commit/merge/push |
+| **Evidence** | `reports/viewer_regression_fix.md`, `screenshots/viewer_regression_fix/*.png`, `tests/viewer_state_regression.test.js` (12/12) |
+
+---
+
+## 2026-08-12 — Stationary vehicle pose drift fix
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Stop the mapping pose drifting/rotating when the physical vehicle is stationary, caused by low-speed GPS position and bearing noise being interpreted as real movement (e.g. `moving` at 0.14 m/s on qlog_f449c_6) |
+| **Work** | Diagnosed: lane observations are transformed through per-frame GPS poses; `movement_state.js` labelled states but never locked the pose; `effSpeed = max(speed, implied)` let displacement noise (1 m / 0.1 s → 10 m/s implied) override the reported 0.14 m/s. Added `lib/stationary_pose_lock.js`: a MOVING/CANDIDATE_STOP/STATIONARY/CANDIDATE_MOVE state machine with time-based dwell, GPS-`speed`-primary motion signal (displacement only with ≥1 s dt), stationary anchor (median of near-stop poses), mapping-pose freeze while stationary, and a movement-resumption blend with a stale-anchor departure guard. Wired into `process_route.js` so `transformFrameGeometry` uses the locked pose; lane observations still processed from the fixed anchor. Viewer shows "STATIONARY LOCKED" + anchor + mapping pose. 24 new tests; updated pose-lock-corrected baselines |
+| **Results** | Fully-stationary segments (9, 60, 65, 96): raw drift 10.8–28.4 m → mapped travel 0.2–1.2 m; heading frozen. Stop-and-go (6, 54, 57, 58, 59, 61, 62, 64, 66, 67, 95): drift removed, no teleport. Dataset-wide: 172 m false travel removed, 91 segments classified (4 fully-stationary, 10 stop-and-go, 77 unchanged). Seg57 no longer fragments into spurious passes. Seg6 correctly shows STATIONARY at 0.14 m/s |
+| **Baseline** | Full suite: 1,582 tests, 1,556 pass / 26 fail — 24 new tests pass; failing set identical to pre-change baseline; no new failure |
+| **Status** | **EXPERIMENTAL (ES)** — no commit/merge/push |
+| **Evidence** | `reports/stationary_pose_fix.md`, `reports/stationary_pose_validation.json`, `tests/stationary_pose_lock.test.js` (24/24) |
+
+---
+
+## 2026-08-12 — Stationary pose dwell-window correction (two-pass)
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Fix the remaining regression: the arrow and geometry still drifted during the CANDIDATE_STOP (3 s stop-confirmation) window because only FUTURE poses were locked after confirmation; poses produced during the dwell were committed at drifting raw GPS values |
+| **Work** | Refactored `lib/stationary_pose_lock.js` to a two-pass algorithm: Pass 1 classifies states (time-based dwell), Pass 2 applies the confirmed anchor from `effectiveStopTime` (start of the validated CANDIDATE_STOP run, or first usable frame for initially-stationary segments) retrospectively to every frame in the interval. Anchor = last reliable moving pose (reported speed ≥ stop threshold), so post-stop drift cannot centre it and there is no backward jump. Bumped `PROCESSING_VERSION` → `fusion-v16` to invalidate stale cached results; confirmed pose-lock params are not in the processing-options snapshot |
+| **Results** | Seg6 arrow no longer moves backward during the dwell (fi=10-11 previously 46.84→45.86; now locked at last moving pose 47.70); Seg9 all frames use one anchor (-0.26, 0 m travel). Dataset-wide: 6 fully-stationary + 12 stop-and-go segments, 302 m false travel removed (was 172 m), fully-stationary mapped travel 0 m. 14 new dwell-correction tests |
+| **Baseline** | Full suite: 1,596 tests, 1,570 pass / 26 fail (deterministic) — 38 stationary-pose tests pass; failing set identical to pre-change baseline; no new failure. (One API-parity test requires a running server and fails with ECONNREFUSED when none is present — pre-existing environment dependency, verified passing with a fresh server.) |
+| **Status** | **EXPERIMENTAL (ES)** — no commit/merge/push |
+| **Evidence** | `reports/stationary_pose_dwell_fix.md`, `reports/stationary_pose_validation.json`, `tests/stationary_pose_lock.test.js` (38/38) |
+
+---
+
+## 2026-08-12 — Stationary Segment 9 `noGeometry` fix (partial stationary geometry)
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Restore drawable local lane geometry for fully-stationary Segment 9, which showed `Stationary local map unavailable / reason: noGeometry / mode: pointAccumulated` after the fusion-v16 two-pass pose-lock correction, despite 910 valid accumulated lane observations |
+| **Diagnosis** | Traced all 11 pipeline stages. Source extraction (35 lane lines, 910 points), accumulation (910 displayed, 0 rejected) and tracking (4 tracks: 0/30 frames, 1/1, 2/2, 3/2; 0 rejected) all succeed. The **first loss stage** is the map validity gate in `buildSegmentLocalMap`: `valid`/`reason` were computed only from `laneFragments+edgeFragments > 0 || roadSurfacePolygons > 0 || trajectory >= 2`. In Point mode laneFragments are empty by design (dots drawn from `pointAccumulated.points`) and a stationary segment has 0 polygons + a 1-point trajectory, so the gate reported `noGeometry` and `render.js` short-circuited to the unavailable overlay. Secondary: a zero-length reference trajectory (all 30 poses locked to one anchor) collapsed every observation onto `s=0,d=0`, preventing constructed fragments |
+| **Work** | (1) `hasDrawableGeometry` now includes `pointAccumulated.points.length > 0` — `noGeometry` only when EVERY drawable layer is empty. (2) Degenerate (zero-length) reference trajectories are treated as absent in `buildPointAccumulatedFragments` and `accumulatePointObservations`, so `s`/`d` fall back to the fixed-anchor forward/lateral frame (`s` = forward distance 0–117 m, `d` = lateral −4.5…+3.0). Regenerated public mirrors. No thresholds changed, no segment-specific conditions, no artificial motion |
+| **Results** | Seg9 Point mode: `valid=true, reason=null`; 910 points drawn (3 boundary groups, 907 repeated-support); 3 constructed fragments (CF0 lane1 60.8 m, CF1 lane2 75 m, CF2 lane0 99.2 m); 3 experimental-boundary lanes; polygons stay 0 (no travel, no invented boundaries); trajectory stays 1 (pose anchored). Causal playback: elapsed 0→26, 5→182, 15→442, 29→910 points. Occlusion evidence: lane1 (ego boundary) present all 30 frames prob 0.58–0.88; lanes 0/2 only frames 4, 28–29; **no frame without usable evidence** — the car ahead reduces the boundary set but the model outputs sufficient lane evidence; the blank map was the pipeline gate, not occlusion |
+| **Baseline** | Full suite: 1,610 tests (1,596 baseline + 14 new), 1,583 pass / 27 fail — all 14 new stationary-geometry tests pass; failing set identical to pre-change baseline (Stage 19 checksum/completeness, browser/Node checksum parity, flaky concurrent-publication test, three `v11 processing version unchanged` pins); no new failure |
+| **Status** | **EXPERIMENTAL (ES)** — no commit/merge/push |
+| **Evidence** | `reports/stationary_geometry_no_geometry_fix.md`, `reports/stationary_geometry_validation.json`, `tests/stationary_geometry.test.js` (14/14), `screenshots/point_accumulated_modes/*_qlog_f449c_9_*.png` |
+
+---
+
+## 2026-08-12 — Stationary Segment 9 lane semantics / arrow / road-polygon diagnosis
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Segment 9 displayed 910 points, 3 fragments (label "6"), 3 joined polylines, 0 road polygons; the blue polyline appeared to pass through the vehicle arrow and the video showed a right-side boundary not displayed. Diagnose lane semantics, lateral coordinates, missing-boundary evidence and polygon eligibility before editing |
+| **Diagnosis** | Three displayed polylines: JP1 = lane1 (ego-right, 30 frames, prob 0.57–0.88), JP2 = lane2 (ego-left, 3 frames: 4/28/29), JP3 = lane0 (outer-right, 2 frames: 28/29). **Arrow defect**: for a fully stationary segment the map trajectory collapses to one point, so `resolvePathHeadingDeg` fell back to 0 (canvas-north) while segment-local forward is +east (heading 90) → arrow rotated 90° off, pointing at the mirror-displayed blue ego-right boundary → "polyline appears to pass through the arrow". **Label defect**: `_drawConstructedFragments` incremented `drawn` twice per fragment → "6" for 3. **Outer-right boundary**: lane0 is output by the model in all 30 frames at prob ~0.30 (below the 0.5 gate) in 28/30 frames → first loss = probability filter; only frames 28–29 shown → outcome E (genuine low-confidence lane detection). **Road polygon**: sd_fusion polygon path requires along-track s spread; a stationary segment projects everything to s=0 → `intervalRejected missingBoundary`, `selectOuterLaneTrackBoundaries` null, `fusedLaneLines=0` → no polygon even though two supported ego boundaries exist → demonstrated pipeline gap |
+| **Work** | (1) `resolveArrowOnSegmentMap`: heading 90° when trajectory < 2 points (stationary), moving segments unchanged. (2) Fixed fragment-count double increment. (3) Added `buildStationaryLocalPolygons` — a general stationary local-map polygon path using the fixed-anchor forward/lateral point cloud (left/right supported pair, correct ordering, lateral separation, forward overlap, no extrapolation, no invented boundary, no Segment 9 condition). (4) Normal-mode renderer draws stationary polygons (previously only debug/ribbon paths). (5) Wired into `buildSegmentLocalMap` pointAccumulated mode; regenerated public mirrors; widened render source-shape test windows |
+| **Results** | Seg9: 1 stationaryLocalRoadSurface polygon (lane2 ego-left × lane1 ego-right, supportFrames 3, overlap 117.2 m, sep 2.65 m, area 316.3 m²); arrow heading 90° (forward); fragment label now 3. lane0/lane3 excluded by generic support gate (no invented boundary). Seg6/seg2 unchanged (sd_fusion polygons intact, moving arrow headings 39.5°/88.2°). 13 new lane-semantics tests |
+| **Baseline** | Full suite: 1,623 tests (1,596 baseline + 27 new), 1,596 pass / 27 fail — failing set identical to pre-change baseline; no new failure |
+| **Status** | **EXPERIMENTAL (ES)** — no commit/merge/push |
+| **Evidence** | `reports/stationary_lane_semantics_diagnosis.md`, `reports/stationary_lane_semantics_validation.json`, `tests/stationary_lane_semantics.test.js` (13/13), `screenshots/seg9_*.png` |
 
 ---
 

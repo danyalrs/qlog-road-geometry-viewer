@@ -292,7 +292,7 @@ describe('Segment 2 lane-continuity Stage 8 visible gap reconstruction', () => {
   });
 
   it('35. stale cache not accepted without version bump', () => {
-    assert.ok(PROCESSING_VERSION.includes('fusion-v15'));
+    assert.ok(PROCESSING_VERSION.includes('fusion-v16'));
   });
 
   it('36. road-surface generator unchanged', () => {

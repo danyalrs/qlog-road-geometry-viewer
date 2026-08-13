@@ -4780,8 +4780,8 @@ function buildCleanedLaneMap({
     laneObservations,
     visibleGapReconstructionEnabled: options.visibleGapReconstructionEnabled === true
       || opts.visibleGapReconstructionEnabled === true,
-    positiveBoundaryContinuityBridgeEnabled: options.positiveBoundaryContinuityBridgeEnabled
-      ?? opts.positiveBoundaryContinuityBridgeEnabled,
+    positiveBoundaryContinuityBridgeEnabled: options.positiveBoundaryContinuityBridgeEnabled === true
+      || opts.positiveBoundaryContinuityBridgeEnabled === true,
   });
   if (reconResult.stats.enabled) {
     cleaned.length = 0;

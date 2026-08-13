@@ -35,7 +35,45 @@
         <select id="localGeometryMode" class="local-only-control">
           <option value="observations">Raw mapped observations</option>
           <option value="fused" selected>Fused lane lines</option>
+          <option value="pointAccumulated">Point-accumulated geometry</option>
         </select>
+        <label class="local-only-control local-point-only-control">
+          <input type="checkbox" id="pointCausalPlayback" class="local-point-only-control"> Causal playback
+        </label>
+        <label class="local-only-control local-point-only-control" title="Display-only tint by experimental reliability score. Does not filter, move or connect points.">
+          <input type="checkbox" id="pointReliabilityTint" class="local-point-only-control"> Experimental reliability tint
+        </label>
+        <label class="local-only-control local-point-only-control" title="Experimental display-only lane-boundary overlay. Never modifies Point dots.">
+          Experimental lane boundaries
+          <select id="expBoundariesMode" class="local-point-only-control">
+            <option value="off">Off</option>
+            <option value="points">Points only</option>
+            <option value="boundaries">Boundaries only</option>
+            <option value="combined">Points + boundaries</option>
+          </select>
+        </label>
+        <label class="local-only-control local-point-only-control" title="Experimental constructed lane-boundary fragments built from the accumulated point dots. Display-only; never modifies stored geometry.">
+          <input type="checkbox" id="layerConstructedFragments" class="local-point-only-control"> Constructed fragments (experimental)
+        </label>
+        <label class="local-only-control local-point-only-control" title="Experimental joined lane-boundary polylines: compatible constructed fragments connected across supported gaps. Source fragments are preserved; connectors are display-only. Requires 'Constructed fragments' to be computed.">
+          <input type="checkbox" id="layerJoinedPolylines" class="local-point-only-control"> Joined lane polylines (experimental)
+        </label>
+        <label class="local-only-control local-point-only-control" title="Show all proposed, accepted, rejected and ambiguous connector candidates for the joining stage.">
+          <input type="checkbox" id="layerJoinCandidates" class="local-point-only-control"> Join candidates (debug)
+        </label>
+        <label class="local-only-control" title="Reversible diagnostic: mirror the road-relative lateral display around the vehicle centreline to compare against the synchronized video. Does not modify stored geometry.">
+          <input type="checkbox" id="mirrorRoadLateral" class="local-only-control"> Mirror road lateral display (diagnostic)
+        </label>
+        <p class="meta-line local-only-control local-point-only-control" id="pointDisplayModeLabel">Complete map</p>
+        <div class="local-only-control obs-debug-control">
+          <h3>Observation debug (obsDebug)</h3>
+          <label>Frame index <input type="number" id="obsDebugFrame" min="0" value="0"></label>
+          <label>Lane index <input type="number" id="obsDebugLane" min="0" value="0"></label>
+          <div class="btn-row">
+            <button id="btnObsDebugShow">Show observation</button>
+            <button id="btnObsDebugClear">Clear</button>
+          </div>
+        </div>
         <div class="btn-row">
           <button id="btnReset">Reset view</button>
           <button id="btnFit">Fit to view</button>
@@ -216,7 +254,12 @@
   <script src="segment2_browser_audit_data.js?v=20260804c"></script>
   <script src="lane_map_cleanup.js?v=20260805b"></script>
   <script src="road_surface_stage1.js?v=20260804c"></script>
-  <script src="segment_local_map.js?v=20260805c"></script>
+  <script src="point_accumulation.js?v=20260806a"></script>
+  <script src="mapping_reliability.js?v=20260807a"></script>
+  <script src="experimental_boundaries.js?v=20260807a"></script>
+  <script src="constructed_fragments.js?v=20260810a"></script>
+  <script src="lane_joining.js?v=20260811a"></script>
+  <script src="segment_local_map.js?v=20260807a"></script>
   <script src="playback_arrow_screen.js?v=20260731i"></script>
   <script src="segment_video_timing.js?v=20260803a"></script>
   <script src="local_playback_video.js?v=20260803a"></script>

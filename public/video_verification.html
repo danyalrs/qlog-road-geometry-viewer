@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Verification — Experimental Lane Boundaries</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 0; background: #0f172a; color: #e2e8f0; }
+    header { padding: 12px 20px; background: #1e293b; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    h1 { font-size: 18px; margin: 0; }
+    .tag { font-size: 12px; color: #fbbf24; background: #451a03; padding: 2px 8px; border-radius: 4px; }
+    .layout { display: flex; min-height: calc(100vh - 60px); }
+    aside { width: 260px; background: #1e293b; padding: 14px; border-right: 1px solid #334155; }
+    aside label { display: block; font-size: 12px; margin: 10px 0 4px; color: #94a3b8; }
+    select, button { width: 100%; padding: 6px; margin: 4px 0; border-radius: 4px; border: 1px solid #475569; background: #0f172a; color: #e2e8f0; }
+    button { cursor: pointer; }
+    .main { flex: 1; padding: 16px; }
+    .frame-stage { display: flex; gap: 16px; flex-wrap: wrap; }
+    .frame-card { background: #1e293b; border: 1px solid #334155; border-radius: 6px; overflow: hidden; max-width: 560px; }
+    .frame-card img { display: block; width: 100%; }
+    .frame-meta { padding: 8px; font-size: 12px; font-family: monospace; }
+    .conf-high { color: #4ade80; } .conf-medium { color: #fbbf24; } .conf-low { color: #f87171; }
+    .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 6px; font-size: 12px; }
+    .info-grid div { background: #0f172a; padding: 6px; border-radius: 4px; }
+    .nav { display: flex; gap: 8px; margin-top: 10px; }
+    .nav button { flex: 1; }
+    #mapPanel { margin-top: 12px; font-size: 12px; color: #94a3b8; }
+    .hint { color: #64748b; font-size: 11px; margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Video Verification</h1>
+    <span class="tag">Experimental — display only</span>
+    <span id="status" style="font-size:12px;color:#94a3b8">loading…</span>
+  </header>
+  <div class="layout">
+    <aside>
+      <label>Segment</label>
+      <select id="segSelect"></select>
+      <label>Selected case</label>
+      <select id="caseSelect" size="10"></select>
+      <div class="nav">
+        <button id="prevBtn">◀ Prev</button>
+        <button id="nextBtn">Next ▶</button>
+      </div>
+      <label>Sync confidence</label>
+      <div id="confLabel" class="hint">—</div>
+      <div class="hint">Video and map evidence shown side by side. No image-space projection is applied.</div>
+    </aside>
+    <div class="main">
+      <div class="frame-stage">
+        <div class="frame-card">
+          <img id="cleanImg" alt="clean frame">
+          <div class="frame-meta">clean video frame</div>
+        </div>
+        <div class="frame-card">
+          <img id="metaImg" alt="metadata frame">
+          <div class="frame-meta">frame + timestamp + segment metadata</div>
+        </div>
+      </div>
+      <div id="infoPanel" class="info-grid"></div>
+      <div id="mapPanel">Mapping evidence side-by-side (no image-space overlay).</div>
+    </div>
+  </div>
+
+  <script>
+    let selection = null;
+    let exported = null;
+    let currentSeg = null;
+    let currentCase = 0;
+
+    async function load() {
+      try {
+        const [sel, exp] = await Promise.all([
+          fetch('/vv/verification_frame_selection.json').then((r) => r.json()),
+          fetch('/vv/exported_frames.json').then((r) => r.json()),
+        ]);
+        selection = sel;
+        exported = exp;
+        const segs = Object.keys(sel.selections);
+        const selEl = document.getElementById('segSelect');
+        selEl.innerHTML = '';
+        for (const s of segs) {
+          const opt = document.createElement('option');
+          opt.value = s;
+          opt.textContent = `Segment ${s}`;
+          selEl.appendChild(opt);
+        }
+        selEl.value = '99';
+        selEl.onchange = () => { currentSeg = selEl.value; currentCase = 0; renderCase(); };
+        currentSeg = '99';
+        renderCase();
+      } catch (e) {
+        document.getElementById('status').textContent = 'Error: ' + e.message;
+      }
+    }
+
+    function renderCase() {
+      const sel = document.getElementById('segSelect');
+      currentSeg = currentSeg || sel.value;
+      const segData = selection.selections[currentSeg];
+      if (!segData) return;
+      const cases = segData.selected;
+      const caseSel = document.getElementById('caseSelect');
+      caseSel.innerHTML = '';
+      cases.forEach((c, i) => {
+        const opt = document.createElement('option');
+        opt.value = String(i);
+        opt.textContent = `f${c.videoFrameIndex} t=${c.videoPtsSec}s ${c.movementCategory || ''}${c.nearestModelV2FrameId ? ' mv2=' + c.nearestModelV2FrameId : ''}`;
+        caseSel.appendChild(opt);
+      });
+      currentCase = Math.min(currentCase, cases.length - 1);
+      caseSel.value = String(currentCase);
+      caseSel.onchange = () => { currentCase = parseInt(caseSel.value, 10); renderFrame(); };
+      renderFrame();
+    }
+
+    function renderFrame() {
+      const segData = selection.selections[currentSeg];
+      if (!segData) return;
+      const c = segData.selected[currentCase];
+      const frameNum = String(c.videoFrameIndex).padStart(5, '0');
+      const tStr = String(c.videoPtsSec).replace('.', '_');
+      const base = `/vv/frames/${currentSeg}/seg${currentSeg}_frame${frameNum}_t${tStr}`;
+      document.getElementById('cleanImg').src = base + '_clean.png';
+      document.getElementById('metaImg').src = base + '_meta.png';
+      document.getElementById('caseSelect').value = String(currentCase);
+      const conf = c.timestampDiffMs == null ? 'none'
+        : c.timestampDiffMs <= 100 ? 'high' : c.timestampDiffMs <= 300 ? 'medium' : 'low';
+      document.getElementById('confLabel').innerHTML =
+        `confidence: <span class="conf-${conf}">${conf}</span>` +
+        (c.timestampDiffMs != null ? ` (err ${c.timestampDiffMs} ms)` : '');
+      const info = document.getElementById('infoPanel');
+      info.innerHTML = [
+        ['Segment', c.segmentId],
+        ['Video frame index', c.videoFrameIndex],
+        ['Video timestamp (s)', c.videoPtsSec],
+        ['Segment-relative time (s)', c.segmentRelativeTimeSec],
+        ['Matched ModelV2 frameId', c.nearestModelV2FrameId ?? '—'],
+        ['ModelV2 timestamp', c.modelV2Timestamp ?? '—'],
+        ['Sync error (ms)', c.timestampDiffMs ?? '—'],
+        ['Movement category', c.movementCategory ?? '—'],
+        ['Speed (m/s)', c.speedMps ?? '—'],
+        ['Heading (deg)', c.headingDeg ?? '—'],
+        ['Reason', c.reason ?? '—'],
+      ].map(([k, v]) => `<div><strong>${k}</strong><br>${v}</div>`).join('');
+    }
+
+    document.getElementById('prevBtn').onclick = () => { if (currentCase > 0) { currentCase--; renderFrame(); } };
+    document.getElementById('nextBtn').onclick = () => { const n = selection.selections[currentSeg].selected.length; if (currentCase < n - 1) { currentCase++; renderFrame(); } };
+    load();
+  </script>
+</body>
+</html>

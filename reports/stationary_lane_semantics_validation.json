@@ -1,0 +1,23 @@
+{
+  "valid": true,
+  "reason": null,
+  "pointAccumulatedPointCount": 910,
+  "constructedFragments": 3,
+  "joinedPolylines": 3,
+  "roadSurfacePolygons": 1,
+  "trajectoryPointCount": 1,
+  "arrowHeading": 90,
+  "polygons": [
+    {
+      "kind": "stationaryLocalRoadSurface",
+      "lane": [
+        2,
+        1
+      ],
+      "area": 316.3,
+      "sep": 2.65,
+      "overlap": 117.2,
+      "ring": 48
+    }
+  ]
+}

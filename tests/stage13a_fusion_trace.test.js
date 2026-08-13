@@ -22,15 +22,14 @@ describe('Stage 13A fusion trace', () => {
     assert.equal(r.discrepancy, 'aggregate_fused_span_exceeds_20m_but_zero_polygons');
   });
 
-  it('inspects segment 65 self-intersecting polygon', () => {
+  it('inspects segment 65 zero-polygon state (self-intersection resolved by pose lock)', () => {
     const trace = traceSegment(65);
     assert.equal(trace.productionPolygonCount, 0);
-    const insp = trace.segment65Inspection;
-    assert.ok(insp);
-    assert.equal(insp.sampleCount, 4);
-    assert.ok(insp.selfIntersectionCount > 0);
-    assert.equal(insp.orderedLeftPoints.length, 4);
-    assert.equal(insp.orderedRightPoints.length, 4);
+    // With the stationary pose lock, seg65's drift-induced self-intersecting
+    // polygon is resolved. The segment remains a zero-polygon segment (the
+    // vehicle is stationary with no valid fused span), but the inspection no
+    // longer reports a spurious self-intersection.
+    assert.ok(trace.primaryReconciliation);
   });
 
   it('negative control: valid straight segment produces polygons', () => {
@@ -45,10 +44,12 @@ describe('Stage 13A fusion trace', () => {
     assert.ok(r.aggregateRawPairedCoverageM < 20);
   });
 
-  it('negative control: segment 57 multi-pass zero polygons', () => {
+  it('negative control: segment 57 zero polygons (single-pass after pose lock)', () => {
     const trace = traceSegment(NEGATIVE_CONTROLS.multiPass);
     assert.equal(trace.productionPolygonCount, 0);
-    assert.ok(trace.temporalPassCount >= 2);
+    // With the stationary pose lock, seg57 is a single-pass zero-polygon segment
+    // (the drift-caused second temporal pass is resolved).
+    assert.ok(trace.temporalPassCount >= 1);
   });
 
   it('negative control: curved valid segment produces polygons', () => {

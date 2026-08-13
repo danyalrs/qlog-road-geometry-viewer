@@ -1,0 +1,141 @@
+{
+  "14": {
+    "seg": "14",
+    "stats": {
+      "fragmentCount": 37,
+      "candidatePairCount": 42,
+      "hardRejectedCount": 12,
+      "hardRejectedByReason": {
+        "large_gap_insufficient_evidence": 8,
+        "curvature_kink": 4
+      },
+      "scoredCandidateCount": 30,
+      "acceptedConnectionCount": 19,
+      "ambiguousCount": 11,
+      "joinedPolylineCount": 6,
+      "unjoinedFragmentCount": 12,
+      "connectorGapDistribution": {
+        "n": 19,
+        "min": 0.65,
+        "median": 1.09,
+        "p90": 4.8,
+        "max": 4.81
+      }
+    },
+    "checks": {
+      "source_fragments_unchanged": {
+        "pass": true,
+        "detail": "fragments identical before/after joining: true"
+      },
+      "no_boundary_mixing": {
+        "pass": true,
+        "detail": "connections mixing boundaries: 0"
+      },
+      "no_along_track_reversal": {
+        "pass": true,
+        "detail": "s-reversals: 0"
+      },
+      "no_connector_crosses_boundary": {
+        "pass": true,
+        "detail": "crossings: 0"
+      },
+      "no_unsupported_large_gap": {
+        "pass": true,
+        "detail": "connections > 12m without directly-supported corridor: 0"
+      },
+      "no_kink_introduced": {
+        "pass": true,
+        "detail": "connectors not tangent-continuous with robust tangents: 0 (connector cubic end-tangents verified parallel to robust fragment tangents)"
+      },
+      "joined_close_to_evidence": {
+        "pass": true,
+        "detail": "connector max deviations: n=6 max=0.132 m (cap 4 m)"
+      },
+      "ambiguous_remain_unjoined": {
+        "pass": true,
+        "detail": "scored candidates: 30; accepted: 19; ambiguous (not chosen): 11"
+      },
+      "corrected_lateral_orientation": {
+        "pass": true,
+        "detail": "joined points carry finite segment-local east/north (mirror-corrected frame)"
+      },
+      "arrow_and_playback_unchanged": {
+        "pass": true,
+        "detail": "arrow draw method present: true; joined/candidate layers additive (present in source): true"
+      },
+      "joined_references_sources": {
+        "pass": true,
+        "detail": "every joined polyline references existing source fragments"
+      }
+    }
+  },
+  "16": {
+    "seg": "16",
+    "stats": {
+      "fragmentCount": 17,
+      "candidatePairCount": 14,
+      "hardRejectedCount": 1,
+      "hardRejectedByReason": {
+        "large_gap_insufficient_evidence": 1
+      },
+      "scoredCandidateCount": 13,
+      "acceptedConnectionCount": 13,
+      "ambiguousCount": 0,
+      "joinedPolylineCount": 4,
+      "unjoinedFragmentCount": 0,
+      "connectorGapDistribution": {
+        "n": 13,
+        "min": 0.75,
+        "median": 1.07,
+        "p90": 3.96,
+        "max": 3.98
+      }
+    },
+    "checks": {
+      "source_fragments_unchanged": {
+        "pass": true,
+        "detail": "fragments identical before/after joining: true"
+      },
+      "no_boundary_mixing": {
+        "pass": true,
+        "detail": "connections mixing boundaries: 0"
+      },
+      "no_along_track_reversal": {
+        "pass": true,
+        "detail": "s-reversals: 0"
+      },
+      "no_connector_crosses_boundary": {
+        "pass": true,
+        "detail": "crossings: 0"
+      },
+      "no_unsupported_large_gap": {
+        "pass": true,
+        "detail": "connections > 12m without directly-supported corridor: 0"
+      },
+      "no_kink_introduced": {
+        "pass": true,
+        "detail": "connectors not tangent-continuous with robust tangents: 0 (connector cubic end-tangents verified parallel to robust fragment tangents)"
+      },
+      "joined_close_to_evidence": {
+        "pass": true,
+        "detail": "connector max deviations: n=4 max=0.12 m (cap 4 m)"
+      },
+      "ambiguous_remain_unjoined": {
+        "pass": true,
+        "detail": "scored candidates: 13; accepted: 13; ambiguous (not chosen): 0"
+      },
+      "corrected_lateral_orientation": {
+        "pass": true,
+        "detail": "joined points carry finite segment-local east/north (mirror-corrected frame)"
+      },
+      "arrow_and_playback_unchanged": {
+        "pass": true,
+        "detail": "arrow draw method present: true; joined/candidate layers additive (present in source): true"
+      },
+      "joined_references_sources": {
+        "pass": true,
+        "detail": "every joined polyline references existing source fragments"
+      }
+    }
+  }
+}

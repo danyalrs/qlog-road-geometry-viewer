@@ -51,9 +51,12 @@ describe('Stage 13 zero-polygon diagnostics', () => {
     assert.ok(summary.byClassification['blocked_by_multi_pass_ambiguity'] >= 1);
   });
 
-  it('segment 57 has multiple temporal passes', () => {
+  it('segment 57 no longer fragments into spurious temporal passes (pose-lock corrected)', () => {
     const diag = diagnoseZeroPolygonSegment(57);
-    assert.ok(diag.temporalPassCount >= 2);
-    assert.ok(diag.classifications.includes('blocked_by_multi_pass_ambiguity'));
+    // With the stationary pose lock, the drift-caused second temporal pass is
+    // resolved: seg57 is a single-pass zero-polygon segment rejected for
+    // insufficient evidence, not blocked by multi-pass ambiguity.
+    assert.ok(diag.temporalPassCount >= 1);
+    assert.ok(diag.classifications.includes('correctly_rejected_for_insufficient_evidence'));
   });
 });

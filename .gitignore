@@ -21,6 +21,9 @@ qlog_f449c_*.bz2
 *.mov
 *.hevc
 
+# Keep the tiny qcamera placeholder used as a test fixture (tests need it).
+!tests/fixtures/video/*---qcamera.ts
+
 # --- Caches & temporary outputs ---
 .cache/
 .recovery/
@@ -54,6 +57,18 @@ screenshots/
 deliverables/*.zip
 deliverables/**/_zip_staging/
 deliverables/**/node_modules/
+
+# --- Bulky generated validation output (screenshots/logs/large dumps) ---
+# These report subdirectories are generated evidence artifacts (frame PNGs,
+# playback logs, per-frame CSVs, multi-MB validation dumps). The small top-level
+# reports/*.md and validation JSONs remain tracked.
+/reports/constructed_fragments_validation/
+/reports/experimental_boundaries/
+/reports/lateral_diagnosis/
+/reports/mirror_diagnosis/
+/reports/outer_line_diagnosis/
+/reports/road_relative_diagnosis/
+/reports/video_verification/
 
 # --- OS / editor ---
 Thumbs.db
