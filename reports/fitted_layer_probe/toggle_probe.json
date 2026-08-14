@@ -1,0 +1,122 @@
+{
+  "segment": "qlog_f449c_2.bz2",
+  "stateOff": {
+    "graphFitLoaded": true,
+    "segmentLocalMapLoaded": true,
+    "fitEnabledUrl": true,
+    "layers": {
+      "gps": false,
+      "vehicle": true,
+      "raw": false,
+      "rawFrame": true,
+      "fused": true,
+      "fusedTracks": false,
+      "trackConnections": false,
+      "colorByTrack": false,
+      "trackIds": false,
+      "laneOnly": false,
+      "centre": false,
+      "roadSurface": false,
+      "markers": false,
+      "colorByChunk": false,
+      "colorByPass": true,
+      "passBoundaries": false,
+      "suspiciousGps": false,
+      "rejectedObs": false,
+      "constructedFragments": true,
+      "joinedPolylines": false,
+      "joinCandidates": false,
+      "fittedPolylines": false,
+      "fittedOutliers": false,
+      "fittedUnverified": false,
+      "fittedGaps": false,
+      "diagPhysicalBoundary": false,
+      "diagTrackIds": false,
+      "diagFragmentIds": false,
+      "diagDisconnections": false,
+      "diagRepairedGaps": false,
+      "diagStructuralBridges": false,
+      "diagInterpolatedBridges": false
+    },
+    "fittedResults": 33,
+    "accepted": 4,
+    "fragmentCount": 33,
+    "causal": false,
+    "geometryMode": "pointAccumulated"
+  },
+  "stateOn": {
+    "layers": {
+      "gps": false,
+      "vehicle": true,
+      "raw": false,
+      "rawFrame": true,
+      "fused": true,
+      "fusedTracks": false,
+      "trackConnections": false,
+      "colorByTrack": false,
+      "trackIds": false,
+      "laneOnly": false,
+      "centre": false,
+      "roadSurface": false,
+      "markers": false,
+      "colorByChunk": false,
+      "colorByPass": true,
+      "passBoundaries": false,
+      "suspiciousGps": false,
+      "rejectedObs": false,
+      "constructedFragments": true,
+      "joinedPolylines": false,
+      "joinCandidates": false,
+      "fittedPolylines": true,
+      "fittedOutliers": false,
+      "fittedUnverified": false,
+      "fittedGaps": false,
+      "diagPhysicalBoundary": false,
+      "diagTrackIds": false,
+      "diagFragmentIds": false,
+      "diagDisconnections": false,
+      "diagRepairedGaps": false,
+      "diagStructuralBridges": false,
+      "diagInterpolatedBridges": false
+    },
+    "checkboxChecked": true
+  },
+  "canvasOff": {
+    "bytes": 69755,
+    "sha": "01a1e5d9dca2de80"
+  },
+  "canvasOn": {
+    "bytes": 72378,
+    "sha": "40ab415178768961"
+  },
+  "canvasFittedOnly": {
+    "bytes": 69430,
+    "sha": "4e35c63cab73afc6"
+  },
+  "canvasIdentical": false,
+  "pixelDiff": {
+    "same": false,
+    "reason": "size-mismatch",
+    "aLen": 69755,
+    "bLen": 72378
+  },
+  "strokeProbe": {
+    "acceptedResults": 4,
+    "strokeCallsDuringFittedOnly": 4,
+    "polylinesPerAccepted": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "fittedPolylinesStroked": 4
+  },
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 404 (Not Found)"
+  ],
+  "screenshots": {
+    "off": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\reports\\fitted_layer_probe\\seg2_fitted_off.png",
+    "on": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\reports\\fitted_layer_probe\\seg2_fitted_on.png",
+    "fittedOnly": "C:\\Users\\danya\\OneDrive\\Documents\\Default Project\\reports\\fitted_layer_probe\\seg2_fitted_only.png"
+  }
+}

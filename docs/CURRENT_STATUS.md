@@ -1,6 +1,6 @@
 # Current Status
 
-**Last updated:** 2026-08-12
+**Last updated:** 2026-08-14
 **Classification key:** Each item is tagged — **VP** verified production, **FV** fixture-validated, **ES** experimental sensitivity, **UR** unsupported real-dataset behaviour, **PW** planned work.
 
 ---
@@ -9,7 +9,11 @@
 
 | Item | Value | Classification |
 |------|-------|----------------|
-| Frozen geometry baseline | `2026-07-24-fusion-v11` | **VP** (`lib/version.js`) |
+| Active processing version | `2026-07-24-fusion-v16` | **VP** (`lib/version.js`) — stationary pose dwell-window correction; fusion geometry unchanged from v11 |
+| Frozen geometry baseline (Stage 19 compare) | `2026-07-24-fusion-v11` | **VP** — Stage 19 delivery-readiness pins still reference v11 label; v16 does not alter fused road-surface geometry |
+| Path 1 graph fitting | Experimental display-only layer; **off by default**; enable with `?fit=1` | **ES** (`lib/graph_fit.js`, `lib/segment_local_map.js`, `public/render.js`) |
+| Path 2 graph fitting | Not implemented | **PW** |
+| Viewer / diagnostic probe map path | Shared production helper `lib/viewer_map_build.js` | **ES** — probes now match `/api/process` → `enrichTimelineWithMovement` → `buildSegmentLocalMap` |
 | Stage 19 specification | Approved — Revision 37 | **VP** (implementation bound to `lib/stage19_spec/`, normative package `deliverables/stage19-revision37/`) |
 | Stage 19 implementation | `2026-07-27-stage19-v5` | **FV** + **UR** (see below) |
 | Stage 19 approval scope | Dataset-sensitivity auditing only | **VP** |
@@ -44,16 +48,19 @@
 | Stationary pose dwell-window correction | **Fixed** — two-pass pose lock applies the confirmed anchor from effective stop onset retrospectively, so CANDIDATE_STOP (3 s dwell) poses and geometry are rebuilt with the anchor instead of committed at drifting raw values. Seg6 arrow no longer drifts during the dwell; Seg9 uses one anchor. Dataset-wide 302 m false travel removed. 14 new dwell tests; processing version → fusion-v16 | **ES** (`reports/stationary_pose_dwell_fix.md`, `tests/stationary_pose_lock.test.js`) |
 | Stationary Segment 9 `noGeometry` (partial stationary geometry) | **Fixed** — fully-stationary Seg9 showed `reason: noGeometry` in Point-accumulated mode despite 910 valid accumulated lane observations. The map validity gate ignored the point-accumulated cloud (only counted laneFragments/edgeFragments/polygons/trajectory, all empty/degenerate for a stationary segment); `noGeometry` now means every drawable layer is empty. A zero-length reference trajectory (all poses locked to one anchor) is treated as absent so `s`/`d` fall back to the fixed-anchor forward/lateral frame, restoring constructed fragments. Seg9 Point mode: valid=true, 910 points drawn (3 boundaries, 907 repeated-support), 3 constructed fragments, polygons remain 0, trajectory stays 1, pose anchored — no artificial motion, no invented boundaries. 14 new tests | **ES** (`reports/stationary_geometry_no_geometry_fix.md`, `tests/stationary_geometry.test.js`) |
 | Stationary Segment 9 lane semantics / arrow / road polygon | **Fixed** — Seg9 map showed a blue polyline "passing through" the arrow (arrow heading fell back to 0° for a stationary segment instead of 90° = segment-local forward; rotated 90° off it pointed at the mirror-displayed ego-right boundary), a "6" fragment label (double increment), and 0 road polygons despite two supported ego boundaries (sd_fusion polygon path requires along-track vehicle travel). Fixed arrow heading for degenerate trajectories, fragment count, and added a general `buildStationaryLocalPolygons` path (fixed-anchor forward/lateral, supported left/right pair, ordering + separation + overlap gates, no invented boundary). Seg9 now: 1 stationaryLocalRoadSurface polygon (lane2×lane1, 316 m²), arrow forward, label 3. lane0 (outer-right) is reported as outcome E — model outputs it all 30 frames at prob ~0.30, below the 0.5 gate in 28/30 frames (genuine low-confidence lane detection, not thresholded away). 13 new tests | **ES** (`reports/stationary_lane_semantics_diagnosis.md`, `tests/stationary_lane_semantics.test.js`) |
+| Path 1 graph fitting (experimental) | **Implemented + validated** — fits constructed-fragment runs to smooth splines on the complete local map only (`fitEnabled` via `?fit=1` or UI toggle). Causal playback does **not** run fitting. Fitted output is display-only: **does not feed polygons** or replace fused/constructed geometry. Cyan polylines = accepted fitted curves; purple markers = fitted endpoints. Mirror coordinate-frame defect fixed (fitted vertices carry `mirroredEast`/`mirroredNorth`; renderer no longer falls back to global mirror). Source-corridor gate (`fitMaxSourceCorridorM: 3.0`) rejects fits that deviate from source fragments. Viewer-authoritative accepted counts (fusion-v16, polygons unchanged): Seg2 **4**, Seg3 **11**, Seg9 **0** (1 stationary polygon; CF0 rejected at 4.10 m > 3 m gate), Seg14 **7**, Seg16 **9**, Seg54 **0**. Complete-map fitting remains slow on long segments. 69 graph-fit tests + 11 viewer/probe parity tests | **ES** (`lib/graph_fit.js`, `lib/viewer_map_build.js`, `reports/fitted_layer_probe/segment_fitted_summary.json`) |
 
 ---
 
 ## Verified Production Behaviour (**VP**)
 
-### Frozen v11 geometry
+### Fusion-v16 processing (geometry unchanged)
 
-- Processing version: `2026-07-24-fusion-v11` (`lib/version.js`)
-- Full 92-segment geometry compare: 0 differences (`reports/stage19_v5_corrective_checkpoint_report.json` → `v11GeometryCompare`)
-- Stage 19 implementation does **not** modify v11 geometry (`v11GeometryModified: false` in `audit_stage19_dataset_sensitivity.json`)
+- Active processing version: `2026-07-24-fusion-v16` (`lib/version.js`) — two-pass stationary pose dwell-window correction
+- v16 bump invalidates stale cached processing results; fused road-surface geometry is unchanged from the frozen v11 baseline
+- Full 92-segment v11 geometry compare (Stage 19 delivery): 0 differences (`reports/stage19_v5_corrective_checkpoint_report.json` → `v11GeometryCompare`)
+- Stage 19 implementation does **not** modify fused geometry (`v11GeometryModified: false` in `audit_stage19_dataset_sensitivity.json`)
+- Graph fitting (`lib/graph_fit.js`) is an optional experimental overlay; default `fitEnabled: false` — polygons and fusion output are identical with fitting on or off
 
 ### Stage 19 normative constants (Rev 37)
 
@@ -171,18 +178,21 @@ Project status treats **Revision 37** as the approved normative specification fo
 
 ---
 
-## Validation Snapshot (v5)
+## Validation Snapshot
 
 | Check | Result |
 |-------|--------|
-| `npm test` | 432 pass, 0 fail, 0 skipped |
+| Full suite (correct command) | `node --expose-gc --test tests` — **1718** tests, **1691** pass, **27** fail (documented baseline), **0** skipped, **0** cancelled (~6 min). Stage 19 memory-oracle tests (244–250) pass with `--expose-gc` |
+| Graph-fit focused suite | `tests/graph_fit.test.js` — 69 pass |
+| Viewer/probe parity | `tests/viewer_probe_parity.test.js` — 11 pass |
+| Video restore | `tests/video_restore.test.js` — pass (test 4 isolated from host ffmpeg / `.video_cache`) |
+| Stage 19 v5 (historical) | 432 pass, 0 fail (`reports/stage19_v5_corrective_checkpoint_report.json`) |
 | Publication repeat | 30/30 |
-| `npm run stage19:evidence` | exit 0 |
-| `node scripts/stage19_independent_review.js` | exit 0 |
 | v11 geometry compare (92 segments) | 0 differences |
-| Protected files | 28/28 unchanged (only `lib/stage19_version.js` intentionally bumped) |
 
-Source: `reports/stage19_v5_corrective_checkpoint_report.json`
+**Documented baseline failures (27):** experimental_boundaries fused-mode pin; D12 geometry/rendering pins; segment2 road-surface stage1/2 pins; local road-surface path filter; local trajectory overlay; stage13a/14 pins; stage16/17/18 v11 version pins; stage20 Amendment A frozen-v11 pin. **Flaky (separate):** `stage19_publication_overlap.test.js` concurrent-publication child-process test.
+
+Source: `.cache/full_suite_expose_gc_tap_postfix.txt` (2026-08-14); prior Stage 19 evidence in `reports/stage19_v5_corrective_checkpoint_report.json`
 
 ---
 

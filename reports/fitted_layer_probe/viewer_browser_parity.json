@@ -1,0 +1,324 @@
+{
+  "generatedAt": "2026-08-14T04:40:33.324Z",
+  "segments": [
+    {
+      "segNum": 3,
+      "segmentFile": "qlog_f449c_3.bz2",
+      "lib": {
+        "accepted": 11,
+        "acceptedIds": [
+          "CF27",
+          "CF30",
+          "CF36",
+          "CF39",
+          "CF4",
+          "CF40",
+          "CF5",
+          "CF52",
+          "CF55",
+          "CF77",
+          "CF81"
+        ],
+        "polygonCount": 13,
+        "fragmentCount": 91,
+        "processingVersion": "2026-07-24-fusion-v16",
+        "trajectory": {
+          "vehiclePathPoints": 30,
+          "builtTrajectoryPoints": 30,
+          "builtTrajectoryTotalLengthM": 318.02521847748545,
+          "isStationary": false,
+          "referencePose": {
+            "frameIndex": 0,
+            "east": -0.8210293666392917,
+            "north": 6.685982253666053,
+            "headingDeg": 345.88210764884843,
+            "logMonoTime": "199652600469",
+            "chunkId": 0,
+            "passId": 0
+          }
+        },
+        "fitEnabled": true
+      },
+      "browser": {
+        "acceptedCount": 11,
+        "acceptedIds": [
+          "CF27",
+          "CF30",
+          "CF36",
+          "CF39",
+          "CF4",
+          "CF40",
+          "CF5",
+          "CF52",
+          "CF55",
+          "CF77",
+          "CF81"
+        ],
+        "statusCounts": {
+          "insufficientSupport": 68,
+          "qualityRejected": 8,
+          "accepted": 11,
+          "topologyRejected": 1,
+          "orderingInvalid": 2,
+          "validationInsufficient": 1
+        },
+        "polygonCount": 13,
+        "fragmentCount": 91,
+        "fitEnabled": true,
+        "cache": {
+          "omegaEntries": 13,
+          "designEntries": 121,
+          "omegaBuilds": 13,
+          "designBuilds": 121,
+          "estimatedBytes": 197408
+        },
+        "trajectory": {
+          "vehiclePathPoints": 0,
+          "builtTrajectoryTotalLengthM": null,
+          "isStationary": true
+        },
+        "referencePose": {
+          "frameIndex": 0,
+          "east": -0.8210293666392917,
+          "north": 6.685982253666053,
+          "headingDeg": 345.88210764884843,
+          "logMonoTime": "199652600469",
+          "chunkId": 0,
+          "passId": 0
+        }
+      },
+      "parity": {
+        "acceptedCount": true,
+        "acceptedIds": true,
+        "polygonCount": true,
+        "fragmentCount": true,
+        "processingVersion": false,
+        "isStationary": false
+      }
+    },
+    {
+      "segNum": 9,
+      "segmentFile": "qlog_f449c_9.bz2",
+      "lib": {
+        "accepted": 0,
+        "acceptedIds": [],
+        "polygonCount": 1,
+        "fragmentCount": 3,
+        "processingVersion": "2026-07-24-fusion-v16",
+        "trajectory": {
+          "vehiclePathPoints": 30,
+          "builtTrajectoryPoints": 30,
+          "builtTrajectoryTotalLengthM": 0,
+          "isStationary": true,
+          "referencePose": {
+            "frameIndex": 0,
+            "east": -0.26150834212973406,
+            "north": 1.8490778277208484,
+            "headingDeg": 57.29106521606445,
+            "logMonoTime": "559699665752",
+            "chunkId": 0,
+            "passId": 0
+          }
+        },
+        "fitEnabled": true
+      },
+      "browser": {
+        "acceptedCount": 0,
+        "acceptedIds": [],
+        "statusCounts": {
+          "coordinateFrameRejected": 1,
+          "insufficientSupport": 2
+        },
+        "polygonCount": 1,
+        "fragmentCount": 3,
+        "fitEnabled": true,
+        "cache": {
+          "omegaEntries": 2,
+          "designEntries": 6,
+          "omegaBuilds": 2,
+          "designBuilds": 6,
+          "estimatedBytes": 96280
+        },
+        "trajectory": {
+          "vehiclePathPoints": 0,
+          "builtTrajectoryTotalLengthM": null,
+          "isStationary": true
+        },
+        "referencePose": {
+          "frameIndex": 0,
+          "east": -0.26150834212973406,
+          "north": 1.8490778277208484,
+          "headingDeg": 57.29106521606445,
+          "logMonoTime": "559699665752",
+          "chunkId": 0,
+          "passId": 0
+        }
+      },
+      "parity": {
+        "acceptedCount": true,
+        "acceptedIds": true,
+        "polygonCount": true,
+        "fragmentCount": true,
+        "processingVersion": false,
+        "isStationary": true
+      }
+    },
+    {
+      "segNum": 16,
+      "segmentFile": "qlog_f449c_16.bz2",
+      "lib": {
+        "accepted": 9,
+        "acceptedIds": [
+          "CF10",
+          "CF13",
+          "CF14",
+          "CF15",
+          "CF16",
+          "CF2",
+          "CF3",
+          "CF8",
+          "CF9"
+        ],
+        "polygonCount": 55,
+        "fragmentCount": 17,
+        "processingVersion": "2026-07-24-fusion-v16",
+        "trajectory": {
+          "vehiclePathPoints": 30,
+          "builtTrajectoryPoints": 30,
+          "builtTrajectoryTotalLengthM": 1377.1949266068004,
+          "isStationary": false,
+          "referencePose": {
+            "frameIndex": 0,
+            "east": 26.488138840814866,
+            "north": 10.807135769780382,
+            "headingDeg": 68.01576322418067,
+            "logMonoTime": "979472082217",
+            "chunkId": 0,
+            "passId": 0
+          }
+        },
+        "fitEnabled": true
+      },
+      "browser": {
+        "acceptedCount": 9,
+        "acceptedIds": [
+          "CF10",
+          "CF13",
+          "CF14",
+          "CF15",
+          "CF16",
+          "CF2",
+          "CF3",
+          "CF8",
+          "CF9"
+        ],
+        "statusCounts": {
+          "coordinateFrameRejected": 3,
+          "insufficientSupport": 5,
+          "accepted": 9
+        },
+        "polygonCount": 55,
+        "fragmentCount": 17,
+        "fitEnabled": true,
+        "cache": {
+          "omegaEntries": 1,
+          "designEntries": 72,
+          "omegaBuilds": 1,
+          "designBuilds": 72,
+          "estimatedBytes": 3070400
+        },
+        "trajectory": {
+          "vehiclePathPoints": 0,
+          "builtTrajectoryTotalLengthM": null,
+          "isStationary": true
+        },
+        "referencePose": {
+          "frameIndex": 0,
+          "east": 26.488138840814866,
+          "north": 10.807135769780382,
+          "headingDeg": 68.01576322418067,
+          "logMonoTime": "979472082217",
+          "chunkId": 0,
+          "passId": 0
+        }
+      },
+      "parity": {
+        "acceptedCount": true,
+        "acceptedIds": true,
+        "polygonCount": true,
+        "fragmentCount": true,
+        "processingVersion": false,
+        "isStationary": false
+      }
+    },
+    {
+      "segNum": 54,
+      "segmentFile": "qlog_f449c_54.bz2",
+      "lib": {
+        "accepted": 0,
+        "acceptedIds": [],
+        "polygonCount": 1,
+        "fragmentCount": 9,
+        "processingVersion": "2026-07-24-fusion-v16",
+        "trajectory": {
+          "vehiclePathPoints": 30,
+          "builtTrajectoryPoints": 30,
+          "builtTrajectoryTotalLengthM": 40.48364314884092,
+          "isStationary": false,
+          "referencePose": {
+            "frameIndex": 0,
+            "east": -3.3123361102301523,
+            "north": 3.5690847897912166,
+            "headingDeg": 308.97576185098654,
+            "logMonoTime": "3259024198443",
+            "chunkId": 0,
+            "passId": 0
+          }
+        },
+        "fitEnabled": true
+      },
+      "browser": {
+        "acceptedCount": 0,
+        "acceptedIds": [],
+        "statusCounts": {
+          "insufficientSupport": 5,
+          "coordinateFrameRejected": 1,
+          "orderingInvalid": 2,
+          "topologyRejected": 1
+        },
+        "polygonCount": 1,
+        "fragmentCount": 9,
+        "fitEnabled": true,
+        "cache": {
+          "omegaEntries": 8,
+          "designEntries": 12,
+          "omegaBuilds": 8,
+          "designBuilds": 12,
+          "estimatedBytes": 168048
+        },
+        "trajectory": {
+          "vehiclePathPoints": 0,
+          "builtTrajectoryTotalLengthM": null,
+          "isStationary": true
+        },
+        "referencePose": {
+          "frameIndex": 0,
+          "east": -3.3123361102301523,
+          "north": 3.5690847897912166,
+          "headingDeg": 308.97576185098654,
+          "logMonoTime": "3259024198443",
+          "chunkId": 0,
+          "passId": 0
+        }
+      },
+      "parity": {
+        "acceptedCount": true,
+        "acceptedIds": true,
+        "polygonCount": true,
+        "fragmentCount": true,
+        "processingVersion": false,
+        "isStationary": false
+      }
+    }
+  ]
+}

@@ -28,6 +28,9 @@ const MappingReliability = global.MappingReliability;
 const ExperimentalBoundaries = global.ExperimentalBoundaries;
 const ConstructedFragments = global.ConstructedFragments;
 const LaneJoining = global.LaneJoining;
+const GraphFit = typeof require !== 'undefined'
+  ? require('./graph_fit')
+  : (typeof window !== 'undefined' ? window.GraphFit : null);
 
 const GEOMETRY_SOURCES = new Set([
   'observations',
@@ -488,6 +491,34 @@ function buildPointAccumulatedFragments(frames, timeline, referencePose, chunkId
   // from pointAccumulated.points (causally filtered by frameIndex <= elapsedIdx).
   const laneFragments = [];
 
+  // Graph-fitted lane-boundary curves (EXPERIMENTAL, Path 1, disabled by
+  // default). Consumes each fragment's raw ordered run (approach-A provenance,
+  // passed transiently from fragment construction; never stored on fragments or
+  // in the map) and fits a normalized-weights cubic smoothing spline per
+  // identity. Fitted output never feeds road-polygon construction.
+  let fittedPolylines = null;
+  if (options.fitEnabled && GraphFit && constructedFragments && constructedFragments.fragments.length) {
+    const rawRuns = constructedFragments.runs || [];
+    const fit = GraphFit.fitConstructedRuns(
+      constructedFragments.fragments,
+      rawRuns,
+      {
+        ...options,
+        // Stationary classification must agree with the stationary local-map
+        // condition: a trajectory is degenerate when it is null, has <2 points,
+        // or has totalLength <= 1e-6 m (one-point / all-identical vehicle poses
+        // from a stationary lock). We pass the RAW built trajectory (which may
+        // be a non-null one-point object) so the fitter applies the exact same
+        // degenerate check as the map, instead of relying on the pre-nulled
+        // `trajectory` variable (a non-null one-point array would be truthy).
+        fitTrajectory: builtTrajectory,
+      },
+    );
+    // Cross-identity boundary-crossing gate over accepted fits.
+    GraphFit.checkBoundaryCrossings(fit.results);
+    fittedPolylines = fit;
+  }
+
   // Stationary local road-surface polygons (EXPERIMENTAL, general). The sd_fusion
   // polygon path bins observations by along-track s, so a fully stationary
   // segment (all poses locked to one anchor, zero-length reference trajectory)
@@ -516,6 +547,7 @@ function buildPointAccumulatedFragments(frames, timeline, referencePose, chunkId
       experimentalBoundaries,
       constructedFragments,
       joinedPolylines,
+      fittedPolylines,
     },
   };
 }
@@ -527,6 +559,7 @@ function buildLaneFragmentsForSource(processedData, {
   referencePose,
   chunkId,
   passId,
+  options = {},
 }) {
   switch (geometrySource) {
     case 'tracked':
@@ -551,7 +584,7 @@ function buildLaneFragmentsForSource(processedData, {
     default:
       return buildObservationFragments(frames, timeline, referencePose, chunkId, passId);
     case 'pointAccumulated':
-      return buildPointAccumulatedFragments(frames, timeline, referencePose, chunkId, passId, processedData.routeChunks);
+      return buildPointAccumulatedFragments(frames, timeline, referencePose, chunkId, passId, processedData.routeChunks, options);
   }
 }
 
@@ -1121,6 +1154,7 @@ function buildSegmentLocalMap(processedData, options = {}) {
     referencePose,
     chunkId,
     passId,
+    options,
   });
   const { laneFragments, edgeFragments } = fragmentBuild;
   const laneCleanup = fragmentBuild.laneCleanup ?? null;

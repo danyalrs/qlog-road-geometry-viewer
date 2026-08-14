@@ -1,6 +1,6 @@
 # Experiments and Measurements
 
-**Last updated:** 2026-08-11
+**Last updated:** 2026-08-14
 
 Reproducible experiments with configuration, scope, commands, metrics, interpretation, and classification.
 
@@ -296,6 +296,22 @@ Reproducible experiments with configuration, scope, commands, metrics, interpret
 | **Regression** | Seg 2 (6 accepted within distinct boundaries), 6/54/58/99 (0 accepted — hard prohibitions dominate). No mixing, crossing, reversal or unsupported bridging anywhere |
 | **Limitations** | Conservative on noisy segments by design; pre-existing fragment-tip kinks visible (connector adds none); no fork/merge topology yet; thresholds fixed from Seg14/16 |
 | **Source** | `reports/lane_joining_stage.md`; `reports/lane_joining/*.json`; `screenshots/lane_joining/*.png`; `tests/lane_joining.test.js` (16/16) |
+
+---
+
+## E-021: Path 1 graph fitting (experimental fitted layer)
+
+| Field | Value |
+|-------|-------|
+| **Classification** | **EXP** (display-only; off by default; not production) |
+| **Module** | `lib/graph_fit.js` + browser mirror `public/graph_fit.js`; wired via `lib/segment_local_map.js`; shared viewer path `lib/viewer_map_build.js` |
+| **Configuration** | `fitEnabled: false` by default; enable with `?fit=1` or viewer toggle. Processing version `2026-07-24-fusion-v16`. Source-corridor gate `fitMaxSourceCorridorM: 3.0` |
+| **Commands** | `node scripts/probe_fitted_segments_summary.js`; `node scripts/probe_viewer_browser_parity.js`; `node --expose-gc --test tests/graph_fit.test.js`; `node --expose-gc --test tests/viewer_probe_parity.test.js` |
+| **Segments** | 2, 3, 9, 14, 16, 54 (viewer-authoritative audit set) |
+| **Metrics** | Accepted fits: Seg2 **4**, Seg3 **11**, Seg9 **0** (1 stationary polygon), Seg14 **7**, Seg16 **9**, Seg54 **0**. Polygons unchanged with fitting on/off. Seg9 CF0 rejected: `sourceCorridorExceeded` maxDist 4.10 m > 3 m gate |
+| **Visual encoding** | Cyan polylines = accepted fitted curves; purple markers = fitted endpoints |
+| **Limitations** | Complete-map only (causal playback suppresses fitting); long segments slow; fitted output does not feed polygons; Path 2 not implemented |
+| **Source** | `reports/fitted_layer_probe/segment_fitted_summary.json`; `reports/fitted_layer_probe/viewer_browser_parity.json`; `tests/graph_fit.test.js` (69/69) |
 
 ---
 

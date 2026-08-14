@@ -1,0 +1,1668 @@
+{
+  "generatedAt": "2026-08-14T03:55:24.191Z",
+  "segments": {
+    "seg2": {
+      "file": "qlog_f449c_2.bz2",
+      "scenarios": {
+        "A_mirrorOn": {
+          "mirror": true,
+          "acceptedCount": 4,
+          "fits": [
+            {
+              "fragmentId": "CF9",
+              "groupTrackId": "0",
+              "pointCount": 246,
+              "localEast": {
+                "min": -39.43510358532268,
+                "max": -14.220681847333367
+              },
+              "localNorth": {
+                "min": -275.12489534673244,
+                "max": -169.0837875163282
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 343.7475841178085,
+                "max": 380.1331945797176
+              },
+              "screenY": {
+                "min": 466.35166185448196,
+                "max": 619.3740266963125
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 8,
+              "sampleVertex": {
+                "east": -14.220681847333367,
+                "north": -169.0837875163282,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF10",
+              "groupTrackId": "0",
+              "pointCount": 16,
+              "localEast": {
+                "min": -41.01410164017766,
+                "max": -39.57442982307023
+              },
+              "localNorth": {
+                "min": -282.22362663864646,
+                "max": -275.8115853235167
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 341.469014783914,
+                "max": 343.54652972653656
+              },
+              "screenY": {
+                "min": 620.3649530107448,
+                "max": 629.6178337621789
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 8,
+              "sampleVertex": {
+                "east": -39.57442982307023,
+                "north": -275.8115853235167,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF21",
+              "groupTrackId": "1",
+              "pointCount": 222,
+              "localEast": {
+                "min": -34.39006333995168,
+                "max": -11.484655685081943
+              },
+              "localNorth": {
+                "min": -267.14483865572197,
+                "max": -170.3225100040562
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 351.027817273271,
+                "max": 384.08141053278393
+              },
+              "screenY": {
+                "min": 468.1391973521123,
+                "max": 607.8584251393834
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 8,
+              "sampleVertex": {
+                "east": -11.484655685081943,
+                "north": -170.3225100040562,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF23",
+              "groupTrackId": "1",
+              "pointCount": 16,
+              "localEast": {
+                "min": -37.89164500702566,
+                "max": -36.54749982037126
+              },
+              "localNorth": {
+                "min": -283.0725350847228,
+                "max": -276.45021759596455
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 345.9748682957913,
+                "max": 347.91453376478637
+              },
+              "screenY": {
+                "min": 621.2865297708687,
+                "max": 630.8428490473884
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 8,
+              "sampleVertex": {
+                "east": -36.54749982037126,
+                "north": -276.45021759596455,
+                "u": 0,
+                "t": 0
+              }
+            }
+          ],
+          "viewport": {
+            "canvasW": 960,
+            "canvasH": 736,
+            "scale": 1.4430475876069238,
+            "offsetX": -79.3456847863624,
+            "offsetY": -145.6442898243971,
+            "localViewportBounds": {
+              "minE": -63.996551120344805,
+              "maxE": 173.96615360302553,
+              "minN": -328.22499679990773,
+              "maxN": 126.3684661141441
+            },
+            "fitBounds": {
+              "minE": -131.50637449394418,
+              "maxE": 757.6003110988871,
+              "minN": -458.79418101123605,
+              "maxN": 232.47979471596847
+            }
+          },
+          "cyanPixelCount": 1238,
+          "cacheKey": "0:0:pointAccumulated:fit1",
+          "mapValid": true
+        },
+        "B_mirrorOff": {
+          "mirror": false,
+          "acceptedCount": 4,
+          "fits": [
+            {
+              "fragmentId": "CF9",
+              "groupTrackId": "0",
+              "pointCount": 246,
+              "localEast": {
+                "min": -39.43510358532268,
+                "max": -14.220681847333367
+              },
+              "localNorth": {
+                "min": -275.12489534673244,
+                "max": -169.0837875163282
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 343.7475841178085,
+                "max": 380.1331945797176
+              },
+              "screenY": {
+                "min": 466.35166185448196,
+                "max": 619.3740266963125
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 8,
+              "sampleVertex": {
+                "east": -14.220681847333367,
+                "north": -169.0837875163282,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF10",
+              "groupTrackId": "0",
+              "pointCount": 16,
+              "localEast": {
+                "min": -41.01410164017766,
+                "max": -39.57442982307023
+              },
+              "localNorth": {
+                "min": -282.22362663864646,
+                "max": -275.8115853235167
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 341.469014783914,
+                "max": 343.54652972653656
+              },
+              "screenY": {
+                "min": 620.3649530107448,
+                "max": 629.6178337621789
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 8,
+              "sampleVertex": {
+                "east": -39.57442982307023,
+                "north": -275.8115853235167,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF21",
+              "groupTrackId": "1",
+              "pointCount": 222,
+              "localEast": {
+                "min": -34.39006333995168,
+                "max": -11.484655685081943
+              },
+              "localNorth": {
+                "min": -267.14483865572197,
+                "max": -170.3225100040562
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 351.027817273271,
+                "max": 384.08141053278393
+              },
+              "screenY": {
+                "min": 468.1391973521123,
+                "max": 607.8584251393834
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 8,
+              "sampleVertex": {
+                "east": -11.484655685081943,
+                "north": -170.3225100040562,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF23",
+              "groupTrackId": "1",
+              "pointCount": 16,
+              "localEast": {
+                "min": -37.89164500702566,
+                "max": -36.54749982037126
+              },
+              "localNorth": {
+                "min": -283.0725350847228,
+                "max": -276.45021759596455
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 345.9748682957913,
+                "max": 347.91453376478637
+              },
+              "screenY": {
+                "min": 621.2865297708687,
+                "max": 630.8428490473884
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 8,
+              "sampleVertex": {
+                "east": -36.54749982037126,
+                "north": -276.45021759596455,
+                "u": 0,
+                "t": 0
+              }
+            }
+          ],
+          "viewport": {
+            "canvasW": 960,
+            "canvasH": 736,
+            "scale": 1.4430475876069238,
+            "offsetX": -79.3456847863624,
+            "offsetY": -145.6442898243971,
+            "localViewportBounds": {
+              "minE": -63.996551120344805,
+              "maxE": 173.96615360302553,
+              "minN": -328.22499679990773,
+              "maxN": 126.3684661141441
+            },
+            "fitBounds": {
+              "minE": -131.50637449394418,
+              "maxE": 757.6003110988871,
+              "minN": -458.79418101123605,
+              "maxN": 232.47979471596847
+            }
+          },
+          "cyanPixelCount": 1234,
+          "cacheKey": "0:0:pointAccumulated:fit1",
+          "mapValid": true
+        },
+        "C_fitToView": {
+          "mirror": true,
+          "acceptedCount": 4,
+          "fits": [
+            {
+              "fragmentId": "CF9",
+              "groupTrackId": "0",
+              "pointCount": 246,
+              "localEast": {
+                "min": -39.43510358532268,
+                "max": -14.220681847333367
+              },
+              "localNorth": {
+                "min": -275.12489534673244,
+                "max": -169.0837875163282
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 145.50420343085227,
+                "max": 169.43199652145805
+              },
+              "screenY": {
+                "min": 421.07280064647125,
+                "max": 521.7028969314739
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 8,
+              "sampleVertex": {
+                "east": -14.220681847333367,
+                "north": -169.0837875163282,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF10",
+              "groupTrackId": "0",
+              "pointCount": 16,
+              "localEast": {
+                "min": -41.01410164017766,
+                "max": -39.57442982307023
+              },
+              "localNorth": {
+                "min": -282.22362663864646,
+                "max": -275.8115853235167
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 144.00577768309398,
+                "max": 145.37198666127657
+              },
+              "screenY": {
+                "min": 522.3545468424902,
+                "max": 528.439397784984
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 8,
+              "sampleVertex": {
+                "east": -39.57442982307023,
+                "north": -275.8115853235167,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF21",
+              "groupTrackId": "1",
+              "pointCount": 222,
+              "localEast": {
+                "min": -34.39006333995168,
+                "max": -11.484655685081943
+              },
+              "localNorth": {
+                "min": -267.14483865572197,
+                "max": -170.3225100040562
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 150.29180793669497,
+                "max": 172.02841013669476
+              },
+              "screenY": {
+                "min": 422.2483142351243,
+                "max": 514.130042501657
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 8,
+              "sampleVertex": {
+                "east": -11.484655685081943,
+                "north": -170.3225100040562,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF23",
+              "groupTrackId": "1",
+              "pointCount": 16,
+              "localEast": {
+                "min": -37.89164500702566,
+                "max": -36.54749982037126
+              },
+              "localNorth": {
+                "min": -283.0725350847228,
+                "max": -276.45021759596455
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 146.9689031923292,
+                "max": 148.2444600242173
+              },
+              "screenY": {
+                "min": 522.9605913131866,
+                "max": 529.2449885640094
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 8,
+              "sampleVertex": {
+                "east": -36.54749982037126,
+                "north": -276.45021759596455,
+                "u": 0,
+                "t": 0
+              }
+            }
+          ],
+          "viewport": {
+            "canvasW": 960,
+            "canvasH": 736,
+            "scale": 0.9489725102263584,
+            "offsetX": -297.0729673287476,
+            "offsetY": -107.38306563147893,
+            "localViewportBounds": {
+              "minE": -131.50637449394418,
+              "maxE": 757.6003110988871,
+              "minN": -458.79418101123605,
+              "maxN": 232.47979471596847
+            },
+            "fitBounds": {
+              "minE": -131.50637449394418,
+              "maxE": 757.6003110988871,
+              "minN": -458.79418101123605,
+              "maxN": 232.47979471596847
+            }
+          },
+          "cyanPixelCount": 647,
+          "cacheKey": "0:0:pointAccumulated:fit1",
+          "mapValid": true
+        }
+      }
+    },
+    "seg3": {
+      "file": "qlog_f449c_3.bz2",
+      "scenarios": {
+        "A_mirrorOn": {
+          "mirror": true,
+          "acceptedCount": 11,
+          "fits": [
+            {
+              "fragmentId": "CF4",
+              "groupTrackId": "0",
+              "pointCount": 84,
+              "localEast": {
+                "min": 31.148298960014767,
+                "max": 65.47326732757982
+              },
+              "localNorth": {
+                "min": -1.4942104016780646,
+                "max": -0.8349768002763543
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 156.17850978323716,
+                "max": 217.32641329199512
+              },
+              "screenY": {
+                "min": 401.98243833001925,
+                "max": 403.1568240487934
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 22,
+              "sampleVertex": {
+                "east": 31.148298960014767,
+                "north": -0.8380604047688147,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF5",
+              "groupTrackId": "0",
+              "pointCount": 14,
+              "localEast": {
+                "min": 66.55422886503756,
+                "max": 71.6088744368204
+              },
+              "localNorth": {
+                "min": -2.0282716552930236,
+                "max": -0.7682598286077228
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 219.25208241661997,
+                "max": 228.256634915681
+              },
+              "screenY": {
+                "min": 401.86358598608393,
+                "max": 404.10822262414274
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 22,
+              "sampleVertex": {
+                "east": 66.55422886503756,
+                "north": -1.424837101384278,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF27",
+              "groupTrackId": "0",
+              "pointCount": 51,
+              "localEast": {
+                "min": 257.0469687882123,
+                "max": 277.58520764574627
+              },
+              "localNorth": {
+                "min": 36.951226743245485,
+                "max": 41.528695305208295
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 558.603645838542,
+                "max": 595.1913051322655
+              },
+              "screenY": {
+                "min": 326.51405897294893,
+                "max": 334.6685488167259
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 22,
+              "sampleVertex": {
+                "east": 257.0469687882123,
+                "north": 36.951226743245485,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF30",
+              "groupTrackId": "0",
+              "pointCount": 21,
+              "localEast": {
+                "min": 284.9738841637815,
+                "max": 293.0177527630603
+              },
+              "localNorth": {
+                "min": 44.17618266264914,
+                "max": 46.129752934588105
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 608.3537958866392,
+                "max": 622.6834726303653
+              },
+              "screenY": {
+                "min": 318.31754659901753,
+                "max": 321.79771663754207
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 22,
+              "sampleVertex": {
+                "east": 284.9738841637815,
+                "north": 44.17618266264914,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF36",
+              "groupTrackId": "1",
+              "pointCount": 14,
+              "localEast": {
+                "min": 16.977646110888763,
+                "max": 22.148882641087038
+              },
+              "localNorth": {
+                "min": 1.8915056621967803,
+                "max": 2.3234339381000275
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 130.93432881865232,
+                "max": 140.1465812228913
+              },
+              "screenY": {
+                "min": 396.3559161726453,
+                "max": 397.1253708813813
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 22,
+              "sampleVertex": {
+                "east": 16.977646110888763,
+                "north": 2.3234339381000275,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF39",
+              "groupTrackId": "1",
+              "pointCount": 75,
+              "localEast": {
+                "min": 33.02739477858403,
+                "max": 59.62392668510925
+              },
+              "localNorth": {
+                "min": 1.1855302320279675,
+                "max": 1.7862209357800698
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 159.52600798242443,
+                "max": 206.90615846858128
+              },
+              "screenY": {
+                "min": 397.31292940213314,
+                "max": 398.38302440697953
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 22,
+              "sampleVertex": {
+                "east": 33.02739477858403,
+                "north": 1.7862209357800698,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF40",
+              "groupTrackId": "1",
+              "pointCount": 13,
+              "localEast": {
+                "min": 62.57421389099204,
+                "max": 65.93011468692539
+              },
+              "localNorth": {
+                "min": 1.1277068866866997,
+                "max": 1.2110914092828378
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 212.161920847052,
+                "max": 218.1402598758682
+              },
+              "screenY": {
+                "min": 398.337488679645,
+                "max": 398.4860332809752
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 22,
+              "sampleVertex": {
+                "east": 62.57421389099204,
+                "north": 1.1277068866866997,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF52",
+              "groupTrackId": "1",
+              "pointCount": 82,
+              "localEast": {
+                "min": 241.7910384249248,
+                "max": 276.06996268738385
+              },
+              "localNorth": {
+                "min": 35.92547587247212,
+                "max": 44.06115424077295
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 531.426107091787,
+                "max": 592.4919857472073
+              },
+              "screenY": {
+                "min": 322.0026329761772,
+                "max": 336.49586340004663
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 22,
+              "sampleVertex": {
+                "east": 241.7910384249248,
+                "north": 35.92547587247212,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF55",
+              "groupTrackId": "1",
+              "pointCount": 21,
+              "localEast": {
+                "min": 284.26814354741794,
+                "max": 292.3884461960394
+              },
+              "localNorth": {
+                "min": 46.729488106456046,
+                "max": 48.65474659488962
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 607.096560667964,
+                "max": 621.5624001554963
+              },
+              "screenY": {
+                "min": 313.81941954913975,
+                "max": 317.2491538177778
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 22,
+              "sampleVertex": {
+                "east": 284.26814354741794,
+                "north": 46.729488106456046,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF77",
+              "groupTrackId": "2",
+              "pointCount": 18,
+              "localEast": {
+                "min": 255.97108133070222,
+                "max": 262.39118264248884
+              },
+              "localNorth": {
+                "min": 42.72231217306818,
+                "max": 43.79202681948872
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 556.6870158876086,
+                "max": 568.1240471275424
+              },
+              "screenY": {
+                "min": 322.4820675793508,
+                "max": 324.38770103196714
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 22,
+              "sampleVertex": {
+                "east": 255.97108133070222,
+                "north": 42.72231217306818,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF81",
+              "groupTrackId": "2",
+              "pointCount": 21,
+              "localEast": {
+                "min": 283.5266504731469,
+                "max": 291.59823376831014
+              },
+              "localNorth": {
+                "min": 49.4717886515552,
+                "max": 51.50889171589813
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 605.7756345574893,
+                "max": 620.1546833947762
+              },
+              "screenY": {
+                "min": 308.73492861558555,
+                "max": 312.3639073893444
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 22,
+              "sampleVertex": {
+                "east": 283.5266504731469,
+                "north": 49.4717886515552,
+                "u": 0,
+                "t": 0
+              }
+            }
+          ],
+          "viewport": {
+            "canvasW": 960,
+            "canvasH": 736,
+            "scale": 1.7814409281885575,
+            "offsetX": -379.3103448275862,
+            "offsetY": 32.49497648391901,
+            "localViewportBounds": {
+              "minE": -34.06773371605734,
+              "maxE": 459.91440516677403,
+              "minN": -58.30403391008678,
+              "maxN": 94.78571115207228
+            },
+            "fitBounds": {
+              "minE": -34.06773371605734,
+              "maxE": 459.91440516677403,
+              "minN": -58.30403391008678,
+              "maxN": 94.78571115207228
+            }
+          },
+          "cyanPixelCount": 911,
+          "cacheKey": "0:0:pointAccumulated:fit1",
+          "mapValid": true
+        },
+        "B_mirrorOff": {
+          "mirror": false,
+          "acceptedCount": 11,
+          "fits": [
+            {
+              "fragmentId": "CF4",
+              "groupTrackId": "0",
+              "pointCount": 84,
+              "localEast": {
+                "min": 31.148298960014767,
+                "max": 65.47326732757982
+              },
+              "localNorth": {
+                "min": -1.4942104016780646,
+                "max": -0.8349768002763543
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 156.17850978323716,
+                "max": 217.32641329199512
+              },
+              "screenY": {
+                "min": 401.98243833001925,
+                "max": 403.1568240487934
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 22,
+              "sampleVertex": {
+                "east": 31.148298960014767,
+                "north": -0.8380604047688147,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF5",
+              "groupTrackId": "0",
+              "pointCount": 14,
+              "localEast": {
+                "min": 66.55422886503756,
+                "max": 71.6088744368204
+              },
+              "localNorth": {
+                "min": -2.0282716552930236,
+                "max": -0.7682598286077228
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 219.25208241661997,
+                "max": 228.256634915681
+              },
+              "screenY": {
+                "min": 401.86358598608393,
+                "max": 404.10822262414274
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 22,
+              "sampleVertex": {
+                "east": 66.55422886503756,
+                "north": -1.424837101384278,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF27",
+              "groupTrackId": "0",
+              "pointCount": 51,
+              "localEast": {
+                "min": 257.0469687882123,
+                "max": 277.58520764574627
+              },
+              "localNorth": {
+                "min": 36.951226743245485,
+                "max": 41.528695305208295
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 558.603645838542,
+                "max": 595.1913051322655
+              },
+              "screenY": {
+                "min": 326.51405897294893,
+                "max": 334.6685488167259
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 22,
+              "sampleVertex": {
+                "east": 257.0469687882123,
+                "north": 36.951226743245485,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF30",
+              "groupTrackId": "0",
+              "pointCount": 21,
+              "localEast": {
+                "min": 284.9738841637815,
+                "max": 293.0177527630603
+              },
+              "localNorth": {
+                "min": 44.17618266264914,
+                "max": 46.129752934588105
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 608.3537958866392,
+                "max": 622.6834726303653
+              },
+              "screenY": {
+                "min": 318.31754659901753,
+                "max": 321.79771663754207
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 22,
+              "sampleVertex": {
+                "east": 284.9738841637815,
+                "north": 44.17618266264914,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF36",
+              "groupTrackId": "1",
+              "pointCount": 14,
+              "localEast": {
+                "min": 16.977646110888763,
+                "max": 22.148882641087038
+              },
+              "localNorth": {
+                "min": 1.8915056621967803,
+                "max": 2.3234339381000275
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 130.93432881865232,
+                "max": 140.1465812228913
+              },
+              "screenY": {
+                "min": 396.3559161726453,
+                "max": 397.1253708813813
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 22,
+              "sampleVertex": {
+                "east": 16.977646110888763,
+                "north": 2.3234339381000275,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF39",
+              "groupTrackId": "1",
+              "pointCount": 75,
+              "localEast": {
+                "min": 33.02739477858403,
+                "max": 59.62392668510925
+              },
+              "localNorth": {
+                "min": 1.1855302320279675,
+                "max": 1.7862209357800698
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 159.52600798242443,
+                "max": 206.90615846858128
+              },
+              "screenY": {
+                "min": 397.31292940213314,
+                "max": 398.38302440697953
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 22,
+              "sampleVertex": {
+                "east": 33.02739477858403,
+                "north": 1.7862209357800698,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF40",
+              "groupTrackId": "1",
+              "pointCount": 13,
+              "localEast": {
+                "min": 62.57421389099204,
+                "max": 65.93011468692539
+              },
+              "localNorth": {
+                "min": 1.1277068866866997,
+                "max": 1.2110914092828378
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 212.161920847052,
+                "max": 218.1402598758682
+              },
+              "screenY": {
+                "min": 398.337488679645,
+                "max": 398.4860332809752
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 22,
+              "sampleVertex": {
+                "east": 62.57421389099204,
+                "north": 1.1277068866866997,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF52",
+              "groupTrackId": "1",
+              "pointCount": 82,
+              "localEast": {
+                "min": 241.7910384249248,
+                "max": 276.06996268738385
+              },
+              "localNorth": {
+                "min": 35.92547587247212,
+                "max": 44.06115424077295
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 531.426107091787,
+                "max": 592.4919857472073
+              },
+              "screenY": {
+                "min": 322.0026329761772,
+                "max": 336.49586340004663
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 22,
+              "sampleVertex": {
+                "east": 241.7910384249248,
+                "north": 35.92547587247212,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF55",
+              "groupTrackId": "1",
+              "pointCount": 21,
+              "localEast": {
+                "min": 284.26814354741794,
+                "max": 292.3884461960394
+              },
+              "localNorth": {
+                "min": 46.729488106456046,
+                "max": 48.65474659488962
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 607.096560667964,
+                "max": 621.5624001554963
+              },
+              "screenY": {
+                "min": 313.81941954913975,
+                "max": 317.2491538177778
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 22,
+              "sampleVertex": {
+                "east": 284.26814354741794,
+                "north": 46.729488106456046,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF77",
+              "groupTrackId": "2",
+              "pointCount": 18,
+              "localEast": {
+                "min": 255.97108133070222,
+                "max": 262.39118264248884
+              },
+              "localNorth": {
+                "min": 42.72231217306818,
+                "max": 43.79202681948872
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 556.6870158876086,
+                "max": 568.1240471275424
+              },
+              "screenY": {
+                "min": 322.4820675793508,
+                "max": 324.38770103196714
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 22,
+              "sampleVertex": {
+                "east": 255.97108133070222,
+                "north": 42.72231217306818,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF81",
+              "groupTrackId": "2",
+              "pointCount": 21,
+              "localEast": {
+                "min": 283.5266504731469,
+                "max": 291.59823376831014
+              },
+              "localNorth": {
+                "min": 49.4717886515552,
+                "max": 51.50889171589813
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 605.7756345574893,
+                "max": 620.1546833947762
+              },
+              "screenY": {
+                "min": 308.73492861558555,
+                "max": 312.3639073893444
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 22,
+              "sampleVertex": {
+                "east": 283.5266504731469,
+                "north": 49.4717886515552,
+                "u": 0,
+                "t": 0
+              }
+            }
+          ],
+          "viewport": {
+            "canvasW": 960,
+            "canvasH": 736,
+            "scale": 1.7814409281885575,
+            "offsetX": -379.3103448275862,
+            "offsetY": 32.49497648391901,
+            "localViewportBounds": {
+              "minE": -34.06773371605734,
+              "maxE": 459.91440516677403,
+              "minN": -58.30403391008678,
+              "maxN": 94.78571115207228
+            },
+            "fitBounds": {
+              "minE": -34.06773371605734,
+              "maxE": 459.91440516677403,
+              "minN": -58.30403391008678,
+              "maxN": 94.78571115207228
+            }
+          },
+          "cyanPixelCount": 914,
+          "cacheKey": "0:0:pointAccumulated:fit1",
+          "mapValid": true
+        },
+        "C_fitToView": {
+          "mirror": true,
+          "acceptedCount": 11,
+          "fits": [
+            {
+              "fragmentId": "CF4",
+              "groupTrackId": "0",
+              "pointCount": 84,
+              "localEast": {
+                "min": 31.148298960014767,
+                "max": 65.47326732757982
+              },
+              "localNorth": {
+                "min": -1.4942104016780646,
+                "max": -0.8349768002763543
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 156.17850978323716,
+                "max": 217.32641329199512
+              },
+              "screenY": {
+                "min": 401.98243833001925,
+                "max": 403.1568240487934
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 22,
+              "sampleVertex": {
+                "east": 31.148298960014767,
+                "north": -0.8380604047688147,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF5",
+              "groupTrackId": "0",
+              "pointCount": 14,
+              "localEast": {
+                "min": 66.55422886503756,
+                "max": 71.6088744368204
+              },
+              "localNorth": {
+                "min": -2.0282716552930236,
+                "max": -0.7682598286077228
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 219.25208241661997,
+                "max": 228.256634915681
+              },
+              "screenY": {
+                "min": 401.86358598608393,
+                "max": 404.10822262414274
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 22,
+              "sampleVertex": {
+                "east": 66.55422886503756,
+                "north": -1.424837101384278,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF27",
+              "groupTrackId": "0",
+              "pointCount": 51,
+              "localEast": {
+                "min": 257.0469687882123,
+                "max": 277.58520764574627
+              },
+              "localNorth": {
+                "min": 36.951226743245485,
+                "max": 41.528695305208295
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 558.603645838542,
+                "max": 595.1913051322655
+              },
+              "screenY": {
+                "min": 326.51405897294893,
+                "max": 334.6685488167259
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 22,
+              "sampleVertex": {
+                "east": 257.0469687882123,
+                "north": 36.951226743245485,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF30",
+              "groupTrackId": "0",
+              "pointCount": 21,
+              "localEast": {
+                "min": 284.9738841637815,
+                "max": 293.0177527630603
+              },
+              "localNorth": {
+                "min": 44.17618266264914,
+                "max": 46.129752934588105
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 608.3537958866392,
+                "max": 622.6834726303653
+              },
+              "screenY": {
+                "min": 318.31754659901753,
+                "max": 321.79771663754207
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 22,
+              "sampleVertex": {
+                "east": 284.9738841637815,
+                "north": 44.17618266264914,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF36",
+              "groupTrackId": "1",
+              "pointCount": 14,
+              "localEast": {
+                "min": 16.977646110888763,
+                "max": 22.148882641087038
+              },
+              "localNorth": {
+                "min": 1.8915056621967803,
+                "max": 2.3234339381000275
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 130.93432881865232,
+                "max": 140.1465812228913
+              },
+              "screenY": {
+                "min": 396.3559161726453,
+                "max": 397.1253708813813
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 22,
+              "sampleVertex": {
+                "east": 16.977646110888763,
+                "north": 2.3234339381000275,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF39",
+              "groupTrackId": "1",
+              "pointCount": 75,
+              "localEast": {
+                "min": 33.02739477858403,
+                "max": 59.62392668510925
+              },
+              "localNorth": {
+                "min": 1.1855302320279675,
+                "max": 1.7862209357800698
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 159.52600798242443,
+                "max": 206.90615846858128
+              },
+              "screenY": {
+                "min": 397.31292940213314,
+                "max": 398.38302440697953
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 22,
+              "sampleVertex": {
+                "east": 33.02739477858403,
+                "north": 1.7862209357800698,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF40",
+              "groupTrackId": "1",
+              "pointCount": 13,
+              "localEast": {
+                "min": 62.57421389099204,
+                "max": 65.93011468692539
+              },
+              "localNorth": {
+                "min": 1.1277068866866997,
+                "max": 1.2110914092828378
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 212.161920847052,
+                "max": 218.1402598758682
+              },
+              "screenY": {
+                "min": 398.337488679645,
+                "max": 398.4860332809752
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 22,
+              "sampleVertex": {
+                "east": 62.57421389099204,
+                "north": 1.1277068866866997,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF52",
+              "groupTrackId": "1",
+              "pointCount": 82,
+              "localEast": {
+                "min": 241.7910384249248,
+                "max": 276.06996268738385
+              },
+              "localNorth": {
+                "min": 35.92547587247212,
+                "max": 44.06115424077295
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 531.426107091787,
+                "max": 592.4919857472073
+              },
+              "screenY": {
+                "min": 322.0026329761772,
+                "max": 336.49586340004663
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 22,
+              "sampleVertex": {
+                "east": 241.7910384249248,
+                "north": 35.92547587247212,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF55",
+              "groupTrackId": "1",
+              "pointCount": 21,
+              "localEast": {
+                "min": 284.26814354741794,
+                "max": 292.3884461960394
+              },
+              "localNorth": {
+                "min": 46.729488106456046,
+                "max": 48.65474659488962
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 607.096560667964,
+                "max": 621.5624001554963
+              },
+              "screenY": {
+                "min": 313.81941954913975,
+                "max": 317.2491538177778
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 22,
+              "sampleVertex": {
+                "east": 284.26814354741794,
+                "north": 46.729488106456046,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF77",
+              "groupTrackId": "2",
+              "pointCount": 18,
+              "localEast": {
+                "min": 255.97108133070222,
+                "max": 262.39118264248884
+              },
+              "localNorth": {
+                "min": 42.72231217306818,
+                "max": 43.79202681948872
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 556.6870158876086,
+                "max": 568.1240471275424
+              },
+              "screenY": {
+                "min": 322.4820675793508,
+                "max": 324.38770103196714
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 22,
+              "sampleVertex": {
+                "east": 255.97108133070222,
+                "north": 42.72231217306818,
+                "u": 0,
+                "t": 0
+              }
+            },
+            {
+              "fragmentId": "CF81",
+              "groupTrackId": "2",
+              "pointCount": 21,
+              "localEast": {
+                "min": 283.5266504731469,
+                "max": 291.59823376831014
+              },
+              "localNorth": {
+                "min": 49.4717886515552,
+                "max": 51.50889171589813
+              },
+              "mirroredEastPresent": false,
+              "mirroredEastSample": null,
+              "mirroredNorthSample": null,
+              "screenX": {
+                "min": 605.7756345574893,
+                "max": 620.1546833947762
+              },
+              "screenY": {
+                "min": 308.73492861558555,
+                "max": 312.3639073893444
+              },
+              "coordinatesFinite": true,
+              "strokeReturnsTrue": true,
+              "endpointMarkerFills": 22,
+              "sampleVertex": {
+                "east": 283.5266504731469,
+                "north": 49.4717886515552,
+                "u": 0,
+                "t": 0
+              }
+            }
+          ],
+          "viewport": {
+            "canvasW": 960,
+            "canvasH": 736,
+            "scale": 1.7814409281885575,
+            "offsetX": -379.3103448275862,
+            "offsetY": 32.49497648391901,
+            "localViewportBounds": {
+              "minE": -34.06773371605734,
+              "maxE": 459.91440516677403,
+              "minN": -58.30403391008678,
+              "maxN": 94.78571115207228
+            },
+            "fitBounds": {
+              "minE": -34.06773371605734,
+              "maxE": 459.91440516677403,
+              "minN": -58.30403391008678,
+              "maxN": 94.78571115207228
+            }
+          },
+          "cyanPixelCount": 906,
+          "cacheKey": "0:0:pointAccumulated:fit1",
+          "mapValid": true
+        }
+      }
+    }
+  }
+}

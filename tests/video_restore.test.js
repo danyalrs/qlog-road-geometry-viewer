@@ -98,14 +98,22 @@ describe('video restore — cache reuse', () => {
     }
   });
 
-  it('4. no cached video for a source is reported as unavailable (no ffmpeg fallback needed)', () => {
-    const { dir, source, cached } = makeRestoredProject({ cachedName: 'other.mp4' });
+  it('4. no cached video for a source is reported as unavailable when ffmpeg absent', () => {
+    const { dir, source } = makeRestoredProject({ cachedName: 'other.mp4' });
     try {
-      const found = findCachedMp4ForSource(source, resolveCacheDir(dir));
+      const cacheDir = resolveCacheDir(dir);
+      assert.equal(fs.readdirSync(cacheDir).length, 1);
+      const found = findCachedMp4ForSource(source, cacheDir);
       assert.equal(found, null);
-      const result = ensureBrowserMp4(source, dir);
+      // Force an isolated toolchain: never depend on the host ffmpeg install or
+      // the project's real .video_cache directory.
+      const result = ensureBrowserMp4(source, dir, {
+        ffmpegPath: path.join(dir, '__missing_ffmpeg__'),
+        ffprobePath: path.join(dir, '__missing_ffprobe__'),
+      });
       assert.equal(result.ok, false);
       assert.equal(result.error, 'ffmpeg_not_available');
+      assert.equal(fs.readdirSync(cacheDir).length, 1, 'must not create new cache files');
     } finally {
       cleanup(dir);
     }

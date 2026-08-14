@@ -90,6 +90,10 @@ function getLayers() {
     constructedFragments: $('layerConstructedFragments')?.checked === true,
     joinedPolylines: $('layerJoinedPolylines')?.checked === true,
     joinCandidates: $('layerJoinCandidates')?.checked === true,
+    fittedPolylines: $('layerFittedPolylines')?.checked === true,
+    fittedOutliers: $('layerFittedOutliers')?.checked === true,
+    fittedUnverified: $('layerFittedUnverified')?.checked === true,
+    fittedGaps: $('layerFittedGaps')?.checked === true,
     diagPhysicalBoundary: $('layerDiagPhysicalBoundary')?.checked,
     diagTrackIds: $('layerDiagTrackIds')?.checked,
     diagFragmentIds: $('layerDiagFragmentIds')?.checked,
@@ -132,7 +136,12 @@ function getEffectiveLayers(displayMode) {
 }
 
 function localPlaybackOptions() {
-  return { minHeadingSpeedMps: parseFloat($('minBearingSpeed')?.value ?? 2) };
+  const params = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null;
+  return {
+    minHeadingSpeedMps: parseFloat($('minBearingSpeed')?.value ?? 2),
+    // Experimental Path-1 graph fitting; disabled unless ?fit=1 is set.
+    fitEnabled: params?.get('fit') === '1',
+  };
 }
 
 function localPlaybackUrlFlags() {
@@ -154,7 +163,8 @@ function getLocalGeometryMode() {
 }
 
 function stationaryMapCacheKey(chunkId, passId, geometrySource) {
-  return `${chunkId}:${passId}:${geometrySource}`;
+  const fit = localPlaybackOptions().fitEnabled ? ':fit1' : ':fit0';
+  return `${chunkId}:${passId}:${geometrySource}${fit}`;
 }
 
 function clearStationaryMapCache() {

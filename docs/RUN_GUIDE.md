@@ -1,6 +1,6 @@
 # Run Guide
 
-**Last updated:** 2026-08-11
+**Last updated:** 2026-08-14
 
 Verified commands from `package.json`, scripts, and specification docs. Mark **(uncertain)** where environment-specific or data-dependent.
 
@@ -46,6 +46,16 @@ node server.js
 
 Open browser to `http://localhost:3847`.
 
+### Experimental fitted layer (`?fit=1`)
+
+Path 1 graph fitting is **off by default**. To enable the experimental fitted-layer overlay in the viewer:
+
+```
+http://localhost:3847/?fit=1
+```
+
+Or use the **Fitted curves** checkbox in the viewer UI after load. Fitting runs on the complete local map only (not during causal playback). Cyan polylines = accepted fitted curves; purple markers = fitted endpoints. Fitted output does not feed polygons.
+
 Stage 19 panel: `GET /api/stage19/summary`  
 Bundle artifacts: `GET /api/stage19/bundle/*`
 
@@ -67,7 +77,17 @@ Equivalent:
 node --expose-gc --test tests
 ```
 
-**Verified result (v5):** 432 pass, 0 fail, 0 skipped (`reports/stage19_v5_corrective_checkpoint_report.json`).
+**Verified result (2026-08-14):** 1718 tests, 1691 pass, 27 fail (documented baseline), 0 skipped. Requires `--expose-gc` for Stage 19 memory-oracle tests. Full output: `.cache/full_suite_expose_gc_tap_postfix.txt`.
+
+Focused graph-fit validation:
+
+```bash
+node --expose-gc --test tests/graph_fit.test.js
+node --expose-gc --test tests/viewer_probe_parity.test.js
+node --expose-gc --test tests/video_restore.test.js
+```
+
+**Historical result (Stage 19 v5):** 432 pass, 0 fail (`reports/stage19_v5_corrective_checkpoint_report.json`).
 
 ### Stage 19–focused test files
 

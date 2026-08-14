@@ -1,0 +1,366 @@
+{
+  "generatedAt": "2026-08-14T05:18:28.388Z",
+  "path": "viewer_map_build (production)",
+  "processOptions": {
+    "pipelineMode": "C",
+    "trackerContinuityBridgeEnabled": true,
+    "bimodalClusterSelection": true,
+    "positiveBoundaryContinuityBridgeEnabled": false,
+    "visibleGapReconstructionEnabled": false,
+    "minLaneProb": 0.5,
+    "maxAccuracyM": 50,
+    "maxModelGpsDeltaNs": 2000000000,
+    "maxForwardM": 120,
+    "fusionIntervalM": 2,
+    "minSpeedForGpsBearing": 2,
+    "maxTimeGapSec": 3,
+    "maxGpsGapM": 30,
+    "maxImpliedSpeedMps": 55,
+    "maxLaneFragmentGapM": 10,
+    "maxRoadEdgeGapM": 10,
+    "laneTrackingEnabled": true,
+    "localSupportFilter": true
+  },
+  "segments": [
+    {
+      "segNum": 2,
+      "accepted": 4,
+      "acceptedIds": [
+        "CF10",
+        "CF21",
+        "CF23",
+        "CF9"
+      ],
+      "statusCounts": {
+        "insufficientSupport": 44,
+        "accepted": 8,
+        "qualityRejected": 10,
+        "orderingInvalid": 4
+      },
+      "polygonCount": 15,
+      "polygonUnchanged": true,
+      "fragmentCount": 33,
+      "pointCount": 1378,
+      "processingVersion": "2026-07-24-fusion-v16",
+      "fitEnabled": true,
+      "trajectory": {
+        "vehiclePathPoints": 30,
+        "builtTrajectoryPoints": 30,
+        "builtTrajectoryTotalLengthM": 696.7768519320928,
+        "isStationary": false,
+        "referencePose": {
+          "frameIndex": 0,
+          "east": -24.055678502831913,
+          "north": -6.687047732752509,
+          "headingDeg": 254.5254303934877,
+          "logMonoTime": "139726594139",
+          "chunkId": 0,
+          "passId": 0
+        }
+      },
+      "mapValid": true
+    },
+    {
+      "segNum": 3,
+      "accepted": 11,
+      "acceptedIds": [
+        "CF27",
+        "CF30",
+        "CF36",
+        "CF39",
+        "CF4",
+        "CF40",
+        "CF5",
+        "CF52",
+        "CF55",
+        "CF77",
+        "CF81"
+      ],
+      "statusCounts": {
+        "insufficientSupport": 136,
+        "qualityRejected": 16,
+        "accepted": 22,
+        "topologyRejected": 2,
+        "orderingInvalid": 4,
+        "validationInsufficient": 2
+      },
+      "polygonCount": 13,
+      "polygonUnchanged": true,
+      "fragmentCount": 91,
+      "pointCount": 1976,
+      "processingVersion": "2026-07-24-fusion-v16",
+      "fitEnabled": true,
+      "trajectory": {
+        "vehiclePathPoints": 30,
+        "builtTrajectoryPoints": 30,
+        "builtTrajectoryTotalLengthM": 318.02521847748545,
+        "isStationary": false,
+        "referencePose": {
+          "frameIndex": 0,
+          "east": -0.8210293666392917,
+          "north": 6.685982253666053,
+          "headingDeg": 345.88210764884843,
+          "logMonoTime": "199652600469",
+          "chunkId": 0,
+          "passId": 0
+        }
+      },
+      "mapValid": true
+    },
+    {
+      "segNum": 9,
+      "accepted": 0,
+      "acceptedIds": [],
+      "statusCounts": {
+        "coordinateFrameRejected": 2,
+        "insufficientSupport": 4
+      },
+      "polygonCount": 1,
+      "polygonUnchanged": true,
+      "fragmentCount": 3,
+      "pointCount": 910,
+      "processingVersion": "2026-07-24-fusion-v16",
+      "fitEnabled": true,
+      "trajectory": {
+        "vehiclePathPoints": 30,
+        "builtTrajectoryPoints": 30,
+        "builtTrajectoryTotalLengthM": 0,
+        "isStationary": true,
+        "referencePose": {
+          "frameIndex": 0,
+          "east": -0.26150834212973406,
+          "north": 1.8490778277208484,
+          "headingDeg": 57.29106521606445,
+          "logMonoTime": "559699665752",
+          "chunkId": 0,
+          "passId": 0
+        }
+      },
+      "mapValid": true
+    },
+    {
+      "segNum": 14,
+      "accepted": 7,
+      "acceptedIds": [
+        "CF16",
+        "CF21",
+        "CF28",
+        "CF3",
+        "CF31",
+        "CF35",
+        "CF8"
+      ],
+      "statusCounts": {
+        "insufficientSupport": 52,
+        "coordinateFrameRejected": 4,
+        "accepted": 14,
+        "qualityRejected": 4
+      },
+      "polygonCount": 29,
+      "polygonUnchanged": true,
+      "fragmentCount": 37,
+      "pointCount": 2314,
+      "processingVersion": "2026-07-24-fusion-v16",
+      "fitEnabled": true,
+      "trajectory": {
+        "vehiclePathPoints": 30,
+        "builtTrajectoryPoints": 30,
+        "builtTrajectoryTotalLengthM": 1345.248619231298,
+        "isStationary": false,
+        "referencePose": {
+          "frameIndex": 0,
+          "east": 28.860842933775174,
+          "north": 8.70550124850941,
+          "headingDeg": 73.89284432028167,
+          "logMonoTime": "859423063999",
+          "chunkId": 0,
+          "passId": 0
+        }
+      },
+      "mapValid": true
+    },
+    {
+      "segNum": 16,
+      "accepted": 9,
+      "acceptedIds": [
+        "CF10",
+        "CF13",
+        "CF14",
+        "CF15",
+        "CF16",
+        "CF2",
+        "CF3",
+        "CF8",
+        "CF9"
+      ],
+      "statusCounts": {
+        "coordinateFrameRejected": 6,
+        "insufficientSupport": 10,
+        "accepted": 18
+      },
+      "polygonCount": 55,
+      "polygonUnchanged": true,
+      "fragmentCount": 17,
+      "pointCount": 2340,
+      "processingVersion": "2026-07-24-fusion-v16",
+      "fitEnabled": true,
+      "trajectory": {
+        "vehiclePathPoints": 30,
+        "builtTrajectoryPoints": 30,
+        "builtTrajectoryTotalLengthM": 1377.1949266068004,
+        "isStationary": false,
+        "referencePose": {
+          "frameIndex": 0,
+          "east": 26.488138840814866,
+          "north": 10.807135769780382,
+          "headingDeg": 68.01576322418067,
+          "logMonoTime": "979472082217",
+          "chunkId": 0,
+          "passId": 0
+        }
+      },
+      "mapValid": true
+    },
+    {
+      "segNum": 54,
+      "accepted": 0,
+      "acceptedIds": [],
+      "statusCounts": {
+        "insufficientSupport": 10,
+        "coordinateFrameRejected": 2,
+        "orderingInvalid": 4,
+        "topologyRejected": 2
+      },
+      "polygonCount": 1,
+      "polygonUnchanged": true,
+      "fragmentCount": 9,
+      "pointCount": 1690,
+      "processingVersion": "2026-07-24-fusion-v16",
+      "fitEnabled": true,
+      "trajectory": {
+        "vehiclePathPoints": 30,
+        "builtTrajectoryPoints": 30,
+        "builtTrajectoryTotalLengthM": 40.48364314884092,
+        "isStationary": false,
+        "referencePose": {
+          "frameIndex": 0,
+          "east": -3.3123361102301523,
+          "north": 3.5690847897912166,
+          "headingDeg": 308.97576185098654,
+          "logMonoTime": "3259024198443",
+          "chunkId": 0,
+          "passId": 0
+        }
+      },
+      "mapValid": true
+    }
+  ],
+  "segment9Audit": {
+    "segmentFile": "qlog_f449c_9.bz2",
+    "processingVersion": "2026-07-24-fusion-v16",
+    "trajectory": {
+      "vehiclePathPoints": 30,
+      "builtTrajectoryPoints": 30,
+      "builtTrajectoryTotalLengthM": 0,
+      "isStationary": true,
+      "referencePose": {
+        "frameIndex": 0,
+        "east": -0.26150834212973406,
+        "north": 1.8490778277208484,
+        "headingDeg": 57.29106521606445,
+        "logMonoTime": "559699665752",
+        "chunkId": 0,
+        "passId": 0
+      }
+    },
+    "laneSummary": [
+      {
+        "laneIndex": 0,
+        "observationCount": 52,
+        "distinctFrames": 2,
+        "distinctGroupTracks": 1
+      },
+      {
+        "laneIndex": 1,
+        "observationCount": 780,
+        "distinctFrames": 30,
+        "distinctGroupTracks": 1
+      },
+      {
+        "laneIndex": 2,
+        "observationCount": 78,
+        "distinctFrames": 3,
+        "distinctGroupTracks": 1
+      }
+    ],
+    "stationaryRepeatCollapse": {
+      "sampleObservations": 20,
+      "collapsedBinCount": 65
+    },
+    "fragmentCount": 3,
+    "lane1FragmentIds": [
+      "CF0"
+    ],
+    "lane1FitResults": [
+      {
+        "fragmentId": "CF0",
+        "laneIndex": 1,
+        "groupTrackId": "0",
+        "status": "coordinateFrameRejected",
+        "reason": "sourceCorridorExceeded",
+        "nRaw": 610,
+        "distinctFrames": 30,
+        "sourceCorridor": {
+          "ok": false,
+          "reason": "sourceCorridorExceeded",
+          "maxDistM": 4.104225756246055,
+          "maxEndpointM": 0.01656670575984608,
+          "maxCorridorM": 3
+        }
+      }
+    ],
+    "acceptedCount": 0,
+    "acceptedIds": [],
+    "boundaryFits": [
+      {
+        "fragmentId": "CF0",
+        "laneIndex": 1,
+        "groupTrackId": "0",
+        "status": "coordinateFrameRejected",
+        "reason": "sourceCorridorExceeded",
+        "nRaw": 610,
+        "distinctFrames": 30,
+        "sourceCorridor": {
+          "ok": false,
+          "reason": "sourceCorridorExceeded",
+          "maxDistM": 4.104225756246055,
+          "maxEndpointM": 0.01656670575984608,
+          "maxCorridorM": 3
+        }
+      },
+      {
+        "fragmentId": "CF1",
+        "laneIndex": 2,
+        "groupTrackId": "1",
+        "status": "insufficientSupport",
+        "reason": "tooFewFrames",
+        "nRaw": 66,
+        "distinctFrames": 3,
+        "sourceCorridor": null
+      },
+      {
+        "fragmentId": "CF2",
+        "laneIndex": 0,
+        "groupTrackId": "2",
+        "status": "insufficientSupport",
+        "reason": "tooFewFrames",
+        "nRaw": 47,
+        "distinctFrames": 2,
+        "sourceCorridor": null
+      }
+    ],
+    "stationaryPolygonCount": 1,
+    "totalPolygonCount": 1,
+    "polygonsFeedFromFits": false
+  }
+}

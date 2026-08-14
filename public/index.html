@@ -58,6 +58,18 @@
         <label class="local-only-control local-point-only-control" title="Experimental joined lane-boundary polylines: compatible constructed fragments connected across supported gaps. Source fragments are preserved; connectors are display-only. Requires 'Constructed fragments' to be computed.">
           <input type="checkbox" id="layerJoinedPolylines" class="local-point-only-control"> Joined lane polylines (experimental)
         </label>
+        <label class="local-only-control local-point-only-control" title="Experimental Path-1 graph-fitted lane-boundary curves built from accumulated points. Only accepted curves are drawn here. Fitted curves never feed road polygons.">
+          <input type="checkbox" id="layerFittedPolylines" class="local-point-only-control"> Fitted lane curves (experimental)
+        </label>
+        <label class="local-only-control local-point-only-control" title="Experimental: show observations the fitter rejected as outliers (X markers). Display-only.">
+          <input type="checkbox" id="layerFittedOutliers" class="local-point-only-control"> Fitted outliers (experimental)
+        </label>
+        <label class="local-only-control local-point-only-control" title="Experimental: show unverified fits (validationInsufficient) with a dashed style. Diagnostic only; these are never treated as accepted geometry.">
+          <input type="checkbox" id="layerFittedUnverified" class="local-point-only-control"> Fitted unverified (dashed diagnostic)
+        </label>
+        <label class="local-only-control local-point-only-control" title="Experimental: mark gap-break positions along accepted fitted curves. Diagnostic only.">
+          <input type="checkbox" id="layerFittedGaps" class="local-point-only-control"> Fitted gap markers (diagnostic)
+        </label>
         <label class="local-only-control local-point-only-control" title="Show all proposed, accepted, rejected and ambiguous connector candidates for the joining stage.">
           <input type="checkbox" id="layerJoinCandidates" class="local-point-only-control"> Join candidates (debug)
         </label>
@@ -259,6 +271,7 @@
   <script src="experimental_boundaries.js?v=20260807a"></script>
   <script src="constructed_fragments.js?v=20260810a"></script>
   <script src="lane_joining.js?v=20260811a"></script>
+  <script src="graph_fit.js?v=20260814a"></script>
   <script src="segment_local_map.js?v=20260807a"></script>
   <script src="playback_arrow_screen.js?v=20260731i"></script>
   <script src="segment_video_timing.js?v=20260803a"></script>

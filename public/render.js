@@ -303,6 +303,18 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     return { color: this.trackColor(groupTrackId), diagnostic: null };
   }
 
+  /**
+   * Normalize graph-fit output to an array of polylines (each an array of
+   * {east,north,...} vertices). A single accepted segment stores the vertex
+   * list directly; multi-segment fits store an array of vertex lists.
+   */
+  _normalizeFittedPolylines(fittedPolyline) {
+    if (!fittedPolyline) return [];
+    if (!Array.isArray(fittedPolyline)) return [];
+    if (fittedPolyline.length && Array.isArray(fittedPolyline[0])) return fittedPolyline;
+    return [fittedPolyline];
+  }
+
   worldToScreen(east, north) {
     const cx = this.w / 2 + this.offsetX;
     const cy = this.h / 2 + this.offsetY;
@@ -1303,7 +1315,220 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
       this._drawJoinedPolylines(map, elapsedIdx, pts);
     }
 
+    if (this.layers.fittedPolylines && typeof GraphFit !== 'undefined') {
+      this._drawFittedPolylines(map, elapsedIdx, pts);
+    }
+
+    if (this.layers.fittedOutliers && typeof GraphFit !== 'undefined') {
+      this._drawFittedOutliers(map, elapsedIdx, pts);
+    }
+
+    if (this.layers.fittedUnverified && typeof GraphFit !== 'undefined') {
+      this._drawFittedUnverified(map, elapsedIdx, pts);
+    }
+
+    if (this.layers.fittedGaps && typeof GraphFit !== 'undefined') {
+      this._drawFittedGapMarkers(map, elapsedIdx, pts);
+    }
+
     if (tintOn) this._drawReliabilityLegend();
+  }
+
+  /**
+   * Graph-fitted lane-boundary curves (EXPERIMENTAL, Path 1). Only
+   * status === 'accepted' curves enter this layer. Curves that could not be
+   * validated (validationInsufficient) appear only under the separate dashed
+   * diagnostic toggle; no fitted or unverified curve feeds polygons.
+   *
+   * Fitted curves are COMPLETE-MAP ONLY: the fit uses all observations, so it
+   * must never be shown while causal playback is advancing (that would leak
+   * future observations). During causal playback the fitted layers are
+   * suppressed and a notice is shown; the fitter is NOT invoked.
+   */
+  _drawFittedPolylines(map, elapsedIdx, visiblePoints) {
+    const pa = map?.pointAccumulated;
+    const fp = pa?.fittedPolylines;
+    if (!fp || typeof GraphFit === 'undefined') return;
+    const ctx = this.ctx;
+    if (this._fitCompleteMapOnlyGuard()) return;
+    const results = fp.results || [];
+    let stroked = 0;
+    for (const r of results) {
+      if (r.status !== 'accepted' || !r.fittedPolyline) continue;
+      const polys = this._normalizeFittedPolylines(r.fittedPolyline);
+      // Distinct experimental styling: cyan/purple solid, thicker than fragments/joined.
+      ctx.strokeStyle = '#06b6d4';
+      ctx.lineWidth = 4;
+      ctx.setLineDash([]);
+      for (const poly of polys) {
+        if (this._strokeLocalPolyline(poly)) stroked++;
+        this._drawFittedEndpointMarkers(poly);
+      }
+      ctx.setLineDash([]);
+    }
+    const accepted = results.filter((r) => r.status === 'accepted').length;
+    ctx.save();
+    ctx.font = '12px sans-serif';
+    ctx.fillStyle = '#065f46';
+    ctx.fillText(`Graph-fitted lane boundaries (experimental) — ${accepted} accepted`, 10, 68);
+    ctx.restore();
+    this._fittedPolylinesStroked = stroked;
+  }
+
+  /** Rejected-outlier evidence from the fitter, drawn as small X markers. */
+  _drawFittedOutliers(map, elapsedIdx, visiblePoints) {
+    if (this._fitCompleteMapOnlyGuard()) return;
+    const fp = map?.pointAccumulated?.fittedPolylines;
+    if (!fp) return;
+    const ctx = this.ctx;
+    const results = fp.results || [];
+    ctx.fillStyle = 'rgba(244,63,94,0.9)';
+    for (const r of results) {
+      for (const seg of r.segments || []) {
+        if (seg.rejectedOutliers && seg.rejectedOutliers.length) {
+          for (const o of seg.rejectedOutliers) {
+            if (o.east == null || o.north == null) continue;
+            const p = this.roadGeometryToScreen(o.east, o.north, o.mirroredEast, o.mirroredNorth);
+            const s = 3;
+            ctx.beginPath();
+            ctx.moveTo(p.x - s, p.y - s); ctx.lineTo(p.x + s, p.y + s);
+            ctx.moveTo(p.x + s, p.y - s); ctx.lineTo(p.x - s, p.y + s);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+  }
+
+  /** Unverified fits (validationInsufficient) drawn dashed, diagnostic-only. */
+  _drawFittedUnverified(map, elapsedIdx, visiblePoints) {
+    if (this._fitCompleteMapOnlyGuard()) return;
+    const fp = map?.pointAccumulated?.fittedPolylines;
+    if (!fp) return;
+    const ctx = this.ctx;
+    const results = fp.results || [];
+    for (const r of results) {
+      if (r.status !== 'validationInsufficient' || !r.fittedPolyline) continue;
+      const polys = this._normalizeFittedPolylines(r.fittedPolyline);
+      ctx.strokeStyle = 'rgba(217,119,6,0.9)';
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([2, 4]);
+      for (const poly of polys) {
+        this._strokeLocalPolyline(poly);
+      }
+    }
+    ctx.setLineDash([]);
+  }
+
+  /** Gap-break markers along accepted fitted curves (diagnostic). */
+  _drawFittedGapMarkers(map, elapsedIdx, visiblePoints) {
+    if (this._fitCompleteMapOnlyGuard()) return;
+    const fp = map?.pointAccumulated?.fittedPolylines;
+    if (!fp) return;
+    const ctx = this.ctx;
+    const results = fp.results || [];
+    for (const r of results) {
+      if (r.status !== 'accepted') continue;
+      for (const seg of r.segments || []) {
+        const g = seg.gapMarkers || [];
+        ctx.fillStyle = 'rgba(217,119,6,0.95)';
+        for (const mk of g) {
+          if (mk.east == null || mk.north == null) continue;
+          const p = this.roadGeometryToScreen(mk.east, mk.north, mk.mirroredEast, mk.mirroredNorth);
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+    }
+  }
+
+  /**
+   * Screen transform for fitted/unverified vertices. Uses the same
+   * roadGeometryToScreen path as constructed fragments: segment-local
+   * east/north with precomputed mirroredEast/mirroredNorth. Vertices without
+   * a declared segment-local frame or required mirror fields are not drawn.
+   */
+  _fittedVertexScreen(v) {
+    if (v.east == null || v.north == null) return null;
+    if (v.coordinateFrame && v.coordinateFrame !== 'segmentLocal') return null;
+    if (this._mirrorRoadLateralDisplay) {
+      if (v.mirroredEast == null || v.mirroredNorth == null) return null;
+    }
+    return this.roadGeometryToScreen(v.east, v.north, v.mirroredEast, v.mirroredNorth);
+  }
+
+  _strokeLocalPolyline(poly) {
+    const ctx = this.ctx;
+    if (!poly || !poly.length) return false;
+    ctx.beginPath();
+    let moved = false;
+    for (const v of poly) {
+      const p = this._fittedVertexScreen(v);
+      if (!p) continue;
+      if (!moved) { ctx.moveTo(p.x, p.y); moved = true; }
+      else ctx.lineTo(p.x, p.y);
+    }
+    if (moved) {
+      ctx.stroke();
+      return true;
+    }
+    return false;
+  }
+
+  /** Small endpoint markers for accepted fitted curves (display-only). */
+  _drawFittedEndpointMarkers(poly) {
+    if (!poly || poly.length < 2) return;
+    const ctx = this.ctx;
+    const endpoints = [poly[0], poly[poly.length - 1]];
+    ctx.fillStyle = '#a855f7';
+    for (const v of endpoints) {
+      const p = this._fittedVertexScreen(v);
+      if (!p) continue;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  /**
+   * Returns true when fitted layers must be suppressed because causal playback
+   * is advancing (fitted curves are complete-map-only). Draws a notice once per
+   * frame. The fitter is NEVER invoked from normal playback.
+   */
+  _fitCompleteMapOnlyGuard() {
+    if (!(this._pointCausalPlayback && !this._obsIsolationActive())) return false;
+    this._drawFitCausalUnavailable();
+    return true;
+  }
+
+  /** Draw the "complete-map only" notice when fit toggles are on during causal. */
+  _drawFitCausalUnavailable() {
+    const ctx = this.ctx;
+    ctx.save();
+    ctx.font = '12px sans-serif';
+    ctx.fillStyle = '#b45309';
+    ctx.fillText('Fitted curves are available in complete-map view only.', 10, 68);
+    ctx.restore();
+  }
+
+  /**
+   * Causal-fit rebuild (test-only / internal). NOT invoked from normal playback:
+   * fitted layers are complete-map-only, so playback never calls this. Retained
+   * so tests can exercise the API, but no draw path references it.
+   */
+  _rebuildFitsCausal(map, elapsed) {
+    const pa = map?.pointAccumulated;
+    if (!pa) return [];
+    const bucket = Math.floor((Number(elapsed) || 0) / 20);
+    const cacheKey = `causal-${bucket}`;
+    if (!this._causalFitCache) this._causalFitCache = new Map();
+    if (this._causalFitCache.has(cacheKey)) return this._causalFitCache.get(cacheKey);
+    const causalPts = (pa.points || []).filter((p) => p.frameIndex != null ? p.frameIndex <= elapsed : true);
+    const cf = ConstructedFragments.buildConstructedFragments(causalPts, {});
+    const fit = GraphFit.fitConstructedRuns(cf.fragments || [], cf.runs || [], { ...(pa.fittedPolylines?.stats || {}), fitEnabled: true });
+    this._causalFitCache.set(cacheKey, fit.results || []);
+    return this._causalFitCache.get(cacheKey);
   }
 
   /**

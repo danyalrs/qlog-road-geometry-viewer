@@ -1,6 +1,6 @@
 # Development Log
 
-**Last updated:** 2026-08-12
+**Last updated:** 2026-08-14
 
 Chronological record of confirmed work. Entries cite checkpoints, reports, audits, or source where possible. Failed or superseded work is recorded as such.
 
@@ -493,3 +493,28 @@ The following are referenced in `checkpoints/admiral-investigation-2026-07-23.md
 - Rev 33–36 specification revision history (spec files exist in `docs/` but approval timeline not independently verified here)
 
 When future work confirms these items, append corrections — do not rewrite prior entries.
+
+---
+
+## 2026-08-14 — Path 1 graph fitting (experimental fitted layer)
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Add an optional spline-fit overlay on constructed-fragment runs for visual inspection; keep fusion-v16 geometry and polygons unchanged; fix mirror coordinate-frame defect where fitted curves detached from lane dots after Fit to view |
+| **Work** | Added `lib/graph_fit.js` (spline fit, source-corridor validation, bounded caches, mirrored segment-local output). Wired into `lib/segment_local_map.js` (`fitEnabled`, complete-map only). Added `lib/viewer_map_build.js` as the shared production viewer/probe map path. Renderer (`public/render.js`): cyan accepted curves, purple endpoints, `_fittedVertexScreen` uses precomputed `mirroredEast`/`mirroredNorth` (no global mirror fallback). UI toggle + `?fit=1` URL param (`public/app.js`, `public/index.html`). Constructed-fragment provenance passes `sourceFragmentPoints` into fitter. Synced public mirror via `scripts/sync_graph_fit_public.js` |
+| **Results** | Viewer-authoritative accepted counts (fusion-v16, polygons unchanged): Seg2 **4** (CF9, CF10, CF21, CF23), Seg3 **11**, Seg9 **0** (1 stationary polygon; CF0 rejected `sourceCorridorExceeded` 4.10 m > 3 m gate), Seg14 **7**, Seg16 **9**, Seg54 **0**. Causal playback does not run fitting. Fitted output does not feed polygons. Path 2 not implemented |
+| **Baseline** | Full suite `node --expose-gc --test tests`: 1718 tests, 1691 pass / 27 fail (documented baseline) + 1 flaky concurrent-publication test; graph-fit 69/69, viewer-probe parity 11/11, video restore pass. Stage 19 memory-oracle tests pass with `--expose-gc` |
+| **Status** | **EXPERIMENTAL (ES)** — local checkpoint; not pushed |
+| **Evidence** | `reports/fitted_layer_probe/segment_fitted_summary.json`, `reports/fitted_layer_probe/viewer_browser_parity.json`, `tests/graph_fit.test.js`, `tests/viewer_probe_parity.test.js` |
+
+---
+
+## 2026-08-14 — Viewer/probe production-path reconciliation
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Eliminate divergence between diagnostic probes and the browser viewer for fitted-layer acceptance counts |
+| **Work** | `scripts/probe_fitted_segments_summary.js` previously called `buildPointAccumulatedFragments()` with `referencePose: {0,0,0}` instead of the production path. Extracted `lib/viewer_map_build.js` mirroring `/api/process` → `enrichTimelineWithMovement` → `buildSegmentLocalMap(pointAccumulated, timelineIndex:0, fitEnabled, minHeadingSpeedMps:2)`. Added `scripts/probe_viewer_browser_parity.js` and `tests/viewer_probe_parity.test.js` |
+| **Results** | Segments 3, 9, 16, 54: lib probe and browser parity match on accepted IDs/counts/polygons/fragments |
+| **Status** | **EXPERIMENTAL (ES)** — local checkpoint |
+| **Evidence** | `reports/fitted_layer_probe/viewer_browser_parity.json`, `tests/viewer_probe_parity.test.js` (11/11) |

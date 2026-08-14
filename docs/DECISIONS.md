@@ -1,6 +1,6 @@
 # Technical Decisions
 
-**Last updated:** 2026-08-11
+**Last updated:** 2026-08-14
 
 Major technical decisions with context, alternatives, evidence, risks, and current status.
 
@@ -378,3 +378,16 @@ Major technical decisions with context, alternatives, evidence, risks, and curre
 | **Evidence** | Seg14: 42 candidates → 19 accepted / 11 ambiguous / 6 polylines; Seg16: 14 → 13 accepted / 4 polylines. All K-checks PASS. Regression segments 6/54/58/99 left unjoined by hard prohibitions (conservative by design). `reports/lane_joining_stage.md` |
 | **Risks** | Over-conservative on noisy segments (6/54/58/99); pre-existing fragment-tip kinks remain visible in joined polylines (connector itself adds no kink); future topology stage owns forks/merges |
 | **Status** | **Accepted as EXPERIMENTAL display-only layer (ES)** — not production |
+
+---
+
+## D-030: Path 1 graph fitting — experimental, complete-map only, off by default
+
+| Field | Detail |
+|-------|--------|
+| **Context** | Constructed fragments provide local polylines but remain jagged at sub-run scale; a spline-fit overlay could aid visual inspection without altering fusion or polygon output |
+| **Decision** | Add `lib/graph_fit.js` as an optional experimental layer wired through `buildSegmentLocalMap` (`fitEnabled`, default `false`). Enable in the viewer via `?fit=1` or the fitted-layer toggle. Fitting runs only on the **complete** local map build; causal playback suppresses it. Accepted fits render as cyan polylines with purple endpoint markers. Fitted geometry is display-only — **never feeds polygons** or replaces constructed/fused layers. Path 2 (topology-aware graph fitting) is **not implemented**. Source-corridor validation (`fitMaxSourceCorridorM: 3.0`) rejects fits whose spline deviates from the source fragment polyline |
+| **Alternatives** | (a) Fit during causal playback (rejected — non-causal, expensive, unstable); (b) feed fitted curves into polygon construction (rejected — would alter production road-surface output); (c) global mirror fallback for fitted vertices (rejected — caused segment-local coordinate-frame defect on mirror toggle) |
+| **Evidence** | Viewer-authoritative accepted counts via `lib/viewer_map_build.js`: Seg2 4, Seg3 11, Seg9 0 (CF0 `sourceCorridorExceeded` 4.10 m > 3 m), Seg14 7, Seg16 9, Seg54 0; polygons unchanged with `fitEnabled` on/off; `tests/graph_fit.test.js` (69), `tests/viewer_probe_parity.test.js` (11); `reports/fitted_layer_probe/segment_fitted_summary.json` |
+| **Risks** | Complete-map fitting is slow on long segments; corridor gate may reject valid-looking stationary fits (Seg9); probe scripts must use the shared viewer map path — ad-hoc `buildPointAccumulatedFragments` calls diverge |
+| **Status** | **Accepted as EXPERIMENTAL display-only layer (ES)** — not production; checkpoint 2026-08-14 |
