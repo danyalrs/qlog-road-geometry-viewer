@@ -1102,3 +1102,115 @@ describe('13. hybrid fitted boundaries', () => {
     assert.equal(JSON.stringify(libHybrid), JSON.stringify(browserHybrid));
   });
 });
+
+// ---------------------------------------------------------------------------
+describe('14. held-out evaluation memoization', () => {
+  const diagOpts = { ...DEFAULTS, fitEnabled: true, diagProfileHeldOutEvals: true };
+
+  function sumHeldOutDiag(fitResults) {
+    let compute = 0;
+    let hits = 0;
+    for (const r of fitResults) {
+      for (const seg of r.segments || []) {
+        compute += seg.heldOutEvalComputeCount ?? 0;
+        hits += seg.heldOutEvalCacheHits ?? 0;
+      }
+    }
+    return { compute, hits };
+  }
+
+  function maxCoordDiff(a, b) {
+    let max = 0;
+    const ar = a?.results || [];
+    const br = b?.results || [];
+    for (const ra of ar) {
+      const rb = br.find((x) => x.fragmentId === ra.fragmentId);
+      if (!rb) continue;
+      assert.equal(ra.status, rb.status);
+      assert.equal(ra.reason ?? null, rb.reason ?? null);
+      if (ra.status !== 'accepted' || rb.status !== 'accepted') continue;
+      const pa = Array.isArray(ra.fittedPolyline) ? ra.fittedPolyline.flat() : ra.fittedPolyline;
+      const pb = Array.isArray(rb.fittedPolyline) ? rb.fittedPolyline.flat() : rb.fittedPolyline;
+      assert.equal(pa?.length, pb?.length);
+      for (let i = 0; i < pa.length; i++) {
+        max = Math.max(max, Math.abs(pa[i].east - pb[i].east), Math.abs(pa[i].north - pb[i].north));
+        if (pa[i].mirroredEast != null && pb[i].mirroredEast != null) {
+          max = Math.max(max, Math.abs(pa[i].mirroredEast - pb[i].mirroredEast));
+          max = Math.max(max, Math.abs(pa[i].mirroredNorth - pb[i].mirroredNorth));
+        }
+      }
+    }
+    return max;
+  }
+
+  it('75. memo removes duplicate held-out λ evaluations within fitSegment', () => {
+    const run = mkRun(40, 8, { curve: 1 });
+    const res = fitRun(run, diagOpts);
+    const { compute, hits } = sumHeldOutDiag([res]);
+    const lambdaCount = DEFAULTS.fitLambdaCutoffsM.length;
+    assert.ok(compute <= lambdaCount * (res.segments?.length || 1));
+    assert.ok(hits > 0, 'expected cache hits from repeated λ indices in selection loops');
+    assert.ok(compute < lambdaCount * 2 * (res.segments?.length || 1));
+  });
+
+  it('76. cold and repeated fitConstructedRuns are numerically identical', () => {
+    const run = mkRun(50, 8, { curve: 1 });
+    const cf = CF.buildConstructedFragments(run, {});
+    const a = GF.fitConstructedRuns(cf.fragments, cf.runs, { ...DEFAULTS, fitEnabled: true });
+    const b = GF.fitConstructedRuns(cf.fragments, cf.runs, { ...DEFAULTS, fitEnabled: true });
+    assert.equal(maxCoordDiff(a, b), 0);
+    assert.deepEqual(a.statusCounts, b.statusCounts);
+    assert.equal(GF.getGraphFitCacheStats().omegaEntries, 0);
+    assert.equal(GF.getGraphFitCacheStats().designEntries, 0);
+  });
+
+  it('77. production segments preserve accepted IDs, metrics, and coordinates', () => {
+    const segFiles = [
+      { id: 2, file: 'qlog_f449c_2.bz2', accepted: 4 },
+      { id: 9, file: 'qlog_f449c_9.bz2', accepted: 0 },
+      { id: 14, file: 'qlog_f449c_14.bz2', accepted: 7 },
+      { id: 16, file: 'qlog_f449c_16.bz2', accepted: 9 },
+    ];
+    const { buildViewerStationaryMap } = require('../lib/viewer_map_build');
+    const { loadSegmentsData } = require('../lib/qlog_data');
+    const { qualifySegments } = require('../lib/segment_qualify');
+    const { processRoute, buildTimeline } = require('../lib/process_route');
+    const { enrichTimelineWithMovement } = require('../lib/vehicle_movement_display');
+    const { normalizeProcessOptions } = require('../lib/process_defaults');
+    const { VIEWER_DEFAULT_PROCESS_OPTIONS } = require('../lib/viewer_map_build');
+
+    for (const seg of segFiles) {
+      const fp = path.join(ROOT, seg.file);
+      if (!fs.existsSync(fp)) continue;
+      const merged = normalizeProcessOptions({ ...VIEWER_DEFAULT_PROCESS_OPTIONS });
+      const loaded = loadSegmentsData(ROOT, [seg.file], merged);
+      const segmentQualifications = qualifySegments(loaded.audits);
+      const result = processRoute(loaded.modelEvents, loaded.gpsEvents, {
+        ...merged,
+        segmentQualifications,
+        fileAudits: loaded.audits,
+      });
+      const processData = {
+        processingOptions: merged,
+        mode: result.mode,
+        stats: result.stats,
+        routeChunks: result.routeChunks,
+        vehiclePath: result.vehiclePath,
+        frames: result.frames,
+        timeline: enrichTimelineWithMovement(buildTimeline(result.frames), result.vehiclePath),
+        fileAudits: loaded.audits,
+      };
+      const cold = buildViewerStationaryMap(processData, { fitEnabled: true });
+      const warm = buildViewerStationaryMap(processData, { fitEnabled: true });
+      const accepted = (cold.pointAccumulated.fittedPolylines?.results || [])
+        .filter((r) => r.status === 'accepted');
+      assert.equal(accepted.length, seg.accepted, `seg ${seg.id} accepted count`);
+      const maxDiff = maxCoordDiff(
+        cold.pointAccumulated.fittedPolylines,
+        warm.pointAccumulated.fittedPolylines,
+      );
+      assert.equal(maxDiff, 0);
+      assert.equal(cold.checksum, warm.checksum);
+    }
+  });
+});

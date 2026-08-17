@@ -1171,7 +1171,17 @@
       };
     };
 
-    const evaluateHeldOut = (lambda) => {
+    // Per-invocation memo: each λ index is evaluated at most once per fitSegment call.
+    const heldOutCache = new Map();
+    let heldOutEvalComputeCount = 0;
+    let heldOutEvalCacheHits = 0;
+    const evaluateHeldOutAtIndex = (i) => {
+      if (heldOutCache.has(i)) {
+        heldOutEvalCacheHits += 1;
+        return heldOutCache.get(i);
+      }
+      heldOutEvalComputeCount += 1;
+      const lambda = lambdas[i];
       const errs = [];
       let sufficient = true;
       for (const prep of foldPrep) {
@@ -1181,25 +1191,27 @@
         const poly = resamplePolyline(model, opts.fitOutputStepM);
         for (const b of prep.held) errs.push(pointToPolylineDist(b, poly));
       }
-      return {
+      const result = {
         median: errs.length ? (median(errs) ?? Infinity) : Infinity,
         p95: errs.length ? (pct(errs, 0.95) ?? Infinity) : Infinity,
         n: errs.length,
         sufficient,
       };
+      heldOutCache.set(i, result);
+      return result;
     };
 
     // lambda selection: largest cutoff (smoothest) within tolerance of best held-out
     let bestMed = Infinity;
     let bestP95 = Infinity;
     for (let i = 0; i < lambdas.length; i++) {
-      const ev = evaluateHeldOut(lambdas[i]);
+      const ev = evaluateHeldOutAtIndex(i);
       if (ev.n === 0 || !Number.isFinite(ev.median)) continue;
       if (ev.median < bestMed) { bestMed = ev.median; bestP95 = ev.p95; }
     }
     let selectedIdx = -1;
     for (let i = lambdas.length - 1; i >= 0; i--) {
-      const ev = evaluateHeldOut(lambdas[i]);
+      const ev = evaluateHeldOutAtIndex(i);
       if (ev.n === 0 || !Number.isFinite(ev.median)) continue;
       if (ev.median <= bestMed * (1 + opts.fitSelectMedianTol) && ev.p95 <= (bestP95 || Infinity) * (1 + opts.fitSelectP95Tol)) {
         selectedIdx = i;
@@ -1217,7 +1229,7 @@
       const distinctTrain = new Set(trainBins.flatMap((b) => b.frameIds || [])).size;
       if (distinctTrain < opts.fitMinTrainingFrames) validationSufficient = false;
     }
-    const heldOut = evaluateHeldOut(lambda);
+    const heldOut = evaluateHeldOutAtIndex(selectedIdx);
 
     // final fit on the sub-run
     const model = fitBins(segBins, lambda);
@@ -1279,6 +1291,10 @@
         return null;
       }).filter(Boolean) : []),
     };
+    if (opts.diagProfileHeldOutEvals) {
+      common.heldOutEvalComputeCount = heldOutEvalComputeCount;
+      common.heldOutEvalCacheHits = heldOutEvalCacheHits;
+    }
     if (selfX > 0) return { status: 'topologyRejected', reason: 'selfIntersection', ...common };
     if (unsupported > opts.fitMaxGapM) return { status: 'topologyRejected', reason: 'unsupportedSpan', ...common };
     if (!validationSufficient || !heldOut.sufficient) {
