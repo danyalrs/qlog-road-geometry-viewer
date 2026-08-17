@@ -1,6 +1,6 @@
 # Technical Decisions
 
-**Last updated:** 2026-08-14
+**Last updated:** 2026-08-17
 
 Major technical decisions with context, alternatives, evidence, risks, and current status.
 
@@ -391,3 +391,16 @@ Major technical decisions with context, alternatives, evidence, risks, and curre
 | **Evidence** | Viewer-authoritative accepted counts via `lib/viewer_map_build.js`: Seg2 4, Seg3 11, Seg9 0 (CF0 `sourceCorridorExceeded` 4.10 m > 3 m), Seg14 7, Seg16 9, Seg54 0; polygons unchanged with `fitEnabled` on/off; `tests/graph_fit.test.js` (69), `tests/viewer_probe_parity.test.js` (11); `reports/fitted_layer_probe/segment_fitted_summary.json` |
 | **Risks** | Complete-map fitting is slow on long segments; corridor gate may reject valid-looking stationary fits (Seg9); probe scripts must use the shared viewer map path — ad-hoc `buildPointAccumulatedFragments` calls diverge |
 | **Status** | **Accepted as EXPERIMENTAL display-only layer (ES)** — not production; checkpoint 2026-08-14 |
+
+---
+
+## D-031: Hybrid graph-fitted lane map — experimental, complete-map only, off by default
+
+| Field | Detail |
+|-------|--------|
+| **Context** | Path 1 accepted fits cover only a minority of constructed fragments; the viewer needed a single lane-map layer that shows accepted spline fits where available and original fragment geometry elsewhere, without joining fragments or bridging gaps |
+| **Decision** | Add `pointAccumulated.hybridFittedBoundaries` via `GraphFit.buildHybridFittedBoundaries()` when `fitEnabled: true`. Exactly one hybrid boundary per constructed fragment: `displaySource: "acceptedFit"` uses the existing accepted Path 1 polyline(s); `displaySource: "fragmentFallback"` uses the source fragment points for all other statuses. Renderer checkbox **Hybrid fitted lane map (experimental)** (off by default; requires `?fit=1`). Solid cyan 4 px = accepted fit; lane-colour dashed 2 px = fallback. Constructed-fragment drawing is suppressed while hybrid is active to avoid duplicate geometry. Complete-map only; causal playback guard unchanged. Hybrid output is display-only — **never feeds polygons**. Path 2 remains **not implemented**. Video/calibration work remains a separate paused fallback branch |
+| **Alternatives** | (a) Replace constructed fragments entirely (rejected — hides rejection evidence); (b) join fallback fragments into continuous polylines (rejected — violates fragment identity); (c) enable hybrid by default (rejected — experimental) |
+| **Evidence** | Nine-segment production validation via `lib/viewer_map_build.js`: accepted counts Seg2 **4**, Seg3 **11**, Seg9 **0**, Seg14 **7**, Seg16 **9**, Seg54/58/95/99 **0**; 0 fallback/accepted-fit mismatches; polygon checksums identical fit-off vs fit-on; focused tests **86/86**; full suite **1,723 / 1,695 pass / 28 fail** (27 baseline + 1 environmental Stage 7 OneDrive write flake, passes in isolation). `reports/hybrid_validation/HYBRID_VALIDATION_REPORT.md` |
+| **Risks** | Low fit coverage on many segments is expected (Path 1 gates unchanged); complete-map build remains slow on long segments; no hybrid CSV/GeoJSON export |
+| **Status** | **Accepted as EXPERIMENTAL display-only layer (ES)** — local checkpoint 2026-08-17; not pushed |

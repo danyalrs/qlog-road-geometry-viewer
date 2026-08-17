@@ -1517,6 +1517,138 @@
     return 0;
   }
 
+  function polylineLengthM(poly) {
+    if (!poly?.length) return 0;
+    let len = 0;
+    for (let i = 1; i < poly.length; i++) {
+      len += Math.hypot(poly[i].east - poly[i - 1].east, poly[i].north - poly[i - 1].north);
+    }
+    return len;
+  }
+
+  /** Normalize fittedPolyline to an array of vertex arrays (never bridges gaps). */
+  function normalizeFitPolylines(fittedPolyline) {
+    if (!fittedPolyline) return [];
+    if (!Array.isArray(fittedPolyline)) return [];
+    if (!fittedPolyline.length) return [];
+    if (typeof fittedPolyline[0]?.east === 'number') return [fittedPolyline];
+    if (Array.isArray(fittedPolyline[0])) {
+      return fittedPolyline.filter((p) => Array.isArray(p) && p.length);
+    }
+    return [fittedPolyline];
+  }
+
+  function fragmentVerticesToPolyline(points) {
+    return (points || []).map((v) => ({
+      east: v.east,
+      north: v.north,
+      mirroredEast: v.mirroredEast,
+      mirroredNorth: v.mirroredNorth,
+      coordinateFrame: SEGMENT_LOCAL_COORDINATE_FRAME,
+    })).filter((v) => Number.isFinite(v.east) && Number.isFinite(v.north));
+  }
+
+  function collectFitGapMarkers(fitResult) {
+    const out = [];
+    for (const seg of fitResult?.segments || []) {
+      for (const mk of seg.gapMarkers || []) {
+        if (mk) out.push(mk);
+      }
+    }
+    return out;
+  }
+
+  /**
+   * Build a per-fragment hybrid lane-boundary display map: accepted graph fits
+   * for accepted fragments, constructed-fragment geometry for all others.
+   * Never joins separate fragments; gaps between fitted sub-runs remain gaps.
+   *
+   * @param {Array} fragments constructed fragment records
+   * @param {{ results?: Array }} fittedPolylines output of fitConstructedRuns
+   * @returns {{ boundaries: Array, stats: object }}
+   */
+  function buildHybridFittedBoundaries(fragments, fittedPolylines) {
+    const fitById = new Map();
+    for (const r of fittedPolylines?.results || []) {
+      if (r?.fragmentId) fitById.set(r.fragmentId, r);
+    }
+
+    const boundaries = [];
+    let fittedFragments = 0;
+    let fallbackFragments = 0;
+    let fittedLengthM = 0;
+    let fallbackLengthM = 0;
+
+    for (const frag of fragments || []) {
+      const fit = fitById.get(frag.fragmentId);
+      const physicalBoundaryId = `${frag.chunkId}:${frag.passId}:${frag.groupTrackId}:${frag.laneIndex}`;
+      const accepted = fit?.status === 'accepted' && fit.fittedPolyline;
+
+      let displaySource;
+      let polylines;
+      let fitStatus;
+      let rejectionReason;
+      let gapMarkers = [];
+
+      if (accepted) {
+        displaySource = 'acceptedFit';
+        polylines = normalizeFitPolylines(fit.fittedPolyline);
+        fitStatus = 'accepted';
+        rejectionReason = null;
+        gapMarkers = collectFitGapMarkers(fit);
+        fittedFragments += 1;
+        for (const poly of polylines) fittedLengthM += polylineLengthM(poly);
+      } else {
+        displaySource = 'fragmentFallback';
+        polylines = [fragmentVerticesToPolyline(frag.points)];
+        fitStatus = fit?.status || 'notFitted';
+        rejectionReason = fit?.reason || (fit ? fit.status : 'noFitAttempt');
+        fallbackFragments += 1;
+        for (const poly of polylines) fallbackLengthM += polylineLengthM(poly);
+      }
+
+      boundaries.push({
+        fragmentId: frag.fragmentId,
+        physicalBoundaryId,
+        groupTrackId: frag.groupTrackId,
+        laneIndex: frag.laneIndex,
+        side: frag.side ?? null,
+        chunkId: frag.chunkId,
+        passId: frag.passId,
+        fitStatus,
+        displaySource,
+        rejectionReason,
+        coordinateFrame: SEGMENT_LOCAL_COORDINATE_FRAME,
+        polylines,
+        mirroredPolylines: polylines,
+        gapMarkers,
+        metrics: accepted ? {
+          trainingMedian: fit.trainingMedian,
+          trainingP95: fit.trainingP95,
+          heldOutMedian: fit.heldOut?.median ?? null,
+          heldOutP95: fit.heldOut?.p95 ?? null,
+          sourceCorridorMaxM: fit.sourceCorridor?.maxDistM ?? null,
+        } : {
+          fragmentLengthM: frag.lengthM ?? null,
+          medianResidualM: frag.medianResidualM ?? null,
+          splitReason: frag.splitReason ?? null,
+        },
+      });
+    }
+
+    return {
+      boundaries,
+      stats: {
+        totalFragments: fragments?.length || 0,
+        fittedFragments,
+        fallbackFragments,
+        fittedLengthM: +fittedLengthM.toFixed(2),
+        fallbackLengthM: +fallbackLengthM.toFixed(2),
+        totalDisplayedLengthM: +(fittedLengthM + fallbackLengthM).toFixed(2),
+      },
+    };
+  }
+
   /** Read cache occupancy for a per-build cache context (not module-global). */
   function getGraphFitCacheStatsFromContext(cacheCtx) {
     if (!cacheCtx) {
@@ -1560,6 +1692,8 @@
   polylineCrossings,
   fitRun,
   fitConstructedRuns,
+  buildHybridFittedBoundaries,
+  normalizeFitPolylines,
   checkBoundaryCrossings,
   resamplePolyline,
   pointToPolylineDist,

@@ -91,6 +91,7 @@ function getLayers() {
     joinedPolylines: $('layerJoinedPolylines')?.checked === true,
     joinCandidates: $('layerJoinCandidates')?.checked === true,
     fittedPolylines: $('layerFittedPolylines')?.checked === true,
+    fittedEndpoints: $('layerFittedEndpoints')?.checked === true,
     fittedOutliers: $('layerFittedOutliers')?.checked === true,
     fittedUnverified: $('layerFittedUnverified')?.checked === true,
     fittedGaps: $('layerFittedGaps')?.checked === true,
@@ -1116,6 +1117,11 @@ function setupCanvasInteraction() {
     renderer.draw();
     const tl = parseInt($('timeline')?.value || '0', 10);
     const joinHover = renderer._joinCandidateHover?.(mx, my, tl);
+    const hybridHover = renderer._hybridFittedHover?.(mx, my);
+    if (hybridHover?.length) {
+      $('hoverInfo').textContent = hybridHover.join('\n');
+      return;
+    }
     if (joinHover?.length) {
       $('hoverInfo').textContent = joinHover.join('\n');
       return;

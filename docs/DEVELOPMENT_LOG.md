@@ -496,7 +496,19 @@ When future work confirms these items, append corrections — do not rewrite pri
 
 ---
 
-## 2026-08-14 — Path 1 graph fitting (experimental fitted layer)
+## 2026-08-17 — Hybrid graph-fitted lane map (checkpoint)
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Add a default-off experimental hybrid lane map for Local playback → Point-accumulated geometry: accepted Path 1 fits where available, original fragment geometry elsewhere, without joining fragments or bridging gaps |
+| **Work** | `GraphFit.buildHybridFittedBoundaries()` in `lib/graph_fit.js`; wired through `lib/segment_local_map.js` / `public/segment_local_map.js` when `fitEnabled: true`. Renderer (`public/render.js`): solid cyan accepted (4 px), lane-colour dashed fallback (2 px); constructed-fragment suppression while hybrid active; complete-map-only causal guard. UI checkbox **Hybrid fitted lane map (experimental)** + fitted-endpoints diagnostic (`public/app.js`, `public/index.html`). Five new hybrid tests (70–74) in `tests/graph_fit.test.js` |
+| **Results** | Nine-segment production validation: accepted counts Seg2 **4**, Seg3 **11**, Seg9 **0**, Seg14 **7**, Seg16 **9**, Seg54/58/95/99 **0**; 0 structural-invariant / fallback / accepted-fit mismatches; polygon checksums unchanged. User viewer checks Seg2/3/9 PASS. Duplicate-rendering and causal guards PASS |
+| **Baseline** | Focused: **86/86** pass (`tests/graph_fit.test.js` + `tests/viewer_probe_parity.test.js`). Full suite: **1,723 / 1,695 pass / 28 fail** — 27 documented baseline failures + 1 environmental Stage 7 OneDrive write flake (`tests/local_playback_lane_continuity_stage7.test.js` passes **48/48** in isolation). Processing version remains `2026-07-24-fusion-v16` |
+| **Status** | **EXPERIMENTAL (ES)** — local checkpoint commit; not pushed |
+| **Evidence** | `reports/hybrid_validation/HYBRID_VALIDATION_REPORT.md`; decision **D-031** |
+
+---
+
 
 | Field | Detail |
 |-------|--------|

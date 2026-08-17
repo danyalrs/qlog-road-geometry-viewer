@@ -1,6 +1,6 @@
 # Run Guide
 
-**Last updated:** 2026-08-14
+**Last updated:** 2026-08-17
 
 Verified commands from `package.json`, scripts, and specification docs. Mark **(uncertain)** where environment-specific or data-dependent.
 
@@ -54,12 +54,23 @@ Path 1 graph fitting is **off by default**. To enable the experimental fitted-la
 http://localhost:3847/?fit=1
 ```
 
-Or use the **Fitted curves** checkbox in the viewer UI after load. Fitting runs on the complete local map only (not during causal playback). Cyan polylines = accepted fitted curves; purple markers = fitted endpoints. Fitted output does not feed polygons.
+Or use the **Hybrid fitted lane map (experimental)** checkbox in the viewer UI after load (requires `?fit=1`). Fitting runs on the complete local map only (not during causal playback).
 
-Stage 19 panel: `GET /api/stage19/summary`  
-Bundle artifacts: `GET /api/stage19/bundle/*`
+**Hybrid layer (recommended when exploring fits):**
 
-Source: `server.js`, `package.json`.
+- Viewer path: **Local playback** → **Point-accumulated geometry**
+- Checkbox: **Hybrid fitted lane map (experimental)** (off by default)
+- Solid cyan 4 px = accepted graph fit (`acceptedFit`)
+- Coloured dashed 2 px = original constructed-fragment fallback (`fragmentFallback`)
+- Unsupported gaps remain open; exactly one hybrid boundary per fragment
+- Constructed-fragment layer is visually suppressed while hybrid is active (checkbox state unchanged)
+- Fitted endpoints: separate diagnostic toggle
+
+Fitted and hybrid output does **not** feed polygons. Processing version remains `2026-07-24-fusion-v16`.
+
+**Accepted counts (viewer-authoritative, fusion-v16):** Seg2 **4**, Seg3 **11**, Seg9 **0**, Seg14 **7**, Seg16 **9**, Seg54 **0**, Seg58 **0**, Seg95 **0**, Seg99 **0**.
+
+Source: `server.js`, `package.json`, `reports/hybrid_validation/HYBRID_VALIDATION_REPORT.md`.
 
 ---
 
@@ -77,9 +88,17 @@ Equivalent:
 node --expose-gc --test tests
 ```
 
-**Verified result (2026-08-14):** 1718 tests, 1691 pass, 27 fail (documented baseline), 0 skipped. Requires `--expose-gc` for Stage 19 memory-oracle tests. Full output: `.cache/full_suite_expose_gc_tap_postfix.txt`.
+**Verified result (2026-08-17):** 1723 tests, 1695 pass, 28 fail (27 documented baseline + 1 environmental Stage 7 OneDrive write flake; passes in isolation), 0 skipped. Requires `--expose-gc` for Stage 19 memory-oracle tests. Full output: `.cache/hybrid_full_suite.txt`.
 
-Focused graph-fit validation:
+Focused graph-fit + hybrid validation:
+
+```bash
+node --expose-gc --test tests/graph_fit.test.js tests/viewer_probe_parity.test.js
+```
+
+**Verified result (2026-08-17):** 86 tests, 86 pass, 0 fail (~6 min). Includes hybrid boundary tests 70–74.
+
+Focused graph-fit validation (graph_fit only):
 
 ```bash
 node --expose-gc --test tests/graph_fit.test.js

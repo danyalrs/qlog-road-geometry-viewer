@@ -1304,7 +1304,11 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     }
 
     if (this.layers.constructedFragments && typeof ConstructedFragments !== 'undefined') {
-      this._drawConstructedFragments(map, elapsedIdx, pts);
+      const hybridActive = this.layers.fittedPolylines
+        && map?.pointAccumulated?.hybridFittedBoundaries?.boundaries?.length;
+      if (!hybridActive) {
+        this._drawConstructedFragments(map, elapsedIdx, pts);
+      }
     }
 
     if (this.layers.joinCandidates && typeof LaneJoining !== 'undefined') {
@@ -1316,7 +1320,12 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     }
 
     if (this.layers.fittedPolylines && typeof GraphFit !== 'undefined') {
-      this._drawFittedPolylines(map, elapsedIdx, pts);
+      const hybrid = pa?.hybridFittedBoundaries;
+      if (hybrid?.boundaries?.length) {
+        this._drawHybridFittedBoundaries(map, elapsedIdx, pts);
+      } else {
+        this._drawFittedPolylines(map, elapsedIdx, pts);
+      }
     }
 
     if (this.layers.fittedOutliers && typeof GraphFit !== 'undefined') {
@@ -1332,6 +1341,64 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     }
 
     if (tintOn) this._drawReliabilityLegend();
+  }
+
+  /**
+   * Hybrid graph-fitted lane map (EXPERIMENTAL). One boundary per fragment:
+   * solid cyan for accepted fits, dashed lane-colour fallback for rejected or
+   * unfitted fragments. Complete-map only; never bridges gaps or joins fragments.
+   */
+  _drawHybridFittedBoundaries(map, elapsedIdx, visiblePoints) {
+    const pa = map?.pointAccumulated;
+    const hybrid = pa?.hybridFittedBoundaries;
+    if (!hybrid?.boundaries?.length) return;
+    if (this._fitCompleteMapOnlyGuard()) return;
+    const ctx = this.ctx;
+    let fittedN = 0;
+    let fallbackN = 0;
+    let stroked = 0;
+
+    for (const b of hybrid.boundaries) {
+      const polylines = b.polylines || [];
+      if (!polylines.length) continue;
+      if (b.displaySource === 'acceptedFit') {
+        ctx.strokeStyle = '#06b6d4';
+        ctx.lineWidth = 4;
+        ctx.setLineDash([]);
+        fittedN++;
+      } else {
+        const bc = this.boundaryColor(b.groupTrackId);
+        ctx.strokeStyle = bc.color;
+        ctx.lineWidth = 2;
+        ctx.setLineDash([5, 4]);
+        fallbackN++;
+      }
+      for (const poly of polylines) {
+        if (this._strokeLocalPolyline(poly)) {
+          stroked++;
+          if (b.displaySource === 'acceptedFit' && this.layers.fittedEndpoints) {
+            this._drawFittedEndpointMarkers(poly);
+          }
+        }
+      }
+      ctx.setLineDash([]);
+    }
+
+    this._hybridFittedBoundaries = hybrid.boundaries;
+    this._hybridFittedStroked = stroked;
+    ctx.save();
+    ctx.font = '12px sans-serif';
+    ctx.fillStyle = '#0e7490';
+    ctx.fillText(
+      `Hybrid fitted lane map — ${fittedN} fitted / ${fallbackN} fallback (${hybrid.stats?.totalFragments ?? 0} fragments)`,
+      10,
+      68,
+    );
+    if (fallbackN > 0) {
+      ctx.fillStyle = '#b45309';
+      ctx.fillText('Dashed = constructed-fragment fallback (hover for rejection status)', 10, 82);
+    }
+    ctx.restore();
   }
 
   /**
@@ -1362,7 +1429,9 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
       ctx.setLineDash([]);
       for (const poly of polys) {
         if (this._strokeLocalPolyline(poly)) stroked++;
-        this._drawFittedEndpointMarkers(poly);
+        if (this.layers.fittedEndpoints) {
+          this._drawFittedEndpointMarkers(poly);
+        }
       }
       ctx.setLineDash([]);
     }
@@ -1813,6 +1882,52 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
       10, 86,
     );
     ctx.restore();
+  }
+
+  /** Hover tooltip for hybrid fitted boundary segments. */
+  _hybridFittedHover(screenX, screenY) {
+    const hybrid = this.stationaryLocalMap?.pointAccumulated?.hybridFittedBoundaries;
+    if (!hybrid?.boundaries?.length || !this.layers.fittedPolylines) return null;
+    if (this._pointCausalPlayback) return null;
+    let best = null;
+    let bestD = Infinity;
+    for (const b of hybrid.boundaries) {
+      for (const poly of b.polylines || []) {
+        for (let i = 1; i < poly.length; i++) {
+          const v0 = poly[i - 1];
+          const v1 = poly[i];
+          const pA = this._fittedVertexScreen(v0);
+          const pB = this._fittedVertexScreen(v1);
+          if (!pA || !pB) continue;
+          const seg = pB.x - pA.x;
+          const sey = pB.y - pA.y;
+          const len = Math.hypot(seg, sey) || 1e-9;
+          const t = Math.max(0, Math.min(1, ((screenX - pA.x) * seg + (screenY - pA.y) * sey) / (len * len)));
+          const px = pA.x + t * seg;
+          const py = pA.y + t * sey;
+          const d = Math.hypot(px - screenX, py - screenY);
+          if (d < bestD && d < 16) {
+            bestD = d;
+            best = b;
+          }
+        }
+      }
+    }
+    if (!best) return null;
+    const lines = [
+      `Hybrid boundary — ${best.fragmentId}`,
+      `  physicalBoundaryId: ${best.physicalBoundaryId}`,
+      `  chunk ${best.chunkId} · pass ${best.passId} · lane ${best.laneIndex} · side ${best.side ?? '—'}`,
+      `  display: ${best.displaySource} · fitStatus: ${best.fitStatus}`,
+    ];
+    if (best.displaySource === 'fragmentFallback') {
+      lines.push(`  rejection: ${best.rejectionReason ?? '—'}`);
+      if (best.metrics?.splitReason) lines.push(`  splitReason: ${best.metrics.splitReason}`);
+    } else if (best.metrics) {
+      lines.push(`  held-out median: ${best.metrics.heldOutMedian != null ? best.metrics.heldOutMedian.toFixed(3) : '—'} m`);
+      lines.push(`  corridor max: ${best.metrics.sourceCorridorMaxM != null ? best.metrics.sourceCorridorMaxM.toFixed(3) : '—'} m`);
+    }
+    return lines;
   }
 
   /** Hover tooltip for a join connector (accepted/rejected/ambiguous). */

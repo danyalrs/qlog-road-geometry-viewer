@@ -58,8 +58,11 @@
         <label class="local-only-control local-point-only-control" title="Experimental joined lane-boundary polylines: compatible constructed fragments connected across supported gaps. Source fragments are preserved; connectors are display-only. Requires 'Constructed fragments' to be computed.">
           <input type="checkbox" id="layerJoinedPolylines" class="local-point-only-control"> Joined lane polylines (experimental)
         </label>
-        <label class="local-only-control local-point-only-control" title="Experimental Path-1 graph-fitted lane-boundary curves built from accumulated points. Only accepted curves are drawn here. Fitted curves never feed road polygons.">
-          <input type="checkbox" id="layerFittedPolylines" class="local-point-only-control"> Fitted lane curves (experimental)
+        <label class="local-only-control local-point-only-control" title="Experimental hybrid lane map: accepted graph fits (solid cyan) plus constructed-fragment fallback (dashed lane colour) for rejected/unfitted fragments. Requires ?fit=1. Never feeds polygons.">
+          <input type="checkbox" id="layerFittedPolylines" class="local-point-only-control"> Hybrid fitted lane map (experimental)
+        </label>
+        <label class="local-only-control local-point-only-control" title="Diagnostic: purple endpoint markers on accepted hybrid fit segments only.">
+          <input type="checkbox" id="layerFittedEndpoints" class="local-point-only-control"> Fitted endpoints (diagnostic)
         </label>
         <label class="local-only-control local-point-only-control" title="Experimental: show observations the fitter rejected as outliers (X markers). Display-only.">
           <input type="checkbox" id="layerFittedOutliers" class="local-point-only-control"> Fitted outliers (experimental)

@@ -390,22 +390,28 @@ describe('5. mirror parity and wiring', () => {
     assert.doesNotMatch(src, /fittedPolylines.*buildRoadSurfacePolygons/);
   });
 
-  it('27. renderer has fitted draw paths and toggles; UI toggles exist', () => {
+  it('27. renderer has hybrid fitted draw paths and toggles; UI toggles exist', () => {
     const render = fs.readFileSync(path.join(ROOT, 'public', 'render.js'), 'utf8');
+    assert.match(render, /_drawHybridFittedBoundaries/);
     assert.match(render, /_drawFittedPolylines/);
     assert.match(render, /this\.layers\.fittedPolylines/);
+    assert.match(render, /hybridFittedBoundaries/);
     assert.match(render, /this\.layers\.fittedOutliers/);
     assert.match(render, /this\.layers\.fittedUnverified/);
     assert.match(render, /_drawFittedUnverified/);
     assert.match(render, /this\.layers\.fittedGaps/);
     assert.match(render, /_drawFittedGapMarkers/);
+    assert.match(render, /this\.layers\.fittedEndpoints/);
     const html = fs.readFileSync(path.join(ROOT, 'public', 'index.html'), 'utf8');
     assert.match(html, /id="layerFittedPolylines"/);
+    assert.match(html, /Hybrid fitted lane map/);
+    assert.match(html, /id="layerFittedEndpoints"/);
     assert.match(html, /id="layerFittedOutliers"/);
     assert.match(html, /id="layerFittedUnverified"/);
     assert.match(html, /id="layerFittedGaps"/);
     const app = fs.readFileSync(path.join(ROOT, 'public', 'app.js'), 'utf8');
     assert.match(app, /fittedPolylines: \$\(['"]layerFittedPolylines['"]\)/);
+    assert.match(app, /fittedEndpoints: \$\(['"]layerFittedEndpoints['"]\)/);
     assert.match(app, /fittedUnverified: \$\(['"]layerFittedUnverified['"]\)/);
     assert.match(app, /fitEnabled/);
   });
@@ -416,6 +422,7 @@ describe('6. regression guards', () => {
   it('28. lib loads standalone', () => {
     assert.ok(GF.fitConstructedRuns);
     assert.ok(GF.fitRun);
+    assert.ok(GF.buildHybridFittedBoundaries);
   });
 });
 
@@ -622,12 +629,12 @@ describe('9. fitted causal playback (complete-map only)', () => {
     assert.match(render, /test-only \/ internal/);
   });
 
-  it('44. complete-map-only guard suppresses all four fitted layers in causal', () => {
+  it('44. complete-map-only guard suppresses hybrid and fitted layers in causal', () => {
     const render = fs.readFileSync(path.join(ROOT, 'public', 'render.js'), 'utf8');
     const guard = render.indexOf('_fitCompleteMapOnlyGuard');
     assert.ok(guard > 0, 'guard defined');
-    // every fitted draw path calls the guard before rendering complete fits
-    for (const fn of ['_drawFittedPolylines', '_drawFittedOutliers', '_drawFittedUnverified', '_drawFittedGapMarkers']) {
+    // every fitted/hybrid draw path calls the guard before rendering complete fits
+    for (const fn of ['_drawHybridFittedBoundaries', '_drawFittedPolylines', '_drawFittedOutliers', '_drawFittedUnverified', '_drawFittedGapMarkers']) {
       const idx = render.lastIndexOf(`${fn}(`);
       const next = render.indexOf('\n  _drawFitted', idx + fn.length);
       const body = render.slice(idx, next < 0 ? idx + 700 : next);
@@ -791,14 +798,14 @@ describe('11. fitted renderer normalization + toggle contract', () => {
     assert.match(src, /_normalizeFittedPolylines\(r\.fittedPolyline\)/);
   });
 
-  it('55. accepted fitted layer uses distinct cyan styling and endpoint markers', () => {
+  it('55. hybrid and fitted layers use distinct cyan styling; endpoints are diagnostic-only', () => {
     const src = fs.readFileSync(RENDER_JS, 'utf8');
-    const start = src.indexOf('  _drawFittedPolylines(map, elapsedIdx, visiblePoints) {');
-    const end = src.indexOf('  _drawFittedOutliers(map, elapsedIdx, visiblePoints) {', start);
-    const drawBlock = src.slice(start, end);
-    assert.match(drawBlock, /#06b6d4/);
-    assert.match(drawBlock, /lineWidth = 4/);
-    assert.doesNotMatch(drawBlock, /boundaryColor\(r\.groupTrackId\)/);
+    const hybridStart = src.indexOf('  _drawHybridFittedBoundaries(map, elapsedIdx, visiblePoints) {');
+    const hybridEnd = src.indexOf('  _drawFittedPolylines(map, elapsedIdx, visiblePoints) {', hybridStart);
+    const hybridBlock = src.slice(hybridStart, hybridEnd);
+    assert.match(hybridBlock, /#06b6d4/);
+    assert.match(hybridBlock, /lineWidth = 4/);
+    assert.match(hybridBlock, /this\.layers\.fittedEndpoints/);
     assert.match(src, /_drawFittedEndpointMarkers\(poly\)/);
     assert.match(src, /#a855f7/);
   });
@@ -1014,5 +1021,84 @@ describe('12. source-corridor coordinate-frame invariants', () => {
     }, { ...DEFAULTS, fitEnabled: true });
     assert.equal(res.status, 'coordinateFrameRejected');
     assert.equal(res.reason, 'sourceCorridorExceeded');
+  });
+});
+
+// ---------------------------------------------------------------------------
+describe('13. hybrid fitted boundaries', () => {
+  it('70. emits one hybrid boundary per constructed fragment', () => {
+    const run = mkRun(40, 6, { curve: 1 });
+    const cf = CF.buildConstructedFragments(run, {});
+    const fit = GF.fitConstructedRuns(cf.fragments, cf.runs, { ...DEFAULTS, fitEnabled: true });
+    const hybrid = GF.buildHybridFittedBoundaries(cf.fragments, fit);
+    assert.equal(hybrid.boundaries.length, cf.fragments.length);
+    assert.equal(hybrid.stats.totalFragments, cf.fragments.length);
+    assert.equal(
+      hybrid.stats.fittedFragments + hybrid.stats.fallbackFragments,
+      cf.fragments.length,
+    );
+  });
+
+  it('71. accepted fragments use acceptedFit; short runs use fragmentFallback', () => {
+    const good = mkRun(40, 6, { curve: 0.5 });
+    const bad = mkRun(3, 2);
+    const pts = [...good, ...bad.map((p, i) => ({ ...p, groupTrackId: 1, laneIndex: 2, frameIndex: i }))];
+    const cf = CF.buildConstructedFragments(pts, {});
+    const fit = GF.fitConstructedRuns(cf.fragments, cf.runs, { ...DEFAULTS, fitEnabled: true });
+    const hybrid = GF.buildHybridFittedBoundaries(cf.fragments, fit);
+    const accepted = hybrid.boundaries.filter((b) => b.displaySource === 'acceptedFit');
+    const fallback = hybrid.boundaries.filter((b) => b.displaySource === 'fragmentFallback');
+    assert.ok(accepted.length >= 1);
+    assert.ok(fallback.length >= 1);
+    for (const b of accepted) {
+      assert.equal(b.fitStatus, 'accepted');
+      assert.ok(b.polylines.length >= 1);
+      assert.ok(b.polylines[0].length >= 2);
+    }
+    for (const b of fallback) {
+      assert.notEqual(b.fitStatus, 'accepted');
+      assert.ok(b.rejectionReason);
+      assert.ok(b.polylines[0].length >= 1);
+    }
+  });
+
+  it('72. hybrid preserves fragment identity fields and never merges polylines across fragments', () => {
+    const run = mkRun(50, 8, { curve: 1 });
+    const cf = CF.buildConstructedFragments(run, {});
+    const fit = GF.fitConstructedRuns(cf.fragments, cf.runs, { ...DEFAULTS, fitEnabled: true });
+    const hybrid = GF.buildHybridFittedBoundaries(cf.fragments, fit);
+    const ids = new Set(hybrid.boundaries.map((b) => b.fragmentId));
+    assert.equal(ids.size, cf.fragments.length);
+    for (const b of hybrid.boundaries) {
+      const frag = cf.fragments.find((f) => f.fragmentId === b.fragmentId);
+      assert.ok(frag);
+      assert.equal(b.chunkId, frag.chunkId);
+      assert.equal(b.passId, frag.passId);
+      assert.equal(b.groupTrackId, frag.groupTrackId);
+      assert.equal(b.laneIndex, frag.laneIndex);
+      assert.equal(b.coordinateFrame, 'segmentLocal');
+    }
+  });
+
+  it('73. segment_local_map exposes hybrid only when fitEnabled', () => {
+    const src = fs.readFileSync(path.join(ROOT, 'lib', 'segment_local_map.js'), 'utf8');
+    assert.match(src, /hybridFittedBoundaries/);
+    assert.match(src, /buildHybridFittedBoundaries/);
+    assert.match(src, /options\.fitEnabled && GraphFit.*fittedPolylines/);
+    assert.doesNotMatch(src, /hybridFittedBoundaries.*buildStationaryLocalPolygons/);
+  });
+
+  it('74. public graph_fit mirrors buildHybridFittedBoundaries', () => {
+    const src = fs.readFileSync(path.join(ROOT, 'public', 'graph_fit.js'), 'utf8');
+    const ctx = { console };
+    ctx.window = ctx;
+    ctx.globalThis = ctx;
+    vm.runInNewContext(src, ctx, { filename: 'public/graph_fit.js' });
+    const run = mkRun(30, 6);
+    const cf = CF.buildConstructedFragments(run, {});
+    const fit = GF.fitConstructedRuns(cf.fragments, cf.runs, { ...DEFAULTS, fitEnabled: true });
+    const libHybrid = GF.buildHybridFittedBoundaries(cf.fragments, fit);
+    const browserHybrid = ctx.GraphFit.buildHybridFittedBoundaries(cf.fragments, fit);
+    assert.equal(JSON.stringify(libHybrid), JSON.stringify(browserHybrid));
   });
 });
