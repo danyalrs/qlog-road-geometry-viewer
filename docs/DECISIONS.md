@@ -1,6 +1,6 @@
 # Technical Decisions
 
-**Last updated:** 2026-08-17
+**Last updated:** 2026-08-18
 
 Major technical decisions with context, alternatives, evidence, risks, and current status.
 
@@ -404,3 +404,16 @@ Major technical decisions with context, alternatives, evidence, risks, and curre
 | **Evidence** | Nine-segment production validation via `lib/viewer_map_build.js`: accepted counts Seg2 **4**, Seg3 **11**, Seg9 **0**, Seg14 **7**, Seg16 **9**, Seg54/58/95/99 **0**; 0 fallback/accepted-fit mismatches; polygon checksums identical fit-off vs fit-on; focused tests **86/86**; full suite **1,723 / 1,695 pass / 28 fail** (27 baseline + 1 environmental Stage 7 OneDrive write flake, passes in isolation). `reports/hybrid_validation/HYBRID_VALIDATION_REPORT.md` |
 | **Risks** | Low fit coverage on many segments is expected (Path 1 gates unchanged); complete-map build remains slow on long segments; no hybrid CSV/GeoJSON export |
 | **Status** | **Accepted as EXPERIMENTAL display-only layer (ES)** — local checkpoint 2026-08-17; not pushed |
+
+---
+
+## D-032: Persistent graph-fit cache — IndexedDB, complete-map only, off by default
+
+| Field | Detail |
+|-------|--------|
+| **Context** | First `?fit=1` complete-map build on long segments (e.g. Seg14) takes tens of seconds; same-session memory cache is lost on hard reload or new tab |
+| **Decision** | Add a browser IndexedDB persistent cache for fit-enabled stationary local maps. Database `kommuGraphFitPersistV1`, object store `stationaryMaps` (keyPath `cacheKey`), schema `graph-fit-persist-v1`, graph-fit impl version `path1-heldout-memo-v1`. Lookup order: (1) in-memory `stationaryMapCache`, (2) persistent IndexedDB via `GraphFitPersistCache`, (3) normal `buildSegmentLocalMap` + `fitConstructedRuns`. Identity computation uses pre-fit fragment construction (`fitEnabled: false`) so the cache key is derived without invoking the fitter. Applies only when `fitEnabled` is true, geometry is `pointAccumulated`, and causal playback is off. Fit-disabled and causal paths do not read or write persistent fitted maps. Store is origin-specific (each localhost port has a separate IndexedDB). Dedicated store has a 512 MB LRU byte bound; browser may still evict or clear storage independently. Any read/validation/write failure falls back to normal fitting. Clearing targets only `kommuGraphFitPersistV1` / `stationaryMaps` |
+| **Alternatives** | (a) Server-side fit cache (rejected — fitting is client-side); (b) loose cache keys (rejected — cross-config collision risk); (c) skip checksum validation (rejected) |
+| **Evidence** | Reliability gate: Seg2 10/10, fresh profiles 3/3, Seg14 E2E (7 accepted, warm fitter 0). Browser 8/8; focused 149/149; full suite 1,772 / 1,745 / 27. Seg14 gate: cold ~47.2 s, warm ~1.3 s |
+| **Risks** | First uncached fit remains expensive; per-origin stores; browser quota/clear; identity stability required across reloads |
+| **Status** | **Accepted as EXPERIMENTAL viewer optimization (ES)** — local checkpoint 2026-08-18; not pushed. No Path 2, video/calibration, threshold, polygon, or processing-version change |

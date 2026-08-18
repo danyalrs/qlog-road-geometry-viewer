@@ -120,6 +120,13 @@
     fitMaxSourceCorridorM: 3.0,
   };
 
+  /**
+   * Bumped when graph-fit algorithm or fitted output semantics change (persistent-cache identity).
+   * Renderer-only styling changes do not require a bump.
+   * IndexedDB payload schema uses PERSIST_SCHEMA_VERSION separately when storage compatibility breaks.
+   */
+  const GRAPH_FIT_CACHE_IMPL_VERSION = 'path1-heldout-memo-v1';
+
   /** Coordinate frame tag for fitted output vertices and result records. */
   const SEGMENT_LOCAL_COORDINATE_FRAME = 'segmentLocal';
 
@@ -1685,6 +1692,7 @@
 
   global.GraphFit = {
   GRAPH_FIT_DEFAULTS,
+  GRAPH_FIT_CACHE_IMPL_VERSION,
   isDegenerateTrajectory,
   createFitCaches,
   cachedPenaltyMatrix,

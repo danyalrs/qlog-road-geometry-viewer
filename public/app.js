@@ -171,36 +171,210 @@ function stationaryMapCacheKey(chunkId, passId, geometrySource) {
 function clearStationaryMapCache() {
   stationaryMapCache.clear();
   stationaryMapBuildCount = 0;
+  lastMapIdentityKey = null;
+  inFlightMapBuilds.clear();
 }
 
-function getOrBuildStationaryMap(timelineIndex, { forceRebuild = false } = {}) {
-  const SLM = window.SegmentLocalMap;
-  if (!SLM || !processData) return null;
-  const mode = getLocalGeometryMode();
-  if (mode === 'diagnostic') return null;
+function isCausalPointPlayback() {
+  return renderer?.getPointCausalPlayback?.() === true;
+}
 
-  const { chunkId, passId } = SLM.resolveActiveChunkPass(processData, timelineIndex);
-  const key = stationaryMapCacheKey(chunkId, passId, mode);
-  if (!forceRebuild && stationaryMapCache.has(key)) {
-    const cached = stationaryMapCache.get(key);
-    cached.cacheState = 'hit';
-    return cached;
+function shouldUseGraphFitPersist(mode, fitOpts) {
+  return !!fitOpts?.fitEnabled
+    && mode === 'pointAccumulated'
+    && !isCausalPointPlayback()
+    && window.GraphFitPersistCache?.isSupported?.();
+}
+
+function isMapAcquisitionDiagEnabled() {
+  return !!(window.__graphFitPersistTrace || new URLSearchParams(window.location.search).get('persistDiag') === '1');
+}
+
+function traceMapAcquisition(event, detail = {}) {
+  if (!isMapAcquisitionDiagEnabled()) return;
+  const row = {
+    ts: Date.now(),
+    event,
+    origin: window.location?.origin ?? null,
+    url: window.location?.href ?? null,
+    generation: mapAcquisitionGeneration,
+    ...detail,
+  };
+  if (!window.__mapAcquisitionTraceLog) window.__mapAcquisitionTraceLog = [];
+  window.__mapAcquisitionTraceLog.push(row);
+}
+
+let mapAcquisitionGeneration = 0;
+let lastMapIdentityKey = null;
+const inFlightMapBuilds = new Map();
+
+function mapIdentityContext(timelineIndex) {
+  const SLM = window.SegmentLocalMap;
+  const mode = getLocalGeometryMode();
+  const fitOpts = localPlaybackOptions();
+  const active = SLM && processData
+    ? SLM.resolveActiveChunkPass(processData, timelineIndex)
+    : { chunkId: null, passId: null };
+  const segmentFiles = (processData?.fileAudits || [])
+    .map((a) => a.filename).sort().join('|');
+  return {
+    timelineIndex,
+    chunkId: active.chunkId,
+    passId: active.passId,
+    geometrySource: mode,
+    fitEnabled: !!fitOpts.fitEnabled,
+    vizMode: getDisplayMode(),
+    causal: isCausalPointPlayback(),
+    segmentFiles,
+  };
+}
+
+function mapIdentityKey(ctx) {
+  return `${ctx.segmentFiles}|${ctx.chunkId}|${ctx.passId}|${ctx.geometrySource}|${ctx.fitEnabled ? 1 : 0}|${ctx.vizMode}|${ctx.causal ? 1 : 0}`;
+}
+
+function bumpMapAcquisitionIfNeeded(timelineIndex) {
+  const ctx = mapIdentityContext(timelineIndex);
+  const key = mapIdentityKey(ctx);
+  if (key !== lastMapIdentityKey) {
+    mapAcquisitionGeneration += 1;
+    lastMapIdentityKey = key;
+  }
+  return { generation: mapAcquisitionGeneration, ...ctx };
+}
+
+function readMapAcquisitionContext(timelineIndex) {
+  const ctx = mapIdentityContext(timelineIndex);
+  return { generation: mapAcquisitionGeneration, ...ctx };
+}
+
+function captureMapAcquisitionContext(timelineIndex) {
+  return bumpMapAcquisitionIfNeeded(timelineIndex);
+}
+
+function mapContextsCompatible(expected, actual) {
+  if (!expected || !actual) return false;
+  return expected.generation === actual.generation
+    && expected.chunkId === actual.chunkId
+    && expected.passId === actual.passId
+    && expected.geometrySource === actual.geometrySource
+    && expected.fitEnabled === actual.fitEnabled
+    && expected.vizMode === actual.vizMode
+    && expected.causal === actual.causal
+    && expected.segmentFiles === actual.segmentFiles;
+}
+
+function inflightMapKey(ctx) {
+  const fit = ctx.fitEnabled ? ':fit1' : ':fit0';
+  return `${ctx.segmentFiles}::${ctx.chunkId}:${ctx.passId}:${ctx.geometrySource}${fit}`;
+}
+
+async function getOrBuildStationaryMapAsync(timelineIndex, { forceRebuild = false } = {}) {
+  const ctx = readMapAcquisitionContext(timelineIndex);
+  const inflightKey = inflightMapKey(ctx);
+
+  if (!forceRebuild && inFlightMapBuilds.has(inflightKey)) {
+    return inFlightMapBuilds.get(inflightKey);
   }
 
-  const map = SLM.buildSegmentLocalMap(processData, {
-    geometrySource: mode,
-    chunkId,
-    passId,
-    timelineIndex,
-    ...localPlaybackOptions(),
-  });
-  const frozenMap = SLM.freezeStationaryMapGeometry(map);
-  stationaryMapBuildCount += 1;
-  frozenMap.cacheKey = key;
-  frozenMap.cacheState = 'built';
-  frozenMap.buildCount = stationaryMapBuildCount;
-  stationaryMapCache.set(key, frozenMap);
-  return frozenMap;
+  const buildPromise = (async () => {
+    const SLM = window.SegmentLocalMap;
+    if (!SLM || !processData) return null;
+    const mode = getLocalGeometryMode();
+    if (mode === 'diagnostic') return null;
+
+    const { chunkId, passId } = SLM.resolveActiveChunkPass(processData, timelineIndex);
+    const key = stationaryMapCacheKey(chunkId, passId, mode);
+    traceMapAcquisition('acquisition-start', {
+      timelineIndex,
+      chunkId,
+      passId,
+      geometrySource: mode,
+      fitState: localPlaybackOptions()?.fitEnabled ? 'fit1' : 'fit0',
+      processingVersion: processData.processingVersion ?? null,
+      graphFitImplVersion: window.GraphFit?.GRAPH_FIT_CACHE_IMPL_VERSION ?? null,
+    });
+    if (!forceRebuild && stationaryMapCache.has(key)) {
+      const cached = stationaryMapCache.get(key);
+      cached.cacheState = 'memory-hit';
+      traceMapAcquisition('renderer-apply', { cacheState: 'memory-hit', chunkId, passId });
+      return cached;
+    }
+
+    const fitOpts = localPlaybackOptions();
+    const buildOptions = {
+      geometrySource: mode,
+      chunkId,
+      passId,
+      timelineIndex,
+      ...fitOpts,
+    };
+
+    if (!forceRebuild && shouldUseGraphFitPersist(mode, fitOpts)) {
+      try {
+        const idBundle = await window.GraphFitPersistCache.computeIdentity(processData, buildOptions);
+        if (idBundle?.cacheKey) {
+          traceMapAcquisition('identity-complete', {
+            cacheKey: idBundle.cacheKey,
+            cacheKeyLength: idBundle.cacheKey.length,
+            chunkId,
+            passId,
+          });
+          const stored = await window.GraphFitPersistCache.get(idBundle);
+          const lookup = window.GraphFitPersistCache.getLastLookupResult?.();
+          traceMapAcquisition('idb-read-complete', {
+            lookupResult: lookup?.result ?? stored?.lookupResult ?? 'unknown',
+            cacheKey: idBundle.cacheKey,
+          });
+          if (stored?.map) {
+            const frozenMap = SLM.freezeStationaryMapGeometry(stored.map);
+            frozenMap.cacheKey = key;
+            frozenMap.cacheState = 'persistent-hit';
+            frozenMap.persistCacheKey = idBundle.cacheKey;
+            stationaryMapCache.set(key, frozenMap);
+            traceMapAcquisition('renderer-apply', { cacheState: 'persistent-hit', chunkId, passId });
+            return frozenMap;
+          }
+        }
+      } catch (err) {
+        console.warn('[graph-fit-persist] read failed; falling back to build', err);
+      }
+    }
+
+    traceMapAcquisition('build-start', { chunkId, passId, geometrySource: mode });
+    const map = SLM.buildSegmentLocalMap(processData, buildOptions);
+    traceMapAcquisition('build-complete', { chunkId, passId });
+    const frozenMap = SLM.freezeStationaryMapGeometry(map);
+    stationaryMapBuildCount += 1;
+    frozenMap.cacheKey = key;
+    frozenMap.cacheState = window.GraphFitPersistCache?.isSupported?.() ? 'miss-build' : 'built';
+    frozenMap.buildCount = stationaryMapBuildCount;
+    stationaryMapCache.set(key, frozenMap);
+
+    if (shouldUseGraphFitPersist(mode, fitOpts)) {
+      try {
+        const persistKey = await window.GraphFitPersistCache.put(processData, buildOptions, frozenMap);
+        frozenMap.persistCacheKey = persistKey;
+      } catch (err) {
+        console.warn('[graph-fit-persist] write failed; viewer remains usable', err);
+      }
+    }
+    traceMapAcquisition('renderer-apply', { cacheState: frozenMap.cacheState, chunkId, passId });
+    return frozenMap;
+  })();
+
+  inFlightMapBuilds.set(inflightKey, buildPromise);
+  try {
+    return await buildPromise;
+  } finally {
+    if (inFlightMapBuilds.get(inflightKey) === buildPromise) {
+      inFlightMapBuilds.delete(inflightKey);
+    }
+  }
+}
+
+function getOrBuildStationaryMap(timelineIndex, options = {}) {
+  return getOrBuildStationaryMapAsync(timelineIndex, options);
 }
 
 function getOptions() {
@@ -537,9 +711,10 @@ function interpolatedLogMonoTime(fromIdx, toIdx, alpha) {
   return String(t0 + BigInt(Math.round(Number(t1 - t0) * alpha)));
 }
 
-function updateLocalPlayback(idx, { forceRefit = false, forceMapRebuild = false, preserveViewport = false } = {}) {
+async function updateLocalPlayback(idx, { forceRefit = false, forceMapRebuild = false, preserveViewport = false } = {}) {
   const LP = window.LocalPlayback;
   if (!LP || !processData || !renderer) return;
+  const ctxAtStart = captureMapAcquisitionContext(idx);
   const flags = localPlaybackUrlFlags();
   const mode = getLocalGeometryMode();
   renderer.setLocalElapsedIdx(idx);
@@ -547,7 +722,15 @@ function updateLocalPlayback(idx, { forceRefit = false, forceMapRebuild = false,
   renderer.setLaneRelativeArrow(flags.laneRelativeArrow);
 
   const prevKey = renderer.stationaryLocalMap?.cacheKey;
-  const map = getOrBuildStationaryMap(idx, { forceRebuild: forceMapRebuild });
+  const map = await getOrBuildStationaryMapAsync(idx, { forceRebuild: forceMapRebuild });
+  if (!map || !mapContextsCompatible(ctxAtStart, readMapAcquisitionContext(idx))) {
+    traceMapAcquisition('stale-result-reject', {
+      timelineIndex: idx,
+      expectedGeneration: ctxAtStart?.generation,
+      actualGeneration: readMapAcquisitionContext(idx).generation,
+    });
+    return;
+  }
   const keyChanged = map?.cacheKey && map.cacheKey !== prevKey;
   renderer.setLocalGeometryDisplay(null);
   renderer.setStationaryLocalMap(map, {
@@ -569,8 +752,7 @@ function switchLocalGeometryLayer() {
   persistLocalGeometryMode(mode);
   updatePointOnlyControlVisibility(mode);
   const idx = parseInt($('timeline').value, 10);
-  updateLocalPlayback(idx, { preserveViewport: true });
-  renderer.draw();
+  void updateLocalPlayback(idx, { preserveViewport: true }).then(() => renderer.draw());
 }
 
 function updatePointOnlyControlVisibility(mode) {
@@ -677,7 +859,7 @@ function applyVisualization() {
   renderer.setData(processData, getEffectiveLayers(displayMode), displayMode);
   renderer.setFrameIndex(timelineIdx);
   if (displayMode === 'local') {
-    updateLocalPlayback(timelineIdx, {
+    void updateLocalPlayback(timelineIdx, {
       forceRefit: !preserveViewport,
       forceMapRebuild: false,
       preserveViewport,
@@ -1287,6 +1469,14 @@ async function init() {
   window.renderer = renderer;
   window.updateLocalPlayback = updateLocalPlayback;
   window.switchLocalGeometryLayer = switchLocalGeometryLayer;
+  window.__mapAcquisitionDebug = {
+    get generation() { return mapAcquisitionGeneration; },
+    captureMapAcquisitionContext,
+    readMapAcquisitionContext,
+    mapContextsCompatible,
+    get inFlightCount() { return inFlightMapBuilds.size; },
+    clearStationaryMapCache,
+  };
   initLocalGeometryModeSelect();
   const panelEl = $('localVideoPanel');
   if (panelEl && window.LocalPlaybackVideoPanel) {

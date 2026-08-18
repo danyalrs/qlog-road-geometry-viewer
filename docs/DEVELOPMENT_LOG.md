@@ -1,6 +1,6 @@
 # Development Log
 
-**Last updated:** 2026-08-14
+**Last updated:** 2026-08-18
 
 Chronological record of confirmed work. Entries cite checkpoints, reports, audits, or source where possible. Failed or superseded work is recorded as such.
 
@@ -506,6 +506,19 @@ When future work confirms these items, append corrections — do not rewrite pri
 | **Baseline** | Focused: **86/86** pass (`tests/graph_fit.test.js` + `tests/viewer_probe_parity.test.js`). Full suite: **1,723 / 1,695 pass / 28 fail** — 27 documented baseline failures + 1 environmental Stage 7 OneDrive write flake (`tests/local_playback_lane_continuity_stage7.test.js` passes **48/48** in isolation). Processing version remains `2026-07-24-fusion-v16` |
 | **Status** | **EXPERIMENTAL (ES)** — local checkpoint commit; not pushed |
 | **Evidence** | `reports/hybrid_validation/HYBRID_VALIDATION_REPORT.md`; decision **D-031** |
+
+---
+
+## 2026-08-18 — Persistent graph-fit IndexedDB cache (checkpoint)
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Persist fit-enabled complete-map geometry across viewer reloads, new tabs, and browser restarts without altering fusion-v16 polygons or processing output |
+| **Work** | `lib/graph_fit_persistent_cache.js` (identity, validation, LRU simulation); `public/graph_fit_persistent_cache.js` (IndexedDB wrapper). Integrated in `public/app.js`: lookup order memory → persistent → build; stale-result guard via `mapAcquisitionGeneration`; in-flight dedup per map key. Pre-fit identity (`fitEnabled: false` during fragment construction for cache keys only). Impl version `path1-heldout-memo-v1`. Tests: `tests/graph_fit_persistent_cache.test.js` (44), `tests/graph_fit_persistent_cache_browser.test.js` (8, gated), `tests/helpers/graph_fit_persist_test_server.js`, `scripts/run_persist_browser_gate.js` |
+| **Results** | Seg2 **4** accepted, Seg14 **7** accepted, Seg9 **0** accepted (3 fallback fragments, 1 stationary polygon). Warm path: **0** `fitConstructedRuns` calls. Gate Seg14: cold ~47.2 s, warm ~1.3 s. Display-only — polygons unchanged |
+| **Baseline** | Reliability gate: Seg2 **10/10**, fresh profiles **3/3**, browser **8/8**, focused **149/149**, full suite **1,772 / 1,745 / 27** (established baseline). No production changes during final gate run |
+| **Status** | **EXPERIMENTAL (ES)** — local checkpoint; not pushed |
+| **Evidence** | Decision **D-032**; `reports/graph_fit_performance/persist_browser_gate.json` |
 
 ---
 

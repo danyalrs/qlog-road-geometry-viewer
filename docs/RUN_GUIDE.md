@@ -1,6 +1,6 @@
 # Run Guide
 
-**Last updated:** 2026-08-17
+**Last updated:** 2026-08-18
 
 Verified commands from `package.json`, scripts, and specification docs. Mark **(uncertain)** where environment-specific or data-dependent.
 
@@ -68,6 +68,23 @@ Or use the **Hybrid fitted lane map (experimental)** checkbox in the viewer UI a
 
 Fitted and hybrid output does **not** feed polygons. Processing version remains `2026-07-24-fusion-v16`.
 
+### Persistent graph-fit cache (`?fit=1` only)
+
+When fitting is enabled, the viewer may store the fit-enabled stationary local map in browser IndexedDB so a hard reload or new tab can skip refitting:
+
+| Item | Value |
+|------|-------|
+| Database | `kommuGraphFitPersistV1` |
+| Object store | `stationaryMaps` (keyPath `cacheKey`) |
+| Schema | `graph-fit-persist-v1` |
+| Impl version | `path1-heldout-memo-v1` |
+| Lookup order | in-memory `stationaryMapCache` → IndexedDB → build |
+| LRU bound | 512 MB (dedicated store only) |
+
+**Scope:** complete-map, fit-enabled, `pointAccumulated` geometry only. Causal playback and fit-disabled URLs do not use persistent fitted maps. Storage is **origin-specific** — `http://localhost:3847` and `http://localhost:3860` have separate stores. Browser may clear or evict storage; any cache failure falls back to normal fitting.
+
+**Representative accepted counts (fusion-v16, unchanged):** Seg2 **4**, Seg14 **7**, Seg9 **0** (3 fallback, 1 polygon).
+
 **Accepted counts (viewer-authoritative, fusion-v16):** Seg2 **4**, Seg3 **11**, Seg9 **0**, Seg14 **7**, Seg16 **9**, Seg54 **0**, Seg58 **0**, Seg95 **0**, Seg99 **0**.
 
 Source: `server.js`, `package.json`, `reports/hybrid_validation/HYBRID_VALIDATION_REPORT.md`.
@@ -88,9 +105,35 @@ Equivalent:
 node --expose-gc --test tests
 ```
 
-**Verified result (2026-08-17):** 1723 tests, 1695 pass, 28 fail (27 documented baseline + 1 environmental Stage 7 OneDrive write flake; passes in isolation), 0 skipped. Requires `--expose-gc` for Stage 19 memory-oracle tests. Full output: `.cache/hybrid_full_suite.txt`.
+**Verified result (2026-08-18):** 1772 tests, 1745 pass, 27 fail (established baseline), 0 skipped. Requires `--expose-gc` for Stage 19 memory-oracle tests. Requires API server on port 3847 for `28. API produces same pre–Stage-7/8 geometry checksums`.
 
-Focused graph-fit + hybrid validation:
+Focused graph-fit + persistent-cache validation:
+
+```bash
+node --expose-gc --test tests/graph_fit.test.js tests/viewer_probe_parity.test.js tests/video_restore.test.js tests/graph_fit_persistent_cache.test.js
+```
+
+**Verified result (2026-08-18):** 149 tests, 149 pass, 0 fail.
+
+Persistent-cache browser suite (not part of default full run):
+
+```powershell
+$env:RUN_GRAPH_FIT_PERSIST_BROWSER="1"
+node --expose-gc --test tests/graph_fit_persistent_cache_browser.test.js
+Remove-Item Env:RUN_GRAPH_FIT_PERSIST_BROWSER
+```
+
+**Verified result (2026-08-18):** 8 tests, 8 pass, 0 fail.
+
+Persistent-cache reliability gate (task-owned test server on a free port; does not attach to port 3847):
+
+```bash
+node scripts/run_persist_browser_gate.js
+```
+
+**Verified result (2026-08-18):** Seg2 10/10, fresh profiles 3/3, Seg14 E2E pass, browser 8/8. Report: `reports/graph_fit_performance/persist_browser_gate.json`.
+
+Focused graph-fit + hybrid validation (historical):
 
 ```bash
 node --expose-gc --test tests/graph_fit.test.js tests/viewer_probe_parity.test.js
