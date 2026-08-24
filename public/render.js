@@ -72,6 +72,7 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     this._pointTrackColorCache = null;
     this._connectedAccumulatedPolylines = null;
     this._connectedAccumulatedStats = null;
+    this._connectedAccumulatedMode = 'currentFrame';
     this._connectedAccumulatedDrawn = false;
     this.localRoadSurfacePathRadiusM = 15;
     this.localRoadSurfaceRibbonFallbackHalfWidthM = 7.5;
@@ -146,15 +147,17 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     this._pointTrackColorCache = null;
     this._connectedAccumulatedPolylines = null;
     this._connectedAccumulatedStats = null;
+    this._connectedAccumulatedMode = 'currentFrame';
     this._connectedAccumulatedDrawn = false;
   }
 
   /**
    * Display-only connected accumulated observations (viewer experiment).
    */
-  setConnectedAccumulatedPolylines(polylines, stats = null) {
+  setConnectedAccumulatedPolylines(polylines, stats = null, mode = 'currentFrame') {
     this._connectedAccumulatedPolylines = Array.isArray(polylines) ? polylines : null;
     this._connectedAccumulatedStats = stats;
+    this._connectedAccumulatedMode = mode === 'perFrame' ? 'perFrame' : 'currentFrame';
     this._connectedAccumulatedDrawn = false;
   }
 
@@ -1376,6 +1379,7 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     const pa = map?.pointAccumulated;
     if (!pa) return;
 
+    const displayMode = this._connectedAccumulatedMode === 'perFrame' ? 'perFrame' : 'currentFrame';
     let polylines = this._connectedAccumulatedPolylines;
     let stats = this._connectedAccumulatedStats;
     const needsRebuild = this._pointCausalPlayback || this._obsIsolationActive();
@@ -1383,14 +1387,34 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
       const sourcePts = this._obsIsolationActive()
         ? (visiblePoints || [])
         : CAD.filterPointsForCausal(pa.points || [], elapsedIdx);
-      const built = CAD.buildConnectedPolylines(sourcePts, { mode: 'perFrame' });
-      polylines = built.polylines;
-      stats = built.stats;
+      const built = CAD.buildPerFrameConnectedPolylines(sourcePts);
+      if (displayMode === 'currentFrame') {
+        const activeFrame = {
+          frameIndex: elapsedIdx,
+          logMonoTime: (pa.points || []).find((p) => p.frameIndex === elapsedIdx)?.logMonoTime ?? null,
+        };
+        const display = CAD.buildCurrentFrameDisplay(built.polylines, activeFrame, built.stats);
+        polylines = display.polylines;
+        stats = display.stats;
+      } else {
+        polylines = built.polylines;
+        stats = built.stats;
+      }
     }
     if (!polylines?.length) {
       this._connectedAccumulatedDrawn = false;
+      if (stats?.noFrameMessage) {
+        const ctx = this.ctx;
+        ctx.save();
+        ctx.font = '12px sans-serif';
+        ctx.fillStyle = '#b45309';
+        ctx.fillText(stats.noFrameMessage, 10, 182);
+        ctx.restore();
+      }
       return;
     }
+
+    const isCurrentFrame = (stats?.mode ?? displayMode) === 'currentFrame';
 
     if (!this._pointTrackColorCache) {
       const all = pa.points || [];
@@ -1412,8 +1436,8 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
         color = 'rgba(8,145,178,0.9)';
       }
       ctx.strokeStyle = color;
-      ctx.globalAlpha = 0.62;
-      ctx.lineWidth = 2.25;
+      ctx.globalAlpha = isCurrentFrame ? 0.9 : 0.62;
+      ctx.lineWidth = isCurrentFrame ? 3 : 2.25;
       ctx.setLineDash([]);
       ctx.beginPath();
       let moved = false;
@@ -1435,17 +1459,28 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     this._connectedAccumulatedStats = stats;
     this._connectedAccumulatedDrawn = stroked > 0;
 
-    const pointCount = stats?.finitePointCount ?? (pa.points || []).length;
-    const frameCount = stats?.frameGroupCount
-      ? new Set(polylines.map((pl) => pl.frameId ?? `fi:${pl.frameIndex}`)).size
-      : 0;
+    const pointCount = stats?.observationCount ?? stats?.finitePointCount ?? (pa.points || []).length;
     ctx.save();
     ctx.font = '12px sans-serif';
-    ctx.fillStyle = '#0f766e';
-    ctx.fillText('Connected accumulated observations — per-frame (experimental)', 10, 182);
-    ctx.fillStyle = '#64748b';
-    ctx.fillText(`${stroked} frame polylines from ${frameCount} frames / ${pointCount} observations`, 10, 196);
-    ctx.fillText('Each line contains one modelV2 frame only', 10, 210);
+    if (isCurrentFrame) {
+      const frameLabel = stats?.selectedFrameKey ?? stats?.selectedFrameId ?? '—';
+      ctx.fillStyle = '#0f766e';
+      ctx.fillText('Connected accumulated observations — current frame (experimental)', 10, 182);
+      ctx.fillStyle = '#64748b';
+      ctx.fillText(`Frame ${frameLabel} / ${stroked} lane curves / ${pointCount} observations`, 10, 196);
+      ctx.fillText('Each line contains one modelV2 frame only', 10, 210);
+      ctx.fillText('Unconfirmed display only', 10, 224);
+    } else {
+      const frameCount = stats?.frameGroupCount
+        ? new Set(polylines.map((pl) => pl.frameId ?? `fi:${pl.frameIndex}`)).size
+        : new Set(polylines.map((pl) => pl.frameId ?? `fi:${pl.frameIndex}`)).size;
+      ctx.fillStyle = '#0f766e';
+      ctx.fillText('Connected accumulated observations — all per-frame (experimental)', 10, 182);
+      ctx.fillStyle = '#64748b';
+      ctx.fillText(`${stroked} frame polylines from ${frameCount} frames / ${pointCount} observations`, 10, 196);
+      ctx.fillText('Each line contains one modelV2 frame only', 10, 210);
+      ctx.fillText('Unconfirmed display only', 10, 224);
+    }
     ctx.restore();
   }
 

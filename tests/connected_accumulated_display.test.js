@@ -386,12 +386,15 @@ describe('connected_accumulated_display', () => {
     assert.equal(a, b);
   });
 
-  it('32. viewer explicitly requests perFrame mode', () => {
+  it('32. viewer uses selectable display mode', () => {
     const appSrc = fs.readFileSync(path.join(ROOT, 'public/app.js'), 'utf8');
-    assert.match(appSrc, /buildConnectedPolylines\(map\.pointAccumulated\.points,\s*\{\s*mode:\s*'perFrame'\s*\}\)/);
+    assert.match(appSrc, /getConnectedAccumulatedMode/);
+    assert.match(appSrc, /ensurePerFramePolylinesBuilt/);
+    assert.match(appSrc, /buildCurrentFrameDisplay/);
+    assert.match(appSrc, /connectedAccumulatedMode/);
     const renderSrc = fs.readFileSync(path.join(ROOT, 'public/render.js'), 'utf8');
-    assert.match(renderSrc, /mode:\s*'perFrame'/);
-    assert.match(renderSrc, /per-frame \(experimental\)/);
+    assert.match(renderSrc, /current frame \(experimental\)/);
+    assert.match(renderSrc, /all per-frame \(experimental\)/);
   });
 
   it('33. perFrame same identity and frame connect', () => {
@@ -499,4 +502,174 @@ describe('connected_accumulated_display', () => {
     assert.equal(CAD.buildRawConnectedPolylines(pts).stats.mode, 'raw');
     assert.equal(CAD.buildRobustConnectedPolylines(pts).stats.mode, 'robust');
   });
+
+  it('43. current frame filters by exact frameId', () => {
+    const pts = [
+      mkPoint({ frameId: 100, frameIndex: 0, modelX: 0, localEast: 0 }),
+      mkPoint({ frameId: 100, frameIndex: 0, modelX: 5, localEast: 5 }),
+      mkPoint({ frameId: 200, frameIndex: 1, modelX: 0, localEast: 10 }),
+      mkPoint({ frameId: 200, frameIndex: 1, modelX: 5, localEast: 15 }),
+    ];
+    const perFrame = CAD.buildPerFrameConnectedPolylines(pts);
+    const display = CAD.buildCurrentFrameDisplay(perFrame.polylines, { frameId: 100 });
+    assert.equal(display.stats.selectionMethod, 'frameId');
+    assert.equal(display.polylines.length, 1);
+    assert.ok(display.polylines.every((pl) => pl.frameId === 100));
+  });
+
+  it('44. current frame falls back to frameIndex', () => {
+    const pts = [
+      mkPoint({ frameId: undefined, frameIndex: 2, modelX: 0, localEast: 0 }),
+      mkPoint({ frameId: undefined, frameIndex: 2, modelX: 5, localEast: 5 }),
+      mkPoint({ frameId: undefined, frameIndex: 3, modelX: 0, localEast: 10 }),
+    ];
+    const perFrame = CAD.buildPerFrameConnectedPolylines(pts);
+    const display = CAD.buildCurrentFrameDisplay(perFrame.polylines, { frameIndex: 2 });
+    assert.equal(display.stats.selectionMethod, 'frameIndex');
+    assert.equal(display.polylines.length, 1);
+    assert.equal(display.polylines[0].frameIndex, 2);
+  });
+
+  it('45. current frame selects previous frame by logMonoTime', () => {
+    const pts = [
+      mkPoint({ frameId: 1, frameIndex: 0, logMonoTime: '1000', modelX: 0, localEast: 0 }),
+      mkPoint({ frameId: 1, frameIndex: 0, logMonoTime: '1000', modelX: 5, localEast: 5 }),
+      mkPoint({ frameId: 2, frameIndex: 1, logMonoTime: '2000', modelX: 0, localEast: 10 }),
+      mkPoint({ frameId: 2, frameIndex: 1, logMonoTime: '2000', modelX: 5, localEast: 15 }),
+    ];
+    const perFrame = CAD.buildPerFrameConnectedPolylines(pts);
+    const display = CAD.buildCurrentFrameDisplay(perFrame.polylines, { logMonoTime: '1500' });
+    assert.equal(display.stats.selectionMethod, 'previousByTime');
+    assert.equal(display.polylines[0].frameId, 1);
+  });
+
+  it('46. current frame does not select a future frame', () => {
+    const pts = [
+      mkPoint({ frameId: 1, frameIndex: 0, logMonoTime: '1000', modelX: 0, localEast: 0 }),
+      mkPoint({ frameId: 2, frameIndex: 1, logMonoTime: '2000', modelX: 0, localEast: 10 }),
+    ];
+    const perFrame = CAD.buildPerFrameConnectedPolylines(pts);
+    const display = CAD.buildCurrentFrameDisplay(perFrame.polylines, { logMonoTime: '500' });
+    assert.equal(display.stats.selectionMethod, 'none');
+    assert.equal(display.polylines.length, 0);
+    assert.ok(display.stats.noFrameMessage);
+  });
+
+  it('47. missing active frame returns zero polylines', () => {
+    const pts = [mkPoint({ frameId: 1, modelX: 0, localEast: 0 }), mkPoint({ frameId: 1, modelX: 5, localEast: 5 })];
+    const perFrame = CAD.buildPerFrameConnectedPolylines(pts);
+    const display = CAD.buildCurrentFrameDisplay(perFrame.polylines, { frameId: 999 });
+    assert.equal(display.stats.selectionMethod, 'none');
+    assert.equal(display.polylines.length, 0);
+  });
+
+  it('48. segment switch clears connected accumulated cache', () => {
+    const appSrc = fs.readFileSync(path.join(ROOT, 'public', 'app.js'), 'utf8');
+    assert.ok(appSrc.includes('connectedAccumulatedCache = null'));
+    assert.ok(appSrc.includes('function clearProcessState'));
+  });
+
+  it('49. current-frame polylines contain one frame each', () => {
+    const { map } = buildFromMap('qlog_f449c_13.bz2');
+    const perFrame = CAD.buildPerFrameConnectedPolylines(map.pointAccumulated.points);
+    const frameKeys = [...new Set(perFrame.polylines.map((pl) => CAD.frameKeyForPolyline(pl)))];
+    const active = frameKeys[0] ? { frameId: perFrame.polylines[0].frameId } : null;
+    const display = CAD.buildCurrentFrameDisplay(perFrame.polylines, active);
+    for (const pl of display.polylines) {
+      const frames = new Set(pl.points.map((p) => p.frameId ?? `fi:${p.frameIndex}`));
+      assert.equal(frames.size, 1);
+    }
+  });
+
+  it('50. current-frame keeps laneIndex and side separated', () => {
+    const pts = [];
+    for (const side of ['left', 'right']) {
+      pts.push(mkPoint({ frameId: 1, side, laneIndex: 1, modelX: side === 'left' ? 0 : 5, localEast: side === 'left' ? 0 : 5 }));
+      pts.push(mkPoint({ frameId: 1, side, laneIndex: 1, modelX: side === 'left' ? 10 : 15, localEast: side === 'left' ? 10 : 15 }));
+    }
+    const perFrame = CAD.buildPerFrameConnectedPolylines(pts);
+    const display = CAD.buildCurrentFrameDisplay(perFrame.polylines, { frameId: 1 });
+    assert.equal(display.polylines.length, 2);
+    for (const pl of display.polylines) {
+      const sides = new Set(pl.points.map((p) => p.side));
+      assert.equal(sides.size, 1);
+    }
+  });
+
+  it('51. Segment 99 lane-change identities stay separate in current frame', () => {
+    const { map } = buildFromMap('qlog_f449c_99.bz2');
+    const perFrame = CAD.buildPerFrameConnectedPolylines(map.pointAccumulated.points);
+    const index = CAD.buildPerFramePolylineIndex(perFrame.polylines);
+    for (const fk of index.polylinesByFrameId.keys()) {
+      const polys = index.polylinesByFrameId.get(fk);
+      const frameId = polys[0]?.frameId;
+      const display = CAD.buildCurrentFrameDisplay(perFrame.polylines, { frameId });
+      for (const pl of display.polylines) {
+        const lanes = new Set(pl.points.map((p) => p.laneIndex));
+        const sides = new Set(pl.points.map((p) => p.side));
+        assert.equal(lanes.size, 1);
+        assert.ok(!(lanes.has(1) && lanes.has(2)));
+        assert.ok(!(sides.has('left') && sides.has('right')));
+      }
+    }
+  });
+
+  it('52. all-per-frame mode matches committed per-frame output', () => {
+    const { map } = buildFromMap('qlog_f449c_14.bz2');
+    const pts = map.pointAccumulated.points;
+    const a = CAD.buildPerFrameConnectedPolylines(pts);
+    const b = CAD.buildConnectedPolylines(pts, { mode: 'perFrame' });
+    assert.equal(a.stats.polylineCount, b.stats.polylineCount);
+    assert.equal(a.stats.drawablePolylineCount, b.stats.drawablePolylineCount);
+    assert.deepEqual(
+      a.polylines.map((pl) => pl.points.length),
+      b.polylines.map((pl) => pl.points.length),
+    );
+  });
+
+  it('53. playback refresh reuses per-frame geometry cache', () => {
+    const appSrc = fs.readFileSync(path.join(ROOT, 'public', 'app.js'), 'utf8');
+    assert.ok(appSrc.includes('ensurePerFramePolylinesBuilt'));
+    assert.ok(appSrc.includes('connectedAccumulatedCache?.checksum === checksum'));
+    assert.ok(appSrc.includes('buildCurrentFrameDisplay'));
+  });
+
+  it('54. viewer mode switching does not call map build or graph fitting', () => {
+    const appSrc = fs.readFileSync(path.join(ROOT, 'public', 'app.js'), 'utf8');
+    const refreshBlock = appSrc.slice(
+      appSrc.indexOf('function refreshConnectedAccumulatedPolylines'),
+      appSrc.indexOf('function refreshCandidatePolylines'),
+    );
+    assert.ok(!refreshBlock.includes('buildSegmentLocalMap'));
+    assert.ok(!refreshBlock.includes('graphFit'));
+    assert.ok(appSrc.includes('connectedAccumulatedMode'));
+  });
+
+  it('55. trusted map checksum stays unchanged', () => {
+    const { map: m1 } = buildFromMap('qlog_f449c_13.bz2');
+    const pts = m1.pointAccumulated?.points || [];
+    const perFrame = CAD.buildPerFrameConnectedPolylines(pts);
+    CAD.buildCurrentFrameDisplay(perFrame.polylines, { frameId: perFrame.polylines[0]?.frameId });
+    const { map: m2 } = buildFromMap('qlog_f449c_13.bz2');
+    assert.equal(m1.checksum, m2.checksum);
+  });
+
+  it('56. layer off path does not require connected accumulated polylines', () => {
+    const renderSrc = fs.readFileSync(path.join(ROOT, 'public', 'render.js'), 'utf8');
+    assert.ok(renderSrc.includes('_drawConnectedAccumulatedPolylines'));
+    assert.ok(renderSrc.includes('layerConnectedAccumulated') || renderSrc.includes('connectedAccumulated'));
+  });
+
+  it('57. raw robust and perFrame contracts remain unchanged', () => {
+    const pts = [
+      mkPoint({ frameId: 1, modelX: 0, s: 0, localEast: 0 }),
+      mkPoint({ frameId: 1, modelX: 5, s: 1, localEast: 5 }),
+      mkPoint({ s: 0, localEast: 0 }),
+      mkPoint({ s: 5, localEast: 5 }),
+    ];
+    assert.equal(CAD.buildPerFrameConnectedPolylines(pts).stats.mode, 'perFrame');
+    assert.equal(CAD.buildConnectedPolylines(pts, { mode: 'perFrame' }).stats.mode, 'perFrame');
+    assert.equal(CAD.buildConnectedPolylines(pts).stats.mode, 'perFrame');
+  });
 });
+

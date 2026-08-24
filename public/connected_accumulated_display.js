@@ -655,6 +655,194 @@
     return { polylines, stats };
   }
 
+  function frameKeyForPolyline(pl) {
+    return pl.frameId != null ? String(pl.frameId) : `frameIndex:${pl.frameIndex ?? 'x'}`;
+  }
+
+  function polylineLogMonoTime(pl) {
+    const pt = pl.points?.[0];
+    return pt?.logMonoTime ?? null;
+  }
+
+  function buildPerFramePolylineIndex(polylines) {
+    const polylinesByFrameId = new Map();
+    const polylinesByFrameIndex = new Map();
+    const orderedFrameTimes = [];
+    const seen = new Set();
+    for (const pl of polylines || []) {
+      const fk = frameKeyForPolyline(pl);
+      if (!polylinesByFrameId.has(fk)) polylinesByFrameId.set(fk, []);
+      polylinesByFrameId.get(fk).push(pl);
+      if (pl.frameIndex != null) {
+        if (!polylinesByFrameIndex.has(pl.frameIndex)) polylinesByFrameIndex.set(pl.frameIndex, []);
+        polylinesByFrameIndex.get(pl.frameIndex).push(pl);
+      }
+      const mono = polylineLogMonoTime(pl);
+      if (mono != null && !seen.has(fk)) {
+        seen.add(fk);
+        orderedFrameTimes.push({
+          frameKey: fk,
+          frameId: pl.frameId ?? null,
+          frameIndex: pl.frameIndex ?? null,
+          logMonoTime: String(mono),
+        });
+      }
+    }
+    orderedFrameTimes.sort((a, b) => {
+      const cmp = compareLogMono(a.logMonoTime, b.logMonoTime);
+      if (cmp !== 0) return cmp;
+      return a.frameKey.localeCompare(b.frameKey);
+    });
+    return { polylinesByFrameId, polylinesByFrameIndex, orderedFrameTimes };
+  }
+
+  function selectCurrentFramePolylines(allPolylines, activeFrame) {
+    const frameIndex = buildPerFramePolylineIndex(allPolylines);
+    if (activeFrame?.frameId != null) {
+      const key = String(activeFrame.frameId);
+      const polys = frameIndex.polylinesByFrameId.get(key);
+      if (polys?.length) {
+        return { polylines: polys, selectionMethod: 'frameId', selectedFrameKey: key, frameIndex };
+      }
+    }
+    if (activeFrame?.frameIndex != null) {
+      const polys = frameIndex.polylinesByFrameIndex.get(activeFrame.frameIndex);
+      if (polys?.length) {
+        return {
+          polylines: polys,
+          selectionMethod: 'frameIndex',
+          selectedFrameKey: frameKeyForPolyline(polys[0]),
+          frameIndex,
+        };
+      }
+    }
+    if (activeFrame?.logMonoTime != null) {
+      const activeT = BigInt(String(activeFrame.logMonoTime));
+      let best = null;
+      for (const entry of frameIndex.orderedFrameTimes) {
+        const t = BigInt(entry.logMonoTime);
+        if (t <= activeT) best = entry;
+        else break;
+      }
+      if (best) {
+        const polys = frameIndex.polylinesByFrameId.get(best.frameKey) || [];
+        if (polys.length) {
+          return {
+            polylines: polys,
+            selectionMethod: 'previousByTime',
+            selectedFrameKey: best.frameKey,
+            frameIndex,
+          };
+        }
+      }
+    }
+    return { polylines: [], selectionMethod: 'none', selectedFrameKey: null, frameIndex };
+  }
+
+  function countCrossFramePolylines(polylines) {
+    let n = 0;
+    for (const pl of polylines || []) {
+      const frames = new Set((pl.points || []).map((p) => p.frameId ?? `fi:${p.frameIndex}`));
+      if (frames.size > 1) n++;
+    }
+    return n;
+  }
+
+  function countMixedIdentityPolylines(polylines) {
+    let n = 0;
+    for (const pl of polylines || []) {
+      if (polylineCrossesLaneIdentity(pl)) n++;
+      const lanes = new Set((pl.points || []).map((p) => p.laneIndex));
+      const sides = new Set((pl.points || []).map((p) => p.side));
+      const tracks = new Set((pl.points || []).map((p) => p.groupTrackId));
+      if (lanes.size > 1 || sides.size > 1 || tracks.size > 1) n++;
+    }
+    return n;
+  }
+
+  function buildCurrentFrameDisplay(allPolylines, activeFrame, allStats) {
+    const selected = selectCurrentFramePolylines(allPolylines, activeFrame);
+    const observationCount = selected.polylines.reduce((n, pl) => n + (pl.pointCount || 0), 0);
+    const drawable = selected.polylines.filter((pl) => (pl.pointCount || 0) >= 2);
+    return {
+      polylines: drawable,
+      stats: {
+        mode: 'currentFrame',
+        selectionMethod: selected.selectionMethod,
+        selectedFrameId: activeFrame?.frameId ?? null,
+        selectedFrameIndex: activeFrame?.frameIndex ?? null,
+        selectedFrameKey: selected.selectedFrameKey,
+        polylineCount: selected.polylines.length,
+        drawablePolylineCount: drawable.length,
+        observationCount,
+        finitePointCount: allStats?.finitePointCount ?? null,
+        inputPointCount: allStats?.inputPointCount ?? null,
+        noFrameMessage: selected.selectionMethod === 'none'
+          ? 'No modelV2 lane frame available at this playback position'
+          : null,
+      },
+      frameIndex: selected.frameIndex,
+    };
+  }
+
+  function compareCurrentFrameMetrics(points, activeFrame, options = {}) {
+    const perFrame = buildPerFrameConnectedPolylines(points, options);
+    const current = buildCurrentFrameDisplay(perFrame.polylines, activeFrame, perFrame.stats);
+    const allFrameCounts = new Map();
+    for (const pl of perFrame.polylines) {
+      const fk = frameKeyForPolyline(pl);
+      allFrameCounts.set(fk, (allFrameCounts.get(fk) || 0) + 1);
+    }
+    const counts = [...allFrameCounts.values()];
+    const med = (arr) => {
+      if (!arr.length) return 0;
+      const s = [...arr].sort((a, b) => a - b);
+      return s[Math.floor(s.length / 2)];
+    };
+    return {
+      perFrame,
+      current,
+      totalModelV2Frames: allFrameCounts.size,
+      allPerFramePolylineCount: perFrame.stats.polylineCount,
+      currentFramePolylineCounts: counts,
+      minCurrentFramePolylines: counts.length ? Math.min(...counts) : 0,
+      medianCurrentFramePolylines: med(counts),
+      maxCurrentFramePolylines: counts.length ? Math.max(...counts) : 0,
+      framesWithZeroDrawable: [...allFrameCounts.keys()].filter((fk) => (allFrameCounts.get(fk) || 0) === 0).length,
+      crossFrameConnections: countCrossFramePolylines(current.polylines),
+      mixedIdentityPolylines: countMixedIdentityPolylines(current.polylines),
+      selfIntersections: countSelfIntersections(current.polylines),
+    };
+  }
+
+  function evaluateCurrentFrameAcceptance(segmentMetrics) {
+    const checks = [];
+    const seg = (id) => segmentMetrics[`qlog_f449c_${id}.bz2`];
+
+    checks.push({
+      id: 'single_frame_source',
+      pass: Object.values(segmentMetrics).every((m) => (m.crossFrameConnections ?? 0) === 0),
+    });
+    checks.push({
+      id: 'no_mixed_identity',
+      pass: Object.values(segmentMetrics).every((m) => (m.mixedIdentityPolylines ?? 0) === 0),
+    });
+
+    const s13 = seg(13)?.medianCurrentFramePolylineCount ?? seg(13)?.medianCurrentFramePolylines ?? 0;
+    checks.push({ id: 'seg13_median_curves', pass: s13 >= 2 && s13 <= 4, median: s13 });
+    const s14 = seg(14)?.medianCurrentFramePolylineCount ?? seg(14)?.medianCurrentFramePolylines ?? 0;
+    checks.push({ id: 'seg14_median_curves', pass: s14 >= 2 && s14 <= 4, median: s14 });
+
+    const seg99 = seg(99);
+    let seg99LaneSeparation = true;
+    if (seg99?.mixedIdentityPolylines != null) {
+      seg99LaneSeparation = (seg99.mixedIdentityPolylines ?? 0) === 0;
+    }
+    checks.push({ id: 'seg99_lane_change_separation', pass: seg99LaneSeparation });
+
+    return { passed: checks.every((c) => c.pass), checks };
+  }
+
   function buildConnectedPolylines(points, options = {}) {
     const mode = options.mode === 'raw' ? 'raw'
       : (options.mode === 'robust' ? 'robust' : 'perFrame');
@@ -949,6 +1137,12 @@
     buildRobustConnectedPolylines,
     buildPerFrameConnectedPolylines,
     buildConnectedPolylines,
+    buildPerFramePolylineIndex,
+    selectCurrentFramePolylines,
+    buildCurrentFrameDisplay,
+    compareCurrentFrameMetrics,
+    evaluateCurrentFrameAcceptance,
+    frameKeyForPolyline,
     filterPointsForCausal,
     polylineCrossesLaneIdentity,
     groupConnectionKey,
@@ -964,6 +1158,8 @@
     compareModeMetrics,
     compareRawPerFrameMetrics,
     evaluatePerFrameAcceptance,
+    countCrossFramePolylines,
+    countMixedIdentityPolylines,
     traceSmallestRobustGap,
     classifyRobustSplit,
     binIndexForS,

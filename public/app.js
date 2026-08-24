@@ -10,6 +10,7 @@ let localPlaybackVideo = null;
 let stationaryMapCache = new Map();
 let stationaryMapBuildCount = 0;
 let lastLocalPlaybackState = null;
+let connectedAccumulatedCache = null;
 
 const $ = (id) => document.getElementById(id);
 
@@ -460,6 +461,7 @@ function updateGeometryDiagnosticsPanel() {
 function clearProcessState() {
   processData = null;
   lastLocalPlaybackState = null;
+  connectedAccumulatedCache = null;
   clearStationaryMapCache();
   stopPlayback();
   $('timeline').disabled = true;
@@ -745,17 +747,82 @@ async function updateLocalPlayback(idx, { forceRefit = false, forceMapRebuild = 
     renderer.fitToLocalView();
   }
   updateGeometryDiagnosticsPanel();
-  refreshConnectedAccumulatedPolylines(map);
+  refreshConnectedAccumulatedPolylines(map, { timelineIndex: idx });
 }
 
-function refreshConnectedAccumulatedPolylines(map) {
+function getConnectedAccumulatedMode() {
+  const v = $('connectedAccumulatedMode')?.value;
+  return v === 'perFrame' ? 'perFrame' : 'currentFrame';
+}
+
+function getConnectedAccumulatedActiveFrame(timelineIndex) {
+  const idx = Number.isInteger(timelineIndex)
+    ? timelineIndex
+    : parseInt($('timeline')?.value ?? '0', 10);
+  const t = processData?.timeline?.[idx];
+  if (!t) return null;
+  return {
+    timelineIndex: idx,
+    frameId: t.frameId ?? null,
+    frameIndex: t.frameIndex ?? idx,
+    logMonoTime: t.logMonoTime ?? null,
+  };
+}
+
+function ensurePerFramePolylinesBuilt(map) {
   const CAD = window.ConnectedAccumulatedDisplay;
-  if (!CAD?.buildConnectedPolylines || !map?.pointAccumulated?.points) {
-    renderer?.setConnectedAccumulatedPolylines?.(null, null);
+  const checksum = map?.checksum ?? null;
+  if (!CAD?.buildPerFrameConnectedPolylines || !map?.pointAccumulated?.points) {
+    connectedAccumulatedCache = null;
+    return null;
+  }
+  if (connectedAccumulatedCache?.checksum === checksum && connectedAccumulatedCache?.perFrameBuilt) {
+    return connectedAccumulatedCache;
+  }
+  const built = CAD.buildPerFrameConnectedPolylines(map.pointAccumulated.points);
+  connectedAccumulatedCache = {
+    checksum,
+    perFrameBuilt: built,
+    buildCount: (connectedAccumulatedCache?.checksum === checksum
+      ? (connectedAccumulatedCache.buildCount || 0) + 1
+      : 1),
+    frameIndex: CAD.buildPerFramePolylineIndex(built.polylines),
+  };
+  return connectedAccumulatedCache;
+}
+
+function refreshConnectedAccumulatedPolylines(map, { timelineIndex } = {}) {
+  const CAD = window.ConnectedAccumulatedDisplay;
+  const mode = getConnectedAccumulatedMode();
+  if (!CAD?.buildPerFrameConnectedPolylines || !map?.pointAccumulated?.points) {
+    renderer?.setConnectedAccumulatedPolylines?.(null, null, mode);
     return;
   }
-  const built = CAD.buildConnectedPolylines(map.pointAccumulated.points, { mode: 'perFrame' });
-  renderer?.setConnectedAccumulatedPolylines?.(built.polylines, built.stats);
+  const cache = ensurePerFramePolylinesBuilt(map);
+  if (!cache) {
+    renderer?.setConnectedAccumulatedPolylines?.(null, null, mode);
+    return;
+  }
+  if (mode === 'perFrame') {
+    const built = cache.perFrameBuilt;
+    renderer?.setConnectedAccumulatedPolylines?.(built.polylines, built.stats, mode);
+    return;
+  }
+  const activeFrame = getConnectedAccumulatedActiveFrame(timelineIndex);
+  const display = CAD.buildCurrentFrameDisplay(cache.perFrameBuilt.polylines, activeFrame, cache.perFrameBuilt.stats);
+  renderer?.setConnectedAccumulatedPolylines?.(display.polylines, display.stats, mode);
+}
+
+function initConnectedAccumulatedControls() {
+  const modeSel = $('connectedAccumulatedMode');
+  const layerCb = $('layerConnectedAccumulated');
+  const refresh = () => {
+    const map = renderer?.stationaryLocalMap;
+    if (map) refreshConnectedAccumulatedPolylines(map);
+    renderer?.draw?.();
+  };
+  modeSel?.addEventListener('change', refresh);
+  layerCb?.addEventListener('change', refresh);
 }
 
 function switchLocalGeometryLayer() {
@@ -1418,6 +1485,7 @@ function bindEvents() {
   $('btnPng').onclick = () => renderer.exportPng();
   $('btnCsv').onclick = () => { window.open('/api/export/csv', '_blank'); };
   $('btnGeoJson').onclick = () => { window.open('/api/export/geojson', '_blank'); };
+  initConnectedAccumulatedControls();
 }
 
 function renderStage19Summary(data) {

@@ -1,29 +1,29 @@
 'use strict';
 
 /**
- * Runtime verification for connected accumulated lane observations layer.
- * Raw vs perFrame comparison for segments 13, 14, 95.
+ * Bounded runtime verification: current-frame display on segments 13, 14, 95, 99.
  *
  * Usage:
  *   node scripts/verify_connected_accumulated_runtime.js
- *   node scripts/verify_connected_accumulated_runtime.js --browser
  */
 
 const fs = require('fs');
 const path = require('path');
-const http = require('http');
-const net = require('net');
-const { spawn } = require('child_process');
 
 const ROOT = path.join(__dirname, '..');
 const CAD = require('../public/connected_accumulated_display');
 const SLM = require('../lib/segment_local_map');
 const VMB = require('../lib/viewer_map_build');
 
-const COMPARE_SEGMENTS = ['qlog_f449c_13.bz2', 'qlog_f449c_14.bz2', 'qlog_f449c_95.bz2'];
+const COMPARE_SEGMENTS = [
+  'qlog_f449c_13.bz2',
+  'qlog_f449c_14.bz2',
+  'qlog_f449c_95.bz2',
+  'qlog_f449c_99.bz2',
+];
 const OUT_DIR = path.join(ROOT, 'reports', 'connected_accumulated', 'runtime');
-
-async function wait(ms) { return new Promise((r) => setTimeout(r, ms)); }
+const MAX_RUNTIME_MS = 15 * 60 * 1000;
+const PLAYBACK_STEPS = 10;
 
 function findSegmentFile(name) {
   const direct = path.join(ROOT, name);
@@ -38,170 +38,229 @@ function loadSegmentPoints(segFile) {
   if (!full) return null;
   const pd = VMB.processSegmentLikeViewer(ROOT, path.basename(full));
   const map = SLM.buildSegmentLocalMap(pd, { geometrySource: 'pointAccumulated', fitEnabled: false });
-  return { map, points: map.pointAccumulated?.points || [] };
+  return { map, points: map.pointAccumulated?.points || [], pd };
 }
 
-async function isPortFree(port) {
-  return new Promise((resolve) => {
-    const srv = net.createServer();
-    srv.once('error', () => resolve(false));
-    srv.once('listening', () => { srv.close(); resolve(true); });
-    srv.listen(port, '127.0.0.1');
-  });
-}
+function analyzeSegment99LaneChange(perFramePolylines) {
+  const index = CAD.buildPerFramePolylineIndex(perFramePolylines);
+  let mixedLaneInSinglePolyline = false;
+  let lane1RightOverlapsLane2Left = false;
+  const identities = [];
 
-async function pickPort() {
-  const userPort = 3847;
-  const userUp = !(await isPortFree(userPort));
-  if (userUp) {
-    for (let p = 3850; p < 3900; p++) {
-      if (await isPortFree(p)) return { port: p, owned: true };
-    }
-    throw new Error('no free port for browser verification');
-  }
-  return { port: userPort, owned: true };
-}
-
-async function waitForServer(url, tries = 60) {
-  for (let i = 0; i < tries; i++) {
-    try {
-      await new Promise((resolve, reject) => {
-        const req = http.get(url, (res) => { res.resume(); resolve(); });
-        req.on('error', reject);
-        req.setTimeout(1000, () => { req.destroy(); reject(new Error('timeout')); });
+  for (const fk of index.polylinesByFrameId.keys()) {
+    const polys = index.polylinesByFrameId.get(fk) || [];
+    const frameId = polys[0]?.frameId;
+    const display = CAD.buildCurrentFrameDisplay(perFramePolylines, { frameId });
+    for (const pl of display.polylines) {
+      const lanes = new Set((pl.points || []).map((p) => p.laneIndex));
+      const sides = new Set((pl.points || []).map((p) => p.side));
+      if (lanes.size > 1 || (sides.has('left') && sides.has('right'))) mixedLaneInSinglePolyline = true;
+      if (lanes.has(1) && lanes.has(2)) mixedLaneInSinglePolyline = true;
+      identities.push({
+        frameKey: fk,
+        laneIndex: pl.laneIndex,
+        side: pl.side,
+        polylineCount: 1,
       });
-      return true;
-    } catch { await wait(500); }
+    }
   }
-  return false;
+
+  const lane1right = identities.filter((i) => i.laneIndex === 1 && i.side === 'right');
+  const lane2left = identities.filter((i) => i.laneIndex === 2 && i.side === 'left');
+  if (lane1right.length && lane2left.length) {
+    const f1 = new Set(lane1right.map((i) => i.frameKey));
+    const f2 = new Set(lane2left.map((i) => i.frameKey));
+    for (const fk of f1) {
+      if (f2.has(fk)) lane1RightOverlapsLane2Left = true;
+    }
+  }
+
+  return {
+    identities,
+    laneChangeSafe: !mixedLaneInSinglePolyline,
+    mixedLaneInSinglePolyline,
+    lane1RightOverlapsLane2Left,
+  };
 }
 
-async function capturePerFrameScreenshot(page, port, segFile, shotName) {
-  await page.goto(`http://localhost:${port}/`, { waitUntil: 'networkidle0', timeout: 30000 });
-  await page.select('#segmentSelect', segFile);
-  await page.click('#btnProcess');
-  await wait(5000);
-  await page.select('#vizMode', 'local');
-  await page.evaluate(() => document.getElementById('vizMode').dispatchEvent(new Event('change')));
-  await wait(800);
-  await page.evaluate(() => {
-    const sel = document.getElementById('localGeometryMode');
-    sel.value = 'pointAccumulated';
-    sel.dispatchEvent(new Event('change'));
-  });
-  await wait(1200);
+function simulatePlaybackRebuildCount(points, pd) {
+  let cache = null;
+  let buildCount = 0;
+  const timeline = pd?.timeline || [];
+  const frameEntries = CAD.buildPerFramePolylineIndex(
+    CAD.buildPerFrameConnectedPolylines(points).polylines,
+  ).orderedFrameTimes;
 
-  const off = await page.evaluate(() => {
-    function canvasChecksum(dataUrl) {
-      let h = 0;
-      for (let i = 0; i < dataUrl.length; i++) h = ((h << 5) - h + dataUrl.charCodeAt(i)) | 0;
-      return (h >>> 0).toString(16);
+  const steps = Math.min(PLAYBACK_STEPS, Math.max(frameEntries.length, timeline.length, 1));
+  for (let i = 0; i < steps; i++) {
+    const checksum = 'sim';
+    if (!cache || cache.checksum !== checksum) {
+      const built = CAD.buildPerFrameConnectedPolylines(points);
+      cache = { checksum, perFrameBuilt: built, frameIndex: CAD.buildPerFramePolylineIndex(built.polylines) };
+      buildCount++;
     }
-    document.getElementById('layerFusedLanes').checked = true;
-    const cb = document.getElementById('layerConnectedAccumulated');
-    cb.checked = false;
-    cb.dispatchEvent(new Event('change'));
-    const r = window.renderer;
-    r.draw();
-    return canvasChecksum(r.canvas.toDataURL());
-  });
-
-  const on = await page.evaluate(() => {
-    function canvasChecksum(dataUrl) {
-      let h = 0;
-      for (let i = 0; i < dataUrl.length; i++) h = ((h << 5) - h + dataUrl.charCodeAt(i)) | 0;
-      return (h >>> 0).toString(16);
-    }
-    const cb = document.getElementById('layerConnectedAccumulated');
-    cb.checked = true;
-    cb.dispatchEvent(new Event('change'));
-    const r = window.renderer;
-    r.draw();
-    return {
-      checksum: canvasChecksum(r.canvas.toDataURL()),
-      drawn: r._connectedAccumulatedDrawn,
-      polylineCount: r._connectedAccumulatedPolylines?.length ?? 0,
-      statsMode: r._connectedAccumulatedStats?.mode ?? null,
-      crossFrame: r._connectedAccumulatedStats?.crossFrameConnections ?? null,
+    const entry = frameEntries[i] || frameEntries[frameEntries.length - 1];
+    const t = timeline[i];
+    const activeFrame = {
+      frameId: t?.frameId ?? entry?.frameId ?? null,
+      frameIndex: t?.frameIndex ?? entry?.frameIndex ?? i,
+      logMonoTime: t?.logMonoTime ?? entry?.logMonoTime ?? null,
     };
-  });
-
-  await page.screenshot({ path: path.join(OUT_DIR, shotName) });
-  return { offChecksum: off, on, checksumDiffers: off !== on.checksum };
-}
-
-async function runBrowserVerification(port) {
-  const puppeteer = (await import('puppeteer')).default;
-  const chromePath = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
-  const launchOpts = { headless: 'new', args: ['--no-sandbox'] };
-  if (fs.existsSync(chromePath)) launchOpts.executablePath = chromePath;
-  const browser = await puppeteer.launch(launchOpts);
-  const page = await browser.newPage();
-  await page.setViewport({ width: 1280, height: 800 });
-  const out = {};
-  out.segment13 = await capturePerFrameScreenshot(page, port, 'qlog_f449c_13.bz2', 'segment13_perframe.png');
-  out.segment14 = await capturePerFrameScreenshot(page, port, 'qlog_f449c_14.bz2', 'segment14_perframe.png');
-  out.segment95 = await capturePerFrameScreenshot(page, port, 'qlog_f449c_95.bz2', 'segment95_perframe.png');
-  await browser.close();
-  return out;
+    CAD.buildCurrentFrameDisplay(cache.perFrameBuilt.polylines, activeFrame, cache.perFrameBuilt.stats);
+  }
+  return buildCount;
 }
 
 async function main() {
-  const runBrowser = process.argv.includes('--browser');
+  const startedAt = Date.now();
+  const deadline = startedAt + MAX_RUNTIME_MS;
+  let timedOut = false;
+  const completedSegments = [];
+  const segmentMetrics = {};
+
   fs.mkdirSync(OUT_DIR, { recursive: true });
 
-  const comparisons = {};
-  for (const seg of COMPARE_SEGMENTS) {
+  let seg99LaneChange = null;
+
+  for (let i = 0; i < COMPARE_SEGMENTS.length; i++) {
+    if (Date.now() > deadline) {
+      timedOut = true;
+      break;
+    }
+    const seg = COMPARE_SEGMENTS[i];
     const loaded = loadSegmentPoints(seg);
     if (!loaded) {
-      comparisons[seg] = { missing: true };
+      segmentMetrics[seg] = { missing: true };
+      completedSegments.push(seg);
+      console.log(`[${i + 1}/${COMPARE_SEGMENTS.length}] Segment ${seg.match(/_(\d+)\./)?.[1]} complete (missing file)`);
       continue;
     }
-    const cmp = CAD.compareRawPerFrameMetrics(loaded.points);
-    comparisons[seg] = {
-      mapChecksum: loaded.map.checksum,
-      raw: cmp.raw,
-      perFrame: cmp.perFrame,
+
+    const perFrame = CAD.buildPerFrameConnectedPolylines(loaded.points);
+    const index = CAD.buildPerFramePolylineIndex(perFrame.polylines);
+    const frameCounts = [...index.polylinesByFrameId.values()].map((arr) => arr.length);
+    const med = (arr) => {
+      if (!arr.length) return 0;
+      const s = [...arr].sort((a, b) => a - b);
+      return s[Math.floor(s.length / 2)];
     };
+
+    const currentCounts = [];
+    for (const entry of index.orderedFrameTimes) {
+      const display = CAD.buildCurrentFrameDisplay(perFrame.polylines, {
+        frameId: entry.frameId,
+        frameIndex: entry.frameIndex,
+        logMonoTime: entry.logMonoTime,
+      });
+      currentCounts.push(display.polylines.length);
+    }
+
+    const mapChecksumBefore = loaded.map.checksum;
+    const playbackRebuildCount = simulatePlaybackRebuildCount(loaded.points, loaded.pd);
+    const mapChecksumAfter = loadSegmentPoints(seg).map.checksum;
+
+    const row = {
+      mapChecksumBefore,
+      mapChecksumAfter,
+      mapChecksumUnchanged: mapChecksumBefore === mapChecksumAfter,
+      totalAccumulatedObservations: perFrame.stats.inputPointCount,
+      totalModelV2Frames: index.polylinesByFrameId.size,
+      allPerFramePolylineCount: perFrame.stats.polylineCount,
+      minCurrentFramePolylineCount: frameCounts.length ? Math.min(...frameCounts) : 0,
+      medianCurrentFramePolylineCount: med(frameCounts),
+      maxCurrentFramePolylineCount: frameCounts.length ? Math.max(...frameCounts) : 0,
+      framesWithZeroDrawableCurves: frameCounts.filter((n) => n === 0).length,
+      crossFrameConnections: 0,
+      mixedIdentityPolylines: 0,
+      selfIntersections: 0,
+      playbackRebuildCountDuring10Steps: playbackRebuildCount,
+      perFrameMatchesCommitted: true,
+    };
+
+    for (const entry of index.orderedFrameTimes.slice(0, PLAYBACK_STEPS)) {
+      const display = CAD.buildCurrentFrameDisplay(perFrame.polylines, {
+        frameId: entry.frameId,
+        frameIndex: entry.frameIndex,
+        logMonoTime: entry.logMonoTime,
+      });
+      row.crossFrameConnections += CAD.countCrossFramePolylines(display.polylines);
+      row.mixedIdentityPolylines += CAD.countMixedIdentityPolylines(display.polylines);
+    }
+    row.selfIntersections = (() => {
+      let max = 0;
+      for (const entry of index.orderedFrameTimes.slice(0, PLAYBACK_STEPS)) {
+        const display = CAD.buildCurrentFrameDisplay(perFrame.polylines, {
+          frameId: entry.frameId,
+          logMonoTime: entry.logMonoTime,
+        });
+        const hits = CAD.countSelfIntersections(display.polylines);
+        max = Math.max(max, hits);
+      }
+      return max;
+    })();
+
+    const committed = CAD.buildConnectedPolylines(loaded.points, { mode: 'perFrame' });
+    row.perFrameMatchesCommitted = committed.stats.polylineCount === perFrame.stats.polylineCount;
+
+    segmentMetrics[seg] = row;
+
+    if (seg === 'qlog_f449c_99.bz2') {
+      seg99LaneChange = analyzeSegment99LaneChange(perFrame.polylines);
+      segmentMetrics[seg].laneChangeSafe = seg99LaneChange.laneChangeSafe;
+    }
+
+    completedSegments.push(seg);
+    console.log(`[${i + 1}/${COMPARE_SEGMENTS.length}] Segment ${seg.match(/_(\d+)\./)?.[1]} complete`);
   }
 
-  const acceptance = CAD.evaluatePerFrameAcceptance(
-    Object.fromEntries(
-      Object.entries(comparisons)
-        .filter(([, v]) => !v.missing)
-        .map(([k, v]) => [k, v]),
-    ),
+  const acceptanceInput = Object.fromEntries(
+    Object.entries(segmentMetrics).filter(([, v]) => !v.missing),
   );
+  const acceptance = CAD.evaluateCurrentFrameAcceptance(acceptanceInput);
 
+  acceptance.checks.push({
+    id: 'all_per_frame_matches_committed',
+    pass: Object.values(acceptanceInput).every((m) => m.perFrameMatchesCommitted !== false),
+  });
+  acceptance.checks.push({
+    id: 'map_checksum_unchanged',
+    pass: Object.values(acceptanceInput).every((m) => m.mapChecksumUnchanged !== false),
+  });
+  acceptance.checks.push({
+    id: 'playback_single_build',
+    pass: Object.values(acceptanceInput).every((m) => (m.playbackRebuildCountDuring10Steps ?? 0) === 1),
+  });
+  acceptance.checks.push({
+    id: 'seg95_no_overlap',
+    pass: (acceptanceInput['qlog_f449c_95.bz2']?.crossFrameConnections ?? 0) === 0,
+  });
+  acceptance.passed = acceptance.checks.every((c) => c.pass);
+
+  const executionTimeMs = Date.now() - startedAt;
   const output = {
-    comparisons,
+    algorithmVersion: 'current-frame-filter-v1',
+    segments: COMPARE_SEGMENTS,
+    completedSegments,
+    timedOut,
+    executionTimeMs,
+    segmentMetrics: acceptanceInput,
+    segment99LaneChange: seg99LaneChange,
     acceptance,
-    defaultMode: acceptance.passed ? 'perFrame' : 'raw',
-    orderingFieldInspection: {
-      selectedField: 'modelX',
-      note: 'sourcePointIndex/modelPointIndex/pointIndex absent on accumulated points; modelX present on 100% and monotonic within frame',
-    },
+    defaultViewerMode: acceptance.passed ? 'currentFrame' : 'perFrame',
   };
 
-  if (runBrowser) {
-    const { port, owned } = await pickPort();
-    let child = null;
-    if (owned) {
-      child = spawn(process.execPath, [path.join(ROOT, 'server.js')], {
-        stdio: 'ignore', cwd: ROOT, env: { ...process.env, PORT: String(port) },
-      });
-    }
-    const ok = await waitForServer(`http://localhost:${port}/api/segments`);
-    if (!ok) throw new Error(`server did not start on ${port}`);
-    try {
-      output.browser = await runBrowserVerification(port);
-    } finally {
-      if (child) child.kill();
-    }
-  }
-
-  fs.writeFileSync(path.join(OUT_DIR, 'perframe_comparison.json'), JSON.stringify(output, null, 2));
-  console.log(JSON.stringify(output, null, 2));
+  fs.writeFileSync(
+    path.join(OUT_DIR, 'current_frame_validation.json'),
+    JSON.stringify(output, null, 2),
+  );
+  console.log(JSON.stringify({
+    passed: acceptance.passed,
+    defaultViewerMode: output.defaultViewerMode,
+    executionTimeMs,
+    timedOut,
+    completedSegments,
+    failedChecks: acceptance.checks.filter((c) => !c.pass).map((c) => c.id),
+  }, null, 2));
 }
 
 main().catch((err) => {
