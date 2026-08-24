@@ -70,6 +70,9 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     this._experimentalBoundariesMode = (urlParams?.get('expBoundaries') || 'off');
     this._constructedFragmentLabels = urlParams?.get('cfLabels') === '1';
     this._pointTrackColorCache = null;
+    this._connectedAccumulatedPolylines = null;
+    this._connectedAccumulatedStats = null;
+    this._connectedAccumulatedDrawn = false;
     this.localRoadSurfacePathRadiusM = 15;
     this.localRoadSurfaceRibbonFallbackHalfWidthM = 7.5;
     this.localRoadSurfaceRibbonMinHalfWidthM = 3;
@@ -96,6 +99,9 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     this._obsTimeline = data?.timeline || null;
     this._lastLocalArrowTangent = null;
     this._pointTrackColorCache = null;
+    if (!data) {
+      this.setConnectedAccumulatedPolylines(null, null);
+    }
     if (displayMode !== 'vehicle' && displayMode !== 'local') {
       this.setMovementDisplay(null);
       this.playbackPose = null;
@@ -138,6 +144,18 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     if (meta.buildCount != null) this._localMapBuildCount = meta.buildCount;
     if (meta.cacheState) this._localMapCacheState = meta.cacheState;
     this._pointTrackColorCache = null;
+    this._connectedAccumulatedPolylines = null;
+    this._connectedAccumulatedStats = null;
+    this._connectedAccumulatedDrawn = false;
+  }
+
+  /**
+   * Display-only connected accumulated observations (viewer experiment).
+   */
+  setConnectedAccumulatedPolylines(polylines, stats = null) {
+    this._connectedAccumulatedPolylines = Array.isArray(polylines) ? polylines : null;
+    this._connectedAccumulatedStats = stats;
+    this._connectedAccumulatedDrawn = false;
   }
 
   /**
@@ -1299,6 +1317,10 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
       }
     }
 
+    if (this.layers.connectedAccumulated) {
+      this._drawConnectedAccumulatedPolylines(map, elapsedIdx, pts);
+    }
+
     if (bMode === 'boundaries' || bMode === 'combined') {
       this._drawExperimentalBoundaries(map, elapsedIdx, pts);
     }
@@ -1341,6 +1363,90 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     }
 
     if (tintOn) this._drawReliabilityLegend();
+  }
+
+  /**
+   * Connected accumulated lane observations (viewer-only experiment).
+   * Draws per-frame curves through same-identity accumulated dots.
+   */
+  _drawConnectedAccumulatedPolylines(map, elapsedIdx, visiblePoints) {
+    const CAD = typeof window !== 'undefined' ? window.ConnectedAccumulatedDisplay : null;
+    if (!CAD?.buildConnectedPolylines) return;
+
+    const pa = map?.pointAccumulated;
+    if (!pa) return;
+
+    let polylines = this._connectedAccumulatedPolylines;
+    let stats = this._connectedAccumulatedStats;
+    const needsRebuild = this._pointCausalPlayback || this._obsIsolationActive();
+    if (needsRebuild) {
+      const sourcePts = this._obsIsolationActive()
+        ? (visiblePoints || [])
+        : CAD.filterPointsForCausal(pa.points || [], elapsedIdx);
+      const built = CAD.buildConnectedPolylines(sourcePts, { mode: 'perFrame' });
+      polylines = built.polylines;
+      stats = built.stats;
+    }
+    if (!polylines?.length) {
+      this._connectedAccumulatedDrawn = false;
+      return;
+    }
+
+    if (!this._pointTrackColorCache) {
+      const all = pa.points || [];
+      const trackIds = [...new Set(all.map((p) => p.groupTrackId).filter((x) => x != null))];
+      this._pointTrackColorCache = new Map(trackIds.map((id, i) => [id, this.trackColor(id ?? i)]));
+    }
+
+    const ctx = this.ctx;
+    let stroked = 0;
+    ctx.save();
+    for (const poly of polylines) {
+      if (!poly.points || poly.points.length < 2) continue;
+      let color = '#94a3b8';
+      if (poly.groupTrackId != null && this._pointTrackColorCache?.has?.(poly.groupTrackId)) {
+        color = this._pointTrackColorCache.get(poly.groupTrackId);
+      } else if (poly.side === 'left') {
+        color = 'rgba(124,58,237,0.9)';
+      } else if (poly.side === 'right') {
+        color = 'rgba(8,145,178,0.9)';
+      }
+      ctx.strokeStyle = color;
+      ctx.globalAlpha = 0.62;
+      ctx.lineWidth = 2.25;
+      ctx.setLineDash([]);
+      ctx.beginPath();
+      let moved = false;
+      for (const pt of poly.points) {
+        if (!Number.isFinite(pt.localEast) || !Number.isFinite(pt.localNorth)) continue;
+        const p = this.roadGeometryToScreen(pt.localEast, pt.localNorth, pt.mirroredLocalEast, pt.mirroredLocalNorth);
+        if (!moved) { ctx.moveTo(p.x, p.y); moved = true; }
+        else ctx.lineTo(p.x, p.y);
+      }
+      if (moved) {
+        ctx.stroke();
+        stroked++;
+      }
+    }
+    ctx.globalAlpha = 1;
+    ctx.restore();
+
+    this._connectedAccumulatedPolylines = polylines;
+    this._connectedAccumulatedStats = stats;
+    this._connectedAccumulatedDrawn = stroked > 0;
+
+    const pointCount = stats?.finitePointCount ?? (pa.points || []).length;
+    const frameCount = stats?.frameGroupCount
+      ? new Set(polylines.map((pl) => pl.frameId ?? `fi:${pl.frameIndex}`)).size
+      : 0;
+    ctx.save();
+    ctx.font = '12px sans-serif';
+    ctx.fillStyle = '#0f766e';
+    ctx.fillText('Connected accumulated observations — per-frame (experimental)', 10, 182);
+    ctx.fillStyle = '#64748b';
+    ctx.fillText(`${stroked} frame polylines from ${frameCount} frames / ${pointCount} observations`, 10, 196);
+    ctx.fillText('Each line contains one modelV2 frame only', 10, 210);
+    ctx.restore();
   }
 
   /**

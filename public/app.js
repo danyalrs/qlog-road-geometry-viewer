@@ -95,6 +95,7 @@ function getLayers() {
     fittedOutliers: $('layerFittedOutliers')?.checked === true,
     fittedUnverified: $('layerFittedUnverified')?.checked === true,
     fittedGaps: $('layerFittedGaps')?.checked === true,
+    connectedAccumulated: $('layerConnectedAccumulated')?.checked === true,
     diagPhysicalBoundary: $('layerDiagPhysicalBoundary')?.checked,
     diagTrackIds: $('layerDiagTrackIds')?.checked,
     diagFragmentIds: $('layerDiagFragmentIds')?.checked,
@@ -744,6 +745,17 @@ async function updateLocalPlayback(idx, { forceRefit = false, forceMapRebuild = 
     renderer.fitToLocalView();
   }
   updateGeometryDiagnosticsPanel();
+  refreshConnectedAccumulatedPolylines(map);
+}
+
+function refreshConnectedAccumulatedPolylines(map) {
+  const CAD = window.ConnectedAccumulatedDisplay;
+  if (!CAD?.buildConnectedPolylines || !map?.pointAccumulated?.points) {
+    renderer?.setConnectedAccumulatedPolylines?.(null, null);
+    return;
+  }
+  const built = CAD.buildConnectedPolylines(map.pointAccumulated.points, { mode: 'perFrame' });
+  renderer?.setConnectedAccumulatedPolylines?.(built.polylines, built.stats);
 }
 
 function switchLocalGeometryLayer() {

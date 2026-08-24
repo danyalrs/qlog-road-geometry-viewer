@@ -52,6 +52,9 @@
             <option value="combined">Points + boundaries</option>
           </select>
         </label>
+        <label class="local-only-control local-point-only-control" title="Viewer-only per-frame lane curves. Separate frames are never connected. Does not affect confirmed mapping, polygons, graph fitting or exports.">
+          <input type="checkbox" id="layerConnectedAccumulated" class="local-point-only-control"> Connected accumulated lane observations (experimental)
+        </label>
         <label class="local-only-control local-point-only-control" title="Experimental constructed lane-boundary fragments built from the accumulated point dots. Display-only; never modifies stored geometry.">
           <input type="checkbox" id="layerConstructedFragments" class="local-point-only-control"> Constructed fragments (experimental)
         </label>
@@ -270,6 +273,7 @@
   <script src="lane_map_cleanup.js?v=20260805b"></script>
   <script src="road_surface_stage1.js?v=20260804c"></script>
   <script src="point_accumulation.js?v=20260806a"></script>
+  <script src="connected_accumulated_display.js?v=20260824a"></script>
   <script src="mapping_reliability.js?v=20260807a"></script>
   <script src="experimental_boundaries.js?v=20260807a"></script>
   <script src="constructed_fragments.js?v=20260810a"></script>
