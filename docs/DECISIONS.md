@@ -1,6 +1,6 @@
 # Technical Decisions
 
-**Last updated:** 2026-08-18
+**Last updated:** 2026-08-26
 
 Major technical decisions with context, alternatives, evidence, risks, and current status.
 
@@ -401,7 +401,7 @@ Major technical decisions with context, alternatives, evidence, risks, and curre
 | **Context** | Path 1 accepted fits cover only a minority of constructed fragments; the viewer needed a single lane-map layer that shows accepted spline fits where available and original fragment geometry elsewhere, without joining fragments or bridging gaps |
 | **Decision** | Add `pointAccumulated.hybridFittedBoundaries` via `GraphFit.buildHybridFittedBoundaries()` when `fitEnabled: true`. Exactly one hybrid boundary per constructed fragment: `displaySource: "acceptedFit"` uses the existing accepted Path 1 polyline(s); `displaySource: "fragmentFallback"` uses the source fragment points for all other statuses. Renderer checkbox **Hybrid fitted lane map (experimental)** (off by default; requires `?fit=1`). Solid cyan 4 px = accepted fit; lane-colour dashed 2 px = fallback. Constructed-fragment drawing is suppressed while hybrid is active to avoid duplicate geometry. Complete-map only; causal playback guard unchanged. Hybrid output is display-only — **never feeds polygons**. Path 2 remains **not implemented**. Video/calibration work remains a separate paused fallback branch |
 | **Alternatives** | (a) Replace constructed fragments entirely (rejected — hides rejection evidence); (b) join fallback fragments into continuous polylines (rejected — violates fragment identity); (c) enable hybrid by default (rejected — experimental) |
-| **Evidence** | Nine-segment production validation via `lib/viewer_map_build.js`: accepted counts Seg2 **4**, Seg3 **11**, Seg9 **0**, Seg14 **7**, Seg16 **9**, Seg54/58/95/99 **0**; 0 fallback/accepted-fit mismatches; polygon checksums identical fit-off vs fit-on; focused tests **86/86**; full suite **1,723 / 1,695 pass / 28 fail** (27 baseline + 1 environmental Stage 7 OneDrive write flake, passes in isolation). `reports/hybrid_validation/HYBRID_VALIDATION_REPORT.md` |
+| **Evidence** | Nine-segment production validation via `lib/viewer_map_build.js`: accepted counts Seg2 **4**, Seg3 **11**, Seg9 **0**, Seg14 **7**, Seg16 **9**, Seg54/58/95/99 **0**; 0 fallback/accepted-fit mismatches; polygon checksums identical fit-off vs fit-on; focused tests **86/86**. Full suite: **28 failures** on OneDrive run (Stage 7 audit JSON write + 27 baseline); **28** post-migration without API server (`ECONNREFUSED`); **27** with API server on 3847 — see ledger full-suite history. `reports/hybrid_validation/HYBRID_VALIDATION_REPORT.md` |
 | **Risks** | Low fit coverage on many segments is expected (Path 1 gates unchanged); complete-map build remains slow on long segments; no hybrid CSV/GeoJSON export |
 | **Status** | **Accepted as EXPERIMENTAL display-only layer (ES)** — local checkpoint 2026-08-17; not pushed |
 
@@ -417,3 +417,134 @@ Major technical decisions with context, alternatives, evidence, risks, and curre
 | **Evidence** | Reliability gate: Seg2 10/10, fresh profiles 3/3, Seg14 E2E (7 accepted, warm fitter 0). Browser 8/8; focused 149/149; full suite 1,772 / 1,745 / 27. Seg14 gate: cold ~47.2 s, warm ~1.3 s |
 | **Risks** | First uncached fit remains expensive; per-origin stores; browser quota/clear; identity stability required across reloads |
 | **Status** | **Accepted as EXPERIMENTAL viewer optimization (ES)** — local checkpoint 2026-08-18; not pushed. No Path 2, video/calibration, threshold, polygon, or processing-version change |
+
+---
+
+## D-033: Path 2 ordering recovery rejected
+
+| Field | Detail |
+|-------|--------|
+| **Context** | Path 1 fits local fragment runs but cannot recover topology when ordering is ambiguous |
+| **Decision** | **Reject Path 2** — feasibility scan is NO-GO; do not implement topology-aware graph fitting on this dataset without new evidence |
+| **Evidence** | `reports/path2_design/path2_feasibility_report.md`; ledger **M-011** |
+| **Status** | **Rejected** |
+
+---
+
+## D-034: No threshold lowering without evidence
+
+| Field | Detail |
+|-------|--------|
+| **Context** | Lane-mapping audits showed low joined coverage; dedup support propagation counterfactual added +0.04 pp |
+| **Decision** | Do **not** lower `minSupportCount`, spatial gates, or dedup radius without new quantitative safety evidence |
+| **Evidence** | `reports/lane_mapping_quality/dedup_support/DEDUP_SUPPORT_REPORT.md`; ledger **M-014** |
+| **Status** | **Active** |
+
+---
+
+## D-035: Video mapping blocked without calibration
+
+| Field | Detail |
+|-------|--------|
+| **Context** | Video Stage V1/V2 and zero-label validation require projecting lanes to vehicle frame |
+| **Decision** | Block video-as-mapping-input until camera intrinsics and trusted reprojection exist; CLRerNet deferred |
+| **Evidence** | `reports/video_lane_zero_label/ZERO_LABEL_VALIDATION_REPORT.md`; ledger **M-015**–**M-021** |
+| **Status** | **Blocked** |
+
+---
+
+## D-036: qlog 0.5 Hz limits confirmed temporal support
+
+| Field | Detail |
+|-------|--------|
+| **Context** | 3,317 insufficientSupport fragments; 71% have exactly 2 frames |
+| **Decision** | Treat sparse modelV2 cadence as a hard limit on temporal support; do not claim dense per-frame boundary evidence from qlog alone |
+| **Evidence** | `reports/insufficient_support_audit/INSUFFICIENT_SUPPORT_AUDIT.md`; ledger **M-013** |
+| **Status** | **Active** |
+
+---
+
+## D-037: Viewer diagnostic layers cannot become confirmed boundaries automatically
+
+| Field | Detail |
+|-------|--------|
+| **Context** | Connected accumulated, road-guided, consensus, and candidate display modes produce viewer geometry |
+| **Decision** | Diagnostic viewer layers **must not** feed polygons, hybrid production acceptance, or export contracts without separate validation gates. Road-guided dot connection has **not** passed all acceptance checks |
+| **Evidence** | `reports/connected_accumulated/runtime/road_guided_dot_connection_validation.json`; ledger **M-035**–**M-047** |
+| **Status** | **Active** |
+
+---
+
+## D-038: Grey trajectory may guide direction; loops must stay excluded
+
+| Field | Detail |
+|-------|--------|
+| **Context** | Road-guided modes use centreline trajectory for slot alignment |
+| **Decision** | Trajectory may inform display direction and slot layout; revisit/loop geometry and unsupported gaps remain excluded from bridging |
+| **Evidence** | Road-guided validation reports; frame-alignment audits |
+| **Status** | **Active** |
+
+---
+
+## D-039: Raw lane index cannot define physical boundary through lane changes
+
+| Field | Detail |
+|-------|--------|
+| **Context** | Lane-change investigation found 1 confirmed event (Seg99); raw `laneIndex` unsafe for physical identity |
+| **Decision** | Physical boundary identity requires `groupTrackId` + lane-change guards; do not use laneIndex alone across manoeuvres |
+| **Evidence** | `reports/candidate_layer_probe/CANDIDATE_LAYER_PROBE_REPORT.md`; `narrow_gate.json` authoritative over prose report |
+| **Status** | **Active** |
+
+---
+
+## D-040: Failed experimental geometry must not enter polygons or exports
+
+| Field | Detail |
+|-------|--------|
+| **Context** | Hybrid export and category-E suspicious-fit audit |
+| **Decision** | Rejected fits, failed road-guided gates, and heuristic category-E fragments use downgrade/skip policies; never promote viewer-only geometry to production export without explicit gate |
+| **Evidence** | `reports/hybrid_map_quality/suspicious_fit_audit/SUSPICIOUS_FIT_AUDIT.md`; ledger **M-008**, **M-009** |
+| **Status** | **Active** |
+
+---
+
+## D-041: No manual lane labels required
+
+| Field | Detail |
+|-------|--------|
+| **Context** | Zero-label video validation explored label-free mapping |
+| **Decision** | Project does not require manual lane labels; blocked paths remain blocked on calibration/data, not label collection |
+| **Evidence** | `reports/video_lane_zero_label/ZERO_LABEL_VALIDATION_REPORT.md` |
+| **Status** | **Active** |
+
+---
+
+## D-042: Video evidence stages — separate statuses
+
+| Field | Detail |
+|-------|--------|
+| **Context** | Video path was at risk of being labelled wholly rejected or wholly blocked |
+| **Decision** | **qcamera inventory/sync** = ACCEPTED EXPERIMENTAL (M-015). **UFLD inference** = PARTIAL (M-016). **Zero-label image-space** = PARTIAL (M-017). **Intrinsics/projection/mapping integration/CLRerNet** = BLOCKED (M-018–M-021). Video is **not** a confirmed mapping source. **No manual lane labels required** |
+| **Evidence** | `reports/video_lane_zero_label/ZERO_LABEL_VALIDATION_REPORT.md`; ledger M-015–M-021 |
+| **Status** | **Active** |
+
+---
+
+## D-043: Road-guided static v1 rejected; v2 partial; dot connection rejected
+
+| Field | Detail |
+|-------|--------|
+| **Context** | Road-guided experiments shared trajectory guidance but differed in slot assignment |
+| **Decision** | **v1 REJECTED** (slot collapse; Seg99 62 cross-lane intersections). **v2 PARTIAL** (correct slot counts; Seg13 15.0%, Seg95 13.2%, Seg14 62.9% supported coverage; manual incomplete lines). **Dot connection REJECTED** — `slotSpanCoveragePct` 100% masked ~0.5% guide coverage on Seg13/14; Seg95 max heading 176.5°; practical coverage failed |
+| **Evidence** | `reports/connected_accumulated/runtime/road_guided_static_validation.json`, `road_guided_static_v2_validation.json`, `road_guided_dot_connection_validation.json` |
+| **Status** | **Active** |
+
+---
+
+## D-044: Recommended next method — rank-by-bin road-guided dot connection
+
+| Field | Detail |
+|-------|--------|
+| **Context** | Anchor-propagation dot connection assigned too few clusters despite high slot-span metrics |
+| **Decision** | Next experimental direction (not completed): cluster eligible dots at every trajectory bin, assign by lateral rank without anchor propagation, smooth d(s), measure prefix/internal/suffix gaps, exclude invalid trajectory loops |
+| **Status** | **Planned experimental work** — not checkpointed |

@@ -1,6 +1,6 @@
 # Development Log
 
-**Last updated:** 2026-08-18
+**Last updated:** 2026-08-26
 
 Chronological record of confirmed work. Entries cite checkpoints, reports, audits, or source where possible. Failed or superseded work is recorded as such.
 
@@ -519,6 +519,127 @@ When future work confirms these items, append corrections — do not rewrite pri
 | **Baseline** | Reliability gate: Seg2 **10/10**, fresh profiles **3/3**, browser **8/8**, focused **149/149**, full suite **1,772 / 1,745 / 27** (established baseline). No production changes during final gate run |
 | **Status** | **EXPERIMENTAL (ES)** — local checkpoint; not pushed |
 | **Evidence** | Decision **D-032**; `reports/graph_fit_performance/persist_browser_gate.json` |
+
+---
+
+## 2026-08-14 — Path 1 graph fitting checkpoint
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Experimental spline-fit overlay on constructed fragments; shared viewer/probe path |
+| **Checkpoint** | `8c5da91` |
+| **Results** | Seg2 4, Seg14 7 accepted; polygons unchanged |
+| **Evidence** | `reports/fitted_layer_probe/`; ledger **M-002**, **M-003** |
+
+---
+
+## 2026-08-14 — Path 2 feasibility scan (read-only)
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Evaluate ordering-recovery prototypes for Path 2 |
+| **Result** | **NO-GO** — 52 eligible segments; zero safe ordering recovery |
+| **Decision** | Path 2 rejected; Path 1 + hybrid remain viable |
+| **Evidence** | `reports/path2_design/path2_feasibility_report.md`; ledger **M-011** |
+
+---
+
+## 2026-08-14 — Insufficient-support audit
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Explain 3,317 insufficientSupport fragments |
+| **Result** | 71% have exactly 2 distinct frames at ~0.5 Hz |
+| **Evidence** | `reports/insufficient_support_audit/`; ledger **M-013** |
+
+---
+
+## 2026-08-14 — Video / zero-label / calibration investigation
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Assess video lanes without manual labels |
+| **Result** | **BLOCKED** on intrinsics, reprojection, CLRerNet deferral |
+| **Evidence** | `reports/video_lane_zero_label/`; ledger **M-015**–**M-021** |
+
+---
+
+## 2026-08-19 — Lane-mapping quality audit (approximate)
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Diagnose why accumulated dots ≠ joined polylines |
+| **Work** | Provenance coverage, spatial coverage, frame alignment, pose/heading tail, dedup support counterfactual |
+| **Results** | Dataset 40.41% provenance; Seg1 31.95% joined obs; frame registration rejected; pose tail Gate E |
+| **State** | Uncommitted audit libs + reports |
+| **Evidence** | `reports/lane_mapping_quality/`; ledger **M-022**–**M-027** |
+
+---
+
+## 2026-08-19 — Hybrid export validation (paused)
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Export hybrid display geometry to JSON/CSV deliverables |
+| **Result** | Architecture validated; category-E downgrade for 9 fragments; user paused rollout |
+| **Evidence** | `reports/hybrid_export_validation/`; `deliverables/hybrid_lane_map_v1/`; ledger **M-009**, **M-010** |
+
+---
+
+## 2026-08-20 — Connected accumulated display experiments (approximate)
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Connect accumulated dots for viewer diagnosis without altering production map |
+| **Work** | Raw, robust, per-frame, current-frame, consensus v1/v2, road-guided static v1/v2, road-guided dot connection |
+| **Checkpoints** | Per-frame `dbe7f26`; current-frame `8ce0ab6` (HEAD) |
+| **Results** | Raw rejected (sawtooth); per-frame/current-frame checkpointed; road-guided dot connection partial (`p95_heading_15` fail) |
+| **Evidence** | `reports/connected_accumulated/runtime/`; ledger **M-035**–**M-046** |
+
+---
+
+## 2026-08-21 — Candidate layer probe
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Reconcile lane-change counts and candidate-layer behaviour |
+| **Result** | 1 confirmed lane-change (Seg99); `LANE_CHANGE_REPORT.md` overstated vs `narrow_gate.json` |
+| **Evidence** | `reports/candidate_layer_probe/CANDIDATE_LAYER_PROBE_REPORT.md`; ledger **M-029** |
+
+---
+
+## 2026-08-26 — Method evidence ledger documentation checkpoint
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Correct and complete retrospective method documentation for presentations, OJT, portfolio, and handoff |
+| **Corrections** | Full-suite 28→28→27 history; video stage statuses; road-guided v1/v2/dot separation; M-048 Stage 19 v5; metric definitions; 49 method entries |
+| **Status totals** | CHECKPOINTED 9, ACCEPTED EXPERIMENTAL 14, PARTIAL 7, REJECTED 13, BLOCKED 5, INCONCLUSIVE 1 |
+| **Commit** | Documentation-only local checkpoint (see git log) |
+| **Evidence** | `docs/METHOD_EVIDENCE_LEDGER.md` |
+
+---
+
+## 2026-08-26 — Segment 0 mirror display correction (uncommitted)
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Fix generic lateral mirror defect in viewer (ribbon/polygon/road-guided reconstruction) |
+| **Work** | `lib/viewer_mirror_coords.js`; shared resolver in `render.js`; road-guided mirrored offsets |
+| **Results** | Acceptance PASS segments 0/1/2/14; production stored mirror correct; map checksum unchanged |
+| **State** | Uncommitted on `experiment/candidate-layer-display` |
+| **Evidence** | `reports/connected_accumulated/runtime/segment0_mirror_validation.json`; ledger **M-047** |
+
+---
+
+## 2026-08-26 — Method evidence ledger documentation
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Retrospective reconstruction of all methods from existing evidence |
+| **Work** | Created `docs/METHOD_EVIDENCE_LEDGER.md`; updated `CURRENT_STATUS`, `EXPERIMENTS`, `DECISIONS`, `DEVELOPMENT_LOG`, `RUN_GUIDE` |
+| **State** | Documentation only — no code changes, no commit |
+| **Evidence** | `docs/METHOD_EVIDENCE_LEDGER.md` |
 
 ---
 

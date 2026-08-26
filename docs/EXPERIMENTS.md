@@ -1,6 +1,8 @@
 # Experiments and Measurements
 
-**Last updated:** 2026-08-17
+**Last updated:** 2026-08-26
+
+**Ledger cross-reference:** Detailed method IDs (**M-001** …) are in [METHOD_EVIDENCE_LEDGER.md](./METHOD_EVIDENCE_LEDGER.md).
 
 Reproducible experiments with configuration, scope, commands, metrics, interpretation, and classification.
 
@@ -328,6 +330,193 @@ Reproducible experiments with configuration, scope, commands, metrics, interpret
 | **Visual encoding** | Solid cyan 4 px = `acceptedFit`; lane-colour dashed 2 px = `fragmentFallback`; fitted endpoints diagnostic-only |
 | **Limitations** | Complete-map only (causal playback suppresses hybrid draw); no hybrid export; constructed-fragment layer suppressed while hybrid active; long-segment fit-enabled builds remain slow; video/calibration branch paused separately |
 | **Source** | `reports/hybrid_validation/HYBRID_VALIDATION_REPORT.md`; `tests/graph_fit.test.js` describe "13. hybrid fitted boundaries" (tests 70–74) |
+
+---
+
+## E-023: Path 2 ordering recovery feasibility
+
+| Field | Value |
+|-------|-------|
+| **Ledger ID** | M-011, M-012 |
+| **Classification** | **AUD** |
+| **Hypothesis** | Topology-aware ordering can unlock Path 2 graph fitting |
+| **Scope** | 92 segments; MST/kNN/PCA/temporal prototypes scanned |
+| **Result** | **NO-GO** — `orderingInvalid: 67`; zero recovered ordering without ambiguity |
+| **Status** | **REJECTED** |
+| **Evidence** | `reports/path2_design/path2_feasibility_report.md` |
+
+---
+
+## E-024: Lane-mapping provenance and spatial coverage audit
+
+| Field | Value |
+|-------|-------|
+| **Ledger ID** | M-022, M-023 |
+| **Classification** | **AUD** |
+| **Scope** | Full dataset + Segment 1 deep dive |
+| **Metrics** | Dataset provenance 40.41%; Seg1 joined obs 31.95%; 79,847 boundary-metres >0.5 m from join |
+| **Status** | **ACCEPTED EXPERIMENTAL** (diagnostic) |
+| **Evidence** | `reports/lane_mapping_quality/LANE_MAPPING_DEFECT_AUDIT.md` |
+
+---
+
+## E-025: Insufficient-support fragment audit
+
+| Field | Value |
+|-------|-------|
+| **Ledger ID** | M-013 |
+| **Classification** | **AUD** |
+| **Metrics** | 3,317 `insufficientSupport` fragments; 71% have exactly 2 distinct frames |
+| **Status** | **ACCEPTED EXPERIMENTAL** |
+| **Evidence** | `reports/insufficient_support_audit/INSUFFICIENT_SUPPORT_AUDIT.md` |
+
+---
+
+## E-026: Per-frame connected accumulated display
+
+| Field | Value |
+|-------|-------|
+| **Ledger ID** | M-037 |
+| **Classification** | **EXP** |
+| **Hypothesis** | Isolate each frame's dots into polylines to remove cross-frame sawtooth |
+| **Metrics** | Seg13 raw zigzag 890 → per-frame 22; Seg1 91 polylines / 30 frames |
+| **Status** | **CHECKPOINTED** (`dbe7f26`) |
+| **Evidence** | `reports/connected_accumulated/runtime/final_validation.json` |
+
+---
+
+## E-027: Current-frame connected accumulated display
+
+| Field | Value |
+|-------|-------|
+| **Ledger ID** | M-038 |
+| **Classification** | **EXP** |
+| **Metrics** | Filters per-frame set to active playback frame; map checksum unchanged |
+| **Status** | **CHECKPOINTED** (`8ce0ab6`) |
+| **Evidence** | `reports/connected_accumulated/runtime/current_frame_validation.json` |
+
+---
+
+## E-028: Raw vs robust dot-connection comparison
+
+| Field | Value |
+|-------|-------|
+| **Ledger ID** | M-035, M-036 |
+| **Classification** | **EXP** |
+| **Metrics** | Seg13 raw: 890 zigzag, 31 polylines; robust: 137 zigzag, 239 polylines |
+| **Status** | Raw **REJECTED**; robust **REJECTED** (fragmentation; bridge/source-distance gates) |
+| **Evidence** | `reports/connected_accumulated/runtime/robust_comparison.json`, `perframe_comparison.json` |
+
+---
+
+## E-029: Consensus connected polylines (v1 vs v2)
+
+| Field | Value |
+|-------|-------|
+| **Ledger ID** | M-039, M-040 |
+| **Classification** | **EXP** |
+| **Metrics** | v1 p95 contributor 6.14 m (Seg13) **FAIL**; v2 p95 0.53 m, 28 polylines |
+| **Status** | v1 **REJECTED**; v2 **PARTIAL** |
+| **Evidence** | `reports/connected_accumulated/runtime/consensus_comparison.json` |
+
+---
+
+## E-030: Road-guided static v1 (rejected)
+
+| Field | Value |
+|-------|-------|
+| **Ledger ID** | M-044 |
+| **Result** | Seg13/14/95 collapsed to 1 slot; Seg99 6 slots, 62 crossLaneIntersections |
+| **Status** | **REJECTED** |
+| **Evidence** | `reports/connected_accumulated/runtime/road_guided_static_validation.json` |
+
+---
+
+## E-031: Road-guided static v2 (partial)
+
+| Field | Value |
+|-------|-------|
+| **Ledger ID** | M-045 |
+| **Metrics** | Seg13 15.0%, Seg95 13.2%, Seg14 62.9% supportedCoveragePct; slot counts correct |
+| **Status** | **PARTIAL** |
+| **Evidence** | `reports/connected_accumulated/runtime/road_guided_static_v2_validation.json` |
+
+---
+
+## E-032: Road-guided dot connection (rejected)
+
+| Field | Value |
+|-------|-------|
+| **Ledger ID** | M-046 |
+| **Automated** | slotSpanCoverage 100%; only formal fail Seg14 p95 heading 16.42° > 15° |
+| **Metric review** | guideCoverage 0.52%/0.49%/11.3%; Seg95 maxHeading 176.5° |
+| **Status** | **REJECTED** — practical coverage failed |
+| **Evidence** | `reports/connected_accumulated/runtime/road_guided_dot_connection_validation.json` |
+
+---
+
+## E-033: Segment 0 mirror (accepted experimental, uncommitted)
+
+| Field | Value |
+|-------|-------|
+| **Ledger ID** | M-047 |
+| **Status** | **ACCEPTED EXPERIMENTAL** — not checkpointed |
+| **Evidence** | `reports/connected_accumulated/runtime/segment0_mirror_validation.json` |
+
+---
+
+## E-034: Video inventory (accepted experimental)
+
+| Field | Value |
+|-------|-------|
+| **Ledger ID** | M-015 |
+| **Result** | 64/92 segments with cached MP4; sync path documented |
+| **Status** | **ACCEPTED EXPERIMENTAL** — mapping integration blocked |
+| **Evidence** | `reports/video_lane_feasibility/video_lane_feasibility.json` |
+
+---
+
+## E-035: UFLD inference (partial)
+
+| Field | Value |
+|-------|-------|
+| **Ledger ID** | M-016 |
+| **Result** | 150/150 frames inferred; image-space only |
+| **Status** | **PARTIAL** |
+| **Evidence** | `reports/video_lane_zero_label/ZERO_LABEL_VALIDATION_REPORT.md` |
+
+---
+
+## E-036: Zero-label image-space validation (partial)
+
+| Field | Value |
+|-------|-------|
+| **Ledger ID** | M-017 |
+| **Result** | Image-space gates recorded; reprojection BLOCKED; no manual labels required |
+| **Status** | **PARTIAL** |
+| **Evidence** | `reports/video_lane_zero_label/ZERO_LABEL_VALIDATION_REPORT.md` |
+
+---
+
+## E-037: Hybrid export validation (paused)
+
+| Field | Value |
+|-------|-------|
+| **Ledger ID** | M-009, M-010 |
+| **Classification** | **EXP** |
+| **Result** | Export architecture validated; 9 category-E downgrade; user paused rollout |
+| **Evidence** | `reports/hybrid_export_validation/HYBRID_EXPORT_VALIDATION_REPORT.md`, `deliverables/hybrid_lane_map_v1/` |
+
+---
+
+## E-038: Candidate layer probe (lane-change reconciliation)
+
+| Field | Value |
+|-------|-------|
+| **Ledger ID** | M-029 |
+| **Classification** | **AUD** |
+| **Result** | 1 confirmed lane-change (Seg99); `LANE_CHANGE_REPORT.md` overstated vs `narrow_gate.json` |
+| **Evidence** | `reports/candidate_layer_probe/CANDIDATE_LAYER_PROBE_REPORT.md` |
 
 ---
 

@@ -1,7 +1,57 @@
 # Current Status
 
-**Last updated:** 2026-08-18
+**Last updated:** 2026-08-26
 **Classification key:** Each item is tagged — **VP** verified production, **FV** fixture-validated, **ES** experimental sensitivity, **UR** unsupported real-dataset behaviour, **PW** planned work.
+
+**Method ledger:** Full retrospective reconstruction with evidence IDs is in [METHOD_EVIDENCE_LEDGER.md](./METHOD_EVIDENCE_LEDGER.md).
+
+---
+
+## Repository checkpoint (2026-08-26)
+
+| Item | Value |
+|------|-------|
+| Branch | `experiment/candidate-layer-display` |
+| HEAD | `8ce0ab6e5671110c836be8ff49bbd47c8a0a262f` |
+| Remote tracking | None (local-only commits; not pushed) |
+| Active processing version | `2026-07-24-fusion-v16` |
+| Index | Dirty — modified viewer/server/tests/audit JSON; many untracked reports and experimental libs |
+
+### Checkpointed features (committed on branch)
+
+- Path 1 graph fitting, hybrid fitted lane map, persistent graph-fit cache
+- Per-frame connected accumulated display (`dbe7f26`)
+- Current-frame connected accumulated display (`8ce0ab6`, HEAD)
+
+### Active uncommitted experiments (viewer-only unless noted)
+
+| Layer / work | Status | Notes |
+|--------------|--------|-------|
+| Connected accumulated modes | **ES** — REJECTED / PARTIAL | Raw/robust/road-guided v1/dot **REJECTED**; consensus v2/road-guided v2 **PARTIAL**; per-frame/current-frame **checkpointed** — ledger M-035–M-046 |
+| Segment 0 mirror display correction | **ES** — ACCEPTED EXPERIMENTAL (uncommitted) | `segment0_mirror_validation.json`; production stored mirror correct |
+| Candidate amber-line display layer | **ES** | `public/candidate_layer_display.js` |
+| Hybrid lane export | **ES** — paused | `lib/hybrid_lane_export*.js`; deliverables under `deliverables/hybrid_lane_map_v1/` |
+| Lane-mapping quality audits | **ES** — diagnostic | `lib/lane_mapping_quality_audit.js`; reports under `reports/lane_mapping_quality/` |
+
+### Rejected / blocked (durable)
+
+- **Path 2 ordering recovery** — NO-GO (`reports/path2_design/path2_feasibility_report.md`)
+- **Threshold lowering** — rejected (dedup counterfactual + policy)
+- **Video mapping integration** — blocked (intrinsics/reprojection); inventory/UFLD investigation **ACCEPTED EXPERIMENTAL** / **PARTIAL** only
+- **Road-guided static v1 / dot connection** — **REJECTED** (practical coverage failed)
+- **Road-guided static v2** — **PARTIAL** (correct slots; low supported coverage)
+- **Higher-rate modelV2** — blocked (no rlog source)
+- **Frame registration / pose-tail fixes** — rejected (regress support/geometry)
+
+### Current main lane-mapping limitation
+
+Sparse ~0.5 Hz qlog modelV2 evidence, strict support gates, and unsafe raw lane-index identity through lane changes limit joined polyline coverage (~40% provenance on Segment 1 audit). **Viewer diagnostic layers (connected accumulated, road-guided, candidate) are not confirmed mapping** and must not enter polygons or production exports without separate gates.
+
+### Next recommended work (not completed)
+
+**Rank-by-bin Road-guided dot connection:** cluster all eligible dots at every trajectory bin, assign by lateral rank without anchor propagation, smooth d(s), count prefix/internal/suffix gaps, and exclude invalid trajectory loops. See ledger recommended-next section.
+
+Other follow-ups: calibrated video or higher-rate evidence before video mapping; optional mirror-fix checkpoint commit (viewer-only).
 
 ---
 
@@ -13,7 +63,7 @@
 | Frozen geometry baseline (Stage 19 compare) | `2026-07-24-fusion-v11` | **VP** — Stage 19 delivery-readiness pins still reference v11 label; v16 does not alter fused road-surface geometry |
 | Path 1 graph fitting | Experimental display-only layer; **off by default**; enable with `?fit=1` | **ES** (`lib/graph_fit.js`, `lib/segment_local_map.js`, `public/render.js`) |
 | Hybrid graph-fitted lane map | **Implemented + validated** — one hybrid boundary per constructed fragment; solid cyan = accepted fit, coloured dashed = fragment fallback; complete-map only; suppressed during causal playback; **off by default** (requires `?fit=1` + checkbox) | **ES** (`lib/graph_fit.js` → `hybridFittedBoundaries`, `public/render.js`) |
-| Path 2 graph fitting | Not implemented | **PW** |
+| Path 2 graph fitting | **Rejected** — feasibility NO-GO (52 eligible segments; zero safe ordering recovery) | **UR** — see `reports/path2_design/path2_feasibility_report.md`, ledger **M-011** |
 | Viewer / diagnostic probe map path | Shared production helper `lib/viewer_map_build.js` | **ES** — probes now match `/api/process` → `enrichTimelineWithMovement` → `buildSegmentLocalMap` |
 | Stage 19 specification | Approved — Revision 37 | **VP** (implementation bound to `lib/stage19_spec/`, normative package `deliverables/stage19-revision37/`) |
 | Stage 19 implementation | `2026-07-27-stage19-v5` | **FV** + **UR** (see below) |
@@ -183,9 +233,21 @@ Project status treats **Revision 37** as the approved normative specification fo
 
 ## Validation Snapshot
 
+### Full-suite failure history (authoritative sequence)
+
+| Phase | Fail count | Cause |
+|-------|------------|-------|
+| Pre-migration OneDrive | **28** | Stage 7 audit JSON write failure under OneDrive (27 baseline + 1 environmental) |
+| Post-migration local, no API server | **28** | Stage 7 passed; API parity `ECONNREFUSED` on port 3847 |
+| Local with API server on 3847 | **27** | Established baseline only |
+
+Evidence: `reports/hybrid_validation/HYBRID_VALIDATION_REPORT.md` Phase 14, `.cache/hybrid_full_suite.txt`, `reports/stationary_pose_dwell_fix.md` §11. Do not summarise all 28-failure runs as one Stage 7 flake.
+
+### Current validation gates
+
 | Check | Result |
 |-------|--------|
-| Full suite (correct command) | `node --expose-gc --test tests` — **1772** tests, **1745** pass, **27** fail (established baseline), **0** skipped, **0** cancelled. Requires API server on port 3847 for one geometry-parity leaf. Stage 19 memory-oracle tests pass with `--expose-gc` |
+| Full suite (API server on 3847) | `node --expose-gc --test tests` — **1772** tests, **1745** pass, **27** fail (established baseline) |
 | Graph-fit focused suite | `tests/graph_fit.test.js` + `tests/viewer_probe_parity.test.js` + `tests/video_restore.test.js` + `tests/graph_fit_persistent_cache.test.js` — **149/149** pass |
 | Persistent-cache browser suite | `RUN_GRAPH_FIT_PERSIST_BROWSER=1` + `tests/graph_fit_persistent_cache_browser.test.js` — **8/8** pass (gated off full suite by default) |
 | Persistent-cache reliability gate | `node scripts/run_persist_browser_gate.js` — Seg2 **10/10**, fresh profiles **3/3**, Seg14 E2E pass |

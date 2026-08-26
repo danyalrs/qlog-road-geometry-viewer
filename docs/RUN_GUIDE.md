@@ -1,6 +1,6 @@
 # Run Guide
 
-**Last updated:** 2026-08-18
+**Last updated:** 2026-08-26
 
 Verified commands from `package.json`, scripts, and specification docs. Mark **(uncertain)** where environment-specific or data-dependent.
 
@@ -88,6 +88,67 @@ When fitting is enabled, the viewer may store the fit-enabled stationary local m
 **Accepted counts (viewer-authoritative, fusion-v16):** Seg2 **4**, Seg3 **11**, Seg9 **0**, Seg14 **7**, Seg16 **9**, Seg54 **0**, Seg58 **0**, Seg95 **0**, Seg99 **0**.
 
 Source: `server.js`, `package.json`, `reports/hybrid_validation/HYBRID_VALIDATION_REPORT.md`.
+
+### Connected accumulated display modes (experimental, uncommitted)
+
+**Path:** Local playback → Point-accumulated geometry → **Connected accumulated mode** selector.
+
+| Mode | Status | Notes |
+|------|--------|-------|
+| Off | Default | Production dots + constructed/joined layers only |
+| Raw same-colour connection | **Rejected** | Sawtooth; do not use as workflow |
+| Robust longitudinal-bin | **Partial** | High fragmentation |
+| Per-frame connected | **Checkpointed** (`dbe7f26`) | Removes sawtooth |
+| Current-frame connected | **Checkpointed** (`8ce0ab6`, HEAD) | Playback-filtered per-frame |
+| Consensus v1 | **Rejected** | Large source-distance error |
+| Consensus v2 (interpolated cluster) | **Partial** | Better metrics; incomplete coverage |
+| Road-guided static v1 | **REJECTED** — do not use |
+| Road-guided static v2 | **PARTIAL** — diagnostic only; low supported coverage |
+| Road-guided dot connection | **REJECTED** — practical coverage failed |
+| Trajectory-aligned current frame | **REJECTED** |
+| Native-coordinate smoothing | **PARTIAL** — unverified visual gain |
+
+Verification (bounded segments; does not alter production map):
+
+```bash
+node scripts/verify_connected_accumulated_runtime.js
+node scripts/verify_segment0_mirror.js
+node --test tests/connected_accumulated_display.test.js tests/segment_mirror_display.test.js tests/mirror_alignment.test.js
+```
+
+Reports: `reports/connected_accumulated/runtime/*.json`. Full method history: [METHOD_EVIDENCE_LEDGER.md](./METHOD_EVIDENCE_LEDGER.md).
+
+### Recommended next experiment (not implemented)
+
+Rank-by-bin Road-guided dot connection: cluster eligible dots at every trajectory bin, assign by lateral rank without anchor propagation, smooth d(s), count prefix/internal/suffix gaps, exclude invalid trajectory loops.
+
+### Mirror display contract
+
+With **Mirror road lateral display** enabled, all road-geometry layers use precomputed `mirroredLocalEast/mirroredLocalNorth` when present, or trajectory lateral reflection fallback (`public/viewer_mirror_coords.js`). This is **viewer-only**; processing output unchanged.
+
+### Candidate layer (experimental, uncommitted)
+
+Optional amber candidate-line display for join diagnostics (`public/candidate_layer_display.js`). Diagnostic only — not confirmed mapping.
+
+### Hybrid export (paused, experimental)
+
+Export scripts and validation exist under `lib/hybrid_lane_export*.js` and `deliverables/hybrid_lane_map_v1/`. Rollout paused per user; use `reports/hybrid_export_validation/HYBRID_EXPORT_VALIDATION_REPORT.md` before any export workflow.
+
+### Bundle backup verification
+
+After syncing public mirrors from `lib/`:
+
+```bash
+node scripts/sync_segment_local_map_public.js
+node scripts/sync_constructed_fragments_public.js
+node scripts/sync_graph_fit_public.js
+```
+
+Compare checksums or run focused parity tests:
+
+```bash
+node --test tests/viewer_probe_parity.test.js
+```
 
 ---
 
