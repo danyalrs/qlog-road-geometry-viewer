@@ -362,6 +362,22 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
    * use worldToScreen unchanged.
    */
   roadGeometryToScreen(east, north, mirroredEast = null, mirroredNorth = null) {
+    const VMC = typeof window !== 'undefined' ? window.ViewerMirrorCoords : null;
+    if (VMC?.resolveRoadDisplayCoords) {
+      const resolved = VMC.resolveRoadDisplayCoords(
+        east,
+        north,
+        mirroredEast,
+        mirroredNorth,
+        this._mirrorRoadLateralDisplay,
+        {
+          trajectory: this.stationaryLocalMap?.trajectory,
+          referencePose: this.stationaryLocalMap?.referencePose,
+          useTrajectoryFallback: false,
+        },
+      );
+      return this.worldToScreen(resolved.east, resolved.north);
+    }
     if (!this._mirrorRoadLateralDisplay) {
       return this.worldToScreen(east, north);
     }
@@ -388,11 +404,24 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
         return { east: me, north: mn, _mirrored: true, _precomputed: true };
       }
     }
-    const ref = this.stationaryLocalMap?.referencePose;
-    const anchorNorth = ref && Number.isFinite(ref.north) ? ref.north : 0;
+    const VMC = typeof window !== 'undefined' ? window.ViewerMirrorCoords : null;
+    if (VMC?.resolveRoadDisplayCoords) {
+      const reflected = VMC.resolveRoadDisplayCoords(east, north, null, null, true, {
+        trajectory: this.stationaryLocalMap?.trajectory,
+        referencePose: this.stationaryLocalMap?.referencePose,
+        useTrajectoryFallback: false,
+        useReferencePoseFallback: true,
+      });
+      return {
+        east: reflected.east,
+        north: reflected.north,
+        _mirrored: true,
+        _precomputed: false,
+      };
+    }
     return {
       east,
-      north: anchorNorth - (north - anchorNorth),
+      north: -north,
       _mirrored: true,
       _precomputed: false,
     };
@@ -1425,63 +1454,66 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     const ctx = this.ctx;
     let stroked = 0;
     ctx.save();
-    for (const poly of polylines) {
-      if (!poly.points || poly.points.length < 2) continue;
-      let color = '#94a3b8';
-      if (poly.groupTrackId != null && this._pointTrackColorCache?.has?.(poly.groupTrackId)) {
-        color = this._pointTrackColorCache.get(poly.groupTrackId);
-      } else if (poly.side === 'left') {
-        color = 'rgba(124,58,237,0.9)';
-      } else if (poly.side === 'right') {
-        color = 'rgba(8,145,178,0.9)';
+    try {
+      for (const poly of polylines) {
+        if (!poly.points || poly.points.length < 2) continue;
+        let color = '#94a3b8';
+        if (poly.groupTrackId != null && this._pointTrackColorCache?.has?.(poly.groupTrackId)) {
+          color = this._pointTrackColorCache.get(poly.groupTrackId);
+        } else if (poly.side === 'left') {
+          color = 'rgba(124,58,237,0.9)';
+        } else if (poly.side === 'right') {
+          color = 'rgba(8,145,178,0.9)';
+        }
+        ctx.strokeStyle = color;
+        ctx.globalAlpha = isCurrentFrame ? 0.9 : 0.62;
+        ctx.lineWidth = isCurrentFrame ? 3 : 2.25;
+        ctx.setLineDash([]);
+        ctx.beginPath();
+        let moved = false;
+        for (const pt of poly.points) {
+          if (!Number.isFinite(pt.localEast) || !Number.isFinite(pt.localNorth)) continue;
+          const p = this.roadGeometryToScreen(pt.localEast, pt.localNorth, pt.mirroredLocalEast, pt.mirroredLocalNorth);
+          if (!moved) { ctx.moveTo(p.x, p.y); moved = true; }
+          else ctx.lineTo(p.x, p.y);
+        }
+        if (moved) {
+          ctx.stroke();
+          stroked++;
+        }
       }
-      ctx.strokeStyle = color;
-      ctx.globalAlpha = isCurrentFrame ? 0.9 : 0.62;
-      ctx.lineWidth = isCurrentFrame ? 3 : 2.25;
+      ctx.globalAlpha = 1;
+
+      const pointCount = stats?.observationCount ?? stats?.finitePointCount ?? (pa.points || []).length;
+      ctx.font = '12px sans-serif';
+      if (isCurrentFrame) {
+        const frameLabel = stats?.selectedFrameKey ?? stats?.selectedFrameId ?? '—';
+        ctx.fillStyle = '#0f766e';
+        ctx.fillText('Connected accumulated observations — current frame (experimental)', 10, 182);
+        ctx.fillStyle = '#64748b';
+        ctx.fillText(`Frame ${frameLabel} / ${stroked} lane curves / ${pointCount} observations`, 10, 196);
+        ctx.fillText('Each line contains one modelV2 frame only', 10, 210);
+        ctx.fillText('Unconfirmed display only', 10, 224);
+      } else {
+        const frameCount = stats?.frameGroupCount
+          ? new Set(polylines.map((pl) => pl.frameId ?? `fi:${pl.frameIndex}`)).size
+          : new Set(polylines.map((pl) => pl.frameId ?? `fi:${pl.frameIndex}`)).size;
+        ctx.fillStyle = '#0f766e';
+        ctx.fillText('Connected accumulated observations — all per-frame (experimental)', 10, 182);
+        ctx.fillStyle = '#64748b';
+        ctx.fillText(`${stroked} frame polylines from ${frameCount} frames / ${pointCount} observations`, 10, 196);
+        ctx.fillText('Each line contains one modelV2 frame only', 10, 210);
+        ctx.fillText('Unconfirmed display only', 10, 224);
+      }
+    } finally {
       ctx.setLineDash([]);
-      ctx.beginPath();
-      let moved = false;
-      for (const pt of poly.points) {
-        if (!Number.isFinite(pt.localEast) || !Number.isFinite(pt.localNorth)) continue;
-        const p = this.roadGeometryToScreen(pt.localEast, pt.localNorth, pt.mirroredLocalEast, pt.mirroredLocalNorth);
-        if (!moved) { ctx.moveTo(p.x, p.y); moved = true; }
-        else ctx.lineTo(p.x, p.y);
-      }
-      if (moved) {
-        ctx.stroke();
-        stroked++;
-      }
+      ctx.lineDashOffset = 0;
+      ctx.restore();
     }
-    ctx.globalAlpha = 1;
-    ctx.restore();
 
     this._connectedAccumulatedPolylines = polylines;
     this._connectedAccumulatedStats = stats;
     this._connectedAccumulatedDrawn = stroked > 0;
-
-    const pointCount = stats?.observationCount ?? stats?.finitePointCount ?? (pa.points || []).length;
-    ctx.save();
-    ctx.font = '12px sans-serif';
-    if (isCurrentFrame) {
-      const frameLabel = stats?.selectedFrameKey ?? stats?.selectedFrameId ?? '—';
-      ctx.fillStyle = '#0f766e';
-      ctx.fillText('Connected accumulated observations — current frame (experimental)', 10, 182);
-      ctx.fillStyle = '#64748b';
-      ctx.fillText(`Frame ${frameLabel} / ${stroked} lane curves / ${pointCount} observations`, 10, 196);
-      ctx.fillText('Each line contains one modelV2 frame only', 10, 210);
-      ctx.fillText('Unconfirmed display only', 10, 224);
-    } else {
-      const frameCount = stats?.frameGroupCount
-        ? new Set(polylines.map((pl) => pl.frameId ?? `fi:${pl.frameIndex}`)).size
-        : new Set(polylines.map((pl) => pl.frameId ?? `fi:${pl.frameIndex}`)).size;
-      ctx.fillStyle = '#0f766e';
-      ctx.fillText('Connected accumulated observations — all per-frame (experimental)', 10, 182);
-      ctx.fillStyle = '#64748b';
-      ctx.fillText(`${stroked} frame polylines from ${frameCount} frames / ${pointCount} observations`, 10, 196);
-      ctx.fillText('Each line contains one modelV2 frame only', 10, 210);
-      ctx.fillText('Unconfirmed display only', 10, 224);
-    }
-    ctx.restore();
   }
 
   /**

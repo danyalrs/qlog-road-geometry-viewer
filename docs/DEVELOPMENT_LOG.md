@@ -632,6 +632,66 @@ When future work confirms these items, append corrections — do not rewrite pri
 
 ---
 
+## 2026-08-26 — Rank-by-bin road-guided ranked connection (uncommitted)
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Static lane boundaries via direct lateral rank at every trajectory bin—no anchor propagation |
+| **Work** | `buildRoadGuidedRankedConnectionDisplay` in `public/connected_accumulated_display.js`; viewer mode `roadGuidedRankedConnection`; validation `road_guided_ranked_validation.json` |
+| **Results** | Automated acceptance **FAIL** (assignment &lt;80%; Seg13/14 guide coverage below gates). Seg14 guideCov 61.8% vs 0.49% anchor dot connection; Seg95 max heading 9.5° (no 176° spike). Tests 100/100 pass |
+| **State** | Uncommitted on `experiment/candidate-layer-display`; **Current frame** remains default |
+| **Evidence** | `reports/connected_accumulated/runtime/road_guided_ranked_validation.json`; ledger **M-050** |
+
+---
+
+## 2026-08-26 — Sequence-wide road-guided continuous connection (uncommitted)
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Global slot assignment across valid trajectory runs; fix assignment metrics; validated-guide display for invalid loops |
+| **Work** | `buildRoadGuidedSequenceConnectionDisplay`; viewer mode `roadGuidedSequenceConnection`; `_drawValidatedGuideTrajectoryOverlay`; tests 96–101 (106 total pass) |
+| **Results** | Automated acceptance **FAIL** on part-count gates only. Guide coverage ↑ vs M-050 (Seg13 89.3%, Seg14 94.4%). Runtime 43.6 s on segments 13/14/95/99 |
+| **State** | Uncommitted; **Current frame** default; manual viewer review pending |
+| **Evidence** | `reports/connected_accumulated/runtime/road_guided_sequence_validation.json`; ledger **M-051** |
+
+---
+
+## 2026-08-26 — Road-layer isolation for experimental lane modes (uncommitted)
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Restore normal road ribbon/trajectory across all connected-accumulated modes; lane-only invalid-guide messaging |
+| **Work** | Surgical `public/render.js` correction; removed `_drawValidatedGuideTrajectoryOverlay`; `computeRoadDisplayInputChecksum`; tests 101–106 |
+| **Results** | Automated road checksum parity **PASS** on segments 13/14/95/99; user manual review found mode parity insufficient — Seg99 still differed from checkpoint road (**M-053** repair) |
+| **State** | M-052 **PARTIAL** (mode isolation); checkpoint road-pixel gate **PASS** via M-053 |
+| **Evidence** | `reports/connected_accumulated/runtime/road_layer_isolation_validation.json`; `reports/connected_accumulated/runtime/segment99_road_regression/`; ledger **M-052**, **M-053** |
+
+---
+
+## 2026-08-26 — Checkpoint road-pixel regression repair (Segment 99, uncommitted)
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Restore Segment 99 standard road rendering to checkpoint `1b3b1c82` final canvas appearance |
+| **Work** | Opt-in trajectory mirror fallback in `viewer_mirror_coords`; `useTrajectoryFallback: false` in `roadGeometryToScreen`; capture script + tests 107–109 |
+| **Results** | Baseline vs after **0.000%** road-only pixel diff; baseline vs before **1.085%**; M-051 lane checksum unchanged |
+| **State** | Checkpointed (`restore canonical mirrored road rendering`); M-051 remains **PARTIAL** and uncommitted |
+| **Evidence** | `reports/connected_accumulated/runtime/segment99_road_regression/`; ledger **M-053** |
+
+---
+
+## 2026-08-26 — Manual review gate: canonical mirrored road rendering
+
+| Field | Detail |
+|-------|--------|
+| **Reviewer** | User manual viewer review after M-053 automated repair |
+| **Result** | Segment 99 grey road looks correct; unchanged across Current frame and Road-guided continuous connection (uncommitted M-051 selector) |
+| **Evidence** | Checkpoint `1b3b1c8` vs repaired canvas: **0 / 706560** road-only pixel diff |
+| **Root cause** | Implicit trajectory reflection in `resolveRoadDisplayCoords` for ribbon vertices without stored mirror coordinates |
+| **Checkpoint** | Commit message `restore canonical mirrored road rendering`; M-051 lane algorithm **not** included |
+
+---
+
 ## 2026-08-26 — Method evidence ledger documentation
 
 | Field | Detail |

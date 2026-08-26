@@ -105,6 +105,8 @@ Source: `server.js`, `package.json`, `reports/hybrid_validation/HYBRID_VALIDATIO
 | Road-guided static v1 | **REJECTED** — do not use |
 | Road-guided static v2 | **PARTIAL** — diagnostic only; low supported coverage |
 | Road-guided dot connection | **REJECTED** — practical coverage failed |
+| Road-guided ranked connection | **PARTIAL** — internal comparison only; superseded in selector |
+| Road-guided continuous connection | **PARTIAL** — uncommitted; primary road-guided selector option; manual review pending |
 | Trajectory-aligned current frame | **REJECTED** |
 | Native-coordinate smoothing | **PARTIAL** — unverified visual gain |
 
@@ -116,11 +118,31 @@ node scripts/verify_segment0_mirror.js
 node --test tests/connected_accumulated_display.test.js tests/segment_mirror_display.test.js tests/mirror_alignment.test.js
 ```
 
-Reports: `reports/connected_accumulated/runtime/*.json`. Full method history: [METHOD_EVIDENCE_LEDGER.md](./METHOD_EVIDENCE_LEDGER.md).
+Reports: `reports/connected_accumulated/runtime/road_guided_sequence_validation.json` (sequence connection), `road_layer_isolation_validation.json` (road render isolation). Full method history: [METHOD_EVIDENCE_LEDGER.md](./METHOD_EVIDENCE_LEDGER.md).
 
-### Recommended next experiment (not implemented)
+### Road render isolation (M-052 / M-053)
 
-Rank-by-bin Road-guided dot connection: cluster eligible dots at every trajectory bin, assign by lateral rank without anchor propagation, smooth d(s), count prefix/internal/suffix gaps, exclude invalid trajectory loops.
+All connected-accumulated modes share the same road polygons, grey ribbon, dashed trajectory, and blue-arrow source. Lane experiment modes add strokes only. Input checksum parity across modes is necessary but not sufficient — compare final road-only canvas pixels against checkpoint when investigating visual regressions.
+
+```bash
+node scripts/verify_connected_accumulated_runtime.js
+node scripts/capture_segment99_road_regression.js all
+```
+
+Artifacts: `reports/connected_accumulated/runtime/road_layer_isolation_validation.json`, `reports/connected_accumulated/runtime/segment99_road_regression/`.
+
+### Road-guided continuous connection (experimental, uncommitted)
+
+Viewer display mode **Road-guided continuous connection** (`roadGuidedSequenceConnection`) runs sequence-wide slot assignment with beam search—no anchor, no forward/backward fingerprint agreement. Grey trajectory guide draws only on `validTrajectoryRuns`; invalid loop intervals show a gap. Default viewer mode remains **Current frame**.
+
+```bash
+node --test tests/connected_accumulated_display.test.js
+node scripts/verify_connected_accumulated_runtime.js
+```
+
+### Road-guided ranked connection (internal, uncommitted)
+
+Ranked mode (`roadGuidedRankedConnection`) remains callable for metric comparison but is not in the primary selector.
 
 ### Mirror display contract
 

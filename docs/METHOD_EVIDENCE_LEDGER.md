@@ -62,6 +62,10 @@ This ledger reconstructs methods attempted in the Kommu AI lane-mapping project 
 | M-047 | Segment 0 mirror display correction | Fix mirror contract in viewer | **ACCEPTED EXPERIMENTAL** | storedVsExpectedMax=0; viewer fix uncommitted | Production geometry unchanged | `reports/connected_accumulated/runtime/segment0_mirror_validation.json` | — |
 | M-048 | Stage 19 v5 dataset-sensitivity audit | Audit singleton chains on real dataset | **ACCEPTED EXPERIMENTAL** | 5,809 singleton chains; P3 0/0/0 | NOT checkpointed on experiment branch | `audit_stage19_dataset_sensitivity.json`, `reports/stage19_v5_corrective_checkpoint_report.json` | — |
 | M-049 | Stationary pose dwell correction | Lock pose during stop confirmation | **CHECKPOINTED** | 302 m false travel removed dataset-wide | Two-pass anchor retrospective apply | `reports/stationary_pose_dwell_fix.md` | `188a83c` |
+| M-050 | Rank-by-bin road-guided connection | Static lane lines without anchor propagation | **PARTIAL** | Fragmentation (186/234 parts); manual review 2026-08-26; assignment metric bug fixed | Bidirectional fingerprint agreement; chain-split fragmentation | `reports/connected_accumulated/runtime/road_guided_ranked_validation.json` | — |
+| M-051 | Sequence-wide road-guided lane connection | Stable slot assignment across valid guide runs | **PARTIAL** | Guide coverage ↑; part-count gates fail; lane/dot misalignment | Stroke fragmentation; rejected guide on Seg99 | `reports/connected_accumulated/runtime/road_guided_sequence_validation.json` | — |
+| M-052 | Experimental lane-layer road-render isolation | Lane strokes without mutating road display | **ACCEPTED EXPERIMENTAL** | Mode parity + checkpoint road-pixel gate pass (M-053) | M-051 road replacement reverted; input checksum parity alone insufficient | `reports/connected_accumulated/runtime/road_layer_isolation_validation.json` | — |
+| M-053 | Checkpoint road-pixel regression (Seg99) | Restore checkpoint road appearance at final canvas | **ACCEPTED EXPERIMENTAL** | Baseline vs after 0.000% road-only pixel diff | Trajectory mirror fallback on ribbon without precomputed coords | `reports/connected_accumulated/runtime/segment99_road_regression/` | — |
 
 ---
 
@@ -1105,6 +1109,93 @@ This addresses M-046 failures where anchor propagation produced 100% slot-span b
 | ------ | ----------- | ---------------- |
 | False travel removed | 172 m | **302 m** |
 | Fully-stationary mapped travel | 0.2–1.2 m | **0 m** |
+
+---
+
+### M-050 — Rank-by-bin road-guided dot connection
+
+* **Goal:** Static trajectory-aligned lane boundaries by ranking lateral clusters at every 1 m bin without anchor propagation.
+* **Method:** `road-guided-ranked-connection-v1`; `buildRoadGuidedRankedConnectionDisplay`; forward rank assignment with backward agreement on ambiguous bins (M≠K); reuse `buildDotConnectionParts` with ranked display mode.
+* **Evidence:** `reports/connected_accumulated/runtime/road_guided_ranked_validation.json`; `tests/connected_accumulated_display.test.js` (tests 91–95).
+* **Result:** Automated gates **FAIL** (eligible assignment &lt;80%; Seg13/14 guide coverage below 70%/75%; suffix gaps). Seg14 improved vs anchor dot connection (61.8% guide vs 0.49%); Seg13 48.8% vs 0.52%. No 176.5° heading spike on Seg95 (max 9.5°). Map checksum unchanged.
+* **User manual viewer review, 2026-08-26.** Screenshots supplied in chat but not indexed in repository. Seg13 **186** rendered parts; Seg14 **234**; Seg95 **23**; Seg99 **3** short valid parts. Long sections often begin correctly but split into many short dashed parts. Seg99 grey road shows a malformed loop/revisit trajectory. Manual decision: M-050 remains **PARTIAL**, not approved for checkpoint.
+* **Assignment-metric bug (fixed in M-051):** `eligibleDotAssignmentPct` mixed bidirectional-filtered vote numerators with bin-cluster vote denominators (e.g. Seg13 reported 37.3% vs correct bin evidence 2030/2340 = 86.8%). Replaced by three explicit metrics in sequence builder stats.
+* **Status:** **PARTIAL**
+* **Reason:** Meaningful improvement on Seg14 heading and coverage vs M-046 anchor algorithm; coverage and vote-assignment gates not met on Seg13/95/99.
+* **Limitation:** Viewer-only experimental geometry; uncommitted on `experiment/candidate-layer-display`; `Current frame` remains default.
+* **Project implication:** Rank-by-bin replaces anchor propagation for manual review; further work on ambiguous-bin agreement and gap bridging before ACCEPTED EXPERIMENTAL.
+
+| Metric | Seg13 | Seg14 | Seg95 | Seg99 |
+| ------ | ----- | ----- | ----- | ----- |
+| guideCoveragePct | 48.8% | 61.8% | 22.9% | 4.0% |
+| eligibleDotAssignmentPct (deprecated) | 37.3% | 52.2% | 13.4% | 5.0% |
+
+---
+
+### M-051 — Sequence-wide road-guided lane connection
+
+* **Goal:** Viewer-only static lane boundaries via one global ordered slot assignment per valid trajectory run, without anchor propagation or forward/backward fingerprint agreement.
+* **M-050 fragmentation cause:** Bidirectional fingerprint rejection at ambiguous bins plus 8 m chain-split in ranked display mode produced hundreds of short dashed parts despite good local bin evidence.
+* **Method:** `road-guided-sequence-connection-v1`; `buildRoadGuidedSequenceConnectionDisplay`; reuse M-050 bin clustering; beam search (width 64) with emission/transition scoring and confidence-margin dashing; no ranked chain-split; orphan suppression &lt;3 m; validated-guide overlay on `validTrajectoryRuns` only (`_drawValidatedGuideTrajectoryOverlay`).
+* **Metric correction:** `originalObservationAssignmentPct`, `dedupVoteAssignmentPct`, `slotBinFillPct`; `deprecatedAssignmentMetric` records retired mixed-unit percentage.
+* **Evidence:** `reports/connected_accumulated/runtime/road_guided_sequence_validation.json`; `tests/connected_accumulated_display.test.js` (tests 96–101); runtime **43.6 s** on segments 13/14/95/99.
+* **Before/after rendered parts (ranked → sequence):** Seg13 186→170; Seg14 234→221; Seg95 23→28; Seg99 3→8.
+* **Guide coverage (sequence):** Seg13 89.3%; Seg14 94.4%; Seg95 83.3%; Seg99 66.2%.
+* **Prefix/suffix gaps (sequence):** Seg13 0/0 m; Seg14 0/0 m; Seg95 0/0 m; Seg99 0/2 m.
+* **Automated result:** Acceptance **FAIL** — part-count gates only (`seg13_parts_30`, `seg14_parts_30`, `seg95_parts_15`, `seg99_parts_6`). Coverage, heading, checksum, slot-count, and cross-lane gates pass.
+* **Manual-review status:** **PENDING MANUAL REVIEW** — enable *Connected accumulated lane observations* → *Road-guided continuous connection* on `http://localhost:3847/`.
+* **User manual viewer review, 2026-08-26.** User manual viewer review; screenshots supplied in chat but not indexed in repository. Seg13/14 lane strokes largely continuous but do not align accurately enough with accumulated dots. Seg99 lost almost entire grey road backdrop in initial M-051 integration (road layer improperly replaced). M-051 remains **PARTIAL**; not approved for checkpoint.
+* **Status:** **PARTIAL**
+* **Limitation:** Viewer-only; uncommitted; `Current frame` default; stroke-style splits still produce many parts; Segment 99 validated guide hides loop in experimental mode only.
+* **Project implication:** Sequence assignment fixes coverage and suffix gaps vs M-050; further part-merging needed before ACCEPTED EXPERIMENTAL.
+
+| Metric | Seg13 | Seg14 | Seg95 | Seg99 |
+| ------ | ----- | ----- | ----- | ----- |
+| renderedPartCount | 170 | 221 | 28 | 8 |
+| guideCoveragePct | 89.3% | 94.4% | 83.3% | 66.2% |
+| dedupVoteAssignmentPct | 46.0% | 57.2% | 30.3% | 28.1% |
+| prefixGapM / suffixGapM | 0 / 0 | 0 / 0 | 0 / 0 | 0 / 2 |
+| slotCountMatch | true | true | true | true (2 slots) |
+
+---
+
+### M-052 — Experimental lane-layer road-render isolation
+
+* **Goal:** Connected-accumulated lane modes add strokes only; normal road polygons, ribbon, dashed trajectory, and blue arrow remain identical across modes.
+* **Road disappearance cause:** M-051 integration hid `LocalRoadSurfaceRibbon` when `roadGuidedSequenceConnection` was active and replaced `_drawLocalVehiclePathOverlay` with `_drawValidatedGuideTrajectoryOverlay` drawing only `validTrajectoryRuns`.
+* **Surgical renderer correction:** Removed `hideRibbonForSequence`, restored full trajectory overlay path, removed validated-guide road replacement; lane invalid-interval message moved to connected-lane layer only.
+* **Canvas state isolation:** `_drawConnectedAccumulatedPolylines` wrapped in `ctx.save()` / `try` / `finally` with explicit `setLineDash([])` reset.
+* **Road-checksum parity:** `computeRoadDisplayInputChecksum` — trajectory, ribbon input, and polygon checksums identical across Current frame, sequence, all per-frame, and layer-off states (map inputs unchanged).
+* **Segment 99 result:** Normal malformed grey road restored; static lane lines remain absent over rejected guide intervals; lane warning text only.
+* **Test result:** `tests/connected_accumulated_display.test.js` tests 101–106; `road_layer_isolation_validation.json` automated parity **PASS**.
+* **Manual review (2026-08-26):** User confirmed Segment 99 grey road looks correct after M-053; road unchanged when switching Current frame ↔ Road-guided continuous connection (in uncommitted M-051 viewer). M-052 input-checksum gate alone was insufficient; M-053 checkpoint canvas comparison **0 / 706560** differing road pixels.
+* **Status:** **ACCEPTED EXPERIMENTAL** — mode isolation proven; checkpoint baseline road-pixel gate pass via **M-053**.
+
+---
+
+### M-053 — Checkpoint road-pixel regression (Segment 99)
+
+* **Goal:** Compare Segment 99 final road-only canvas pixels against checkpoint `1b3b1c82b818daa6a12bad409a0671fa30eaafe2`; restore earlier road appearance with smallest safe change; keep experimental lane layer additive.
+* **Baseline harness:** Detached worktree at `%TEMP%\Kommu-road-baseline-1b3b1c8`; task-owned ROOT server with baseline `public/` asset interception (port 3847 untouched).
+* **Viewer configuration:** `qlog_f449c_99.bz2`, local playback, point-accumulated geometry, mirror on (`mirrorRoadLateral=1`), connected layer off, timeline index 0, fit-to-view once, canvas 960×736 @ DPR 1.
+* **First proven divergence:** `resolveRoadDisplayCoords` in `lib/viewer_mirror_coords.js` / `public/viewer_mirror_coords.js` applied trajectory reflection to ribbon vertices without precomputed mirror coords (uncommitted integration). Checkpoint `roadGeometryToScreen` leaves canonical `(east,north)` when precomputed mirror absent.
+* **Root cause class:** **mirror-coordinate selection** — opt-in trajectory fallback distorted ribbon on Segment 99’s malformed trajectory loop; input checksums unchanged.
+* **Surgical correction:** `useTrajectoryFallback: false` in `roadGeometryToScreen` / `_mirrorRoadPoint`; trajectory fallback requires explicit `useTrajectoryFallback: true`; reference-pose fallback opt-in for near-field points.
+* **Input checksum comparison (baseline = current):** `mapChecksum` `2bd1a4a8`, `trajectoryChecksum` `4649e2e3`, `ribbonInputChecksum` `1351af67`, `roadPolygonChecksum` `779e3d5a` — identical across baseline, before, and after captures.
+* **Road-only pixel comparison:**
+
+| Comparison | Differing pixels | % | Road checksum |
+|------------|------------------|---|---------------|
+| baseline vs current_before (broken mirror) | 7668 / 706560 | 1.085% | `145138bf` vs `3a00088f` |
+| baseline vs current_after (repair) | 0 / 706560 | 0.000% | `145138bf` vs `145138bf` |
+| current_before vs current_after | 7668 / 706560 | 1.085% | — |
+
+* **Control segments (ribbon canonical vs trajectory delta, mirror on):** Seg0/13/14/95/99 all show up to 15.00 m vertex delta when trajectory fallback is enabled — same mirror-selection defect class. After repair, all segments align with checkpoint canonical ribbon contract; pixel capture run on Seg99 only (bounded runtime).
+* **M-051 lane isolation:** Sequence lane checksum stable across mode toggles (test 108); `verify_connected_accumulated_runtime.js` road isolation **PASS**; lane part-count gates unchanged **FAIL** (pre-existing).
+* **Focused tests:** 127 pass (`connected_accumulated_display` 114 + `segment_mirror_display` 13); new tests 107–109 and mirror ribbon parity cases.
+* **Remaining limitation:** Segment 99 experimental static lane may remain sparse over rejected guide intervals (M-051 limitation, separate from road repair).
+* **Manual review (2026-08-26):** User confirmed Segment 99 road correct; mode-switch road parity pass; checkpoint canvas **0 / 706560** pixel diff vs `1b3b1c8`.
+* **Status:** **ACCEPTED EXPERIMENTAL** (checkpointed in commit `restore canonical mirrored road rendering`)
 
 ---
 

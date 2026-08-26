@@ -520,6 +520,63 @@ Reproducible experiments with configuration, scope, commands, metrics, interpret
 
 ---
 
+## E-039: Road-guided ranked connection (**EXP**)
+
+| Field | Value |
+|-------|-------|
+| **Ledger ID** | M-050 |
+| **Classification** | **EXP** |
+| **Configuration** | `road-guided-ranked-connection-v1`; viewer mode `roadGuidedRankedConnection` |
+| **Command** | `node scripts/verify_connected_accumulated_runtime.js` |
+| **Segments** | 13, 14, 95, 99 |
+| **Result** | Automated acceptance **FAIL**; Seg14 guide coverage 61.8% (vs 0.49% anchor dot connection); Seg13 48.8%; assignment 37–52% |
+| **Interpretation** | Rank-by-bin without anchor improves Seg14 vs M-046; coverage/assignment gates not met |
+| **Evidence** | `reports/connected_accumulated/runtime/road_guided_ranked_validation.json` |
+
+---
+
+## E-040: Road-guided sequence connection (**EXP**)
+
+| Field | Value |
+|-------|-------|
+| **Ledger ID** | M-051 |
+| **Classification** | **EXP** |
+| **Configuration** | `road-guided-sequence-connection-v1`; viewer mode `roadGuidedSequenceConnection` |
+| **Command** | `node scripts/verify_connected_accumulated_runtime.js` |
+| **Segments** | 13, 14, 95, 99 |
+| **Result** | Automated acceptance **FAIL** (part-count gates); guide coverage 66–94%; suffix gaps resolved on 13/14 |
+| **Interpretation** | Sequence assignment fixes M-050 fragmentation in coverage/gaps; stroke splits still yield too many parts |
+| **Evidence** | `reports/connected_accumulated/runtime/road_guided_sequence_validation.json` |
+
+---
+
+## E-041: Road-layer isolation for experimental lane modes (**EXP**)
+
+| Field | Value |
+|-------|-------|
+| **Ledger ID** | M-052 |
+| **Classification** | **EXP** |
+| **Configuration** | Road render path unified across connected-accumulated modes |
+| **Command** | `node scripts/verify_connected_accumulated_runtime.js` |
+| **Segments** | 13, 14, 95, 99 |
+| **Result** | Road display input checksum parity **PASS** across modes; user manual: mode parity pass but Seg99 ≠ checkpoint road |
+| **Evidence** | `reports/connected_accumulated/runtime/road_layer_isolation_validation.json` |
+
+---
+
+## E-042: Checkpoint road-pixel regression repair (**EXP**)
+
+| Field | Value |
+|-------|-------|
+| **Ledger ID** | M-053 |
+| **Classification** | **EXP** |
+| **Configuration** | Checkpoint `1b3b1c82`; mirror on; connected layer off; Seg99 timeline 0 |
+| **Command** | `node scripts/capture_segment99_road_regression.js all` |
+| **Result** | Baseline vs after **0.000%** road-only pixels; user manual review pass; checkpointed |
+| **Evidence** | `reports/connected_accumulated/runtime/segment99_road_regression/` |
+
+---
+
 ## Reproduction Notes
 
 1. Experimental overlays in E-008–E-013 were run by the read-only investigation runner; they do **not** modify `lib/stage19_spec/config.js`.

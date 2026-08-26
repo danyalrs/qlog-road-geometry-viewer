@@ -27,7 +27,7 @@
 
 | Layer / work | Status | Notes |
 |--------------|--------|-------|
-| Connected accumulated modes | **ES** — REJECTED / PARTIAL | Raw/robust/road-guided v1/dot **REJECTED**; consensus v2/road-guided v2 **PARTIAL**; per-frame/current-frame **checkpointed** — ledger M-035–M-046 |
+| Connected accumulated modes | **ES** — REJECTED / PARTIAL | Raw/robust/road-guided v1/dot **REJECTED**; ranked connection **PARTIAL** (M-050); consensus v2/road-guided v2 **PARTIAL**; per-frame/current-frame **checkpointed** — ledger M-035–M-050 |
 | Segment 0 mirror display correction | **ES** — ACCEPTED EXPERIMENTAL (uncommitted) | `segment0_mirror_validation.json`; production stored mirror correct |
 | Candidate amber-line display layer | **ES** | `public/candidate_layer_display.js` |
 | Hybrid lane export | **ES** — paused | `lib/hybrid_lane_export*.js`; deliverables under `deliverables/hybrid_lane_map_v1/` |
@@ -49,7 +49,8 @@ Sparse ~0.5 Hz qlog modelV2 evidence, strict support gates, and unsafe raw lane-
 
 ### Next recommended work (not completed)
 
-**Rank-by-bin Road-guided dot connection:** cluster all eligible dots at every trajectory bin, assign by lateral rank without anchor propagation, smooth d(s), count prefix/internal/suffix gaps, and exclude invalid trajectory loops. See ledger recommended-next section.
+- **Checkpoint road-pixel regression (M-053)** — **ACCEPTED EXPERIMENTAL** — checkpointed; Seg99 road restored (0 / 706560 pixels vs `1b3b1c8`)
+- **Road-guided sequence connection (M-051)** — **PARTIAL** — uncommitted; not checkpoint-approved
 
 Other follow-ups: calibrated video or higher-rate evidence before video mapping; optional mirror-fix checkpoint commit (viewer-only).
 

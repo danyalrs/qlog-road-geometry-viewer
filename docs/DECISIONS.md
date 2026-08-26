@@ -541,6 +541,17 @@ Major technical decisions with context, alternatives, evidence, risks, and curre
 
 ---
 
+## D-045: Canonical mirrored road geometry contract
+
+| Field | Detail |
+|-------|--------|
+| **Context** | Implicit trajectory-derived mirror fallback on road-ribbon vertices distorted Segment 99 grey road while map input checksums stayed identical |
+| **Decision** | Road polygons and road-ribbon vertices use canonical segment-local coordinates or explicitly stored mirrored coordinates. Trajectory-derived mirror fallback must be explicitly requested (`useTrajectoryFallback: true`) and must never be applied implicitly to road geometry. Lane/near-field points may use separate opt-in reference-pose fallback. |
+| **Evidence** | `reports/connected_accumulated/runtime/segment99_road_regression/`; ledger **M-053**; commit `restore canonical mirrored road rendering` |
+| **Status** | **Active** — renderer-coordinate contract only; not a lane-mapping algorithm |
+
+---
+
 ## D-044: Recommended next method — rank-by-bin road-guided dot connection
 
 | Field | Detail |
