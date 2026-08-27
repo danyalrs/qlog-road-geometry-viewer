@@ -1,10 +1,24 @@
 # Development Log
 
-**Last updated:** 2026-08-26
+**Last updated:** 2026-08-27
 
 Chronological record of confirmed work. Entries cite checkpoints, reports, audits, or source where possible. Failed or superseded work is recorded as such.
 
 **Update rule:** Append a dated entry after every meaningful implementation, investigation, experiment, validation, or specification task. Preserve all prior history.
+
+
+## 2026-08-27 — Segment 0 exact source-hash display correction (accepted)
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Correct Segment 0 mirrored display through immutable compressed-qlog SHA-256 only |
+| **Rejected** | Heuristic activation, query-flag experiment, road-only Candidate B, global policy selector |
+| **Correction** | `config/viewer_display_corrections.json` — one entry; `fullSegmentLocalLateralReflection` when mirror checked |
+| **SHA-256** | `9ddfc49b6061357e648a096d13749e30f9597827fd86786951241f098ea29fa5` |
+| **Manual review** | User confirmed via normal URL: Segment 0 curves left like synchronized video; grey road, lanes, trajectory, and arrow follow the same left curve |
+| **Regression** | 1 active / 91 inactive; 91/91 unaffected exact; Seg2/Seg99 restored baseline |
+| **Status** | **ACCEPTED** — viewer-display-only dataset correction; M-051 remains **PARTIAL** uncommitted |
+| **Evidence** | `reports/segment0_exact_correction/dataset_diff_summary.json`, `tests/segment0_exact_display_correction.test.js` |
 
 ---
 

@@ -60,6 +60,9 @@ class RoadRenderer {
     // disabled via ?mirrorRoadLateral=0. ?mirrorRoadLateral=1 keeps it on.
     this._mirrorRoadLateralDisplay = (urlParams?.get('mirrorRoadLateral') ?? '1') !== '0';
     this._mirrorDebug = urlParams?.get('mirrorDebug') === '1';
+    this._exactDisplayCorrectionActive = false;
+    this._sourceQlogSha256 = null;
+    this._displayCorrectionDiagnostics = null;
     this._obsDebugFrame = urlParams?.get('obsFrame') != null ? parseInt(urlParams.get('obsFrame'), 10) : null;
     this._obsDebugLane = urlParams?.get('obsLane') != null ? parseInt(urlParams.get('obsLane'), 10) : null;
     this._lastLocalArrowTangent = null;
@@ -149,6 +152,47 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     this._connectedAccumulatedStats = null;
     this._connectedAccumulatedMode = 'currentFrame';
     this._connectedAccumulatedDrawn = false;
+    this._refreshDisplayCorrectionState();
+  }
+
+  _refreshDisplayCorrectionState() {
+    const VDC = typeof window !== 'undefined' ? window.ViewerDisplayCorrections : null;
+    const map = this.stationaryLocalMap;
+    const sha = map?.sourceQlogSha256 ?? null;
+    this._sourceQlogSha256 = sha;
+    this._exactDisplayCorrectionActive = !!(VDC?.isExactDisplayCorrectionActive?.(
+      this._mirrorRoadLateralDisplay,
+      sha,
+    ));
+    this._displayCorrectionDiagnostics = VDC?.getDiagnostics?.(
+      this._mirrorRoadLateralDisplay,
+      sha,
+    ) ?? null;
+  }
+
+  _useExactDisplayCorrection() {
+    return !!this._exactDisplayCorrectionActive;
+  }
+
+  _segmentDisplayToScreen(east, north) {
+    if (this._useExactDisplayCorrection()) {
+      const VDC = typeof window !== 'undefined' ? window.ViewerDisplayCorrections : null;
+      const t = VDC?.transformDisplayPoint
+        ? VDC.transformDisplayPoint(east, north)
+        : { east, north: -north };
+      return this.worldToScreen(t.east, t.north);
+    }
+    return this.worldToScreen(east, north);
+  }
+
+  _mirrorAwareMapBounds(bounds) {
+    if (!bounds || !this._useExactDisplayCorrection()) return bounds;
+    const VDC = typeof window !== 'undefined' ? window.ViewerDisplayCorrections : null;
+    return VDC?.mirrorAwareBounds ? VDC.mirrorAwareBounds(bounds) : bounds;
+  }
+
+  getDisplayCorrectionDiagnostics() {
+    return this._displayCorrectionDiagnostics;
   }
 
   /**
@@ -457,6 +501,7 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
    * vehicle centreline. Set false to restore the current output exactly. */
   setMirrorRoadLateralDisplay(enabled) {
     this._mirrorRoadLateralDisplay = !!enabled;
+    this._refreshDisplayCorrectionState();
     if (this.displayMode === 'local') this.draw();
   }
 
@@ -550,8 +595,9 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     const mapBounds = this.stationaryLocalMap?.fitBounds
       || this.stationaryLocalMap?.bounds;
     if (mapBounds) {
-      this._localViewportBounds = mapBounds;
-      this.fitToView(mapBounds);
+      const bounds = this._mirrorAwareMapBounds(mapBounds);
+      this._localViewportBounds = bounds;
+      this.fitToView(bounds);
       return;
     }
     if (this._localViewportBounds) {
@@ -1172,9 +1218,19 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     if (this.playbackPose) {
       this._drawLocalPlaybackArrow(null, this.playbackPose);
       if (this.movementDisplay) {
+        const pose = this.playbackPose;
+        const disp = this._useExactDisplayCorrection()
+          ? (() => {
+            const VDC = typeof window !== 'undefined' ? window.ViewerDisplayCorrections : null;
+            const t = VDC?.transformDisplayPoint
+              ? VDC.transformDisplayPoint(pose.east, pose.north)
+              : { east: pose.east, north: -pose.north };
+            return { east: t.east, north: t.north };
+          })()
+          : pose;
         this._drawVehicleMovementIndicator(
-          this.playbackPose.east,
-          this.playbackPose.north,
+          disp.east,
+          disp.north,
           null,
         );
       }
@@ -2480,7 +2536,7 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
       LTO.drawTrajectoryOverlay(
         this.ctx,
         map.trajectory,
-        (east, north) => this.worldToScreen(east, north),
+        (east, north) => this._segmentDisplayToScreen(east, north),
       );
       return;
     }
@@ -2898,7 +2954,7 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     const PAS = window.PlaybackArrowScreen;
     if (!PAS || !pathPoints?.length || !arrowPose) return null;
     if (arrowPose.frozen && this._lastLocalArrowTangent) return this._lastLocalArrowTangent;
-    const screenPoints = PAS.projectPathPoints(pathPoints, (east, north) => this.worldToScreen(east, north));
+    const screenPoints = PAS.projectPathPoints(pathPoints, (east, north) => this._segmentDisplayToScreen(east, north));
     const tangent = PAS.resolveScreenPathTangent(screenPoints, arrowPose.pathIndex ?? 0, {
       lastValidDirection: this._lastLocalArrowTangent,
     });
@@ -2928,7 +2984,7 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     const PAS = window.PlaybackArrowScreen;
     const LP = window.LocalPlayback;
     if (!PAS || !arrowPose) return;
-    const screen = this.worldToScreen(arrowPose.east, arrowPose.north);
+    const screen = this._segmentDisplayToScreen(arrowPose.east, arrowPose.north);
     const centerX = screen.x;
     const centerY = screen.y;
 
@@ -2941,7 +2997,11 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
       ux = tangent.ux;
       uy = tangent.uy;
     } else if (Number.isFinite(arrowPose.headingDeg)) {
-      const headingRad = arrowPose.headingDeg * Math.PI / 180;
+      const VDC = typeof window !== 'undefined' ? window.ViewerDisplayCorrections : null;
+      const headingDeg = this._useExactDisplayCorrection() && VDC?.transformDisplayHeading
+        ? VDC.transformDisplayHeading(arrowPose.headingDeg).headingDeg
+        : arrowPose.headingDeg;
+      const headingRad = headingDeg * Math.PI / 180;
       const dx = Math.sin(headingRad);
       const dy = Math.cos(headingRad);
       const len = Math.hypot(dx, dy) || 1;

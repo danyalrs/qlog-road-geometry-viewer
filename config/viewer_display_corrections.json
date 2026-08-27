@@ -1,0 +1,7 @@
+{
+  "9ddfc49b6061357e648a096d13749e30f9597827fd86786951241f098ea29fa5": {
+    "correction": "fullSegmentLocalLateralReflection",
+    "scope": "viewerDisplayOnly",
+    "reason": "Segment 0 road/lane coordinate provenance mismatch confirmed against synchronized video"
+  }
+}

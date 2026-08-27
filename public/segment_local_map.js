@@ -226,6 +226,20 @@ function resolveSegmentReferencePose({
   return null;
 }
 
+
+function resolveSourceQlogSha256(processedData, chunkId) {
+  const audits = processedData?.fileAudits || [];
+  if (!audits.length) return null;
+  const chunk = processedData?.routeChunks?.find((c) => c.chunkId === chunkId)
+    ?? processedData?.routeChunks?.[0];
+  const primaryFile = chunk?.files?.[0]
+    ?? processedData?.frames?.find((f) => f.chunkId === chunkId)?.sourceFile
+    ?? audits[0]?.filename;
+  const audit = audits.find((a) => a.filename === primaryFile) || audits[0];
+  const sha = audit?.sha256;
+  return typeof sha === 'string' ? sha.trim().toLowerCase() : null;
+}
+
 function resolveActiveChunkPass(processedData, timelineIndex) {
   const frames = processedData?.frames || [];
   const timeline = processedData?.timeline || [];
@@ -1156,6 +1170,7 @@ function buildSegmentLocalMap(processedData, options = {}) {
       laneFragmentCount: 0,
       edgeFragmentCount: 0,
       trajectoryPointCount: 0,
+      sourceQlogSha256: resolveSourceQlogSha256(processedData, chunkId),
     };
   }
 
@@ -1298,6 +1313,7 @@ function buildSegmentLocalMap(processedData, options = {}) {
     outlierFragmentCount: outlierFragments.length,
     outlierFragments,
     outlierMeta,
+    sourceQlogSha256: resolveSourceQlogSha256(processedData, chunkId),
   };
 }
 
@@ -1382,6 +1398,7 @@ const api = {
   transformPolylineToSegmentLocal,
   resolveSegmentReferencePose,
   resolveActiveChunkPass,
+  resolveSourceQlogSha256,
   buildSegmentLocalMap,
   normalizeGeometrySource,
   buildLaneFragmentsForSource,

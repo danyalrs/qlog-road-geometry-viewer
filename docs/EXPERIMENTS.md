@@ -1,6 +1,6 @@
 # Experiments and Measurements
 
-**Last updated:** 2026-08-26
+**Last updated:** 2026-08-27
 
 **Ledger cross-reference:** Detailed method IDs (**M-001** …) are in [METHOD_EVIDENCE_LEDGER.md](./METHOD_EVIDENCE_LEDGER.md).
 
@@ -574,6 +574,19 @@ Reproducible experiments with configuration, scope, commands, metrics, interpret
 | **Command** | `node scripts/capture_segment99_road_regression.js all` |
 | **Result** | Baseline vs after **0.000%** road-only pixels; user manual review pass; checkpointed |
 | **Evidence** | `reports/connected_accumulated/runtime/segment99_road_regression/` |
+
+
+### E-035: Segment 0 exact source-hash display correction (2026-08-27)
+
+| Field | Value |
+|-------|-------|
+| **Ledger ID** | M-055 |
+| **Classification** | Dataset-specific viewer display correction |
+| **Rejected** | Heuristic activation (1-of-92 inference), query-flag experiment, road-only Candidate B |
+| **Active fix** | `fullSegmentLocalLateralReflection` keyed by qlog SHA-256 `9ddfc49b…` when mirror checked |
+| **Scope** | Viewer display only; processing unchanged |
+| **Regression** | 91/91 unaffected exact; Seg2/Seg99 gates pass |
+| **Status** | **ACCEPTED** — manual review passed 2026-08-27; normal URL `http://localhost:3847/` |
 
 ---
 

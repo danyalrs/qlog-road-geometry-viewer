@@ -1,6 +1,6 @@
 # Current Status
 
-**Last updated:** 2026-08-26
+**Last updated:** 2026-08-27
 **Classification key:** Each item is tagged — **VP** verified production, **FV** fixture-validated, **ES** experimental sensitivity, **UR** unsupported real-dataset behaviour, **PW** planned work.
 
 **Method ledger:** Full retrospective reconstruction with evidence IDs is in [METHOD_EVIDENCE_LEDGER.md](./METHOD_EVIDENCE_LEDGER.md).
@@ -28,7 +28,7 @@
 | Layer / work | Status | Notes |
 |--------------|--------|-------|
 | Connected accumulated modes | **ES** — REJECTED / PARTIAL | Raw/robust/road-guided v1/dot **REJECTED**; ranked connection **PARTIAL** (M-050); consensus v2/road-guided v2 **PARTIAL**; per-frame/current-frame **checkpointed** — ledger M-035–M-050 |
-| Segment 0 mirror display correction | **ES** — ACCEPTED EXPERIMENTAL (uncommitted) | `segment0_mirror_validation.json`; production stored mirror correct |
+| Segment 0 mirror display correction | **VP** — ACCEPTED (manual 2026-08-27) | Exact SHA-256 manifest `9ddfc49b…`; normal URL; road/lanes/trajectory/arrow curve left together |
 | Candidate amber-line display layer | **ES** | `public/candidate_layer_display.js` |
 | Hybrid lane export | **ES** — paused | `lib/hybrid_lane_export*.js`; deliverables under `deliverables/hybrid_lane_map_v1/` |
 | Lane-mapping quality audits | **ES** — diagnostic | `lib/lane_mapping_quality_audit.js`; reports under `reports/lane_mapping_quality/` |

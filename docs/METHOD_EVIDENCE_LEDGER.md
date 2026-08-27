@@ -1197,6 +1197,18 @@ This addresses M-046 failures where anchor propagation produced 100% slot-span b
 * **Manual review (2026-08-26):** User confirmed Segment 99 road correct; mode-switch road parity pass; checkpoint canvas **0 / 706560** pixel diff vs `1b3b1c8`.
 * **Status:** **ACCEPTED EXPERIMENTAL** (checkpointed in commit `restore canonical mirrored road rendering`)
 
+
+#### M-055 exact Segment 0 source-hash display correction (2026-08-27)
+
+* **Rejected:** Heuristic activation condition; `?segment0RoadFixExperiment=1`; dynamic `segment0_road_mirror_fix.js` loading; road-only and global mirror experiments.
+* **Correction:** `config/viewer_display_corrections.json` — one entry keyed by qlog SHA-256 `9ddfc49b6061357e648a096d13749e30f9597827fd86786951241f098ea29fa5`.
+* **Activation:** `mirrorRoadLateralDisplayChecked && manifest[sourceQlogSha256].correction === fullSegmentLocalLateralReflection`.
+* **Transform:** canonical east unchanged, north negated; all display layers via `_useExactDisplayCorrection()`.
+* **Manual review:** User confirmed Segment 0 curves left matching synchronized video; grey road, lanes, trajectory, and arrow follow the same left curve through the normal viewer URL.
+* **Regression:** 1 active / 91 inactive; 91/91 unaffected match restored baseline; Seg2/Seg99 exact.
+* **Status:** **ACCEPTED** — dataset-specific source correction, not a general lane-mapping method; M-051 **PARTIAL** unchanged.
+* **Evidence:** `tests/segment0_exact_display_correction.test.js`, `reports/segment0_exact_correction/dataset_diff_summary.json`
+
 ---
 
 *For methods marked **—** in the summary commit column, evidence exists in uncommitted working tree or reports only. Viewer diagnostic layers are not confirmed mapping. For Stage 19 / Stage 20 history see `docs/DEVELOPMENT_LOG.md` and `docs/DECISIONS.md`.*

@@ -33,6 +33,13 @@ app.use((_req, res, next) => {
   next();
 });
 
+app.use('/config', express.static(path.join(ROOT, 'config'), {
+  etag: false,
+  lastModified: false,
+  setHeaders(res) {
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate');
+  },
+}));
 app.use("/vv", express.static(path.join(ROOT, 'reports', 'video_verification'), { setHeaders: (res) => { res.setHeader("Cache-Control", "no-store"); } }));
 app.use(express.static(path.join(ROOT, 'public'), {
   etag: false,
