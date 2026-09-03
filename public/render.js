@@ -60,6 +60,13 @@ class RoadRenderer {
     // disabled via ?mirrorRoadLateral=0. ?mirrorRoadLateral=1 keeps it on.
     this._mirrorRoadLateralDisplay = (urlParams?.get('mirrorRoadLateral') ?? '1') !== '0';
     this._mirrorDebug = urlParams?.get('mirrorDebug') === '1';
+    this._layerAttributionEnabled = urlParams?.get('debugLayerAttribution') === '1';
+    this._layerAttributionSolo = urlParams?.get('debugLayerSolo') || null;
+    this._layerAttributionDisable = new Set(
+      (urlParams?.get('debugLayerDisable') || '').split(',').map((s) => s.trim()).filter(Boolean),
+    );
+    this._layerAttributionPasses = [];
+    this._layerAttributionDrawOrder = [];
     this._exactDisplayCorrectionActive = false;
     this._sourceQlogSha256 = null;
     this._displayCorrectionDiagnostics = null;
@@ -171,10 +178,102 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
   }
 
   _useExactDisplayCorrection() {
+    const map = this.stationaryLocalMap;
+    if (map?.suppressMapWideDisplayCorrection || map?.boundaryAnchoredOrientationActive) {
+      return false;
+    }
     return !!this._exactDisplayCorrectionActive;
   }
 
-  _segmentDisplayToScreen(east, north) {
+  _usesCombinedPlacedFrame(point = null) {
+    const map = this.stationaryLocalMap;
+    if (!map?.boundaryAnchoredOrientationActive) return false;
+    if (point?.coordinateFrame === 'combinedPlaced') return true;
+    return map.combinedCoordinateFrame === 'combinedPlaced';
+  }
+
+  _buildCombinedPlacedArrowContext(arrowPose) {
+    if (!this._usesCombinedPlacedFrame() || !arrowPose) return null;
+    const map = this.stationaryLocalMap;
+    if (!map) return null;
+    const traj = map.trajectory || [];
+    let tp = null;
+    if (Number.isFinite(arrowPose.pathIndex)) {
+      const idx = Math.min(Math.max(0, Math.round(arrowPose.pathIndex)), Math.max(0, traj.length - 1));
+      tp = traj[idx];
+    } else if (Number.isFinite(arrowPose.timelineIndex)) {
+      const idx = Math.min(Math.max(0, arrowPose.timelineIndex), Math.max(0, traj.length - 1));
+      tp = traj[idx];
+    }
+    const coordinateFrame = tp?.coordinateFrame === 'combinedPlaced'
+      ? 'combinedPlaced'
+      : (map.combinedCoordinateFrame === 'combinedPlaced' ? 'combinedPlaced' : null);
+    if (coordinateFrame !== 'combinedPlaced') return null;
+    return {
+      coordinateFrame: 'combinedPlaced',
+      placedEast: arrowPose.east,
+      placedNorth: arrowPose.north,
+      east: arrowPose.east,
+      north: arrowPose.north,
+      sourceFile: tp?.sourceFile ?? null,
+      sourceQlogSha256: tp?.sourceQlogSha256
+        ?? (tp?.sourceFile ? map.sourceSha256ByFile?.[tp.sourceFile] : null)
+        ?? null,
+    };
+  }
+
+  _projectArrowPathPointToScreen(pathPoint) {
+    const east = pathPoint?.east ?? 0;
+    const north = pathPoint?.north ?? 0;
+    if (this._usesCombinedPlacedFrame(pathPoint) && pathPoint?.coordinateFrame === 'combinedPlaced') {
+      return this._segmentDisplayToScreen(
+        Number.isFinite(pathPoint.placedEast) ? pathPoint.placedEast : east,
+        Number.isFinite(pathPoint.placedNorth) ? pathPoint.placedNorth : north,
+        pathPoint,
+      );
+    }
+    return this._segmentDisplayToScreen(east, north);
+  }
+
+  _projectRoadGeometryToScreen(east, north, mirroredEast = null, mirroredNorth = null, point = null) {
+    if (this._usesCombinedPlacedFrame(point)) {
+      const e = Number.isFinite(point?.placedEast) ? point.placedEast : east;
+      const n = Number.isFinite(point?.placedNorth) ? point.placedNorth : north;
+      return this.worldToScreen(e, n);
+    }
+    const VMC = typeof window !== 'undefined' ? window.ViewerMirrorCoords : null;
+    if (VMC?.resolveRoadDisplayCoords) {
+      const resolved = VMC.resolveRoadDisplayCoords(
+        east,
+        north,
+        mirroredEast,
+        mirroredNorth,
+        this._mirrorRoadLateralDisplay,
+        {
+          trajectory: this.stationaryLocalMap?.trajectory,
+          referencePose: this.stationaryLocalMap?.referencePose,
+          useTrajectoryFallback: false,
+        },
+      );
+      return this.worldToScreen(resolved.east, resolved.north);
+    }
+    if (!this._mirrorRoadLateralDisplay) {
+      return this.worldToScreen(east, north);
+    }
+    const me = mirroredEast != null ? mirroredEast : east;
+    const mn = mirroredNorth != null ? mirroredNorth : north;
+    return this.worldToScreen(me, mn);
+  }
+
+  _segmentDisplayToScreen(east, north, point = null) {
+    if (
+      this._usesCombinedPlacedFrame(point)
+      && point?.coordinateFrame === 'combinedPlaced'
+    ) {
+      const e = Number.isFinite(point.placedEast) ? point.placedEast : east;
+      const n = Number.isFinite(point.placedNorth) ? point.placedNorth : north;
+      return this.worldToScreen(e, n);
+    }
     if (this._useExactDisplayCorrection()) {
       const VDC = typeof window !== 'undefined' ? window.ViewerDisplayCorrections : null;
       const t = VDC?.transformDisplayPoint
@@ -193,6 +292,106 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
 
   getDisplayCorrectionDiagnostics() {
     return this._displayCorrectionDiagnostics;
+  }
+
+  _layerAttributionShouldDraw(layerId) {
+    if (!this._layerAttributionEnabled) return true;
+    if (this._layerAttributionDisable.has(layerId)) return false;
+    if (this._layerAttributionSolo) return this._layerAttributionSolo === layerId;
+    return true;
+  }
+
+  _layerAttributionBeginPass(layerId, meta = {}) {
+    if (!this._layerAttributionEnabled) return null;
+    const w = this.canvas.width;
+    const h = this.canvas.height;
+    return {
+      layerId,
+      meta,
+      order: this._layerAttributionPasses.length + 1,
+      before: this.ctx.getImageData(0, 0, w, h),
+      width: w,
+      height: h,
+    };
+  }
+
+  _layerAttributionEndPass(state) {
+    if (!state) return;
+    const CLA = typeof window !== 'undefined' ? window.CanvasLayerAttribution : null;
+    if (!CLA?.diffImageDataSized) return;
+    const after = this.ctx.getImageData(0, 0, state.width, state.height);
+    const diff = CLA.diffImageDataSized(state.before.data, after.data, state.width, state.height);
+    let passPngDataUrl = null;
+    if (diff.changedPixelCount > 0 && CLA.maskToRgba) {
+      const passCanvas = document.createElement('canvas');
+      passCanvas.width = state.width;
+      passCanvas.height = state.height;
+      const pctx = passCanvas.getContext('2d');
+      const rgba = CLA.maskToRgba(diff.changedMask, after.data, state.width, state.height);
+      pctx.putImageData(new ImageData(rgba, state.width, state.height), 0, 0);
+      passPngDataUrl = passCanvas.toDataURL('image/png');
+    }
+    const entry = {
+      drawOrderIndex: state.order,
+      layerId: state.layerId,
+      drawFunction: state.meta.drawFunction ?? null,
+      owningFile: state.meta.owningFile ?? 'public/render.js',
+      rendererStateField: state.meta.rendererStateField ?? null,
+      uiControl: state.meta.uiControl ?? null,
+      enabled: state.meta.enabled ?? null,
+      geometryCollection: state.meta.geometryCollection ?? null,
+      geometryObjectCount: state.meta.geometryObjectCount ?? 0,
+      pointCount: state.meta.pointCount ?? 0,
+      sourceProvenanceCoveragePct: state.meta.sourceProvenanceCoveragePct ?? 0,
+      coordinateFramePopulation: state.meta.coordinateFramePopulation ?? {},
+      strokeColours: state.meta.strokeColours ?? [],
+      fillColours: state.meta.fillColours ?? [],
+      lineWidth: state.meta.lineWidth ?? null,
+      alpha: state.meta.alpha ?? null,
+      dashState: state.meta.dashState ?? null,
+      changedPixelCount: diff.changedPixelCount,
+      pixelBoundingBox: diff.bbox,
+      dominantColours: diff.dominantColours,
+      passPngDataUrl,
+    };
+    this._layerAttributionPasses.push(entry);
+    this._layerAttributionDrawOrder.push({
+      drawOrderIndex: entry.drawOrderIndex,
+      layerId: entry.layerId,
+      drawFunction: entry.drawFunction,
+      geometryCollection: entry.geometryCollection,
+      changedPixelCount: entry.changedPixelCount,
+    });
+  }
+
+  _attrPass(layerId, meta, fn) {
+    if (!this._layerAttributionShouldDraw(layerId)) return;
+    const state = this._layerAttributionBeginPass(layerId, meta);
+    fn();
+    this._layerAttributionEndPass(state);
+  }
+
+  getLayerAttributionExport() {
+    return {
+      enabled: this._layerAttributionEnabled,
+      solo: this._layerAttributionSolo,
+      disabled: [...this._layerAttributionDisable],
+      passes: this._layerAttributionPasses.map((p) => {
+        const { passPngDataUrl, ...rest } = p;
+        return rest;
+      }),
+      drawOrder: this._layerAttributionDrawOrder,
+    };
+  }
+
+  getLayerAttributionPassPng(layerId) {
+    const pass = this._layerAttributionPasses.find((p) => p.layerId === layerId);
+    return pass?.passPngDataUrl ?? null;
+  }
+
+  resetLayerAttributionPasses() {
+    this._layerAttributionPasses = [];
+    this._layerAttributionDrawOrder = [];
   }
 
   /**
@@ -405,29 +604,8 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
    * The arrow, vehiclePath, GPS trajectory and all vehicle-centric elements
    * use worldToScreen unchanged.
    */
-  roadGeometryToScreen(east, north, mirroredEast = null, mirroredNorth = null) {
-    const VMC = typeof window !== 'undefined' ? window.ViewerMirrorCoords : null;
-    if (VMC?.resolveRoadDisplayCoords) {
-      const resolved = VMC.resolveRoadDisplayCoords(
-        east,
-        north,
-        mirroredEast,
-        mirroredNorth,
-        this._mirrorRoadLateralDisplay,
-        {
-          trajectory: this.stationaryLocalMap?.trajectory,
-          referencePose: this.stationaryLocalMap?.referencePose,
-          useTrajectoryFallback: false,
-        },
-      );
-      return this.worldToScreen(resolved.east, resolved.north);
-    }
-    if (!this._mirrorRoadLateralDisplay) {
-      return this.worldToScreen(east, north);
-    }
-    const me = mirroredEast != null ? mirroredEast : east;
-    const mn = mirroredNorth != null ? mirroredNorth : north;
-    return this.worldToScreen(me, mn);
+  roadGeometryToScreen(east, north, mirroredEast = null, mirroredNorth = null, point = null) {
+    return this._projectRoadGeometryToScreen(east, north, mirroredEast, mirroredNorth, point);
   }
 
   /**
@@ -651,6 +829,9 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
 
   draw() {
     const ctx = this.ctx;
+    if (this._layerAttributionEnabled) {
+      this.resetLayerAttributionPasses();
+    }
     ctx.clearRect(0, 0, this.w, this.h);
     ctx.fillStyle = '#f8f8f8';
     ctx.fillRect(0, 0, this.w, this.h);
@@ -971,9 +1152,25 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
       return;
     }
 
-    this._drawAxes();
+    this._attrPass('axes', {
+      drawFunction: '_drawAxes',
+      geometryCollection: 'canvasAxes',
+      enabled: true,
+    }, () => this._drawAxes());
 
     if (this.layers.roadSurface) {
+      this._attrPass('roadRibbon', {
+        drawFunction: '_drawStationaryLocalMap.roadRibbon',
+        rendererStateField: 'layers.roadSurface',
+        uiControl: 'layerRoadSurface',
+        enabled: this.layers.roadSurface,
+        geometryCollection: 'trajectory+edgeFragments',
+        geometryObjectCount: map?.trajectory?.length ?? 0,
+        pointCount: map?.trajectory?.length ?? 0,
+        coordinateFramePopulation: window.CanvasLayerAttribution?.summarizeCoordinateFrames?.(map?.trajectory) ?? {},
+        sourceProvenanceCoveragePct: window.CanvasLayerAttribution?.sourceProvenanceCoveragePct?.(map?.trajectory) ?? 0,
+        fillColours: ['rgba(100,116,139,0.42)'],
+      }, () => {
       const LRR = typeof window !== 'undefined' ? window.LocalRoadSurfaceRibbon : null;
       const trajectory = map?.trajectory;
       const edgeFragments = map?.edgeFragments;
@@ -1100,6 +1297,7 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
         roadSurfaceChecksum: map.roadSurfaceChecksum ?? null,
         drawInvocation: (this._roadSurfaceDrawStats?.drawInvocation ?? 0) + 1,
       };
+      });
     } else {
       this._roadSurfaceDrawStats = {
         elapsedIdx,
@@ -1113,20 +1311,46 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     }
 
     if (this.layers.edges) {
-      for (const edge of map.edgeFragments || []) {
-        if (edge.outlier && !this._outlierDebug) continue;
-        const color = edge.outlier ? 'rgba(220,38,38,0.5)' : '#16a34a';
-        this._drawPolyline(edge.points, color, edge.outlier ? 1.5 : 3, false, 15, true);
-      }
+      this._attrPass('roadEdges', {
+        drawFunction: '_drawStationaryLocalMap.edgeFragments',
+        rendererStateField: 'layers.edges',
+        uiControl: 'layerRoadEdges',
+        enabled: this.layers.edges,
+        geometryCollection: 'edgeFragments',
+        geometryObjectCount: map.edgeFragments?.length ?? 0,
+        pointCount: (map.edgeFragments || []).reduce((n, f) => n + (f.points?.length ?? 0), 0),
+        strokeColours: ['#16a34a'],
+      }, () => {
+        for (const edge of map.edgeFragments || []) {
+          if (edge.outlier && !this._outlierDebug) continue;
+          const color = edge.outlier ? 'rgba(220,38,38,0.5)' : '#16a34a';
+          this._drawPolyline(edge.points, color, edge.outlier ? 1.5 : 3, false, 15, true);
+        }
+      });
     }
 
-    if (this.layers.fused) {
+    if (this.layers.fused && this.localGeometryMode !== 'pointAccumulated') {
       const mode = this.localGeometryMode;
       const debugMode = mode === 'cleanedDebug';
       const isolationActive = this._obsIsolationActive() && (mode === 'observations' || mode === 'pointAccumulated');
       const frags = isolationActive
         ? (map.laneFragments || []).filter((l) => this._obsMatches(l.sourceFrameIndex, l.laneIndex))
         : (map.laneFragments || []);
+      this._attrPass('stationaryMapLanes', {
+        drawFunction: '_drawStationaryLocalMap.laneFragments',
+        rendererStateField: 'layers.fused',
+        uiControl: 'layerFusedLanes',
+        enabled: this.layers.fused,
+        geometryCollection: 'laneFragments',
+        geometryObjectCount: frags.length,
+        pointCount: frags.reduce((n, f) => n + (f.points?.length ?? 0), 0),
+        coordinateFramePopulation: window.CanvasLayerAttribution?.summarizeCoordinateFrames?.(
+          frags.flatMap((f) => f.points || []),
+        ) ?? {},
+        sourceProvenanceCoveragePct: window.CanvasLayerAttribution?.sourceProvenanceCoveragePct?.(
+          frags.flatMap((f) => f.points || []),
+        ) ?? 0,
+      }, () => {
       frags.forEach((lane, i) => {
         if (lane.outlier && !this._outlierDebug) return;
         let color;
@@ -1197,6 +1421,7 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
           );
         }
       }
+      });
     }
 
     if (this._outlierDebug) {
@@ -1213,9 +1438,22 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
       this._drawPointAccumulatedGeometry(map, elapsedIdx);
     }
 
-    this._drawLocalVehiclePathOverlay(map);
+    this._attrPass('trajectory', {
+      drawFunction: '_drawLocalVehiclePathOverlay',
+      geometryCollection: 'trajectory',
+      geometryObjectCount: map?.trajectory?.length ?? 0,
+      pointCount: map?.trajectory?.length ?? 0,
+      strokeColours: ['#94a3b8'],
+      dashState: [8, 6],
+    }, () => this._drawLocalVehiclePathOverlay(map));
 
     if (this.playbackPose) {
+      this._attrPass('arrow', {
+        drawFunction: '_drawLocalPlaybackArrow',
+        geometryCollection: 'playbackPose',
+        geometryObjectCount: 1,
+        pointCount: 1,
+      }, () => {
       this._drawLocalPlaybackArrow(null, this.playbackPose);
       if (this.movementDisplay) {
         const pose = this.playbackPose;
@@ -1234,6 +1472,7 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
           null,
         );
       }
+      });
     }
 
     this._drawGeometryDiagnosticOverlays(map);
@@ -1385,9 +1624,21 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     const showDots = bMode !== 'boundaries';
 
     if (showDots) {
+      this._attrPass('pointAccumulatedLanes', {
+        drawFunction: '_drawPointAccumulatedGeometry.dots',
+        rendererStateField: 'layers.fused',
+        uiControl: 'layerFusedLanes',
+        enabled: this.layers.fused,
+        geometryCollection: 'pointAccumulated.points',
+        geometryObjectCount: pts.length,
+        pointCount: pts.length,
+        coordinateFramePopulation: window.CanvasLayerAttribution?.summarizeCoordinateFrames?.(pts) ?? {},
+        sourceProvenanceCoveragePct: window.CanvasLayerAttribution?.sourceProvenanceCoveragePct?.(pts) ?? 0,
+        fillColours: ['rgba(124,58,237,0.9)', 'rgba(8,145,178,0.9)', 'rgba(148,163,184,0.9)'],
+      }, () => {
       for (const pt of pts) {
         if (!Number.isFinite(pt.localEast) || !Number.isFinite(pt.localNorth)) continue;
-        const p = this.roadGeometryToScreen(pt.localEast, pt.localNorth, pt.mirroredLocalEast, pt.mirroredLocalNorth);
+        const p = this._projectRoadGeometryToScreen(pt.localEast, pt.localNorth, pt.mirroredLocalEast, pt.mirroredLocalNorth, pt);
         let color = neutral;
         if (tintOn && pt.reliability?.combinedScore != null) {
           color = MappingReliability.tintColorForScore(pt.reliability.combinedScore, 0.9);
@@ -1403,51 +1654,101 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
         ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
         ctx.fill();
       }
+      });
     }
 
     if (this.layers.connectedAccumulated) {
-      this._drawConnectedAccumulatedPolylines(map, elapsedIdx, pts);
+      this._attrPass('connectedAccumulated', {
+        drawFunction: '_drawConnectedAccumulatedPolylines',
+        rendererStateField: 'layers.connectedAccumulated',
+        uiControl: 'layerConnectedAccumulated',
+        enabled: this.layers.connectedAccumulated,
+        geometryCollection: 'connectedAccumulatedPolylines',
+      }, () => this._drawConnectedAccumulatedPolylines(map, elapsedIdx, pts));
     }
 
     if (bMode === 'boundaries' || bMode === 'combined') {
-      this._drawExperimentalBoundaries(map, elapsedIdx, pts);
+      this._attrPass('experimentalBoundaries', {
+        drawFunction: '_drawExperimentalBoundaries',
+        uiControl: 'expBoundariesMode',
+        enabled: bMode !== 'off',
+        geometryCollection: 'experimentalBoundaries',
+      }, () => this._drawExperimentalBoundaries(map, elapsedIdx, pts));
     }
 
     if (this.layers.constructedFragments && typeof ConstructedFragments !== 'undefined') {
       const hybridActive = this.layers.fittedPolylines
         && map?.pointAccumulated?.hybridFittedBoundaries?.boundaries?.length;
       if (!hybridActive) {
-        this._drawConstructedFragments(map, elapsedIdx, pts);
+        this._attrPass('constructedFragments', {
+          drawFunction: '_drawConstructedFragments',
+          rendererStateField: 'layers.constructedFragments',
+          uiControl: 'layerConstructedFragments',
+          enabled: this.layers.constructedFragments,
+          geometryCollection: 'constructedFragments',
+          geometryObjectCount: map?.pointAccumulated?.constructedFragments?.fragments?.length ?? 0,
+          dashState: [6, 3],
+        }, () => this._drawConstructedFragments(map, elapsedIdx, pts));
       }
     }
 
     if (this.layers.joinCandidates && typeof LaneJoining !== 'undefined') {
-      this._drawJoinCandidates(map, elapsedIdx, pts);
+      this._attrPass('joinCandidates', {
+        drawFunction: '_drawJoinCandidates',
+        enabled: this.layers.joinCandidates,
+      }, () => this._drawJoinCandidates(map, elapsedIdx, pts));
     }
 
     if (this.layers.joinedPolylines && typeof LaneJoining !== 'undefined') {
-      this._drawJoinedPolylines(map, elapsedIdx, pts);
+      this._attrPass('joinedPolylines', {
+        drawFunction: '_drawJoinedPolylines',
+        rendererStateField: 'layers.joinedPolylines',
+        uiControl: 'layerJoinedPolylines',
+        enabled: this.layers.joinedPolylines,
+        geometryCollection: 'joinedPolylines',
+      }, () => this._drawJoinedPolylines(map, elapsedIdx, pts));
     }
 
     if (this.layers.fittedPolylines && typeof GraphFit !== 'undefined') {
       const hybrid = pa?.hybridFittedBoundaries;
       if (hybrid?.boundaries?.length) {
-        this._drawHybridFittedBoundaries(map, elapsedIdx, pts);
+        this._attrPass('hybridBoundaries', {
+          drawFunction: '_drawHybridFittedBoundaries',
+          rendererStateField: 'layers.fittedPolylines',
+          uiControl: 'layerFittedPolylines',
+          enabled: this.layers.fittedPolylines,
+          geometryCollection: 'hybridFittedBoundaries',
+          geometryObjectCount: hybrid.boundaries.length,
+          dashState: [5, 4],
+        }, () => this._drawHybridFittedBoundaries(map, elapsedIdx, pts));
       } else {
-        this._drawFittedPolylines(map, elapsedIdx, pts);
+        this._attrPass('fittedPolylines', {
+          drawFunction: '_drawFittedPolylines',
+          rendererStateField: 'layers.fittedPolylines',
+          enabled: this.layers.fittedPolylines,
+        }, () => this._drawFittedPolylines(map, elapsedIdx, pts));
       }
     }
 
     if (this.layers.fittedOutliers && typeof GraphFit !== 'undefined') {
-      this._drawFittedOutliers(map, elapsedIdx, pts);
+      this._attrPass('fittedOutliers', {
+        drawFunction: '_drawFittedOutliers',
+        enabled: this.layers.fittedOutliers,
+      }, () => this._drawFittedOutliers(map, elapsedIdx, pts));
     }
 
     if (this.layers.fittedUnverified && typeof GraphFit !== 'undefined') {
-      this._drawFittedUnverified(map, elapsedIdx, pts);
+      this._attrPass('fittedUnverified', {
+        drawFunction: '_drawFittedUnverified',
+        enabled: this.layers.fittedUnverified,
+      }, () => this._drawFittedUnverified(map, elapsedIdx, pts));
     }
 
     if (this.layers.fittedGaps && typeof GraphFit !== 'undefined') {
-      this._drawFittedGapMarkers(map, elapsedIdx, pts);
+      this._attrPass('fittedGaps', {
+        drawFunction: '_drawFittedGaps',
+        enabled: this.layers.fittedGaps,
+      }, () => this._drawFittedGapMarkers(map, elapsedIdx, pts));
     }
 
     if (tintOn) this._drawReliabilityLegend();
@@ -1529,7 +1830,7 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
         let moved = false;
         for (const pt of poly.points) {
           if (!Number.isFinite(pt.localEast) || !Number.isFinite(pt.localNorth)) continue;
-          const p = this.roadGeometryToScreen(pt.localEast, pt.localNorth, pt.mirroredLocalEast, pt.mirroredLocalNorth);
+          const p = this._projectRoadGeometryToScreen(pt.localEast, pt.localNorth, pt.mirroredLocalEast, pt.mirroredLocalNorth, pt);
           if (!moved) { ctx.moveTo(p.x, p.y); moved = true; }
           else ctx.lineTo(p.x, p.y);
         }
@@ -1749,11 +2050,14 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
    */
   _fittedVertexScreen(v) {
     if (v.east == null || v.north == null) return null;
+    if (v.coordinateFrame === 'combinedPlaced' || this._usesCombinedPlacedFrame(v)) {
+      return this._projectRoadGeometryToScreen(v.east, v.north, v.mirroredEast, v.mirroredNorth, v);
+    }
     if (v.coordinateFrame && v.coordinateFrame !== 'segmentLocal') return null;
     if (this._mirrorRoadLateralDisplay) {
       if (v.mirroredEast == null || v.mirroredNorth == null) return null;
     }
-    return this.roadGeometryToScreen(v.east, v.north, v.mirroredEast, v.mirroredNorth);
+    return this.roadGeometryToScreen(v.east, v.north, v.mirroredEast, v.mirroredNorth, v);
   }
 
   _strokeLocalPolyline(poly) {
@@ -1871,7 +2175,7 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
         let moved = false;
         for (const v of sec.vertices) {
           if (v.east == null || v.north == null) continue;
-          const p = this.roadGeometryToScreen(v.east, v.north, v.mirroredEast, v.mirroredNorth);
+          const p = this.roadGeometryToScreen(v.east, v.north, v.mirroredEast, v.mirroredNorth, v);
           if (!moved) { ctx.moveTo(p.x, p.y); moved = true; }
           else ctx.lineTo(p.x, p.y);
         }
@@ -1931,7 +2235,7 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
       let moved = false;
       for (const v of frag.points) {
         if (v.east == null || v.north == null) continue;
-        const p = this.roadGeometryToScreen(v.east, v.north, v.mirroredEast, v.mirroredNorth);
+        const p = this.roadGeometryToScreen(v.east, v.north, v.mirroredEast, v.mirroredNorth, v);
         if (!moved) { ctx.moveTo(p.x, p.y); moved = true; }
         else ctx.lineTo(p.x, p.y);
       }
@@ -2005,7 +2309,7 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
       let moved = false;
       for (const v of poly.joinedPoints) {
         if (v.east == null || v.north == null) continue;
-        const p = this.roadGeometryToScreen(v.east, v.north, v.mirroredEast, v.mirroredNorth);
+        const p = this.roadGeometryToScreen(v.east, v.north, v.mirroredEast, v.mirroredNorth, v);
         if (!moved) { ctx.moveTo(p.x, p.y); moved = true; }
         else ctx.lineTo(p.x, p.y);
       }
@@ -2860,7 +3164,7 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     if (!points?.length) return;
     const ctx = this.ctx;
     const toScreen = road
-      ? (p) => this.roadGeometryToScreen(p.east, p.north, p.mirroredEast, p.mirroredNorth)
+      ? (p) => this._projectRoadGeometryToScreen(p.east, p.north, p.mirroredEast, p.mirroredNorth, p)
       : (p) => this.worldToScreen(p.east, p.north);
     ctx.strokeStyle = color;
     ctx.lineWidth = width;
@@ -2954,7 +3258,9 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     const PAS = window.PlaybackArrowScreen;
     if (!PAS || !pathPoints?.length || !arrowPose) return null;
     if (arrowPose.frozen && this._lastLocalArrowTangent) return this._lastLocalArrowTangent;
-    const screenPoints = PAS.projectPathPoints(pathPoints, (east, north) => this._segmentDisplayToScreen(east, north));
+    const screenPoints = this._usesCombinedPlacedFrame()
+      ? pathPoints.map((pt) => this._projectArrowPathPointToScreen(pt))
+      : PAS.projectPathPoints(pathPoints, (e, n) => this._segmentDisplayToScreen(e, n));
     const tangent = PAS.resolveScreenPathTangent(screenPoints, arrowPose.pathIndex ?? 0, {
       lastValidDirection: this._lastLocalArrowTangent,
     });
@@ -2984,7 +3290,8 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     const PAS = window.PlaybackArrowScreen;
     const LP = window.LocalPlayback;
     if (!PAS || !arrowPose) return;
-    const screen = this._segmentDisplayToScreen(arrowPose.east, arrowPose.north);
+    const arrowCtx = this._buildCombinedPlacedArrowContext(arrowPose);
+    const screen = this._segmentDisplayToScreen(arrowPose.east, arrowPose.north, arrowCtx);
     const centerX = screen.x;
     const centerY = screen.y;
 
@@ -2998,7 +3305,8 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
       uy = tangent.uy;
     } else if (Number.isFinite(arrowPose.headingDeg)) {
       const VDC = typeof window !== 'undefined' ? window.ViewerDisplayCorrections : null;
-      const headingDeg = this._useExactDisplayCorrection() && VDC?.transformDisplayHeading
+      const skipHeadingCorrection = arrowCtx?.coordinateFrame === 'combinedPlaced';
+      const headingDeg = !skipHeadingCorrection && this._useExactDisplayCorrection() && VDC?.transformDisplayHeading
         ? VDC.transformDisplayHeading(arrowPose.headingDeg).headingDeg
         : arrowPose.headingDeg;
       const headingRad = headingDeg * Math.PI / 180;

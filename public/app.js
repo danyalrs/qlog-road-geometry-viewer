@@ -1,16 +1,57 @@
 /** Main application controller. */
 
 let processData = null;
+let lastProcessedSegmentSelection = [];
 let renderer = null;
 let playStepTimer = null;
 let playRafId = null;
 let playbackAnim = null;
+let routeTransition = {
+  state: 'idle',
+  pendingBoundaryIndex: null,
+  pendingBoundarySegmentId: null,
+  pendingBoundaryLocalTimeS: 0,
+  boundarySwitchToken: 0,
+  resumeAfterBoundary: false,
+  boundaryLoadingStartedAt: null,
+  frozenBoundaryIndex: null,
+  boundaryFrozenPose: null,
+  boundaryFrozenEast: null,
+  boundaryFrozenNorth: null,
+  frozenTimelineValue: null,
+  frozenLogMonoTime: null,
+  frozenTickCount: 0,
+  arrowMovementDuringBoundaryM: 0,
+  timelineMovementDuringBoundaryS: 0,
+  staleCallbackCount: 0,
+  bridgeCenterlinePoints: null,
+  bridgeMetadata: null,
+  bridgeProgress: 0,
+  bridgeStartTimestampMs: null,
+  bridgePausedAtMs: null,
+  bridgePausedDurationMs: 0,
+  bridgeDurationS: null,
+  bridgeLengthM: 0,
+  bridgeDistanceTravelledM: 0,
+  nextVideoReady: false,
+  arrowHeldAtBridgeEnd: false,
+  bridgeFromSourceFile: null,
+  bridgeToSourceFile: null,
+  bridgeFromTimelineIndex: null,
+  bridgeToTimelineIndex: null,
+  bridgeMissingVideo: false,
+  bridgeLastError: null,
+  bridgeTransitionLabel: null,
+};
 let playSpeed = 1;
 let localPlaybackVideo = null;
 let stationaryMapCache = new Map();
 let stationaryMapBuildCount = 0;
 let lastLocalPlaybackState = null;
 let connectedAccumulatedCache = null;
+let roadGuidedStaticCache = null;
+let roadGuidedRankedCache = null;
+let roadGuidedSequenceCache = null;
 
 const $ = (id) => document.getElementById(id);
 
@@ -96,6 +137,7 @@ function getLayers() {
     fittedOutliers: $('layerFittedOutliers')?.checked === true,
     fittedUnverified: $('layerFittedUnverified')?.checked === true,
     fittedGaps: $('layerFittedGaps')?.checked === true,
+    unconfirmedCandidates: $('layerUnconfirmedCandidates')?.checked === true,
     connectedAccumulated: $('layerConnectedAccumulated')?.checked === true,
     diagPhysicalBoundary: $('layerDiagPhysicalBoundary')?.checked,
     diagTrackIds: $('layerDiagTrackIds')?.checked,
@@ -144,6 +186,8 @@ function localPlaybackOptions() {
     minHeadingSpeedMps: parseFloat($('minBearingSpeed')?.value ?? 2),
     // Experimental Path-1 graph fitting; disabled unless ?fit=1 is set.
     fitEnabled: params?.get('fit') === '1',
+    // Section 13 unconfirmed candidate layer; disabled unless ?candidates=1 is set.
+    candidatesEnabled: params?.get('candidates') === '1',
   };
 }
 
@@ -167,7 +211,28 @@ function getLocalGeometryMode() {
 
 function stationaryMapCacheKey(chunkId, passId, geometrySource) {
   const fit = localPlaybackOptions().fitEnabled ? ':fit1' : ':fit0';
-  return `${chunkId}:${passId}:${geometrySource}${fit}`;
+  const CBAO = window.CombinedBoundaryAnchoredOrientation;
+  const candidate = CBAO?.parseCombinedOrientationCandidate?.(window.location.search) ?? null;
+  const cand = candidate ? `:cand:${candidate}` : '';
+  return `${chunkId}:${passId}:${geometrySource}${fit}${cand}`;
+}
+
+function applyOrientationCandidateIfNeeded(map, { cacheSource = null } = {}) {
+  if (!map || !processData) return map;
+  const CBAO = window.CombinedBoundaryAnchoredOrientation;
+  const candidate = CBAO?.parseCombinedOrientationCandidate?.(window.location.search) ?? null;
+  if (candidate !== 'boundaryAnchored' || !CBAO?.applyBoundaryAnchoredOrientation) {
+    return map;
+  }
+  if (map.boundaryAnchoredOrientationActive && map.combinedCoordinateFrame === 'combinedPlaced') {
+    return map;
+  }
+  const oriented = CBAO.applyBoundaryAnchoredOrientation(map, processData, {
+    mirrorChecked: renderer?.getMirrorRoadLateralDisplay?.() ?? true,
+  });
+  oriented._orientationAppliedOnCacheHit = true;
+  oriented._orientationCacheSource = cacheSource;
+  return oriented;
 }
 
 function clearStationaryMapCache() {
@@ -297,9 +362,12 @@ async function getOrBuildStationaryMapAsync(timelineIndex, { forceRebuild = fals
       graphFitImplVersion: window.GraphFit?.GRAPH_FIT_CACHE_IMPL_VERSION ?? null,
     });
     if (!forceRebuild && stationaryMapCache.has(key)) {
-      const cached = stationaryMapCache.get(key);
-      cached.cacheState = 'memory-hit';
-      traceMapAcquisition('renderer-apply', { cacheState: 'memory-hit', chunkId, passId });
+      let cached = stationaryMapCache.get(key);
+      cached = applyOrientationCandidateIfNeeded(cached, { cacheSource: 'memory' });
+      cached.cacheState = cached._orientationAppliedOnCacheHit
+        ? 'memory-hit-orientation-applied'
+        : 'memory-hit';
+      traceMapAcquisition('renderer-apply', { cacheState: cached.cacheState, chunkId, passId });
       return cached;
     }
 
@@ -329,12 +397,15 @@ async function getOrBuildStationaryMapAsync(timelineIndex, { forceRebuild = fals
             cacheKey: idBundle.cacheKey,
           });
           if (stored?.map) {
-            const frozenMap = SLM.freezeStationaryMapGeometry(stored.map);
+            let frozenMap = SLM.freezeStationaryMapGeometry(stored.map);
+            frozenMap = applyOrientationCandidateIfNeeded(frozenMap, { cacheSource: 'persistent' });
             frozenMap.cacheKey = key;
-            frozenMap.cacheState = 'persistent-hit';
+            frozenMap.cacheState = frozenMap._orientationAppliedOnCacheHit
+              ? 'persistent-hit-orientation-applied'
+              : 'persistent-hit';
             frozenMap.persistCacheKey = idBundle.cacheKey;
             stationaryMapCache.set(key, frozenMap);
-            traceMapAcquisition('renderer-apply', { cacheState: 'persistent-hit', chunkId, passId });
+            traceMapAcquisition('renderer-apply', { cacheState: frozenMap.cacheState, chunkId, passId });
             return frozenMap;
           }
         }
@@ -345,8 +416,16 @@ async function getOrBuildStationaryMapAsync(timelineIndex, { forceRebuild = fals
 
     traceMapAcquisition('build-start', { chunkId, passId, geometrySource: mode });
     const map = SLM.buildSegmentLocalMap(processData, buildOptions);
-    traceMapAcquisition('build-complete', { chunkId, passId });
-    const frozenMap = SLM.freezeStationaryMapGeometry(map);
+    const CBAO = window.CombinedBoundaryAnchoredOrientation;
+    const orientationCandidate = CBAO?.parseCombinedOrientationCandidate?.(window.location.search) ?? null;
+    let workingMap = map;
+    if (orientationCandidate === 'boundaryAnchored' && CBAO?.applyBoundaryAnchoredOrientation) {
+      workingMap = CBAO.applyBoundaryAnchoredOrientation(map, processData, {
+        mirrorChecked: renderer?.getMirrorRoadLateralDisplay?.() ?? true,
+      });
+    }
+    traceMapAcquisition('build-complete', { chunkId, passId, orientationCandidate });
+    const frozenMap = SLM.freezeStationaryMapGeometry(workingMap);
     stationaryMapBuildCount += 1;
     frozenMap.cacheKey = key;
     frozenMap.cacheState = window.GraphFitPersistCache?.isSupported?.() ? 'miss-build' : 'built';
@@ -462,6 +541,9 @@ function clearProcessState() {
   processData = null;
   lastLocalPlaybackState = null;
   connectedAccumulatedCache = null;
+  roadGuidedStaticCache = null;
+  roadGuidedRankedCache = null;
+  roadGuidedSequenceCache = null;
   clearStationaryMapCache();
   stopPlayback();
   $('timeline').disabled = true;
@@ -552,6 +634,9 @@ async function process(segments, { bustCache = false, label = 'process' } = {}) 
   if (!res.ok) throw new Error(data.error || 'Process failed');
 
   processData = data;
+  lastProcessedSegmentSelection = segments?.length
+    ? [...segments]
+    : (data.fileAudits || []).map((f) => f.fileName).filter(Boolean);
   $('procVersion').textContent = data.processingVersion || '—';
   $('procTime').textContent = data.processedAt || '—';
 
@@ -593,8 +678,533 @@ function isLocalPlaybackMode() {
   return getDisplayMode() === 'local';
 }
 
+function parseSegmentIdFromSourceFile(sourceFile) {
+  if (!sourceFile) return null;
+  const match = String(sourceFile).match(/^qlog_f449c_(\d+)\.bz2$/i);
+  return match ? match[1] : null;
+}
+
+function timelineCrossesSegmentBoundary(fromIdx, toIdx) {
+  const timeline = processData?.timeline;
+  if (!timeline?.length || fromIdx == null || toIdx == null) return false;
+  const from = timeline[fromIdx];
+  const to = timeline[toIdx];
+  if (!from?.sourceFile || !to?.sourceFile) return false;
+  return from.sourceFile !== to.sourceFile;
+}
+
+function isBoundaryBridgePlaybackActive(map = renderer?.stationaryLocalMap) {
+  const forced = window.__boundaryBridgePlaybackCandidate;
+  if (forced === true) return true;
+  if (forced === false) return false;
+  const CBAO = typeof window !== 'undefined' ? window.CombinedBoundaryAnchoredOrientation : null;
+  const candidate = CBAO?.parseCombinedOrientationCandidate?.(window.location.search);
+  if (candidate !== 'boundaryAnchored') return false;
+  if (!map?.boundaryAnchoredOrientationActive) return false;
+  const sourceFiles = map?.sourceFiles || [];
+  if (sourceFiles.length < 2) return false;
+  const BBP = getBoundaryBridgePlaybackApi();
+  if (!BBP?.isAcceptedBridge) return false;
+  const bridges = (map?.boundaryBridges || []).filter((b) => BBP.isAcceptedBridge(b));
+  return bridges.length > 0;
+}
+
+function getBoundaryBridgePlaybackApi() {
+  return typeof window !== 'undefined' ? window.BoundaryBridgePlayback : null;
+}
+
+function isBridgeBoundaryTransitionState(state = routeTransition.state) {
+  return state === 'loadingAndTraversingBridge' || state === 'waitingAtBridgeEnd';
+}
+
+function resetBridgePlaybackTransitionFields() {
+  routeTransition.bridgeCenterlinePoints = null;
+  routeTransition.bridgeMetadata = null;
+  routeTransition.bridgeProgress = 0;
+  routeTransition.bridgeStartTimestampMs = null;
+  routeTransition.bridgePausedAtMs = null;
+  routeTransition.bridgePausedDurationMs = 0;
+  routeTransition.bridgeDurationS = null;
+  routeTransition.bridgeLengthM = 0;
+  routeTransition.bridgeDistanceTravelledM = 0;
+  routeTransition.nextVideoReady = false;
+  routeTransition.arrowHeldAtBridgeEnd = false;
+  routeTransition.bridgeFromSourceFile = null;
+  routeTransition.bridgeToSourceFile = null;
+  routeTransition.bridgeFromTimelineIndex = null;
+  routeTransition.bridgeToTimelineIndex = null;
+  routeTransition.bridgeMissingVideo = false;
+  routeTransition.bridgeLastError = null;
+  routeTransition.bridgeTransitionLabel = null;
+}
+
+function bridgePlaybackPoseForProgress(progress) {
+  const BBP = getBoundaryBridgePlaybackApi();
+  const centerline = routeTransition.bridgeCenterlinePoints;
+  if (!BBP || !centerline?.length) return null;
+  const sampled = BBP.sampleBridgePose(centerline, progress, {
+    ...routeTransition.bridgeMetadata,
+    bridgeDurationS: routeTransition.bridgeDurationS,
+    fromSourceFile: routeTransition.bridgeFromSourceFile,
+    toSourceFile: routeTransition.bridgeToSourceFile,
+  });
+  if (!sampled?.ok) {
+    routeTransition.bridgeLastError = sampled?.diagnostic ?? 'sampleFailed';
+    return null;
+  }
+  routeTransition.bridgeDistanceTravelledM = sampled.distanceM ?? 0;
+  return sampled.pose;
+}
+
+function maybeCommitBridgeBoundaryTransition({ videoReady = false, missing = false } = {}) {
+  if (!isBridgeBoundaryTransitionState()) return;
+  if (!isBridgeBoundaryTransitionState()) return;
+  if (missing) routeTransition.bridgeMissingVideo = true;
+  if (videoReady) routeTransition.nextVideoReady = true;
+  const BBP = getBoundaryBridgePlaybackApi();
+  if (!BBP) return;
+  if (BBP.shouldHoldAtBridgeEnd({
+    bridgeProgress: routeTransition.bridgeProgress,
+    nextVideoReady: routeTransition.nextVideoReady,
+  })) {
+    routeTransition.state = 'waitingAtBridgeEnd';
+    routeTransition.arrowHeldAtBridgeEnd = true;
+    const endPose = bridgePlaybackPoseForProgress(1);
+    if (endPose) {
+      routeTransition.boundaryFrozenPose = endPose;
+      renderer?.setPlaybackPose(endPose);
+      renderer?.draw();
+    }
+    return;
+  }
+  if (!BBP.canCommitBridgeTransition({
+    bridgeProgress: routeTransition.bridgeProgress,
+    nextVideoReady: routeTransition.nextVideoReady,
+    missingVideo: routeTransition.bridgeMissingVideo,
+  })) {
+    return;
+  }
+  routeTransition.state = 'readyToEnterNextSegment';
+  commitRouteBoundaryTransition({
+    videoReady: routeTransition.nextVideoReady,
+    missing: routeTransition.bridgeMissingVideo,
+  });
+}
+
+function tickBridgeBoundaryPlayback(timestampMs) {
+  const BBP = getBoundaryBridgePlaybackApi();
+  if (!BBP || !isBridgeBoundaryTransitionState()) return;
+  routeTransition.frozenTickCount += 1;
+  const ts = Number.isFinite(timestampMs) ? timestampMs : performance.now();
+  if (!routeTransition.resumeAfterBoundary) {
+    if (routeTransition.bridgePausedAtMs == null) {
+      routeTransition.bridgePausedAtMs = ts;
+    }
+  } else if (routeTransition.bridgePausedAtMs != null) {
+    routeTransition.bridgePausedDurationMs += Math.max(0, ts - routeTransition.bridgePausedAtMs);
+    routeTransition.bridgePausedAtMs = null;
+  }
+  const progress = routeTransition.resumeAfterBoundary
+    ? BBP.computeBridgeProgress({
+      timestampMs: ts,
+      bridgeStartTimestampMs: routeTransition.bridgeStartTimestampMs,
+      bridgePausedDurationMs: routeTransition.bridgePausedDurationMs,
+      bridgeDurationS: routeTransition.bridgeDurationS,
+    })
+    : routeTransition.bridgeProgress;
+  routeTransition.bridgeProgress = progress;
+  const pose = bridgePlaybackPoseForProgress(progress);
+  if (pose) {
+    routeTransition.boundaryFrozenPose = pose;
+    if (routeTransition.boundaryFrozenEast != null) {
+      const de = (pose.east ?? 0) - routeTransition.boundaryFrozenEast;
+      const dn = (pose.north ?? 0) - routeTransition.boundaryFrozenNorth;
+      routeTransition.arrowMovementDuringBoundaryM += Math.hypot(de, dn);
+    }
+    routeTransition.boundaryFrozenEast = pose.east ?? 0;
+    routeTransition.boundaryFrozenNorth = pose.north ?? 0;
+    renderer?.setPlaybackPose(pose);
+    if (playbackAnim?.display) {
+      renderer?.setMovementDisplay(playbackAnim.display, { east: pose.east, north: pose.north });
+    }
+    renderer?.draw();
+  }
+  if (progress >= 1) {
+    maybeCommitBridgeBoundaryTransition();
+  }
+  localPlaybackVideo?.pollBoundaryFrameReady();
+  playRafId = requestAnimationFrame(tickPlaybackAnimation);
+}
+
+async function beginRouteBoundaryBridgePlayback(fromIdx, toIdx) {
+  const timeline = processData?.timeline;
+  if (!timeline?.[fromIdx] || !timeline?.[toIdx] || !localPlaybackVideo) return;
+
+  if (isRouteBoundaryLoading()) {
+    localPlaybackVideo.cancelBoundaryLoad();
+    routeTransition.staleCallbackCount += 1;
+  }
+  if (playStepTimer) {
+    clearTimeout(playStepTimer);
+    playStepTimer = null;
+  }
+  resetRouteTransitionMetrics();
+  resetBridgePlaybackTransitionFields();
+
+  const fromEntry = timeline[fromIdx];
+  const toEntry = timeline[toIdx];
+  const map = renderer?.stationaryLocalMap;
+  const BBP = getBoundaryBridgePlaybackApi();
+  const bridgePack = BBP?.findAcceptedBridge?.(map, fromEntry.sourceFile, toEntry.sourceFile);
+  if (!bridgePack?.ok) {
+    routeTransition.bridgeLastError = bridgePack?.diagnostic ?? 'bridgeLookupFailed';
+    return beginRouteBoundaryTransitionLegacy(fromIdx, toIdx);
+  }
+  const arc = BBP.buildBridgeArcLengthTable(bridgePack.centerlinePoints);
+  const duration = BBP.resolveBridgeDuration(bridgePack.bridge, arc.totalLengthM);
+  if (!duration?.ok) {
+    routeTransition.bridgeLastError = duration?.diagnostic ?? 'invalidBridgeDuration';
+    return beginRouteBoundaryTransitionLegacy(fromIdx, toIdx);
+  }
+
+  const MVT = window.MultisegmentVideoTimeline;
+  const provenance = MVT?.resolvePlaybackProvenance(
+    timeline,
+    toIdx,
+    lastProcessedSegmentSelection,
+    toEntry.logMonoTime,
+  );
+  if (!provenance) return;
+
+  routeTransition.state = 'loadingAndTraversingBridge';
+  routeTransition.pendingBoundaryIndex = toIdx;
+  routeTransition.pendingBoundarySegmentId = provenance.sourceSegmentId;
+  routeTransition.pendingBoundaryLocalTimeS = provenance.sourceLocalTimeS ?? 0;
+  routeTransition.frozenBoundaryIndex = fromIdx;
+  routeTransition.resumeAfterBoundary = true;
+  routeTransition.boundaryLoadingStartedAt = performance.now();
+  routeTransition.boundarySwitchToken += 1;
+  const token = routeTransition.boundarySwitchToken;
+  routeTransition.bridgeCenterlinePoints = bridgePack.centerlinePoints;
+  routeTransition.bridgeMetadata = bridgePack.bridge;
+  routeTransition.bridgeFromSourceFile = fromEntry.sourceFile;
+  routeTransition.bridgeToSourceFile = toEntry.sourceFile;
+  routeTransition.bridgeFromTimelineIndex = fromIdx;
+  routeTransition.bridgeToTimelineIndex = toIdx;
+  routeTransition.bridgeDurationS = duration.bridgeDurationS;
+  routeTransition.bridgeLengthM = arc.totalLengthM;
+  routeTransition.bridgeStartTimestampMs = performance.now();
+  routeTransition.bridgeProgress = 0;
+  routeTransition.nextVideoReady = false;
+  routeTransition.bridgeTransitionLabel = `Transitioning Segment ${parseSegmentIdFromSourceFile(fromEntry.sourceFile) ?? '?'} → ${parseSegmentIdFromSourceFile(toEntry.sourceFile) ?? '?'}`;
+
+  routeTransition.frozenTimelineValue = fromIdx;
+  routeTransition.frozenLogMonoTime = fromEntry.logMonoTime ?? null;
+
+  const startPose = bridgePlaybackPoseForProgress(0) ?? resolveLocalPlaybackPose(fromIdx);
+  routeTransition.boundaryFrozenPose = startPose;
+  routeTransition.boundaryFrozenEast = startPose?.east ?? 0;
+  routeTransition.boundaryFrozenNorth = startPose?.north ?? 0;
+
+  const VMD = window.VehicleMovementDisplay;
+  const vehiclePathPoint = VMD?.findVehiclePathPoint(processData.vehiclePath, fromEntry?.logMonoTime);
+  playbackAnim = {
+    active: true,
+    frozenBoundary: true,
+    fromIdx,
+    toIdx: fromIdx,
+    fromPose: startPose,
+    toPose: startPose,
+    context: null,
+    lastHeadingDeg: startPose?.headingDeg,
+    display: VMD?.resolveMovementDisplay({
+      timelineEntry: fromEntry,
+      vehiclePathPoint,
+      framePose: processData.frames?.[fromIdx]?.pose,
+    }),
+    startWallMs: performance.now(),
+    durationMs: 1,
+  };
+  renderer.setPlaybackPose(startPose);
+  if (playbackAnim.display) {
+    renderer.setMovementDisplay(playbackAnim.display, {
+      east: startPose.east,
+      north: startPose.north,
+    });
+  }
+  renderer.draw();
+  if (!playRafId) playRafId = requestAnimationFrame(tickPlaybackAnimation);
+
+  await localPlaybackVideo.beginBoundaryLoad(provenance, {
+    token,
+    onReady: () => {
+      if (token !== routeTransition.boundarySwitchToken) {
+        routeTransition.staleCallbackCount += 1;
+        return;
+      }
+      maybeCommitBridgeBoundaryTransition({ videoReady: true });
+    },
+    onMissing: () => {
+      if (token !== routeTransition.boundarySwitchToken) {
+        routeTransition.staleCallbackCount += 1;
+        return;
+      }
+      maybeCommitBridgeBoundaryTransition({ missing: true });
+    },
+    onStale: () => { routeTransition.staleCallbackCount += 1; },
+  });
+}
+
+function isRouteBoundaryLoading() {
+  if (isBoundaryBridgePlaybackActive()) {
+    return isBridgeBoundaryTransitionState();
+  }
+  return routeTransition.state === 'loadingNextSegmentVideo';
+}
+
+function resetRouteTransitionMetrics() {
+  routeTransition.frozenTickCount = 0;
+  routeTransition.arrowMovementDuringBoundaryM = 0;
+  routeTransition.timelineMovementDuringBoundaryS = 0;
+}
+
+function getSingleVideoBoundaryDiagnostics() {
+  const provenance = resolveActivePlaybackProvenance();
+  const videoDiag = localPlaybackVideo?.getDiagnostics?.() ?? {};
+  const loadingDurationMs = routeTransition.boundaryLoadingStartedAt != null
+    ? performance.now() - routeTransition.boundaryLoadingStartedAt
+    : null;
+  return {
+    state: routeTransition.state,
+    currentArrowSegmentId: provenance?.sourceSegmentId ?? null,
+    pendingSegmentId: routeTransition.pendingBoundarySegmentId,
+    videoSegmentId: videoDiag.activeVideoSegmentId ?? null,
+    videoReadyState: videoDiag.videoReadyState ?? null,
+    currentPlaybackIndex: getActiveTimelineIndex(),
+    pendingBoundaryIndex: routeTransition.pendingBoundaryIndex,
+    resumeAfterBoundary: routeTransition.resumeAfterBoundary,
+    boundaryLoadingDurationMs: loadingDurationMs,
+    staleCallbackCount: routeTransition.staleCallbackCount + (videoDiag.staleSwitchIgnoredCount ?? 0),
+    frozenTickCount: routeTransition.frozenTickCount,
+    arrowMovementDuringBoundaryM: routeTransition.arrowMovementDuringBoundaryM,
+    timelineMovementDuringBoundaryS: routeTransition.timelineMovementDuringBoundaryS,
+    boundarySrcChangeCount: videoDiag.boundarySrcChangeCount ?? 0,
+  };
+}
+
+function cancelRouteBoundaryTransition() {
+  if (routeTransition.state === 'idle') return;
+  routeTransition.boundarySwitchToken += 1;
+  routeTransition.staleCallbackCount += 1;
+  localPlaybackVideo?.cancelBoundaryLoad();
+  routeTransition.state = 'idle';
+  routeTransition.pendingBoundaryIndex = null;
+  routeTransition.pendingBoundarySegmentId = null;
+  routeTransition.pendingBoundaryLocalTimeS = 0;
+  routeTransition.boundaryFrozenPose = null;
+  routeTransition.boundaryFrozenEast = null;
+  routeTransition.boundaryFrozenNorth = null;
+  routeTransition.frozenBoundaryIndex = null;
+  routeTransition.frozenTimelineValue = null;
+  routeTransition.frozenLogMonoTime = null;
+  routeTransition.boundaryLoadingStartedAt = null;
+  resetBridgePlaybackTransitionFields();
+  if (playRafId) {
+    cancelAnimationFrame(playRafId);
+    playRafId = null;
+  }
+  playbackAnim = null;
+  syncVideoToActivePose({ isPlaying: false, forceSeek: true, allowRateCorrection: false });
+}
+
+function commitRouteBoundaryTransition({ videoReady = true, missing = false } = {}) {
+  const commitStates = isBoundaryBridgePlaybackActive()
+    ? ['loadingNextSegmentVideo', 'loadingAndTraversingBridge', 'waitingAtBridgeEnd', 'readyToEnterNextSegment']
+    : ['loadingNextSegmentVideo'];
+  if (!commitStates.includes(routeTransition.state)) return;
+  const toIdx = routeTransition.pendingBoundaryIndex;
+  const resume = routeTransition.resumeAfterBoundary;
+  const token = routeTransition.boundarySwitchToken;
+
+  routeTransition.state = 'readyToEnterNextSegment';
+
+  if (playRafId) {
+    cancelAnimationFrame(playRafId);
+    playRafId = null;
+  }
+  playbackAnim = null;
+
+  const tl = $('timeline');
+  tl.value = toIdx;
+  updateTimelineInfo(toIdx);
+
+  routeTransition.state = 'idle';
+  routeTransition.pendingBoundaryIndex = null;
+  routeTransition.pendingBoundarySegmentId = null;
+  routeTransition.pendingBoundaryLocalTimeS = 0;
+  routeTransition.boundaryFrozenPose = null;
+  routeTransition.boundaryFrozenEast = null;
+  routeTransition.boundaryFrozenNorth = null;
+  routeTransition.frozenBoundaryIndex = null;
+  routeTransition.frozenTimelineValue = null;
+  routeTransition.frozenLogMonoTime = null;
+  routeTransition.boundaryLoadingStartedAt = null;
+  resetBridgePlaybackTransitionFields();
+
+  if (missing || !videoReady) {
+    // Arrow already committed via updateTimelineInfo; continue if playing.
+  } else if (resume) {
+    localPlaybackVideo.isPlayingMaster = true;
+    localPlaybackVideo.setState('playing');
+    localPlaybackVideo.videoEl.play().catch(() => {
+      localPlaybackVideo.isPlayingMaster = false;
+      localPlaybackVideo.setState('paused');
+    });
+  } else {
+    localPlaybackVideo?.syncToActivePose(resolveActivePlaybackProvenance(), {
+      isPlaying: false,
+      forceSeek: true,
+      allowRateCorrection: false,
+    });
+  }
+
+  if (resume) {
+    $('btnPlay').textContent = '⏸ Pause';
+    schedulePlaybackStep();
+  } else {
+    $('btnPlay').textContent = '▶ Play';
+  }
+  void token;
+}
+
+async function beginRouteBoundaryTransition(fromIdx, toIdx) {
+  if (isBoundaryBridgePlaybackActive()) {
+    return beginRouteBoundaryBridgePlayback(fromIdx, toIdx);
+  }
+  return beginRouteBoundaryTransitionLegacy(fromIdx, toIdx);
+}
+
+async function beginRouteBoundaryTransitionLegacy(fromIdx, toIdx) {
+  const timeline = processData?.timeline;
+  if (!timeline?.[fromIdx] || !timeline?.[toIdx] || !localPlaybackVideo) return;
+
+  if (isRouteBoundaryLoading()) {
+    localPlaybackVideo.cancelBoundaryLoad();
+    routeTransition.staleCallbackCount += 1;
+  }
+  if (playStepTimer) {
+    clearTimeout(playStepTimer);
+    playStepTimer = null;
+  }
+  resetRouteTransitionMetrics();
+
+  const MVT = window.MultisegmentVideoTimeline;
+  const nextEntry = timeline[toIdx];
+  const provenance = MVT?.resolvePlaybackProvenance(
+    timeline,
+    toIdx,
+    lastProcessedSegmentSelection,
+    nextEntry.logMonoTime,
+  );
+  if (!provenance) return;
+
+  routeTransition.state = 'loadingNextSegmentVideo';
+  routeTransition.pendingBoundaryIndex = toIdx;
+  routeTransition.pendingBoundarySegmentId = provenance.sourceSegmentId;
+  routeTransition.pendingBoundaryLocalTimeS = provenance.sourceLocalTimeS ?? 0;
+  routeTransition.frozenBoundaryIndex = fromIdx;
+  routeTransition.resumeAfterBoundary = true;
+  routeTransition.boundaryLoadingStartedAt = performance.now();
+  routeTransition.boundarySwitchToken += 1;
+  const token = routeTransition.boundarySwitchToken;
+
+  const frozenPose = resolveLocalPlaybackPose(fromIdx);
+  routeTransition.boundaryFrozenPose = frozenPose;
+  routeTransition.boundaryFrozenEast = frozenPose?.east ?? 0;
+  routeTransition.boundaryFrozenNorth = frozenPose?.north ?? 0;
+  routeTransition.frozenTimelineValue = fromIdx;
+  routeTransition.frozenLogMonoTime = timeline[fromIdx]?.logMonoTime ?? null;
+
+  const VMD = window.VehicleMovementDisplay;
+  const t = timeline[fromIdx];
+  const vehiclePathPoint = VMD?.findVehiclePathPoint(processData.vehiclePath, t?.logMonoTime);
+  playbackAnim = {
+    active: true,
+    frozenBoundary: true,
+    fromIdx,
+    toIdx: fromIdx,
+    fromPose: frozenPose,
+    toPose: frozenPose,
+    context: null,
+    lastHeadingDeg: frozenPose?.headingDeg,
+    display: VMD?.resolveMovementDisplay({
+      timelineEntry: t,
+      vehiclePathPoint,
+      framePose: processData.frames?.[fromIdx]?.pose,
+    }),
+    startWallMs: performance.now(),
+    durationMs: 1,
+  };
+  renderer.setPlaybackPose(frozenPose);
+  if (playbackAnim.display) {
+    renderer.setMovementDisplay(playbackAnim.display, {
+      east: frozenPose.east,
+      north: frozenPose.north,
+    });
+  }
+  renderer.draw();
+  if (!playRafId) playRafId = requestAnimationFrame(tickPlaybackAnimation);
+
+  await localPlaybackVideo.beginBoundaryLoad(provenance, {
+    token,
+    onReady: () => commitRouteBoundaryTransition({ videoReady: true }),
+    onMissing: () => commitRouteBoundaryTransition({ videoReady: false, missing: true }),
+    onStale: () => { routeTransition.staleCallbackCount += 1; },
+  });
+}
+
 function getTimelineStartLogMonoTime() {
   return processData?.timeline?.[0]?.logMonoTime ?? null;
+}
+
+function getActiveTimelineIndex() {
+  if (isRouteBoundaryLoading() && routeTransition.frozenBoundaryIndex != null) {
+    return routeTransition.frozenBoundaryIndex;
+  }
+  if (playbackAnim?.active) {
+    const elapsed = performance.now() - playbackAnim.startWallMs;
+    const alpha = Math.min(1, elapsed / playbackAnim.durationMs);
+    return alpha >= 1 ? playbackAnim.toIdx : playbackAnim.fromIdx;
+  }
+  return parseInt($('timeline')?.value ?? '0', 10);
+}
+
+function resolveActivePlaybackProvenance() {
+  const MVT = window.MultisegmentVideoTimeline;
+  if (!MVT || !processData?.timeline?.length) return null;
+  const idx = getActiveTimelineIndex();
+  const logMono = getCurrentPlaybackLogMonoTime();
+  return MVT.resolvePlaybackProvenance(
+    processData.timeline,
+    idx,
+    lastProcessedSegmentSelection,
+    logMono,
+  );
+}
+
+function isCombinedPlaybackPlaying() {
+  return !!(playStepTimer || playbackAnim?.active);
+}
+
+async function syncVideoToActivePose(options = {}) {
+  if (!localPlaybackVideo || !isLocalPlaybackMode() || !processData) return;
+  const provenance = resolveActivePlaybackProvenance();
+  if (!provenance) return;
+  await localPlaybackVideo.syncToActivePose(provenance, {
+    isPlaying: options.isPlaying ?? isCombinedPlaybackPlaying(),
+    forceSeek: options.forceSeek ?? false,
+    allowRateCorrection: options.allowRateCorrection ?? isCombinedPlaybackPlaying(),
+  });
 }
 
 function getActiveVideoSegmentId() {
@@ -609,6 +1219,9 @@ function getActiveVideoSegmentId() {
 }
 
 function getCurrentPlaybackLogMonoTime() {
+  if (isRouteBoundaryLoading() && routeTransition.frozenLogMonoTime != null) {
+    return routeTransition.frozenLogMonoTime;
+  }
   if (playbackAnim?.active) {
     const elapsed = performance.now() - playbackAnim.startWallMs;
     const alpha = Math.min(1, elapsed / playbackAnim.durationMs);
@@ -633,13 +1246,18 @@ async function refreshLocalPlaybackVideo({ resetTimeline = false } = {}) {
     return;
   }
 
-  const segmentId = getActiveVideoSegmentId();
-  const timelineStart = getTimelineStartLogMonoTime();
-  localPlaybackVideo.setTimelineStart(timelineStart);
-  await localPlaybackVideo.onSegmentProcessed(segmentId, timelineStart);
-  if (resetTimeline) {
-    localPlaybackVideo.onTimelineScrub(getCurrentPlaybackLogMonoTime());
-  }
+  const MVT = window.MultisegmentVideoTimeline;
+  const entries = MVT?.buildSegmentVideoTimeline(
+    processData.timeline,
+    lastProcessedSegmentSelection,
+  ) ?? [];
+  localPlaybackVideo.setSegmentTimeline(entries);
+  localPlaybackVideo.setTimelineStart(getTimelineStartLogMonoTime());
+  await syncVideoToActivePose({
+    forceSeek: resetTimeline,
+    allowRateCorrection: false,
+    isPlaying: false,
+  });
 }
 
 function resolveLocalPlaybackPose(idx, extraOptions = {}) {
@@ -747,12 +1365,17 @@ async function updateLocalPlayback(idx, { forceRefit = false, forceMapRebuild = 
     renderer.fitToLocalView();
   }
   updateGeometryDiagnosticsPanel();
+  refreshCandidatePolylines(map);
   refreshConnectedAccumulatedPolylines(map, { timelineIndex: idx });
 }
 
 function getConnectedAccumulatedMode() {
   const v = $('connectedAccumulatedMode')?.value;
-  return v === 'perFrame' ? 'perFrame' : 'currentFrame';
+  if (v === 'perFrame') return 'perFrame';
+  if (v === 'roadGuidedDotConnection' || v === 'roadGuidedStatic') return 'roadGuidedDotConnection';
+  if (v === 'roadGuidedRankedConnection') return 'roadGuidedRankedConnection';
+  if (v === 'roadGuidedSequenceConnection') return 'roadGuidedSequenceConnection';
+  return 'currentFrame';
 }
 
 function getConnectedAccumulatedActiveFrame(timelineIndex) {
@@ -774,6 +1397,9 @@ function ensurePerFramePolylinesBuilt(map) {
   const checksum = map?.checksum ?? null;
   if (!CAD?.buildPerFrameConnectedPolylines || !map?.pointAccumulated?.points) {
     connectedAccumulatedCache = null;
+    roadGuidedStaticCache = null;
+    roadGuidedRankedCache = null;
+    roadGuidedSequenceCache = null;
     return null;
   }
   if (connectedAccumulatedCache?.checksum === checksum && connectedAccumulatedCache?.perFrameBuilt) {
@@ -791,6 +1417,92 @@ function ensurePerFramePolylinesBuilt(map) {
   return connectedAccumulatedCache;
 }
 
+function ensureRoadGuidedStaticBuilt(map) {
+  const CAD = window.ConnectedAccumulatedDisplay;
+  const checksum = map?.checksum ?? null;
+  if (!CAD?.buildRoadGuidedDotConnectionDisplay || !map?.pointAccumulated?.points || !map?.trajectory?.length) {
+    roadGuidedStaticCache = null;
+    return null;
+  }
+  if (roadGuidedStaticCache?.checksum === checksum && roadGuidedStaticCache?.built) {
+    return roadGuidedStaticCache;
+  }
+  const built = CAD.buildRoadGuidedDotConnectionDisplay(
+    map.pointAccumulated.points,
+    map.trajectory,
+    { chunkId: map.chunkId, passId: map.passId },
+  );
+  roadGuidedStaticCache = {
+    checksum,
+    built,
+    roadGuidedBuildCount: 1,
+    playbackRefreshCount: 0,
+    staticChecksum: built.stats?.staticChecksum ?? null,
+  };
+  return roadGuidedStaticCache;
+}
+
+function ensureRoadGuidedRankedBuilt(map) {
+  const CAD = window.ConnectedAccumulatedDisplay;
+  const checksum = map?.checksum ?? null;
+  if (!CAD?.buildRoadGuidedRankedConnectionDisplay || !map?.pointAccumulated?.points || !map?.trajectory?.length) {
+    roadGuidedRankedCache = null;
+    roadGuidedSequenceCache = null;
+    return null;
+  }
+  if (roadGuidedRankedCache?.checksum === checksum && roadGuidedRankedCache?.built) {
+    return roadGuidedRankedCache;
+  }
+  const cache = ensurePerFramePolylinesBuilt(map);
+  const built = CAD.buildRoadGuidedRankedConnectionDisplay(
+    map.pointAccumulated.points,
+    map.trajectory,
+    {
+      chunkId: map.chunkId,
+      passId: map.passId,
+      perFramePolylines: cache?.perFrameBuilt?.polylines,
+    },
+  );
+  roadGuidedRankedCache = {
+    checksum,
+    built,
+    roadGuidedBuildCount: 1,
+    playbackRefreshCount: 0,
+    staticChecksum: built.stats?.staticChecksum ?? null,
+  };
+  return roadGuidedRankedCache;
+}
+
+function ensureRoadGuidedSequenceBuilt(map) {
+  const CAD = window.ConnectedAccumulatedDisplay;
+  const checksum = map?.checksum ?? null;
+  if (!CAD?.buildRoadGuidedSequenceConnectionDisplay || !map?.pointAccumulated?.points || !map?.trajectory?.length) {
+    roadGuidedSequenceCache = null;
+    return null;
+  }
+  if (roadGuidedSequenceCache?.checksum === checksum && roadGuidedSequenceCache?.built) {
+    return roadGuidedSequenceCache;
+  }
+  const cache = ensurePerFramePolylinesBuilt(map);
+  const built = CAD.buildRoadGuidedSequenceConnectionDisplay(
+    map.pointAccumulated.points,
+    map.trajectory,
+    {
+      chunkId: map.chunkId,
+      passId: map.passId,
+      perFramePolylines: cache?.perFrameBuilt?.polylines,
+    },
+  );
+  roadGuidedSequenceCache = {
+    checksum,
+    built,
+    roadGuidedBuildCount: 1,
+    playbackRefreshCount: 0,
+    staticChecksum: built.stats?.staticChecksum ?? null,
+  };
+  return roadGuidedSequenceCache;
+}
+
 function refreshConnectedAccumulatedPolylines(map, { timelineIndex } = {}) {
   const CAD = window.ConnectedAccumulatedDisplay;
   const mode = getConnectedAccumulatedMode();
@@ -803,6 +1515,54 @@ function refreshConnectedAccumulatedPolylines(map, { timelineIndex } = {}) {
     renderer?.setConnectedAccumulatedPolylines?.(null, null, mode);
     return;
   }
+  if (mode === 'roadGuidedDotConnection' || mode === 'roadGuidedStatic') {
+    const rgCache = ensureRoadGuidedStaticBuilt(map);
+    if (!rgCache) {
+      renderer?.setConnectedAccumulatedPolylines?.(null, null, mode);
+      return;
+    }
+    rgCache.playbackRefreshCount = (rgCache.playbackRefreshCount || 0) + 1;
+    const stats = {
+      ...rgCache.built.stats,
+      roadGuidedBuildCount: rgCache.roadGuidedBuildCount,
+      playbackRefreshCount: rgCache.playbackRefreshCount,
+      staticChecksum: rgCache.staticChecksum,
+    };
+    renderer?.setConnectedAccumulatedPolylines?.(rgCache.built.boundaries, stats, mode);
+    return;
+  }
+  if (mode === 'roadGuidedRankedConnection') {
+    const rgCache = ensureRoadGuidedRankedBuilt(map);
+    if (!rgCache) {
+      renderer?.setConnectedAccumulatedPolylines?.(null, null, mode);
+      return;
+    }
+    rgCache.playbackRefreshCount = (rgCache.playbackRefreshCount || 0) + 1;
+    const stats = {
+      ...rgCache.built.stats,
+      roadGuidedBuildCount: rgCache.roadGuidedBuildCount,
+      playbackRefreshCount: rgCache.playbackRefreshCount,
+      staticChecksum: rgCache.staticChecksum,
+    };
+    renderer?.setConnectedAccumulatedPolylines?.(rgCache.built.boundaries, stats, mode);
+    return;
+  }
+  if (mode === 'roadGuidedSequenceConnection') {
+    const rgCache = ensureRoadGuidedSequenceBuilt(map);
+    if (!rgCache) {
+      renderer?.setConnectedAccumulatedPolylines?.(null, null, mode);
+      return;
+    }
+    rgCache.playbackRefreshCount = (rgCache.playbackRefreshCount || 0) + 1;
+    const stats = {
+      ...rgCache.built.stats,
+      roadGuidedBuildCount: rgCache.roadGuidedBuildCount,
+      playbackRefreshCount: rgCache.playbackRefreshCount,
+      staticChecksum: rgCache.staticChecksum,
+    };
+    renderer?.setConnectedAccumulatedPolylines?.(rgCache.built.boundaries, stats, mode);
+    return;
+  }
   if (mode === 'perFrame') {
     const built = cache.perFrameBuilt;
     renderer?.setConnectedAccumulatedPolylines?.(built.polylines, built.stats, mode);
@@ -813,16 +1573,19 @@ function refreshConnectedAccumulatedPolylines(map, { timelineIndex } = {}) {
   renderer?.setConnectedAccumulatedPolylines?.(display.polylines, display.stats, mode);
 }
 
-function initConnectedAccumulatedControls() {
-  const modeSel = $('connectedAccumulatedMode');
-  const layerCb = $('layerConnectedAccumulated');
-  const refresh = () => {
-    const map = renderer?.stationaryLocalMap;
-    if (map) refreshConnectedAccumulatedPolylines(map);
-    renderer?.draw?.();
-  };
-  modeSel?.addEventListener('change', refresh);
-  layerCb?.addEventListener('change', refresh);
+function refreshCandidatePolylines(map) {
+  const CLD = window.CandidateLayerDisplay;
+  if (!CLD?.isCandidatesFeatureEnabled?.() || !localPlaybackOptions().candidatesEnabled || !processData || !map?.referencePose) {
+    renderer?.setCandidatePolylines?.(null);
+    return;
+  }
+  const built = CLD.buildGatedCandidatePolylines(processData, {
+    referencePose: map.referencePose,
+    chunkId: map.chunkId,
+    passId: map.passId,
+    bounds: map.bounds,
+  });
+  renderer.setCandidatePolylines(built.candidates, built);
 }
 
 function switchLocalGeometryLayer() {
@@ -839,9 +1602,25 @@ function updatePointOnlyControlVisibility(mode) {
   document.querySelectorAll('.local-point-only-control').forEach((el) => {
     el.classList.toggle('visible', isPoint);
   });
+  const candidatesOn = !!localPlaybackOptions().candidatesEnabled;
+  document.querySelectorAll('.candidate-layer-control').forEach((el) => {
+    el.classList.toggle('visible', isPoint && candidatesOn);
+  });
   const obsDebugOn = (typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('obsDebug') === '1');
   const obsControls = document.querySelector('.obs-debug-control');
   if (obsControls) obsControls.classList.toggle('visible', obsDebugOn);
+}
+
+function initConnectedAccumulatedControls() {
+  const modeSel = $('connectedAccumulatedMode');
+  const layerCb = $('layerConnectedAccumulated');
+  const refresh = () => {
+    const map = renderer?.stationaryLocalMap;
+    if (map) refreshConnectedAccumulatedPolylines(map);
+    renderer?.draw?.();
+  };
+  modeSel?.addEventListener('change', refresh);
+  layerCb?.addEventListener('change', refresh);
 }
 
 function updatePointDisplayModeLabel() {
@@ -1178,6 +1957,9 @@ function updateTimelineInfo(idx) {
   const speedKmh = Number.isFinite(t.speed) ? (t.speed * 3.6).toFixed(1) : '—';
   const fields = [
     ['Elapsed idx', idx],
+    ...(isBridgeBoundaryTransitionState() && routeTransition.bridgeTransitionLabel
+      ? [['Boundary', routeTransition.bridgeTransitionLabel], ['Bridge progress', routeTransition.bridgeProgress?.toFixed?.(3) ?? '—']]
+      : []),
     ['Chunk ID', t.chunkId ?? '—'],
     ['Pass ID', frame?.passId ?? '—'],
     ['logMonoTime', t.logMonoTime],
@@ -1195,7 +1977,7 @@ function updateTimelineInfo(idx) {
     updateLocalPlayback(idx);
     const pose = renderer.playbackPose;
     renderer.draw();
-    localPlaybackVideo?.onTimelineScrub(getCurrentPlaybackLogMonoTime());
+    localPlaybackVideo?.onTimelineScrub(resolveActivePlaybackProvenance());
   } else {
     renderer.draw();
   }
@@ -1210,8 +1992,44 @@ function logMonoDeltaMs(timeline, fromIdx, toIdx, speed) {
   return Math.max(1, Number(deltaNs) / 1e6 / speed);
 }
 
-function tickPlaybackAnimation() {
+function tickPlaybackAnimation(timestampMs) {
   if (!playbackAnim?.active || !renderer) return;
+
+  if (isRouteBoundaryLoading()) {
+    if (isBoundaryBridgePlaybackActive() && isBridgeBoundaryTransitionState()) {
+      tickBridgeBoundaryPlayback(timestampMs);
+      return;
+    }
+    routeTransition.frozenTickCount += 1;
+    const pose = routeTransition.boundaryFrozenPose;
+    if (pose) {
+      renderer.setPlaybackPose(pose);
+      if (playbackAnim.display) {
+        renderer.setMovementDisplay(playbackAnim.display, { east: pose.east, north: pose.north });
+      }
+      renderer.draw();
+      const currentPose = renderer.playbackPose;
+      if (currentPose && routeTransition.boundaryFrozenEast != null) {
+        const de = (currentPose.east ?? 0) - routeTransition.boundaryFrozenEast;
+        const dn = (currentPose.north ?? 0) - routeTransition.boundaryFrozenNorth;
+        routeTransition.arrowMovementDuringBoundaryM += Math.hypot(de, dn);
+      }
+    }
+    const tlVal = parseInt($('timeline')?.value ?? '0', 10);
+    if (routeTransition.frozenTimelineValue != null && tlVal !== routeTransition.frozenTimelineValue) {
+      const timing = window.SegmentVideoTiming;
+      const fromMono = routeTransition.frozenLogMonoTime;
+      const curMono = processData?.timeline?.[tlVal]?.logMonoTime;
+      if (timing && fromMono && curMono) {
+        const delta = timing.computeLocalElapsedSeconds(curMono, fromMono) ?? 0;
+        routeTransition.timelineMovementDuringBoundaryS += Math.abs(delta);
+      }
+    }
+    localPlaybackVideo?.pollBoundaryFrameReady();
+    playRafId = requestAnimationFrame(tickPlaybackAnimation);
+    return;
+  }
+
   const elapsed = performance.now() - playbackAnim.startWallMs;
   const alpha = Math.min(1, elapsed / playbackAnim.durationMs);
   const LP = window.LocalPlayback;
@@ -1265,7 +2083,9 @@ function tickPlaybackAnimation() {
       renderer.setMovementDisplay(playbackAnim.display, { east: pose.east, north: pose.north });
     }
     renderer.draw();
-    localPlaybackVideo?.tickSync(getCurrentPlaybackLogMonoTime());
+    localPlaybackVideo?.tickSync(resolveActivePlaybackProvenance(), {
+      isPlaying: isCombinedPlaybackPlaying(),
+    });
   }
   playRafId = requestAnimationFrame(tickPlaybackAnimation);
 }
@@ -1285,6 +2105,12 @@ function schedulePlaybackStep() {
 
   playSpeed = parseFloat($('playSpeed')?.value ?? 1);
   const nextIdx = idx + 1;
+
+  if (isLocalPlaybackMode() && timelineCrossesSegmentBoundary(idx, nextIdx)) {
+    beginRouteBoundaryTransition(idx, nextIdx);
+    return;
+  }
+
   const durationMs = logMonoDeltaMs(processData.timeline, idx, nextIdx, playSpeed);
 
   if (isLocalPlaybackMode()) {
@@ -1309,7 +2135,7 @@ function schedulePlaybackStep() {
       durationMs,
     };
     if (!playRafId) playRafId = requestAnimationFrame(tickPlaybackAnimation);
-    localPlaybackVideo?.playFromLogMonoTime(getCurrentPlaybackLogMonoTime());
+    localPlaybackVideo?.playFromLogMonoTime(resolveActivePlaybackProvenance(), true);
   }
 
   playStepTimer = setTimeout(() => {
@@ -1321,6 +2147,16 @@ function schedulePlaybackStep() {
 }
 
 function stopPlayback() {
+  if (isRouteBoundaryLoading()) {
+    routeTransition.resumeAfterBoundary = false;
+    if (playStepTimer) {
+      clearTimeout(playStepTimer);
+      playStepTimer = null;
+    }
+    $('btnPlay').textContent = '▶ Play';
+    playSpeed = parseFloat($('playSpeed')?.value ?? 1);
+    return;
+  }
   if (playStepTimer) {
     clearTimeout(playStepTimer);
     playStepTimer = null;
@@ -1330,12 +2166,33 @@ function stopPlayback() {
     playRafId = null;
   }
   playbackAnim = null;
-  localPlaybackVideo?.onMasterPaused(getCurrentPlaybackLogMonoTime());
+  localPlaybackVideo?.onMasterPaused(resolveActivePlaybackProvenance());
   $('btnPlay').textContent = '▶ Play';
   playSpeed = parseFloat($('playSpeed')?.value ?? 1);
 }
 
 function togglePlayback() {
+  if (isRouteBoundaryLoading()) {
+    if (routeTransition.resumeAfterBoundary) {
+      routeTransition.resumeAfterBoundary = false;
+      if (isBoundaryBridgePlaybackActive() && isBridgeBoundaryTransitionState()) {
+        routeTransition.bridgePausedAtMs = performance.now();
+      }
+      $('btnPlay').textContent = '▶ Play';
+    } else {
+      routeTransition.resumeAfterBoundary = true;
+      if (isBoundaryBridgePlaybackActive() && isBridgeBoundaryTransitionState()
+        && routeTransition.bridgePausedAtMs != null) {
+        routeTransition.bridgePausedDurationMs += Math.max(
+          0,
+          performance.now() - routeTransition.bridgePausedAtMs,
+        );
+        routeTransition.bridgePausedAtMs = null;
+      }
+      $('btnPlay').textContent = '⏸ Pause';
+    }
+    return;
+  }
   if (playStepTimer || playbackAnim?.active) {
     stopPlayback();
     updateTimelineInfo(parseInt($('timeline').value, 10));
@@ -1468,7 +2325,11 @@ function bindEvents() {
   };
 
   $('timeline').oninput = (e) => {
+    const wasBoundaryLoading = isRouteBoundaryLoading();
     if (playStepTimer || playbackAnim?.active) stopPlayback();
+    if (wasBoundaryLoading) {
+      cancelRouteBoundaryTransition();
+    }
     updateTimelineInfo(parseInt(e.target.value, 10));
   };
   $('btnPrevFrame').onclick = () => {
@@ -1545,6 +2406,10 @@ async function loadStage19Summary() {
 }
 
 async function init() {
+  const initParams = new URLSearchParams(window.location.search);
+  if (initParams.has('boundaryBridgePlaybackCandidate')) {
+    window.__boundaryBridgePlaybackCandidate = initParams.get('boundaryBridgePlaybackCandidate') === '1';
+  }
   renderer = new RoadRenderer($('canvas'));
   window.renderer = renderer;
   window.updateLocalPlayback = updateLocalPlayback;
@@ -1558,6 +2423,7 @@ async function init() {
     clearStationaryMapCache,
   };
   initLocalGeometryModeSelect();
+  updatePointOnlyControlVisibility(getLocalGeometryMode());
   const panelEl = $('localVideoPanel');
   if (panelEl && window.LocalPlaybackVideoPanel) {
     localPlaybackVideo = new window.LocalPlaybackVideoPanel(panelEl);
@@ -1569,5 +2435,70 @@ async function init() {
   await loadStage19Summary();
   setStatus('Select segments and click Process or Reprocess');
 }
+
+window.getPlaybackVideoDebugState = () => {
+  const provenance = resolveActivePlaybackProvenance();
+  const videoDiag = localPlaybackVideo?.getDiagnostics?.() ?? null;
+  const globalStart = processData?.timeline?.[0]?.logMonoTime ?? null;
+  const logMono = getCurrentPlaybackLogMonoTime();
+  const timing = window.SegmentVideoTiming;
+  const globalPlaybackTimeS = timing?.computeLocalElapsedSeconds(logMono, globalStart);
+  const expectedVideoTimeS = provenance && localPlaybackVideo
+    ? timing?.computeExpectedVideoTime(provenance.sourceLocalTimeS, localPlaybackVideo.videoStartOffsetSeconds)
+    : null;
+  const videoLocalTimeS = videoDiag?.videoLocalTimeS ?? null;
+  const timelineEntries = window.MultisegmentVideoTimeline?.buildSegmentVideoTimeline(
+    processData?.timeline ?? [],
+    lastProcessedSegmentSelection,
+  ) ?? [];
+  return {
+    selectedSegments: [...lastProcessedSegmentSelection],
+    timelineIndex: getActiveTimelineIndex(),
+    arrowSegmentId: provenance?.sourceSegmentId ?? null,
+    videoSegmentId: videoDiag?.activeVideoSegmentId ?? null,
+    globalPlaybackTimeS,
+    videoLocalTimeS,
+    expectedVideoTimeS,
+    syncErrorS: (videoLocalTimeS != null && expectedVideoTimeS != null)
+      ? videoLocalTimeS - expectedVideoTimeS
+      : null,
+    sourceSwitchCount: videoDiag?.sourceSwitchCount ?? 0,
+    staleSwitchIgnoredCount: videoDiag?.staleSwitchIgnoredCount ?? 0,
+    provenance,
+    timelineEntries,
+    segmentLabel: document.querySelector('[data-video-segment]')?.textContent ?? null,
+    boundary: getSingleVideoBoundaryDiagnostics(),
+    videoReadyState: videoDiag?.videoReadyState ?? null,
+    videoNetworkState: videoDiag?.videoNetworkState ?? null,
+  };
+};
+
+window.getSingleVideoBoundaryDiagnostics = getSingleVideoBoundaryDiagnostics;
+
+function getBoundaryBridgePlaybackDiagnostics() {
+  const videoDiag = localPlaybackVideo?.getDiagnostics?.() ?? {};
+  return {
+    bridgePlaybackActive: isBoundaryBridgePlaybackActive(),
+    diagnosticOverride: window.__boundaryBridgePlaybackCandidate ?? null,
+    state: routeTransition.state,
+    fromSourceFile: routeTransition.bridgeFromSourceFile,
+    toSourceFile: routeTransition.bridgeToSourceFile,
+    bridgeAccepted: routeTransition.bridgeMetadata?.supportStatus === 'accepted',
+    bridgeProgress: routeTransition.bridgeProgress,
+    bridgeDurationS: routeTransition.bridgeDurationS,
+    bridgeLengthM: routeTransition.bridgeLengthM,
+    arrowDistanceTravelledM: routeTransition.bridgeDistanceTravelledM,
+    nextVideoReady: routeTransition.nextVideoReady,
+    arrowHeldAtBridgeEnd: routeTransition.arrowHeldAtBridgeEnd,
+    transitionToken: routeTransition.boundarySwitchToken,
+    sourceAssignmentCount: videoDiag.sourceSwitchCount ?? 0,
+    staleCallbacksIgnored: routeTransition.staleCallbackCount + (videoDiag.staleSwitchIgnoredCount ?? 0),
+    lastError: routeTransition.bridgeLastError,
+    transitionLabel: routeTransition.bridgeTransitionLabel,
+    bridgePausedDurationMs: routeTransition.bridgePausedDurationMs,
+  };
+}
+
+window.getBoundaryBridgePlaybackDiagnostics = getBoundaryBridgePlaybackDiagnostics;
 
 init();

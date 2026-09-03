@@ -161,11 +161,17 @@ main {
 }
 .local-video-meta {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  gap: 8px;
+  gap: 4px 8px;
   padding: 6px 10px 8px;
   font-size: 0.72rem;
   color: #475569;
+}
+.local-video-segment {
+  flex: 1 1 100%;
+  font-weight: 600;
+  color: #334155;
 }
 .local-video-message {
   padding: 12px 10px;

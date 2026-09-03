@@ -1567,6 +1567,9 @@
       north: v.north,
       mirroredEast: v.mirroredEast,
       mirroredNorth: v.mirroredNorth,
+      sourceFile: v.sourceFile ?? null,
+      sourceQlogSha256: v.sourceQlogSha256 ?? null,
+      frameIndex: v.frameIndex,
       coordinateFrame: SEGMENT_LOCAL_COORDINATE_FRAME,
     })).filter((v) => Number.isFinite(v.east) && Number.isFinite(v.north));
   }
@@ -1638,6 +1641,9 @@
         side: frag.side ?? null,
         chunkId: frag.chunkId,
         passId: frag.passId,
+        startFrameIndex: frag.startFrameIndex,
+        endFrameIndex: frag.endFrameIndex,
+        sourceFile: frag.points?.[0]?.sourceFile ?? null,
         fitStatus,
         displaySource,
         rejectionReason,

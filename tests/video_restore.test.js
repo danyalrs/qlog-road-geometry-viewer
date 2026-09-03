@@ -216,7 +216,8 @@ describe('video restore — frontend behaviour', () => {
   it('11. app.js re-drives the video panel after each segment process', () => {
     const src = fs.readFileSync(path.join(ROOT, 'public', 'app.js'), 'utf8');
     assert.match(src, /refreshLocalPlaybackVideo/);
-    assert.match(src, /onSegmentProcessed/);
+    assert.match(src, /syncVideoToActivePose/);
+    assert.match(src, /resolveActivePlaybackProvenance/);
     assert.match(src, /getActiveVideoSegmentId/);
   });
 
@@ -224,8 +225,9 @@ describe('video restore — frontend behaviour', () => {
     const panelSrc = fs.readFileSync(path.join(ROOT, 'public', 'local_playback_video.js'), 'utf8');
     // Missing-video branch returns a message instead of throwing.
     assert.match(panelSrc, /No matching video for this segment/);
+    assert.match(panelSrc, /video unavailable/);
     const appSrc = fs.readFileSync(path.join(ROOT, 'public', 'app.js'), 'utf8');
-    assert.match(appSrc, /localPlaybackVideo\??\.onSegmentProcessed/);
+    assert.match(appSrc, /syncVideoToActivePose/);
     assert.match(appSrc, /refreshLocalPlaybackVideo/);
   });
 });
