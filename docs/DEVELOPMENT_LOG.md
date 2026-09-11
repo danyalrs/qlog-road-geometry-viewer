@@ -1,24 +1,134 @@
 # Development Log
 
-**Last updated:** 2026-08-27
+**Last updated:** 2026-09-10
 
-Chronological record of confirmed work. Entries cite checkpoints, reports, audits, or source where possible. Failed or superseded work is recorded as such.
+---
 
-**Update rule:** Append a dated entry after every meaningful implementation, investigation, experiment, validation, or specification task. Preserve all prior history.
+## 2026-09-10 — Accepted display-path consolidation (uncommitted)
 
+Chronological progression of the accepted chain:
 
-## 2026-08-27 — Segment 0 exact source-hash display correction (accepted)
+1. **Combined visible-lane projection** — `lib/combined_visible_lane_projection.js` + browser mirror; automated gates passed.
+2. **Seg0 shared display-frame correction** — road, trajectory and arrow share `combined_source_transform.js` + `combined_boundary_anchored_orientation.js`; visually passed.
+3. **Point-accumulated and Local playback defaults** — `lib/local_geometry_ui.js` (`vizMode=local`, `localGeometryMode=pointAccumulated`, connected per-frame on).
+4. **All per-frame source-curve selection** — trusted raw view via `buildPerFrameConnectedPolylines`.
+5. **Corrected representative resampling** — `buildRepresentativeLaneLinesFromPerFrame` (Seg1 91→11, 4 lanes).
+6. **Seg2 purity diagnosis and correction** — `buildRepresentativeLaneLinesPurityFromPerFrame` removed the false blue V and detached artifacts.
+7. **Seg99 self-fold diagnosis** — confirmed false 20 m red fold (388° turn, chord/path 0.353, two temporal revisit branches).
+8. **purityRevisit implementation** — combined post-fit self-fold/revisit gate + visit-boundary splitter.
+9. **Seg99 visual pass** — red fold removed, long blue loop retained.
+10. **92-segment validation pass** — 92/92 processed, only Seg99 changed, 0 regression flags, deterministic 92/92.
+11. **Consolidation preparation** — default representative method set to `purityRevisit`; staging manifest proposed; nothing staged.
+
+Status: **uncommitted** on branch `experiment/candidate-layer-display` @ `488c61b`.
+
+---
+
+## 2026-09-03 — Rollback: rejected Segment 1 arrow lane-change repair (runtime regression)
 
 | Field | Detail |
 |-------|--------|
-| **Objective** | Correct Segment 0 mirrored display through immutable compressed-qlog SHA-256 only |
-| **Rejected** | Heuristic activation, query-flag experiment, road-only Candidate B, global policy selector |
-| **Correction** | `config/viewer_display_corrections.json` — one entry; `fullSegmentLocalLateralReflection` when mirror checked |
-| **SHA-256** | `9ddfc49b6061357e648a096d13749e30f9597827fd86786951241f098ea29fa5` |
-| **Manual review** | User confirmed via normal URL: Segment 0 curves left like synchronized video; grey road, lanes, trajectory, and arrow follow the same left curve |
-| **Regression** | 1 active / 91 inactive; 91/91 unaffected exact; Seg2/Seg99 restored baseline |
-| **Status** | **ACCEPTED** — viewer-display-only dataset correction; M-051 remains **PARTIAL** uncommitted |
-| **Evidence** | `reports/segment0_exact_correction/dataset_diff_summary.json`, `tests/segment0_exact_display_correction.test.js` |
+| **Trigger** | Browser regression after arrow-direction repair: arrow invisible, Play dead, video not loading |
+| **Root cause** | `segment_local_map.js` captured `const CST = global.CombinedSourceTransform` at script load (before `combined_source_transform.js` executed); `resolveArrowOnSegmentMap` threw on `CST.enrichPlaybackPose` |
+| **Archive** | `.checkpoint_test_backup/rejected_combined_segment1_arrow_lane_change_repair/` |
+| **Rollback** | Restored working Candidate C hunks from `pre_candidate_c_canvas_layer_attribution`; reverted `lerpPose` metadata spread; restored pre-repair `index.html` cache-bust versions |
+| **Recovery evidence** | `reports/playback/combined_segment1_lane_change/runtime_regression/recovered/` — arrow visible, video playing, timeline advancing |
+| **Preserved** | Road continuity, Segment 0 alignment, Segment 2 left curve, canvas-layer cache repair, bridges, video switching, boundary pause |
+| **Known remaining** | Combined Segment 1 arrow lane-change direction still wrong (pre-repair state) |
+| **Tests** | Candidate C regression suites 114/114 pass |
+| **Status** | **UR — playback restored; Segment 1 direction unresolved; nothing checkpointed** |
+
+---
+
+## 2026-09-03 — Combined Segment 1 arrow lane-change direction repair (Candidate C) — REJECTED
+
+| Field | Detail |
+|-------|--------|
+| **Trigger** | Manual gate FAIL: standalone Segment 1 video + arrow lane change left; combined [0,1,2] video left but arrow moved right |
+| **Preserved** | Road continuity, Segment 0 hash correction, Segment 2 left curve, Hermite bridges, video boundary pause, M-051, fan-shaped Segment 2 observations untouched |
+| **Root cause** | `render.js::_segmentDisplayToScreen` applied map-wide Segment 0 exact display correction to Segment 1 arrow coordinates on multi-source maps (`sourceTransformByFile` present) — inverted north and flipped road-relative lateral sign |
+| **Repair** | `_useExactDisplayCorrection(point)` blocks map-wide correction when `isMultiSource` / `sourceTransformByFile`; arrow routed through `combinedPlaced` projection with per-pose `sourceFile`; shared `enrichPlaybackPose` contract in `combined_source_transform.js` + `segment_local_map.js`; `lerpPose` preserves same-source metadata |
+| **Numeric evidence** | Standalone Δd = **+0.507 m** (left); combined post-repair Δd = **+0.507 m**; legacy map-wide path Δd = **+174.2 m** (wrong) |
+| **Reports** | `reports/playback/combined_segment1_lane_change/` |
+| **Backup** | `.checkpoint_test_backup/pre_combined_segment1_arrow_lane_change_repair/` |
+| **Tests** | `combined_segment1_arrow_lane_change` 6/6; regression suites 96/96 (canvas layer, full alignment, anchoring, source scope, seg0 correction, mirror, video, boundary pause) |
+| **Status** | **REJECTED** — broke arrow/video playback; rolled back 2026-09-03 |
+
+---
+
+## 2026-09-01 — Candidate C canvas layer attribution + persist-cache placement repair
+
+| Field | Detail |
+|-------|--------|
+| **Trigger** | Manual gate FAIL: shared-transform tests passed but browser still showed separated coloured geometry; node lane-offset metrics (~4–10 m) did not explain visible pixels |
+| **Attribution** | `?debugLayerAttribution=1` per-pass pixel diff in `public/render.js`; owner = **`pointAccumulatedLanes`** (`_drawPointAccumulatedGeometry.dots`, collection `pointAccumulated.points`, UI `layerFusedLanes`) |
+| **Root cause** | GraphFit persist / memory cache could return a stationary map without Candidate C placement while renderer projected under `combinedPlaced`; capture also exposed `localStorage` forcing `fused` geometry during process |
+| **Repair** | `applyOrientationCandidateIfNeeded()` on cache hits in `public/app.js`; explicit `placedEast`/`placedNorth` in `finalizePlacedPoint()`; renderer prefers placed fields in `_projectRoadGeometryToScreen` |
+| **Post-repair metrics** | Owner-layer visible separation median **5.33 m**, P95 **10.45 m** (lane-width scale); 5798 points, 100% `combinedPlaced` |
+| **Reports** | `reports/display_orientation/combined_boundary_anchoring/layer_attribution/` |
+| **Backup** | `.checkpoint_test_backup/pre_candidate_c_canvas_layer_attribution/` |
+| **Tests** | `candidate_c_canvas_layer_attribution` 10/10; combined full-layer 12/12; anchoring 18/18; video/boundary 38/38 |
+| **Status** | **UR — browser metrics within lane-width; manual user review required** — Candidate C remains off by default; nothing checkpointed |
+
+---
+ Entries cite checkpoints, reports, audits, or source where possible. Failed or superseded work is recorded as such.
+
+**Update rule:** Append a dated entry after every meaningful implementation, investigation, experiment, validation, or specification task. Preserve all prior history.
+
+---
+
+## 2026-09-01 — Combined orientation: Candidate B rollback + boundary-anchored Candidate C + boundary bridges
+
+| Field | Detail |
+|-------|--------|
+| **Trigger** | Manual rejection: Candidate B fixed Segment 2 curve direction but opened large physical gaps (dashed connector); Candidate C preserved handedness but left 39.56 m / 31.71 m qlog sampling gaps |
+| **Rollback** | Removed per-source post-placement renderer reflection; restored continuous combined baseline on normal URL |
+| **Archive** | `.checkpoint_test_backup/rejected_combined_source_correction_scope/` |
+| **Candidate A** | Measured offline: disable Segment 0 map-wide correction for multi-source; preserves baseline seams; Segment 2 curves left |
+| **Candidate C** | `lib/combined_boundary_anchored_orientation.js` + `lib/combined_route_boundary_bridge.js`; boundary-anchored placement then evidence-supported Hermite bridges for consecutive qlog gaps (class B) |
+| **Browser gate** | Actual canvas captures in `reports/display_orientation/combined_boundary_anchoring/browser_actual/` — grey road continuous at 0→1 and 1→2; Segment 2 curves left; no dashed road substitute |
+| **Regression** | `combined_boundary_anchoring` 18/18; combined-source rollback + video/boundary-pause/mirror 52/52; Segment 0 standalone unchanged |
+| **Status** | **ES — browser PASS** — flag off on normal URL; not checkpointed |
+
+---
+
+
+| Field | Detail |
+|-------|--------|
+| **Control** | Restored pre-Segment-0 viewer remains default; baseline captured under `reports/segment0_isolated_fix/baseline/` |
+| **Root cause** | Lane points carry observation-time `mirroredLocalEast/North`; ribbon vertices lack mirrored precomputed coords; mirror-on road resolver returns `canonicalWithoutPrecomputed` |
+| **Candidates** | A canonical (wrong Seg0), B segmentLocalLateral (best Seg0 offline), C observation-pose at reference (poor fit), D paired lateral (same as B) |
+| **Activation** | Data-only: missing ribbon mirror + complete lane mirror + reference at segment origin + heading/tangent mismatch >90° + candidate B improves lane-road distance — **true only for Segment 0** across 92 segments |
+| **Experiment** | `?segment0RoadFixExperiment=1` (default off); full-layer Candidate B behind audited data-only activation |
+| **Regression** | Flag off: 92/92 baseline match; flag on: 1 activated, 91 zero-diff; Seg2/Seg99 exact |
+| **Status** | **NOT ACTIVATED** — manual Segment 0/2/99 review required |
+
+---
+
+| Field | Detail |
+|-------|--------|
+| **Trigger** | Manual review with mirror checked: Segments 2, 99, 51, 71 wrong after checked-mode policy selector |
+| **Rollback target** | `.checkpoint_test_backup/pre_segment0_road_mirror_repair/` (post-`f424b64`, post M-051 recovery, post Seg99 repair, pre first Seg0 experiment) |
+| **Rejected repairs** | (1) road-only `segmentLocalLateral` fallback; (2) global unified `segmentLocalLateral`; (3) checked-mode policy selector |
+| **Outcome** | Unified policy fixed Seg0 but reversed other segments; policy selector still failed manual gate on 2/99/51/71 |
+| **Restored** | `public/render.js`, mirror coord modules, mirror tests; Seg2 `cc861b9c`, Seg14 `989eaeec` display checksums |
+| **Retained** | M-051 renderer integration (uncommitted **PARTIAL**); candidate layer; Seg99 `useTrajectoryFallback: false` repair |
+| **Segment 0** | **KNOWN UNRESOLVED** — returned to pre-experiment behaviour; no further Seg0 work without new diagnosis |
+| **Archive** | `.checkpoint_test_backup/rejected_segment0_mirror_experiments/20260827_131013/` |
+| **Evidence** | `reports/display_orientation/rollback_hunk_classification.json` |
+
+---
+
+## 2026-08-27 — Checked-mode policy selector (rejected)
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Restore previously correct checked-mode display for normal segments while keeping Segment 0 unified alignment |
+| **Regression** | Global `segmentLocalLateral` fixed Seg0 but reversed Seg2/14/99 etc. |
+| **Selector** | `selectCheckedMirrorPolicy` — `lateralPrecomputedCurveAgreement` → precomputedCompatible; `referencePoseAnchoredAtSegmentOrigin` → segmentLocalLateral; else precomputedCompatible |
+| **Dataset audit** | 92 segments: 89 precomputedCompatible, 3 segmentLocalLateral (0, 51, 71), 3 low-confidence |
+| **Tests** | `checked_mirror_policy` 14/14; unified 15/15; road_mirror_toggle 12/12; connected 114/114; road_render_isolation 6/7 (known selector test) |
+| **Status** | **REJECTED** — manual review with checkbox checked failed on Segments 2, 99, 51, 71; rolled back |
 
 ---
 
@@ -706,6 +816,34 @@ When future work confirms these items, append corrections — do not rewrite pri
 
 ---
 
+## 2026-08-27 — Grey-road mirror control repair (Segment 0, generic)
+
+| Field | Detail |
+|-------|--------|
+| **Ground truth** | Segment 0 video curves left; grey road curved right with mirror control ineffective on ribbon |
+| **Failure** | Mirror checkbox changed lane layers but grey road/ribbon pixels stayed unchanged (`canonicalWithoutPrecomputed` no-op) |
+| **Root cause** | M-053 disabled trajectory fallback for ribbon vertices but left mirror-on without precomputed coords as canonical — lanes mirrored via stored coords, grey road did not |
+| **Repair** | `resolveRoadDisplayCoords` now uses `segmentLocalLateral` (`north` negation) when mirror is on and no precomputed/stored mirror coords; trajectory fallback remains opt-in only |
+| **Validation** | Seg0 road pixels differ unchecked `cb0bf8d64cc9f464` vs checked `53b5f74fa4caad80`; `segment_road_mirror_toggle` 12/12; mirror suites pass except pre-existing index.html M-051 gate |
+| **Seg99** | No trajectory fallback; post-fix road checksum `b8bc5404c88160f6` (mirror now affects grey road generically); broken trajectory class still 5.16% pixel diff from fix |
+| **State** | M-051 remains **PARTIAL** and uncommitted; **pending manual review** for Seg0 + Seg99 visuals |
+
+---
+
+## 2026-08-26 — M-051 renderer integration recovery (post-checkpoint overlay)
+
+| Field | Detail |
+|-------|--------|
+| **Context** | Checkpoint `f424b640` (`restore canonical mirrored road rendering`) succeeded; staged-snapshot verification temporarily replaced working-tree `public/render.js` with checkpoint-only copy |
+| **Impact** | Uncommitted M-051 / candidate-layer renderer hunks lost from working tree; commit and M-053 road repair unaffected |
+| **Recovery** | Surgical re-application from agent-transcript StrReplace patches (L1041, L1840, L1867) onto `f424b64:public/render.js`; backup `.checkpoint_test_backup/post_f424_pre_recovery/public/render.js` |
+| **Protected** | `useTrajectoryFallback: false`, canvas `save`/`finally` dash reset, no `hideRibbonForSequence` / validated-guide road replacement |
+| **Validation** | `connected_accumulated_display` **114/114**; `segment_mirror_display` **12/12**; `road_render_isolation` **6/7** (index.html still has uncommitted M-051 selector — expected); sequence rendered parts Seg13/14/95/99 = **170/221/28/8** |
+| **State** | M-051 remains **PARTIAL** and uncommitted; no production mapping behavior changed |
+| **Evidence** | `reports/connected_accumulated/runtime/render_recovery/` |
+
+---
+
 ## 2026-08-26 — Method evidence ledger documentation
 
 | Field | Detail |
@@ -738,3 +876,44 @@ When future work confirms these items, append corrections — do not rewrite pri
 | **Results** | Segments 3, 9, 16, 54: lib probe and browser parity match on accepted IDs/counts/polygons/fragments |
 | **Status** | **EXPERIMENTAL (ES)** — local checkpoint |
 | **Evidence** | `reports/fitted_layer_probe/viewer_browser_parity.json`, `tests/viewer_probe_parity.test.js` (11/11) |
+
+---
+
+## 2026-08-27 — Segment 0 exact source-hash display correction
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Apply full-layer lateral mirror correction to the exact Segment 0 qlog only, via immutable SHA-256, through the normal viewer URL |
+| **Rejected** | Heuristic activation condition, `?segment0RoadFixExperiment=1`, dynamic probe script loading |
+| **Work** | `config/viewer_display_corrections.json`; `lib/viewer_display_corrections.js`; `sourceQlogSha256` on stationary map; render gate `_useExactDisplayCorrection()` |
+| **Results** | 1/92 correction active (`9ddfc49b…`); 91/91 unaffected segments match restored baseline; Seg2/Seg99 exact; unified Seg0 lane checksum `3d809dfa` |
+| **Status** | **ACCEPTED (manual review 2026-08-27)** — checkpoint pending commit; not pushed |
+| **Manual review** | User confirmed via normal URL: Segment 0 curves left matching synchronized video; grey road, lanes, trajectory, and arrow follow the same left curve |
+| **Evidence** | `reports/segment0_exact_correction/dataset_diff_summary.json`, `tests/segment0_exact_display_correction.test.js` (18/18) |
+
+---
+
+## 2026-08-27 — M-051 lane identity and crossing repair (unstaged)
+
+| Field | Detail |
+|-------|--------|
+| **Objective** | Harden `roadGuidedSequenceConnection` with compatible-partition identity, beam-level lane-order/crossing constraints, and `distCompatibleM` / `distUnrestrictedM` metrics without changing grey road or mirror behaviour |
+| **Root cause** | Slot assignment used lateral rank only; identity (`laneIndex`, `groupTrackId`) was not a hard beam constraint; rendered vertices lacked identity provenance for compatible-source audit |
+| **Work** | Partition diagnostics; `clusterPrimaryIdentity`; hard validity in `rankByBinSequenceBeam`; identity fields on boundary points; `computeCompatibleSourceDistanceMetrics`; `tests/m051_identity_crossing_repair.test.js` (13/13); dataset audit script |
+| **Results** | Seg 13/14/95/99: `crossLaneIntersections=0`, part counts 170/221/28/8 reproduced; Seg13 heading P95 5.7° (gate ≤12°); 92-segment audit: 0 cross/self/order/swap violations; compatible-source P95 still >0.35 m on densified vertices (77/82 processed segments) |
+| **Status** | **PARTIAL** — experimental; manual browser screenshots pending; compatible-source gate not met dataset-wide |
+| **Evidence** | `reports/connected_accumulated/runtime/m051_identity_repair/baseline/baseline_metrics.json`, `dataset_audit.json` |
+
+---
+
+## 2026-08-28 — M-051 visible chain rendering repair (unstaged)
+
+| Field | Detail |
+|-------|--------|
+| **Trigger** | User manually rejected Segment 2 visual output: 149 per-span fragments looked like dots, not continuous lane lines. Prior automated browser PASS invalidated. |
+| **Root cause** | `buildSequenceSupportedSpans` emitted one rendered part per anchor pair; renderer stroked each short span separately (often `dashedSingleFrame`), so dense observation dots dominated. |
+| **Repair** | Added `chainSupportedLaneSpans` to merge adjacent supported spans sharing anchor IDs/identity; render `supportedLaneChain` as single solid `moveTo`/`lineTo`/`stroke` paths; updated legend counts (`supportedSpans`, `continuousChains`, etc.). |
+| **Seg 2 metrics** | Before: 149 rendered parts. After: 305 supported spans → 20 continuous chains (max 39 spans/chain). |
+| **Tests** | `tests/m051_visible_chain_rendering.test.js` 20/20; prior M-051 suites retained. |
+| **Status** | **PARTIAL** — implementation complete; **USER VISUAL REVIEW PENDING** |
+| **Evidence** | `reports/connected_accumulated/runtime/m051_visible_chain_repair/baseline/`, `browser/segment2_after_full_map.png` |

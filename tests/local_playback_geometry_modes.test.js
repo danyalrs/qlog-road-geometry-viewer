@@ -57,6 +57,23 @@ function extractFunctionBody(src, name) {
   return src.slice(sigStart);
 }
 
+// Brace-aware extraction of a complete class-method body (header included).
+// Used for source-order checks so they do not depend on a fixed-length slice.
+function extractMethodBody(src, header) {
+  const start = src.indexOf(header);
+  if (start < 0) return '';
+  const braceStart = start + header.length - 1; // header ends with '{'
+  let depth = 0;
+  for (let i = braceStart; i < src.length; i++) {
+    if (src[i] === '{') depth += 1;
+    else if (src[i] === '}') {
+      depth -= 1;
+      if (depth === 0) return src.slice(start, i + 1);
+    }
+  }
+  return src.slice(start);
+}
+
 function buildModeMap(data, geometrySource) {
   return SLM.buildSegmentLocalMap(data, { geometrySource, timelineIndex: 0 });
 }
@@ -93,12 +110,13 @@ describe('Local geometry UI — three-mode dropdown', () => {
     assert.ok(isVisibleLocalGeometryMode('pointAccumulated'));
   });
 
-  it('6. Fused lane lines is the default for new or invalid state', () => {
-    assert.equal(LOCAL_GEOMETRY_DEFAULT_MODE, 'fused');
-    assert.equal(normalizeLocalGeometrySelection(undefined), 'fused');
-    assert.equal(normalizeLocalGeometrySelection(null), 'fused');
-    assert.equal(normalizeLocalGeometrySelection(''), 'fused');
-    assert.match(read(INDEX_HTML), /value="fused" selected/);
+  it('6. Point-accumulated geometry is the default for new or invalid state', () => {
+    // Accepted default changed 2026-09-10: local geometry defaults to point-accumulated.
+    assert.equal(LOCAL_GEOMETRY_DEFAULT_MODE, 'pointAccumulated');
+    assert.equal(normalizeLocalGeometrySelection(undefined), 'pointAccumulated');
+    assert.equal(normalizeLocalGeometrySelection(null), 'pointAccumulated');
+    assert.equal(normalizeLocalGeometrySelection(''), 'pointAccumulated');
+    assert.match(read(INDEX_HTML), /value="pointAccumulated" selected/);
   });
 
   it('7. Raw, fused and point-accumulated remain separate modes', () => {
@@ -109,12 +127,12 @@ describe('Local geometry UI — three-mode dropdown', () => {
     assert.notEqual(values[1], values[2]);
   });
 
-  it('21. hidden saved modes fall back to Fused lane lines', () => {
+  it('21. hidden saved modes fall back to Point-accumulated geometry', () => {
     for (const hidden of HIDDEN_GEOMETRY_SOURCES) {
-      assert.equal(normalizeLocalGeometrySelection(hidden), 'fused');
+      assert.equal(normalizeLocalGeometrySelection(hidden), 'pointAccumulated');
     }
-    assert.equal(normalizeLocalGeometrySelection('cleaned'), 'fused');
-    assert.equal(normalizeLocalGeometrySelection('bogus'), 'fused');
+    assert.equal(normalizeLocalGeometrySelection('cleaned'), 'pointAccumulated');
+    assert.equal(normalizeLocalGeometrySelection('bogus'), 'pointAccumulated');
   });
 
   it('22. undefined and invalid values do not produce an empty map selection', () => {
@@ -123,7 +141,10 @@ describe('Local geometry UI — three-mode dropdown', () => {
       const mode = normalizeLocalGeometrySelection(bad);
       const map = buildModeMap(data, mode);
       assert.ok(map.valid, `mode ${String(bad)} -> ${mode} should yield valid map`);
-      assert.ok(map.laneFragments.length > 0);
+      // Non-empty geometry for whichever collection the resolved mode uses.
+      const nonEmpty = (map.laneFragments?.length ?? 0) > 0
+        || (map.pointAccumulated?.points?.length ?? 0) > 0;
+      assert.ok(nonEmpty, `mode ${mode} should yield non-empty geometry`);
     }
   });
 });
@@ -186,18 +207,19 @@ describe('Local geometry UI — switching implementation', () => {
   });
 
   it('16. arrow renders above geometry and vehicle path', () => {
-    const methodStart = renderSrc.indexOf('_drawStationaryLocalMap(d, elapsedIdx)');
-    assert.ok(methodStart >= 0);
-    // Generous window to include the diagnostics overlay after the added
-    // point-mode / observation-debug / stationary-local-polygon drawing blocks.
-    const methodSlice = renderSrc.slice(methodStart, methodStart + 20000);
-    const roadIdx = methodSlice.indexOf('if (this.layers.roadSurface)');
-    const laneIdx = methodSlice.indexOf('if (this.layers.fused)', roadIdx);
-    const pathIdx = methodSlice.indexOf('this._drawLocalVehiclePathOverlay(map);', laneIdx);
-    const arrowIdx = methodSlice.lastIndexOf('this._drawLocalPlaybackArrow(null, this.playbackPose)');
-    const movementIdx = methodSlice.indexOf('this._drawVehicleMovementIndicator(', arrowIdx);
-    const diagIdx = methodSlice.indexOf('this._drawGeometryDiagnosticOverlays(map)', movementIdx);
-    assert.ok(pathIdx >= 0, 'vehicle path overlay should be present');
+    // Scope the source-order check to the complete _drawStationaryLocalMap
+    // method body (brace-aware) instead of a fixed-length character slice, so
+    // accepted code growth cannot push the markers outside the searched window.
+    const body = extractMethodBody(renderSrc, '_drawStationaryLocalMap(d, elapsedIdx) {');
+    assert.ok(body, 'stationary local map method should be present');
+    const roadIdx = body.indexOf('if (this.layers.roadSurface)');
+    const laneIdx = body.indexOf('if (this.layers.fused)', roadIdx);
+    const pathIdx = body.indexOf('this._drawLocalVehiclePathOverlay(map);', laneIdx);
+    const arrowIdx = body.lastIndexOf('this._drawLocalPlaybackArrow(null, this.playbackPose)');
+    const movementIdx = body.indexOf('this._drawVehicleMovementIndicator(', arrowIdx);
+    const diagIdx = body.indexOf('this._drawGeometryDiagnosticOverlays(map)', movementIdx);
+    assert.ok(pathIdx >= 0, 'trajectory (vehicle path) draw marker should be present');
+    assert.ok(arrowIdx >= 0, 'arrow draw marker should be present');
     assert.ok(laneIdx < pathIdx, 'vehicle path should follow lane geometry');
     assert.ok(arrowIdx > pathIdx, 'arrow draw should follow vehicle path');
     assert.ok(movementIdx > arrowIdx, 'movement indicator should follow arrow');
@@ -440,7 +462,7 @@ describe('Local geometry UI — API parity', () => {
 describe('Local geometry UI — browser module parity', () => {
   it('browser local_geometry_ui.js mirrors lib exports', () => {
     const src = read(LOCAL_GEOMETRY_UI_JS);
-    assert.match(src, /LOCAL_GEOMETRY_DEFAULT_MODE.*fused/);
+    assert.match(src, /LOCAL_GEOMETRY_DEFAULT_MODE.*pointAccumulated/);
     assert.match(src, /normalizeLocalGeometrySelection/);
     assert.match(src, /HIDDEN_GEOMETRY_SOURCES/);
   });

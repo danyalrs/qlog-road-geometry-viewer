@@ -1,0 +1,172 @@
+{
+  "status": "CANDIDATE IMPLEMENTED — USER REVIEW REQUIRED",
+  "frames": {},
+  "gates": {
+    "frameId": 1803,
+    "paLaneOnly": {
+      "baselineChecksum": "e824e66f",
+      "candidateChecksum": "1862206b",
+      "changedPixels": 3668,
+      "diagnostics": {
+        "candidateActive": true,
+        "pointAccumulatedInputCount": 5798,
+        "pointAccumulatedCorrectedCount": 5798,
+        "pointAccumulatedFallbackCount": 0,
+        "laneFragmentInputCount": 0,
+        "laneFragmentVertexCount": 0,
+        "laneFragmentCorrectedCount": 0,
+        "laneFragmentFallbackCount": 0,
+        "missingSourceCount": 0,
+        "missingFrameCount": 0,
+        "missingAnchorCount": 0,
+        "doubleCorrectionPreventedCount": 0,
+        "cacheHitApplicationCount": 5798,
+        "drawPassCounts": {
+          "pointAccumulated": 5798,
+          "laneFragments": 0
+        }
+      },
+      "candidateActive": true
+    },
+    "paComplete": {
+      "baselineChecksum": "df57cadb",
+      "candidateChecksum": "210dce3a",
+      "changedPixels": 3609,
+      "diagnostics": {
+        "candidateActive": true,
+        "pointAccumulatedInputCount": 5798,
+        "pointAccumulatedCorrectedCount": 5798,
+        "pointAccumulatedFallbackCount": 0,
+        "laneFragmentInputCount": 0,
+        "laneFragmentVertexCount": 0,
+        "laneFragmentCorrectedCount": 0,
+        "laneFragmentFallbackCount": 0,
+        "missingSourceCount": 0,
+        "missingFrameCount": 0,
+        "missingAnchorCount": 0,
+        "doubleCorrectionPreventedCount": 0,
+        "cacheHitApplicationCount": 5798,
+        "drawPassCounts": {
+          "pointAccumulated": 5798,
+          "laneFragments": 0
+        }
+      }
+    },
+    "paDisablePass": {
+      "baselineDisabledChecksum": "d4d6c840",
+      "candidateDisabledChecksum": "dee89116",
+      "disabledMatch": false
+    },
+    "fusedLaneOnly": {
+      "baselineChecksum": "a79a1a2a",
+      "candidateChecksum": "720db5d7",
+      "changedPixels": 2167,
+      "diagnostics": {
+        "candidateActive": true,
+        "pointAccumulatedInputCount": 0,
+        "pointAccumulatedCorrectedCount": 0,
+        "pointAccumulatedFallbackCount": 0,
+        "laneFragmentInputCount": 178,
+        "laneFragmentVertexCount": 697,
+        "laneFragmentCorrectedCount": 697,
+        "laneFragmentFallbackCount": 0,
+        "missingSourceCount": 0,
+        "missingFrameCount": 0,
+        "missingAnchorCount": 0,
+        "doubleCorrectionPreventedCount": 0,
+        "cacheHitApplicationCount": 697,
+        "drawPassCounts": {
+          "pointAccumulated": 0,
+          "laneFragments": 697
+        }
+      },
+      "candidateActive": true
+    },
+    "fusedComplete": {
+      "baselineChecksum": "d23d5bbe",
+      "candidateChecksum": "e4603440",
+      "changedPixels": 2056,
+      "diagnostics": {
+        "candidateActive": true,
+        "pointAccumulatedInputCount": 0,
+        "pointAccumulatedCorrectedCount": 0,
+        "pointAccumulatedFallbackCount": 0,
+        "laneFragmentInputCount": 178,
+        "laneFragmentVertexCount": 697,
+        "laneFragmentCorrectedCount": 697,
+        "laneFragmentFallbackCount": 0,
+        "missingSourceCount": 0,
+        "missingFrameCount": 0,
+        "missingAnchorCount": 0,
+        "doubleCorrectionPreventedCount": 0,
+        "cacheHitApplicationCount": 697,
+        "drawPassCounts": {
+          "pointAccumulated": 0,
+          "laneFragments": 697
+        }
+      }
+    },
+    "fusedDisablePass": {
+      "baselineDisabledChecksum": "c6e22267",
+      "candidateDisabledChecksum": "36f398ac",
+      "disabledMatch": false
+    },
+    "candidateOffMatchesBaselinePa": false,
+    "cacheHitConsistent": {
+      "checksumSame": true,
+      "correctedSame": true,
+      "firstDiagnostics": {
+        "candidateActive": true,
+        "pointAccumulatedInputCount": 5798,
+        "pointAccumulatedCorrectedCount": 5798,
+        "pointAccumulatedFallbackCount": 0,
+        "laneFragmentInputCount": 0,
+        "laneFragmentVertexCount": 0,
+        "laneFragmentCorrectedCount": 0,
+        "laneFragmentFallbackCount": 0,
+        "missingSourceCount": 0,
+        "missingFrameCount": 0,
+        "missingAnchorCount": 0,
+        "doubleCorrectionPreventedCount": 0,
+        "cacheHitApplicationCount": 5798,
+        "drawPassCounts": {
+          "pointAccumulated": 5798,
+          "laneFragments": 0
+        }
+      },
+      "secondDiagnostics": {
+        "candidateActive": true,
+        "pointAccumulatedInputCount": 5798,
+        "pointAccumulatedCorrectedCount": 5798,
+        "pointAccumulatedFallbackCount": 0,
+        "laneFragmentInputCount": 0,
+        "laneFragmentVertexCount": 0,
+        "laneFragmentCorrectedCount": 0,
+        "laneFragmentFallbackCount": 0,
+        "missingSourceCount": 0,
+        "missingFrameCount": 0,
+        "missingAnchorCount": 0,
+        "doubleCorrectionPreventedCount": 0,
+        "cacheHitApplicationCount": 5798,
+        "drawPassCounts": {
+          "pointAccumulated": 5798,
+          "laneFragments": 0
+        }
+      }
+    }
+  },
+  "servedHashes": {
+    "index.html": "6ad943f6431385e6f3778cc1b53afa8f6852d0f065fe04595444c712723d2cc9",
+    "app.js": "873a6f31af4ef1111870e55882cbfed99ff87f4a08c16650c0d592177038b600",
+    "render.js": "2f60c38a10804121a1a8023eadf7154c27968aa5c0b239b834aaabb3d22a143c",
+    "combined_visible_lane_projection.js": "a8212ce60ce2a66921c264b9ac16b93abf15dd98fd24b19d5fb6f7276f5958bb",
+    "combined_source_transform.js": "3db2d3279b9f0a647bf56d0e7e0618d7721dd07c92e6c3be0fc0462d97e53041",
+    "combined_boundary_anchored_orientation.js": "ae2cc666245f3c558624f213d099af9bcd816be6f7e99961a0b85dba3ff4c5b5"
+  },
+  "summary": {
+    "paMoved": true,
+    "fusedMoved": true,
+    "paDiagOk": true,
+    "fusedDiagOk": true
+  }
+}

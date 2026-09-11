@@ -1,0 +1,1026 @@
+{
+  "0": {
+    "sourceCurves": 79,
+    "representativeLineCount": 15,
+    "logicalLaneCount": 4,
+    "rejected": {
+      "fold": 0,
+      "corridor": 1,
+      "overlap": 0,
+      "selfFold": 0,
+      "revisitSplit": 0,
+      "revisitPostSplit": 0
+    },
+    "maxTurnWindowDeg": 147.8,
+    "minChordPathRatio": 0.973,
+    "nearSelfApproachCount": 0,
+    "incompatibleVisitMergeCount": 0,
+    "sharedOverlapCount": 0,
+    "deterministic": true,
+    "checksum": "2cfd57f92551c36f419e384fe9ed2d992954f0b7",
+    "lines": [
+      {
+        "logicalLaneId": "0:0:0:0:right",
+        "groupTrackId": 0,
+        "points": 37,
+        "sRange": [
+          44,
+          80
+        ],
+        "dRange": [
+          -8.1,
+          -7.2
+        ],
+        "coverageM": 36,
+        "maxTurnWindowDeg": 3,
+        "chordPathRatio": 1,
+        "nearApproach": 0,
+        "temporalRevisit": true,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:0:0:right",
+        "groupTrackId": 0,
+        "points": 35,
+        "sRange": [
+          90,
+          124
+        ],
+        "dRange": [
+          -5.7,
+          -4.2
+        ],
+        "coverageM": 34,
+        "maxTurnWindowDeg": 1.5,
+        "chordPathRatio": 1,
+        "nearApproach": 0,
+        "temporalRevisit": true,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:0:0:right",
+        "groupTrackId": 0,
+        "points": 316,
+        "sRange": [
+          132,
+          451
+        ],
+        "dRange": [
+          -6.6,
+          -0.6
+        ],
+        "coverageM": 319,
+        "maxTurnWindowDeg": 147.8,
+        "chordPathRatio": 0.973,
+        "nearApproach": 0,
+        "temporalRevisit": false,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:0:0:right",
+        "groupTrackId": 0,
+        "points": 78,
+        "sRange": [
+          453,
+          532
+        ],
+        "dRange": [
+          -4.9,
+          -4.4
+        ],
+        "coverageM": 79,
+        "maxTurnWindowDeg": 12.5,
+        "chordPathRatio": 1,
+        "nearApproach": 0,
+        "temporalRevisit": true,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:0:0:right",
+        "groupTrackId": 0,
+        "points": 40,
+        "sRange": [
+          613,
+          652
+        ],
+        "dRange": [
+          -6,
+          -5.2
+        ],
+        "coverageM": 39,
+        "maxTurnWindowDeg": 2.9,
+        "chordPathRatio": 1,
+        "nearApproach": 0,
+        "temporalRevisit": true,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:0:0:right",
+        "groupTrackId": 0,
+        "points": 68,
+        "sRange": [
+          734,
+          801
+        ],
+        "dRange": [
+          -4.8,
+          -4.7
+        ],
+        "coverageM": 67,
+        "maxTurnWindowDeg": 10.1,
+        "chordPathRatio": 1,
+        "nearApproach": 0,
+        "temporalRevisit": true,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:1:1:right",
+        "groupTrackId": 1,
+        "points": 37,
+        "sRange": [
+          44,
+          80
+        ],
+        "dRange": [
+          -4.8,
+          -3.9
+        ],
+        "coverageM": 36,
+        "maxTurnWindowDeg": 1.3,
+        "chordPathRatio": 1,
+        "nearApproach": 0,
+        "temporalRevisit": true,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:1:1:right",
+        "groupTrackId": 1,
+        "points": 34,
+        "sRange": [
+          90,
+          123
+        ],
+        "dRange": [
+          -2.5,
+          -1
+        ],
+        "coverageM": 33,
+        "maxTurnWindowDeg": 1.6,
+        "chordPathRatio": 1,
+        "nearApproach": 0,
+        "temporalRevisit": true,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:1:1:right",
+        "groupTrackId": 1,
+        "points": 316,
+        "sRange": [
+          132,
+          451
+        ],
+        "dRange": [
+          -3.4,
+          2.5
+        ],
+        "coverageM": 319,
+        "maxTurnWindowDeg": 146.8,
+        "chordPathRatio": 0.973,
+        "nearApproach": 0,
+        "temporalRevisit": false,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:1:1:right",
+        "groupTrackId": 1,
+        "points": 345,
+        "sRange": [
+          453,
+          801
+        ],
+        "dRange": [
+          -2.9,
+          -0.4
+        ],
+        "coverageM": 348,
+        "maxTurnWindowDeg": 85.6,
+        "chordPathRatio": 0.998,
+        "nearApproach": 0,
+        "temporalRevisit": false,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:2:2:left",
+        "groupTrackId": 2,
+        "points": 37,
+        "sRange": [
+          44,
+          80
+        ],
+        "dRange": [
+          -1.6,
+          -0.7
+        ],
+        "coverageM": 36,
+        "maxTurnWindowDeg": 0.8,
+        "chordPathRatio": 1,
+        "nearApproach": 0,
+        "temporalRevisit": true,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:2:2:left",
+        "groupTrackId": 2,
+        "points": 34,
+        "sRange": [
+          90,
+          123
+        ],
+        "dRange": [
+          0.7,
+          2.2
+        ],
+        "coverageM": 33,
+        "maxTurnWindowDeg": 1.6,
+        "chordPathRatio": 1,
+        "nearApproach": 0,
+        "temporalRevisit": true,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:2:2:left",
+        "groupTrackId": 2,
+        "points": 315,
+        "sRange": [
+          132,
+          451
+        ],
+        "dRange": [
+          -0.1,
+          5.6
+        ],
+        "coverageM": 319,
+        "maxTurnWindowDeg": 146.8,
+        "chordPathRatio": 0.974,
+        "nearApproach": 0,
+        "temporalRevisit": false,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:2:2:left",
+        "groupTrackId": 2,
+        "points": 344,
+        "sRange": [
+          453,
+          801
+        ],
+        "dRange": [
+          0.2,
+          2.7
+        ],
+        "coverageM": 348,
+        "maxTurnWindowDeg": 86.3,
+        "chordPathRatio": 0.998,
+        "nearApproach": 0,
+        "temporalRevisit": false,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:3:3:left",
+        "groupTrackId": 3,
+        "points": 107,
+        "sRange": [
+          694,
+          801
+        ],
+        "dRange": [
+          4,
+          4.2
+        ],
+        "coverageM": 107,
+        "maxTurnWindowDeg": 10.9,
+        "chordPathRatio": 1,
+        "nearApproach": 0,
+        "temporalRevisit": false,
+        "flagged": null
+      }
+    ]
+  },
+  "1": {
+    "sourceCurves": 91,
+    "representativeLineCount": 17,
+    "logicalLaneCount": 4,
+    "rejected": {
+      "fold": 0,
+      "corridor": 4,
+      "overlap": 0,
+      "selfFold": 0,
+      "revisitSplit": 0,
+      "revisitPostSplit": 0
+    },
+    "maxTurnWindowDeg": 183.3,
+    "minChordPathRatio": 0.961,
+    "nearSelfApproachCount": 0,
+    "incompatibleVisitMergeCount": 0,
+    "sharedOverlapCount": 0,
+    "deterministic": true,
+    "checksum": "f2628316833c0d1603a4b62f2035f9619b7da979",
+    "lines": [
+      {
+        "logicalLaneId": "0:0:0:0:right",
+        "groupTrackId": 0,
+        "points": 10,
+        "sRange": [
+          156,
+          165
+        ],
+        "dRange": [
+          -8.2,
+          -7.4
+        ],
+        "coverageM": 9,
+        "maxTurnWindowDeg": 1.3,
+        "chordPathRatio": 1,
+        "nearApproach": 0,
+        "temporalRevisit": true,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:0:0:right",
+        "groupTrackId": 0,
+        "points": 31,
+        "sRange": [
+          235,
+          265
+        ],
+        "dRange": [
+          -3.2,
+          1.1
+        ],
+        "coverageM": 30,
+        "maxTurnWindowDeg": 3.1,
+        "chordPathRatio": 1,
+        "nearApproach": 0,
+        "temporalRevisit": true,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:0:0:right",
+        "groupTrackId": 0,
+        "points": 20,
+        "sRange": [
+          272,
+          291
+        ],
+        "dRange": [
+          -1.5,
+          0.2
+        ],
+        "coverageM": 19,
+        "maxTurnWindowDeg": 1.8,
+        "chordPathRatio": 1,
+        "nearApproach": 0,
+        "temporalRevisit": true,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:0:0:right",
+        "groupTrackId": 0,
+        "points": 188,
+        "sRange": [
+          311,
+          498
+        ],
+        "dRange": [
+          -6.4,
+          -2.8
+        ],
+        "coverageM": 187,
+        "maxTurnWindowDeg": 124.8,
+        "chordPathRatio": 0.995,
+        "nearApproach": 0,
+        "temporalRevisit": false,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:1:1:right",
+        "groupTrackId": 1,
+        "points": 112,
+        "sRange": [
+          42,
+          154
+        ],
+        "dRange": [
+          -9.2,
+          4.1
+        ],
+        "coverageM": 112,
+        "maxTurnWindowDeg": 177.7,
+        "chordPathRatio": 0.961,
+        "nearApproach": 0,
+        "temporalRevisit": false,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:1:1:right",
+        "groupTrackId": 1,
+        "points": 9,
+        "sRange": [
+          157,
+          165
+        ],
+        "dRange": [
+          -5.3,
+          -4.7
+        ],
+        "coverageM": 8,
+        "maxTurnWindowDeg": 1.1,
+        "chordPathRatio": 1,
+        "nearApproach": 0,
+        "temporalRevisit": true,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:1:1:right",
+        "groupTrackId": 1,
+        "points": 26,
+        "sRange": [
+          194,
+          219
+        ],
+        "dRange": [
+          -4.7,
+          -3
+        ],
+        "coverageM": 25,
+        "maxTurnWindowDeg": 2.6,
+        "chordPathRatio": 1,
+        "nearApproach": 0,
+        "temporalRevisit": true,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:1:1:right",
+        "groupTrackId": 1,
+        "points": 53,
+        "sRange": [
+          235,
+          291
+        ],
+        "dRange": [
+          0,
+          4.5
+        ],
+        "coverageM": 56,
+        "maxTurnWindowDeg": 93.8,
+        "chordPathRatio": 0.968,
+        "nearApproach": 0,
+        "temporalRevisit": true,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:1:1:right",
+        "groupTrackId": 1,
+        "points": 772,
+        "sRange": [
+          311,
+          1106
+        ],
+        "dRange": [
+          -3.3,
+          1.2
+        ],
+        "coverageM": 795,
+        "maxTurnWindowDeg": 163.3,
+        "chordPathRatio": 0.991,
+        "nearApproach": 0,
+        "temporalRevisit": false,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:2:2:left",
+        "groupTrackId": 2,
+        "points": 10,
+        "sRange": [
+          157,
+          166
+        ],
+        "dRange": [
+          -2.4,
+          -1.6
+        ],
+        "coverageM": 9,
+        "maxTurnWindowDeg": 1.5,
+        "chordPathRatio": 1,
+        "nearApproach": 0,
+        "temporalRevisit": true,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:2:2:left",
+        "groupTrackId": 2,
+        "points": 26,
+        "sRange": [
+          195,
+          220
+        ],
+        "dRange": [
+          -1.7,
+          -0.1
+        ],
+        "coverageM": 25,
+        "maxTurnWindowDeg": 2.9,
+        "chordPathRatio": 1,
+        "nearApproach": 0,
+        "temporalRevisit": true,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:2:2:left",
+        "groupTrackId": 2,
+        "points": 52,
+        "sRange": [
+          235,
+          290
+        ],
+        "dRange": [
+          3.1,
+          7.6
+        ],
+        "coverageM": 55,
+        "maxTurnWindowDeg": 91.1,
+        "chordPathRatio": 0.969,
+        "nearApproach": 0,
+        "temporalRevisit": true,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:2:2:left",
+        "groupTrackId": 2,
+        "points": 773,
+        "sRange": [
+          310,
+          1106
+        ],
+        "dRange": [
+          -0.1,
+          4.5
+        ],
+        "coverageM": 796,
+        "maxTurnWindowDeg": 183.3,
+        "chordPathRatio": 0.989,
+        "nearApproach": 0,
+        "temporalRevisit": false,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:3:3:left",
+        "groupTrackId": 3,
+        "points": 39,
+        "sRange": [
+          118,
+          156
+        ],
+        "dRange": [
+          -4.3,
+          2.7
+        ],
+        "coverageM": 38,
+        "maxTurnWindowDeg": 5.4,
+        "chordPathRatio": 1,
+        "nearApproach": 0,
+        "temporalRevisit": true,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:3:3:left",
+        "groupTrackId": 3,
+        "points": 189,
+        "sRange": [
+          310,
+          498
+        ],
+        "dRange": [
+          2.4,
+          5.6
+        ],
+        "coverageM": 188,
+        "maxTurnWindowDeg": 127.8,
+        "chordPathRatio": 0.992,
+        "nearApproach": 0,
+        "temporalRevisit": false,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:3:3:left",
+        "groupTrackId": 3,
+        "points": 40,
+        "sRange": [
+          576,
+          615
+        ],
+        "dRange": [
+          5.3,
+          7.4
+        ],
+        "coverageM": 39,
+        "maxTurnWindowDeg": 2.1,
+        "chordPathRatio": 1,
+        "nearApproach": 0,
+        "temporalRevisit": true,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:3:3:left",
+        "groupTrackId": 3,
+        "points": 78,
+        "sRange": [
+          699,
+          778
+        ],
+        "dRange": [
+          4.5,
+          5.3
+        ],
+        "coverageM": 79,
+        "maxTurnWindowDeg": 34.6,
+        "chordPathRatio": 0.998,
+        "nearApproach": 0,
+        "temporalRevisit": true,
+        "flagged": null
+      }
+    ]
+  },
+  "2": {
+    "sourceCurves": 53,
+    "representativeLineCount": 3,
+    "logicalLaneCount": 4,
+    "rejected": {
+      "fold": 0,
+      "corridor": 2,
+      "overlap": 1,
+      "selfFold": 0,
+      "revisitSplit": 0,
+      "revisitPostSplit": 0
+    },
+    "maxTurnWindowDeg": 190.6,
+    "minChordPathRatio": 0.861,
+    "nearSelfApproachCount": 52386,
+    "incompatibleVisitMergeCount": 0,
+    "sharedOverlapCount": 0,
+    "deterministic": true,
+    "checksum": "0e0b9c63e9f1f626311cb0e09c46a8f9c7d126b0",
+    "lines": [
+      {
+        "logicalLaneId": "0:0:0:1:right:u1",
+        "groupTrackId": 0,
+        "points": 672,
+        "sRange": [
+          25,
+          697
+        ],
+        "dRange": [
+          -3.9,
+          0.7
+        ],
+        "coverageM": 672,
+        "maxTurnWindowDeg": 190.6,
+        "chordPathRatio": 0.861,
+        "nearApproach": 26316,
+        "temporalRevisit": false,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:1:2:left:u1",
+        "groupTrackId": 1,
+        "points": 667,
+        "sRange": [
+          28,
+          697
+        ],
+        "dRange": [
+          -1.2,
+          1.6
+        ],
+        "coverageM": 669,
+        "maxTurnWindowDeg": 184.8,
+        "chordPathRatio": 0.861,
+        "nearApproach": 26070,
+        "temporalRevisit": false,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:2:3:left:u0",
+        "groupTrackId": 2,
+        "points": 80,
+        "sRange": [
+          409,
+          488
+        ],
+        "dRange": [
+          3.4,
+          4.1
+        ],
+        "coverageM": 79,
+        "maxTurnWindowDeg": 29,
+        "chordPathRatio": 1,
+        "nearApproach": 0,
+        "temporalRevisit": true,
+        "flagged": null
+      }
+    ]
+  },
+  "99": {
+    "sourceCurves": 29,
+    "representativeLineCount": 13,
+    "logicalLaneCount": 5,
+    "rejected": {
+      "fold": 0,
+      "corridor": 3,
+      "overlap": 0,
+      "selfFold": 1,
+      "revisitSplit": 0,
+      "revisitPostSplit": 0
+    },
+    "maxTurnWindowDeg": 198.2,
+    "minChordPathRatio": 0.381,
+    "nearSelfApproachCount": 23086,
+    "incompatibleVisitMergeCount": 1,
+    "sharedOverlapCount": 0,
+    "deterministic": true,
+    "checksum": "511ea4efb460aab0217b38773e398316d39bb4ce",
+    "lines": [
+      {
+        "logicalLaneId": "0:0:0:2:left:u0",
+        "groupTrackId": 0,
+        "points": 61,
+        "sRange": [
+          121,
+          181
+        ],
+        "dRange": [
+          -2.4,
+          4.9
+        ],
+        "coverageM": 60,
+        "maxTurnWindowDeg": 14.2,
+        "chordPathRatio": 0.994,
+        "nearApproach": 0,
+        "temporalRevisit": true,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:0:2:left:u0",
+        "groupTrackId": 0,
+        "points": 24,
+        "sRange": [
+          276,
+          299
+        ],
+        "dRange": [
+          -3.5,
+          3.6
+        ],
+        "coverageM": 23,
+        "maxTurnWindowDeg": 10.6,
+        "chordPathRatio": 0.998,
+        "nearApproach": 0,
+        "temporalRevisit": true,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:0:2:left:u2",
+        "groupTrackId": 0,
+        "points": 20,
+        "sRange": [
+          56,
+          75
+        ],
+        "dRange": [
+          0.4,
+          0.8
+        ],
+        "coverageM": 19,
+        "maxTurnWindowDeg": 94.7,
+        "chordPathRatio": 0.928,
+        "nearApproach": 110,
+        "temporalRevisit": true,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:0:2:left:u2",
+        "groupTrackId": 0,
+        "points": 268,
+        "sRange": [
+          99,
+          366
+        ],
+        "dRange": [
+          0.8,
+          1
+        ],
+        "coverageM": 267,
+        "maxTurnWindowDeg": 196,
+        "chordPathRatio": 0.381,
+        "nearApproach": 10937,
+        "temporalRevisit": true,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:0:2:left:u2",
+        "groupTrackId": 0,
+        "points": 37,
+        "sRange": [
+          379,
+          415
+        ],
+        "dRange": [
+          -6.3,
+          -0.2
+        ],
+        "coverageM": 36,
+        "maxTurnWindowDeg": 6.7,
+        "chordPathRatio": 1,
+        "nearApproach": 0,
+        "temporalRevisit": true,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:0:2:left:u2",
+        "groupTrackId": 0,
+        "points": 51,
+        "sRange": [
+          465,
+          517
+        ],
+        "dRange": [
+          0.2,
+          0.8
+        ],
+        "coverageM": 52,
+        "maxTurnWindowDeg": 60,
+        "chordPathRatio": 0.983,
+        "nearApproach": 0,
+        "temporalRevisit": false,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:1:1:right:u0",
+        "groupTrackId": 1,
+        "points": 72,
+        "sRange": [
+          102,
+          173
+        ],
+        "dRange": [
+          1.2,
+          3.8
+        ],
+        "coverageM": 71,
+        "maxTurnWindowDeg": 145.6,
+        "chordPathRatio": 0.966,
+        "nearApproach": 0,
+        "temporalRevisit": true,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:1:1:right:u0",
+        "groupTrackId": 1,
+        "points": 21,
+        "sRange": [
+          293,
+          313
+        ],
+        "dRange": [
+          0.3,
+          1.8
+        ],
+        "coverageM": 20,
+        "maxTurnWindowDeg": 5,
+        "chordPathRatio": 1,
+        "nearApproach": 0,
+        "temporalRevisit": true,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:1:1:right:u1",
+        "groupTrackId": 1,
+        "points": 360,
+        "sRange": [
+          3,
+          362
+        ],
+        "dRange": [
+          -5.7,
+          2.2
+        ],
+        "coverageM": 359,
+        "maxTurnWindowDeg": 198.2,
+        "chordPathRatio": 0.801,
+        "nearApproach": 12039,
+        "temporalRevisit": true,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:1:1:right:u1",
+        "groupTrackId": 1,
+        "points": 29,
+        "sRange": [
+          379,
+          407
+        ],
+        "dRange": [
+          -8.5,
+          -3.6
+        ],
+        "coverageM": 28,
+        "maxTurnWindowDeg": 7.2,
+        "chordPathRatio": 1,
+        "nearApproach": 0,
+        "temporalRevisit": true,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:1:1:right:u1",
+        "groupTrackId": 1,
+        "points": 49,
+        "sRange": [
+          465,
+          517
+        ],
+        "dRange": [
+          -2.6,
+          -1.8
+        ],
+        "coverageM": 52,
+        "maxTurnWindowDeg": 60.4,
+        "chordPathRatio": 0.976,
+        "nearApproach": 0,
+        "temporalRevisit": false,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:2:0:right",
+        "groupTrackId": 2,
+        "points": 10,
+        "sRange": [
+          416,
+          425
+        ],
+        "dRange": [
+          -8.5,
+          -7.4
+        ],
+        "coverageM": 9,
+        "maxTurnWindowDeg": 1.3,
+        "chordPathRatio": 1,
+        "nearApproach": 0,
+        "temporalRevisit": true,
+        "flagged": null
+      },
+      {
+        "logicalLaneId": "0:0:2:0:right",
+        "groupTrackId": 2,
+        "points": 23,
+        "sRange": [
+          495,
+          517
+        ],
+        "dRange": [
+          -4.9,
+          -4.5
+        ],
+        "coverageM": 22,
+        "maxTurnWindowDeg": 22.4,
+        "chordPathRatio": 0.997,
+        "nearApproach": 0,
+        "temporalRevisit": true,
+        "flagged": null
+      }
+    ]
+  },
+  "seg99_status": {
+    "formerRedFold_s272_292_present": false,
+    "formerRedFold_matches": [],
+    "rejectedSelfFold": 1,
+    "blueLoop_survivor": {
+      "logicalLaneId": "0:0:0:2:left:u2",
+      "groupTrackId": 0,
+      "points": 268,
+      "sRange": [
+        99,
+        366
+      ],
+      "dRange": [
+        0.8,
+        1
+      ],
+      "coverageM": 267,
+      "maxTurnWindowDeg": 196,
+      "chordPathRatio": 0.381,
+      "nearApproach": 10937,
+      "temporalRevisit": true,
+      "flagged": null
+    }
+  }
+}

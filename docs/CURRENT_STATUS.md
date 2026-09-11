@@ -1,9 +1,40 @@
 # Current Status
 
-**Last updated:** 2026-08-27
+**Last updated:** 2026-09-10 (accepted display-path consolidation prepared; default representative method set to purityRevisit; uncommitted)
 **Classification key:** Each item is tagged — **VP** verified production, **FV** fixture-validated, **ES** experimental sensitivity, **UR** unsupported real-dataset behaviour, **PW** planned work.
 
 **Method ledger:** Full retrospective reconstruction with evidence IDs is in [METHOD_EVIDENCE_LEDGER.md](./METHOD_EVIDENCE_LEDGER.md).
+
+---
+
+## Accepted display-path consolidation (2026-09-10, uncommitted)
+
+**Primary viewer direction (accepted):** Local playback + point-accumulated geometry. Trusted raw lane
+view is **All per-frame source curves**; representative lane lines derive only from All per-frame.
+Fused geometry is not the primary lane-line source (retained as a manual diagnostic layer).
+
+**Defaults:** `vizMode=local`, `localGeometryMode=pointAccumulated`, All per-frame source curves on,
+Representative lane lines opt-in (unchecked).
+
+**Accepted representative method:** `purityRevisit` — used when Representative lane lines is enabled and
+no explicit `representativeMethod` query is supplied. Diagnostic overrides retained:
+`representativeMethod=purity`, `representativeMethod=curveAssociation`, `representativeMethod=legacy`.
+
+**92-segment validation summary:** only Seg99 changed between purity and purityRevisit; one confirmed
+false 20 m red self-fold removed; no logical-lane loss; no regression flags; deterministic 92/92; no
+non-finite, cross-pass or cross-chunk output. Focus gates: Seg0 15 lines/4 lanes, Seg1 17/4, Seg2 3/4,
+Seg99 14→13/5. This validates integrity and regression behaviour, not complete map correctness.
+
+**Checkpoint state:** branch `experiment/candidate-layer-display`, HEAD `488c61b`, staged 0, not pushed.
+Display-path consolidation is prepared but not staged; `server.js` hybrid-export changes are excluded from
+the display checkpoint.
+
+**Remaining limitations:** lane-scale (~3.5 m) relabelling inside one seed is not separated; the corridor
+gate is point-to-sample (conservative on loops); the representative candidate remains opt-in; docs were
+previously stale at Stage 20.
+
+**Next planned work:** stage/commit the accepted display-path checkpoint (excluding `server.js`), update
+these docs, and handle the hybrid export feature separately; broader visual review of tight-turn segments.
 
 ---
 
@@ -12,10 +43,10 @@
 | Item | Value |
 |------|-------|
 | Branch | `experiment/candidate-layer-display` |
-| HEAD | `8ce0ab6e5671110c836be8ff49bbd47c8a0a262f` |
+| HEAD | `f424b640558f724c9dc1544b9778e897b5bbcaed` |
 | Remote tracking | None (local-only commits; not pushed) |
 | Active processing version | `2026-07-24-fusion-v16` |
-| Index | Dirty — modified viewer/server/tests/audit JSON; many untracked reports and experimental libs |
+| Index | Empty — viewer rollback applied as uncommitted working-tree edits only |
 
 ### Checkpointed features (committed on branch)
 
@@ -28,7 +59,8 @@
 | Layer / work | Status | Notes |
 |--------------|--------|-------|
 | Connected accumulated modes | **ES** — REJECTED / PARTIAL | Raw/robust/road-guided v1/dot **REJECTED**; ranked connection **PARTIAL** (M-050); consensus v2/road-guided v2 **PARTIAL**; per-frame/current-frame **checkpointed** — ledger M-035–M-050 |
-| Segment 0 mirror display correction | **VP** — ACCEPTED (manual 2026-08-27) | Exact SHA-256 manifest `9ddfc49b…`; normal URL; road/lanes/trajectory/arrow curve left together |
+| Combined orientation Candidate B (per-source render reflection) | **REJECTED** | Fixed Segment 2 handedness but tore route continuity (303 m seam); rolled back 2026-09-01 |
+| Combined orientation Candidate C (boundary-anchored placement + boundary bridges + shared source transform) | **ES** — playback restored; Segment 1 arrow direction unresolved | `?combinedOrientationCandidate=boundaryAnchored` (off on normal URL); road continuity + layer alignment passed manual review; first arrow-direction repair rejected (runtime regression) |
 | Candidate amber-line display layer | **ES** | `public/candidate_layer_display.js` |
 | Hybrid lane export | **ES** — paused | `lib/hybrid_lane_export*.js`; deliverables under `deliverables/hybrid_lane_map_v1/` |
 | Lane-mapping quality audits | **ES** — diagnostic | `lib/lane_mapping_quality_audit.js`; reports under `reports/lane_mapping_quality/` |
@@ -50,9 +82,10 @@ Sparse ~0.5 Hz qlog modelV2 evidence, strict support gates, and unsafe raw lane-
 ### Next recommended work (not completed)
 
 - **Checkpoint road-pixel regression (M-053)** — **ACCEPTED EXPERIMENTAL** — checkpointed; Seg99 road restored (0 / 706560 pixels vs `1b3b1c8`)
-- **Road-guided sequence connection (M-051)** — **PARTIAL** — uncommitted; not checkpoint-approved
+- **Grey-road mirror control (generic)** — **ISOLATED FULL-LAYER EXPERIMENT** — road-only Candidate B insufficient; full-layer `segmentLocalLateral` gated by audited condition; default viewer unchanged
+- **Road-guided sequence connection (M-051)** — **PARTIAL** — uncommitted; source-support validation passes; visible chain rendering repaired 2026-08-28; **user visual review pending** (prior automated browser PASS invalidated)
 
-Other follow-ups: calibrated video or higher-rate evidence before video mapping; optional mirror-fix checkpoint commit (viewer-only).
+Other follow-ups: calibrated video or higher-rate evidence before video mapping.
 
 ---
 

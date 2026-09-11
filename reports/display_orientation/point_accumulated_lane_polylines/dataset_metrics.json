@@ -1,0 +1,497 @@
+{
+  "generatedAt": "2026-09-07T06:31:01.161Z",
+  "sampleSets": [
+    {
+      "name": "seg1",
+      "files": [
+        "qlog_f449c_1.bz2"
+      ],
+      "pointCount": 2366,
+      "polylineCount": 44,
+      "diagnostics": {
+        "candidateActive": true,
+        "inputCount": 2366,
+        "groupCount": 4,
+        "polylineCount": 44,
+        "vertexCount": 774,
+        "skippedShortRuns": 14,
+        "splitReasonCounts": {
+          "largeAlongTrackGap": 17,
+          "largeHeadingChange": 25,
+          "largeLateralStep": 2,
+          "largeSpatialGap": 10
+        },
+        "crossLanePrevented": 0,
+        "crossPassPrevented": 0,
+        "crossChunkPrevented": 0,
+        "revisitSplits": 0
+      },
+      "audit": {
+        "polylineCount": 44,
+        "maxSegmentLengthM": 7.312517443341436,
+        "nonFiniteCount": 0,
+        "backwardOrderingCount": 0,
+        "identityChangeCount": 0,
+        "crossPassCount": 0,
+        "crossChunkCount": 0,
+        "issues": []
+      },
+      "deterministic": true
+    },
+    {
+      "name": "combined_012",
+      "files": [
+        "qlog_f449c_0.bz2",
+        "qlog_f449c_1.bz2",
+        "qlog_f449c_2.bz2"
+      ],
+      "pointCount": 5798,
+      "polylineCount": 140,
+      "diagnostics": {
+        "candidateActive": true,
+        "inputCount": 5798,
+        "groupCount": 4,
+        "polylineCount": 140,
+        "vertexCount": 1666,
+        "skippedShortRuns": 685,
+        "splitReasonCounts": {
+          "largeHeadingChange": 53,
+          "largeAlongTrackGap": 47,
+          "largeSpatialGap": 714,
+          "largeLateralStep": 7
+        },
+        "crossLanePrevented": 0,
+        "crossPassPrevented": 0,
+        "crossChunkPrevented": 0,
+        "revisitSplits": 0
+      },
+      "audit": {
+        "polylineCount": 140,
+        "maxSegmentLengthM": 15.243488320912881,
+        "nonFiniteCount": 0,
+        "backwardOrderingCount": 0,
+        "identityChangeCount": 0,
+        "crossPassCount": 0,
+        "crossChunkCount": 0,
+        "issues": []
+      },
+      "deterministic": true
+    },
+    {
+      "name": "seg2",
+      "files": [
+        "qlog_f449c_2.bz2"
+      ],
+      "pointCount": 1378,
+      "polylineCount": 28,
+      "diagnostics": {
+        "candidateActive": true,
+        "inputCount": 1378,
+        "groupCount": 3,
+        "polylineCount": 28,
+        "vertexCount": 545,
+        "skippedShortRuns": 8,
+        "splitReasonCounts": {
+          "largeAlongTrackGap": 7,
+          "largeHeadingChange": 18,
+          "largeLateralStep": 3,
+          "largeSpatialGap": 5
+        },
+        "crossLanePrevented": 0,
+        "crossPassPrevented": 0,
+        "crossChunkPrevented": 0,
+        "revisitSplits": 0
+      },
+      "audit": {
+        "polylineCount": 28,
+        "maxSegmentLengthM": 15.115961054538227,
+        "nonFiniteCount": 0,
+        "backwardOrderingCount": 0,
+        "identityChangeCount": 0,
+        "crossPassCount": 0,
+        "crossChunkCount": 0,
+        "issues": []
+      },
+      "deterministic": true
+    },
+    {
+      "name": "seg99",
+      "files": [
+        "qlog_f449c_99.bz2"
+      ],
+      "pointCount": 754,
+      "polylineCount": 11,
+      "diagnostics": {
+        "candidateActive": true,
+        "inputCount": 754,
+        "groupCount": 3,
+        "polylineCount": 11,
+        "vertexCount": 145,
+        "skippedShortRuns": 26,
+        "splitReasonCounts": {
+          "largeAlongTrackGap": 8,
+          "largeHeadingChange": 7,
+          "largeLateralStep": 8,
+          "largeSpatialGap": 11
+        },
+        "crossLanePrevented": 0,
+        "crossPassPrevented": 0,
+        "crossChunkPrevented": 0,
+        "revisitSplits": 0
+      },
+      "audit": {
+        "polylineCount": 11,
+        "maxSegmentLengthM": 13.14943156104089,
+        "nonFiniteCount": 0,
+        "backwardOrderingCount": 0,
+        "identityChangeCount": 0,
+        "crossPassCount": 0,
+        "crossChunkCount": 0,
+        "issues": []
+      },
+      "deterministic": true
+    }
+  ],
+  "datasetScan": {
+    "segmentCount": 30,
+    "rows": [
+      {
+        "file": "qlog_f449c_0.bz2",
+        "pointCount": 2054,
+        "polylineCount": 43,
+        "nonFinite": 0,
+        "backward": 0,
+        "crossPass": 0,
+        "crossChunk": 0,
+        "identityChange": 0,
+        "maxSegM": 15.187820955841412
+      },
+      {
+        "file": "qlog_f449c_1.bz2",
+        "pointCount": 2366,
+        "polylineCount": 44,
+        "nonFinite": 0,
+        "backward": 0,
+        "crossPass": 0,
+        "crossChunk": 0,
+        "identityChange": 0,
+        "maxSegM": 7.312517443341436
+      },
+      {
+        "file": "qlog_f449c_2.bz2",
+        "pointCount": 1378,
+        "polylineCount": 28,
+        "nonFinite": 0,
+        "backward": 0,
+        "crossPass": 0,
+        "crossChunk": 0,
+        "identityChange": 0,
+        "maxSegM": 15.115961054538227
+      },
+      {
+        "file": "qlog_f449c_3.bz2",
+        "pointCount": 1976,
+        "polylineCount": 52,
+        "nonFinite": 0,
+        "backward": 0,
+        "crossPass": 0,
+        "crossChunk": 0,
+        "identityChange": 0,
+        "maxSegM": 10.933633855814048
+      },
+      {
+        "file": "qlog_f449c_4.bz2",
+        "pointCount": 988,
+        "polylineCount": 20,
+        "nonFinite": 0,
+        "backward": 0,
+        "crossPass": 0,
+        "crossChunk": 0,
+        "identityChange": 0,
+        "maxSegM": 15.751268309260833
+      },
+      {
+        "file": "qlog_f449c_5.bz2",
+        "pointCount": 1144,
+        "polylineCount": 18,
+        "nonFinite": 0,
+        "backward": 0,
+        "crossPass": 0,
+        "crossChunk": 0,
+        "identityChange": 0,
+        "maxSegM": 15.729865897402963
+      },
+      {
+        "file": "qlog_f449c_6.bz2",
+        "pointCount": 208,
+        "polylineCount": 3,
+        "nonFinite": 0,
+        "backward": 0,
+        "crossPass": 0,
+        "crossChunk": 0,
+        "identityChange": 0,
+        "maxSegM": 5.067383882751005
+      },
+      {
+        "file": "qlog_f449c_7.bz2",
+        "pointCount": 650,
+        "polylineCount": 13,
+        "nonFinite": 0,
+        "backward": 0,
+        "crossPass": 0,
+        "crossChunk": 0,
+        "identityChange": 0,
+        "maxSegM": 14.251107329135102
+      },
+      {
+        "file": "qlog_f449c_8.bz2",
+        "pointCount": 1040,
+        "polylineCount": 25,
+        "nonFinite": 0,
+        "backward": 0,
+        "crossPass": 0,
+        "crossChunk": 0,
+        "identityChange": 0,
+        "maxSegM": 10.187505462207215
+      },
+      {
+        "file": "qlog_f449c_9.bz2",
+        "pointCount": 910,
+        "polylineCount": 5,
+        "nonFinite": 0,
+        "backward": 0,
+        "crossPass": 0,
+        "crossChunk": 0,
+        "identityChange": 0,
+        "maxSegM": 8.445028151285207
+      },
+      {
+        "file": "qlog_f449c_10.bz2",
+        "pointCount": 1690,
+        "polylineCount": 31,
+        "nonFinite": 0,
+        "backward": 0,
+        "crossPass": 0,
+        "crossChunk": 0,
+        "identityChange": 0,
+        "maxSegM": 7.5016129889018694
+      },
+      {
+        "file": "qlog_f449c_11.bz2",
+        "pointCount": 1248,
+        "polylineCount": 18,
+        "nonFinite": 0,
+        "backward": 0,
+        "crossPass": 0,
+        "crossChunk": 0,
+        "identityChange": 0,
+        "maxSegM": 9.86846392124998
+      },
+      {
+        "file": "qlog_f449c_12.bz2",
+        "pointCount": 2236,
+        "polylineCount": 46,
+        "nonFinite": 0,
+        "backward": 0,
+        "crossPass": 0,
+        "crossChunk": 0,
+        "identityChange": 0,
+        "maxSegM": 9.21544896682953
+      },
+      {
+        "file": "qlog_f449c_13.bz2",
+        "pointCount": 2340,
+        "polylineCount": 44,
+        "nonFinite": 0,
+        "backward": 0,
+        "crossPass": 0,
+        "crossChunk": 0,
+        "identityChange": 0,
+        "maxSegM": 8.468861602757663
+      },
+      {
+        "file": "qlog_f449c_14.bz2",
+        "pointCount": 2314,
+        "polylineCount": 64,
+        "nonFinite": 0,
+        "backward": 0,
+        "crossPass": 0,
+        "crossChunk": 0,
+        "identityChange": 0,
+        "maxSegM": 11.250133954284019
+      },
+      {
+        "file": "qlog_f449c_15.bz2",
+        "pointCount": 2340,
+        "polylineCount": 33,
+        "nonFinite": 0,
+        "backward": 0,
+        "crossPass": 0,
+        "crossChunk": 0,
+        "identityChange": 0,
+        "maxSegM": 10.500376737121734
+      },
+      {
+        "file": "qlog_f449c_16.bz2",
+        "pointCount": 2340,
+        "polylineCount": 27,
+        "nonFinite": 0,
+        "backward": 0,
+        "crossPass": 0,
+        "crossChunk": 0,
+        "identityChange": 0,
+        "maxSegM": 11.250001298548488
+      },
+      {
+        "file": "qlog_f449c_17.bz2",
+        "pointCount": 2314,
+        "polylineCount": 28,
+        "nonFinite": 0,
+        "backward": 0,
+        "crossPass": 0,
+        "crossChunk": 0,
+        "identityChange": 0,
+        "maxSegM": 11.480758457935849
+      },
+      {
+        "file": "qlog_f449c_18.bz2",
+        "pointCount": 2366,
+        "polylineCount": 61,
+        "nonFinite": 0,
+        "backward": 0,
+        "crossPass": 0,
+        "crossChunk": 0,
+        "identityChange": 0,
+        "maxSegM": 11.090190543756785
+      },
+      {
+        "file": "qlog_f449c_19.bz2",
+        "pointCount": 3016,
+        "polylineCount": 115,
+        "nonFinite": 0,
+        "backward": 0,
+        "crossPass": 0,
+        "crossChunk": 0,
+        "identityChange": 0,
+        "maxSegM": 15.750028626324328
+      },
+      {
+        "file": "qlog_f449c_20.bz2",
+        "pointCount": 2834,
+        "polylineCount": 60,
+        "nonFinite": 0,
+        "backward": 0,
+        "crossPass": 0,
+        "crossChunk": 0,
+        "identityChange": 0,
+        "maxSegM": 7.688199622475472
+      },
+      {
+        "file": "qlog_f449c_22.bz2",
+        "pointCount": 910,
+        "polylineCount": 22,
+        "nonFinite": 0,
+        "backward": 0,
+        "crossPass": 0,
+        "crossChunk": 0,
+        "identityChange": 0,
+        "maxSegM": 13.959613758743417
+      },
+      {
+        "file": "qlog_f449c_23.bz2",
+        "pointCount": 858,
+        "polylineCount": 17,
+        "nonFinite": 0,
+        "backward": 0,
+        "crossPass": 0,
+        "crossChunk": 0,
+        "identityChange": 0,
+        "maxSegM": 15.026352133182561
+      },
+      {
+        "file": "qlog_f449c_24.bz2",
+        "pointCount": 1456,
+        "polylineCount": 32,
+        "nonFinite": 0,
+        "backward": 0,
+        "crossPass": 0,
+        "crossChunk": 0,
+        "identityChange": 0,
+        "maxSegM": 14.751997575409861
+      },
+      {
+        "file": "qlog_f449c_25.bz2",
+        "pointCount": 676,
+        "polylineCount": 17,
+        "nonFinite": 0,
+        "backward": 0,
+        "crossPass": 0,
+        "crossChunk": 0,
+        "identityChange": 0,
+        "maxSegM": 15.52725818422237
+      },
+      {
+        "file": "qlog_f449c_26.bz2",
+        "pointCount": 26,
+        "polylineCount": 0,
+        "nonFinite": 0,
+        "backward": 0,
+        "crossPass": 0,
+        "crossChunk": 0,
+        "identityChange": 0,
+        "maxSegM": 0
+      },
+      {
+        "file": "qlog_f449c_27.bz2",
+        "pointCount": 1222,
+        "polylineCount": 20,
+        "nonFinite": 0,
+        "backward": 0,
+        "crossPass": 0,
+        "crossChunk": 0,
+        "identityChange": 0,
+        "maxSegM": 13.404955830432483
+      },
+      {
+        "file": "qlog_f449c_28.bz2",
+        "pointCount": 2340,
+        "polylineCount": 73,
+        "nonFinite": 0,
+        "backward": 0,
+        "crossPass": 0,
+        "crossChunk": 0,
+        "identityChange": 0,
+        "maxSegM": 11.15529639693929
+      },
+      {
+        "file": "qlog_f449c_29.bz2",
+        "pointCount": 2288,
+        "polylineCount": 32,
+        "nonFinite": 0,
+        "backward": 0,
+        "crossPass": 0,
+        "crossChunk": 0,
+        "identityChange": 0,
+        "maxSegM": 9.18750313971176
+      },
+      {
+        "file": "qlog_f449c_30.bz2",
+        "pointCount": 2288,
+        "polylineCount": 37,
+        "nonFinite": 0,
+        "backward": 0,
+        "crossPass": 0,
+        "crossChunk": 0,
+        "identityChange": 0,
+        "maxSegM": 10.500018100518194
+      }
+    ],
+    "totals": {
+      "nonFinite": 0,
+      "backward": 0,
+      "crossPass": 0,
+      "crossChunk": 0,
+      "identityChange": 0
+    }
+  }
+}

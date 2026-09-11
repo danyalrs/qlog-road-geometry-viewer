@@ -1,0 +1,61 @@
+{
+  "status": "CANDIDATE IMPLEMENTED — USER REVIEW REQUIRED",
+  "notAccepted": true,
+  "head": "488c61b703aa4294c6807c06af043f4b4afd726f",
+  "branch": "experiment/candidate-layer-display",
+  "stagedCommittedPushed": false,
+  "flag": "pointAccumulatedLanePolylineCandidate=1",
+  "uiDefaults": {
+    "vizMode": "local",
+    "localGeometry": "pointAccumulated",
+    "sessionKeys": ["qlogVizModeSession", "qlogLocalGeometryModeSession"],
+    "urlOverrides": ["viz", "vizMode", "local=1", "geometry", "localGeometry"]
+  },
+  "candidateUrls": {
+    "defaultsOnly": "http://localhost:3847/",
+    "standaloneSeg1": "http://localhost:3847/?segments=1&local=1&fit=1&mirror=1&pointAccumulatedLanePolylineCandidate=1",
+    "combined012": "http://localhost:3847/?segments=0,1,2&local=1&fit=1&mirror=1&combinedOrientationCandidate=boundaryAnchored&combinedVisibleLaneProjectionCandidate=1&pointAccumulatedLanePolylineCandidate=1",
+    "seg2": "http://localhost:3847/?segments=2&local=1&fit=1&mirror=1&pointAccumulatedLanePolylineCandidate=1",
+    "seg99": "http://localhost:3847/?segments=99&local=1&fit=1&mirror=1&pointAccumulatedLanePolylineCandidate=1"
+  },
+  "evidenceDir": "reports/display_orientation/point_accumulated_lane_polylines/",
+  "automatedTests": {
+    "file": "tests/point_accumulated_lane_polylines.test.js",
+    "pass": 11,
+    "fail": 0
+  },
+  "datasetTotals": {
+    "nonFinite": 0,
+    "backward": 0,
+    "crossPass": 0,
+    "crossChunk": 0,
+    "identityChange": 0
+  },
+  "browserGates": {
+    "defaultUi": { "viz": "local", "geom": "pointAccumulated" },
+    "cacheReseekChecksumSame": true,
+    "polylinesChangePixelsVsDotsOnly": true
+  },
+  "filesChangedOrAddedForThisTask": [
+    "lib/local_geometry_ui.js",
+    "lib/point_accumulated_lane_polylines.js",
+    "public/local_geometry_ui.js",
+    "public/point_accumulated_lane_polylines.js",
+    "public/app.js",
+    "public/render.js",
+    "public/index.html",
+    "scripts/sync_point_accumulated_lane_polylines_public.js",
+    "scripts/run_point_accumulated_lane_polyline_metrics.js",
+    "scripts/capture_point_accumulated_lane_polylines_browser.js",
+    "tests/point_accumulated_lane_polylines.test.js",
+    "reports/display_orientation/point_accumulated_lane_polylines/*",
+    ".checkpoint_test_backup/pre_point_accumulated_primary_mode/"
+  ],
+  "remainingVisualRisks": [
+    "Combined maps report only 4 identity groups (same as standalone Seg1 lane count) — confirm chunkId/passId population under combined placement; heavy largeSpatialGap splitting (714 on combined) may over-fragment lines.",
+    "Causal/elapsed filtering at a mid timeline can yield fewer polylines than full-map metrics (browser Seg1: 39 vs metrics 44).",
+    "Self-intersection audit is not yet a hard automated fail gate; visual review of Seg2 curve and Seg99 revisit is required.",
+    "Colour still comes from groupTrackId via trackColor — if two physical lanes ever share groupTrackId incorrectly, lines would share colour (identity key still separates by chunk/pass when those fields are set).",
+    "Fused lane lines remain a separate diagnostic mode and must not be used as acceptance criteria for this candidate."
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "canonicalChecksumStandaloneSeg2": "4bc7ec76aec329aa308ca57ae5b9e055c1ddf7ce53bca2f9db027b3251a2e8b1",
+  "canonicalChecksumCombinedSeg2Subset": "9aff792c9c72b508780f127d1e4ba587a02751dac43e97ee04e50a573e7e1cf9",
+  "canonicalInputsMatch": false,
+  "signedTurnAgreementPct": 100,
+  "handednessFlipped": false,
+  "orientationPreservingFitResidualM": 0,
+  "reflectionRequiredForBestFit": false
+}

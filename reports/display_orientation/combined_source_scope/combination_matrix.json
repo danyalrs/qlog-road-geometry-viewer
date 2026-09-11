@@ -1,0 +1,158 @@
+[
+  {
+    "selection": [
+      2
+    ],
+    "map": {
+      "sourceQlogSha256": "c599657f41b00706b23f1c386bc0573e4a3fe3783f67358e887100f38287c5d5",
+      "sourceQlogSha256s": [
+        "c599657f41b00706b23f1c386bc0573e4a3fe3783f67358e887100f38287c5d5"
+      ],
+      "sourceFiles": [
+        "qlog_f449c_2.bz2"
+      ],
+      "isMultiSource": false
+    },
+    "manifestMatch": "false",
+    "correctionActive": "false",
+    "correctionName": null,
+    "referencePose": {
+      "frameIndex": 0,
+      "east": -24.055678502831913,
+      "north": -6.687047732752509,
+      "headingDeg": 254.5254303934877,
+      "logMonoTime": "139726594139",
+      "chunkId": 0,
+      "passId": 0
+    },
+    "mirrorCheckboxState": "checked"
+  },
+  {
+    "selection": [
+      1,
+      2
+    ],
+    "map": {
+      "sourceQlogSha256": null,
+      "sourceQlogSha256s": [
+        "d0bed884b5a3a7afc84e8c94fc44d9b79f88c831b8d80953e27b11e8086c1ef8",
+        "c599657f41b00706b23f1c386bc0573e4a3fe3783f67358e887100f38287c5d5"
+      ],
+      "sourceFiles": [
+        "qlog_f449c_1.bz2",
+        "qlog_f449c_2.bz2"
+      ],
+      "isMultiSource": true
+    },
+    "manifestMatch": "false",
+    "correctionActive": "false",
+    "correctionName": null,
+    "referencePose": {
+      "frameIndex": 0,
+      "east": -30.12988727729502,
+      "north": -7.98465480741235,
+      "headingDeg": 255.0334874925352,
+      "logMonoTime": "79698947232",
+      "chunkId": 0,
+      "passId": 0
+    },
+    "mirrorCheckboxState": "checked"
+  },
+  {
+    "selection": [
+      0,
+      2
+    ],
+    "map": {
+      "sourceQlogSha256": "c599657f41b00706b23f1c386bc0573e4a3fe3783f67358e887100f38287c5d5",
+      "sourceQlogSha256s": [
+        "c599657f41b00706b23f1c386bc0573e4a3fe3783f67358e887100f38287c5d5"
+      ],
+      "sourceFiles": [
+        "qlog_f449c_2.bz2"
+      ],
+      "isMultiSource": false
+    },
+    "manifestMatch": "false",
+    "correctionActive": "false",
+    "correctionName": null,
+    "referencePose": {
+      "frameIndex": 21,
+      "east": -1901.1730263083564,
+      "north": -597.4260907892756,
+      "headingDeg": 254.5254303934877,
+      "logMonoTime": "139726594139",
+      "chunkId": 1,
+      "passId": 0
+    },
+    "mirrorCheckboxState": "checked"
+  },
+  {
+    "selection": [
+      0,
+      1,
+      2
+    ],
+    "map": {
+      "sourceQlogSha256": null,
+      "sourceQlogSha256s": [
+        "9ddfc49b6061357e648a096d13749e30f9597827fd86786951241f098ea29fa5",
+        "d0bed884b5a3a7afc84e8c94fc44d9b79f88c831b8d80953e27b11e8086c1ef8",
+        "c599657f41b00706b23f1c386bc0573e4a3fe3783f67358e887100f38287c5d5"
+      ],
+      "sourceFiles": [
+        "qlog_f449c_0.bz2",
+        "qlog_f449c_1.bz2",
+        "qlog_f449c_2.bz2"
+      ],
+      "isMultiSource": true
+    },
+    "manifestMatch": "false",
+    "correctionActive": "false",
+    "correctionName": null,
+    "referencePose": {
+      "frameIndex": 0,
+      "east": 0,
+      "north": 0,
+      "headingDeg": 240.50697326660156,
+      "logMonoTime": "37711368013",
+      "chunkId": 0,
+      "passId": 0
+    },
+    "mirrorCheckboxState": "checked"
+  },
+  {
+    "selection": [
+      2,
+      1,
+      0
+    ],
+    "map": {
+      "sourceQlogSha256": null,
+      "sourceQlogSha256s": [
+        "9ddfc49b6061357e648a096d13749e30f9597827fd86786951241f098ea29fa5",
+        "d0bed884b5a3a7afc84e8c94fc44d9b79f88c831b8d80953e27b11e8086c1ef8",
+        "c599657f41b00706b23f1c386bc0573e4a3fe3783f67358e887100f38287c5d5"
+      ],
+      "sourceFiles": [
+        "qlog_f449c_0.bz2",
+        "qlog_f449c_1.bz2",
+        "qlog_f449c_2.bz2"
+      ],
+      "isMultiSource": true
+    },
+    "manifestMatch": "false",
+    "correctionActive": "false",
+    "correctionName": null,
+    "referencePose": {
+      "frameIndex": 0,
+      "east": 0,
+      "north": 0,
+      "headingDeg": 240.50697326660156,
+      "logMonoTime": "37711368013",
+      "chunkId": 0,
+      "passId": 0
+    },
+    "mirrorCheckboxState": "checked"
+  }
+]

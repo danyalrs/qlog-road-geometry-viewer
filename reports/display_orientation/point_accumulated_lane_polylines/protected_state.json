@@ -1,0 +1,7 @@
+{
+  "branch": "experiment/candidate-layer-display",
+  "head": "488c61b",
+  "processingVersion": "2026-07-24-fusion-v16",
+  "status": "CANDIDATE IMPLEMENTED — USER REVIEW REQUIRED",
+  "flag": "pointAccumulatedLanePolylineCandidate=1"
+}

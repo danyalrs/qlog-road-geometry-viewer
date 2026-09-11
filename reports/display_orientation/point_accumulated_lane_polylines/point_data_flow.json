@@ -1,0 +1,30 @@
+{
+  "title": "Point-accumulated source audit for _drawPointAccumulatedGeometry.dots",
+  "collection": "stationaryLocalMap.pointAccumulated.points",
+  "drawPass": "pointAccumulatedLanes",
+  "drawFunction": "_drawPointAccumulatedGeometry.dots",
+  "identityFields": {
+    "primaryPhysicalLaneIdentity": "groupTrackId (assigned in buildPointDisplay from chunkId:passId:side:laneIndex)",
+    "laneIndex": "model lane index within frame",
+    "side": "left|right from laneIndex",
+    "chunkId": "route chunk / session partition",
+    "passId": "road pass within chunk",
+    "groupKey": "chunkId:passId:side:laneIndex",
+    "sourceFile": "qlog segment file",
+    "frameId": "source frame id",
+    "frameIndex": "timeline / observation order index",
+    "laneTrackId": "raw model track id when present (not the colour identity)"
+  },
+  "colourAssignment": "renderer.trackColor(groupTrackId) via _pointTrackColorCache; colour alone is not a continuity key",
+  "coordinates": {
+    "alongTrack": "s (trajectory projection or localEast fallback)",
+    "lateral": "d (trajectory projection or localNorth fallback)",
+    "segmentLocal": "localEast/localNorth",
+    "mirroredSegmentLocal": "mirroredLocalEast/mirroredLocalNorth",
+    "combinedPlaced": "placedEast/placedNorth when Candidate C active",
+    "drawTimeWorld": "_resolvePointAccumulatedDisplayWorld / _projectRoadGeometryToScreen (optional combinedVisibleLaneProjectionCandidate)",
+    "drawTimeScreen": "worldToScreen(displayWorld)"
+  },
+  "continuityMustNotUse": ["colour hex alone", "array index", "shared trajectory index across bridges"],
+  "continuityMustUse": ["chunkId", "passId", "groupTrackId", "laneIndex when present", "along-track s ordering"]
+}

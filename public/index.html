@@ -29,13 +29,13 @@
         <select id="vizMode">
           <option value="global">Global map (GPS + model)</option>
           <option value="vehicle">Vehicle-relative frame</option>
-          <option value="local">Local playback</option>
+          <option value="local" selected>Local playback</option>
         </select>
         <label class="local-only-control">Local geometry</label>
         <select id="localGeometryMode" class="local-only-control">
           <option value="observations">Raw mapped observations</option>
-          <option value="fused" selected>Fused lane lines</option>
-          <option value="pointAccumulated">Point-accumulated geometry</option>
+          <option value="fused">Fused lane lines</option>
+          <option value="pointAccumulated" selected>Point-accumulated geometry</option>
         </select>
         <label class="local-only-control local-point-only-control">
           <input type="checkbox" id="pointCausalPlayback" class="local-point-only-control"> Causal playback
@@ -52,16 +52,24 @@
             <option value="combined">Points + boundaries</option>
           </select>
         </label>
-        <label class="local-only-control local-point-only-control" title="Viewer-only per-frame lane curves. Separate frames are never connected. Does not affect confirmed mapping, polygons, graph fitting or exports.">
-          <input type="checkbox" id="layerConnectedAccumulated" class="local-point-only-control"> Connected accumulated lane observations (experimental)
+        <label class="local-only-control local-point-only-control candidate-layer-control" title="Diagnostic per-frame lane polylines from raw frame lanes. Requires ?candidates=1. Never exported or used in production mapping.">
+          <input type="checkbox" id="layerUnconfirmedCandidates" class="local-point-only-control candidate-layer-control"> Unconfirmed per-frame lane evidence
         </label>
-        <label class="local-only-control local-point-only-control connected-accumulated-mode-control" title="Current frame: one modelV2 frame at a time. All per-frame: every frame overlaid. Display only.">
+        <p class="meta-line subtle local-only-control local-point-only-control candidate-layer-control" id="candidateLayerNotice">Diagnostic only — not a confirmed mapped boundary</p>
+        <label class="local-only-control local-point-only-control" title="Trusted observation layer: All per-frame source curves from point-accumulated dots. Separate frames are never connected. Display only.">
+          <input type="checkbox" id="layerConnectedAccumulated" class="local-point-only-control" checked> All per-frame source curves
+        </label>
+        <label class="local-only-control local-point-only-control connected-accumulated-mode-control" title="Current frame: one modelV2 frame. Road-guided: trajectory-guided connection. All per-frame: every frame overlaid (trusted source for representative lines). Display only.">
           Display mode:
           <select id="connectedAccumulatedMode" class="local-point-only-control connected-accumulated-mode-control">
-            <option value="currentFrame" selected>Current frame</option>
-            <option value="perFrame">All per-frame</option>
+            <option value="currentFrame">Current frame</option>
+            <option value="perFrame" selected>All per-frame</option>
           </select>
         </label>
+        <label class="local-only-control local-point-only-control" title="Default-off candidate: stable representative physical lane lines from All per-frame curves (reuses robust bin-median). Thicker than source. Display only — does not use fused lines.">
+          <input type="checkbox" id="layerRepresentativeLaneLines" class="local-point-only-control"> Representative lane lines (candidate)
+        </label>
+        <p class="meta-line local-only-control local-point-only-control" id="representativeLaneLinesDiag">Representative lines: —</p>
         <label class="local-only-control local-point-only-control" title="Experimental constructed lane-boundary fragments built from the accumulated point dots. Display-only; never modifies stored geometry.">
           <input type="checkbox" id="layerConstructedFragments" class="local-point-only-control"> Constructed fragments (experimental)
         </label>
@@ -281,30 +289,34 @@
   <script src="lane_map_cleanup.js?v=20260805b"></script>
   <script src="road_surface_stage1.js?v=20260804c"></script>
   <script src="point_accumulation.js?v=20260806a"></script>
-  <script src="connected_accumulated_display.js?v=20260824d"></script>
+  <script src="connected_accumulated_display.js?v=20260907g"></script>
   <script src="mapping_reliability.js?v=20260807a"></script>
   <script src="experimental_boundaries.js?v=20260807a"></script>
   <script src="constructed_fragments.js?v=20260810a"></script>
   <script src="lane_joining.js?v=20260811a"></script>
   <script src="graph_fit.js?v=20260817a"></script>
   <script src="graph_fit_persistent_cache.js?v=20260817a"></script>
+  <script src="candidate_layer_display.js?v=20260821a"></script>
   <script src="segment_local_map.js?v=20260807a"></script>
   <script src="playback_arrow_screen.js?v=20260731i"></script>
   <script src="segment_video_timing.js?v=20260803a"></script>
   <script src="multisegment_video_timeline.js?v=20260828a"></script>
   <script src="local_playback_video.js?v=20260828b"></script>
-  <script src="local_geometry_ui.js?v=20260805e"></script>
+  <script src="local_geometry_ui.js?v=20260907f"></script>
   <script src="local_trajectory_overlay.js?v=20260805h"></script>
   <script src="local_road_surface_path_filter.js?v=20260805i"></script>
   <script src="local_road_surface_ribbon.js?v=20260805j"></script>
   <script src="viewer_mirror_coords.js?v=20260824a"></script>
   <script src="viewer_display_corrections.js?v=20260827b"></script>
   <script src="combined_route_boundary_bridge.js?v=20260902i"></script>
-  <script src="combined_source_transform.js?v=20260902i"></script>
-  <script src="combined_boundary_anchored_orientation.js?v=20260902i"></script>
-  <script src="canvas_layer_attribution.js?v=20260902j"></script>
-  <script src="render.js?v=20260903f"></script>
-  <script src="boundary_bridge_playback.js?v=20260903f"></script>
-  <script src="app.js?v=20260903f"></script>
+  <script src="combined_source_transform.js?v=20260907b"></script>
+  <script src="combined_boundary_anchored_orientation.js?v=20260907b"></script>
+  <script src="combined_visible_lane_projection.js?v=20260907e"></script>
+  <script src="point_accumulated_lane_polylines.js?v=20260907d"></script>
+  <script src="canvas_layer_attribution.js?v=20260907a"></script>
+  <script src="segment1_lane_order_diagnostic.js?v=20260903f"></script>
+  <script src="render.js?v=20260907h"></script>
+  <script src="boundary_bridge_playback.js?v=20260903e"></script>
+  <script src="app.js?v=20260907h"></script>
 </body>
 </html>

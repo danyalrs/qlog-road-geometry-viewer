@@ -1,0 +1,62 @@
+{
+  "captures": [],
+  "gates": {
+    "defaultUi": {
+      "viz": "local",
+      "geom": "pointAccumulated"
+    },
+    "cacheReseek": {
+      "checksumSame": true,
+      "polylineCountSame": true
+    },
+    "pixel": {
+      "standalonePolyChanged": true,
+      "combinedPolyChanged": true,
+      "standaloneDiagnostics": {
+        "candidateActive": true,
+        "inputCount": 2366,
+        "groupCount": 4,
+        "polylineCount": 39,
+        "vertexCount": 764,
+        "skippedShortRuns": 19,
+        "splitReasonCounts": {
+          "largeAlongTrackGap": 17,
+          "largeHeadingChange": 25,
+          "largeLateralStep": 2,
+          "largeSpatialGap": 10
+        },
+        "crossLanePrevented": 0,
+        "crossPassPrevented": 0,
+        "crossChunkPrevented": 0,
+        "revisitSplits": 0
+      },
+      "combinedDiagnostics": {
+        "candidateActive": true,
+        "inputCount": 5798,
+        "groupCount": 4,
+        "polylineCount": 140,
+        "vertexCount": 1666,
+        "skippedShortRuns": 685,
+        "splitReasonCounts": {
+          "largeHeadingChange": 53,
+          "largeAlongTrackGap": 47,
+          "largeSpatialGap": 714,
+          "largeLateralStep": 7
+        },
+        "crossLanePrevented": 0,
+        "crossPassPrevented": 0,
+        "crossChunkPrevented": 0,
+        "revisitSplits": 0
+      }
+    }
+  },
+  "servedHashes": {
+    "index.html": "8d09737869aa5fb99c75f0dfb5980b0e35a9353e3ebb25e92c4d519b1c051dcb",
+    "app.js": "790063206a01a93fe759fdf05e9bd3914c930cf334bafc1bff3e67245c0811a2",
+    "render.js": "33c37284b5fe0c6feb2d2b3c6dcf2e57faa225890518b23794291fe2deb2d6c6",
+    "local_geometry_ui.js": "d13b0a5e97f0811d2ad680f4d2763826f94aac564f8e87138b8a76ee9492b964",
+    "point_accumulated_lane_polylines.js": "cd5feb690af0eb588a6a2a205da9f2f998e2ead36135fa5f80b52b0564b35233",
+    "combined_visible_lane_projection.js": "a8212ce60ce2a66921c264b9ac16b93abf15dd98fd24b19d5fb6f7276f5958bb"
+  },
+  "status": "CANDIDATE IMPLEMENTED — USER REVIEW REQUIRED"
+}

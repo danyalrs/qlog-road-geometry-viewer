@@ -100,12 +100,54 @@
     return raw === '1';
   }
 
+  function parseLanePixelOwnerFlag(search) {
+    const raw = typeof search === 'string'
+      ? new URLSearchParams(search).get('debugLanePixelOwner')
+      : search?.get?.('debugLanePixelOwner');
+    return raw === '1';
+  }
+
+  function pixelChecksum(rgba) {
+    let h = 2166136261 >>> 0;
+    for (let i = 0; i < (rgba?.length || 0); i++) {
+      h ^= rgba[i];
+      h = Math.imul(h, 16777619) >>> 0;
+    }
+    return (`00000000${(h >>> 0).toString(16)}`).slice(-8);
+  }
+
+  function colourHistogram(rgba, alphaThreshold = 8, maxBuckets = 12) {
+    const counts = new Map();
+    for (let i = 0; i < (rgba?.length || 0); i += 4) {
+      if (rgba[i + 3] < alphaThreshold) continue;
+      const key = `${rgba[i]},${rgba[i + 1]},${rgba[i + 2]}`;
+      counts.set(key, (counts.get(key) || 0) + 1);
+    }
+    return [...counts.entries()]
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, maxBuckets)
+      .map(([rgb, count]) => ({ rgb, count }));
+  }
+
+  function overlapMaskCount(maskA, maskB) {
+    if (!maskA || !maskB || maskA.length !== maskB.length) return 0;
+    let n = 0;
+    for (let i = 0; i < maskA.length; i++) {
+      if (maskA[i] && maskB[i]) n += 1;
+    }
+    return n;
+  }
+
   global.CanvasLayerAttribution = {
     parseLayerAttributionFlag,
+    parseLanePixelOwnerFlag,
     diffImageDataSized,
     maskToRgba,
     dominantAddedColours,
     summarizeCoordinateFrames,
     sourceProvenanceCoveragePct,
+    pixelChecksum,
+    colourHistogram,
+    overlapMaskCount,
   };
 })(typeof window !== 'undefined' ? window : global);

@@ -1,0 +1,63 @@
+[
+ {
+  "segment": 99,
+  "file": "qlog_f449c_99.bz2",
+  "purityLines": 14,
+  "revisitLines": 13,
+  "purityLanes": 5,
+  "revisitLanes": 5,
+  "rejectionCounts": {
+   "fold": 0,
+   "corridor": 3,
+   "overlap": 0,
+   "selfFold": 1
+  },
+  "rejectedLines": [
+   {
+    "logicalLaneId": "0:0:1:1:right:u0",
+    "reason": "offCorridor",
+    "foldApex": 0,
+    "corridorMaxM": 3.359095175090551,
+    "maxTurnWindowDeg": 1.4668263228342653,
+    "chordPathRatio": 0.9999327408485049,
+    "nearApproach": 0,
+    "temporalRevisit": true,
+    "coverageM": 7
+   },
+   {
+    "logicalLaneId": "0:0:1:1:right:u0",
+    "reason": "offCorridor",
+    "foldApex": 0,
+    "corridorMaxM": 3.2334201393119613,
+    "maxTurnWindowDeg": 0.0000017075473124350538,
+    "chordPathRatio": 1,
+    "nearApproach": 284,
+    "temporalRevisit": true,
+    "coverageM": 46
+   },
+   {
+    "logicalLaneId": "0:0:1:1:right:u0",
+    "reason": "selfFold",
+    "foldApex": 0,
+    "corridorMaxM": 2.3440914634947947,
+    "maxTurnWindowDeg": 387.70724423421154,
+    "chordPathRatio": 0.35294856350856474,
+    "nearApproach": 24,
+    "temporalRevisit": true,
+    "coverageM": 20
+   },
+   {
+    "logicalLaneId": "0:0:2:0:right",
+    "reason": "offCorridor",
+    "foldApex": 0,
+    "corridorMaxM": 3.536854170062436,
+    "maxTurnWindowDeg": 1.6323567355105695,
+    "chordPathRatio": 0.9999948057140355,
+    "nearApproach": 0,
+    "temporalRevisit": true,
+    "coverageM": 25
+   }
+  ],
+  "coverageDeltaPct": -1.93
+ }
+]

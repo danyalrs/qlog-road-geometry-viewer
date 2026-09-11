@@ -1,0 +1,725 @@
+{
+  "frameId": 1803,
+  "assignments": [
+    {
+      "groupTrackId": 1,
+      "laneIndex": 1,
+      "standaloneColour": "rgba(8,145,178,0.9)",
+      "combinedColour": "rgba(8,145,178,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 1,
+      "laneIndex": 1,
+      "standaloneColour": "rgba(8,145,178,0.9)",
+      "combinedColour": "rgba(8,145,178,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 1,
+      "laneIndex": 1,
+      "standaloneColour": "rgba(8,145,178,0.9)",
+      "combinedColour": "rgba(8,145,178,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 1,
+      "laneIndex": 1,
+      "standaloneColour": "rgba(8,145,178,0.9)",
+      "combinedColour": "rgba(8,145,178,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 1,
+      "laneIndex": 1,
+      "standaloneColour": "rgba(8,145,178,0.9)",
+      "combinedColour": "rgba(8,145,178,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 1,
+      "laneIndex": 1,
+      "standaloneColour": "rgba(8,145,178,0.9)",
+      "combinedColour": "rgba(8,145,178,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 1,
+      "laneIndex": 1,
+      "standaloneColour": "rgba(8,145,178,0.9)",
+      "combinedColour": "rgba(8,145,178,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 1,
+      "laneIndex": 1,
+      "standaloneColour": "rgba(8,145,178,0.9)",
+      "combinedColour": "rgba(8,145,178,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 1,
+      "laneIndex": 1,
+      "standaloneColour": "rgba(8,145,178,0.9)",
+      "combinedColour": "rgba(8,145,178,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 1,
+      "laneIndex": 1,
+      "standaloneColour": "rgba(8,145,178,0.9)",
+      "combinedColour": "rgba(8,145,178,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 1,
+      "laneIndex": 1,
+      "standaloneColour": "rgba(8,145,178,0.9)",
+      "combinedColour": "rgba(8,145,178,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 1,
+      "laneIndex": 1,
+      "standaloneColour": "rgba(8,145,178,0.9)",
+      "combinedColour": "rgba(8,145,178,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 1,
+      "laneIndex": 1,
+      "standaloneColour": "rgba(8,145,178,0.9)",
+      "combinedColour": "rgba(8,145,178,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 1,
+      "laneIndex": 1,
+      "standaloneColour": "rgba(8,145,178,0.9)",
+      "combinedColour": "rgba(8,145,178,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 1,
+      "laneIndex": 1,
+      "standaloneColour": "rgba(8,145,178,0.9)",
+      "combinedColour": "rgba(8,145,178,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 1,
+      "laneIndex": 1,
+      "standaloneColour": "rgba(8,145,178,0.9)",
+      "combinedColour": "rgba(8,145,178,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 1,
+      "laneIndex": 1,
+      "standaloneColour": "rgba(8,145,178,0.9)",
+      "combinedColour": "rgba(8,145,178,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 1,
+      "laneIndex": 1,
+      "standaloneColour": "rgba(8,145,178,0.9)",
+      "combinedColour": "rgba(8,145,178,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 1,
+      "laneIndex": 1,
+      "standaloneColour": "rgba(8,145,178,0.9)",
+      "combinedColour": "rgba(8,145,178,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 1,
+      "laneIndex": 1,
+      "standaloneColour": "rgba(8,145,178,0.9)",
+      "combinedColour": "rgba(8,145,178,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 1,
+      "laneIndex": 1,
+      "standaloneColour": "rgba(8,145,178,0.9)",
+      "combinedColour": "rgba(8,145,178,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 1,
+      "laneIndex": 1,
+      "standaloneColour": "rgba(8,145,178,0.9)",
+      "combinedColour": "rgba(8,145,178,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 1,
+      "laneIndex": 1,
+      "standaloneColour": "rgba(8,145,178,0.9)",
+      "combinedColour": "rgba(8,145,178,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 1,
+      "laneIndex": 1,
+      "standaloneColour": "rgba(8,145,178,0.9)",
+      "combinedColour": "rgba(8,145,178,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 1,
+      "laneIndex": 1,
+      "standaloneColour": "rgba(8,145,178,0.9)",
+      "combinedColour": "rgba(8,145,178,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 1,
+      "laneIndex": 1,
+      "standaloneColour": "rgba(8,145,178,0.9)",
+      "combinedColour": "rgba(8,145,178,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 2,
+      "laneIndex": 2,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 2,
+      "laneIndex": 2,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 2,
+      "laneIndex": 2,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 2,
+      "laneIndex": 2,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 2,
+      "laneIndex": 2,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 2,
+      "laneIndex": 2,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 2,
+      "laneIndex": 2,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 2,
+      "laneIndex": 2,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 2,
+      "laneIndex": 2,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 2,
+      "laneIndex": 2,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 2,
+      "laneIndex": 2,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 2,
+      "laneIndex": 2,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 2,
+      "laneIndex": 2,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 2,
+      "laneIndex": 2,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 2,
+      "laneIndex": 2,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 2,
+      "laneIndex": 2,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 2,
+      "laneIndex": 2,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 2,
+      "laneIndex": 2,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 2,
+      "laneIndex": 2,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 2,
+      "laneIndex": 2,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 2,
+      "laneIndex": 2,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 2,
+      "laneIndex": 2,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 2,
+      "laneIndex": 2,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 2,
+      "laneIndex": 2,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 2,
+      "laneIndex": 2,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 2,
+      "laneIndex": 2,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 3,
+      "laneIndex": 3,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 3,
+      "laneIndex": 3,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 3,
+      "laneIndex": 3,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 3,
+      "laneIndex": 3,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 3,
+      "laneIndex": 3,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 3,
+      "laneIndex": 3,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 3,
+      "laneIndex": 3,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 3,
+      "laneIndex": 3,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 3,
+      "laneIndex": 3,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 3,
+      "laneIndex": 3,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 3,
+      "laneIndex": 3,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 3,
+      "laneIndex": 3,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 3,
+      "laneIndex": 3,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 3,
+      "laneIndex": 3,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 3,
+      "laneIndex": 3,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 3,
+      "laneIndex": 3,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 3,
+      "laneIndex": 3,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 3,
+      "laneIndex": 3,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 3,
+      "laneIndex": 3,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 3,
+      "laneIndex": 3,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 3,
+      "laneIndex": 3,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 3,
+      "laneIndex": 3,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 3,
+      "laneIndex": 3,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 3,
+      "laneIndex": 3,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 3,
+      "laneIndex": 3,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    },
+    {
+      "groupTrackId": 3,
+      "laneIndex": 3,
+      "standaloneColour": "rgba(124,58,237,0.9)",
+      "combinedColour": "rgba(124,58,237,0.9)",
+      "colourSame": true,
+      "colourByArrayPosition": false,
+      "colourByGroupTrackId": true
+    }
+  ],
+  "drawFunctionAttribution": {
+    "drawFunction": "_drawPointAccumulatedGeometry",
+    "subPass": "_drawPointAccumulatedGeometry.dots",
+    "geometryCollection": "pointAccumulated.points",
+    "coordinateSelectionHelper": "_projectRoadGeometryToScreen",
+    "colourSelectionHelper": "_pointTrackColorCache.get(groupTrackId) with side fallback",
+    "finalProjectionHelper": "worldToScreen (via _projectRoadGeometryToScreen / _segmentDisplayToScreen)",
+    "checks": {
+      "usesLocalInsteadOfPlacedInCombined": false,
+      "note": "Combined path selects placedEast/placedNorth when _usesCombinedPlacedFrame(point) is true",
+      "doubleMirrorRisk": "finalizePlacedPoint copies placed into mirroredLocal fields; combined renderer skips ViewerMirrorCoords",
+      "mapWideSeg0CorrectionOnSeg1": false,
+      "laneArrayReversal": "not observed in model array order",
+      "colourByCurrentArrayPosition": false,
+      "canvasNegativeScaling": "verify via browser canvas transform trace",
+      "cachedPointsDifferentFrame": "verify via cache comparison"
+    }
+  }
+}

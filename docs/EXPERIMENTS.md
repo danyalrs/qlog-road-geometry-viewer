@@ -1,8 +1,70 @@
 # Experiments and Measurements
 
-**Last updated:** 2026-08-27
+**Last updated:** 2026-09-10
 
-**Ledger cross-reference:** Detailed method IDs (**M-001** …) are in [METHOD_EVIDENCE_LEDGER.md](./METHOD_EVIDENCE_LEDGER.md).
+---
+
+## Accepted display-path status (2026-09-10)
+
+### Selected primary path
+- Local playback + point-accumulated geometry; trusted input = **All per-frame source curves**; representative lane lines derive only from All per-frame; default representative method `purityRevisit` (opt-in layer).
+
+### Accepted corrections
+- Seg0 shared road/trajectory/arrow display-frame correction — visually passed.
+- Point-accumulated combined display correction — automated gates passed.
+- Seg1 corrected representative resampling — visual pass, four logical lanes.
+- Seg2 purity correction — false blue V and detached artifacts removed.
+- Seg99 purityRevisit correction — confirmed false 20 m red self-fold removed.
+
+### Retained diagnostic alternatives
+- `representativeMethod=purity`, `representativeMethod=curveAssociation`, `representativeMethod=legacy`.
+- Fused/constructed/joined/fitted/hybrid layers remain manually selectable diagnostics, not the primary source.
+
+### Superseded / rejected experimental paths
+- Path 2 ordering recovery, threshold lowering, video mapping integration, road-guided static v1/dot, higher-rate modelV2, frame-registration fixes (see method ledger M-011..M-024).
+
+### Remaining candidate limitations
+- Combined Visible Lane Projection: automated gates passed; broad visual acceptance is **not** claimed here.
+- The 92-segment run validates integrity/regression behaviour, not complete map correctness.
+- Lane-scale (~3.5 m) relabelling inside one seed is not separated; corridor gate is point-to-sample.
+
+---
+
+## E-058: Combined Segment 1 arrow lane-change direction (Candidate C playback)
+
+| Field | Value |
+|-------|-------|
+| **Classification** | **EXP** |
+| **Configuration** | Standalone: `?segments=1&local=1&fit=1&mirror=1`; Combined: `?segments=0,1,2&local=1&fit=1&mirror=1&combinedOrientationCandidate=boundaryAnchored` |
+| **Command** | `node scripts/audit_combined_segment1_arrow_lane_change.js`; `node scripts/capture_combined_segment1_arrow_lane_change_browser.js` |
+| **Lane-change interval** | Segment 1 `qlog_f449c_1.bz2`, local elapsed indices 9–19 (before 9, during 13, after 19) |
+| **Sign convention** | Positive road-relative *d* = left of route tangent |
+| **Metrics** | Standalone Δd = +0.507 m; combined post-repair Δd = +0.507 m; pre-repair legacy map-wide path inverted lateral sign |
+| **Root cause** | Map-wide Segment 0 exact display correction applied to Segment 1 arrow screen projection |
+| **Artifacts** | `reports/playback/combined_segment1_lane_change/` |
+| **Status** | **REJECTED** — runtime regression (arrow/video/Play broken); rolled back 2026-09-03 |
+
+---
+
+## E-058: Combined Segment 1 arrow lane-change direction (Candidate C playback) — REJECTED
+
+---
+
+## E-057: Candidate C canvas layer pixel attribution
+
+| Field | Value |
+|-------|-------|
+| **Classification** | **EXP** |
+| **Configuration** | `?segments=0,1,2&local=1&fit=1&mirror=1&combinedOrientationCandidate=boundaryAnchored&debugLayerAttribution=1` |
+| **Command** | `node scripts/capture_layer_attribution.js` |
+| **Owner layer** | `pointAccumulatedLanes` — `_drawPointAccumulatedGeometry.dots` / `pointAccumulated.points` / `layerFusedLanes` |
+| **Metrics** | 5798 points, 100% `combinedPlaced`; post-repair median screen separation 5.33 m, P95 10.45 m |
+| **Interpretation** | Prior node-only lane-offset proofs measured correct geometry collections but not the visible dot pass; persist-cache placement skip explained apparent large canvas separation |
+| **Artifacts** | `reports/display_orientation/combined_boundary_anchoring/layer_attribution/` |
+| **Status** | Pending manual browser acceptance on final URL without attribution flag |
+
+---
+ Detailed method IDs (**M-001** …) are in [METHOD_EVIDENCE_LEDGER.md](./METHOD_EVIDENCE_LEDGER.md).
 
 Reproducible experiments with configuration, scope, commands, metrics, interpretation, and classification.
 
@@ -575,18 +637,39 @@ Reproducible experiments with configuration, scope, commands, metrics, interpret
 | **Result** | Baseline vs after **0.000%** road-only pixels; user manual review pass; checkpointed |
 | **Evidence** | `reports/connected_accumulated/runtime/segment99_road_regression/` |
 
-
-### E-035: Segment 0 exact source-hash display correction (2026-08-27)
+### E-034: Segment 0 display correction — EXACT SOURCE HASH (2026-08-27)
 
 | Field | Value |
 |-------|-------|
-| **Ledger ID** | M-055 |
-| **Classification** | Dataset-specific viewer display correction |
+| **Ledger ID** | M-055 (uncommitted) |
+| **Classification** | **EXP** — dataset display correction |
 | **Rejected** | Heuristic activation (1-of-92 inference), query-flag experiment, road-only Candidate B |
 | **Active fix** | `fullSegmentLocalLateralReflection` keyed by qlog SHA-256 `9ddfc49b…` when mirror checked |
 | **Scope** | Viewer display only; processing unchanged |
 | **Regression** | 91/91 unaffected exact; Seg2/Seg99 gates pass |
 | **Status** | **ACCEPTED** — manual review passed 2026-08-27; normal URL `http://localhost:3847/` |
+| **Manual gate** | User confirmed Segment 0 curves left; all display layers aligned; no query flag required |
+
+### E-035: Combined orientation Candidate B — per-source render reflection (2026-09-01)
+
+| Field | Value |
+|-------|-------|
+| **Classification** | **REJECTED** |
+| **Outcome** | Segment 2 handedness fixed; Segment 0→1 seam opened to 303 m (dashed connector) |
+| **Rollback** | Renderer per-source reflection removed; continuous baseline restored on normal URL |
+| **Archive** | `.checkpoint_test_backup/rejected_combined_source_correction_scope/` |
+| **Evidence** | `reports/display_orientation/combined_boundary_anchoring/rejected_candidate_b.json` |
+
+### E-036: Combined orientation Candidate C — boundary-anchored placement + boundary bridges (2026-09-01)
+
+| Field | Value |
+|-------|-------|
+| **Classification** | **EXP** — browser PASS (continuity gate) |
+| **Flag** | `?combinedOrientationCandidate=boundaryAnchored` (off by default) |
+| **Method** | Source-local SHA correction → rigid placement to continuous baseline anchors → Hermite boundary bridges for consecutive qlog sampling gaps (class B) → single display transform |
+| **Rejected interim status** | Prior “CANDIDATE READY” was incorrect — non-zero source seams are not continuous |
+| **Candidate B** | Rejected — 303.26 m tear; per-source post-placement reflection |
+| **Evidence** | `reports/display_orientation/combined_boundary_anchoring/boundary_gap_diagnosis.json`, `browser_actual/` |
 
 ---
 

@@ -57,9 +57,30 @@ const $ = (id) => document.getElementById(id);
 
 function localGeometryUI() {
   return window.LocalGeometryUI || {
-    LOCAL_GEOMETRY_DEFAULT_MODE: 'fused',
+    LOCAL_GEOMETRY_DEFAULT_MODE: 'pointAccumulated',
     LOCAL_GEOMETRY_STORAGE_KEY: 'qlogLocalGeometryMode',
-    normalizeLocalGeometrySelection: (v) => (v === 'observations' || v === 'fused' || v === 'pointAccumulated' ? v : 'fused'),
+    LOCAL_GEOMETRY_SESSION_KEY: 'qlogLocalGeometryModeSession',
+    VIZ_MODE_DEFAULT: 'local',
+    VIZ_MODE_SESSION_KEY: 'qlogVizModeSession',
+    normalizeLocalGeometrySelection: (v) => (v === 'observations' || v === 'fused' || v === 'pointAccumulated' ? v : 'pointAccumulated'),
+    normalizeVizModeSelection: (v) => (v === 'global' || v === 'vehicle' || v === 'local' ? v : 'local'),
+    resolveInitialLocalGeometryMode: (search, sessionValue, htmlValue) => {
+      const params = typeof search === 'string' ? new URLSearchParams(search) : search;
+      const fromUrl = params?.get?.('geometry') || params?.get?.('localGeometry') || null;
+      if (fromUrl === 'observations' || fromUrl === 'fused' || fromUrl === 'pointAccumulated') return fromUrl;
+      if (sessionValue === 'observations' || sessionValue === 'fused' || sessionValue === 'pointAccumulated') return sessionValue;
+      return (htmlValue === 'observations' || htmlValue === 'fused' || htmlValue === 'pointAccumulated')
+        ? htmlValue
+        : 'pointAccumulated';
+    },
+    resolveInitialVizMode: (search, sessionValue, htmlValue) => {
+      const params = typeof search === 'string' ? new URLSearchParams(search) : search;
+      const viz = params?.get?.('viz') || params?.get?.('vizMode') || null;
+      if (viz === 'global' || viz === 'vehicle' || viz === 'local') return viz;
+      if (params?.get?.('local') === '1') return 'local';
+      if (sessionValue === 'global' || sessionValue === 'vehicle' || sessionValue === 'local') return sessionValue;
+      return (htmlValue === 'global' || htmlValue === 'vehicle' || htmlValue === 'local') ? htmlValue : 'local';
+    },
   };
 }
 
@@ -69,21 +90,64 @@ function normalizeLocalGeometrySelection(value) {
 
 function persistLocalGeometryMode(mode) {
   try {
+    sessionStorage.setItem(localGeometryUI().LOCAL_GEOMETRY_SESSION_KEY, mode);
+  } catch (_) { /* ignore */ }
+  try {
     localStorage.setItem(localGeometryUI().LOCAL_GEOMETRY_STORAGE_KEY, mode);
   } catch (_) { /* ignore quota / private mode */ }
 }
 
+function persistVizMode(mode) {
+  try {
+    sessionStorage.setItem(localGeometryUI().VIZ_MODE_SESSION_KEY, mode);
+  } catch (_) { /* ignore */ }
+}
+
+function readSessionGeometryMode() {
+  try {
+    return sessionStorage.getItem(localGeometryUI().LOCAL_GEOMETRY_SESSION_KEY);
+  } catch (_) {
+    return null;
+  }
+}
+
+function readSessionVizMode() {
+  try {
+    return sessionStorage.getItem(localGeometryUI().VIZ_MODE_SESSION_KEY);
+  } catch (_) {
+    return null;
+  }
+}
+
 function initLocalGeometryModeSelect() {
   const sel = $('localGeometryMode');
-  if (!sel) return localGeometryUI().LOCAL_GEOMETRY_DEFAULT_MODE;
-  let stored = null;
-  try {
-    stored = localStorage.getItem(localGeometryUI().LOCAL_GEOMETRY_STORAGE_KEY);
-  } catch (_) { /* ignore */ }
-  const mode = normalizeLocalGeometrySelection(stored ?? sel.value);
-  sel.value = mode;
-  persistLocalGeometryMode(mode);
-  return mode;
+  const ui = localGeometryUI();
+  if (!sel) return ui.LOCAL_GEOMETRY_DEFAULT_MODE;
+  const mode = (ui.resolveInitialLocalGeometryMode || normalizeLocalGeometrySelection)(
+    typeof window !== 'undefined' ? window.location.search : '',
+    readSessionGeometryMode(),
+    sel.value,
+  );
+  sel.value = normalizeLocalGeometrySelection(mode);
+  persistLocalGeometryMode(sel.value);
+  return sel.value;
+}
+
+function initVizModeSelect() {
+  const sel = $('vizMode');
+  const ui = localGeometryUI();
+  if (!sel) return ui.VIZ_MODE_DEFAULT || 'local';
+  const mode = (ui.resolveInitialVizMode || ((s, sess, html) => html || 'local'))(
+    typeof window !== 'undefined' ? window.location.search : '',
+    readSessionVizMode(),
+    sel.value,
+  );
+  const normalized = ui.normalizeVizModeSelection
+    ? ui.normalizeVizModeSelection(mode)
+    : (mode === 'global' || mode === 'vehicle' || mode === 'local' ? mode : 'local');
+  sel.value = normalized;
+  persistVizMode(sel.value);
+  return sel.value;
 }
 
 function saveLocalPlaybackViewState() {
@@ -139,6 +203,7 @@ function getLayers() {
     fittedGaps: $('layerFittedGaps')?.checked === true,
     unconfirmedCandidates: $('layerUnconfirmedCandidates')?.checked === true,
     connectedAccumulated: $('layerConnectedAccumulated')?.checked === true,
+    representativeLaneLines: $('layerRepresentativeLaneLines')?.checked === true,
     diagPhysicalBoundary: $('layerDiagPhysicalBoundary')?.checked,
     diagTrackIds: $('layerDiagTrackIds')?.checked,
     diagFragmentIds: $('layerDiagFragmentIds')?.checked,
@@ -206,7 +271,7 @@ function getLocalGeometryMode() {
   if (sel && sel.value !== v) sel.value = v;
   const SLM = window.SegmentLocalMap;
   if (SLM?.normalizeGeometrySource) return SLM.normalizeGeometrySource(v);
-  return v === 'fused' ? 'fused' : 'observations';
+  return v;
 }
 
 function stationaryMapCacheKey(chunkId, passId, geometrySource) {
@@ -539,6 +604,7 @@ function updateGeometryDiagnosticsPanel() {
 
 function clearProcessState() {
   processData = null;
+  if (typeof window !== 'undefined') window.processData = null;
   lastLocalPlaybackState = null;
   connectedAccumulatedCache = null;
   roadGuidedStaticCache = null;
@@ -634,6 +700,7 @@ async function process(segments, { bustCache = false, label = 'process' } = {}) 
   if (!res.ok) throw new Error(data.error || 'Process failed');
 
   processData = data;
+  if (typeof window !== 'undefined') window.processData = data;
   lastProcessedSegmentSelection = segments?.length
     ? [...segments]
     : (data.fileAudits || []).map((f) => f.fileName).filter(Boolean);
@@ -1367,6 +1434,7 @@ async function updateLocalPlayback(idx, { forceRefit = false, forceMapRebuild = 
   updateGeometryDiagnosticsPanel();
   refreshCandidatePolylines(map);
   refreshConnectedAccumulatedPolylines(map, { timelineIndex: idx });
+  updateRepresentativeLaneLinesDiag();
 }
 
 function getConnectedAccumulatedMode() {
@@ -1611,17 +1679,105 @@ function updatePointOnlyControlVisibility(mode) {
   if (obsControls) obsControls.classList.toggle('visible', obsDebugOn);
 }
 
+
+
+
+
 function initConnectedAccumulatedControls() {
   const modeSel = $('connectedAccumulatedMode');
   const layerCb = $('layerConnectedAccumulated');
+  const repCb = $('layerRepresentativeLaneLines');
+  const ui = localGeometryUI();
+
+  // Initial defaults: enabled + All per-frame (URL → session → HTML).
+  if (layerCb) {
+    let sessionEnabled = null;
+    try { sessionEnabled = sessionStorage.getItem(ui.CONNECTED_ACCUMULATED_SESSION_ENABLED_KEY); } catch (_) {}
+    layerCb.checked = !!(ui.resolveInitialConnectedAccumulatedEnabled
+      ? ui.resolveInitialConnectedAccumulatedEnabled(
+        typeof window !== 'undefined' ? window.location.search : '',
+        sessionEnabled,
+        layerCb.checked,
+      )
+      : layerCb.checked);
+  }
+  if (modeSel) {
+    let sessionMode = null;
+    try { sessionMode = sessionStorage.getItem(ui.CONNECTED_ACCUMULATED_SESSION_MODE_KEY); } catch (_) {}
+    modeSel.value = (ui.resolveInitialConnectedAccumulatedMode
+      ? ui.resolveInitialConnectedAccumulatedMode(
+        typeof window !== 'undefined' ? window.location.search : '',
+        sessionMode,
+        modeSel.value,
+      )
+      : modeSel.value);
+  }
+  // Candidate flag: URL representativeLaneLinesCandidate=1 checks the box once.
+  if (repCb) {
+    const params = new URLSearchParams(typeof window !== 'undefined' ? window.location.search : '');
+    if (params.get('representativeLaneLinesCandidate') === '1') repCb.checked = true;
+  }
+
+  const persist = () => {
+    try {
+      if (layerCb) {
+        sessionStorage.setItem(
+          ui.CONNECTED_ACCUMULATED_SESSION_ENABLED_KEY || 'qlogConnectedAccumulatedEnabledSession',
+          layerCb.checked ? '1' : '0',
+        );
+      }
+      if (modeSel) {
+        sessionStorage.setItem(
+          ui.CONNECTED_ACCUMULATED_SESSION_MODE_KEY || 'qlogConnectedAccumulatedModeSession',
+          modeSel.value,
+        );
+      }
+    } catch (_) {}
+  };
+
   const refresh = () => {
+    persist();
     const map = renderer?.stationaryLocalMap;
     if (map) refreshConnectedAccumulatedPolylines(map);
-    renderer?.draw?.();
+    if (processData && renderer) {
+      const displayMode = getDisplayMode();
+      renderer.setData(processData, getEffectiveLayers(displayMode), displayMode);
+    } else {
+      renderer?.draw?.();
+    }
+    updateRepresentativeLaneLinesDiag();
   };
   modeSel?.addEventListener('change', refresh);
   layerCb?.addEventListener('change', refresh);
+  repCb?.addEventListener('change', refresh);
 }
+
+function updateRepresentativeLaneLinesDiag() {
+  const el = $('representativeLaneLinesDiag');
+  if (!el) return;
+  const d = renderer?.getRepresentativeLaneLinesDiagnostics?.();
+  if (!d?.candidateActive) {
+    el.textContent = 'Representative lines: off';
+    return;
+  }
+  const splits = d.splitReasonCounts || {};
+  const method = (d.reusedStage && /legacy|robust/i.test(d.reusedStage)) ? 'legacy' : 'association';
+  el.textContent = [
+    `Representative lines (${method}): ${d.representativeLineCount ?? 0}`,
+    `logicalLanes ${d.logicalLaneCount ?? '—'}`,
+    `clusters ${d.physicalClusterCount ?? '—'}`,
+    `reduction ${d.reductionRatio != null ? d.reductionRatio.toFixed(2) + 'x' : '—'}`,
+    `srcFrames ${d.sourceFrameCount ?? 0}`,
+    `srcCurves ${d.sourceCurveCount ?? 0}`,
+    `rejected ${d.rejectedCurveCount ?? 0}`,
+    `splits gap=${splits.alongTrackGap ?? 0}/step=${splits.spatialStep ?? 0}/lat=${splits.lateralStep ?? 0}/hdg=${splits.incompatibleHeading ?? 0}`,
+    `support [${d.supportRange?.min ?? '—'}–${d.supportRange?.max ?? '—'}]`,
+    `medSup ${d.medianSupportFrames ?? '—'}`,
+    `coverage ${d.totalSupportedCoverageM ?? '—'}m`,
+    `spread [${d.lateralSpreadRange?.min != null ? Number(d.lateralSpreadRange.min).toFixed(2) : '—'}–${d.lateralSpreadRange?.max != null ? Number(d.lateralSpreadRange.max).toFixed(2) : '—'}]`,
+  ].join(' · ');
+}
+
 
 function updatePointDisplayModeLabel() {
   const label = $('pointDisplayModeLabel');
@@ -2277,8 +2433,12 @@ function bindEvents() {
     if (isLocalPlaybackMode()) renderer.fitToLocalView();
     else renderer.fitToView();
   };
-  $('vizMode').onchange = () => applyVisualization();
+  $('vizMode').onchange = () => {
+    persistVizMode($('vizMode').value);
+    applyVisualization();
+  };
   $('localGeometryMode')?.addEventListener('change', () => {
+    persistLocalGeometryMode(normalizeLocalGeometrySelection($('localGeometryMode')?.value));
     switchLocalGeometryLayer();
   });
 
@@ -2422,6 +2582,7 @@ async function init() {
     get inFlightCount() { return inFlightMapBuilds.size; },
     clearStationaryMapCache,
   };
+  initVizModeSelect();
   initLocalGeometryModeSelect();
   updatePointOnlyControlVisibility(getLocalGeometryMode());
   const panelEl = $('localVideoPanel');

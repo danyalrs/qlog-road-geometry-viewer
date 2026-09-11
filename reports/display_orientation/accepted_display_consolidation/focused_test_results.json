@@ -1,0 +1,42 @@
+{
+  "task": "Accepted display-path consolidation — focused test results",
+  "command": "node --test <suite>",
+  "accepted_path_suites": [
+    { "suite": "tests/combined_visible_lane_projection.test.js", "tests": 13, "pass": 13, "fail": 0, "owner": "combined visible-lane projection", "status": "green" },
+    { "suite": "tests/point_accumulated_lane_polylines.test.js", "tests": 11, "pass": 11, "fail": 0, "owner": "point-accumulated lane polylines", "status": "green" },
+    { "suite": "tests/cross_layer_alignment_shared_frame.test.js", "tests": 4, "pass": 4, "fail": 0, "owner": "cross-layer display alignment", "status": "green" },
+    { "suite": "tests/representative_lane_lines.test.js", "tests": 8, "pass": 8, "fail": 0, "owner": "representative fitting (corrected)", "status": "green" },
+    { "suite": "tests/representative_lane_lines_purity.test.js", "tests": 11, "pass": 11, "fail": 0, "owner": "purity association", "status": "green" },
+    { "suite": "tests/representative_lane_lines_purity_revisit.test.js", "tests": 13, "pass": 13, "fail": 0, "owner": "purityRevisit + default method selection", "status": "green", "edited_this_task": true }
+  ],
+  "accepted_path_totals": { "tests": 60, "pass": 60, "fail": 0 },
+  "failing_suites": [
+    {
+      "suite": "tests/local_playback_geometry_modes.test.js",
+      "tests": 41, "pass": 35, "fail": 6,
+      "failures": [
+        { "name": "6. Fused lane lines is the default for new or invalid state", "cause": "stale-expectation", "detail": "asserts LOCAL_GEOMETRY_DEFAULT_MODE/normalize selection/HTML selected == 'fused'; accepted default is 'pointAccumulated'" },
+        { "name": "21. hidden saved modes fall back to Fused lane lines", "cause": "stale-expectation", "detail": "expects fallback 'fused'; accepted fallback is 'pointAccumulated'" },
+        { "name": "22. undefined and invalid values do not produce an empty map selection", "cause": "stale-expectation", "detail": "built on the fused-default fallback path; contradicts accepted default" },
+        { "name": "16. arrow renders above geometry and vehicle path", "cause": "unrelated-pre-existing", "detail": "arrow rendering order; not touched by this consolidation" },
+        { "name": "28. API produces same pre-Stage-7/8 geometry checksums", "cause": "environmental", "detail": "requires HTTP server on localhost:3847; port not listening" },
+        { "name": "browser local_geometry_ui.js mirrors lib exports", "cause": "stale-expectation", "detail": "regex expects LOCAL_GEOMETRY_DEFAULT_MODE.*fused; now pointAccumulated" }
+      ]
+    },
+    {
+      "suite": "tests/local_playback_stationary.test.js",
+      "tests": 19, "pass": 17, "fail": 2,
+      "failures": [
+        { "name": "13. local geometry dropdown exposes only raw observations and fused lane lines", "cause": "stale-expectation", "detail": "dropdown now also includes pointAccumulated (selected)" },
+        { "name": "14. fused lane lines is the default local geometry mode", "cause": "stale-expectation", "detail": "asserts HTML 'value=\"fused\" selected' and LOCAL_GEOMETRY_DEFAULT_MODE=='fused'; accepted default is pointAccumulated" }
+      ]
+    }
+  ],
+  "classification_summary": {
+    "caused_by_this_consolidation_edit": 0,
+    "stale_expectation_from_accepted_default_change": 6,
+    "environmental_server_not_running": 1,
+    "unrelated_pre_existing": 1
+  },
+  "action_taken": "No failing test was modified. Stale expectations are reported for the later consolidation task; the accepted-path suites (60/60) and the edited focused suite (13/13) are green."
+}

@@ -19,6 +19,22 @@ const TRACK_COLORS = [
   '#ea580c', '#db2777', '#4f46e5', '#65a30d', '#0d9488', '#c026d3',
 ];
 
+/**
+ * Display-only representative-method selection from the URL query.
+ * Absent or unrecognised `representativeMethod` resolves to the accepted
+ * default `purityRevisit`; explicit overrides are preserved. This only chooses
+ * which builder runs — no source data is mutated and the purityRevisit
+ * thresholds/algorithm are untouched.
+ */
+function resolveRepresentativeMethod(search) {
+  const s = String(search || '');
+  if (/(?:^|[?&])representativeMethod=legacy(?=&|$)/.test(s)) return 'legacy';
+  if (/(?:^|[?&])representativeMethod=purityRevisit(?=&|$)/.test(s)) return 'purityRevisit';
+  if (/(?:^|[?&])representativeMethod=purity(?=&|$)/.test(s)) return 'purity';
+  if (/(?:^|[?&])representativeMethod=curveAssociation(?=&|$)/.test(s)) return 'curveAssociation';
+  return 'purityRevisit';
+}
+
 class RoadRenderer {
   constructor(canvas) {
     this.canvas = canvas;
@@ -34,7 +50,7 @@ class RoadRenderer {
     this.playbackPose = null;
     this.localAnchorFrameIndex = 0;
     this.localElapsedIdx = 0;
-    this.localGeometryMode = 'fused';
+    this.localGeometryMode = 'pointAccumulated';
     this.localGeometryDisplay = null;
     this.stationaryLocalMap = null;
     this.geometryDiagnostics = null;
@@ -55,12 +71,23 @@ class RoadRenderer {
     this._laneRelativeArrow = urlParams?.get('laneRelativeArrow') === '1';
     this._obsDebug = urlParams?.get('obsDebug') === '1';
     this._lateralAxisDebug = urlParams?.get('lateralDebug') === '1';
+    this._segment1LaneOrderDebug = urlParams?.get('debugSegment1LaneOrder') === '1';
+    this._segment1LaneOrderExpectedMap = null;
     // Corrected lane orientation is the DEFAULT viewer orientation. The
     // precomputed vehicle-relative lateral mirror is on unless explicitly
     // disabled via ?mirrorRoadLateral=0. ?mirrorRoadLateral=1 keeps it on.
     this._mirrorRoadLateralDisplay = (urlParams?.get('mirrorRoadLateral') ?? '1') !== '0';
     this._mirrorDebug = urlParams?.get('mirrorDebug') === '1';
-    this._layerAttributionEnabled = urlParams?.get('debugLayerAttribution') === '1';
+    this._layerAttributionEnabled = urlParams?.get('debugLayerAttribution') === '1'
+      || urlParams?.get('debugLanePixelOwner') === '1';
+    this._lanePixelOwnerEnabled = urlParams?.get('debugLanePixelOwner') === '1';
+    this._lanePixelOwnerTrace = [];
+    this._lanePixelOwnerPerturb = null;
+    this._visibleLaneProjectionPass = null;
+    this._visibleLaneProjectionEnabled = urlParams?.get('combinedVisibleLaneProjectionCandidate') === '1';
+    this._visibleLaneProjectionFromCacheHit = false;
+    this._pointAccumulatedLanePolylineEnabled = urlParams?.get('pointAccumulatedLanePolylineCandidate') === '1';
+    this._pointAccumulatedLanePolylineDiagnostics = null;
     this._layerAttributionSolo = urlParams?.get('debugLayerSolo') || null;
     this._layerAttributionDisable = new Set(
       (urlParams?.get('debugLayerDisable') || '').split(',').map((s) => s.trim()).filter(Boolean),
@@ -84,6 +111,8 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     this._connectedAccumulatedStats = null;
     this._connectedAccumulatedMode = 'currentFrame';
     this._connectedAccumulatedDrawn = false;
+    this._representativeLaneLines = null;
+    this._representativeLaneLinesDiagnostics = null;
     this.localRoadSurfacePathRadiusM = 15;
     this.localRoadSurfaceRibbonFallbackHalfWidthM = 7.5;
     this.localRoadSurfaceRibbonMinHalfWidthM = 3;
@@ -139,10 +168,12 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
       this.localGeometryMode = SLM.normalizeGeometrySource(mode);
     } else if (mode === 'fused') {
       this.localGeometryMode = 'fused';
+    } else if (mode === 'pointAccumulated') {
+      this.localGeometryMode = 'pointAccumulated';
     } else if (mode === 'diagnostic') {
       this.localGeometryMode = 'diagnostic';
     } else {
-      this.localGeometryMode = mode || 'fused';
+      this.localGeometryMode = mode || 'pointAccumulated';
     }
   }
 
@@ -154,11 +185,17 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     this.stationaryLocalMap = map;
     if (meta.buildCount != null) this._localMapBuildCount = meta.buildCount;
     if (meta.cacheState) this._localMapCacheState = meta.cacheState;
+    this._visibleLaneProjectionFromCacheHit = !!(
+      meta.cacheState
+      && String(meta.cacheState).includes('hit')
+    );
     this._pointTrackColorCache = null;
     this._connectedAccumulatedPolylines = null;
     this._connectedAccumulatedStats = null;
     this._connectedAccumulatedMode = 'currentFrame';
     this._connectedAccumulatedDrawn = false;
+    this._representativeLaneLines = null;
+    this._representativeLaneLinesDiagnostics = null;
     this._refreshDisplayCorrectionState();
   }
 
@@ -235,11 +272,52 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     return this._segmentDisplayToScreen(east, north);
   }
 
+  /**
+   * Shared stationary-map display contract: one world→canvas frame for road,
+   * lanes, trajectory and arrow. Exact display correction (SHA manifest) applies
+   * the same lateral reflection to every layer from canonical coordinates —
+   * never road/lanes via mirror-select while trajectory/arrow via VDC alone.
+   */
+  _applyExactDisplayCorrectionWorld(east, north) {
+    const VDC = typeof window !== 'undefined' ? window.ViewerDisplayCorrections : null;
+    if (VDC?.transformDisplayPoint) return VDC.transformDisplayPoint(east, north);
+    return { east, north: -north };
+  }
+
   _projectRoadGeometryToScreen(east, north, mirroredEast = null, mirroredNorth = null, point = null) {
     if (this._usesCombinedPlacedFrame(point)) {
+      const CVLP = typeof window !== 'undefined' ? window.CombinedVisibleLaneProjection : null;
+      const pass = this._visibleLaneProjectionPass;
+      if (
+        this._visibleLaneProjectionEnabled
+        && CVLP?.projectCombinedSourceLanePoint
+        && pass
+        && this._mirrorRoadLateralDisplay
+      ) {
+        const projected = CVLP.projectCombinedSourceLanePoint(point, this.stationaryLocalMap, pass, {
+          mirrorChecked: this._mirrorRoadLateralDisplay,
+          search: typeof window !== 'undefined' ? window.location.search : '',
+          useVisibleLaneProjection: true,
+          fromCacheHit: this._visibleLaneProjectionFromCacheHit,
+          fragmentHint: this._visibleLaneProjectionFragmentHint || null,
+        });
+        if (projected && Number.isFinite(projected.east) && Number.isFinite(projected.north)) {
+          if (projected.corrected) {
+            CVLP.markCandidateActiveOnMap?.(this.stationaryLocalMap);
+          }
+          return this.worldToScreen(projected.east, projected.north);
+        }
+      }
       const e = Number.isFinite(point?.placedEast) ? point.placedEast : east;
       const n = Number.isFinite(point?.placedNorth) ? point.placedNorth : north;
       return this.worldToScreen(e, n);
+    }
+    // Hash-keyed exact correction: same transform as _segmentDisplayToScreen.
+    // Ignore precomputed mirrors here so road ribbon vertices (no mirror fields)
+    // and lane dots share one reflected frame with the dashed trajectory.
+    if (this._useExactDisplayCorrection()) {
+      const t = this._applyExactDisplayCorrectionWorld(east, north);
+      return this.worldToScreen(t.east, t.north);
     }
     const VMC = typeof window !== 'undefined' ? window.ViewerMirrorCoords : null;
     if (VMC?.resolveRoadDisplayCoords) {
@@ -274,11 +352,13 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
       const n = Number.isFinite(point.placedNorth) ? point.placedNorth : north;
       return this.worldToScreen(e, n);
     }
+    // Combined placed trajectory points often omit coordinateFrame on the
+    // overlay call site (east/north only). Still use the shared placed frame.
+    if (this._usesCombinedPlacedFrame() && this.stationaryLocalMap?.combinedCoordinateFrame === 'combinedPlaced') {
+      return this.worldToScreen(east, north);
+    }
     if (this._useExactDisplayCorrection()) {
-      const VDC = typeof window !== 'undefined' ? window.ViewerDisplayCorrections : null;
-      const t = VDC?.transformDisplayPoint
-        ? VDC.transformDisplayPoint(east, north)
-        : { east, north: -north };
+      const t = this._applyExactDisplayCorrectionWorld(east, north);
       return this.worldToScreen(t.east, t.north);
     }
     return this.worldToScreen(east, north);
@@ -384,6 +464,123 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     };
   }
 
+  getCombinedVisibleLaneProjectionDiagnostics() {
+    const CVLP = typeof window !== 'undefined' ? window.CombinedVisibleLaneProjection : null;
+    return CVLP?.getBrowserDiagnostics?.(this.stationaryLocalMap) ?? null;
+  }
+
+  setVisibleLaneProjectionEnabled(on) {
+    this._visibleLaneProjectionEnabled = !!on;
+  }
+
+  setPointAccumulatedLanePolylineEnabled(on) {
+    this._pointAccumulatedLanePolylineEnabled = !!on;
+  }
+
+  getPointAccumulatedLanePolylineDiagnostics() {
+    return this._pointAccumulatedLanePolylineDiagnostics ?? null;
+  }
+
+  /**
+   * Resolve display-world coordinates for a PA point using the same contract
+   * as the visible lane dots (including combinedVisibleLaneProjectionCandidate).
+   */
+  _resolvePointAccumulatedDisplayWorld(pt) {
+    const map = this.stationaryLocalMap;
+    const CVLP = typeof window !== 'undefined' ? window.CombinedVisibleLaneProjection : null;
+    if (
+      this._visibleLaneProjectionEnabled
+      && CVLP?.projectCombinedSourceLanePoint
+      && this._mirrorRoadLateralDisplay
+      && map?.boundaryAnchoredOrientationActive
+    ) {
+      const projected = CVLP.projectCombinedSourceLanePoint(pt, map, 'pointAccumulated', {
+        mirrorChecked: this._mirrorRoadLateralDisplay,
+        search: typeof window !== 'undefined' ? window.location.search : '',
+        useVisibleLaneProjection: true,
+        fromCacheHit: this._visibleLaneProjectionFromCacheHit,
+      });
+      if (projected && Number.isFinite(projected.east) && Number.isFinite(projected.north)) {
+        return { east: projected.east, north: projected.north, corrected: !!projected.corrected };
+      }
+    }
+    if (this._usesCombinedPlacedFrame(pt)) {
+      const e = Number.isFinite(pt?.placedEast) ? pt.placedEast : pt.localEast;
+      const n = Number.isFinite(pt?.placedNorth) ? pt.placedNorth : pt.localNorth;
+      return { east: e, north: n, corrected: false };
+    }
+    if (this._useExactDisplayCorrection()) {
+      const t = this._applyExactDisplayCorrectionWorld(pt.localEast, pt.localNorth);
+      return { east: t.east, north: t.north, corrected: true };
+    }
+    const VMC = typeof window !== 'undefined' ? window.ViewerMirrorCoords : null;
+    if (VMC?.resolveRoadDisplayCoords) {
+      const resolved = VMC.resolveRoadDisplayCoords(
+        pt.localEast,
+        pt.localNorth,
+        pt.mirroredLocalEast,
+        pt.mirroredLocalNorth,
+        this._mirrorRoadLateralDisplay,
+        {
+          trajectory: map?.trajectory,
+          referencePose: map?.referencePose,
+          useTrajectoryFallback: false,
+        },
+      );
+      return { east: resolved.east, north: resolved.north, corrected: false };
+    }
+    if (this._mirrorRoadLateralDisplay && Number.isFinite(pt.mirroredLocalEast) && Number.isFinite(pt.mirroredLocalNorth)) {
+      return { east: pt.mirroredLocalEast, north: pt.mirroredLocalNorth, corrected: false };
+    }
+    return { east: pt.localEast, north: pt.localNorth, corrected: false };
+  }
+
+  _drawPointAccumulatedLanePolylines(map, pts) {
+    const PALP = typeof window !== 'undefined' ? window.PointAccumulatedLanePolylines : null;
+    if (!PALP?.buildPointAccumulatedLanePolylines) {
+      this._pointAccumulatedLanePolylineDiagnostics = { candidateActive: false, error: 'moduleMissing' };
+      return;
+    }
+    this._visibleLaneProjectionPass = 'pointAccumulated';
+    const displayPoints = [];
+    for (const pt of pts || []) {
+      if (!Number.isFinite(pt.localEast) || !Number.isFinite(pt.localNorth)) continue;
+      const world = this._resolvePointAccumulatedDisplayWorld(pt);
+      if (!Number.isFinite(world.east) || !Number.isFinite(world.north)) continue;
+      displayPoints.push({
+        ...pt,
+        east: world.east,
+        north: world.north,
+        placedEast: world.east,
+        placedNorth: world.north,
+      });
+    }
+    this._visibleLaneProjectionPass = null;
+    const built = PALP.buildPointAccumulatedLanePolylines(displayPoints);
+    this._pointAccumulatedLanePolylineDiagnostics = built.diagnostics || PALP.emptyDiagnostics();
+    const ctx = this.ctx;
+    for (const poly of built.polylines || []) {
+      if (!poly.points?.length) continue;
+      let color = 'rgba(148,163,184,0.95)';
+      if (poly.groupTrackId != null && this._pointTrackColorCache?.has?.(poly.groupTrackId)) {
+        color = this._pointTrackColorCache.get(poly.groupTrackId);
+      }
+      ctx.strokeStyle = color;
+      ctx.lineWidth = Math.max(2, Math.min(3.5, this.scale * 0.25));
+      ctx.globalAlpha = 0.92;
+      ctx.setLineDash([]);
+      ctx.beginPath();
+      let moved = false;
+      for (const p of poly.points) {
+        const screen = this.worldToScreen(p.east, p.north);
+        if (!moved) { ctx.moveTo(screen.x, screen.y); moved = true; }
+        else ctx.lineTo(screen.x, screen.y);
+      }
+      if (moved) ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+  }
+
   getLayerAttributionPassPng(layerId) {
     const pass = this._layerAttributionPasses.find((p) => p.layerId === layerId);
     return pass?.passPngDataUrl ?? null;
@@ -394,6 +591,54 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     this._layerAttributionDrawOrder = [];
   }
 
+  setLanePixelOwnerPerturb(spec) {
+    if (!this._lanePixelOwnerEnabled) return false;
+    if (!spec) {
+      this._lanePixelOwnerPerturb = null;
+      return true;
+    }
+    this._lanePixelOwnerPerturb = {
+      sourceFile: spec.sourceFile ?? null,
+      frameId: spec.frameId ?? null,
+      groupTrackId: spec.groupTrackId ?? null,
+      laneIndex: spec.laneIndex ?? null,
+      collection: spec.collection ?? null,
+      dxPx: Number.isFinite(spec.dxPx) ? spec.dxPx : 10,
+      dyPx: Number.isFinite(spec.dyPx) ? spec.dyPx : 0,
+    };
+    return true;
+  }
+
+  getLanePixelOwnerTrace() {
+    return {
+      enabled: !!this._lanePixelOwnerEnabled,
+      perturb: this._lanePixelOwnerPerturb,
+      calls: this._lanePixelOwnerTrace.slice(),
+    };
+  }
+
+  resetLanePixelOwnerTrace() {
+    this._lanePixelOwnerTrace = [];
+  }
+
+  _lanePixelOwnerRecord(call) {
+    if (!this._lanePixelOwnerEnabled) return;
+    this._lanePixelOwnerTrace.push(call);
+  }
+
+  _lanePixelOwnerMaybePerturbScreen(screen, source) {
+    const p = this._lanePixelOwnerPerturb;
+    if (!p || !screen || !source) return screen;
+    if (p.collection != null && source._diagCollection !== p.collection) return screen;
+    if (p.sourceFile != null && source.sourceFile != null && source.sourceFile !== p.sourceFile) return screen;
+    if (p.frameId != null && source.frameId != null && (source.frameId ?? source.frameIndex) !== p.frameId) return screen;
+    if (p.groupTrackId != null && source.groupTrackId !== p.groupTrackId && source.laneTrackId !== p.groupTrackId) {
+      return screen;
+    }
+    if (p.laneIndex != null && source.laneIndex != null && source.laneIndex !== p.laneIndex) return screen;
+    return { x: screen.x + p.dxPx, y: screen.y + p.dyPx };
+  }
+
   /**
    * Display-only connected accumulated observations (viewer experiment).
    */
@@ -402,6 +647,15 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     this._connectedAccumulatedStats = stats;
     this._connectedAccumulatedMode = mode === 'perFrame' ? 'perFrame' : 'currentFrame';
     this._connectedAccumulatedDrawn = false;
+  }
+
+  setRepresentativeLaneLines(polylines, diagnostics = null) {
+    this._representativeLaneLines = Array.isArray(polylines) ? polylines : null;
+    this._representativeLaneLinesDiagnostics = diagnostics;
+  }
+
+  getRepresentativeLaneLinesDiagnostics() {
+    return this._representativeLaneLinesDiagnostics ?? null;
   }
 
   /**
@@ -831,6 +1085,17 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     const ctx = this.ctx;
     if (this._layerAttributionEnabled) {
       this.resetLayerAttributionPasses();
+    }
+    if (this._lanePixelOwnerEnabled) {
+      this.resetLanePixelOwnerTrace();
+    }
+    const CVLP = typeof window !== 'undefined' ? window.CombinedVisibleLaneProjection : null;
+    if (CVLP?.resetDrawDiagnostics) CVLP.resetDrawDiagnostics();
+    if (this._visibleLaneProjectionEnabled && CVLP?.isCandidateEligible?.(this.stationaryLocalMap, {
+      mirrorChecked: this._mirrorRoadLateralDisplay,
+      useVisibleLaneProjection: true,
+    })) {
+      CVLP.markCandidateActiveOnMap?.(this.stationaryLocalMap);
     }
     ctx.clearRect(0, 0, this.w, this.h);
     ctx.fillStyle = '#f8f8f8';
@@ -1351,7 +1616,17 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
           frags.flatMap((f) => f.points || []),
         ) ?? 0,
       }, () => {
+      this._visibleLaneProjectionPass = 'laneFragments';
+      const CVLP = typeof window !== 'undefined' ? window.CombinedVisibleLaneProjection : null;
       frags.forEach((lane, i) => {
+        CVLP?.noteLaneFragmentPass?.();
+        this._visibleLaneProjectionFragmentHint = {
+          sourceFile: lane.sourceFile ?? null,
+          sourceFrameId: lane.sourceFrameId ?? null,
+          sourceFrameIndex: lane.sourceFrameIndex ?? null,
+          laneTrackId: lane.laneTrackId ?? null,
+          laneIndex: lane.laneIndex ?? null,
+        };
         if (lane.outlier && !this._outlierDebug) return;
         let color;
         if (mode === 'rejected' || lane.supportStatus === 'rejected') {
@@ -1369,6 +1644,63 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
         }
         const width = (mode === 'cleaned' || mode === 'cleanedWithSurface' || debugMode) ? 2.5 : (lane.outlier ? 1.5 : 2);
         const dashed = debugMode && lane.fragmentKind === 'preservedSourcePolyline';
+        if (this._lanePixelOwnerEnabled && lane.points?.length) {
+          const mid = lane.points[Math.floor(lane.points.length / 2)];
+          const screen = this._projectRoadGeometryToScreen(
+            mid.east ?? mid.localEast,
+            mid.north ?? mid.localNorth,
+            mid.mirroredLocalEast,
+            mid.mirroredLocalNorth,
+            mid,
+          );
+          const source = {
+            ...mid,
+            sourceFile: mid.sourceFile ?? lane.sourceFile ?? null,
+            frameId: mid.frameId ?? lane.sourceFrameId ?? lane.sourceFrameIndex ?? null,
+            laneIndex: lane.laneIndex ?? mid.laneIndex ?? null,
+            groupTrackId: lane.laneTrackId ?? mid.groupTrackId ?? null,
+            laneTrackId: lane.laneTrackId ?? null,
+            _diagCollection: 'laneFragments',
+          };
+          const drawn = this._lanePixelOwnerMaybePerturbScreen(screen, source);
+          this._lanePixelOwnerRecord({
+            drawPass: 'stationaryMapLanes',
+            drawFunction: '_drawStationaryLocalMap.laneFragments',
+            geometryCollection: 'laneFragments',
+            sourceArrayIndex: i,
+            sourceFile: source.sourceFile,
+            frameId: source.frameId,
+            laneIndex: source.laneIndex,
+            groupTrackId: source.groupTrackId,
+            selectedFields: this._usesCombinedPlacedFrame(mid)
+              ? ['placedEast', 'placedNorth']
+              : ['east/localEast', 'north/localNorth', 'mirroredLocal*'],
+            inputCoords: {
+              east: mid.east ?? mid.localEast,
+              north: mid.north ?? mid.localNorth,
+              placedEast: mid.placedEast ?? null,
+              placedNorth: mid.placedNorth ?? null,
+              mirroredLocalEast: mid.mirroredLocalEast ?? null,
+              mirroredLocalNorth: mid.mirroredLocalNorth ?? null,
+              coordinateFrame: mid.coordinateFrame ?? null,
+            },
+            projectedPixel: drawn,
+            colour: color,
+            lineWidth: width,
+            kind: 'polyline',
+          });
+          if (drawn !== screen && this._lanePixelOwnerPerturb) {
+            // Diagnostic-only: redraw this fragment shifted in screen space.
+            const ctx = this.ctx;
+            const dx = this._lanePixelOwnerPerturb.dxPx || 0;
+            const dy = this._lanePixelOwnerPerturb.dyPx || 0;
+            ctx.save();
+            ctx.translate(dx, dy);
+            this._drawPolyline(lane.points, color, width, dashed, 15, true);
+            ctx.restore();
+            return;
+          }
+        }
         this._drawPolyline(lane.points, color, width, dashed, 15, true);
 
         if (debugMode && lane.points?.length) {
@@ -1394,6 +1726,8 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
           }
         }
       });
+      this._visibleLaneProjectionPass = null;
+      this._visibleLaneProjectionFragmentHint = null;
 
       if (debugMode && map.laneCleanup?.mergeDecisions) {
         for (const d of map.laneCleanup.mergeDecisions) {
@@ -1434,7 +1768,7 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
       }
     }
 
-    if (this.localGeometryMode === 'pointAccumulated' && this.layers.fused) {
+    if (this.localGeometryMode === 'pointAccumulated') {
       this._drawPointAccumulatedGeometry(map, elapsedIdx);
     }
 
@@ -1479,6 +1813,10 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
 
     if (this._lateralAxisDebug) {
       this._drawLateralAxisDiagnostic(d, map, elapsedIdx);
+    }
+
+    if (this._segment1LaneOrderDebug) {
+      this._drawSegment1LaneOrderDiagnostic(map);
     }
 
     if (this._mirrorDebug) {
@@ -1594,6 +1932,14 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     ctx.restore();
   }
 
+  _drawSegment1LaneOrderDiagnostic(map) {
+    const diag = typeof window !== 'undefined' ? window.Segment1LaneOrderDiagnostic : null;
+    if (!diag?.drawOverlay) return;
+    const frameId = diag.PRIMARY_FRAME_ID;
+    const mode = map?.boundaryAnchoredOrientationActive ? 'combined' : 'standalone';
+    diag.drawOverlay(this, map, frameId, mode, this._segment1LaneOrderExpectedMap);
+  }
+
   _drawPointAccumulatedGeometry(map, elapsedIdx) {
     const pa = map?.pointAccumulated;
     if (!pa) return;
@@ -1623,7 +1969,19 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     const bMode = this._experimentalBoundariesMode;
     const showDots = bMode !== 'boundaries';
 
-    if (showDots) {
+    // Default-off: form coloured lane polylines from the same accumulated dots
+    // after their draw-time display projection (including combinedVisibleLaneProjection).
+    if (this._pointAccumulatedLanePolylineEnabled && showDots && pts.length) {
+      this._attrPass('pointAccumulatedLanePolylines', {
+        drawFunction: '_drawPointAccumulatedLanePolylines',
+        uiControl: 'pointAccumulatedLanePolylineCandidate',
+        enabled: true,
+        geometryCollection: 'pointAccumulated.points→polylines',
+        geometryObjectCount: pts.length,
+      }, () => this._drawPointAccumulatedLanePolylines(map, pts));
+    }
+
+    if (showDots && this.layers.fused) {
       this._attrPass('pointAccumulatedLanes', {
         drawFunction: '_drawPointAccumulatedGeometry.dots',
         rendererStateField: 'layers.fused',
@@ -1636,9 +1994,11 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
         sourceProvenanceCoveragePct: window.CanvasLayerAttribution?.sourceProvenanceCoveragePct?.(pts) ?? 0,
         fillColours: ['rgba(124,58,237,0.9)', 'rgba(8,145,178,0.9)', 'rgba(148,163,184,0.9)'],
       }, () => {
-      for (const pt of pts) {
+      this._visibleLaneProjectionPass = 'pointAccumulated';
+      for (let idx = 0; idx < pts.length; idx++) {
+        const pt = pts[idx];
         if (!Number.isFinite(pt.localEast) || !Number.isFinite(pt.localNorth)) continue;
-        const p = this._projectRoadGeometryToScreen(pt.localEast, pt.localNorth, pt.mirroredLocalEast, pt.mirroredLocalNorth, pt);
+        let p = this._projectRoadGeometryToScreen(pt.localEast, pt.localNorth, pt.mirroredLocalEast, pt.mirroredLocalNorth, pt);
         let color = neutral;
         if (tintOn && pt.reliability?.combinedScore != null) {
           color = MappingReliability.tintColorForScore(pt.reliability.combinedScore, 0.9);
@@ -1649,11 +2009,42 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
         } else if (pt.side === 'right') {
           color = 'rgba(8,145,178,0.9)';
         }
+        if (this._lanePixelOwnerEnabled) {
+          const source = { ...pt, _diagCollection: 'pointAccumulated.points' };
+          p = this._lanePixelOwnerMaybePerturbScreen(p, source);
+          this._lanePixelOwnerRecord({
+            drawPass: 'pointAccumulatedLanes',
+            drawFunction: '_drawPointAccumulatedGeometry.dots',
+            geometryCollection: 'pointAccumulated.points',
+            sourceArrayIndex: idx,
+            sourceFile: pt.sourceFile ?? null,
+            frameId: pt.frameId ?? pt.frameIndex ?? null,
+            laneIndex: pt.laneIndex ?? null,
+            groupTrackId: pt.groupTrackId ?? null,
+            selectedFields: this._usesCombinedPlacedFrame(pt)
+              ? ['placedEast', 'placedNorth']
+              : ['localEast', 'localNorth', 'mirroredLocalEast', 'mirroredLocalNorth'],
+            inputCoords: {
+              localEast: pt.localEast,
+              localNorth: pt.localNorth,
+              placedEast: pt.placedEast ?? null,
+              placedNorth: pt.placedNorth ?? null,
+              mirroredLocalEast: pt.mirroredLocalEast ?? null,
+              mirroredLocalNorth: pt.mirroredLocalNorth ?? null,
+              coordinateFrame: pt.coordinateFrame ?? null,
+            },
+            projectedPixel: { x: p.x, y: p.y },
+            colour: color,
+            radius: r,
+            kind: 'dot',
+          });
+        }
         ctx.fillStyle = color;
         ctx.beginPath();
         ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
         ctx.fill();
       }
+      this._visibleLaneProjectionPass = null;
       });
     }
 
@@ -1665,6 +2056,16 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
         enabled: this.layers.connectedAccumulated,
         geometryCollection: 'connectedAccumulatedPolylines',
       }, () => this._drawConnectedAccumulatedPolylines(map, elapsedIdx, pts));
+    }
+
+    if (this.layers.representativeLaneLines) {
+      this._attrPass('representativeLaneLines', {
+        drawFunction: '_drawRepresentativeLaneLines',
+        rendererStateField: 'layers.representativeLaneLines',
+        uiControl: 'layerRepresentativeLaneLines',
+        enabled: this.layers.representativeLaneLines,
+        geometryCollection: 'representativeLaneLines',
+      }, () => this._drawRepresentativeLaneLines(map, elapsedIdx, pts));
     }
 
     if (bMode === 'boundaries' || bMode === 'combined') {
@@ -1823,8 +2224,9 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
           color = 'rgba(8,145,178,0.9)';
         }
         ctx.strokeStyle = color;
-        ctx.globalAlpha = isCurrentFrame ? 0.9 : 0.62;
-        ctx.lineWidth = isCurrentFrame ? 3 : 2.25;
+        const repOn = !!this.layers.representativeLaneLines;
+        ctx.globalAlpha = isCurrentFrame ? 0.9 : (repOn ? 0.28 : 0.62);
+        ctx.lineWidth = isCurrentFrame ? 3 : (repOn ? 1.6 : 2.25);
         ctx.setLineDash([]);
         ctx.beginPath();
         let moved = false;
@@ -1871,6 +2273,107 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     this._connectedAccumulatedPolylines = polylines;
     this._connectedAccumulatedStats = stats;
     this._connectedAccumulatedDrawn = stroked > 0;
+  }
+
+  /**
+   * Representative lane lines candidate — reuses robust bin-median stage on
+   * points from accepted All per-frame curves. Thicker than source curves.
+   */
+  _drawRepresentativeLaneLines(map, elapsedIdx, visiblePoints) {
+    const CAD = typeof window !== 'undefined' ? window.ConnectedAccumulatedDisplay : null;
+    if (!CAD?.buildRepresentativeLaneLinesFromPerFrame || !CAD?.buildPerFrameConnectedPolylines) {
+      this._representativeLaneLinesDiagnostics = { candidateActive: false, error: 'moduleMissing' };
+      return;
+    }
+    const pa = map?.pointAccumulated;
+    if (!pa?.points?.length) {
+      this._representativeLaneLinesDiagnostics = { candidateActive: false, error: 'noPoints' };
+      return;
+    }
+
+    let perFrame = this._connectedAccumulatedPolylines;
+    let perFrameStats = this._connectedAccumulatedStats;
+    const modeOk = (perFrameStats?.mode === 'perFrame')
+      || this._connectedAccumulatedMode === 'perFrame';
+    if (!perFrame?.length || !modeOk || this._pointCausalPlayback || this._obsIsolationActive()) {
+      const sourcePts = this._obsIsolationActive()
+        ? (visiblePoints || [])
+        : (this._pointCausalPlayback
+          ? CAD.filterPointsForCausal(pa.points || [], elapsedIdx)
+          : (pa.points || []));
+      const built = CAD.buildPerFrameConnectedPolylines(sourcePts);
+      perFrame = built.polylines;
+      perFrameStats = built.stats;
+    }
+
+    const search = typeof window !== 'undefined' ? window.location.search : '';
+    const requested = resolveRepresentativeMethod(search);
+    // Availability guard only (does not change the selected method when the
+    // builder exists). Falls back to the corrected association builder.
+    const hasBuilder = {
+      legacy: !!CAD.buildRepresentativeLaneLinesLegacyFromPerFrame,
+      purityRevisit: !!CAD.buildRepresentativeLaneLinesPurityRevisitFromPerFrame,
+      purity: !!CAD.buildRepresentativeLaneLinesPurityFromPerFrame,
+      curveAssociation: !!CAD.buildRepresentativeLaneLinesFromPerFrame,
+    };
+    const method = hasBuilder[requested] ? requested : 'curveAssociation';
+    const built = method === 'legacy'
+      ? CAD.buildRepresentativeLaneLinesLegacyFromPerFrame(perFrame || [])
+      : (method === 'purityRevisit'
+        ? CAD.buildRepresentativeLaneLinesPurityRevisitFromPerFrame(perFrame || [])
+        : (method === 'purity'
+          ? CAD.buildRepresentativeLaneLinesPurityFromPerFrame(perFrame || [])
+          : CAD.buildRepresentativeLaneLinesFromPerFrame(perFrame || [])));
+    built.method = method;
+    this._representativeLaneLines = built.polylines;
+    this._representativeLaneLinesDiagnostics = built.stats || null;
+
+    if (!this._pointTrackColorCache) {
+      const trackIds = [...new Set((pa.points || []).map((p) => p.groupTrackId).filter((x) => x != null))];
+      this._pointTrackColorCache = new Map(trackIds.map((id, i) => [id, this.trackColor(id ?? i)]));
+    }
+
+    const ctx = this.ctx;
+    let stroked = 0;
+    ctx.save();
+    try {
+      for (const poly of built.polylines || []) {
+        if (!poly.points || poly.points.length < 2) continue;
+        let color = '#0f766e';
+        if (poly.groupTrackId != null && this._pointTrackColorCache?.has?.(poly.groupTrackId)) {
+          color = this._pointTrackColorCache.get(poly.groupTrackId);
+        }
+        ctx.strokeStyle = color;
+        ctx.globalAlpha = 0.95;
+        ctx.lineWidth = Math.max(4, Math.min(5.5, this.scale * 0.35));
+        ctx.setLineDash([]);
+        ctx.beginPath();
+        let moved = false;
+        for (const pt of poly.points) {
+          if (!Number.isFinite(pt.localEast) || !Number.isFinite(pt.localNorth)) continue;
+          const p = this._projectRoadGeometryToScreen(
+            pt.localEast, pt.localNorth, pt.mirroredLocalEast, pt.mirroredLocalNorth, pt,
+          );
+          if (!moved) { ctx.moveTo(p.x, p.y); moved = true; }
+          else ctx.lineTo(p.x, p.y);
+        }
+        if (moved) { ctx.stroke(); stroked += 1; }
+      }
+      ctx.globalAlpha = 1;
+      ctx.font = '12px sans-serif';
+      ctx.fillStyle = '#0f766e';
+      ctx.fillText('Representative lane lines (candidate — from All per-frame)', 10, 250);
+      ctx.fillStyle = '#64748b';
+      const d = built.stats || {};
+      ctx.fillText(
+        `${stroked} lines · ${d.sourceFrameCount ?? 0} frames · ${d.sourceCurveCount ?? 0} curves · rejected ${d.rejectedCurveCount ?? 0}`,
+        10,
+        264,
+      );
+    } finally {
+      ctx.setLineDash([]);
+      ctx.restore();
+    }
   }
 
   /**
@@ -2836,11 +3339,13 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
   _drawLocalVehiclePathOverlay(map) {
     if (!map?.trajectory || map.trajectory.length < 2) return;
     const LTO = typeof window !== 'undefined' ? window.LocalTrajectoryOverlay : null;
+    // Same projector as grey road ribbon — never a divergent trajectory-only frame.
+    const toScreen = (east, north) => this.roadGeometryToScreen(east, north);
     if (LTO?.drawTrajectoryOverlay) {
       LTO.drawTrajectoryOverlay(
         this.ctx,
         map.trajectory,
-        (east, north) => this._segmentDisplayToScreen(east, north),
+        toScreen,
       );
       return;
     }
@@ -2852,10 +3357,10 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     for (const run of runs) {
       if (run.length < 2) continue;
       ctx.beginPath();
-      const p0 = this.worldToScreen(run[0].east, run[0].north);
+      const p0 = toScreen(run[0].east, run[0].north);
       ctx.moveTo(p0.x, p0.y);
       for (let i = 1; i < run.length; i++) {
-        const p = this.worldToScreen(run[i].east, run[i].north);
+        const p = toScreen(run[i].east, run[i].north);
         ctx.lineTo(p.x, p.y);
       }
       ctx.stroke();
@@ -3516,5 +4021,7 @@ function niceRound(m) {
   const nice = n < 1.5 ? 1 : n < 3.5 ? 2 : n < 7.5 ? 5 : 10;
   return nice * pow;
 }
+
+RoadRenderer.resolveRepresentativeMethod = resolveRepresentativeMethod;
 
 window.RoadRenderer = RoadRenderer;

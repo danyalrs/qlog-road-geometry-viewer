@@ -1,0 +1,108 @@
+{
+  "status": "CANDIDATE IMPLEMENTED — USER REVIEW REQUIRED",
+  "flag": "combinedVisibleLaneProjectionCandidate=1",
+  "samples": [
+    {
+      "frameId": 1603,
+      "sourceFile": "qlog_f449c_1.bz2",
+      "rows": [
+        {
+          "laneIdentity": "groupTrackId:0",
+          "standaloneDM": 4.257649564814968,
+          "baselineCombinedDM": -4.465272240081072,
+          "candidateCombinedDM": 4.257648428317697,
+          "candidateMatches": true,
+          "colourSame": true
+        },
+        {
+          "laneIdentity": "groupTrackId:1",
+          "standaloneDM": 1.5930463547767704,
+          "baselineCombinedDM": -1.7854541800738493,
+          "candidateCombinedDM": 1.5930452156044996,
+          "candidateMatches": true,
+          "colourSame": true
+        },
+        {
+          "laneIdentity": "groupTrackId:2",
+          "standaloneDM": -1.3774786677662052,
+          "baselineCombinedDM": 1.2069000174465487,
+          "candidateCombinedDM": -1.3774798099206564,
+          "candidateMatches": true,
+          "colourSame": true
+        },
+        {
+          "laneIdentity": "groupTrackId:3",
+          "standaloneDM": -3.719463129966107,
+          "baselineCombinedDM": 3.5253240676174165,
+          "candidateCombinedDM": -3.7194770543282467,
+          "candidateMatches": true,
+          "colourSame": true
+        }
+      ]
+    },
+    {
+      "frameId": 1803,
+      "sourceFile": "qlog_f449c_1.bz2",
+      "rows": [
+        {
+          "laneIdentity": "groupTrackId:1",
+          "standaloneDM": 1.6608241179313732,
+          "baselineCombinedDM": -0.8892638897660419,
+          "candidateCombinedDM": 1.6608034688102329,
+          "candidateMatches": true,
+          "colourSame": true
+        },
+        {
+          "laneIdentity": "groupTrackId:2",
+          "standaloneDM": -1.5071078302206489,
+          "baselineCombinedDM": 2.3029407390832466,
+          "candidateCombinedDM": -1.5071285106773256,
+          "candidateMatches": true,
+          "colourSame": true
+        },
+        {
+          "laneIdentity": "groupTrackId:3",
+          "standaloneDM": -4.363583284609429,
+          "baselineCombinedDM": 5.199348068752147,
+          "candidateCombinedDM": -4.3636002320612475,
+          "candidateMatches": true,
+          "colourSame": true
+        }
+      ]
+    },
+    {
+      "frameId": 2003,
+      "sourceFile": "qlog_f449c_1.bz2",
+      "rows": [
+        {
+          "laneIdentity": "groupTrackId:1",
+          "standaloneDM": 1.6530522550322535,
+          "baselineCombinedDM": -1.5372754544669807,
+          "candidateCombinedDM": 1.6530493215684678,
+          "candidateMatches": true,
+          "colourSame": true
+        },
+        {
+          "laneIdentity": "groupTrackId:2",
+          "standaloneDM": -1.4313643564510035,
+          "baselineCombinedDM": 1.5333925137545983,
+          "candidateCombinedDM": -1.4313672943411864,
+          "candidateMatches": true,
+          "colourSame": true
+        },
+        {
+          "laneIdentity": "groupTrackId:3",
+          "standaloneDM": -4.31150745529016,
+          "baselineCombinedDM": 4.412198615187041,
+          "candidateCombinedDM": -4.311509112885128,
+          "candidateMatches": true,
+          "colourSame": true
+        }
+      ]
+    }
+  ],
+  "regressions": {
+    "roadChecksumUnchanged": true,
+    "trajectoryChecksumUnchanged": true
+  }
+}

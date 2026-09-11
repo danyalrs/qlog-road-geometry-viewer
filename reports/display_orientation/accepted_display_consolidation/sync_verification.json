@@ -1,0 +1,28 @@
+{
+  "task": "Accepted display-path consolidation — lib/public synchronization verification",
+  "edited_this_task": [
+    { "path": "public/render.js", "has_lib_mirror": false, "sync_required": false, "note": "render.js is browser-only; no lib/render.js and no sync script references it." }
+  ],
+  "mirror_pairs": [
+    { "public": "public/local_geometry_ui.js", "lib": "lib/local_geometry_ui.js", "canonical": "lib", "sync_script": "scripts/sync_local_geometry_ui_public.js", "status": "in-sync (browser-wrapped)", "action": "none" },
+    { "public": "public/combined_source_transform.js", "lib": "lib/combined_source_transform.js", "canonical": "lib", "sync_script": "scripts/sync_combined_boundary_anchored_orientation_public.js", "status": "in-sync (browser-wrapped)", "action": "none" },
+    { "public": "public/combined_boundary_anchored_orientation.js", "lib": "lib/combined_boundary_anchored_orientation.js", "canonical": "lib", "sync_script": "scripts/sync_combined_boundary_anchored_orientation_public.js", "status": "in-sync (browser-wrapped)", "action": "none" },
+    { "public": "public/combined_visible_lane_projection.js", "lib": "lib/combined_visible_lane_projection.js", "canonical": "lib", "sync_script": "scripts/sync_combined_visible_lane_projection_public.js", "status": "in-sync (browser-wrapped)", "action": "none" },
+    { "public": "public/point_accumulated_lane_polylines.js", "lib": "lib/point_accumulated_lane_polylines.js", "canonical": "lib", "sync_script": "scripts/sync_point_accumulated_lane_polylines_public.js", "status": "in-sync (browser-wrapped)", "action": "none" },
+    { "public": "public/canvas_layer_attribution.js", "lib": "lib/canvas_layer_attribution.js", "canonical": "lib", "sync_script": null, "status": "manually maintained; not verified by hash equality (wrapper differs)", "action": "verify before staging" },
+    { "public": "public/segment1_lane_order_diagnostic.js", "lib": "lib/segment1_lane_order_diagnostic.js", "canonical": "lib", "sync_script": null, "status": "manually maintained", "action": "verify before staging" }
+  ],
+  "browser_only_no_lib_source": [
+    "public/render.js",
+    "public/app.js",
+    "public/candidate_layer_display.js",
+    "public/segment0_road_mirror_fix.js (deferred experiment; not loaded by index.html)"
+  ],
+  "loaded_script_existence_check": {
+    "scripts_referenced_by_index_html": 36,
+    "missing_in_public": 0,
+    "missing_but_present_elsewhere_only": 0,
+    "conclusion": "Every runtime script referenced by public/index.html exists in public/. No accepted runtime dependency exists only in a backup directory, temporary script, patch file, or excluded generated-report directory."
+  },
+  "broad_sync_run": false
+}

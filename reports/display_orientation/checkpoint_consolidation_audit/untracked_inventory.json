@@ -1,0 +1,83 @@
+{
+  "untracked_porcelain_entries": 215,
+  "note": "Directories are counted as single porcelain entries; file/size counts are recursive group summaries.",
+  "backup_and_staging_dirs": [
+    { "path": ".checkpoint_test_backup/", "classification": "F", "files": 1650, "size_mb": 74, "reason": "checkpoint backups from prior candidate stages", "action": "exclude" },
+    { "path": ".staged_snapshot_verify/", "classification": "F", "files": 5622, "size_mb": 355.6, "reason": "duplicated snapshot incl. qlog copies", "action": "exclude" },
+    { "path": ".segment0_correction_staging/", "classification": "F", "files": 38, "size_mb": 1.4, "reason": "staged segment0 correction snapshot", "action": "exclude" },
+    { "path": ".road_mirror_checkpoint_staging/", "classification": "F", "files": 26, "size_mb": 0.8, "reason": "road-mirror checkpoint staging", "action": "exclude" },
+    { "path": "browser/", "classification": "F", "files": 8, "size_mb": 0.9, "reason": "local browser tooling/cache", "action": "exclude" }
+  ],
+  "patch_files": [
+    { "path": ".connected_accumulated_staging.patch", "classification": "F", "reason": "staged connected-accumulated patch; not applied in this audit", "action": "exclude" },
+    { "path": ".road_mirror_checkpoint.patch", "classification": "F", "reason": "road-mirror checkpoint patch", "action": "exclude" }
+  ],
+  "misc_root": [
+    { "path": "notes.txt", "classification": "G", "reason": "scratch notes, unattributable", "action": "exclude" },
+    { "path": "scripts/road_guided_dot_connection_code.txt", "classification": "F", "reason": "code snippet", "action": "exclude" },
+    { "path": "scripts/road_guided_v2_insert.txt", "classification": "F", "reason": "code snippet", "action": "exclude" }
+  ],
+  "untracked_lib": [
+    { "path": "lib/combined_visible_lane_projection.js", "classification": "A", "reason": "canonical Combined Visible Lane Projection; required by accepted tests and public mirror", "action": "include_runtime" },
+    { "path": "lib/point_accumulated_lane_polylines.js", "classification": "A", "reason": "canonical point-accumulated lane polylines; required by tests and public mirror", "action": "include_runtime" },
+    { "path": "lib/segment1_lane_order_diagnostic.js", "classification": "A", "reason": "loaded by index.html; required by combined_visible_lane_projection.test.js", "action": "include_runtime" },
+    { "path": "lib/segment0_road_mirror_fix.js", "classification": "D", "reason": "isolated Seg0 road mirror probe/fix; required only by segment0 experiment tests; not loaded at runtime", "action": "defer" },
+    { "path": "lib/segment0_mirror_probe.js", "classification": "D", "reason": "Seg0 mirror diagnostic probe", "action": "defer" },
+    { "path": "lib/hybrid_lane_export.js", "classification": "G", "reason": "hybrid lane-map export feature (unrelated to accepted display path)", "action": "exclude" },
+    { "path": "lib/hybrid_lane_export_lengths.js", "classification": "G", "reason": "hybrid export", "action": "exclude" },
+    { "path": "lib/hybrid_lane_export_metrics.js", "classification": "G", "reason": "hybrid export", "action": "exclude" },
+    { "path": "lib/hybrid_lane_export_quality.js", "classification": "G", "reason": "hybrid export", "action": "exclude" },
+    { "path": "lib/hybrid_export_request_validate.js", "classification": "G", "reason": "hybrid export API validation", "action": "exclude" },
+    { "path": "lib/lane_mapping_quality_audit.js", "classification": "G", "reason": "lane-mapping quality audit (separate feature)", "action": "exclude" },
+    { "path": "lib/lane_mapping_spatial_coverage.js", "classification": "G", "reason": "lane-mapping spatial coverage (separate feature)", "action": "exclude" }
+  ],
+  "untracked_public": [
+    { "path": "public/candidate_layer_display.js", "classification": "A", "reason": "loaded by index.html; candidate layer display", "action": "include_runtime" },
+    { "path": "public/combined_visible_lane_projection.js", "classification": "A", "reason": "loaded by index.html; browser mirror of lib/combined_visible_lane_projection.js", "action": "include_runtime" },
+    { "path": "public/point_accumulated_lane_polylines.js", "classification": "A", "reason": "loaded by index.html; browser mirror of lib/point_accumulated_lane_polylines.js", "action": "include_runtime" },
+    { "path": "public/segment1_lane_order_diagnostic.js", "classification": "A", "reason": "loaded by index.html (diagnostic layer)", "action": "include_runtime" },
+    { "path": "public/segment0_road_mirror_fix.js", "classification": "D", "reason": "browser copy not referenced by index.html; Seg0 isolated experiment", "action": "defer" }
+  ],
+  "untracked_scripts_grouped": [
+    { "glob": "scripts/sync_*_public.js", "classification": "B", "count": 4, "reason": "lib->public sync utilities (sync commands; do not run in audit)", "action": "include_tests_and_tools" },
+    { "glob": "scripts/run_*metrics.js / run_*check.js", "classification": "B", "count": 8, "reason": "reusable metric/regression runners for accepted features", "action": "include_tests_and_tools" },
+    { "glob": "scripts/verify_*.js", "classification": "B/E", "count": 9, "reason": "runtime verification utilities; some are one-off browser captures", "action": "include selected" },
+    { "glob": "scripts/audit_*.js", "classification": "E", "count": 40, "reason": "experiment audit scripts", "action": "exclude" },
+    { "glob": "scripts/capture_*.js", "classification": "E", "count": 40, "reason": "browser capture scripts", "action": "exclude" },
+    { "glob": "scripts/apply_*.js", "classification": "F", "count": 5, "reason": "source-mutating apply scripts", "action": "exclude" },
+    { "glob": "scripts/backup_*.js", "classification": "F", "count": 3, "reason": "backup generators", "action": "exclude" },
+    { "glob": "scripts/build_*checkpoint*.js / stage_*.js", "classification": "F", "count": 6, "reason": "checkpoint/staging builders", "action": "exclude" },
+    { "glob": "scripts/splice_*.js / *_module.js / rollback_*.js / archive_*.js", "classification": "F", "count": 7, "reason": "splice/rollback/archive tooling", "action": "exclude" },
+    { "glob": "scripts/export_hybrid_*.js", "classification": "G", "count": 2, "reason": "hybrid export feature", "action": "exclude" },
+    { "glob": "scripts/probe_*.js / compare_*.js / diagnose_*.js / trace_*.js", "classification": "E", "count": 6, "reason": "diagnostic probes", "action": "exclude" },
+    { "glob": "scripts/save_browser_cdp_screenshot.js / capture_consistency.js", "classification": "E", "count": 2, "reason": "capture helpers", "action": "exclude" }
+  ],
+  "untracked_tests_grouped": [
+    { "glob": "tests/representative_lane_lines*.test.js", "classification": "B", "count": 3, "reason": "accepted representative/purity/purityRevisit tests", "action": "include_tests_and_tools" },
+    { "glob": "tests/point_accumulated_lane_polylines.test.js", "classification": "B", "count": 1, "reason": "accepted point-accumulated test", "action": "include_tests_and_tools" },
+    { "glob": "tests/combined_visible_lane_projection.test.js", "classification": "B", "count": 1, "reason": "accepted combined projection test", "action": "include_tests_and_tools" },
+    { "glob": "tests/cross_layer_alignment_shared_frame.test.js", "classification": "B", "count": 1, "reason": "cross-layer display alignment test", "action": "include_tests_and_tools" },
+    { "glob": "tests/segment0_road_mirror_fix.test.js, tests/segment0_full_layer_candidate.test.js", "classification": "D", "count": 2, "reason": "Seg0 isolated experiment tests", "action": "defer" },
+    { "glob": "tests/combined_segment1_*.test.js, tests/narrow_segment1_arrow_projection.test.js, tests/m051_*.test.js, tests/candidate_layer_display.test.js", "classification": "D", "count": 8, "reason": "earlier/rejected candidate and arrow-repair experiments", "action": "defer" },
+    { "glob": "tests/*_prototype.test.js, tests/*_snippet.js", "classification": "F", "count": 7, "reason": "prototype/snippet tests not part of accepted suite", "action": "exclude" },
+    { "glob": "tests/hybrid_lane_export*.test.js, tests/lane_mapping_spatial_coverage.test.js", "classification": "G", "count": 4, "reason": "hybrid/lane-mapping feature tests", "action": "exclude" },
+    { "glob": "tests/*_audit.test.js, tests/gapless_route_video_preload.test.js", "classification": "E", "count": 4, "reason": "audit/video experiments", "action": "exclude" }
+  ],
+  "untracked_reports_grouped": [
+    { "path": "reports/display_orientation/representative_lane_lines/", "classification": "C", "files": 52, "kb": 3588, "reason": "accepted representative/purity/purityRevisit evidence", "action": "include_docs_and_compact_evidence" },
+    { "path": "reports/display_orientation/combined_visible_lane_projection/", "classification": "C", "files": 27, "kb": 771, "reason": "accepted combined projection evidence", "action": "include_docs_and_compact_evidence" },
+    { "path": "reports/display_orientation/point_accumulated_lane_polylines/", "classification": "C", "files": 13, "kb": 137, "reason": "accepted point-accumulated evidence", "action": "include_docs_and_compact_evidence" },
+    { "path": "reports/display_orientation/cross_layer_alignment/", "classification": "C", "files": 13, "kb": 161, "reason": "accepted cross-layer alignment evidence", "action": "include_docs_and_compact_evidence" },
+    { "path": "reports/display_orientation/segment1_lane_order_attribution/", "classification": "C", "files": 21, "kb": 1426, "reason": "accepted Segment1 lane-order evidence", "action": "include_docs_and_compact_evidence" },
+    { "path": "reports/display_orientation/combined_source_scope/", "classification": "C", "files": 8, "kb": 559, "reason": "combined source scope evidence", "action": "include_docs_and_compact_evidence" },
+    { "path": "reports/display_orientation/segment1_visible_pixel_owner/", "classification": "E", "files": 29, "kb": 1338, "reason": "diagnostic pixel-owner evidence (bulky)", "action": "defer" },
+    { "path": "reports/display_orientation/combined_boundary_anchoring/", "classification": "E", "files": 64, "kb": 4770, "reason": "combined boundary anchoring evidence (bulky)", "action": "defer" },
+    { "path": "reports/display_orientation/combined_lane_display_contract/", "classification": "E", "files": 20, "kb": 1675, "reason": "display contract evidence", "action": "defer" },
+    { "path": "reports/display_orientation/combined_segment1_full_layer_handedness/", "classification": "D/E", "files": 27, "kb": 2258, "reason": "rejected handedness experiment evidence", "action": "exclude" },
+    { "path": "reports/display_orientation/ (remaining dirs)", "classification": "E", "files": "see AUDIT_REPORT", "reason": "other display-orientation evidence dirs", "action": "defer" },
+    { "path": "reports/fitted_layer_probe/, reports/connected_accumulated/, reports/candidate_layer_probe/, reports/graph_fit_performance/, reports/insufficient_support_audit/, reports/path1_quality_audit/, reports/path2_design/, reports/playback/, reports/segment0_exact_correction/, reports/segment0_isolated_fix/, reports/video_lane_feasibility/, reports/video_lane_zero_label/, reports/reports/", "classification": "E", "reason": "generated experiment reports (large group; reports/ ~22k files / ~4.5 GB total incl. binaries)", "action": "exclude" },
+    { "path": "reports/hybrid_export_validation/, reports/hybrid_map_quality/, reports/hybrid_validation/", "classification": "G", "reason": "hybrid export feature reports", "action": "exclude" },
+    { "path": "deliverables/hybrid_lane_map_v1/", "classification": "G/E", "files": 1556, "size_mb": 203.6, "reason": "hybrid lane map deliverable (separate feature)", "action": "exclude" }
+  ],
+  "bulky_generated_note": "reports/ totals ~22324 files / ~4.5 GB and includes qlog/video-derived generated data; must not be committed wholesale."
+}

@@ -1,0 +1,63 @@
+{
+  "browserRuns": [
+    {
+      "label": "standalone_fresh",
+      "cacheKey": "0:0:fused:fit1",
+      "cacheState": "miss-build",
+      "persistCacheKey": null,
+      "coordinateFrame": "segmentLocal",
+      "sourceTransformRegistry": null,
+      "candidateCActive": false,
+      "processingTimestamp": "2026-09-03T08:37:00.498Z"
+    },
+    {
+      "label": "standalone_cache_hit",
+      "cacheKey": "0:0:fused:fit1",
+      "cacheState": "miss-build"
+    },
+    {
+      "label": "combined_fresh",
+      "cacheKey": "0:0:fused:fit1:cand:boundaryAnchored",
+      "cacheState": "miss-build",
+      "persistCacheKey": null,
+      "coordinateFrame": "combinedPlaced",
+      "sourceTransformRegistry": [
+        "qlog_f449c_0.bz2",
+        "qlog_f449c_1.bz2",
+        "qlog_f449c_2.bz2"
+      ],
+      "candidateCActive": true,
+      "laneOrderChecksum": "",
+      "laneIdentityChecksum": "",
+      "processingTimestamp": "2026-09-03T08:37:03.531Z"
+    },
+    {
+      "label": "combined_cache_hit",
+      "cacheKey": "0:0:fused:fit1:cand:boundaryAnchored",
+      "cacheState": "miss-build",
+      "laneOrderChecksum": ""
+    },
+    {
+      "label": "combined_reprocess",
+      "cacheKey": "0:0:fused:fit1:cand:boundaryAnchored",
+      "cacheState": "miss-build",
+      "laneOrderChecksum": ""
+    }
+  ],
+  "hardRefresh": {
+    "cacheKey": "0:0:fused:fit1:cand:boundaryAnchored",
+    "cacheState": "miss-build",
+    "laneOrderChecksum": ""
+  },
+  "nodeStandalone": {
+    "laneOrderChecksum": "361bc8c77ed6f11311e1d3a09bb3e48f73dd78940837f986f2ada971312a3548",
+    "identityChecksum": "fdea9c942510ebaacb524e484e60014eea751d211edfc6fc624c9106dc9d898d"
+  },
+  "nodeCombined": {
+    "laneOrderChecksum": "b37c63a71ce4ee91d9b1210b6321fd9ad6be883ed354a4d76c2c2a720f34a6d9",
+    "identityChecksum": "fdea9c942510ebaacb524e484e60014eea751d211edfc6fc624c9106dc9d898d"
+  },
+  "freshVsCachedLaneOrderDiffers": false,
+  "freshVsReprocessLaneOrderDiffers": false,
+  "hardRefreshLaneOrderDiffers": false
+}

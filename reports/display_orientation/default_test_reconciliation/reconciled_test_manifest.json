@@ -1,0 +1,43 @@
+{
+  "task": "Focused reconciliation — staging recommendation for the two local-playback test files",
+  "note": "PROPOSED ONLY. Nothing staged. The two test files are tracked; before this task they were unmodified, so the working-tree diff is exactly the reconciled default assertions.",
+  "whole_file_staging": [
+    {
+      "path": "tests/local_playback_geometry_modes.test.js",
+      "reason": "Only the stale UI-default assertions were updated; fused data-model and manual-selection tests untouched. No unrelated experimental changes present.",
+      "confidence": "high",
+      "mixed_change_risk": "low",
+      "staging_method": "whole file",
+      "caveat": "Still contains the retained arrow source-order test (fails in the working tree; unchanged by this task)."
+    },
+    {
+      "path": "tests/local_playback_stationary.test.js",
+      "reason": "Only the stale UI-default assertions were updated; fused geometry/data-model tests untouched.",
+      "confidence": "high",
+      "mixed_change_risk": "low",
+      "staging_method": "whole file"
+    }
+  ],
+  "patch_level_staging": [],
+  "excluded_or_deferred": [
+    {
+      "path": "tests/local_playback_geometry_modes.test.js :: test 16 (arrow renders above geometry and vehicle path)",
+      "reason": "Retained: not a transform-value assertion; passes at HEAD; failure is a fixed-window source-order harness limitation after accepted code growth.",
+      "staging_method": "retain unchanged"
+    },
+    {
+      "path": "tests/local_playback_geometry_modes.test.js :: test 28 (API checksum)",
+      "reason": "Environmental; requires a running server; passes when port 3847 is up. No edit.",
+      "staging_method": "retain unchanged"
+    }
+  ],
+  "assertions_changed": [
+    { "file": "tests/local_playback_geometry_modes.test.js", "test": "6", "old": "LOCAL_GEOMETRY_DEFAULT_MODE/normalize(...)/HTML selected == 'fused'", "new": "== 'pointAccumulated'", "reason": "Accepted default changed to point-accumulated geometry" },
+    { "file": "tests/local_playback_geometry_modes.test.js", "test": "21", "old": "fallback == 'fused'", "new": "fallback == 'pointAccumulated'", "reason": "Same accepted default change" },
+    { "file": "tests/local_playback_geometry_modes.test.js", "test": "22", "old": "map.laneFragments.length > 0", "new": "non-empty geometry in the resolved mode's collection (laneFragments OR pointAccumulated.points)", "reason": "Resolved default is pointAccumulated; assertion kept non-weakening" },
+    { "file": "tests/local_playback_geometry_modes.test.js", "test": "browser module parity", "old": "regex LOCAL_GEOMETRY_DEFAULT_MODE.*fused", "new": "regex LOCAL_GEOMETRY_DEFAULT_MODE.*pointAccumulated", "reason": "Mirror now declares pointAccumulated" },
+    { "file": "tests/local_playback_stationary.test.js", "test": "13", "old": "HTML fused selected", "new": "HTML pointAccumulated selected (fused still present, not selected)", "reason": "Accepted default changed" },
+    { "file": "tests/local_playback_stationary.test.js", "test": "14", "old": "HTML fused selected; LOCAL_GEOMETRY_DEFAULT_MODE == 'fused'", "new": "HTML pointAccumulated selected; constant == 'pointAccumulated'; fused/observations not selected", "reason": "Accepted default changed" }
+  ],
+  "prior_recommendation_update": "The consolidation's patch-level recommendation for these two files is superseded: they now contain only the reconciled default assertions and are safe for whole-file staging."
+}

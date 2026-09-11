@@ -1,0 +1,28 @@
+{
+  "status": "identified",
+  "wrongLayer": "dashed trajectory (+ arrow heading) under exact display correction — road ribbon stayed canonical",
+  "invariantBroken": "stationary road / pointAccumulated / trajectory / arrow must share one world→canvas frame",
+  "firstProvenDivergence": {
+    "mode": "standalone Seg0 with mirror + exact display correction (SHA manifest)",
+    "evidence": "roadGeometryToScreen(traj) used canonicalWithoutPrecomputed; _segmentDisplayToScreen(traj) applied VDC.transformDisplayPoint; screen angles were exact negatives (~±6.8° near sample)",
+    "browserPreFix": "reports/display_orientation/cross_layer_alignment/seg0_6s_standalone.png"
+  },
+  "combinedMode": {
+    "secondaryIssue": "combinedVisibleLaneProjectionCandidate used canonical offsets for displayCorrection sources while applyCanonical VDC-flipped laterals — opposite lane sides vs placed trajectory",
+    "fix": "standaloneDisplay(displayCorrection) now applies the same exact lateral reflection as applyCanonical"
+  },
+  "whyPriorAutomatedTestsPassed": [
+    "Polyline/PA tests never compared road ribbon screen angles to trajectory overlay angles",
+    "segment0_exact_display_correction tests only asserted VDC helpers existed, not that roadGeometryToScreen invoked them for ribbon vertices",
+    "Migration from isolated full-layer candidate to ViewerDisplayCorrections updated trajectory/arrow paths but left roadGeometryToScreen on the precomputed/canonical mirror selector",
+    "Combined CVLP tests counted corrections, not lateral agreement with placed trajectory"
+  ],
+  "fix": {
+    "sharedExactCorrectionInRoadGeometryToScreen": true,
+    "trajectoryOverlayUsesRoadGeometryToScreen": true,
+    "cvlpDisplayCorrectionMatchesApplyCanonical": true,
+    "noSeg0FilenameSpecialCase": true
+  },
+  "browserGate": "reports/display_orientation/cross_layer_alignment/browser_cross_layer_gate.json",
+  "notAccepted": true
+}

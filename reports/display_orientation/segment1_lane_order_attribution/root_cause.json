@@ -1,0 +1,46 @@
+{
+  "classification": "D — RENDERER SELECTED WRONG COORDINATE FIELDS",
+  "status": "DIAGNOSIS COMPLETE — RENDERER FIELD SELECTION FAULT PROVEN",
+  "firstFailingStage": "Combined _projectRoadGeometryToScreen combinedPlaced branch skips ViewerMirrorCoords.resolveRoadDisplayCoords; Segment 1 Candidate C registry is identity (det=+1) so placedEast equals unmirrored canonical while standalone selects mirroredLocal",
+  "secondaryFaults": [
+    "Effective road-relative geometry appears laterally flipped (A symptom)"
+  ],
+  "sideReversalCount": 3,
+  "proposedRepairScope": "Apply the same lateral mirror contract to Segment 1 combinedPlaced lane-dot projection that standalone uses via ViewerMirrorCoords (or bake equivalent mirror before/at identity placement) without altering accepted road bridges, video switching, Segment 0 correction, or boundary playback.",
+  "browserEvidence": {
+    "servedHashesMatch": true,
+    "captureCount": 6,
+    "primaryFrameBrowser": null,
+    "sideReversalAt1803": [
+      {
+        "laneIdentity": "groupTrackId:1",
+        "groupTrackId": 1,
+        "standaloneDM": 1.6608241179313732,
+        "combinedDM": -0.8892638897660419,
+        "identitySame": true,
+        "colourSame": true,
+        "sideReversed": true
+      },
+      {
+        "laneIdentity": "groupTrackId:2",
+        "groupTrackId": 2,
+        "standaloneDM": -1.5071078302206489,
+        "combinedDM": 2.3029407390832466,
+        "identitySame": true,
+        "colourSame": true,
+        "sideReversed": true
+      },
+      {
+        "laneIdentity": "groupTrackId:3",
+        "groupTrackId": 3,
+        "standaloneDM": -4.363583284609429,
+        "combinedDM": 5.199348068752147,
+        "identitySame": true,
+        "colourSame": true,
+        "sideReversed": true
+      }
+    ],
+    "seg1PlacementIdentity": true,
+    "firstFailingStageDetail": "standaloneSelectedDisplay uses ViewerMirrorCoords precomputed mirror; combinedPlaced renderer uses unmirrored placedEast with identity seg1 registry (det=+1)"
+  }
+}

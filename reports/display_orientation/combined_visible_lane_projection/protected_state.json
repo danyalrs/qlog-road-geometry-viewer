@@ -1,0 +1,10 @@
+{
+  "branch": "experiment/candidate-layer-display",
+  "head": "488c61b",
+  "processingVersion": "2026-07-24-fusion-v16",
+  "staged": [],
+  "status": "CANDIDATE IMPLEMENTED — USER REVIEW REQUIRED",
+  "flag": "combinedVisibleLaneProjectionCandidate=1",
+  "backup": ".checkpoint_test_backup/pre_combined_visible_lane_projection_candidate/",
+  "evidence": "reports/display_orientation/combined_visible_lane_projection/"
+}

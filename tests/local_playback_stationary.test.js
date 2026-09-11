@@ -171,21 +171,24 @@ describe('stationary local playback map', () => {
     }
   });
 
-  it('local geometry dropdown exposes only raw observations and fused lane lines', () => {
+  it('local geometry dropdown exposes raw observations, fused and point-accumulated modes', () => {
     const html = fs.readFileSync(INDEX_HTML, 'utf8');
     assert.match(html, /id="localGeometryMode"/);
     assert.match(html, /value="observations"[^>]*>Raw mapped observations/);
-    assert.match(html, /value="fused"[^>]*selected>Fused lane lines/);
+    assert.match(html, /value="fused"[^>]*>Fused lane lines/);
+    assert.match(html, /value="pointAccumulated"[^>]*selected>Point-accumulated geometry/);
     assert.doesNotMatch(html, /value="cleaned"/);
     assert.doesNotMatch(html, /value="diagnostic"/);
   });
 
-  it('fused lane lines is the default local geometry mode', () => {
+  it('point-accumulated geometry is the default local geometry mode', () => {
     const html = fs.readFileSync(INDEX_HTML, 'utf8');
-    assert.match(html, /value="fused" selected/);
+    // Accepted default changed 2026-09-10: local geometry defaults to point-accumulated.
+    assert.match(html, /value="pointAccumulated" selected/);
+    assert.doesNotMatch(html, /value="fused" selected/);
     assert.doesNotMatch(html, /value="observations" selected/);
     const { LOCAL_GEOMETRY_DEFAULT_MODE } = require('../lib/local_geometry_ui');
-    assert.equal(LOCAL_GEOMETRY_DEFAULT_MODE, 'fused');
+    assert.equal(LOCAL_GEOMETRY_DEFAULT_MODE, 'pointAccumulated');
   });
 
   it('render.js draws stationary map and diagnostic branch', () => {

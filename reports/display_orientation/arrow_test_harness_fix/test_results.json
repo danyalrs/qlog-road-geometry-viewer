@@ -1,0 +1,30 @@
+{
+  "task": "Fix the brittle arrow source-order test (test-harness only)",
+  "branch": "experiment/candidate-layer-display",
+  "head": "488c61b",
+  "staged_file_count": 0,
+  "files_edited": ["tests/local_playback_geometry_modes.test.js"],
+  "production_files_changed": false,
+  "verification_groups": [
+    { "group": 1, "suite": "tests/local_playback_geometry_modes.test.js", "tests": 41, "pass": 41, "fail": 0, "target": "41/41", "status": "pass" },
+    { "group": 2, "suite": "tests/local_playback_stationary.test.js", "tests": 19, "pass": 19, "fail": 0, "target": "19/19", "status": "pass" },
+    { "group": 3, "command": "node --test tests/combined_visible_lane_projection.test.js tests/point_accumulated_lane_polylines.test.js tests/cross_layer_alignment_shared_frame.test.js tests/representative_lane_lines.test.js tests/representative_lane_lines_purity.test.js tests/representative_lane_lines_purity_revisit.test.js", "tests": 60, "pass": 60, "fail": 0, "target": "60/60", "status": "pass" },
+    { "group": 4, "suite": "tests/representative_lane_lines_purity_revisit.test.js", "tests": 13, "pass": 13, "fail": 0, "target": "13/13", "status": "pass" }
+  ],
+  "confirmations": {
+    "six_reconciled_point_accumulated_default_tests_pass": true,
+    "valid_fused_tests_unchanged": true,
+    "api_test_still_passes": true,
+    "arrow_test_passes_via_stable_scoping": true,
+    "no_production_file_changed": true
+  },
+  "arrow_test": {
+    "name": "16. arrow renders above geometry and vehicle path",
+    "old_harness": "fixed 20000-character slice from indexOf('_drawStationaryLocalMap(d, elapsedIdx)')",
+    "new_harness": "brace-aware complete method-body extraction via extractMethodBody(renderSrc, '_drawStationaryLocalMap(d, elapsedIdx) {')",
+    "result": "pass",
+    "assertion_strength": "unchanged ordering semantics; added explicit presence checks for the trajectory and arrow markers"
+  },
+  "backup": ".checkpoint_test_backup/pre_arrow_test_harness_fix/local_playback_geometry_modes.test.js",
+  "backup_sha1": "16B611ACEE206A26EE98B987004696A3C6584226"
+}

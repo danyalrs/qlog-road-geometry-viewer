@@ -1,0 +1,123 @@
+{
+  "task": "Focused reconciliation of the eight reported test failures",
+  "branch": "experiment/candidate-layer-display",
+  "head": "488c61b",
+  "staged_file_count": 0,
+  "port_3847": "listening (PID 20268) during this task",
+  "note": "The API failure was environmental and now passes with the running server; 7 code-level failures were inventoried and 6 were reconciled.",
+  "failures": [
+    {
+      "id": 1,
+      "file": "tests/local_playback_geometry_modes.test.js",
+      "test": "6. Fused lane lines is the default for new or invalid state",
+      "assertions": ["LOCAL_GEOMETRY_DEFAULT_MODE === 'fused'", "normalizeLocalGeometrySelection(undefined|null|'') === 'fused'", "INDEX_HTML matches /value=\"fused\" selected/"],
+      "expected": "fused",
+      "actual": "pointAccumulated",
+      "code_under_test": "lib/local_geometry_ui.js defaults + public/index.html selected option",
+      "category": "UI-default",
+      "existed_before_latest_default_method_edit": true,
+      "head_contains_same_expectation": true,
+      "decision": "update"
+    },
+    {
+      "id": 2,
+      "file": "tests/local_playback_geometry_modes.test.js",
+      "test": "21. hidden saved modes fall back to Fused lane lines",
+      "assertions": ["normalizeLocalGeometrySelection(hidden|'cleaned'|'bogus') === 'fused'"],
+      "expected": "fused",
+      "actual": "pointAccumulated",
+      "code_under_test": "normalizeLocalGeometrySelection fallback",
+      "category": "UI-default",
+      "existed_before_latest_default_method_edit": true,
+      "head_contains_same_expectation": true,
+      "decision": "update"
+    },
+    {
+      "id": 3,
+      "file": "tests/local_playback_geometry_modes.test.js",
+      "test": "22. undefined and invalid values do not produce an empty map selection",
+      "assertions": ["map.laneFragments.length > 0 for the resolved fallback mode"],
+      "expected": "> 0 laneFragments",
+      "actual": "0 laneFragments (pointAccumulated uses map.pointAccumulated.points)",
+      "code_under_test": "SLM.buildSegmentLocalMap for the resolved default mode",
+      "category": "UI-default downstream (geometry collection selection)",
+      "existed_before_latest_default_method_edit": true,
+      "head_contains_same_expectation": true,
+      "decision": "update (mode-aware non-empty geometry; not weakened)"
+    },
+    {
+      "id": 4,
+      "file": "tests/local_playback_geometry_modes.test.js",
+      "test": "16. arrow renders above geometry and vehicle path",
+      "assertions": ["movementIdx > arrowIdx (source-order window of 20000 chars from methodStart)"],
+      "expected": "true",
+      "actual": "false",
+      "code_under_test": "public/render.js _drawStationaryLocalMap draw order (source scan)",
+      "category": "arrow behaviour (source-order harness), not a transform value",
+      "existed_before_latest_default_method_edit": true,
+      "head_contains_same_expectation": true,
+      "head_result": "passes at HEAD (compact code; indices within window)",
+      "worktree_result": "fails because accepted display code growth pushed the movement indicator beyond the fixed 20000-char window",
+      "decision": "retain (Stage 4 restricts edits to proven pre-fix transform; this is not a transform)"
+    },
+    {
+      "id": 5,
+      "file": "tests/local_playback_geometry_modes.test.js",
+      "test": "28. API produces same pre-Stage-7/8 geometry checksums",
+      "assertions": ["HTTP POST /api/process on localhost:3847 returns expected checksums"],
+      "expected": "server reachable",
+      "actual": "server unreachable during the earlier consolidation run",
+      "code_under_test": "running viewer server API",
+      "category": "API dependency (environmental)",
+      "existed_before_latest_default_method_edit": true,
+      "head_contains_same_expectation": true,
+      "decision": "retain (now passes with port 3847 running; no edit)"
+    },
+    {
+      "id": 6,
+      "file": "tests/local_playback_geometry_modes.test.js",
+      "test": "browser local_geometry_ui.js mirrors lib exports",
+      "assertions": ["public/local_geometry_ui.js matches /LOCAL_GEOMETRY_DEFAULT_MODE.*fused/"],
+      "expected": "match",
+      "actual": "no match (source contains pointAccumulated)",
+      "code_under_test": "public/local_geometry_ui.js",
+      "category": "UI-default (mirror parity)",
+      "existed_before_latest_default_method_edit": true,
+      "head_contains_same_expectation": true,
+      "decision": "update"
+    },
+    {
+      "id": 7,
+      "file": "tests/local_playback_stationary.test.js",
+      "test": "13. local geometry dropdown exposes only raw observations and fused lane lines",
+      "assertions": ["INDEX_HTML matches /value=\"fused\"[^>]*selected>Fused lane lines/"],
+      "expected": "fused selected",
+      "actual": "pointAccumulated selected",
+      "code_under_test": "public/index.html local geometry dropdown",
+      "category": "UI-default",
+      "existed_before_latest_default_method_edit": true,
+      "head_contains_same_expectation": true,
+      "decision": "update"
+    },
+    {
+      "id": 8,
+      "file": "tests/local_playback_stationary.test.js",
+      "test": "14. fused lane lines is the default local geometry mode",
+      "assertions": ["INDEX_HTML matches /value=\"fused\" selected/", "LOCAL_GEOMETRY_DEFAULT_MODE === 'fused'"],
+      "expected": "fused",
+      "actual": "pointAccumulated",
+      "code_under_test": "public/index.html + lib/local_geometry_ui.js",
+      "category": "UI-default",
+      "existed_before_latest_default_method_edit": true,
+      "head_contains_same_expectation": true,
+      "decision": "update"
+    }
+  ],
+  "valid_fused_assertions_preserved": [
+    "tests/local_playback_geometry_modes.test.js test 4 (Fused lane lines present and enabled)",
+    "tests/local_playback_geometry_modes.test.js test 7 (raw/fused/pointAccumulated remain separate modes)",
+    "tests/local_playback_geometry_modes.test.js layer-separation tests 7/8 (fused data-model geometry)",
+    "tests/local_playback_stationary.test.js stationary fused geometry tests",
+    "all buildModeMap(data, 'fused') data-model/checksum tests"
+  ]
+}

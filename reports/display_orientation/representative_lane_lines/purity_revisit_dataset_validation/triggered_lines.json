@@ -1,0 +1,43 @@
+[
+ {
+  "segment": 99,
+  "file": "qlog_f449c_99.bz2",
+  "logicalLaneId": "0:0:1:1:right:u0",
+  "groupTrackId": 1,
+  "reason": "baselineSelfFold",
+  "decision": "reject",
+  "classification": "1-high-confidence-false-fold-removed",
+  "maxTurnWindowDeg": 387.7,
+  "chordPathRatio": 0.353,
+  "nearApproach": 24,
+  "temporalRevisit": true,
+  "coverageM": 20,
+  "frameIds": [
+   119723,
+   119643,
+   119163,
+   119123
+  ],
+  "curveIds": [
+   "0:0:1:1:right:119123",
+   "0:0:1:1:right:119163",
+   "0:0:1:1:right:119643",
+   "0:0:1:1:right:119723"
+  ],
+  "resultingLineIds": [],
+  "coverageAfterM": 0
+ },
+ {
+  "segment": 99,
+  "file": "qlog_f449c_99.bz2",
+  "logicalLaneId": "0:0:1:1:right:u0",
+  "reason": "selfFold",
+  "maxTurnWindowDeg": 387.70724423421154,
+  "chordPathRatio": 0.35294856350856474,
+  "nearApproach": 24,
+  "temporalRevisit": true,
+  "coverageM": 20,
+  "decision": "reject",
+  "classification": "1-high-confidence-false-fold-removed"
+ }
+]

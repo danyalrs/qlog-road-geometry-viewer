@@ -469,6 +469,7 @@ function applyBoundaryAnchoredOrientation(map, processedData, options = {}) {
   };
   bridged.suppressMapWideDisplayCorrection = true;
   bridged.boundaryGapDiagnosis = CRB.buildBoundaryGapDiagnosis(map, processedData);
+  bridged.baselineTrajectory = baselineTrajectory;
   return bridged;
 }
 

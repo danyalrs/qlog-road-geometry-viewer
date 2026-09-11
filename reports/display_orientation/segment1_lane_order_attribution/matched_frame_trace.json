@@ -1,0 +1,65 @@
+{
+  "primaryFrame": {
+    "frameId": 1803,
+    "sourceFile": "qlog_f449c_1.bz2",
+    "standaloneTimelineIndex": 14,
+    "combinedTimelineIndex": 35,
+    "standaloneVideoSec": 28.05413699
+  },
+  "samples": [
+    {
+      "targetVideoSec": 18,
+      "standalone": {
+        "timelineIndex": 9,
+        "frameId": 1603,
+        "sourceFile": "qlog_f449c_1.bz2",
+        "videoSec": 18.046485766,
+        "diffSec": 0.046485765999999984
+      },
+      "combined": {
+        "timelineIndex": 30,
+        "frameId": 1603,
+        "sourceFile": "qlog_f449c_1.bz2",
+        "videoSec": 18.046485766,
+        "diffSec": 0.046485765999999984
+      },
+      "sameSourceFrame": true
+    },
+    {
+      "targetVideoSec": 28.1,
+      "standalone": {
+        "timelineIndex": 14,
+        "frameId": 1803,
+        "sourceFile": "qlog_f449c_1.bz2",
+        "videoSec": 28.05413699,
+        "diffSec": 0.04586301000000148
+      },
+      "combined": {
+        "timelineIndex": 35,
+        "frameId": 1803,
+        "sourceFile": "qlog_f449c_1.bz2",
+        "videoSec": 28.05413699,
+        "diffSec": 0.04586301000000148
+      },
+      "sameSourceFrame": true
+    },
+    {
+      "targetVideoSec": 38.1,
+      "standalone": {
+        "timelineIndex": 19,
+        "frameId": 2003,
+        "sourceFile": "qlog_f449c_1.bz2",
+        "videoSec": 38.051849448,
+        "diffSec": 0.04815055200000273
+      },
+      "combined": {
+        "timelineIndex": 40,
+        "frameId": 2003,
+        "sourceFile": "qlog_f449c_1.bz2",
+        "videoSec": 38.051849448,
+        "diffSec": 0.04815055200000273
+      },
+      "sameSourceFrame": true
+    }
+  ]
+}

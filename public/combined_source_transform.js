@@ -45,8 +45,27 @@ function resolvePointCoords(point) {
 function finalizePlacedPoint(point, placed) {
   const e = placed.east;
   const n = placed.north;
+  const coords = resolvePointCoords(point);
+  const sourceCanonicalLocalEast = Number.isFinite(point?.sourceCanonicalLocalEast)
+    ? point.sourceCanonicalLocalEast
+    : (coords ? coords.east : undefined);
+  const sourceCanonicalLocalNorth = Number.isFinite(point?.sourceCanonicalLocalNorth)
+    ? point.sourceCanonicalLocalNorth
+    : (coords ? coords.north : undefined);
+  const sourceMirroredLocalEast = Number.isFinite(point?.sourceMirroredLocalEast)
+    ? point.sourceMirroredLocalEast
+    : (Number.isFinite(point?.mirroredLocalEast) ? point.mirroredLocalEast
+      : (Number.isFinite(point?.mirroredEast) ? point.mirroredEast : undefined));
+  const sourceMirroredLocalNorth = Number.isFinite(point?.sourceMirroredLocalNorth)
+    ? point.sourceMirroredLocalNorth
+    : (Number.isFinite(point?.mirroredLocalNorth) ? point.mirroredLocalNorth
+      : (Number.isFinite(point?.mirroredNorth) ? point.mirroredNorth : undefined));
   return {
     ...point,
+    sourceCanonicalLocalEast,
+    sourceCanonicalLocalNorth,
+    sourceMirroredLocalEast,
+    sourceMirroredLocalNorth,
     placedEast: e,
     placedNorth: n,
     east: e,

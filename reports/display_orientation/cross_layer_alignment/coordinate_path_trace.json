@@ -1,0 +1,38 @@
+{
+  "title": "Cross-layer coordinate path (Seg0 ~6s candidate config)",
+  "layers": [
+    {
+      "layer": "greyRoadRibbon",
+      "stored": "trajectory east/north (+ edge half-widths)",
+      "segmentOrCombined": "standalone: segment-local; combined: combinedPlaced via applyCanonical",
+      "orientationReflection": "standalone+exact: VDC fullSegmentLocalLateralReflection at draw; combined Seg0: reflection inside applyCanonical then fit",
+      "finalWorld": "exact-corrected or combinedPlaced east/north",
+      "finalCanvas": "roadGeometryToScreen → worldToScreen",
+      "preFixBug": "standalone exact: ribbon stayed canonicalWithoutPrecomputed while trajectory used VDC"
+    },
+    {
+      "layer": "pointAccumulated.points",
+      "stored": "localEast/North + sourceCanonical/Mirrored + placed*",
+      "draw": "standalone+exact: VDC(local); combined+CVLP: placed for displayCorrection sources, else CVLP project",
+      "finalCanvas": "roadGeometryToScreen / _projectRoadGeometryToScreen"
+    },
+    {
+      "layer": "pointDerivedPolylines",
+      "stored": "built at draw from display-projected PA points",
+      "finalCanvas": "worldToScreen of polyline vertices (same display world as dots)"
+    },
+    {
+      "layer": "dashedTrajectory",
+      "stored": "map.trajectory east/north",
+      "draw": "roadGeometryToScreen (shared with road ribbon) — no divergent _segmentDisplayToScreen-only path",
+      "finalCanvas": "worldToScreen after shared display contract"
+    },
+    {
+      "layer": "movingArrow",
+      "stored": "playbackPose from resolveArrowOnSegmentMap(trajectory)",
+      "draw": "_segmentDisplayToScreen with combined arrow context or exact VDC",
+      "finalCanvas": "same exact/combined contract as trajectory"
+    }
+  ],
+  "wrongLayerProven": "Dashed trajectory (and arrow pose projection) used exact display correction while grey road ribbon did not — trajectory was the divergent layer relative to road+dots under the incomplete VDC migration."
+}

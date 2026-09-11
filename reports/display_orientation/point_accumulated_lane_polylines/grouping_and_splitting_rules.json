@@ -1,0 +1,19 @@
+{
+  "grouping": {
+    "key": "chunkId:passId:groupTrackId[:LlaneIndex]",
+    "notUsedAsIdentity": ["colour", "arrayIndex", "sharedTrajectoryIndex"]
+  },
+  "ordering": "ascending along-track s, then d, then frameIndex",
+  "splitting": [
+    "crossChunk",
+    "crossPass",
+    "crossLaneIdentity / crossLaneIndex",
+    "backwardAlongTrack (revisit)",
+    "largeAlongTrackGap",
+    "largeSpatialGap",
+    "largeLateralStep",
+    "largeHeadingChange"
+  ],
+  "minPoints": 3,
+  "displayContract": "Uses the same draw-time world coordinates as PA dots, including combinedVisibleLaneProjectionCandidate when active"
+}

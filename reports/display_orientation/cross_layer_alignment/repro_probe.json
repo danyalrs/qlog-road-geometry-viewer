@@ -1,0 +1,171 @@
+{
+  "generatedAt": "2026-09-07T08:07:35.362Z",
+  "seek": {
+    "ok": false,
+    "reason": "noSeg0"
+  },
+  "combined": {
+    "mapFlags": {
+      "ba": true,
+      "combinedFrame": "combinedPlaced",
+      "suppressMapWide": true,
+      "isMultiSource": true,
+      "sourceQlogSha256": "9ddfc49b6061357e648a096d13749e30f9597827fd86786951241f098ea29fa5",
+      "seg0Correction": true,
+      "seg0Identity": false
+    },
+    "rendererFlags": {
+      "exactActive": true,
+      "useExact": false,
+      "usesCombined": true,
+      "cvlp": true,
+      "mirror": true
+    },
+    "pose": {
+      "east": 0,
+      "north": 0,
+      "headingDeg": 116.32145551361947,
+      "pathIndex": 0,
+      "timelineIndex": 0
+    },
+    "world": {
+      "trajA": {
+        "east": 81.23103048259135,
+        "north": -36.47203782691598
+      },
+      "trajB": {
+        "east": 238.85697809758756,
+        "north": -75.64472291273873
+      },
+      "trajWorldAng": -13.956229615324446
+    },
+    "screen": {
+      "roadA": {
+        "x": 80.20022238391809,
+        "y": 212.63117412428016
+      },
+      "roadB": {
+        "x": 104.6772742274556,
+        "y": 218.71413101179854
+      },
+      "trajA": {
+        "x": 80.20022238391809,
+        "y": 212.63117412428016
+      },
+      "trajB": {
+        "x": 104.6772742274556,
+        "y": 218.71413101179854
+      },
+      "arrowScreen": {
+        "x": 67.58620689655172,
+        "y": 206.96758907222144
+      },
+      "roadAng": 13.956229615324451,
+      "trajAng": 13.956229615324451,
+      "layerDeltaPx": 0,
+      "arrowToTrajPx": 0,
+      "roadTrajAngDelta": 0
+    },
+    "pointSamples": [],
+    "ribbonStats": {
+      "sectionCount": 1,
+      "ribbonCount": 1,
+      "trajectoryPointCount": 97,
+      "widthMin": 7.5,
+      "widthMax": 7.5,
+      "widthMedian": 7.5,
+      "fallbackHalfWidthM": 7.5
+    },
+    "surfaceSource": "trajectoryRibbon",
+    "cvlpDiag": {
+      "candidateActive": true,
+      "pointAccumulatedInputCount": 11596,
+      "pointAccumulatedCorrectedCount": 11596,
+      "pointAccumulatedFallbackCount": 0,
+      "laneFragmentInputCount": 0,
+      "laneFragmentVertexCount": 0,
+      "laneFragmentCorrectedCount": 0,
+      "laneFragmentFallbackCount": 0,
+      "missingSourceCount": 0,
+      "missingFrameCount": 0,
+      "missingAnchorCount": 0,
+      "doubleCorrectionPreventedCount": 0,
+      "cacheHitApplicationCount": 0,
+      "drawPassCounts": {
+        "pointAccumulated": 11596,
+        "laneFragments": 0
+      }
+    },
+    "vdcDiag": {
+      "sourceQlogSha256": "9ddfc49b6061357e648a096d13749e30f9597827fd86786951241f098ea29fa5",
+      "manifestMatch": "true",
+      "correctionActive": "true",
+      "correction": "fullSegmentLocalLateralReflection",
+      "scope": "viewerDisplayOnly",
+      "roadTransformSource": "canonical+fullSegmentLocalLateralReflection",
+      "laneTransformSource": "canonical+fullSegmentLocalLateralReflection",
+      "trajectoryTransformSource": "canonical+fullSegmentLocalLateralReflection",
+      "arrowTransformSource": "canonical+fullSegmentLocalLateralReflection"
+    }
+  },
+  "standalone": {
+    "mapFlags": {
+      "ba": false,
+      "sourceQlogSha256": "9ddfc49b6061357e648a096d13749e30f9597827fd86786951241f098ea29fa5"
+    },
+    "rendererFlags": {
+      "exactActive": true,
+      "useExact": true,
+      "usesCombined": false
+    },
+    "pose": {
+      "east": 0,
+      "north": 0,
+      "headingDeg": 84.39709272970225,
+      "pathIndex": 0,
+      "segmentIndex": 0,
+      "bracketA": 0,
+      "bracketB": 1,
+      "alpha": 0,
+      "frozen": false,
+      "headingSource": "segmentTrajectory",
+      "timelineIndex": 0,
+      "logMonoTime": "37711368013",
+      "matchMethod": "segmentTrajectoryInterpolation"
+    },
+    "screen": {
+      "roadA": {
+        "x": 101.60366653725393,
+        "y": 294.4167164482574
+      },
+      "roadB": {
+        "x": 163.3346470997149,
+        "y": 301.736517943457
+      },
+      "trajA": {
+        "x": 101.60366653725393,
+        "y": 298.531577113848
+      },
+      "trajB": {
+        "x": 163.3346470997149,
+        "y": 291.2117756186484
+      },
+      "arrowScreen": {
+        "x": 67.58620689655174,
+        "y": 296.4741467810527
+      },
+      "roadAng": 6.762318627997265,
+      "trajAng": -6.762318627997265,
+      "layerDeltaPx": 14.639602990399226,
+      "roadTrajAngDelta": 13.524637255994548
+    },
+    "surfaceSource": "trajectoryRibbon"
+  },
+  "wrongLayerHypothesis": {
+    "mode": "standaloneSeg0",
+    "wrongLayer": "trajectory_and_or_arrow_via_exactDisplayCorrection",
+    "proof": "roadGeometryToScreen leaves ribbon vertices canonicalWithoutPrecomputed while _segmentDisplayToScreen applies VDC lateral reflection",
+    "layerDeltaPx": 14.639602990399226,
+    "angDelta": 13.524637255994548
+  }
+}

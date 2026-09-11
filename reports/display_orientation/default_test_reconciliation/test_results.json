@@ -1,0 +1,41 @@
+{
+  "task": "Focused reconciliation of the eight reported test failures",
+  "command": "node --test <suite>",
+  "reconciled_suites": [
+    { "suite": "tests/local_playback_geometry_modes.test.js", "tests": 41, "pass": 40, "fail": 1, "remaining_failure": "16. arrow renders above geometry and vehicle path (retained; source-order harness window)", "reconciled_assertions": 4 },
+    { "suite": "tests/local_playback_stationary.test.js", "tests": 19, "pass": 19, "fail": 0, "reconciled_assertions": 2 }
+  ],
+  "valid_fused_tests": {
+    "status": "unchanged",
+    "note": "Fused data-model, manual fused selection and fused-rendering assertions were preserved and still pass."
+  },
+  "api_test": {
+    "suite": "tests/local_playback_geometry_modes.test.js",
+    "test": "28. API produces same pre-Stage-7/8 geometry checksums",
+    "result": "pass",
+    "classification": "environmental",
+    "note": "Requires a running server on localhost:3847; it does not start its own server. It now passes with the user's live server. No edit made."
+  },
+  "arrow_test": {
+    "suite": "tests/local_playback_geometry_modes.test.js",
+    "test": "16. arrow renders above geometry and vehicle path",
+    "result": "fail (retained)",
+    "classification": "unrelated to the accepted default change; source-order harness window",
+    "note": "Passes against HEAD render.js; fails in the working tree because accepted code growth pushes _drawVehicleMovementIndicator beyond the fixed 20000-char slice taken from a call-site match of _drawStationaryLocalMap(d, elapsedIdx). Not a transform-value assertion; left unchanged per Stage 4."
+  },
+  "accepted_path_suites": [
+    { "suite": "tests/combined_visible_lane_projection.test.js", "tests": 13, "pass": 13, "fail": 0 },
+    { "suite": "tests/point_accumulated_lane_polylines.test.js", "tests": 11, "pass": 11, "fail": 0 },
+    { "suite": "tests/cross_layer_alignment_shared_frame.test.js", "tests": 4, "pass": 4, "fail": 0 },
+    { "suite": "tests/representative_lane_lines.test.js", "tests": 8, "pass": 8, "fail": 0 },
+    { "suite": "tests/representative_lane_lines_purity.test.js", "tests": 11, "pass": 11, "fail": 0 },
+    { "suite": "tests/representative_lane_lines_purity_revisit.test.js", "tests": 13, "pass": 13, "fail": 0 }
+  ],
+  "accepted_path_totals": { "tests": 60, "pass": 60, "fail": 0 },
+  "summary": {
+    "reconciled_assertions": 6,
+    "files_edited": 2,
+    "remaining_failures": 1,
+    "remaining_failure_kind": "retained arrow source-order harness test (not a transform; passes at HEAD)"
+  }
+}

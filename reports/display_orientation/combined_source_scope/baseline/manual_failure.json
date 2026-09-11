@@ -1,0 +1,12 @@
+{
+  "standaloneSegment2": {
+    "curveDirection": "left",
+    "manualResult": "CORRECT"
+  },
+  "combinedSegments": [0, 1, 2],
+  "combinedSegment2": {
+    "curveDirection": "right",
+    "manualResult": "WRONG"
+  },
+  "note": "Pre-fix manual observation; combined map inherited Segment 0 SHA and applied map-wide lateral reflection."
+}

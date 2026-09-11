@@ -1,0 +1,256 @@
+{
+  "samples": [
+    {
+      "targetVideoSec": 18,
+      "frameId": 1603,
+      "sourceFile": "qlog_f449c_1.bz2",
+      "rows": [
+        {
+          "laneIdentity": "groupTrackId:0",
+          "groupTrackId": 0,
+          "standaloneDM": 4.257649564814968,
+          "combinedDM": -4.465272240081072,
+          "identitySame": true,
+          "colourSame": true,
+          "sideReversed": true
+        },
+        {
+          "laneIdentity": "groupTrackId:1",
+          "groupTrackId": 1,
+          "standaloneDM": 1.5930463547767704,
+          "combinedDM": -1.7854541800738493,
+          "identitySame": true,
+          "colourSame": true,
+          "sideReversed": true
+        },
+        {
+          "laneIdentity": "groupTrackId:2",
+          "groupTrackId": 2,
+          "standaloneDM": -1.3774786677662052,
+          "combinedDM": 1.2069000174465487,
+          "identitySame": true,
+          "colourSame": true,
+          "sideReversed": true
+        },
+        {
+          "laneIdentity": "groupTrackId:3",
+          "groupTrackId": 3,
+          "standaloneDM": -3.719463129966107,
+          "combinedDM": 3.5253240676174165,
+          "identitySame": true,
+          "colourSame": true,
+          "sideReversed": true
+        }
+      ],
+      "standaloneOrder": [
+        {
+          "groupTrackId": 0,
+          "medianSignedLateralM": 4.257649564814968,
+          "sampleCount": 26
+        },
+        {
+          "groupTrackId": 1,
+          "medianSignedLateralM": 1.5930463547767704,
+          "sampleCount": 26
+        },
+        {
+          "groupTrackId": 2,
+          "medianSignedLateralM": -1.3774786677662052,
+          "sampleCount": 26
+        },
+        {
+          "groupTrackId": 3,
+          "medianSignedLateralM": -3.719463129966107,
+          "sampleCount": 26
+        }
+      ],
+      "combinedOrder": [
+        {
+          "groupTrackId": 3,
+          "medianSignedLateralM": 3.5253240676174165,
+          "sampleCount": 26
+        },
+        {
+          "groupTrackId": 2,
+          "medianSignedLateralM": 1.2069000174465487,
+          "sampleCount": 26
+        },
+        {
+          "groupTrackId": 1,
+          "medianSignedLateralM": -1.7854541800738493,
+          "sampleCount": 26
+        },
+        {
+          "groupTrackId": 0,
+          "medianSignedLateralM": -4.465272240081072,
+          "sampleCount": 26
+        }
+      ]
+    },
+    {
+      "targetVideoSec": 28.1,
+      "frameId": 1803,
+      "sourceFile": "qlog_f449c_1.bz2",
+      "rows": [
+        {
+          "laneIdentity": "groupTrackId:1",
+          "groupTrackId": 1,
+          "standaloneDM": 1.6608241179313732,
+          "combinedDM": -0.8892638897660419,
+          "identitySame": true,
+          "colourSame": true,
+          "sideReversed": true
+        },
+        {
+          "laneIdentity": "groupTrackId:2",
+          "groupTrackId": 2,
+          "standaloneDM": -1.5071078302206489,
+          "combinedDM": 2.3029407390832466,
+          "identitySame": true,
+          "colourSame": true,
+          "sideReversed": true
+        },
+        {
+          "laneIdentity": "groupTrackId:3",
+          "groupTrackId": 3,
+          "standaloneDM": -4.363583284609429,
+          "combinedDM": 5.199348068752147,
+          "identitySame": true,
+          "colourSame": true,
+          "sideReversed": true
+        }
+      ],
+      "standaloneOrder": [
+        {
+          "groupTrackId": 1,
+          "medianSignedLateralM": 1.6608241179313732,
+          "sampleCount": 26
+        },
+        {
+          "groupTrackId": 2,
+          "medianSignedLateralM": -1.5071078302206489,
+          "sampleCount": 26
+        },
+        {
+          "groupTrackId": 3,
+          "medianSignedLateralM": -4.363583284609429,
+          "sampleCount": 26
+        }
+      ],
+      "combinedOrder": [
+        {
+          "groupTrackId": 3,
+          "medianSignedLateralM": 5.199348068752147,
+          "sampleCount": 26
+        },
+        {
+          "groupTrackId": 2,
+          "medianSignedLateralM": 2.3029407390832466,
+          "sampleCount": 26
+        },
+        {
+          "groupTrackId": 1,
+          "medianSignedLateralM": -0.8892638897660419,
+          "sampleCount": 26
+        }
+      ]
+    },
+    {
+      "targetVideoSec": 38.1,
+      "frameId": 2003,
+      "sourceFile": "qlog_f449c_1.bz2",
+      "rows": [
+        {
+          "laneIdentity": "groupTrackId:1",
+          "groupTrackId": 1,
+          "standaloneDM": 1.6530522550322535,
+          "combinedDM": -1.5372754544669807,
+          "identitySame": true,
+          "colourSame": true,
+          "sideReversed": true
+        },
+        {
+          "laneIdentity": "groupTrackId:2",
+          "groupTrackId": 2,
+          "standaloneDM": -1.4313643564510035,
+          "combinedDM": 1.5333925137545983,
+          "identitySame": true,
+          "colourSame": true,
+          "sideReversed": true
+        },
+        {
+          "laneIdentity": "groupTrackId:3",
+          "groupTrackId": 3,
+          "standaloneDM": -4.31150745529016,
+          "combinedDM": 4.412198615187041,
+          "identitySame": true,
+          "colourSame": true,
+          "sideReversed": true
+        }
+      ],
+      "standaloneOrder": [
+        {
+          "groupTrackId": 1,
+          "medianSignedLateralM": 1.6530522550322535,
+          "sampleCount": 26
+        },
+        {
+          "groupTrackId": 2,
+          "medianSignedLateralM": -1.4313643564510035,
+          "sampleCount": 26
+        },
+        {
+          "groupTrackId": 3,
+          "medianSignedLateralM": -4.31150745529016,
+          "sampleCount": 26
+        }
+      ],
+      "combinedOrder": [
+        {
+          "groupTrackId": 3,
+          "medianSignedLateralM": 4.412198615187041,
+          "sampleCount": 26
+        },
+        {
+          "groupTrackId": 2,
+          "medianSignedLateralM": 1.5333925137545983,
+          "sampleCount": 26
+        },
+        {
+          "groupTrackId": 1,
+          "medianSignedLateralM": -1.5372754544669807,
+          "sampleCount": 26
+        }
+      ]
+    }
+  ],
+  "primaryFrame1803": [
+    {
+      "laneIdentity": "groupTrackId:1",
+      "groupTrackId": 1,
+      "standaloneDM": 1.6608241179313732,
+      "combinedDM": -0.8892638897660419,
+      "identitySame": true,
+      "colourSame": true,
+      "sideReversed": true
+    },
+    {
+      "laneIdentity": "groupTrackId:2",
+      "groupTrackId": 2,
+      "standaloneDM": -1.5071078302206489,
+      "combinedDM": 2.3029407390832466,
+      "identitySame": true,
+      "colourSame": true,
+      "sideReversed": true
+    },
+    {
+      "laneIdentity": "groupTrackId:3",
+      "groupTrackId": 3,
+      "standaloneDM": -4.363583284609429,
+      "combinedDM": 5.199348068752147,
+      "identitySame": true,
+      "colourSame": true,
+      "sideReversed": true
+    }
+  ]
+}

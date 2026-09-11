@@ -1,0 +1,42 @@
+{
+  "task": "Accepted display-path consolidation — default method selection verification",
+  "port_3847_listening": false,
+  "live_plain_load_verified": false,
+  "live_unavailable_reason": "Port 3847 was not listening; server was not restarted per instructions. Static/unit verification used instead.",
+  "static_verification": {
+    "vizMode_default": "local",
+    "localGeometryMode_default": "pointAccumulated",
+    "localGeometryMode_html_selected": "pointAccumulated",
+    "all_per_frame_source_curves": { "layerConnectedAccumulated": "checked", "connectedAccumulatedMode": "perFrame (selected)" },
+    "representative_lane_lines_layer": "unchecked (opt-in; visibility decision unchanged)",
+    "representative_method_when_enabled_without_query": "purityRevisit",
+    "fused_geometry": "manually selectable (option value=\"fused\" present; not default)",
+    "road_trajectory_arrow_transform": "combined_source_transform.js + combined_boundary_anchored_orientation.js (shared)"
+  },
+  "method_resolver": {
+    "location": "public/render.js::resolveRepresentativeMethod(search)",
+    "rules": [
+      "absent representativeMethod -> purityRevisit",
+      "representativeMethod=purityRevisit -> purityRevisit",
+      "representativeMethod=purity -> purity",
+      "representativeMethod=curveAssociation -> curveAssociation",
+      "representativeMethod=legacy -> legacy",
+      "unrecognised value -> purityRevisit"
+    ],
+    "availability_guard": "falls back to curveAssociation only if the selected builder function is absent; never changes the selection when the builder exists"
+  },
+  "url_override_results": {
+    "": "purityRevisit",
+    "?local=1&fit=1": "purityRevisit",
+    "?representativeMethod=purityRevisit": "purityRevisit",
+    "?representativeMethod=purity": "purity",
+    "?representativeMethod=curveAssociation": "curveAssociation",
+    "?representativeMethod=legacy": "legacy",
+    "?representativeMethod=bogus": "purityRevisit",
+    "?representativeMethod=purityRevisit&x=1": "purityRevisit"
+  },
+  "evidence": {
+    "source_files": ["public/index.html", "lib/local_geometry_ui.js", "public/render.js"],
+    "test": "tests/representative_lane_lines_purity_revisit.test.js :: revisit-13 (pass)"
+  }
+}
