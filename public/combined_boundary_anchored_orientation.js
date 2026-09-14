@@ -26,10 +26,12 @@ function parseCombinedOrientationCandidate(search) {
   const raw = typeof search === 'string'
     ? new URLSearchParams(search).get(CANDIDATE_QUERY_PARAM)
     : search?.get?.(CANDIDATE_QUERY_PARAM);
-  if (!raw) return null;
-  const v = String(raw).trim();
-  if (v === CANDIDATE_BOUNDARY_ANCHORED || v === CANDIDATE_A_DIAGNOSTIC) return v;
-  return null;
+  const v = raw == null ? '' : String(raw).trim();
+  // Promoted default: absent or unrecognised values select the accepted
+  // boundary-anchored orientation. The Candidate A diagnostic token remains the
+  // explicit legacy/off override for A/B diagnosis.
+  if (v === CANDIDATE_A_DIAGNOSTIC) return CANDIDATE_A_DIAGNOSTIC;
+  return CANDIDATE_BOUNDARY_ANCHORED;
 }
 
 function buildSourceSha256Lookup(fileAudits) {
@@ -469,6 +471,8 @@ function applyBoundaryAnchoredOrientation(map, processedData, options = {}) {
   };
   bridged.suppressMapWideDisplayCorrection = true;
   bridged.boundaryGapDiagnosis = CRB.buildBoundaryGapDiagnosis(map, processedData);
+  // Pre-transform trajectory retained for sourceFile+frameId anchor matching
+  // (bridge insertion shifts placed trajectory indices). Display-only metadata.
   bridged.baselineTrajectory = baselineTrajectory;
   return bridged;
 }

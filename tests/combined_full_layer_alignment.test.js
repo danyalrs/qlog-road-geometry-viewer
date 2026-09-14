@@ -179,14 +179,14 @@ describe('combined full layer alignment', () => {
     assert.ok(s99.valid);
   });
 
-  it('25-28. modules present; normal path unchanged; candidate off by default', () => {
+  it('25-28. modules present; normal path unchanged; candidate default promoted', () => {
     assert.ok(fsExists('../lib/multisegment_video_timeline.js'));
     assert.ok(fsExists('../lib/single_video_boundary_pause.js'));
     const { map } = candidateMap([0, 1, 2]);
     assert.equal(map.boundaryAnchoredOrientationActive, true);
     const normal = buildMap(processSelection([0, 1, 2]), SEG2_FILE);
     assert.equal(normal.boundaryAnchoredOrientationActive, undefined);
-    assert.equal(CBAO.parseCombinedOrientationCandidate(''), null);
+    assert.equal(CBAO.parseCombinedOrientationCandidate(''), 'boundaryAnchored');
   });
 
   it('29-30. no segment-number branch; M-051 thresholds unchanged', () => {

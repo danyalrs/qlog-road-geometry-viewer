@@ -104,8 +104,9 @@ function checksumTrajectory(traj) {
   ]));
 }
 
-test('1. candidate remains off by default', () => {
-  assert.equal(CVLP.parseCombinedVisibleLaneProjectionCandidate(''), false);
+test('1. candidate is enabled by default; explicit 0 disables it', () => {
+  assert.equal(CVLP.parseCombinedVisibleLaneProjectionCandidate(''), true);
+  assert.equal(CVLP.parseCombinedVisibleLaneProjectionCandidate('?combinedVisibleLaneProjectionCandidate=1'), true);
   assert.equal(CVLP.parseCombinedVisibleLaneProjectionCandidate('?combinedVisibleLaneProjectionCandidate=0'), false);
   assert.equal(CVLP.isCandidateEligible(buildCombined(processSelection([0, 1, 2])), {
     useVisibleLaneProjection: false,

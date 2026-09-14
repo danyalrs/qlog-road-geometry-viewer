@@ -1,0 +1,27 @@
+{
+  "note": "Resolved selection for the promoted defaults. Values confirmed by tests/combined_default_promotion.test.js and tests/combined_visible_lane_projection.test.js.",
+  "orientation": {
+    "resolver": "parseCombinedOrientationCandidate",
+    "rows": [
+      { "query": "(absent)", "before": null, "after": "boundaryAnchored" },
+      { "query": "?combinedOrientationCandidate=boundaryAnchored", "before": "boundaryAnchored", "after": "boundaryAnchored" },
+      { "query": "?combinedOrientationCandidate=commonTransformNoSeg0Correction", "before": "commonTransformNoSeg0Correction", "after": "commonTransformNoSeg0Correction" },
+      { "query": "?combinedOrientationCandidate=bogus", "before": null, "after": "boundaryAnchored" }
+    ]
+  },
+  "visibleLaneProjection": {
+    "resolver": "parseCombinedVisibleLaneProjectionCandidate",
+    "rows": [
+      { "query": "(absent)", "before": false, "after": true },
+      { "query": "?combinedVisibleLaneProjectionCandidate=1", "before": true, "after": true },
+      { "query": "?combinedVisibleLaneProjectionCandidate=0", "before": false, "after": false }
+    ]
+  },
+  "renderFlag": {
+    "field": "renderer._visibleLaneProjectionEnabled",
+    "before": "urlParams.get('combinedVisibleLaneProjectionCandidate') === '1'",
+    "after": "urlParams.get('combinedVisibleLaneProjectionCandidate') !== '0'"
+  },
+  "standalone": { "affected": false, "reason": "multi-source guard" },
+  "mirror": { "mirror=0/1": "unchanged meaning; the transform math was not modified" }
+}

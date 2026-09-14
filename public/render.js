@@ -84,7 +84,9 @@ class RoadRenderer {
     this._lanePixelOwnerTrace = [];
     this._lanePixelOwnerPerturb = null;
     this._visibleLaneProjectionPass = null;
-    this._visibleLaneProjectionEnabled = urlParams?.get('combinedVisibleLaneProjectionCandidate') === '1';
+    // Promoted default: the combined visible-lane projection is enabled unless
+    // explicitly disabled with combinedVisibleLaneProjectionCandidate=0.
+    this._visibleLaneProjectionEnabled = urlParams?.get('combinedVisibleLaneProjectionCandidate') !== '0';
     this._visibleLaneProjectionFromCacheHit = false;
     this._pointAccumulatedLanePolylineEnabled = urlParams?.get('pointAccumulatedLanePolylineCandidate') === '1';
     this._pointAccumulatedLanePolylineDiagnostics = null;

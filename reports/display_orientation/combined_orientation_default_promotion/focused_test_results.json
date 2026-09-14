@@ -1,0 +1,26 @@
+{
+  "task": "Combined orientation / visible-lane projection default promotion",
+  "command": "node --test <suite>",
+  "focused_suites": [
+    { "suite": "tests/combined_boundary_anchoring.test.js", "tests": 18, "pass": 18, "fail": 0 },
+    { "suite": "tests/combined_source_correction_scope.test.js", "tests": 2, "pass": 2, "fail": 0 },
+    { "suite": "tests/combined_visible_lane_projection.test.js", "tests": 13, "pass": 13, "fail": 0, "note": "default assertion updated to the promoted default; explicit =0 off retained" },
+    { "suite": "tests/cross_layer_alignment_shared_frame.test.js", "tests": 4, "pass": 4, "fail": 0 },
+    { "suite": "tests/combined_default_promotion.test.js", "tests": 11, "pass": 11, "fail": 0, "note": "new focused promotion tests" },
+    { "suite": "tests/combined_full_layer_alignment.test.js", "tests": 12, "pass": 12, "fail": 0, "note": "default assertion updated" },
+    { "suite": "tests/boundary_bridge_playback.test.js", "tests": 15, "pass": 15, "fail": 0 },
+    { "suite": "tests/point_accumulated_lane_polylines.test.js", "tests": 11, "pass": 11, "fail": 0 },
+    { "suite": "tests/representative_lane_lines.test.js", "tests": 8, "pass": 8, "fail": 0 },
+    { "suite": "tests/representative_lane_lines_purity_revisit.test.js", "tests": 13, "pass": 13, "fail": 0 },
+    { "suite": "tests/local_playback_geometry_modes.test.js", "tests": 41, "pass": 41, "fail": 0 }
+  ],
+  "totals": { "tests": 148, "pass": 148, "fail": 0 },
+  "pre_existing_failure": {
+    "suite": "tests/combined_segment1_arrow_lane_change.test.js",
+    "error": "CST.roadRelativeLateralM is not a function",
+    "classification": "pre-existing / unrelated (rejected arrow-repair experiment)",
+    "evidence": "lib/combined_source_transform.js does not define roadRelativeLateralM at HEAD e58e73c either (0 matches); this task did not touch combined_source_transform.js",
+    "action": "not modified (per instructions not to change unrelated code)"
+  },
+  "cache_reseek": "covered by combined_default_promotion test 15 (deterministic rebuild) and boundary_bridge_playback suite"
+}

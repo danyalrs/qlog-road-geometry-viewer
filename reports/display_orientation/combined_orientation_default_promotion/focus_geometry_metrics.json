@@ -1,0 +1,39 @@
+{
+  "A_standalone_seg2": {
+    "seg2LaneCenterlinePoints": 403,
+    "seg2LaneCurvatureSign": 1,
+    "boundaryAnchoredOrientationActive": false,
+    "finite": true
+  },
+  "B_combined_default": {
+    "orientationSel": "boundaryAnchored",
+    "cvlpSel": true,
+    "boundaryAnchoredOrientationActive": true,
+    "combinedCoordinateFrame": "combinedPlaced",
+    "seg2LaneCenterlinePoints": 436,
+    "seg2LaneCurvatureSign": 1,
+    "laneChecksum": "3bb65a3c9486ef956ceb5db01493d0fa1295ee06",
+    "finite": true
+  },
+  "C_explicit_candidate": {
+    "orientationSel": "boundaryAnchored",
+    "cvlpSel": true,
+    "boundaryAnchoredOrientationActive": true,
+    "seg2LaneCurvatureSign": 1,
+    "laneChecksum": "3bb65a3c9486ef956ceb5db01493d0fa1295ee06"
+  },
+  "D_explicit_legacy_off": {
+    "orientationSel": "commonTransformNoSeg0Correction",
+    "cvlpSel": false,
+    "boundaryAnchoredOrientationActive": false,
+    "seg2LaneCurvatureSign": 1,
+    "laneChecksum": "a493e4ad1a4d571161e48be26d1ea05ef05a01bd"
+  },
+  "gates": {
+    "B_equals_C_laneChecksum": true,
+    "B_seg2_sign_matches_standalone": true,
+    "D_differs_from_B": true,
+    "no_non_finite": true,
+    "standalone_not_oriented": true
+  }
+}

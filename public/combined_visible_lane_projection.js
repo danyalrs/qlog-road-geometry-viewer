@@ -2,7 +2,8 @@
 (function (global) {
 
 /**
- * Default-off candidate: combinedVisibleLaneProjectionCandidate
+ * Default-on (promoted) candidate: combinedVisibleLaneProjectionCandidate.
+ * Enabled when the query param is absent; explicit `=0` disables it.
  *
  * Shared source-relative lane projection for both visible lane collections:
  *   - pointAccumulated.points
@@ -29,7 +30,9 @@ function parseCombinedVisibleLaneProjectionCandidate(search) {
   const raw = typeof search === 'string'
     ? new URLSearchParams(search).get(QUERY_PARAM)
     : search?.get?.(QUERY_PARAM);
-  return raw === '1';
+  // Promoted default: absent (or any value other than explicit '0') enables the
+  // accepted combined visible-lane projection. Explicit '0' is the off override.
+  return raw !== '0';
 }
 
 function emptyDiagnostics() {

@@ -1,0 +1,44 @@
+{
+  "combinedOrientationCandidate": {
+    "queryParam": "combinedOrientationCandidate",
+    "parsedBy": "parseCombinedOrientationCandidate(search) in lib/combined_boundary_anchored_orientation.js (canonical) and public/combined_boundary_anchored_orientation.js (mirror)",
+    "before": {
+      "absent": null,
+      "boundaryAnchored": "boundaryAnchored",
+      "commonTransformNoSeg0Correction": "commonTransformNoSeg0Correction",
+      "invalid": null
+    },
+    "after": {
+      "absent": "boundaryAnchored",
+      "boundaryAnchored": "boundaryAnchored",
+      "commonTransformNoSeg0Correction": "commonTransformNoSeg0Correction",
+      "invalid": "boundaryAnchored"
+    },
+    "consumers": [
+      "public/app.js applyOrientationCandidateIfNeeded (cache hit)",
+      "public/app.js stationary map build path",
+      "public/app.js isBoundaryBridgePlaybackActive",
+      "public/app.js stationaryMapCacheKey"
+    ],
+    "multiSourceGuard": "applyBoundaryAnchoredOrientation returns map unchanged when !isMultiSourceMap(map) -> standalone unaffected",
+    "appliedOnceGuard": "applyOrientationCandidateIfNeeded returns map when map.boundaryAnchoredOrientationActive && map.combinedCoordinateFrame === 'combinedPlaced'"
+  },
+  "combinedVisibleLaneProjectionCandidate": {
+    "queryParam": "combinedVisibleLaneProjectionCandidate",
+    "parsedBy": "parseCombinedVisibleLaneProjectionCandidate(search) in lib/combined_visible_lane_projection.js (canonical) + public mirror; render.js constructor also reads the raw param",
+    "before": { "absent": false, "1": true, "0": false },
+    "after": { "absent": true, "1": true, "0": false, "invalid": true },
+    "consumers": [
+      "public/render.js _visibleLaneProjectionEnabled",
+      "public/render.js _projectRoadGeometryToScreen",
+      "public/render.js _resolvePointAccumulatedDisplayWorld",
+      "CVLP.isCandidateEligible / projectCombinedSourceLanePoint"
+    ],
+    "guards": "isCandidateEligible requires map.boundaryAnchoredOrientationActive && map.isMultiSource && map.sourceTransformByFile && mirrorChecked !== false -> standalone unaffected",
+    "appliedOnceGuard": "projectCombinedSourceLanePoint returns alreadyApplied when point.visibleLaneProjectionApplied === true or placed coords already present"
+  },
+  "urlPriority": "Both selections are read from window.location.search on each build/draw; URL values override the promoted defaults.",
+  "whyCandidateCorrectsSeg2": "The boundary-anchored orientation places each source file's canonical geometry into one combined frame (sourceHash correction + rotation + translation) and the combined visible-lane projection draws the point-accumulated dots in that same combinedPlaced frame, so the Seg2 lane dots follow the road rather than the un-corrected per-file placement.",
+  "whyPlainDidNot": "With the candidate absent, the orientation was not applied (parse returned null) and the combined visible-lane projection was disabled, so Seg2 retained its incorrect original right curve.",
+  "failureCause": "default-selection only; the transform algorithms are unchanged"
+}
