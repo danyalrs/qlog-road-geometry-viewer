@@ -52,6 +52,18 @@ let connectedAccumulatedCache = null;
 let roadGuidedStaticCache = null;
 let roadGuidedRankedCache = null;
 let roadGuidedSequenceCache = null;
+let progressiveCombinedState = {
+  availableSegments: [],
+  prefix: [],
+  visiblePrefix: [],
+  processPrefix: [],
+  hiddenLookahead: null,
+  fullMap: null,
+  displayMap: null,
+  fullProcessData: null,
+  displayProcessData: null,
+  stateSnapshots: new Map(),
+};
 
 const $ = (id) => document.getElementById(id);
 
@@ -342,13 +354,16 @@ const inFlightMapBuilds = new Map();
 
 function mapIdentityContext(timelineIndex) {
   const SLM = window.SegmentLocalMap;
+  const playbackData = getPlaybackProcessData();
   const mode = getLocalGeometryMode();
   const fitOpts = localPlaybackOptions();
-  const active = SLM && processData
-    ? SLM.resolveActiveChunkPass(processData, timelineIndex)
+  const active = SLM && playbackData
+    ? SLM.resolveActiveChunkPass(playbackData, timelineIndex)
     : { chunkId: null, passId: null };
-  const segmentFiles = (processData?.fileAudits || [])
-    .map((a) => a.filename).sort().join('|');
+  const selection = getPlaybackSegmentSelection();
+  const segmentFiles = (selection.length
+    ? selection
+    : (playbackData?.fileAudits || []).map((a) => a.filename || a.fileName)).sort().join('|');
   return {
     timelineIndex,
     chunkId: active.chunkId,
@@ -401,7 +416,10 @@ function inflightMapKey(ctx) {
   return `${ctx.segmentFiles}::${ctx.chunkId}:${ctx.passId}:${ctx.geometrySource}${fit}`;
 }
 
-async function getOrBuildStationaryMapAsync(timelineIndex, { forceRebuild = false } = {}) {
+async function getOrBuildStationaryMapAsync(timelineIndex, { forceRebuild = false, preferFullMap = false } = {}) {
+  if (!preferFullMap && isProgressiveCombinedCandidateEnabled() && progressiveCombinedState.displayMap) {
+    return progressiveCombinedState.displayMap;
+  }
   const ctx = readMapAcquisitionContext(timelineIndex);
   const inflightKey = inflightMapKey(ctx);
 
@@ -605,6 +623,7 @@ function updateGeometryDiagnosticsPanel() {
 function clearProcessState() {
   processData = null;
   if (typeof window !== 'undefined') window.processData = null;
+  resetProgressiveCombinedState();
   lastLocalPlaybackState = null;
   connectedAccumulatedCache = null;
   roadGuidedStaticCache = null;
@@ -666,23 +685,75 @@ async function loadSegments() {
     opt.textContent = s;
     sel.appendChild(opt);
   }
+  progressiveCombinedState.availableSegments = Array.isArray(data.segments) ? [...data.segments] : [];
   $('procVersion').textContent = data.processingVersion || '—';
   updateInfoPanel({
     qlogFiles: data.segments.length,
     modelEvents: data.modelEventCount,
     gpsEvents: data.gpsEventCount,
   });
+  initProgressiveCombinedPlaybackUI();
 }
 
 function selectedSegments() {
   return Array.from($('segmentSelect').selectedOptions).map((o) => o.value);
 }
 
-async function process(segments, { bustCache = false, label = 'process' } = {}) {
+function getPlaybackProcessData() {
+  if (isProgressiveCombinedCandidateEnabled() && progressiveCombinedState.displayProcessData) {
+    return progressiveCombinedState.displayProcessData;
+  }
+  return processData;
+}
+
+function getPlaybackTimeline() {
+  return getPlaybackProcessData()?.timeline ?? null;
+}
+
+function getPlaybackFrames() {
+  return getPlaybackProcessData()?.frames ?? null;
+}
+
+function getPlaybackSegmentSelection() {
+  if (isProgressiveCombinedCandidateEnabled() && progressiveCombinedState.visiblePrefix?.length) {
+    return progressiveCombinedState.visiblePrefix;
+  }
+  return lastProcessedSegmentSelection;
+}
+
+function resetProgressiveCombinedState() {
+  progressiveCombinedState.prefix = [];
+  progressiveCombinedState.visiblePrefix = [];
+  progressiveCombinedState.processPrefix = [];
+  progressiveCombinedState.hiddenLookahead = null;
+  progressiveCombinedState.fullMap = null;
+  progressiveCombinedState.displayMap = null;
+  progressiveCombinedState.fullProcessData = null;
+  progressiveCombinedState.displayProcessData = null;
+  progressiveCombinedState.stateSnapshots = new Map();
+}
+
+async function process(segments, { bustCache = false, label = 'process', progressivePlayback = null } = {}) {
   clearProcessState();
   setStatus('Processing…');
+  const PCP = window.ProgressiveCombinedPlayback;
+  const progressiveActive = isProgressiveCombinedCandidateEnabled()
+    && !progressivePlayback?.skipLookahead
+    && segments?.length;
+  let visiblePrefix = null;
+  let requestSegments = segments;
+  if (progressiveActive) {
+    visiblePrefix = PCP.orderPrefixFiles(segments, progressiveCombinedState.availableSegments);
+    requestSegments = PCP.buildLookaheadProcessList(visiblePrefix, progressiveCombinedState.availableSegments);
+    progressiveCombinedState.visiblePrefix = visiblePrefix;
+    progressiveCombinedState.hiddenLookahead = PCP.resolveNextAvailableSegment(
+      progressiveCombinedState.availableSegments,
+      visiblePrefix,
+    );
+    progressiveCombinedState.processPrefix = requestSegments;
+  }
   const body = {
-    segments,
+    segments: requestSegments,
     options: getOptions(),
     bustCache,
   };
@@ -703,19 +774,43 @@ async function process(segments, { bustCache = false, label = 'process' } = {}) 
   if (typeof window !== 'undefined') window.processData = data;
   lastProcessedSegmentSelection = segments?.length
     ? [...segments]
-    : (data.fileAudits || []).map((f) => f.fileName).filter(Boolean);
+    : (data.fileAudits || []).map((f) => f.filename || f.fileName).filter(Boolean);
   $('procVersion').textContent = data.processingVersion || '—';
   $('procTime').textContent = data.processedAt || '—';
 
+  if (progressivePlayback && PCP) {
+    const timelineIndex = PCP.resolveProgressiveTimelineIndex(data.timeline, progressivePlayback);
+    lastLocalPlaybackState = {
+      timelineIndex,
+      geometryMode: progressivePlayback.geometryMode,
+      scale: progressivePlayback.viewCapture?.scale,
+      offsetX: progressivePlayback.viewCapture?.offsetX,
+      offsetY: progressivePlayback.viewCapture?.offsetY,
+      localViewportBounds: progressivePlayback.viewCapture?.localViewportBounds,
+    };
+  } else if (progressiveActive && PCP) {
+    progressiveCombinedState.fullProcessData = data;
+    progressiveCombinedState.prefix = visiblePrefix;
+    lastProcessedSegmentSelection = [...visiblePrefix];
+  }
+
   logGeometryDebug(data, label);
-  applyVisualization();
-  updateGeometryDiagnosticsPanel();
+  if (progressiveActive && !progressivePlayback) {
+    await bootstrapProgressiveDisplay(visiblePrefix);
+    updateGeometryDiagnosticsPanel();
+  } else {
+    applyVisualization();
+    updateGeometryDiagnosticsPanel();
+  }
   const fc = data.stats?.frameCounts;
   const frameLabel = fc
     ? `${fc.rawModelV2Messages} raw modelV2 → ${fc.gpsAlignedFrames} GPS-aligned`
     : `${data.stats.validModelFrames} frames`;
   setStatus(`Done — ${data.stats.routeChunkCount} chunks, ${frameLabel}, cacheHit=${data.cacheHit}, ${data.geometryDebug?.polygonCount ?? 0} polygons`);
-  await refreshLocalPlaybackVideo({ resetTimeline: true });
+  await refreshLocalPlaybackVideo({ resetTimeline: !progressivePlayback });
+  if (progressivePlayback?.continuePlayback) {
+    schedulePlaybackStep();
+  }
   return data;
 }
 
@@ -752,7 +847,7 @@ function parseSegmentIdFromSourceFile(sourceFile) {
 }
 
 function timelineCrossesSegmentBoundary(fromIdx, toIdx) {
-  const timeline = processData?.timeline;
+  const timeline = getPlaybackTimeline();
   if (!timeline?.length || fromIdx == null || toIdx == null) return false;
   const from = timeline[fromIdx];
   const to = timeline[toIdx];
@@ -1231,7 +1326,7 @@ async function beginRouteBoundaryTransitionLegacy(fromIdx, toIdx) {
 }
 
 function getTimelineStartLogMonoTime() {
-  return processData?.timeline?.[0]?.logMonoTime ?? null;
+  return getPlaybackTimeline()?.[0]?.logMonoTime ?? null;
 }
 
 function getActiveTimelineIndex() {
@@ -1248,13 +1343,14 @@ function getActiveTimelineIndex() {
 
 function resolveActivePlaybackProvenance() {
   const MVT = window.MultisegmentVideoTimeline;
-  if (!MVT || !processData?.timeline?.length) return null;
+  const timeline = getPlaybackTimeline();
+  if (!MVT || !timeline?.length) return null;
   const idx = getActiveTimelineIndex();
   const logMono = getCurrentPlaybackLogMonoTime();
   return MVT.resolvePlaybackProvenance(
-    processData.timeline,
+    timeline,
     idx,
-    lastProcessedSegmentSelection,
+    getPlaybackSegmentSelection(),
     logMono,
   );
 }
@@ -1275,11 +1371,12 @@ async function syncVideoToActivePose(options = {}) {
 }
 
 function getActiveVideoSegmentId() {
-  if (!processData?.timeline?.length) return null;
+  const playbackData = getPlaybackProcessData();
+  if (!playbackData?.timeline?.length) return null;
   const idx = parseInt($('timeline')?.value ?? '0', 10);
-  const sourceFile = processData.frames?.[idx]?.sourceFile
-    || processData.timeline[idx]?.sourceFile
-    || processData.timeline[0]?.sourceFile;
+  const sourceFile = playbackData.frames?.[idx]?.sourceFile
+    || playbackData.timeline[idx]?.sourceFile
+    || playbackData.timeline[0]?.sourceFile;
   if (!sourceFile) return null;
   const match = String(sourceFile).match(/^qlog_f449c_(\d+)\.bz2$/i);
   return match ? match[1] : null;
@@ -1295,7 +1392,7 @@ function getCurrentPlaybackLogMonoTime() {
     return interpolatedLogMonoTime(playbackAnim.fromIdx, playbackAnim.toIdx, alpha);
   }
   const idx = parseInt($('timeline')?.value ?? '0', 10);
-  return processData?.timeline?.[idx]?.logMonoTime ?? null;
+  return getPlaybackProcessData()?.timeline?.[idx]?.logMonoTime ?? null;
 }
 
 function updateLocalVideoVisibility() {
@@ -1308,15 +1405,16 @@ function updateLocalVideoVisibility() {
 async function refreshLocalPlaybackVideo({ resetTimeline = false } = {}) {
   if (!localPlaybackVideo) return;
   updateLocalVideoVisibility();
-  if (!isLocalPlaybackMode() || !processData) {
+  const playbackData = getPlaybackProcessData();
+  if (!isLocalPlaybackMode() || !playbackData) {
     localPlaybackVideo.unload();
     return;
   }
 
   const MVT = window.MultisegmentVideoTimeline;
   const entries = MVT?.buildSegmentVideoTimeline(
-    processData.timeline,
-    lastProcessedSegmentSelection,
+    playbackData.timeline,
+    getPlaybackSegmentSelection(),
   ) ?? [];
   localPlaybackVideo.setSegmentTimeline(entries);
   localPlaybackVideo.setTimelineStart(getTimelineStartLogMonoTime());
@@ -1330,20 +1428,21 @@ async function refreshLocalPlaybackVideo({ resetTimeline = false } = {}) {
 function resolveLocalPlaybackPose(idx, extraOptions = {}) {
   const LP = window.LocalPlayback;
   const SLM = window.SegmentLocalMap;
-  if (!LP || !processData) return null;
+  const playbackData = getPlaybackProcessData();
+  if (!LP || !playbackData) return null;
 
   const mode = getLocalGeometryMode();
   if (mode === 'diagnostic') {
     let pose = LP.resolveArrowForCurrentFrame({
-      frames: processData.frames,
-      timeline: processData.timeline,
-      vehiclePath: processData.vehiclePath,
+      frames: playbackData.frames,
+      timeline: playbackData.timeline,
+      vehiclePath: playbackData.vehiclePath,
       frameIndex: idx,
       options: { ...localPlaybackOptions(), ...extraOptions },
     });
     const flags = localPlaybackUrlFlags();
     if (flags.laneRelativeArrow) {
-      const frame = processData.frames?.[idx];
+      const frame = playbackData.frames?.[idx];
       pose = LP.applyLaneRelativeArrowOffset(pose, frame);
     }
     return pose;
@@ -1358,7 +1457,7 @@ function resolveLocalPlaybackPose(idx, extraOptions = {}) {
   }
   return SLM.resolveArrowOnSegmentMap(
     map,
-    processData.timeline,
+    playbackData.timeline,
     idx,
     { ...localPlaybackOptions(), ...extraOptions },
   );
@@ -1366,10 +1465,11 @@ function resolveLocalPlaybackPose(idx, extraOptions = {}) {
 
 function resolveLocalGeometryDisplay(idx) {
   const LP = window.LocalPlayback;
-  if (!LP || !processData) return null;
+  const playbackData = getPlaybackProcessData();
+  if (!LP || !playbackData) return null;
   return LP.resolveLocalGeometryFrame(
-    processData.frames,
-    processData.timeline,
+    playbackData.frames,
+    playbackData.timeline,
     idx,
     renderer?._lastValidLocalGeometry ?? null,
   );
@@ -1377,20 +1477,22 @@ function resolveLocalGeometryDisplay(idx) {
 
 function getLocalPlaybackContext(frameIndex) {
   const LP = window.LocalPlayback;
-  if (!LP || !processData) return null;
+  const playbackData = getPlaybackProcessData();
+  if (!LP || !playbackData) return null;
   const idx = Number.isInteger(frameIndex) ? frameIndex : parseInt($('timeline')?.value ?? '0', 10);
-  const frame = processData.frames?.[idx];
+  const frame = playbackData.frames?.[idx];
   return LP.buildPlaybackContextForFrame({
     frame,
-    timeline: processData.timeline,
-    vehiclePath: processData.vehiclePath,
+    timeline: playbackData.timeline,
+    vehiclePath: playbackData.vehiclePath,
     options: localPlaybackOptions(),
   });
 }
 
 function interpolatedLogMonoTime(fromIdx, toIdx, alpha) {
-  const from = processData?.timeline?.[fromIdx];
-  const to = processData?.timeline?.[toIdx];
+  const timeline = getPlaybackTimeline();
+  const from = timeline?.[fromIdx];
+  const to = timeline?.[toIdx];
   if (!from?.logMonoTime) return null;
   const t0 = BigInt(String(from.logMonoTime));
   if (!to?.logMonoTime || alpha <= 0) return String(t0);
@@ -1450,7 +1552,7 @@ function getConnectedAccumulatedActiveFrame(timelineIndex) {
   const idx = Number.isInteger(timelineIndex)
     ? timelineIndex
     : parseInt($('timeline')?.value ?? '0', 10);
-  const t = processData?.timeline?.[idx];
+  const t = getPlaybackTimeline()?.[idx];
   if (!t) return null;
   return {
     timelineIndex: idx,
@@ -2100,13 +2202,14 @@ function updateMovementIndicator(idx) {
 }
 
 function updateTimelineInfo(idx) {
-  const t = processData?.timeline?.[idx];
+  const playbackData = getPlaybackProcessData();
+  const t = playbackData?.timeline?.[idx];
   const dl = $('timelineInfo');
   if (!t) { dl.innerHTML = ''; renderer.setMovementDisplay(null); return; }
-  const frame = processData?.frames?.[idx];
+  const frame = playbackData?.frames?.[idx];
   const trackIds = (frame?.lanes || []).map((l) => l.laneTrackId).filter((x) => x != null);
   const vehiclePathPoint = window.VehicleMovementDisplay?.findVehiclePathPoint(
-    processData?.vehiclePath,
+    playbackData?.vehiclePath,
     t?.logMonoTime,
   );
   const movementState = t.movementState ?? vehiclePathPoint?.movementState ?? '—';
@@ -2247,7 +2350,8 @@ function tickPlaybackAnimation(timestampMs) {
 }
 
 function schedulePlaybackStep() {
-  if (!processData?.timeline?.length) {
+  const timeline = getPlaybackTimeline();
+  if (!timeline?.length) {
     stopPlayback();
     return;
   }
@@ -2267,12 +2371,13 @@ function schedulePlaybackStep() {
     return;
   }
 
-  const durationMs = logMonoDeltaMs(processData.timeline, idx, nextIdx, playSpeed);
+  const durationMs = logMonoDeltaMs(timeline, idx, nextIdx, playSpeed);
 
   if (isLocalPlaybackMode()) {
     const VMD = window.VehicleMovementDisplay;
-    const t = processData.timeline[idx];
-    const vehiclePathPoint = VMD?.findVehiclePathPoint(processData.vehiclePath, t?.logMonoTime);
+    const playbackData = getPlaybackProcessData();
+    const t = timeline[idx];
+    const vehiclePathPoint = VMD?.findVehiclePathPoint(playbackData?.vehiclePath, t?.logMonoTime);
     const diagnostic = getLocalGeometryMode() === 'diagnostic';
     playbackAnim = {
       active: true,
@@ -2285,7 +2390,7 @@ function schedulePlaybackStep() {
       display: VMD?.resolveMovementDisplay({
         timelineEntry: t,
         vehiclePathPoint,
-        framePose: processData.frames?.[idx]?.pose,
+        framePose: playbackData?.frames?.[idx]?.pose,
       }),
       startWallMs: performance.now(),
       durationMs,
@@ -2421,10 +2526,403 @@ function setupCanvasInteraction() {
   });
 }
 
+function isProgressiveCombinedCandidateEnabled() {
+  const PCP = window.ProgressiveCombinedPlayback;
+  return PCP?.isCandidateEnabled?.(window.location.search) === true;
+}
+
+function initProgressiveCombinedPlaybackUI() {
+  const panel = $('progressiveCombinedPanel');
+  const enabled = isProgressiveCombinedCandidateEnabled();
+  if (panel) panel.classList.toggle('hidden', !enabled);
+  if (!enabled) return;
+  updateProgressiveCombinedStatusLabel();
+}
+
+function updateProgressiveCombinedStatusLabel() {
+  const PCP = window.ProgressiveCombinedPlayback;
+  const el = $('progressiveCombinedStatus');
+  if (!el || !PCP) return;
+  const prefix = getEffectiveProgressivePrefix();
+  el.textContent = PCP.formatProgressiveStatusLabel(prefix, progressiveCombinedState.hiddenLookahead);
+}
+
+function storeProgressiveStateSnapshot() {
+  const PCP = window.ProgressiveCombinedPlayback;
+  if (!PCP?.isCandidateEnabled(window.location.search)) return;
+  const key = PCP.prefixSnapshotKey(progressiveCombinedState.visiblePrefix);
+  progressiveCombinedState.stateSnapshots.set(key, {
+    visiblePrefix: [...progressiveCombinedState.visiblePrefix],
+    processPrefix: [...progressiveCombinedState.processPrefix],
+    hiddenLookahead: progressiveCombinedState.hiddenLookahead,
+    fullMap: PCP.snapshotFrozenMap(progressiveCombinedState.fullMap),
+    displayMap: PCP.snapshotFrozenMap(progressiveCombinedState.displayMap),
+    fullProcessData: progressiveCombinedState.fullProcessData,
+    displayProcessData: progressiveCombinedState.displayProcessData,
+    prefix: [...progressiveCombinedState.prefix],
+    timelineIndex: parseInt($('timeline')?.value ?? '0', 10),
+  });
+}
+
+function applyProgressiveRendererPlaybackData() {
+  if (!renderer) return;
+  const playbackData = getPlaybackProcessData();
+  if (!playbackData) return;
+  const displayMode = getDisplayMode();
+  renderer.setData(playbackData, getEffectiveLayers(displayMode), displayMode);
+}
+
+function applyProgressiveTimelineFilter(visiblePrefix, { timelineIndex = undefined } = {}) {
+  const PCP = window.ProgressiveCombinedPlayback;
+  const full = progressiveCombinedState.fullProcessData || processData;
+  progressiveCombinedState.displayProcessData = PCP.filterProcessDataToVisibleSources(full, visiblePrefix);
+  const tl = $('timeline');
+  const timeline = progressiveCombinedState.displayProcessData?.timeline;
+  if (!tl || !timeline?.length) return;
+  tl.disabled = false;
+  tl.min = 0;
+  tl.max = Math.max(0, timeline.length - 1);
+  const resolvedIndex = timelineIndex != null
+    ? PCP.clampTimelineIndex(timeline, timelineIndex)
+    : PCP.initialVisibleTimelineIndex(timeline, visiblePrefix);
+  tl.value = resolvedIndex;
+}
+
+function resolveProgressivePlaybackTimelineIndex({
+  displayTimeline,
+  priorTimeline = null,
+  priorIndex = 0,
+  continuePlayback = false,
+  revealedSource = null,
+} = {}) {
+  const PCP = window.ProgressiveCombinedPlayback;
+  if (!displayTimeline?.length || !PCP) return 0;
+  if (continuePlayback && revealedSource) {
+    return PCP.findFirstTimelineIndexForSource(displayTimeline, revealedSource);
+  }
+  if (priorTimeline?.length) {
+    return PCP.mapPreservedTimelineIndex(displayTimeline, priorTimeline, priorIndex);
+  }
+  return PCP.initialVisibleTimelineIndex(displayTimeline, progressiveCombinedState.visiblePrefix);
+}
+
+async function applyProgressiveDisplayFromFullMap(fullMap, visiblePrefix) {
+  const PCP = window.ProgressiveCombinedPlayback;
+  const SLM = window.SegmentLocalMap;
+  if (!PCP || !SLM || !renderer || !visiblePrefix?.length || !fullMap) return;
+  const lookaheadState = PCP.buildInitialLookaheadDisplay(
+    fullMap,
+    progressiveCombinedState.fullProcessData || processData,
+    visiblePrefix,
+    progressiveCombinedState.hiddenLookahead,
+  );
+  if (lookaheadState.hiddenLeaks?.length) {
+    throw new Error(`Hidden geometry leaked into visible display: ${lookaheadState.hiddenLeaks.map((l) => l.layer).join(', ')}`);
+  }
+  progressiveCombinedState.fullMap = lookaheadState.fullMap;
+  progressiveCombinedState.displayMap = SLM.freezeStationaryMapGeometry
+    ? SLM.freezeStationaryMapGeometry(lookaheadState.displayMap)
+    : lookaheadState.displayMap;
+  progressiveCombinedState.displayProcessData = lookaheadState.displayProcessData;
+  renderer.stationaryLocalMap = progressiveCombinedState.displayMap;
+  applyProgressiveTimelineFilter(visiblePrefix, {
+    timelineIndex: PCP.initialVisibleTimelineIndex(
+      progressiveCombinedState.displayProcessData.timeline,
+      visiblePrefix,
+    ),
+  });
+  applyProgressiveRendererPlaybackData();
+}
+
+async function bootstrapProgressiveDisplay(visiblePrefix) {
+  const displayMode = getDisplayMode();
+  $('vehicleRelBanner').classList.toggle('hidden', displayMode !== 'vehicle');
+  $('localPlaybackBanner').classList.toggle('hidden', displayMode !== 'local');
+  $('modeLabel').textContent = displayMode === 'local'
+    ? 'Local playback — stationary segment map with moving arrow'
+    : `Global map — ${processData.stats.routeChunkCount} route chunks`;
+  if (displayMode === 'local') {
+    initLocalGeometryModeSelect();
+    updatePointOnlyControlVisibility(getLocalGeometryMode());
+    initPointCausalToggle();
+    initPointReliabilityTint();
+    initExperimentalBoundariesMode();
+    initMirrorRoadLateralDisplay();
+    updatePointDisplayModeLabel();
+  }
+  const fullMap = await getOrBuildStationaryMapAsync(0, { forceRebuild: true, preferFullMap: true });
+  await applyProgressiveDisplayFromFullMap(fullMap, visiblePrefix);
+  const timelineIndex = parseInt($('timeline')?.value ?? '0', 10);
+  renderer.setFrameIndex(timelineIndex);
+  await updateLocalPlayback(timelineIndex, { preserveViewport: false, forceRefit: true, forceMapRebuild: false });
+  updateInfoPanel(processData.stats);
+  updateFileAuditTable(processData);
+  updateFrameCountPanel(processData);
+  updateChunkTable(processData.chunkDiagnostics, processData.stats);
+  updatePassTable(processData.chunkDiagnostics, processData.geometryDebug);
+  updateTrackDiagnostics(processData);
+  updateTimelineInfo(timelineIndex);
+  storeProgressiveStateSnapshot();
+  updateProgressiveCombinedStatusLabel();
+  renderer.draw();
+}
+
+async function fetchProcessDataForSegments(segments, { bustCache = false, label = 'progressive lookahead prepare' } = {}) {
+  const res = await fetch('/api/process', {
+    method: 'POST',
+    cache: 'no-store',
+    headers: {
+      'Content-Type': 'application/json',
+      'Cache-Control': 'no-cache',
+      Pragma: 'no-cache',
+    },
+    body: JSON.stringify({
+      segments,
+      options: getOptions(),
+      bustCache,
+      label,
+    }),
+  });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || 'Process failed');
+  return data;
+}
+
+async function prepareHiddenLookaheadSource(hiddenSource) {
+  const PCP = window.ProgressiveCombinedPlayback;
+  const SLM = window.SegmentLocalMap;
+  const visible = progressiveCombinedState.visiblePrefix;
+  const processList = [...visible, hiddenSource];
+  const data = await fetchProcessDataForSegments(processList);
+  const freshBase = SLM.buildSegmentLocalMap(data, {
+    geometrySource: normalizeLocalGeometrySelection($('localGeometryMode')?.value),
+    timelineIndex: 0,
+    fitEnabled: localPlaybackOptions().fitEnabled,
+  });
+  const currentState = {
+    visiblePrefix: progressiveCombinedState.visiblePrefix,
+    hiddenLookahead: progressiveCombinedState.hiddenLookahead,
+    fullMap: progressiveCombinedState.fullMap,
+    displayMap: progressiveCombinedState.displayMap,
+    fullProcessData: progressiveCombinedState.fullProcessData,
+    displayProcessData: progressiveCombinedState.displayProcessData,
+  };
+  const prepared = PCP.prepareNextHiddenLookahead(
+    currentState,
+    hiddenSource,
+    freshBase,
+    data,
+    { mirrorChecked: renderer?.getMirrorRoadLateralDisplay?.() ?? true },
+  );
+  if (!prepared.ok) {
+    throw new Error(prepared.reason || 'lookaheadPrepareFailed');
+  }
+  if (prepared.hiddenLeaks?.length) {
+    throw new Error(`Hidden geometry leaked into visible display: ${prepared.hiddenLeaks.map((l) => l.layer).join(', ')}`);
+  }
+  progressiveCombinedState.fullMap = prepared.fullMap;
+  progressiveCombinedState.fullProcessData = prepared.fullProcessData;
+  progressiveCombinedState.processPrefix = prepared.processPrefix;
+  progressiveCombinedState.hiddenLookahead = prepared.hiddenLookahead;
+  storeProgressiveStateSnapshot();
+  updateProgressiveCombinedStatusLabel();
+}
+
+async function progressiveRevealPrepared({ continuePlayback = false } = {}) {
+  const PCP = window.ProgressiveCombinedPlayback;
+  const SLM = window.SegmentLocalMap;
+  const prepared = progressiveCombinedState.hiddenLookahead;
+  if (!prepared) {
+    setStatus('No next segment available');
+    return;
+  }
+  const viewCapture = captureProgressiveViewCapture();
+  const priorTimeline = getPlaybackTimeline();
+  const priorIndex = parseInt($('timeline')?.value ?? '0', 10);
+  stopPlayback();
+  const reveal = PCP.revealPreparedLookahead({
+    visiblePrefix: progressiveCombinedState.visiblePrefix,
+    hiddenLookahead: prepared,
+    fullMap: progressiveCombinedState.fullMap,
+    fullProcessData: progressiveCombinedState.fullProcessData,
+    displayMap: progressiveCombinedState.displayMap,
+    displayProcessData: progressiveCombinedState.displayProcessData,
+  }, { continuePlayback });
+  if (!reveal.ok) {
+    throw new Error(reveal.reason || 'revealFailed');
+  }
+  progressiveCombinedState.visiblePrefix = reveal.visiblePrefix;
+  progressiveCombinedState.prefix = reveal.visiblePrefix;
+  progressiveCombinedState.hiddenLookahead = null;
+  progressiveCombinedState.displayMap = SLM.freezeStationaryMapGeometry
+    ? SLM.freezeStationaryMapGeometry(reveal.displayMap)
+    : reveal.displayMap;
+  progressiveCombinedState.displayProcessData = reveal.displayProcessData;
+  renderer.stationaryLocalMap = progressiveCombinedState.displayMap;
+  const timelineIndex = resolveProgressivePlaybackTimelineIndex({
+    displayTimeline: reveal.displayProcessData.timeline,
+    priorTimeline,
+    priorIndex,
+    continuePlayback,
+    revealedSource: prepared,
+  });
+  applyProgressiveTimelineFilter(reveal.visiblePrefix, { timelineIndex });
+  applyProgressiveRendererPlaybackData();
+  lastLocalPlaybackState = {
+    timelineIndex,
+    geometryMode: normalizeLocalGeometrySelection($('localGeometryMode')?.value),
+    scale: viewCapture.scale,
+    offsetX: viewCapture.offsetX,
+    offsetY: viewCapture.offsetY,
+    localViewportBounds: viewCapture.localViewportBounds,
+  };
+  renderer.setFrameIndex(timelineIndex);
+  await updateLocalPlayback(timelineIndex, { preserveViewport: true, forceRefit: false });
+  updateTimelineInfo(timelineIndex);
+  await refreshLocalPlaybackVideo({ resetTimeline: continuePlayback });
+  if (continuePlayback) schedulePlaybackStep();
+  const following = PCP.resolveNextAvailableSegment(
+    progressiveCombinedState.availableSegments,
+    reveal.visiblePrefix,
+  );
+  if (following) {
+    await prepareHiddenLookaheadSource(following);
+  } else {
+    updateProgressiveCombinedStatusLabel();
+  }
+  storeProgressiveStateSnapshot();
+  setStatus(PCP.formatProgressiveStatusLabel(reveal.visiblePrefix, progressiveCombinedState.hiddenLookahead));
+}
+
+function getEffectiveProgressivePrefix() {
+  const PCP = window.ProgressiveCombinedPlayback;
+  if (!PCP) return [];
+  if (progressiveCombinedState.visiblePrefix.length) {
+    return PCP.orderPrefixFiles(progressiveCombinedState.visiblePrefix, progressiveCombinedState.availableSegments);
+  }
+  if (progressiveCombinedState.prefix.length) {
+    return PCP.orderPrefixFiles(progressiveCombinedState.prefix, progressiveCombinedState.availableSegments);
+  }
+  const selected = selectedSegments();
+  if (selected.length) {
+    return PCP.orderPrefixFiles(selected, progressiveCombinedState.availableSegments);
+  }
+  if (lastProcessedSegmentSelection.length) {
+    return PCP.orderPrefixFiles(lastProcessedSegmentSelection, progressiveCombinedState.availableSegments);
+  }
+  return [];
+}
+
+function syncSegmentSelectToPrefix(prefix) {
+  const sel = $('segmentSelect');
+  if (!sel) return;
+  const set = new Set(prefix);
+  for (const opt of sel.options) {
+    opt.selected = set.has(opt.value);
+  }
+}
+
+function captureProgressiveViewCapture() {
+  return {
+    scale: renderer?.scale,
+    offsetX: renderer?.offsetX,
+    offsetY: renderer?.offsetY,
+    localViewportBounds: renderer?.getLocalViewportBounds?.() ?? null,
+  };
+}
+
+async function restoreProgressiveStateSnapshot(snapshotKey) {
+  const PCP = window.ProgressiveCombinedPlayback;
+  const SLM = window.SegmentLocalMap;
+  const snap = progressiveCombinedState.stateSnapshots.get(snapshotKey);
+  if (!snap) throw new Error('Missing progressive snapshot');
+  progressiveCombinedState.visiblePrefix = [...snap.visiblePrefix];
+  progressiveCombinedState.prefix = [...snap.prefix];
+  progressiveCombinedState.processPrefix = [...snap.processPrefix];
+  progressiveCombinedState.hiddenLookahead = snap.hiddenLookahead;
+  progressiveCombinedState.fullMap = snap.fullMap;
+  progressiveCombinedState.displayMap = snap.displayMap;
+  progressiveCombinedState.fullProcessData = snap.fullProcessData;
+  progressiveCombinedState.displayProcessData = snap.displayProcessData;
+  processData = snap.fullProcessData;
+  if (typeof window !== 'undefined') window.processData = processData;
+  renderer.stationaryLocalMap = SLM.freezeStationaryMapGeometry
+    ? SLM.freezeStationaryMapGeometry(snap.displayMap)
+    : snap.displayMap;
+  syncSegmentSelectToPrefix(snap.visiblePrefix);
+  applyProgressiveTimelineFilter(snap.visiblePrefix, {
+    timelineIndex: snap.timelineIndex ?? 0,
+  });
+  applyProgressiveRendererPlaybackData();
+  const timelineIndex = parseInt($('timeline')?.value ?? '0', 10);
+  renderer.setFrameIndex(timelineIndex);
+  await updateLocalPlayback(timelineIndex, { preserveViewport: true, forceRefit: false });
+  updateTimelineInfo(timelineIndex);
+  await refreshLocalPlaybackVideo({ resetTimeline: false });
+  updateProgressiveCombinedStatusLabel();
+}
+
+async function progressiveAppendNext({ continuePlayback = false } = {}) {
+  const PCP = window.ProgressiveCombinedPlayback;
+  if (!PCP?.isCandidateEnabled(window.location.search)) return;
+
+  const visible = getEffectiveProgressivePrefix();
+  if (!visible.length) {
+    setStatus('Select at least one segment and click Process selected first');
+    return;
+  }
+  if (!progressiveCombinedState.fullMap) {
+    setStatus('Process the current prefix before appending the next segment');
+    return;
+  }
+  if (!progressiveCombinedState.hiddenLookahead) {
+    setStatus('No next segment available');
+    return;
+  }
+
+  const rollbackKey = PCP.prefixSnapshotKey(visible);
+  try {
+    await progressiveRevealPrepared({ continuePlayback });
+  } catch (err) {
+    console.error('[progressive]', err);
+    setStatus(`Progressive reveal failed: ${err.message}. Restoring previous prefix.`);
+    try {
+      await restoreProgressiveStateSnapshot(rollbackKey);
+    } catch (rollbackErr) {
+      console.error('[progressive rollback]', rollbackErr);
+      setStatus(`Rollback failed: ${rollbackErr.message}`);
+    }
+  }
+}
+
+async function progressiveRemoveLast() {
+  const PCP = window.ProgressiveCombinedPlayback;
+  if (!PCP?.isCandidateEnabled(window.location.search)) return;
+
+  const visible = getEffectiveProgressivePrefix();
+  if (!PCP.canRemoveLastSegment(visible)) {
+    setStatus('Cannot remove the initial source from the progressive prefix');
+    return;
+  }
+  const newVisible = visible.slice(0, -1);
+  const snapshotKey = PCP.prefixSnapshotKey(newVisible);
+  try {
+    await restoreProgressiveStateSnapshot(snapshotKey);
+    setStatus(PCP.formatProgressiveStatusLabel(newVisible, progressiveCombinedState.hiddenLookahead));
+  } catch (err) {
+    setStatus(`Remove last failed: ${err.message}`);
+  }
+}
+
 function bindEvents() {
   $('btnProcess').onclick = () => process(selectedSegments(), { label: 'process selected' });
   $('btnProcessAll').onclick = () => process(null, { label: 'process all' });
   $('btnReprocess').onclick = () => reprocessSelected();
+  if (isProgressiveCombinedCandidateEnabled()) {
+    $('btnProgressiveAppend')?.addEventListener('click', () => { void progressiveAppendNext({ continuePlayback: false }); });
+    $('btnProgressiveAppendContinue')?.addEventListener('click', () => { void progressiveAppendNext({ continuePlayback: true }); });
+    $('btnProgressiveRemoveLast')?.addEventListener('click', () => { void progressiveRemoveLast(); });
+  }
   $('btnReset').onclick = () => {
     renderer.resetView();
     if (isLocalPlaybackMode()) renderer.fitToLocalView();
@@ -2592,6 +3090,7 @@ async function init() {
   }
   setupCanvasInteraction();
   bindEvents();
+  initProgressiveCombinedPlaybackUI();
   await loadSegments();
   await loadStage19Summary();
   setStatus('Select segments and click Process or Reprocess');

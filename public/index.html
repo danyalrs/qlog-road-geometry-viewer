@@ -23,6 +23,14 @@
           <button id="btnProcessAll">Combine all segments</button>
           <button id="btnReprocess">Reprocess selected</button>
         </div>
+        <div id="progressiveCombinedPanel" class="progressive-combined-panel hidden">
+          <p class="meta-line" id="progressiveCombinedStatus">Progressive combined range: (none)</p>
+          <div class="btn-row">
+            <button id="btnProgressiveAppend" type="button">Append next segment</button>
+            <button id="btnProgressiveAppendContinue" type="button">Append next and continue</button>
+            <button id="btnProgressiveRemoveLast" type="button">Remove last segment</button>
+          </div>
+        </div>
         <p class="meta-line">Processing version: <strong id="procVersion">—</strong></p>
         <p class="meta-line">Processed at: <strong id="procTime">—</strong></p>
         <label>Visualization mode</label>
@@ -317,6 +325,7 @@
   <script src="segment1_lane_order_diagnostic.js?v=20260903f"></script>
   <script src="render.js?v=20260907h"></script>
   <script src="boundary_bridge_playback.js?v=20260903e"></script>
-  <script src="app.js?v=20260907h"></script>
+  <script src="progressive_combined_playback.js?v=20260914c"></script>
+  <script src="app.js?v=20260914c"></script>
 </body>
 </html>
