@@ -1,0 +1,102 @@
+{
+  "auditDate": "2026-09-15",
+  "branch": "experiment/lane-map-accuracy",
+  "head": "ebfa6af55724125b48325d69ce348a189421b4e0",
+  "mixedReadsFound": [
+    {
+      "consumer": "renderer.setData",
+      "locations": [
+        "applyVisualization",
+        "initConnectedAccumulatedControls refresh",
+        "panel checkbox onchange"
+      ],
+      "before": "processData (full visible+hidden API payload)",
+      "after": "getActiveProgressiveDisplayData() via applyRendererPlaybackData()",
+      "risk": "Timeline index misalignment between full and filtered timeline; lane/frame layers drawn against wrong coordinate context"
+    },
+    {
+      "consumer": "timeline slider max",
+      "location": "applyVisualization",
+      "before": "processData.timeline.length",
+      "after": "getActiveProgressiveDisplayData().timeline.length",
+      "risk": "Slider range included hidden segment frames"
+    },
+    {
+      "consumer": "updateMovementIndicator",
+      "before": "processData.timeline/frames/vehiclePath",
+      "after": "getActiveProgressiveDisplayData()",
+      "risk": "Movement badge used hidden-segment frame at same index"
+    },
+    {
+      "consumer": "boundary bridge/legacy transition",
+      "before": "processData.timeline",
+      "after": "getPlaybackProcessData()",
+      "risk": "Boundary provenance referenced hidden timeline entries"
+    },
+    {
+      "consumer": "tickPlaybackAnimation diagnostic branch",
+      "before": "processData.frames/timeline/vehiclePath",
+      "after": "getPlaybackProcessData()",
+      "risk": "Animated arrow heading from wrong frame identity"
+    },
+    {
+      "consumer": "getOrBuildStationaryMapAsync build path",
+      "before": "processData for SLM.buildSegmentLocalMap and orientation",
+      "after": "getActiveProgressiveDisplayData() for visible builds; getProgressiveHiddenProcessData() only for preferFullMap bootstrap",
+      "risk": "Rebuilt stationary map from full combined payload while displayMap frozen"
+    },
+    {
+      "consumer": "refreshCandidatePolylines / geometry diagnostics",
+      "before": "processData",
+      "after": "getActiveProgressiveDisplayData()",
+      "risk": "Candidate polylines keyed to wrong reference frame"
+    },
+    {
+      "consumer": "resolveLocalPlaybackPose map selection",
+      "before": "renderer.stationaryLocalMap only",
+      "after": "getActiveProgressiveDisplayMap() with renderer fallback",
+      "risk": "Arrow could follow stale map reference if renderer map diverged from snapshot"
+    },
+    {
+      "consumer": "restoreProgressiveStateSnapshot",
+      "before": "processData = snap.fullProcessData; direct renderer.stationaryLocalMap assign",
+      "after": "retain fullProcessData in progressive state only; applyActiveProgressiveDisplaySnapshot()",
+      "risk": "Rollback promoted hidden payload into global visible renderer path"
+    }
+  ],
+  "unifiedSnapshotImplementation": {
+    "accessors": [
+      "hasActiveProgressiveDisplaySnapshot()",
+      "getActiveProgressiveDisplayData()",
+      "getActiveProgressiveDisplayMap()",
+      "getProgressiveHiddenProcessData()",
+      "getProgressiveDisplayDiagnostics()",
+      "applyRendererPlaybackData()",
+      "applyActiveProgressiveDisplaySnapshot()"
+    ],
+    "snapshotContents": [
+      "progressiveCombinedState.displayMap",
+      "progressiveCombinedState.displayProcessData",
+      "progressiveCombinedState.visiblePrefix"
+    ],
+    "hiddenOnly": [
+      "progressiveCombinedState.fullMap",
+      "progressiveCombinedState.fullProcessData",
+      "progressiveCombinedState.hiddenLookahead"
+    ]
+  },
+  "consumerTableAfterFix": {
+    "greyRoad": "displayMap.pointAccumulated via renderer.stationaryLocalMap = displayMap",
+    "laneDots": "displayMap + renderer.data = displayProcessData",
+    "representativeLines": "displayMap via stationaryLocalMap",
+    "sourceCurves": "displayMap via stationaryLocalMap",
+    "trajectory": "displayMap.trajectory",
+    "arrow": "resolveArrowOnSegmentMap(displayMap, displayProcessData.timeline)",
+    "bridges": "displayMap only",
+    "viewportFitBounds": "displayMap.fitBounds",
+    "timeline": "displayProcessData.timeline",
+    "video": "getPlaybackProcessData() + getPlaybackSegmentSelection()",
+    "mapIdentityContext": "getPlaybackProcessData()",
+    "diagnostics": "getProgressiveDisplayDiagnostics() + display snapshot fields in geometry panel"
+  }
+}

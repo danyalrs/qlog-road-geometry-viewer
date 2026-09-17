@@ -1,0 +1,19 @@
+{
+  "frameId": 7203,
+  "logMonoTime": "377571241302",
+  "sourceFile": "qlog_f449c_5.bz2",
+  "beforeFix": {
+    "crossFrameArrowToRoadM": 56.73,
+    "arrowMinusTrajM": 0,
+    "note": "stationary_boundary_diagnosis"
+  },
+  "afterFix": {
+    "arrowMinusTrajM": 0,
+    "arrowToRoadMOnDisplaySnapshot": 2.8920346091827067,
+    "crossFrameArrowToRoadMIfMixed": 2.8920346091827067,
+    "arrow": {
+      "east": 2134.030188288062,
+      "north": -1289.7922272812561
+    }
+  }
+}

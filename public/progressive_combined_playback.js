@@ -399,6 +399,62 @@ function prepareNextHiddenLookahead(state, hiddenSource, freshBaseMap, processed
   };
 }
 
+function nearestPointAccumulatedDistanceM(map, east, north, sourceFile = null) {
+  const pts = map?.pointAccumulated?.points || [];
+  let best = Infinity;
+  for (const p of pts) {
+    if (sourceFile && p.sourceFile !== sourceFile) continue;
+    const pe = p.placedEast ?? p.east;
+    const pn = p.placedNorth ?? p.north;
+    if (!Number.isFinite(pe) || !Number.isFinite(pn)) continue;
+    const d = Math.hypot(pe - east, pn - north);
+    if (d < best) best = d;
+  }
+  return Number.isFinite(best) ? best : null;
+}
+
+function measureDisplaySnapshotFrameAlignment(displayMap, displayProcessData, SLM, {
+  frameId = null,
+  logMonoTime = null,
+  sourceFile = null,
+  timelineIndex = null,
+} = {}) {
+  const timeline = displayProcessData?.timeline || [];
+  let idx = Number.isInteger(timelineIndex) ? timelineIndex : -1;
+  if (idx < 0 && logMonoTime != null) {
+    idx = timeline.findIndex((t) => t.logMonoTime === logMonoTime && (!sourceFile || t.sourceFile === sourceFile));
+  }
+  if (idx < 0 && frameId != null) {
+    idx = timeline.findIndex((t) => t.frameId === frameId && (!sourceFile || t.sourceFile === sourceFile));
+  }
+  if (idx < 0 || !SLM?.resolveArrowOnSegmentMap) return null;
+  const arrow = SLM.resolveArrowOnSegmentMap(displayMap, timeline, idx, {});
+  const traj = (displayMap?.trajectory || []).find((p) => p.frameId === timeline[idx]?.frameId
+    && (!sourceFile || p.sourceFile === sourceFile));
+  const arrowEast = arrow?.east;
+  const arrowNorth = arrow?.north;
+  const trajEast = traj?.placedEast ?? traj?.east;
+  const trajNorth = traj?.placedNorth ?? traj?.north;
+  const arrowMinusTrajM = Number.isFinite(arrowEast) && Number.isFinite(trajEast)
+    ? Math.hypot(arrowEast - trajEast, arrowNorth - trajNorth)
+    : null;
+  const arrowToRoadM = nearestPointAccumulatedDistanceM(
+    displayMap,
+    arrowEast,
+    arrowNorth,
+    sourceFile ?? timeline[idx]?.sourceFile ?? null,
+  );
+  return {
+    timelineIndex: idx,
+    frameId: timeline[idx]?.frameId ?? null,
+    logMonoTime: timeline[idx]?.logMonoTime ?? null,
+    sourceFile: timeline[idx]?.sourceFile ?? null,
+    arrow,
+    arrowMinusTrajM,
+    arrowToRoadM,
+  };
+}
+
 function simulateLegacyStandaloneAppendRotation(visiblePrefix, availableOrdered, { processPrefix, buildBaseMap }) {
   const visible = orderPrefixFiles(visiblePrefix, availableOrdered);
   const hidden = resolveNextAvailableSegment(availableOrdered, visible);
@@ -797,6 +853,8 @@ const api = {
   revealPreparedLookahead,
   prepareNextHiddenLookahead,
   simulateLegacyStandaloneAppendRotation,
+  nearestPointAccumulatedDistanceM,
+  measureDisplaySnapshotFrameAlignment,
 };
 
   if (typeof module !== 'undefined' && module.exports) module.exports = api;

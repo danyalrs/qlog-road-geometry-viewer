@@ -294,8 +294,8 @@ function stationaryMapCacheKey(chunkId, passId, geometrySource) {
   return `${chunkId}:${passId}:${geometrySource}${fit}${cand}`;
 }
 
-function applyOrientationCandidateIfNeeded(map, { cacheSource = null } = {}) {
-  if (!map || !processData) return map;
+function applyOrientationCandidateIfNeeded(map, processPayload, { cacheSource = null } = {}) {
+  if (!map || !processPayload) return map;
   const CBAO = window.CombinedBoundaryAnchoredOrientation;
   const candidate = CBAO?.parseCombinedOrientationCandidate?.(window.location.search) ?? null;
   if (candidate !== 'boundaryAnchored' || !CBAO?.applyBoundaryAnchoredOrientation) {
@@ -304,7 +304,7 @@ function applyOrientationCandidateIfNeeded(map, { cacheSource = null } = {}) {
   if (map.boundaryAnchoredOrientationActive && map.combinedCoordinateFrame === 'combinedPlaced') {
     return map;
   }
-  const oriented = CBAO.applyBoundaryAnchoredOrientation(map, processData, {
+  const oriented = CBAO.applyBoundaryAnchoredOrientation(map, processPayload, {
     mirrorChecked: renderer?.getMirrorRoadLateralDisplay?.() ?? true,
   });
   oriented._orientationAppliedOnCacheHit = true;
@@ -417,9 +417,12 @@ function inflightMapKey(ctx) {
 }
 
 async function getOrBuildStationaryMapAsync(timelineIndex, { forceRebuild = false, preferFullMap = false } = {}) {
-  if (!preferFullMap && isProgressiveCombinedCandidateEnabled() && progressiveCombinedState.displayMap) {
+  if (!preferFullMap && hasActiveProgressiveDisplaySnapshot()) {
     return progressiveCombinedState.displayMap;
   }
+  const mapBuildData = preferFullMap
+    ? getProgressiveHiddenProcessData()
+    : getActiveProgressiveDisplayData();
   const ctx = readMapAcquisitionContext(timelineIndex);
   const inflightKey = inflightMapKey(ctx);
 
@@ -429,11 +432,11 @@ async function getOrBuildStationaryMapAsync(timelineIndex, { forceRebuild = fals
 
   const buildPromise = (async () => {
     const SLM = window.SegmentLocalMap;
-    if (!SLM || !processData) return null;
+    if (!SLM || !mapBuildData) return null;
     const mode = getLocalGeometryMode();
     if (mode === 'diagnostic') return null;
 
-    const { chunkId, passId } = SLM.resolveActiveChunkPass(processData, timelineIndex);
+    const { chunkId, passId } = SLM.resolveActiveChunkPass(mapBuildData, timelineIndex);
     const key = stationaryMapCacheKey(chunkId, passId, mode);
     traceMapAcquisition('acquisition-start', {
       timelineIndex,
@@ -441,12 +444,12 @@ async function getOrBuildStationaryMapAsync(timelineIndex, { forceRebuild = fals
       passId,
       geometrySource: mode,
       fitState: localPlaybackOptions()?.fitEnabled ? 'fit1' : 'fit0',
-      processingVersion: processData.processingVersion ?? null,
+      processingVersion: mapBuildData.processingVersion ?? null,
       graphFitImplVersion: window.GraphFit?.GRAPH_FIT_CACHE_IMPL_VERSION ?? null,
     });
     if (!forceRebuild && stationaryMapCache.has(key)) {
       let cached = stationaryMapCache.get(key);
-      cached = applyOrientationCandidateIfNeeded(cached, { cacheSource: 'memory' });
+      cached = applyOrientationCandidateIfNeeded(cached, mapBuildData, { cacheSource: 'memory' });
       cached.cacheState = cached._orientationAppliedOnCacheHit
         ? 'memory-hit-orientation-applied'
         : 'memory-hit';
@@ -465,7 +468,7 @@ async function getOrBuildStationaryMapAsync(timelineIndex, { forceRebuild = fals
 
     if (!forceRebuild && shouldUseGraphFitPersist(mode, fitOpts)) {
       try {
-        const idBundle = await window.GraphFitPersistCache.computeIdentity(processData, buildOptions);
+        const idBundle = await window.GraphFitPersistCache.computeIdentity(mapBuildData, buildOptions);
         if (idBundle?.cacheKey) {
           traceMapAcquisition('identity-complete', {
             cacheKey: idBundle.cacheKey,
@@ -481,7 +484,7 @@ async function getOrBuildStationaryMapAsync(timelineIndex, { forceRebuild = fals
           });
           if (stored?.map) {
             let frozenMap = SLM.freezeStationaryMapGeometry(stored.map);
-            frozenMap = applyOrientationCandidateIfNeeded(frozenMap, { cacheSource: 'persistent' });
+            frozenMap = applyOrientationCandidateIfNeeded(frozenMap, mapBuildData, { cacheSource: 'persistent' });
             frozenMap.cacheKey = key;
             frozenMap.cacheState = frozenMap._orientationAppliedOnCacheHit
               ? 'persistent-hit-orientation-applied'
@@ -498,12 +501,12 @@ async function getOrBuildStationaryMapAsync(timelineIndex, { forceRebuild = fals
     }
 
     traceMapAcquisition('build-start', { chunkId, passId, geometrySource: mode });
-    const map = SLM.buildSegmentLocalMap(processData, buildOptions);
+    const map = SLM.buildSegmentLocalMap(mapBuildData, buildOptions);
     const CBAO = window.CombinedBoundaryAnchoredOrientation;
     const orientationCandidate = CBAO?.parseCombinedOrientationCandidate?.(window.location.search) ?? null;
     let workingMap = map;
     if (orientationCandidate === 'boundaryAnchored' && CBAO?.applyBoundaryAnchoredOrientation) {
-      workingMap = CBAO.applyBoundaryAnchoredOrientation(map, processData, {
+      workingMap = CBAO.applyBoundaryAnchoredOrientation(map, mapBuildData, {
         mirrorChecked: renderer?.getMirrorRoadLateralDisplay?.() ?? true,
       });
     }
@@ -517,7 +520,7 @@ async function getOrBuildStationaryMapAsync(timelineIndex, { forceRebuild = fals
 
     if (shouldUseGraphFitPersist(mode, fitOpts)) {
       try {
-        const persistKey = await window.GraphFitPersistCache.put(processData, buildOptions, frozenMap);
+        const persistKey = await window.GraphFitPersistCache.put(mapBuildData, buildOptions, frozenMap);
         frozenMap.persistCacheKey = persistKey;
       } catch (err) {
         console.warn('[graph-fit-persist] write failed; viewer remains usable', err);
@@ -565,9 +568,11 @@ function setStatus(msg) { $('status').textContent = msg; }
 function updateGeometryDiagnosticsPanel() {
   const GD = window.GeometryDiagnostics;
   const map = renderer?.stationaryLocalMap;
+  const playbackData = getActiveProgressiveDisplayData();
   const diag = GD?.buildLaneDiagnostics
-    ? GD.buildLaneDiagnostics(processData, map, { geometrySource: getLocalGeometryMode() })
+    ? GD.buildLaneDiagnostics(playbackData, map, { geometrySource: getLocalGeometryMode() })
     : null;
+  const progressiveDiag = getProgressiveDisplayDiagnostics();
   if (renderer && diag) renderer.setGeometryDiagnostics(diag);
 
   const set = (id, val) => {
@@ -608,6 +613,12 @@ function updateGeometryDiagnosticsPanel() {
   set('diagSurfaceChecksum', diag?.roadSurfaceChecksum);
   set('diagMapCache', map ? `${map.cacheState ?? '—'} (${map.cacheKey ?? '—'})` : 'no map');
   set('diagApiCacheHit', String(processData.cacheHit ?? '—'));
+  set('diagProgressiveSnapshot', progressiveDiag.snapshotType);
+  set('diagProgressiveVisible', progressiveDiag.visibleSources.join(', ') || '—');
+  set('diagProgressiveHidden', progressiveDiag.hiddenPreparedSource ?? '—');
+  set('diagProgressiveFrame', progressiveDiag.activeFrame
+    ? `${progressiveDiag.activeFrame.sourceFile ?? '—'} / ${progressiveDiag.activeFrame.frameId ?? '—'} / ${progressiveDiag.activeFrame.logMonoTime ?? '—'}`
+    : '—');
 
   const table = $('diagRepairTable');
   if (table && diag?.repairAnalysis?.length) {
@@ -699,11 +710,72 @@ function selectedSegments() {
   return Array.from($('segmentSelect').selectedOptions).map((o) => o.value);
 }
 
-function getPlaybackProcessData() {
-  if (isProgressiveCombinedCandidateEnabled() && progressiveCombinedState.displayProcessData) {
+function hasActiveProgressiveDisplaySnapshot() {
+  return isProgressiveCombinedCandidateEnabled()
+    && progressiveCombinedState.displayProcessData != null
+    && progressiveCombinedState.displayMap != null;
+}
+
+function getActiveProgressiveDisplayData() {
+  if (hasActiveProgressiveDisplaySnapshot()) {
     return progressiveCombinedState.displayProcessData;
   }
   return processData;
+}
+
+function getActiveProgressiveDisplayMap() {
+  if (hasActiveProgressiveDisplaySnapshot()) {
+    return progressiveCombinedState.displayMap;
+  }
+  return renderer?.stationaryLocalMap ?? null;
+}
+
+function getProgressiveHiddenProcessData() {
+  if (isProgressiveCombinedCandidateEnabled() && progressiveCombinedState.fullProcessData) {
+    return progressiveCombinedState.fullProcessData;
+  }
+  return processData;
+}
+
+function getProgressiveDisplayDiagnostics(timelineIndex = null) {
+  const idx = timelineIndex != null
+    ? timelineIndex
+    : parseInt($('timeline')?.value ?? '0', 10);
+  const entry = getActiveProgressiveDisplayData()?.timeline?.[idx] ?? null;
+  return {
+    snapshotActive: hasActiveProgressiveDisplaySnapshot(),
+    snapshotType: hasActiveProgressiveDisplaySnapshot()
+      ? 'progressiveVisibleFrozen'
+      : (processData ? 'ordinaryProcessData' : 'none'),
+    visibleSources: hasActiveProgressiveDisplaySnapshot()
+      ? [...progressiveCombinedState.visiblePrefix]
+      : getPlaybackSegmentSelection(),
+    hiddenPreparedSource: progressiveCombinedState.hiddenLookahead ?? null,
+    activeFrame: entry ? {
+      sourceFile: entry.sourceFile ?? null,
+      frameId: entry.frameId ?? null,
+      logMonoTime: entry.logMonoTime ?? null,
+      timelineIndex: idx,
+    } : null,
+  };
+}
+
+function getPlaybackProcessData() {
+  return getActiveProgressiveDisplayData();
+}
+
+function applyRendererPlaybackData() {
+  if (!renderer) return;
+  const playbackData = getActiveProgressiveDisplayData();
+  if (!playbackData) return;
+  const displayMode = getDisplayMode();
+  renderer.setData(playbackData, getEffectiveLayers(displayMode), displayMode);
+}
+
+function applyActiveProgressiveDisplaySnapshot() {
+  if (!renderer || !hasActiveProgressiveDisplaySnapshot()) return;
+  renderer.stationaryLocalMap = progressiveCombinedState.displayMap;
+  applyRendererPlaybackData();
 }
 
 function getPlaybackTimeline() {
@@ -999,7 +1071,8 @@ function tickBridgeBoundaryPlayback(timestampMs) {
 }
 
 async function beginRouteBoundaryBridgePlayback(fromIdx, toIdx) {
-  const timeline = processData?.timeline;
+  const playbackData = getPlaybackProcessData();
+  const timeline = playbackData?.timeline;
   if (!timeline?.[fromIdx] || !timeline?.[toIdx] || !localPlaybackVideo) return;
 
   if (isRouteBoundaryLoading()) {
@@ -1069,7 +1142,7 @@ async function beginRouteBoundaryBridgePlayback(fromIdx, toIdx) {
   routeTransition.boundaryFrozenNorth = startPose?.north ?? 0;
 
   const VMD = window.VehicleMovementDisplay;
-  const vehiclePathPoint = VMD?.findVehiclePathPoint(processData.vehiclePath, fromEntry?.logMonoTime);
+  const vehiclePathPoint = VMD?.findVehiclePathPoint(playbackData.vehiclePath, fromEntry?.logMonoTime);
   playbackAnim = {
     active: true,
     frozenBoundary: true,
@@ -1082,7 +1155,7 @@ async function beginRouteBoundaryBridgePlayback(fromIdx, toIdx) {
     display: VMD?.resolveMovementDisplay({
       timelineEntry: fromEntry,
       vehiclePathPoint,
-      framePose: processData.frames?.[fromIdx]?.pose,
+      framePose: playbackData.frames?.[fromIdx]?.pose,
     }),
     startWallMs: performance.now(),
     durationMs: 1,
@@ -1247,7 +1320,8 @@ async function beginRouteBoundaryTransition(fromIdx, toIdx) {
 }
 
 async function beginRouteBoundaryTransitionLegacy(fromIdx, toIdx) {
-  const timeline = processData?.timeline;
+  const playbackData = getPlaybackProcessData();
+  const timeline = playbackData?.timeline;
   if (!timeline?.[fromIdx] || !timeline?.[toIdx] || !localPlaybackVideo) return;
 
   if (isRouteBoundaryLoading()) {
@@ -1289,7 +1363,7 @@ async function beginRouteBoundaryTransitionLegacy(fromIdx, toIdx) {
 
   const VMD = window.VehicleMovementDisplay;
   const t = timeline[fromIdx];
-  const vehiclePathPoint = VMD?.findVehiclePathPoint(processData.vehiclePath, t?.logMonoTime);
+  const vehiclePathPoint = VMD?.findVehiclePathPoint(playbackData.vehiclePath, t?.logMonoTime);
   playbackAnim = {
     active: true,
     frozenBoundary: true,
@@ -1302,7 +1376,7 @@ async function beginRouteBoundaryTransitionLegacy(fromIdx, toIdx) {
     display: VMD?.resolveMovementDisplay({
       timelineEntry: t,
       vehiclePathPoint,
-      framePose: processData.frames?.[fromIdx]?.pose,
+      framePose: playbackData.frames?.[fromIdx]?.pose,
     }),
     startWallMs: performance.now(),
     durationMs: 1,
@@ -1360,7 +1434,7 @@ function isCombinedPlaybackPlaying() {
 }
 
 async function syncVideoToActivePose(options = {}) {
-  if (!localPlaybackVideo || !isLocalPlaybackMode() || !processData) return;
+  if (!localPlaybackVideo || !isLocalPlaybackMode() || !getActiveProgressiveDisplayData()) return;
   const provenance = resolveActivePlaybackProvenance();
   if (!provenance) return;
   await localPlaybackVideo.syncToActivePose(provenance, {
@@ -1397,7 +1471,7 @@ function getCurrentPlaybackLogMonoTime() {
 
 function updateLocalVideoVisibility() {
   if (!localPlaybackVideo) return;
-  const visible = isLocalPlaybackMode() && !!processData;
+  const visible = isLocalPlaybackMode() && !!getActiveProgressiveDisplayData();
   localPlaybackVideo.setVisible(visible);
   if (!visible) localPlaybackVideo.pause();
 }
@@ -1448,7 +1522,7 @@ function resolveLocalPlaybackPose(idx, extraOptions = {}) {
     return pose;
   }
 
-  const map = renderer?.stationaryLocalMap;
+  const map = getActiveProgressiveDisplayMap() ?? renderer?.stationaryLocalMap;
   if (!map?.valid) {
     return {
       east: 0, north: 0, headingDeg: 0, frozen: false, pathIndex: 0,
@@ -1503,7 +1577,8 @@ function interpolatedLogMonoTime(fromIdx, toIdx, alpha) {
 
 async function updateLocalPlayback(idx, { forceRefit = false, forceMapRebuild = false, preserveViewport = false } = {}) {
   const LP = window.LocalPlayback;
-  if (!LP || !processData || !renderer) return;
+  const playbackData = getActiveProgressiveDisplayData();
+  if (!LP || !playbackData || !renderer) return;
   const ctxAtStart = captureMapAcquisitionContext(idx);
   const flags = localPlaybackUrlFlags();
   const mode = getLocalGeometryMode();
@@ -1512,7 +1587,9 @@ async function updateLocalPlayback(idx, { forceRefit = false, forceMapRebuild = 
   renderer.setLaneRelativeArrow(flags.laneRelativeArrow);
 
   const prevKey = renderer.stationaryLocalMap?.cacheKey;
-  const map = await getOrBuildStationaryMapAsync(idx, { forceRebuild: forceMapRebuild });
+  const map = hasActiveProgressiveDisplaySnapshot()
+    ? progressiveCombinedState.displayMap
+    : await getOrBuildStationaryMapAsync(idx, { forceRebuild: forceMapRebuild });
   if (!map || !mapContextsCompatible(ctxAtStart, readMapAcquisitionContext(idx))) {
     traceMapAcquisition('stale-result-reject', {
       timelineIndex: idx,
@@ -1745,11 +1822,12 @@ function refreshConnectedAccumulatedPolylines(map, { timelineIndex } = {}) {
 
 function refreshCandidatePolylines(map) {
   const CLD = window.CandidateLayerDisplay;
-  if (!CLD?.isCandidatesFeatureEnabled?.() || !localPlaybackOptions().candidatesEnabled || !processData || !map?.referencePose) {
+  const playbackData = getActiveProgressiveDisplayData();
+  if (!CLD?.isCandidatesFeatureEnabled?.() || !localPlaybackOptions().candidatesEnabled || !playbackData || !map?.referencePose) {
     renderer?.setCandidatePolylines?.(null);
     return;
   }
-  const built = CLD.buildGatedCandidatePolylines(processData, {
+  const built = CLD.buildGatedCandidatePolylines(playbackData, {
     referencePose: map.referencePose,
     chunkId: map.chunkId,
     passId: map.passId,
@@ -1759,7 +1837,7 @@ function refreshCandidatePolylines(map) {
 }
 
 function switchLocalGeometryLayer() {
-  if (!isLocalPlaybackMode() || !processData || !renderer) return;
+  if (!isLocalPlaybackMode() || !getActiveProgressiveDisplayData() || !renderer) return;
   const mode = getLocalGeometryMode();
   persistLocalGeometryMode(mode);
   updatePointOnlyControlVisibility(mode);
@@ -1841,9 +1919,8 @@ function initConnectedAccumulatedControls() {
     persist();
     const map = renderer?.stationaryLocalMap;
     if (map) refreshConnectedAccumulatedPolylines(map);
-    if (processData && renderer) {
-      const displayMode = getDisplayMode();
-      renderer.setData(processData, getEffectiveLayers(displayMode), displayMode);
+    if (getActiveProgressiveDisplayData() && renderer) {
+      applyRendererPlaybackData();
     } else {
       renderer?.draw?.();
     }
@@ -1926,7 +2003,8 @@ function initMirrorRoadLateralDisplay() {
 }
 
 function applyVisualization() {
-  if (!processData) return;
+  const playbackData = getActiveProgressiveDisplayData();
+  if (!playbackData) return;
   const displayMode = getDisplayMode();
   const wasLocal = renderer?.displayMode === 'local';
   if (wasLocal && displayMode !== 'local') {
@@ -1946,7 +2024,7 @@ function applyVisualization() {
   const tl = $('timeline');
   tl.disabled = false;
   tl.min = 0;
-  tl.max = Math.max(0, (processData.timeline?.length || 1) - 1);
+  tl.max = Math.max(0, (playbackData.timeline?.length || 1) - 1);
 
   let timelineIdx = 0;
   let preserveViewport = false;
@@ -1972,7 +2050,10 @@ function applyVisualization() {
   }
   tl.value = timelineIdx;
 
-  renderer.setData(processData, getEffectiveLayers(displayMode), displayMode);
+  applyRendererPlaybackData();
+  if (hasActiveProgressiveDisplaySnapshot()) {
+    renderer.stationaryLocalMap = progressiveCombinedState.displayMap;
+  }
   renderer.setFrameIndex(timelineIdx);
   if (displayMode === 'local') {
     void updateLocalPlayback(timelineIdx, {
@@ -1984,7 +2065,7 @@ function applyVisualization() {
     renderer.setPlaybackPose(null);
     renderer.fitToView();
   }
-  updateInfoPanel(processData.stats);
+  updateInfoPanel(processData?.stats ?? playbackData.stats);
   updateFileAuditTable(processData);
   updateFrameCountPanel(processData);
   updateChunkTable(processData.chunkDiagnostics, processData.stats);
@@ -2170,14 +2251,15 @@ function updateChunkTable(diagnostics, stats) {
 function updateMovementIndicator(idx) {
   const displayMode = getDisplayMode();
   const VMD = window.VehicleMovementDisplay;
-  if (!VMD || !processData || displayMode === 'global') {
+  const playbackData = getActiveProgressiveDisplayData();
+  if (!VMD || !playbackData || displayMode === 'global') {
     renderer.setMovementDisplay(null);
     return;
   }
 
-  const t = processData.timeline?.[idx];
-  const frame = processData.frames?.[idx];
-  const vehiclePathPoint = VMD.findVehiclePathPoint(processData.vehiclePath, t?.logMonoTime);
+  const t = playbackData.timeline?.[idx];
+  const frame = playbackData.frames?.[idx];
+  const vehiclePathPoint = VMD.findVehiclePathPoint(playbackData.vehiclePath, t?.logMonoTime);
   const display = VMD.resolveMovementDisplay({
     timelineEntry: t,
     vehiclePathPoint,
@@ -2278,7 +2360,7 @@ function tickPlaybackAnimation(timestampMs) {
     if (routeTransition.frozenTimelineValue != null && tlVal !== routeTransition.frozenTimelineValue) {
       const timing = window.SegmentVideoTiming;
       const fromMono = routeTransition.frozenLogMonoTime;
-      const curMono = processData?.timeline?.[tlVal]?.logMonoTime;
+      const curMono = getPlaybackProcessData()?.timeline?.[tlVal]?.logMonoTime;
       if (timing && fromMono && curMono) {
         const delta = timing.computeLocalElapsedSeconds(curMono, fromMono) ?? 0;
         routeTransition.timelineMovementDuringBoundaryS += Math.abs(delta);
@@ -2295,12 +2377,13 @@ function tickPlaybackAnimation(timestampMs) {
   const pose = LP?.lerpPose(playbackAnim.fromPose, playbackAnim.toPose, alpha);
   if (pose) {
     if (getLocalGeometryMode() === 'diagnostic' && playbackAnim.context) {
+      const playbackData = getPlaybackProcessData();
       const timeStr = interpolatedLogMonoTime(playbackAnim.fromIdx, playbackAnim.toIdx, alpha);
-      if (timeStr) {
+      if (timeStr && playbackData) {
         const currentIdx = alpha >= 1 ? playbackAnim.toIdx : playbackAnim.fromIdx;
-        const currentFrame = processData.frames?.[currentIdx];
+        const currentFrame = playbackData.frames?.[currentIdx];
         const poseHeading = currentFrame?.pose?.headingDeg
-          ?? processData.timeline[currentIdx]?.bearingDeg;
+          ?? playbackData.timeline[currentIdx]?.bearingDeg;
         if (Number.isFinite(poseHeading)) {
           pose.headingDeg = poseHeading;
           pose.headingSource = currentFrame?.pose?.headingSource ?? 'framePose';
@@ -2308,10 +2391,10 @@ function tickPlaybackAnimation(timestampMs) {
           const headingPose = LP.resolveArrowAtLogMonoTime(
             playbackAnim.context,
             timeStr,
-            processData.timeline[playbackAnim.fromIdx],
+            playbackData.timeline[playbackAnim.fromIdx],
             {
               ...localPlaybackOptions(),
-              vehiclePath: processData.vehiclePath,
+              vehiclePath: playbackData.vehiclePath,
               smoothHeading: false,
             },
           );
@@ -2565,11 +2648,7 @@ function storeProgressiveStateSnapshot() {
 }
 
 function applyProgressiveRendererPlaybackData() {
-  if (!renderer) return;
-  const playbackData = getPlaybackProcessData();
-  if (!playbackData) return;
-  const displayMode = getDisplayMode();
-  renderer.setData(playbackData, getEffectiveLayers(displayMode), displayMode);
+  applyRendererPlaybackData();
 }
 
 function applyProgressiveTimelineFilter(visiblePrefix, { timelineIndex = undefined } = {}) {
@@ -2624,14 +2703,13 @@ async function applyProgressiveDisplayFromFullMap(fullMap, visiblePrefix) {
     ? SLM.freezeStationaryMapGeometry(lookaheadState.displayMap)
     : lookaheadState.displayMap;
   progressiveCombinedState.displayProcessData = lookaheadState.displayProcessData;
-  renderer.stationaryLocalMap = progressiveCombinedState.displayMap;
   applyProgressiveTimelineFilter(visiblePrefix, {
     timelineIndex: PCP.initialVisibleTimelineIndex(
       progressiveCombinedState.displayProcessData.timeline,
       visiblePrefix,
     ),
   });
-  applyProgressiveRendererPlaybackData();
+  applyActiveProgressiveDisplaySnapshot();
 }
 
 async function bootstrapProgressiveDisplay(visiblePrefix) {
@@ -2758,7 +2836,6 @@ async function progressiveRevealPrepared({ continuePlayback = false } = {}) {
     ? SLM.freezeStationaryMapGeometry(reveal.displayMap)
     : reveal.displayMap;
   progressiveCombinedState.displayProcessData = reveal.displayProcessData;
-  renderer.stationaryLocalMap = progressiveCombinedState.displayMap;
   const timelineIndex = resolveProgressivePlaybackTimelineIndex({
     displayTimeline: reveal.displayProcessData.timeline,
     priorTimeline,
@@ -2767,7 +2844,7 @@ async function progressiveRevealPrepared({ continuePlayback = false } = {}) {
     revealedSource: prepared,
   });
   applyProgressiveTimelineFilter(reveal.visiblePrefix, { timelineIndex });
-  applyProgressiveRendererPlaybackData();
+  applyActiveProgressiveDisplaySnapshot();
   lastLocalPlaybackState = {
     timelineIndex,
     geometryMode: normalizeLocalGeometrySelection($('localGeometryMode')?.value),
@@ -2841,19 +2918,16 @@ async function restoreProgressiveStateSnapshot(snapshotKey) {
   progressiveCombinedState.processPrefix = [...snap.processPrefix];
   progressiveCombinedState.hiddenLookahead = snap.hiddenLookahead;
   progressiveCombinedState.fullMap = snap.fullMap;
-  progressiveCombinedState.displayMap = snap.displayMap;
-  progressiveCombinedState.fullProcessData = snap.fullProcessData;
-  progressiveCombinedState.displayProcessData = snap.displayProcessData;
-  processData = snap.fullProcessData;
-  if (typeof window !== 'undefined') window.processData = processData;
-  renderer.stationaryLocalMap = SLM.freezeStationaryMapGeometry
+  progressiveCombinedState.displayMap = SLM.freezeStationaryMapGeometry
     ? SLM.freezeStationaryMapGeometry(snap.displayMap)
     : snap.displayMap;
+  progressiveCombinedState.fullProcessData = snap.fullProcessData;
+  progressiveCombinedState.displayProcessData = snap.displayProcessData;
   syncSegmentSelectToPrefix(snap.visiblePrefix);
   applyProgressiveTimelineFilter(snap.visiblePrefix, {
     timelineIndex: snap.timelineIndex ?? 0,
   });
-  applyProgressiveRendererPlaybackData();
+  applyActiveProgressiveDisplaySnapshot();
   const timelineIndex = parseInt($('timeline')?.value ?? '0', 10);
   renderer.setFrameIndex(timelineIndex);
   await updateLocalPlayback(timelineIndex, { preserveViewport: true, forceRefit: false });
@@ -2967,9 +3041,12 @@ function bindEvents() {
 
   document.querySelectorAll('.panel input[type=checkbox]').forEach((el) => {
     el.onchange = () => {
-      if (processData) {
+      if (getActiveProgressiveDisplayData()) {
+        applyRendererPlaybackData();
+        if (hasActiveProgressiveDisplaySnapshot()) {
+          renderer.stationaryLocalMap = progressiveCombinedState.displayMap;
+        }
         const displayMode = getDisplayMode();
-        renderer.setData(processData, getEffectiveLayers(displayMode), displayMode);
         if (displayMode === 'vehicle' || displayMode === 'local') {
           updateMovementIndicator(parseInt($('timeline').value, 10));
         }
@@ -3099,7 +3176,7 @@ async function init() {
 window.getPlaybackVideoDebugState = () => {
   const provenance = resolveActivePlaybackProvenance();
   const videoDiag = localPlaybackVideo?.getDiagnostics?.() ?? null;
-  const globalStart = processData?.timeline?.[0]?.logMonoTime ?? null;
+  const globalStart = getPlaybackProcessData()?.timeline?.[0]?.logMonoTime ?? null;
   const logMono = getCurrentPlaybackLogMonoTime();
   const timing = window.SegmentVideoTiming;
   const globalPlaybackTimeS = timing?.computeLocalElapsedSeconds(logMono, globalStart);
@@ -3108,8 +3185,8 @@ window.getPlaybackVideoDebugState = () => {
     : null;
   const videoLocalTimeS = videoDiag?.videoLocalTimeS ?? null;
   const timelineEntries = window.MultisegmentVideoTimeline?.buildSegmentVideoTimeline(
-    processData?.timeline ?? [],
-    lastProcessedSegmentSelection,
+    getPlaybackProcessData()?.timeline ?? [],
+    getPlaybackSegmentSelection(),
   ) ?? [];
   return {
     selectedSegments: [...lastProcessedSegmentSelection],

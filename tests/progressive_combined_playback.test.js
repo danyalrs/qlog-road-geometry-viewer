@@ -19,6 +19,9 @@ const SEG0 = 'qlog_f449c_0.bz2';
 const SEG1 = 'qlog_f449c_1.bz2';
 const SEG2 = 'qlog_f449c_2.bz2';
 const SEG3 = 'qlog_f449c_3.bz2';
+const SEG4 = 'qlog_f449c_4.bz2';
+const SEG5 = 'qlog_f449c_5.bz2';
+const SEG6 = 'qlog_f449c_6.bz2';
 
 function processPrefix(files) {
   const loaded = require('../lib/qlog_data').loadSegmentsData(ROOT, files, VMB.VIEWER_DEFAULT_PROCESS_OPTIONS);
@@ -110,6 +113,20 @@ function prepareNextLookahead(state, hiddenSource) {
     displayMap: state.displayMap,
     displayProcessData: state.displayProcessData,
   };
+}
+
+function buildProgressiveStateUpTo(prefix, availableOrdered) {
+  const ordered = PCP.orderPrefixFiles(prefix, availableOrdered);
+  let state = simulateProgressiveLookaheadState([ordered[0]], availableOrdered);
+  for (let i = 1; i < ordered.length; i++) {
+    const next = ordered[i];
+    if (state.hiddenLookahead !== next) {
+      state = prepareNextLookahead(state, next);
+    }
+    const { state: revealed } = revealLookahead(state);
+    state = revealed;
+  }
+  return state;
 }
 
 function simulateAppProcessAndAppend(visiblePrefix, availableOrdered) {
@@ -431,6 +448,213 @@ describe('progressive visible playback timeline', () => {
     assert.ok(!APP_SRC.includes('findLastTimelineIndexForSource(reveal.displayProcessData.timeline, prepared)'));
     assert.ok(APP_SRC.includes('applyProgressiveRendererPlaybackData'));
     assert.ok(APP_SRC.includes('mapPreservedTimelineIndex'));
+  });
+});
+
+describe('unified progressive display snapshot', () => {
+  const available = () => fs.readdirSync(ROOT).filter((f) => /^qlog_f449c_\d+\.bz2$/i.test(f));
+
+  test('uds-1. candidate-off renderer path still uses ordinary processData accessor', () => {
+    assert.ok(APP_SRC.includes('function getActiveProgressiveDisplayData()'));
+    assert.ok(APP_SRC.includes('return processData;'));
+    assert.equal(PCP.isCandidateEnabled(''), false);
+  });
+
+  test('uds-2. progressive wiring exposes visible snapshot accessors', () => {
+    assert.ok(APP_SRC.includes('hasActiveProgressiveDisplaySnapshot'));
+    assert.ok(APP_SRC.includes('getActiveProgressiveDisplayMap'));
+    assert.ok(APP_SRC.includes('applyActiveProgressiveDisplaySnapshot'));
+    assert.ok(APP_SRC.includes('applyRendererPlaybackData'));
+  });
+
+  test('uds-3. renderer must not bind fullProcessData while visible snapshot exists', () => {
+    assert.ok(APP_SRC.includes('hasActiveProgressiveDisplaySnapshot()'));
+    assert.ok(APP_SRC.includes('applyRendererPlaybackData()'));
+    assert.ok(!APP_SRC.includes('renderer.setData(fullProcessData'));
+    assert.ok(!APP_SRC.includes('renderer.setData(progressiveCombinedState.fullProcessData'));
+  });
+
+  test('uds-4. road, lanes, trajectory and arrow share one display snapshot identity', () => {
+    const state = simulateProgressiveLookaheadState([SEG0, SEG1], available());
+    const metrics = PCP.measureDisplaySnapshotFrameAlignment(
+      state.displayMap,
+      state.displayProcessData,
+      SLM,
+      { timelineIndex: 0 },
+    );
+    assert.ok(metrics);
+    assert.equal(metrics.arrowMinusTrajM, 0);
+    assert.ok(Number.isFinite(metrics.arrowToRoadM));
+  });
+
+  test('uds-5. mapIdentityContext reads visible playback data', () => {
+    assert.ok(APP_SRC.includes('function mapIdentityContext(timelineIndex)'));
+    assert.ok(APP_SRC.includes('const playbackData = getPlaybackProcessData()'));
+    assert.ok(APP_SRC.includes('SLM.resolveActiveChunkPass(playbackData, timelineIndex)'));
+  });
+
+  test('uds-6. viewport fit excludes hidden geometry', () => {
+    const state = simulateProgressiveLookaheadState([SEG0], available());
+    const visibleOnly = PCP.computeVisibleFitBounds(state.fullMap, [SEG0]);
+    const displayBounds = state.displayMap.fitBounds;
+    assert.equal(displayBounds.minE, visibleOnly.minE);
+    assert.equal(displayBounds.maxE, visibleOnly.maxE);
+    assert.equal(state.displayMap.trajectory.some((p) => p.sourceFile === state.hiddenLookahead), false);
+  });
+
+  test('uds-7. video and timeline use the same visible source/frame identity', () => {
+    const state = simulateProgressiveLookaheadState([SEG0], available());
+    const idx = 2;
+    const timeline = state.displayProcessData.timeline;
+    const entries = MVT.buildSegmentVideoTimeline(timeline, state.visiblePrefix);
+    const entry = MVT.resolveTimelineEntryForIndex(entries, idx);
+    assert.equal(timeline[idx].sourceFile, entry.sourceQlogName);
+    const pose = SLM.resolveArrowOnSegmentMap(state.displayMap, timeline, idx, {});
+    assert.ok(Number.isFinite(pose.east));
+  });
+
+  test('uds-8. bootstrap applies one consistent visible snapshot', () => {
+    assert.ok(APP_SRC.includes('applyActiveProgressiveDisplaySnapshot()'));
+    assert.ok(APP_SRC.includes('buildInitialLookaheadDisplay'));
+    const state = simulateProgressiveLookaheadState([SEG0], available());
+    assert.equal(state.displayMap.progressiveVisibleSources?.includes(SEG0), true);
+    assert.equal(state.displayProcessData.timeline.every((t) => t.sourceFile === SEG0), true);
+  });
+
+  test('uds-9. reveal swaps visible snapshot atomically', () => {
+    const state = simulateProgressiveLookaheadState([SEG0], available());
+    const seg0Before = PCP.perSourcePlacedChecksums(state.displayMap, [SEG0])[SEG0];
+    const reveal = PCP.revealPreparedLookahead(state, { continuePlayback: false });
+    assert.equal(reveal.ok, true);
+    assert.equal(PCP.perSourcePlacedChecksums(reveal.displayMap, [SEG0])[SEG0], seg0Before);
+    assert.equal(reveal.displayProcessData.timeline.some((t) => t.sourceFile === SEG1), true);
+    assert.equal(reveal.displayMap.trajectory.some((p) => p.sourceFile === SEG1), true);
+  });
+
+  test('uds-10. remove-last restores prior complete visible snapshot', () => {
+    const { state: afterReveal } = simulateAppProcessAndAppend([SEG0], available());
+    const snap = afterReveal.stateSnapshots.get(PCP.prefixSnapshotKey([SEG0]));
+    assert.ok(snap?.displayMap);
+    assert.ok(snap?.displayProcessData);
+    assert.equal(snap.displayMap.trajectory.some((p) => p.sourceFile === SEG1), false);
+  });
+
+  test('uds-11. failed preparation preserves prior visible snapshot', () => {
+    const availableList = available();
+    const state = simulateProgressiveLookaheadState([SEG0, SEG1], availableList);
+    const before = PCP.snapshotFrozenMap(state.displayMap);
+    const tampered = PCP.snapshotFrozenMap(state.fullMap);
+    tampered.trajectory = tampered.trajectory.map((p, i) => (
+      i === 0 ? { ...p, placedEast: (p.placedEast ?? p.east) + 50 } : p
+    ));
+    const prepared = PCP.prepareNextHiddenLookahead(
+      { ...state, fullMap: tampered },
+      SEG2,
+      buildBaseMap(processPrefix([SEG0, SEG1, SEG2])),
+      processPrefix([SEG0, SEG1, SEG2]),
+      { mirrorChecked: true },
+    );
+    assert.equal(prepared.ok, false);
+    const after = PCP.perSourcePlacedChecksums(state.displayMap, [SEG0, SEG1]);
+    const beforeCs = PCP.perSourcePlacedChecksums(before, [SEG0, SEG1]);
+    assert.deepEqual(beforeCs, after);
+  });
+
+  test('uds-12. Seg5 frame 7203 arrow trajectory road agree on display snapshot', () => {
+    const availableList = available();
+    if (!availableList.includes(SEG5) || !availableList.includes(SEG6)) return;
+    const prefix = [SEG0, SEG1, SEG2, SEG3, SEG4, SEG5].filter((f) => availableList.includes(f));
+    const state = buildProgressiveStateUpTo(prefix, availableList);
+    const withHidden6 = prepareNextLookahead(state, SEG6);
+    const metrics = PCP.measureDisplaySnapshotFrameAlignment(
+      withHidden6.displayMap,
+      withHidden6.displayProcessData,
+      SLM,
+      { frameId: 7203, logMonoTime: '377571241302', sourceFile: SEG5 },
+    );
+    assert.ok(metrics, 'Seg5 frame 7203 not found in visible timeline');
+    assert.equal(metrics.arrowMinusTrajM, 0);
+    assert.ok(metrics.arrowToRoadM != null && metrics.arrowToRoadM < 5);
+  });
+
+  test('uds-13. progressive frame identity survives timeline filtering', () => {
+    const state = simulateProgressiveLookaheadState([SEG0], available());
+    const priorTimeline = state.displayProcessData.timeline;
+    const priorIndex = Math.min(3, priorTimeline.length - 1);
+    const reveal = PCP.revealPreparedLookahead(state, { continuePlayback: false });
+    const mapped = PCP.mapPreservedTimelineIndex(
+      reveal.displayProcessData.timeline,
+      priorTimeline,
+      priorIndex,
+    );
+    const prior = priorTimeline[priorIndex];
+    const mappedEntry = reveal.displayProcessData.timeline[mapped];
+    assert.equal(mappedEntry.sourceFile, prior.sourceFile);
+    assert.equal(mappedEntry.logMonoTime, prior.logMonoTime);
+    assert.equal(mappedEntry.frameId, prior.frameId);
+  });
+
+  test('uds-14. hidden Seg6 cannot affect visible Seg5 arrow placement', () => {
+    const availableList = available();
+    if (!availableList.includes(SEG5) || !availableList.includes(SEG6)) return;
+    const prefix = [SEG0, SEG1, SEG2, SEG3, SEG4, SEG5].filter((f) => availableList.includes(f));
+    const state = buildProgressiveStateUpTo(prefix, availableList);
+    const beforePrepare = PCP.measureDisplaySnapshotFrameAlignment(
+      state.displayMap,
+      state.displayProcessData,
+      SLM,
+      { frameId: 7203, logMonoTime: '377571241302', sourceFile: SEG5 },
+    );
+    const withHidden6 = prepareNextLookahead(state, SEG6);
+    const afterPrepare = PCP.measureDisplaySnapshotFrameAlignment(
+      withHidden6.displayMap,
+      withHidden6.displayProcessData,
+      SLM,
+      { frameId: 7203, logMonoTime: '377571241302', sourceFile: SEG5 },
+    );
+    assert.ok(beforePrepare && afterPrepare);
+    assert.equal(afterPrepare.arrow.east, beforePrepare.arrow.east);
+    assert.equal(afterPrepare.arrow.north, beforePrepare.arrow.north);
+  });
+
+  test('uds-15. Seg0 orientation remains frozen across Seg1 reveal', () => {
+    const result = simulateAppProcessAndAppend([SEG0], available());
+    assert.equal(result.afterSeg0, result.initialSeg0);
+  });
+
+  test('uds-16. Seg2 left-curvature regression remains passing', () => {
+    const availableList = available();
+    const { state: afterReveal } = simulateAppProcessAndAppend([SEG0], availableList);
+    const withHidden2 = prepareNextLookahead(afterReveal, SEG2);
+    const { state: afterSeg2 } = revealLookahead(withHidden2);
+    const seg2 = afterSeg2.displayMap.trajectory.filter((p) => p.sourceFile === SEG2);
+    assert.equal(CBAO.dominantTurnSign(CBAO.signedTurnSequence(seg2)), 'left');
+  });
+
+  test('uds-17. renderer path binds visible display snapshot not separate fullMap geometry', () => {
+    assert.ok(APP_SRC.includes('applyActiveProgressiveDisplaySnapshot'));
+    assert.ok(APP_SRC.includes('hasActiveProgressiveDisplaySnapshot()'));
+    assert.ok(APP_SRC.includes('getActiveProgressiveDisplayMap'));
+    const availableList = available();
+    if (!availableList.includes(SEG5) || !availableList.includes(SEG6)) return;
+    const prefix = [SEG0, SEG1, SEG2, SEG3, SEG4, SEG5].filter((f) => availableList.includes(f));
+    const state = buildProgressiveStateUpTo(prefix, availableList);
+    const withHidden6 = prepareNextLookahead(state, SEG6);
+    const frozen = PCP.measureDisplaySnapshotFrameAlignment(
+      withHidden6.displayMap,
+      withHidden6.displayProcessData,
+      SLM,
+      { frameId: 7203, logMonoTime: '377571241302', sourceFile: SEG5 },
+    );
+    assert.ok(frozen);
+    assert.equal(frozen.arrowMinusTrajM, 0);
+    assert.ok(frozen.arrowToRoadM < 5);
+    const visibleChecksum = PCP.perSourcePlacedChecksums(withHidden6.displayMap, [SEG5])[SEG5];
+    const filteredChecksum = PCP.perSourcePlacedChecksums(
+      PCP.filterMapToVisibleSources(withHidden6.fullMap, withHidden6.visiblePrefix),
+      [SEG5],
+    )[SEG5];
+    assert.equal(visibleChecksum, filteredChecksum);
   });
 });
 
