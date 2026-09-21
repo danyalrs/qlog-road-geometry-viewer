@@ -96,7 +96,7 @@ function expectHeadingAlongPath(headingDeg, dx, dy, message) {
 describe('local playback UI mode', () => {
   it('includes Local playback with stationary map label', () => {
     const html = fs.readFileSync(INDEX_HTML, 'utf8');
-    assert.match(html, /value="local">Local playback<\/option>/);
+    assert.match(html, /value="local" selected>Local playback<\/option>/);
     assert.match(html, /stationary segment map with moving arrow/);
     assert.match(html, /Raw mapped observations/);
     assert.match(html, /Fused lane lines/);

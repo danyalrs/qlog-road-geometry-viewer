@@ -64,6 +64,8 @@ let progressiveCombinedState = {
   displayProcessData: null,
   stateSnapshots: new Map(),
 };
+let progressiveViewportFollowArrow = false;
+let progressiveViewportFollowSuspended = false;
 
 const $ = (id) => document.getElementById(id);
 
@@ -1304,11 +1306,12 @@ function commitRouteBoundaryTransition({ videoReady = true, missing = false } = 
   }
 
   if (resume) {
-    $('btnPlay').textContent = '⏸ Pause';
+    setPlaybackButtonLabels(true);
     schedulePlaybackStep();
   } else {
-    $('btnPlay').textContent = '▶ Play';
+    setPlaybackButtonLabels(false);
   }
+  syncPlaybackControlStates(toIdx);
   void token;
 }
 
@@ -2323,6 +2326,8 @@ function updateTimelineInfo(idx) {
     renderer.draw();
   }
   updateMovementIndicator(idx);
+  applyFollowArrowIfNeeded();
+  syncPlaybackControlStates(idx);
 }
 
 function logMonoDeltaMs(timeline, fromIdx, toIdx, speed) {
@@ -2490,6 +2495,75 @@ function schedulePlaybackStep() {
   }, durationMs);
 }
 
+function isPlaybackUiPlaying() {
+  if (isRouteBoundaryLoading()) return routeTransition.resumeAfterBoundary;
+  return !!(playStepTimer || playbackAnim?.active);
+}
+
+function setPlaybackButtonLabels(playing) {
+  const label = playing ? '⏸ Pause' : '▶ Play';
+  for (const id of ['btnPlay', 'btnProgressivePlay']) {
+    const el = $(id);
+    if (el) el.textContent = label;
+  }
+}
+
+function getVisibleTimelineMaxIndex() {
+  const tl = $('timeline');
+  if (tl && !tl.disabled) return parseInt(tl.max, 10);
+  const len = getPlaybackProcessData()?.timeline?.length ?? 0;
+  return Math.max(0, len - 1);
+}
+
+function updateProgressiveViewportPlaybackInfo(idx) {
+  if (!isProgressiveViewportCandidateEnabled()) return;
+  const el = $('progressiveViewportPlaybackInfo');
+  if (!el) return;
+  const t = getPlaybackProcessData()?.timeline?.[idx];
+  if (!t) {
+    el.textContent = '—';
+    return;
+  }
+  const time = t.logMonoTime != null ? String(t.logMonoTime) : '—';
+  el.textContent = `Frame ${idx} · ${t.sourceFile ?? '—'} · ${time}`;
+}
+
+function syncPlaybackControlStates(idx = parseInt($('timeline')?.value ?? '0', 10)) {
+  const atStart = idx <= 0;
+  const atEnd = idx >= getVisibleTimelineMaxIndex();
+  for (const id of ['btnPrevFrame', 'btnProgressivePrevFrame']) {
+    const el = $(id);
+    if (el) el.disabled = atStart;
+  }
+  for (const id of ['btnNextFrame', 'btnProgressiveNextFrame']) {
+    const el = $(id);
+    if (el) el.disabled = atEnd;
+  }
+  setPlaybackButtonLabels(isPlaybackUiPlaying());
+  updateProgressiveViewportPlaybackInfo(idx);
+}
+
+function stepTimelinePrev() {
+  const tl = $('timeline');
+  if (!tl || tl.disabled) return;
+  const idx = parseInt(tl.value, 10);
+  if (idx <= 0) return;
+  if (playStepTimer || playbackAnim?.active) stopPlayback();
+  tl.value = idx - 1;
+  updateTimelineInfo(idx - 1);
+}
+
+function stepTimelineNext() {
+  const tl = $('timeline');
+  if (!tl || tl.disabled) return;
+  const idx = parseInt(tl.value, 10);
+  const max = getVisibleTimelineMaxIndex();
+  if (idx >= max) return;
+  if (playStepTimer || playbackAnim?.active) stopPlayback();
+  tl.value = idx + 1;
+  updateTimelineInfo(idx + 1);
+}
+
 function stopPlayback() {
   if (isRouteBoundaryLoading()) {
     routeTransition.resumeAfterBoundary = false;
@@ -2497,8 +2571,9 @@ function stopPlayback() {
       clearTimeout(playStepTimer);
       playStepTimer = null;
     }
-    $('btnPlay').textContent = '▶ Play';
+    setPlaybackButtonLabels(false);
     playSpeed = parseFloat($('playSpeed')?.value ?? 1);
+    syncPlaybackControlStates();
     return;
   }
   if (playStepTimer) {
@@ -2511,8 +2586,9 @@ function stopPlayback() {
   }
   playbackAnim = null;
   localPlaybackVideo?.onMasterPaused(resolveActivePlaybackProvenance());
-  $('btnPlay').textContent = '▶ Play';
+  setPlaybackButtonLabels(false);
   playSpeed = parseFloat($('playSpeed')?.value ?? 1);
+  syncPlaybackControlStates();
 }
 
 function togglePlayback() {
@@ -2522,7 +2598,7 @@ function togglePlayback() {
       if (isBoundaryBridgePlaybackActive() && isBridgeBoundaryTransitionState()) {
         routeTransition.bridgePausedAtMs = performance.now();
       }
-      $('btnPlay').textContent = '▶ Play';
+      setPlaybackButtonLabels(false);
     } else {
       routeTransition.resumeAfterBoundary = true;
       if (isBoundaryBridgePlaybackActive() && isBridgeBoundaryTransitionState()
@@ -2533,8 +2609,9 @@ function togglePlayback() {
         );
         routeTransition.bridgePausedAtMs = null;
       }
-      $('btnPlay').textContent = '⏸ Pause';
+      setPlaybackButtonLabels(true);
     }
+    syncPlaybackControlStates();
     return;
   }
   if (playStepTimer || playbackAnim?.active) {
@@ -2542,7 +2619,8 @@ function togglePlayback() {
     updateTimelineInfo(parseInt($('timeline').value, 10));
     return;
   }
-  $('btnPlay').textContent = '⏸ Pause';
+  setPlaybackButtonLabels(true);
+  syncPlaybackControlStates();
   schedulePlaybackStep();
 }
 
@@ -2553,6 +2631,11 @@ function setupCanvasInteraction() {
 
   canvas.addEventListener('wheel', (e) => {
     e.preventDefault();
+    if (isProgressiveViewportCandidateEnabled() && !e.ctrlKey) {
+      const hint = $('progressiveViewportHint');
+      if (hint) hint.textContent = 'Ctrl + wheel to zoom (ordinary wheel pan/zoom disabled)';
+      return;
+    }
     renderer.scale *= e.deltaY < 0 ? 1.1 : 0.9;
     renderer.draw();
   }, { passive: false });
@@ -2565,8 +2648,11 @@ function setupCanvasInteraction() {
   window.addEventListener('mouseup', () => { dragging = false; });
   window.addEventListener('mousemove', (e) => {
     if (dragging) {
-      renderer.offsetX += e.clientX - lastX;
-      renderer.offsetY += e.clientY - lastY;
+      const dx = e.clientX - lastX;
+      const dy = e.clientY - lastY;
+      if (dx !== 0 || dy !== 0) disableProgressiveFollowArrowFromPan();
+      renderer.offsetX += dx;
+      renderer.offsetY += dy;
       lastX = e.clientX;
       lastY = e.clientY;
       renderer.draw();
@@ -2614,12 +2700,109 @@ function isProgressiveCombinedCandidateEnabled() {
   return PCP?.isCandidateEnabled?.(window.location.search) === true;
 }
 
+function isProgressiveViewportCandidateEnabled() {
+  const PVP = window.ProgressiveViewportCandidate;
+  return PVP?.isCandidateEnabled?.(window.location.search, isProgressiveCombinedCandidateEnabled()) === true;
+}
+
+function syncProgressiveViewportRendererFlags() {
+  if (!renderer) return;
+  renderer.setProgressiveDrawLod?.(isProgressiveViewportCandidateEnabled());
+}
+
+function fitProgressiveVisibleRoute() {
+  const PVP = window.ProgressiveViewportCandidate;
+  const map = getActiveProgressiveDisplayMap();
+  if (!PVP || !map || !renderer || !hasActiveProgressiveDisplaySnapshot()) return;
+  const bounds = PVP.computeVisibleRouteBounds(map, progressiveCombinedState.visiblePrefix);
+  if (bounds?.finite) {
+    renderer._localViewportBounds = bounds;
+    renderer.fitToView(bounds);
+  }
+}
+
+function fitProgressiveActiveSegment() {
+  const PVP = window.ProgressiveViewportCandidate;
+  const map = getActiveProgressiveDisplayMap();
+  const playbackData = getActiveProgressiveDisplayData();
+  if (!PVP || !map || !renderer || !playbackData || !hasActiveProgressiveDisplaySnapshot()) return;
+  const idx = parseInt($('timeline')?.value ?? '0', 10);
+  const source = playbackData.timeline?.[idx]?.sourceFile ?? null;
+  const resolved = PVP.resolveFitBounds(map, progressiveCombinedState.visiblePrefix, source);
+  if (resolved.bounds?.finite) {
+    renderer._localViewportBounds = resolved.bounds;
+    renderer.fitToView(resolved.bounds);
+  }
+}
+
+function applyFollowArrowIfNeeded() {
+  if (!isProgressiveViewportCandidateEnabled() || !progressiveViewportFollowArrow
+    || progressiveViewportFollowSuspended || !renderer?.playbackPose) return;
+  renderer.centerOnWorldPoint(renderer.playbackPose.east, renderer.playbackPose.north);
+  renderer.draw();
+}
+
+function disableProgressiveFollowArrowFromPan() {
+  if (!isProgressiveViewportCandidateEnabled() || !progressiveViewportFollowArrow) return;
+  progressiveViewportFollowArrow = false;
+  progressiveViewportFollowSuspended = true;
+  const cb = $('progressiveViewportFollowArrow');
+  if (cb) cb.checked = false;
+}
+
+function initProgressiveViewportPlaybackUI() {
+  const panel = $('progressiveViewportPlaybackPanel');
+  const enabled = isProgressiveViewportCandidateEnabled();
+  if (panel) panel.classList.toggle('hidden', !enabled);
+  if (!enabled) return;
+  const bindOnce = (id, handler) => {
+    const el = $(id);
+    if (el && !el.dataset.bound) {
+      el.dataset.bound = '1';
+      el.addEventListener('click', handler);
+    }
+  };
+  bindOnce('btnProgressivePlay', () => togglePlayback());
+  bindOnce('btnProgressivePrevFrame', () => stepTimelinePrev());
+  bindOnce('btnProgressiveNextFrame', () => stepTimelineNext());
+  syncPlaybackControlStates();
+}
+
+function initProgressiveViewportUI() {
+  const panel = $('progressiveViewportPanel');
+  const enabled = isProgressiveViewportCandidateEnabled();
+  if (panel) panel.classList.toggle('hidden', !enabled);
+  initProgressiveViewportPlaybackUI();
+  syncProgressiveViewportRendererFlags();
+  if (!enabled) return;
+  const fitVisibleBtn = $('btnProgressiveFitVisibleRoute');
+  if (fitVisibleBtn && !fitVisibleBtn.dataset.bound) {
+    fitVisibleBtn.dataset.bound = '1';
+    fitVisibleBtn.addEventListener('click', () => fitProgressiveVisibleRoute());
+  }
+  const fitActiveBtn = $('btnProgressiveFitActiveSegment');
+  if (fitActiveBtn && !fitActiveBtn.dataset.bound) {
+    fitActiveBtn.dataset.bound = '1';
+    fitActiveBtn.addEventListener('click', () => fitProgressiveActiveSegment());
+  }
+  const followCb = $('progressiveViewportFollowArrow');
+  if (followCb && !followCb.dataset.bound) {
+    followCb.dataset.bound = '1';
+    followCb.addEventListener('change', () => {
+      progressiveViewportFollowArrow = followCb.checked;
+      progressiveViewportFollowSuspended = false;
+      if (progressiveViewportFollowArrow) applyFollowArrowIfNeeded();
+    });
+  }
+}
+
 function initProgressiveCombinedPlaybackUI() {
   const panel = $('progressiveCombinedPanel');
   const enabled = isProgressiveCombinedCandidateEnabled();
   if (panel) panel.classList.toggle('hidden', !enabled);
   if (!enabled) return;
   updateProgressiveCombinedStatusLabel();
+  initProgressiveViewportUI();
 }
 
 function updateProgressiveCombinedStatusLabel() {
@@ -2665,6 +2848,7 @@ function applyProgressiveTimelineFilter(visiblePrefix, { timelineIndex = undefin
     ? PCP.clampTimelineIndex(timeline, timelineIndex)
     : PCP.initialVisibleTimelineIndex(timeline, visiblePrefix);
   tl.value = resolvedIndex;
+  syncPlaybackControlStates(resolvedIndex);
 }
 
 function resolveProgressivePlaybackTimelineIndex({
@@ -2710,6 +2894,7 @@ async function applyProgressiveDisplayFromFullMap(fullMap, visiblePrefix) {
     ),
   });
   applyActiveProgressiveDisplaySnapshot();
+  syncProgressiveViewportRendererFlags();
 }
 
 async function bootstrapProgressiveDisplay(visiblePrefix) {
@@ -2845,6 +3030,7 @@ async function progressiveRevealPrepared({ continuePlayback = false } = {}) {
   });
   applyProgressiveTimelineFilter(reveal.visiblePrefix, { timelineIndex });
   applyActiveProgressiveDisplaySnapshot();
+  syncProgressiveViewportRendererFlags();
   lastLocalPlaybackState = {
     timelineIndex,
     geometryMode: normalizeLocalGeometrySelection($('localGeometryMode')?.value),
@@ -2928,6 +3114,7 @@ async function restoreProgressiveStateSnapshot(snapshotKey) {
     timelineIndex: snap.timelineIndex ?? 0,
   });
   applyActiveProgressiveDisplaySnapshot();
+  syncProgressiveViewportRendererFlags();
   const timelineIndex = parseInt($('timeline')?.value ?? '0', 10);
   renderer.setFrameIndex(timelineIndex);
   await updateLocalPlayback(timelineIndex, { preserveViewport: true, forceRefit: false });
@@ -3067,21 +3254,26 @@ function bindEvents() {
     }
     updateTimelineInfo(parseInt(e.target.value, 10));
   };
-  $('btnPrevFrame').onclick = () => {
-    const tl = $('timeline');
-    tl.value = Math.max(0, parseInt(tl.value, 10) - 1);
-    updateTimelineInfo(parseInt(tl.value, 10));
-  };
-  $('btnNextFrame').onclick = () => {
-    const tl = $('timeline');
-    tl.value = Math.min(parseInt(tl.max, 10), parseInt(tl.value, 10) + 1);
-    updateTimelineInfo(parseInt(tl.value, 10));
-  };
+  $('btnPrevFrame').onclick = () => stepTimelinePrev();
+  $('btnNextFrame').onclick = () => stepTimelineNext();
 
   $('btnPng').onclick = () => renderer.exportPng();
   $('btnCsv').onclick = () => { window.open('/api/export/csv', '_blank'); };
   $('btnGeoJson').onclick = () => { window.open('/api/export/geojson', '_blank'); };
   initConnectedAccumulatedControls();
+
+  document.addEventListener('keydown', (e) => {
+    if (!isProgressiveViewportCandidateEnabled()) return;
+    const tag = e.target?.tagName;
+    if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || e.target?.isContentEditable) return;
+    if (e.key === 'Home' && e.shiftKey) {
+      e.preventDefault();
+      fitProgressiveVisibleRoute();
+    } else if (e.key === 'Home') {
+      e.preventDefault();
+      fitProgressiveActiveSegment();
+    }
+  });
 }
 
 function renderStage19Summary(data) {

@@ -1,0 +1,44 @@
+{
+  "focusCase": "Seg9-Seg19",
+  "visibleSources": [
+    "qlog_f449c_9.bz2",
+    "qlog_f449c_10.bz2",
+    "qlog_f449c_11.bz2",
+    "qlog_f449c_12.bz2",
+    "qlog_f449c_13.bz2",
+    "qlog_f449c_14.bz2",
+    "qlog_f449c_15.bz2",
+    "qlog_f449c_16.bz2",
+    "qlog_f449c_17.bz2",
+    "qlog_f449c_18.bz2",
+    "qlog_f449c_19.bz2"
+  ],
+  "geometryCounts": {
+    "visibleSourceCount": 11,
+    "pointDots": 23114,
+    "trajectoryPoints": 372,
+    "laneFragmentVertices": 0,
+    "roadPolygonVertices": 10369,
+    "connectedPolylineVertices": 0,
+    "totalVertices": 33855
+  },
+  "visibleRouteBounds": {
+    "minE": -6.77654490604969,
+    "maxE": 9964.916359692577,
+    "minN": -2463.8630538100642,
+    "maxN": 5.018443529895388,
+    "finite": true
+  },
+  "geometryChecksum": "{\"qlog_f449c_9.bz2\":\"[[10843,\\\"-6.6324\\\",\\\"3.6564\\\"]]\",\"qlog_f44",
+  "lodSimulation": {
+    "pointDotsTotal": 23114,
+    "drawIndicesZoomedOut": 16891,
+    "drawIndicesZoomedIn": 22225,
+    "reductionRatioZoomedOut": 0.731,
+    "reductionRatioZoomedIn": 0.962
+  },
+  "diagnosis": {
+    "dominantLayer": "pointAccumulated.points",
+    "note": "Point dots and per-frame source curves dominate draw cost on long progressive prefixes."
+  }
+}

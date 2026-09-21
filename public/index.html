@@ -30,6 +30,24 @@
             <button id="btnProgressiveAppendContinue" type="button">Append next and continue</button>
             <button id="btnProgressiveRemoveLast" type="button">Remove last segment</button>
           </div>
+          <div id="progressiveViewportPlaybackPanel" class="progressive-viewport-playback-panel hidden">
+            <div class="btn-row">
+              <button id="btnProgressivePrevFrame" type="button">◀ Prev frame</button>
+              <button id="btnProgressivePlay" type="button">▶ Play</button>
+              <button id="btnProgressiveNextFrame" type="button">Next frame ▶</button>
+            </div>
+            <p class="meta-line subtle" id="progressiveViewportPlaybackInfo">—</p>
+          </div>
+          <div id="progressiveViewportPanel" class="progressive-viewport-panel hidden">
+            <p class="meta-line subtle" id="progressiveViewportHint">Ctrl + wheel to zoom</p>
+            <div class="btn-row">
+              <button id="btnProgressiveFitVisibleRoute" type="button">Fit visible route</button>
+              <button id="btnProgressiveFitActiveSegment" type="button">Fit active segment</button>
+            </div>
+            <label class="meta-line">
+              <input type="checkbox" id="progressiveViewportFollowArrow"> Follow arrow
+            </label>
+          </div>
         </div>
         <p class="meta-line">Processing version: <strong id="procVersion">—</strong></p>
         <p class="meta-line">Processed at: <strong id="procTime">—</strong></p>
@@ -323,9 +341,10 @@
   <script src="point_accumulated_lane_polylines.js?v=20260907d"></script>
   <script src="canvas_layer_attribution.js?v=20260907a"></script>
   <script src="segment1_lane_order_diagnostic.js?v=20260903f"></script>
-  <script src="render.js?v=20260907h"></script>
+  <script src="render.js?v=20260918a"></script>
   <script src="boundary_bridge_playback.js?v=20260903e"></script>
   <script src="progressive_combined_playback.js?v=20260914c"></script>
-  <script src="app.js?v=20260914c"></script>
+  <script src="progressive_viewport_candidate.js?v=20260917a"></script>
+  <script src="app.js?v=20260918a"></script>
 </body>
 </html>

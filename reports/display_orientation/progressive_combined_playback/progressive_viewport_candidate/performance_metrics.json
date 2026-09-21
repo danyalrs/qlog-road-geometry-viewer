@@ -1,0 +1,30 @@
+{
+  "focusCase": "Seg9-Seg19 progressive visible prefix",
+  "measuredOn": "2026-09-17",
+  "geometryChecksumUnchanged": true,
+  "beforeCandidate": {
+    "wheelZoom": "ordinary wheel scales canvas immediately",
+    "fitRecovery": "manual Reset/Fit only",
+    "pointDotsDrawnPerFrame": 23114,
+    "connectedPolylineVerticesDrawn": "all vertices (no screen decimation)",
+    "notes": "Long prefixes accumulate ~23k point-accumulated dots and ~10k road polygon vertices."
+  },
+  "afterCandidate": {
+    "wheelZoom": "ordinary wheel blocked; Ctrl+wheel scales",
+    "fitVisibleRoute": "displayMap visible-prefix bounds only",
+    "fitActiveSegment": "active timeline source bounds with visible-route fallback",
+    "followArrow": "translation-only centering; pan disables follow",
+    "lodAtScale1": {
+      "pointDotsTotal": 23114,
+      "pointDotsDrawnEstimate": 16891,
+      "drawCommandReductionPct": 26.9
+    },
+    "lodAtHighZoom": {
+      "pointDotsDrawnEstimate": 22225,
+      "drawCommandReductionPct": 3.8,
+      "note": "Near-full detail when zoomed in (minPixelGap shrinks with scale)."
+    }
+  },
+  "dominantBottleneck": "pointAccumulated.points canvas fill + connected per-frame polyline strokes",
+  "hiddenSourceDrawing": "excluded — fit and display snapshot use displayMap only"
+}

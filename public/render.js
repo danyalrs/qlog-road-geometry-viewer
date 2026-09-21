@@ -115,6 +115,9 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     this._connectedAccumulatedDrawn = false;
     this._representativeLaneLines = null;
     this._representativeLaneLinesDiagnostics = null;
+    this._progressiveDrawLod = false;
+    this._lastDrawStats = null;
+    this._drawStatsCounters = null;
     this.localRoadSurfacePathRadiusM = 15;
     this.localRoadSurfaceRibbonFallbackHalfWidthM = 7.5;
     this.localRoadSurfaceRibbonMinHalfWidthM = 3;
@@ -1045,6 +1048,32 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     this.fitToView(fallback);
   }
 
+  setProgressiveDrawLod(enabled) {
+    this._progressiveDrawLod = !!enabled;
+  }
+
+  getLastDrawStats() {
+    return this._lastDrawStats;
+  }
+
+  centerOnWorldPoint(east, north) {
+    if (!Number.isFinite(east) || !Number.isFinite(north)) return;
+    const screen = this.worldToScreen(east, north);
+    const cx = this.w / 2;
+    const cy = this.h / 2;
+    this.offsetX += cx - screen.x;
+    this.offsetY += cy - screen.y;
+  }
+
+  _lodIndicesForPolylinePoints(points, projectFn) {
+    const PVP = typeof window !== 'undefined' ? window.ProgressiveViewportCandidate : null;
+    if (!this._progressiveDrawLod || !PVP?.screenSpaceDecimateIndices || !points?.length || points.length <= 3) {
+      return null;
+    }
+    const minPixelGap = Math.max(1, 8 / Math.max(this.scale, 0.25));
+    return PVP.screenSpaceDecimateIndices(points.length, (i) => projectFn(points[i], i), { minPixelGap });
+  }
+
   resetView() {
     this.scale = this.displayMode === 'vehicle' ? 8 : (this.displayMode === 'local' ? 8 : 1);
     this.offsetX = 0;
@@ -1085,6 +1114,13 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
 
   draw() {
     const ctx = this.ctx;
+    const drawStart = typeof performance !== 'undefined' ? performance.now() : 0;
+    this._drawStatsCounters = this._progressiveDrawLod ? {
+      pointDotsTotal: 0,
+      pointDotsDrawn: 0,
+      polylineVerticesTotal: 0,
+      polylineVerticesDrawn: 0,
+    } : null;
     if (this._layerAttributionEnabled) {
       this.resetLayerAttributionPasses();
     }
@@ -1122,6 +1158,14 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     this._drawScaleBar();
     if (this.displayMode === 'global') this._drawNorthArrow();
     if (this.hoverPoint) this._drawHover(this.hoverPoint);
+    if (this._drawStatsCounters && typeof performance !== 'undefined') {
+      this._lastDrawStats = {
+        ...this._drawStatsCounters,
+        elapsedMs: performance.now() - drawStart,
+        scale: this.scale,
+        progressiveLod: this._progressiveDrawLod,
+      };
+    }
   }
 
   _drawGlobal(d, options = {}) {
@@ -1997,7 +2041,15 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
         fillColours: ['rgba(124,58,237,0.9)', 'rgba(8,145,178,0.9)', 'rgba(148,163,184,0.9)'],
       }, () => {
       this._visibleLaneProjectionPass = 'pointAccumulated';
-      for (let idx = 0; idx < pts.length; idx++) {
+      const lodIndices = this._lodIndicesForPolylinePoints(pts, (pt) => (
+        this._projectRoadGeometryToScreen(pt.localEast, pt.localNorth, pt.mirroredLocalEast, pt.mirroredLocalNorth, pt)
+      ));
+      const drawIndices = lodIndices || Array.from({ length: pts.length }, (_, i) => i);
+      if (this._drawStatsCounters) {
+        this._drawStatsCounters.pointDotsTotal += pts.length;
+        this._drawStatsCounters.pointDotsDrawn += drawIndices.length;
+      }
+      for (const idx of drawIndices) {
         const pt = pts[idx];
         if (!Number.isFinite(pt.localEast) || !Number.isFinite(pt.localNorth)) continue;
         let p = this._projectRoadGeometryToScreen(pt.localEast, pt.localNorth, pt.mirroredLocalEast, pt.mirroredLocalNorth, pt);
@@ -2232,7 +2284,16 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
         ctx.setLineDash([]);
         ctx.beginPath();
         let moved = false;
-        for (const pt of poly.points) {
+        const lodIndices = this._lodIndicesForPolylinePoints(poly.points, (pt) => (
+          this._projectRoadGeometryToScreen(pt.localEast, pt.localNorth, pt.mirroredLocalEast, pt.mirroredLocalNorth, pt)
+        ));
+        const drawIndices = lodIndices || poly.points.map((_, i) => i);
+        if (this._drawStatsCounters) {
+          this._drawStatsCounters.polylineVerticesTotal += poly.points.length;
+          this._drawStatsCounters.polylineVerticesDrawn += drawIndices.length;
+        }
+        for (const pi of drawIndices) {
+          const pt = poly.points[pi];
           if (!Number.isFinite(pt.localEast) || !Number.isFinite(pt.localNorth)) continue;
           const p = this._projectRoadGeometryToScreen(pt.localEast, pt.localNorth, pt.mirroredLocalEast, pt.mirroredLocalNorth, pt);
           if (!moved) { ctx.moveTo(p.x, p.y); moved = true; }
