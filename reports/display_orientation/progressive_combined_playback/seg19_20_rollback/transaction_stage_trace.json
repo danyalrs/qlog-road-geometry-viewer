@@ -1,0 +1,95 @@
+{
+  "note": "Stage trace for the Seg19->Seg20 append transaction. Stages 1-11 per the diagnosis brief.",
+  "stages": [
+    {
+      "n": 1,
+      "name": "Process Seg19",
+      "visiblePrefix": ["qlog_f449c_19.bz2"],
+      "preparedHidden": "qlog_f449c_20.bz2",
+      "nextSourceResolution": "qlog_f449c_20.bz2",
+      "displayMapIdentity": "combinedPlaced (Seg19 only)",
+      "fullMapIdentity": "combinedPlaced (Seg19+Seg20)",
+      "timelineLength": 60,
+      "activeSource": "qlog_f449c_19.bz2",
+      "result": "ok"
+    },
+    {
+      "n": 2,
+      "name": "Resolve next available source",
+      "visiblePrefix": ["qlog_f449c_19.bz2"],
+      "nextSourceResolution": "qlog_f449c_20.bz2",
+      "availableAround1922": [18, 19, 20, 22, 23, 24],
+      "noSeg21": true,
+      "result": "ok (numeric-gap aware; Seg21 not invented)"
+    },
+    {
+      "n": 3,
+      "name": "Prepare hidden Seg20",
+      "visiblePrefix": ["qlog_f449c_19.bz2"],
+      "preparedHidden": "qlog_f449c_20.bz2",
+      "hiddenInDisplayMap": false,
+      "result": "ok"
+    },
+    {
+      "n": 4,
+      "name": "Reveal Seg20 (Append next segment)",
+      "visiblePrefix": ["qlog_f449c_19.bz2", "qlog_f449c_20.bz2"],
+      "preparedChecksum": "5d001e1510ca9220c079163942a7ec1998edc3fffba2a90d7298427c2008bcf4",
+      "revealedChecksum": "5d001e1510ca9220c079163942a7ec1998edc3fffba2a90d7298427c2008bcf4",
+      "revealOk": true,
+      "result": "ok (Seg20 committed)"
+    },
+    {
+      "n": 5,
+      "name": "Reveal Seg20 (Append next and continue)",
+      "visiblePrefix": ["qlog_f449c_19.bz2", "qlog_f449c_20.bz2"],
+      "timelineIndexSource": "qlog_f449c_20.bz2",
+      "revealOk": true,
+      "result": "ok (Seg20 committed; timeline enters Seg20)"
+    },
+    {
+      "n": 6,
+      "name": "Commit Seg19-Seg20 as visible prefix",
+      "visiblePrefix": ["qlog_f449c_19.bz2", "qlog_f449c_20.bz2"],
+      "committed": true,
+      "result": "ok"
+    },
+    {
+      "n": 7,
+      "name": "Enter Seg20 playback",
+      "activeSource": "qlog_f449c_20.bz2",
+      "arrowSource": "qlog_f449c_20.bz2",
+      "videoSource": "qlog_f449c_20.bz2",
+      "result": "ok"
+    },
+    {
+      "n": 8,
+      "name": "Resolve next available source after Seg20",
+      "nextSourceResolution": "qlog_f449c_22.bz2",
+      "result": "ok (Seg22; Seg21 does not exist)"
+    },
+    {
+      "n": 9,
+      "name": "Prepare hidden Seg22",
+      "preparedHidden": "qlog_f449c_22.bz2",
+      "ok": false,
+      "reason": "missingNewSourceChunk",
+      "detail": "Seg22 is present in the timeline (30 frames) and vehiclePath (30 points) but absent from map.trajectory, so applyProgressiveFrozenAppend finds no Seg22 chunk.",
+      "result": "FAILED (optional later lookahead preparation)"
+    },
+    {
+      "n": 10,
+      "name": "Rollback decision",
+      "oldBehaviour": "The optional Seg22 preparation failure propagated out of progressiveRevealPrepared into progressiveAppendNext, whose catch restored the prior snapshot -> rolled back to Seg19.",
+      "newBehaviour": "The optional preparation is wrapped in its own try/catch; Seg20 stays committed; only hiddenLookahead is cleared; the failed source is reported.",
+      "result": "old = rollback-scope bug; new = retain committed Seg20"
+    },
+    {
+      "n": 11,
+      "name": "Restore prior snapshot",
+      "oldBehaviour": "restoreProgressiveStateSnapshot(prefixSnapshotKey([Seg19])) restored Seg19 exactly (removing the committed Seg20).",
+      "newBehaviour": "Rollback runs only when the REQUIRED reveal itself fails; a later-preparation failure never triggers it.",
+      "result": "old = Seg19; new = Seg19-Seg20 retained"
+    }
+  ]
+}

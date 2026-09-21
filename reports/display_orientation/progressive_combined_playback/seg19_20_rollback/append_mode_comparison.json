@@ -1,0 +1,25 @@
+{
+  "note": "Ordinary append vs append-and-continue for the Seg19->Seg20 reveal (both commit Seg20).",
+  "ordinaryAppend": {
+    "continuePlayback": false,
+    "revealOk": true,
+    "visiblePrefix": ["qlog_f449c_19.bz2", "qlog_f449c_20.bz2"],
+    "timelineIndex": null,
+    "behaviour": "commits Seg20; keeps the current Seg19 playback frame; pauses",
+    "laterPreparationFailure": "does not roll back Seg20 (new behaviour)"
+  },
+  "appendAndContinue": {
+    "continuePlayback": true,
+    "revealOk": true,
+    "visiblePrefix": ["qlog_f449c_19.bz2", "qlog_f449c_20.bz2"],
+    "timelineIndexSource": "qlog_f449c_20.bz2",
+    "behaviour": "commits Seg20; selects the first valid Seg20 frame; continues playback",
+    "laterPreparationFailure": "does not roll back Seg20 (new behaviour)"
+  },
+  "both": {
+    "seg20CommittedBeforeLaterPreparation": true,
+    "laterSource": "qlog_f449c_22.bz2",
+    "laterPreparationReason": "missingNewSourceChunk",
+    "hiddenSeg22ExcludedFromDisplay": true
+  }
+}

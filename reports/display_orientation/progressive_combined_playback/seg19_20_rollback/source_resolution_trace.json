@@ -1,0 +1,33 @@
+{
+  "generatedFrom": "lib/progressive_combined_playback.js (working tree, Phase 2 transaction fix)",
+  "availableOrderedIds": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,39,40,41,42,43,44,45,46,47,48,49,50,51,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,71,72,73,74,75,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100],
+  "availableAround1922": [18, 19, 20, 22, 23, 24],
+  "noSeg21": true,
+  "resolverUsesNumericSort": true,
+  "resolver": {
+    "nextAfter19": "qlog_f449c_20.bz2",
+    "nextAfter1920": "qlog_f449c_22.bz2",
+    "nextAfter20": "qlog_f449c_22.bz2"
+  },
+  "seg22Presence": {
+    "inTimeline": true,
+    "timelineFrames": 30,
+    "inVehiclePath": true,
+    "vehiclePathPoints": 30,
+    "inMapTrajectory": false,
+    "mapTrajectoryPoints": 0
+  },
+  "stageB_revealSeg20": {
+    "ok": true,
+    "reason": null,
+    "visiblePrefix": ["qlog_f449c_19.bz2", "qlog_f449c_20.bz2"],
+    "preparedChecksum": "5d001e1510ca9220c079163942a7ec1998edc3fffba2a90d7298427c2008bcf4",
+    "revealedChecksum": "5d001e1510ca9220c079163942a7ec1998edc3fffba2a90d7298427c2008bcf4"
+  },
+  "stageC_prepareFollowing": {
+    "followingSource": "qlog_f449c_22.bz2",
+    "ok": false,
+    "reason": "missingNewSourceChunk",
+    "appendReason": "missingNewSourceChunk"
+  }
+}

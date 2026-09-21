@@ -2810,7 +2810,16 @@ function updateProgressiveCombinedStatusLabel() {
   const el = $('progressiveCombinedStatus');
   if (!el || !PCP) return;
   const prefix = getEffectiveProgressivePrefix();
-  el.textContent = PCP.formatProgressiveStatusLabel(prefix, progressiveCombinedState.hiddenLookahead);
+  const following = PCP.resolveNextAvailableSegment(progressiveCombinedState.availableSegments, prefix);
+  const terminal = !following && !progressiveCombinedState.hiddenLookahead;
+  el.textContent = PCP.formatAppendStatusLabel(prefix, {
+    hiddenLookahead: progressiveCombinedState.hiddenLookahead,
+    terminal,
+  });
+  for (const id of ['btnProgressiveAppend', 'btnProgressiveAppendContinue']) {
+    const b = $(id);
+    if (b) b.disabled = terminal;
+  }
 }
 
 function storeProgressiveStateSnapshot() {
@@ -3044,17 +3053,38 @@ async function progressiveRevealPrepared({ continuePlayback = false } = {}) {
   updateTimelineInfo(timelineIndex);
   await refreshLocalPlaybackVideo({ resetTimeline: continuePlayback });
   if (continuePlayback) schedulePlaybackStep();
+  // Required stage (reveal + commit) has completed. Resolve the next available
+  // source and attempt the OPTIONAL later-lookahead preparation. A failure of
+  // the optional stage must NOT roll back the source that was just committed.
   const following = PCP.resolveNextAvailableSegment(
     progressiveCombinedState.availableSegments,
     reveal.visiblePrefix,
   );
+  let lookaheadFailed = null;
+  let lookaheadPreparedOk = null;
   if (following) {
-    await prepareHiddenLookaheadSource(following);
-  } else {
-    updateProgressiveCombinedStatusLabel();
+    try {
+      await prepareHiddenLookaheadSource(following);
+      lookaheadPreparedOk = true;
+    } catch (lookaheadErr) {
+      lookaheadPreparedOk = false;
+      lookaheadFailed = following;
+      progressiveCombinedState.hiddenLookahead = null;
+      console.error('[progressive lookahead]', lookaheadErr);
+    }
   }
+  const decision = PCP.resolveAppendTransaction({
+    revealOk: true,
+    followingSource: following,
+    lookaheadPreparedOk,
+  });
   storeProgressiveStateSnapshot();
-  setStatus(PCP.formatProgressiveStatusLabel(reveal.visiblePrefix, progressiveCombinedState.hiddenLookahead));
+  updateProgressiveCombinedStatusLabel();
+  setStatus(PCP.formatAppendStatusLabel(reveal.visiblePrefix, {
+    hiddenLookahead: progressiveCombinedState.hiddenLookahead,
+    terminal: decision.terminal,
+    failedSource: lookaheadFailed,
+  }));
 }
 
 function getEffectiveProgressivePrefix() {
@@ -3137,8 +3167,25 @@ async function progressiveAppendNext({ continuePlayback = false } = {}) {
     return;
   }
   if (!progressiveCombinedState.hiddenLookahead) {
-    setStatus('No next segment available');
-    return;
+    // Retry path: a previous later-lookahead preparation may have failed while
+    // the visible prefix stayed committed. Re-attempt preparation of the next
+    // available source before reporting no-next.
+    const following = PCP.resolveNextAvailableSegment(
+      progressiveCombinedState.availableSegments,
+      visible,
+    );
+    if (!following) {
+      setStatus('End of available segments');
+      updateProgressiveCombinedStatusLabel();
+      return;
+    }
+    try {
+      await prepareHiddenLookaheadSource(following);
+    } catch (retryErr) {
+      console.error('[progressive lookahead]', retryErr);
+      setStatus(`Next ${PCP.segmentDisplayLabel(following)} preparation failed: ${retryErr.message}. Retry Append next segment.`);
+      return;
+    }
   }
 
   const rollbackKey = PCP.prefixSnapshotKey(visible);
