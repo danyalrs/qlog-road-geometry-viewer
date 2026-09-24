@@ -1,0 +1,7 @@
+{
+  "note": "The alignment fix changes only display-frame propagation; fitting geometry and all station-support metrics are identical to the station_support_candidate_v2 dataset run (92/92 processed, 0 mutation, 0 non-finite, deterministic, 0 logical-lane changes, gaps 1176->817, lines 1492->1294).",
+  "processed": 92, "failed": 0,
+  "geometryUnchanged": true,
+  "orderInversionsBefore": "present wherever the combined/progressive frame reflects the source",
+  "orderInversionsAfter": 0
+}

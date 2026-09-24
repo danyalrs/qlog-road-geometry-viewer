@@ -2371,6 +2371,9 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
 
     const search = typeof window !== 'undefined' ? window.location.search : '';
     const requested = resolveRepresentativeMethod(search);
+    const stationSupport = CAD.parseRepresentativeStationSupportCandidate
+      ? CAD.parseRepresentativeStationSupportCandidate(search) : false;
+    const repOpts = { representativeStationSupportCandidate: stationSupport };
     // Availability guard only (does not change the selected method when the
     // builder exists). Falls back to the corrected association builder.
     const hasBuilder = {
@@ -2383,13 +2386,37 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     const built = method === 'legacy'
       ? CAD.buildRepresentativeLaneLinesLegacyFromPerFrame(perFrame || [])
       : (method === 'purityRevisit'
-        ? CAD.buildRepresentativeLaneLinesPurityRevisitFromPerFrame(perFrame || [])
+        ? CAD.buildRepresentativeLaneLinesPurityRevisitFromPerFrame(perFrame || [], repOpts)
         : (method === 'purity'
-          ? CAD.buildRepresentativeLaneLinesPurityFromPerFrame(perFrame || [])
-          : CAD.buildRepresentativeLaneLinesFromPerFrame(perFrame || [])));
+          ? CAD.buildRepresentativeLaneLinesPurityFromPerFrame(perFrame || [], repOpts)
+          : CAD.buildRepresentativeLaneLinesFromPerFrame(perFrame || [], repOpts)));
     built.method = method;
+    // Representative results are rebuilt from window.location.search every draw,
+    // so OFF/ON are inherently distinguished. Record the candidate identity so
+    // any downstream cache can include it.
+    this._representativeCandidateKey = `stationSupport:${stationSupport ? 1 : 0}:v${CAD.STATION_SUPPORT_VERSION ?? 0}`;
     this._representativeLaneLines = built.polylines;
-    this._representativeLaneLinesDiagnostics = built.stats || null;
+    // Temporary runtime-delivery diagnostic: prove which coordinate frame the
+    // representative points are in and whether the combined-placed fields survive
+    // the live path.
+    const repPts = (built.polylines || []).flatMap((pl) => pl.points || []);
+    const withPlaced = repPts.filter((p) => Number.isFinite(p.placedEast) && Number.isFinite(p.placedNorth)).length;
+    this._representativeLaneLinesDiagnostics = {
+      ...(built.stats || {}),
+      stationSupportCandidate: stationSupport,
+      stationSupportVersion: CAD.STATION_SUPPORT_VERSION ?? null,
+      alignmentVersion: 'align-2026-09-30a',
+      repPointsTotal: repPts.length,
+      repPointsWithPlaced: withPlaced,
+      repPointsLocalOnly: repPts.length - withPlaced,
+
+      representativeFrame: this._usesCombinedPlacedFrame() ? 'combinedPlaced'
+        : (this._useExactDisplayCorrection() ? 'exactCorrection'
+          : (this._mirrorRoadLateralDisplay ? 'mirroredLocal' : 'local')),
+      mapCombinedFrame: map?.combinedCoordinateFrame ?? null,
+      mapBoundaryAnchored: map?.boundaryAnchoredOrientationActive === true,
+      progressiveFrozenPrefix: map?.progressiveFrozenPrefixActive === true,
+    };
 
     if (!this._pointTrackColorCache) {
       const trackIds = [...new Set((pa.points || []).map((p) => p.groupTrackId).filter((x) => x != null))];
@@ -2398,6 +2425,14 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
 
     const ctx = this.ctx;
     let stroked = 0;
+    let cvlpAttempted = 0;
+    let cvlpSucceeded = 0;
+    let cvlpRejected = 0;
+    let fallback = 0;
+    let canonicalPresent = 0;
+    let canonicalMatchedToPlaced = 0;
+    let canonicalPairMismatch = 0;
+    const cvlpRejectReasons = {};
     ctx.save();
     try {
       for (const poly of built.polylines || []) {
@@ -2414,14 +2449,65 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
         let moved = false;
         for (const pt of poly.points) {
           if (!Number.isFinite(pt.localEast) || !Number.isFinite(pt.localNorth)) continue;
-          const p = this._projectRoadGeometryToScreen(
-            pt.localEast, pt.localNorth, pt.mirroredLocalEast, pt.mirroredLocalNorth, pt,
-          );
+          let p = null;
+          // Parity: route the representative point through the SAME combined
+          // visible-lane projection the observation dots use, with an explicit
+          // pass kind (no reliance on mutable global pass state).
+          const canonPresent = Number.isFinite(pt.sourceCanonicalLocalEast) && Number.isFinite(pt.sourceCanonicalLocalNorth);
+          const placedPresent = Number.isFinite(pt.placedEast) && Number.isFinite(pt.placedNorth);
+          if (canonPresent) canonicalPresent += 1;
+          if (canonPresent && placedPresent) canonicalMatchedToPlaced += 1;
+          if (canonPresent !== placedPresent) canonicalPairMismatch += 1;
+          const CVLP = typeof window !== 'undefined' ? window.CombinedVisibleLaneProjection : null;
+          if (CVLP?.projectCombinedSourceLanePoint && this._usesCombinedPlacedFrame(pt) && this._mirrorRoadLateralDisplay) {
+            cvlpAttempted += 1;
+            const projected = CVLP.projectCombinedSourceLanePoint(pt, map, 'representativeLaneLines', {
+              mirrorChecked: this._mirrorRoadLateralDisplay,
+              search,
+              useVisibleLaneProjection: true,
+            });
+            if (projected && Number.isFinite(projected.east) && Number.isFinite(projected.north)) {
+              if (projected.corrected === true) {
+                cvlpSucceeded += 1;
+              } else {
+                cvlpRejected += 1;
+                const rsn = projected.reason || 'uncorrected';
+                cvlpRejectReasons[rsn] = (cvlpRejectReasons[rsn] || 0) + 1;
+              }
+              // Even an uncorrected CVLP result is the placed coordinate, which is
+              // what the renderer used before; count it as a fallback for honesty.
+              if (projected.corrected !== true) fallback += 1;
+              p = this.worldToScreen(projected.east, projected.north);
+            } else {
+              fallback += 1;
+              cvlpRejectReasons.cvlpNull = (cvlpRejectReasons.cvlpNull || 0) + 1;
+            }
+          } else {
+            fallback += 1;
+            cvlpRejectReasons.notAttempted = (cvlpRejectReasons.notAttempted || 0) + 1;
+          }
+          if (!p) {
+            p = this._projectRoadGeometryToScreen(
+              pt.localEast, pt.localNorth, pt.mirroredLocalEast, pt.mirroredLocalNorth, pt,
+            );
+          }
           if (!moved) { ctx.moveTo(p.x, p.y); moved = true; }
           else ctx.lineTo(p.x, p.y);
         }
         if (moved) { ctx.stroke(); stroked += 1; }
       }
+      this._representativeLaneLinesDiagnostics = {
+        ...(this._representativeLaneLinesDiagnostics || {}),
+        repPass: 'representativeLaneLines',
+        cvlpAttempted,
+        cvlpSucceeded,
+        cvlpRejected,
+        fallback,
+        cvlpRejectReasons,
+        canonicalPresent,
+        canonicalMatchedToPlaced,
+        canonicalPairMismatch,
+      };
       ctx.globalAlpha = 1;
       ctx.font = '12px sans-serif';
       ctx.fillStyle = '#0f766e';

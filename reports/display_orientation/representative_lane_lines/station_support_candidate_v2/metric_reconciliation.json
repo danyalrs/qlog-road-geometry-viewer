@@ -1,0 +1,18 @@
+{
+  "discrepancy1_seg14_line_count": {
+    "reportMetricSource": "stats.representativeLineCount = survivors.length, complete Seg14 map",
+    "reportValue": 82,
+    "perFrameCurves": 89,
+    "browserMetricSource": "_drawRepresentativeLaneLines caption 'stroked' over the active playback per-frame set",
+    "browserValueReported": 85,
+    "tracedBuilds": { "complete": 82, "causalIdx0": 0, "causalIdx10": 30, "causalIdx50plus": 82, "purity": 82, "curveAssociation": 82, "purityRevisit": 82, "legacy": 16 },
+    "reproduced85": false,
+    "explanation": "build-context difference (active playback per-frame set), not an acceptance-logic difference; exact 85 needs the live session URL/index"
+  },
+  "discrepancy2_seg19": {
+    "unchangedRefersTo": "count metrics (lines 5->5, gaps 2->2, lanes 3->3)",
+    "changedListRefersTo": "polyline byte hash (offHash != onHash)",
+    "restoredStations": { "v2": 9, "v1": 25 },
+    "explanation": "coordinate-level change without count change; both statements correct about different metrics"
+  }
+}

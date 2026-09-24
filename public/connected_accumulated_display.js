@@ -643,6 +643,42 @@
     minPolylineCoverageM: 2.0,
   };
 
+  // Default-off candidate: representativeStationSupportCandidate=1
+  // Guarded adaptive trusted-range support for representative stations.
+  // Recovers under-supported stations using REAL observations slightly beyond
+  // the fixed trustedModelXM range, guarded by a two-sided baseline-consistent
+  // lateral mode. Never interpolates, bridges, merges identities or creates
+  // observations. Parameter version is part of the candidate identity.
+  const STATION_SUPPORT_VERSION = 2;
+  const STATION_SUPPORT_DEFAULTS = {
+    stationSupportMaxRangeM: 105,
+    stationSupportLateralTolM: 1.2,
+    stationSupportAnchorTolM: 2.5,
+    stationSupportContextMaxGapM: 48,
+    stationSupportCompetingGapM: 1.8,
+    stationSupportRevisitFrameGap: 160,
+    stationSupportMinExtendedFrames: 1,
+    // v2 local-band confirmation: the restored point must be directly confirmed
+    // by nearby REAL same-identity observation dots, not only by the fitted
+    // two-sided context.
+    stationSupportLocalBandRadiusM: 1.5,
+    stationSupportLocalBandMinFrames: 2,
+    stationSupportLocalBandSpreadM: 1.5,
+    stationSupportLocalBandModeGapM: 1.5,
+    stationSupportAnchorBandTolM: 1.0,
+    stationSupportExtendedBandTolM: 1.0,
+    stationSupportFittedBandTolM: 0.7,
+  };
+
+  // URL selection for the default-off station-support candidate. Absent, `0`
+  // and any invalid value resolve to OFF (exact accepted behaviour).
+  function parseRepresentativeStationSupportCandidate(search) {
+    const s = typeof search === 'string' ? search : (search && search.search) || '';
+    const m = /(?:^|[?&])representativeStationSupportCandidate=([^&]*)/.exec(s);
+    if (!m) return false;
+    return m[1] === '1';
+  }
+
   function sortCurvePointsByS(curve) {
     const pts = (curve?.points || []).filter((p) => isFiniteRobustPoint(p)
       && Number.isFinite(p.localEast) && Number.isFinite(p.localNorth));
@@ -701,6 +737,32 @@
     }
     if (Number.isFinite(a.mirroredLocalNorth) && Number.isFinite(b.mirroredLocalNorth)) {
       out.mirroredLocalNorth = lerp(a.mirroredLocalNorth, b.mirroredLocalNorth);
+    }
+    // Combined-placed frame: carry the display coordinate through the SAME
+    // interpolation so a representative point built from these samples resolves
+    // in the identical frame the observation dots render in.
+    if (Number.isFinite(a.placedEast) && Number.isFinite(b.placedEast)) {
+      out.placedEast = lerp(a.placedEast, b.placedEast);
+    }
+    if (Number.isFinite(a.placedNorth) && Number.isFinite(b.placedNorth)) {
+      out.placedNorth = lerp(a.placedNorth, b.placedNorth);
+    }
+    // Combined-placed canonical/mirrored provenance (set by
+    // CombinedSourceTransform.finalizePlacedPoint on the source observations).
+    // Carried with the SAME interpolation as placedEast/placedNorth so the
+    // canonical and placed coordinates remain a matched pair from the same
+    // source observation.
+    if (Number.isFinite(a.sourceCanonicalLocalEast) && Number.isFinite(b.sourceCanonicalLocalEast)) {
+      out.sourceCanonicalLocalEast = lerp(a.sourceCanonicalLocalEast, b.sourceCanonicalLocalEast);
+    }
+    if (Number.isFinite(a.sourceCanonicalLocalNorth) && Number.isFinite(b.sourceCanonicalLocalNorth)) {
+      out.sourceCanonicalLocalNorth = lerp(a.sourceCanonicalLocalNorth, b.sourceCanonicalLocalNorth);
+    }
+    if (Number.isFinite(a.sourceMirroredLocalEast) && Number.isFinite(b.sourceMirroredLocalEast)) {
+      out.sourceMirroredLocalEast = lerp(a.sourceMirroredLocalEast, b.sourceMirroredLocalEast);
+    }
+    if (Number.isFinite(a.sourceMirroredLocalNorth) && Number.isFinite(b.sourceMirroredLocalNorth)) {
+      out.sourceMirroredLocalNorth = lerp(a.sourceMirroredLocalNorth, b.sourceMirroredLocalNorth);
     }
     return out;
   }
@@ -805,6 +867,8 @@
     const spacing = opts.stationSpacingM;
     const start = Math.floor(cluster.minS / spacing) * spacing + spacing / 2;
     const stations = [];
+    const candidateOn = opts.representativeStationSupportCandidate === true;
+    const eligible = [];
     for (let s0 = start; s0 <= cluster.maxS + spacing / 2; s0 += spacing) {
       const samples = [];
       for (const curve of cluster.curves) {
@@ -817,7 +881,13 @@
           && Number.isFinite(v.modelX) && v.modelX > opts.trustedModelXM) continue;
         samples.push({ curve, v });
       }
-      if (samples.length < opts.minSupportFramesPerBin) continue;
+      if (samples.length < opts.minSupportFramesPerBin) {
+        // Candidate-eligible: under-supported by the baseline <=80 m set only.
+        // PASS 2 (guarded extension) may recover it using real observations
+        // beyond the trusted range. When the candidate is off this is a no-op.
+        if (candidateOn) eligible.push({ s: s0, baseSamples: samples });
+        continue;
+      }
       // Bimodal-station guard (purity method only): when the supporting samples
       // at one station split into laterally separated modes, no median is placed
       // between the modes. The station is left unverified so the run either
@@ -835,47 +905,288 @@
           }
         }
       }
-      // Robust lateral estimate per station across supporting curves/frames.
-      // Median is used directly over every supporting sample: with the repeated
-      // per-frame coverage (~2-3 curves/station) a minority of far-field
-      // outliers cannot pull the median. A MAD-filter keep-set would switch its
-      // membership between adjacent stations and fragment the representative.
-      const ds = samples.map((s) => s.v.d);
-      const medianD = median(ds);
-      const lateralMadM = ds.length >= 2 ? mad(ds, medianD) : 0;
-      const frameSet = new Set();
-      const curveSet = new Set();
-      const frameIdSet = new Set();
-      const keptE = [];
-      const keptN = [];
-      const keptMirrorE = [];
-      const keptMirrorN = [];
-      for (const s of samples) {
-        const fid = s.curve.frameId != null ? s.curve.frameId : `fi:${s.curve.frameIndex ?? 'x'}`;
-        frameSet.add(fid);
-        frameIdSet.add(s.curve.frameId);
-        curveSet.add(s.curve.groupId ?? `${s.curve.chunkId}:${s.curve.passId}:${s.curve.frameId}`);
-        keptE.push(s.v.localEast);
-        keptN.push(s.v.localNorth);
-        if (Number.isFinite(s.v.mirroredLocalEast)) keptMirrorE.push(s.v.mirroredLocalEast);
-        if (Number.isFinite(s.v.mirroredLocalNorth)) keptMirrorN.push(s.v.mirroredLocalNorth);
-      }
-      stations.push({
-        s: s0,
-        medianD,
-        lateralMadM,
-        distinctFrameCount: frameSet.size,
-        distinctCurveCount: curveSet.size,
-        frameIdSet,
-        kept: samples,
-        curveIds: [...curveSet],
-        medianEast: median(keptE),
-        medianNorth: median(keptN),
-        medianMirrorEast: keptMirrorE.length ? median(keptMirrorE) : undefined,
-        medianMirrorNorth: keptMirrorN.length ? median(keptMirrorN) : undefined,
-      });
+      stations.push(makeStation(s0, samples, opts));
     }
-    return stations;
+    if (!candidateOn || !eligible.length) return stations;
+    return applyGuardedStationSupport(cluster, stations, eligible, opts, counters);
+  }
+
+  // Robust lateral estimate per station across supporting curves/frames.
+  // Median is used directly over every supporting sample: with the repeated
+  // per-frame coverage (~2-3 curves/station) a minority of far-field outliers
+  // cannot pull the median. A MAD-filter keep-set would switch its membership
+  // between adjacent stations and fragment the representative.
+  function makeStation(s0, samples, opts) {
+    const ds = samples.map((s) => s.v.d);
+    const medianD = median(ds);
+    const lateralMadM = ds.length >= 2 ? mad(ds, medianD) : 0;
+    const frameSet = new Set();
+    const curveSet = new Set();
+    const frameIdSet = new Set();
+    const keptE = [];
+    const keptN = [];
+    const keptMirrorE = [];
+    const keptMirrorN = [];
+    const keptPlacedE = [];
+    const keptPlacedN = [];
+    const keptCanonicalE = [];
+    const keptCanonicalN = [];
+    const keptSourceMirrorE = [];
+    const keptSourceMirrorN = [];
+    const sourceFileCounts = new Map();
+    for (const s of samples) {
+      const fid = s.curve.frameId != null ? s.curve.frameId : `fi:${s.curve.frameIndex ?? 'x'}`;
+      frameSet.add(fid);
+      frameIdSet.add(s.curve.frameId);
+      curveSet.add(s.curve.groupId ?? `${s.curve.chunkId}:${s.curve.passId}:${s.curve.frameId}`);
+      keptE.push(s.v.localEast);
+      keptN.push(s.v.localNorth);
+      if (Number.isFinite(s.v.mirroredLocalEast)) keptMirrorE.push(s.v.mirroredLocalEast);
+      if (Number.isFinite(s.v.mirroredLocalNorth)) keptMirrorN.push(s.v.mirroredLocalNorth);
+      if (Number.isFinite(s.v.placedEast)) keptPlacedE.push(s.v.placedEast);
+      if (Number.isFinite(s.v.placedNorth)) keptPlacedN.push(s.v.placedNorth);
+      if (Number.isFinite(s.v.sourceCanonicalLocalEast)) keptCanonicalE.push(s.v.sourceCanonicalLocalEast);
+      if (Number.isFinite(s.v.sourceCanonicalLocalNorth)) keptCanonicalN.push(s.v.sourceCanonicalLocalNorth);
+      if (Number.isFinite(s.v.sourceMirroredLocalEast)) keptSourceMirrorE.push(s.v.sourceMirroredLocalEast);
+      if (Number.isFinite(s.v.sourceMirroredLocalNorth)) keptSourceMirrorN.push(s.v.sourceMirroredLocalNorth);
+      const sf = s.v.sourceFile ?? s.curve?.sourceFile ?? null;
+      if (sf != null) sourceFileCounts.set(sf, (sourceFileCounts.get(sf) || 0) + 1);
+    }
+    let dominantSourceFile = null;
+    let bestCount = -1;
+    for (const [sf, c] of [...sourceFileCounts.entries()].sort((a, b) => (a[0] < b[0] ? -1 : 1))) {
+      if (c > bestCount) { bestCount = c; dominantSourceFile = sf; }
+    }
+    return {
+      s: s0,
+      medianD,
+      lateralMadM,
+      distinctFrameCount: frameSet.size,
+      distinctCurveCount: curveSet.size,
+      frameIdSet,
+      kept: samples,
+      curveIds: [...curveSet],
+      medianEast: median(keptE),
+      medianNorth: median(keptN),
+      medianMirrorEast: keptMirrorE.length ? median(keptMirrorE) : undefined,
+      medianMirrorNorth: keptMirrorN.length ? median(keptMirrorN) : undefined,
+      // Combined-placed display coordinate (present only in the combined frame).
+      medianPlacedEast: keptPlacedE.length ? median(keptPlacedE) : undefined,
+      medianPlacedNorth: keptPlacedN.length ? median(keptPlacedN) : undefined,
+      placedFrame: placedCounts(keptPlacedE, samples.length),
+      // Matched canonical/placed pair: both are medians over the SAME supporting
+      // sample set, so the canonical and placed coordinates stay paired.
+      medianSourceCanonicalLocalEast: keptCanonicalE.length ? median(keptCanonicalE) : undefined,
+      medianSourceCanonicalLocalNorth: keptCanonicalN.length ? median(keptCanonicalN) : undefined,
+      medianSourceMirroredLocalEast: keptSourceMirrorE.length ? median(keptSourceMirrorE) : undefined,
+      medianSourceMirroredLocalNorth: keptSourceMirrorN.length ? median(keptSourceMirrorN) : undefined,
+      canonicalFrame: placedCounts(keptCanonicalE, samples.length),
+      sourceFile: dominantSourceFile,
+    };
+  }
+
+  function placedCounts(keptPlacedE, sampleCount) {
+    if (!sampleCount) return null;
+    return { present: keptPlacedE.length, of: sampleCount, complete: keptPlacedE.length === sampleCount };
+  }
+
+  function findStationContext(stations, s, maxGapM) {
+    let left = null;
+    let right = null;
+    for (const st of stations) {
+      if (st.s < s) { if (!left || st.s > left.s) left = st; } else if (st.s > s) { if (!right || st.s < right.s) right = st; }
+    }
+    if (left && (s - left.s) > maxGapM) left = null;
+    if (right && (right.s - s) > maxGapM) right = null;
+    return { left, right };
+  }
+
+  /**
+   * Local same-identity observation-dot band: raw real points from this
+   * cluster's own per-frame curves within +-radiusM of the station. Never uses
+   * the fitted line, restored stations, colour or screen coordinates.
+   */
+  function localBandForStation(cluster, s, radiusM) {
+    const ds = [];
+    const frames = new Set();
+    for (const curve of cluster.curves) {
+      const pts = curve.pts || curve.points || [];
+      for (const p of pts) {
+        if (!Number.isFinite(p.d) || !Number.isFinite(p.s)) continue;
+        if (Math.abs(p.s - s) > radiusM) continue;
+        ds.push(p.d);
+        if (Number.isFinite(curve.frameId)) frames.add(curve.frameId);
+      }
+    }
+    if (!ds.length) return null;
+    ds.sort((a, b) => a - b);
+    let maxGap = 0;
+    for (let k = 1; k < ds.length; k++) maxGap = Math.max(maxGap, ds[k] - ds[k - 1]);
+    return { count: ds.length, uniqueFrames: frames.size, centre: median(ds), spread: ds[ds.length - 1] - ds[0], maxGap, frames };
+  }
+
+  /**
+   * Pure guarded station extension. Deterministic and input-order invariant.
+   * Uses only real observations. Accepts an under-supported station only when:
+   *  - at least one finite baseline (<= baseRangeM) anchor exists;
+   *  - both left and right baseline-accepted context stations exist;
+   *  - extended observations (baseRangeM..maxRangeM] match the two-sided expected
+   *    lateral value and the anchor within tolerance;
+   *  - no credible competing lateral mode exists;
+   *  - the retained frames are temporally consistent;
+   *  - at least two unique frames support the station afterwards.
+   */
+  function guardStationExtension(input) {
+    const opts = input.opts;
+    const out = {
+      eligible: true, accepted: false, retained: [], discarded: [],
+      fittedDInput: [], uniqueFrameSupport: 0, baseAnchorCount: 0, extendedCount: 0,
+      contextStations: { left: !!(input.context && input.context.left), right: !!(input.context && input.context.right) },
+      expectedD: null, competingModes: 0, reason: null, diagnostics: {},
+    };
+    const base = input.baseSamples || [];
+    const baseD = base.map((s) => s.v.d).filter(Number.isFinite);
+    out.baseAnchorCount = baseD.length;
+    // Baseline already accepts stations with >= 2 unique supporting frames; the
+    // guard must never change them.
+    if (new Set(base.map((s) => s.curve.frameId).filter((x) => x != null)).size >= 2) {
+      out.eligible = false;
+      out.accepted = true;
+      out.reason = 'baselineAccepted';
+      out.retained = base;
+      out.uniqueFrameSupport = new Set(base.map((s) => s.curve.frameId).filter((x) => x != null)).size;
+      out.fittedDInput = baseD.map((d) => Number(d.toFixed(3)));
+      return out;
+    }
+    if (!baseD.length) { out.reason = 'noBaseAnchor'; return out; }
+    const anchorD = median(baseD);
+    if (!input.context || !input.context.left) { out.reason = 'missingLeftContext'; return out; }
+    if (!input.context.right) { out.reason = 'missingRightContext'; return out; }
+    const left = input.context.left;
+    const right = input.context.right;
+    const span = (right.s - left.s) || 1;
+    const t = Math.max(0, Math.min(1, (input.s - left.s) / span));
+    const expectedD = left.medianD + (right.medianD - left.medianD) * t;
+    out.expectedD = Number(expectedD.toFixed(3));
+
+    const baseFrames = new Set(base.map((s) => s.curve.frameId).filter((x) => x != null));
+    // dedupe extended by frame id, keep the sample nearest the expected mode
+    const byFrame = new Map();
+    const orderedExtended = (input.curveSamples || []).slice().sort((a, b) => (a.v.d - b.v.d) || ((a.curve.frameId ?? 0) - (b.curve.frameId ?? 0)) || (a.v.modelX - b.v.modelX));
+    for (const c of orderedExtended) {
+      const v = c.v;
+      if (!Number.isFinite(v.d) || !Number.isFinite(v.modelX)) continue;
+      if (v.modelX <= input.baseRangeM) continue;
+      if (v.modelX > input.maxRangeM) { out.discarded.push({ frameId: c.curve.frameId, modelX: Number(v.modelX.toFixed(1)), reason: 'extendedOutOfRange' }); continue; }
+      const key = c.curve.frameId != null ? `f:${c.curve.frameId}` : `fi:${c.curve.frameIndex ?? 'x'}`;
+      const prev = byFrame.get(key);
+      if (prev && prev !== c) { out.discarded.push({ frameId: c.curve.frameId, reason: 'extendedDuplicateFrame' }); continue; }
+      byFrame.set(key, c);
+    }
+    const extendedUnique = [...byFrame.values()];
+    const kept = [];
+    for (const c of extendedUnique) {
+      const d = c.v.d;
+      if (Math.abs(d - expectedD) > opts.stationSupportLateralTolM
+        || Math.abs(d - anchorD) > opts.stationSupportAnchorTolM) {
+        out.discarded.push({ frameId: c.curve.frameId, modelX: Number(c.v.modelX.toFixed(1)), d: Number(d.toFixed(2)), reason: 'extendedLateralMismatch' });
+        continue;
+      }
+      if (baseFrames.has(c.curve.frameId)) { out.discarded.push({ frameId: c.curve.frameId, reason: 'extendedDuplicateFrame' }); continue; }
+      kept.push(c);
+    }
+    // competing credible modes (each >= 2 unique frames, separated > gap)
+    const kd = kept.map((c) => c.v.d).sort((a, b) => a - b);
+    let competing = 0;
+    for (let k = 1; k < kd.length; k++) {
+      if (kd[k] - kd[k - 1] <= opts.stationSupportCompetingGapM) continue;
+      const lo = kept.filter((c) => c.v.d <= kd[k - 1] + 1e-9);
+      const hi = kept.filter((c) => c.v.d >= kd[k] - 1e-9);
+      if (new Set(lo.map((c) => c.curve.frameId)).size >= 2 && new Set(hi.map((c) => c.curve.frameId)).size >= 2) competing += 1;
+    }
+    out.competingModes = competing;
+    if (competing > 0) { out.reason = 'competingExtendedMode'; return out; }
+
+    const retainedFrames = [...baseFrames, ...kept.map((c) => c.curve.frameId).filter(Number.isFinite)].filter(Number.isFinite).sort((a, b) => a - b);
+    for (let i = 1; i < retainedFrames.length; i++) {
+      if (retainedFrames[i] - retainedFrames[i - 1] > opts.stationSupportRevisitFrameGap) { out.reason = 'temporalRevisitRisk'; return out; }
+    }
+    const allRetained = [...base, ...kept];
+    out.extendedCount = kept.length;
+    out.uniqueFrameSupport = new Set(retainedFrames).size;
+    out.fittedDInput = allRetained.map((c) => Number(c.v.d.toFixed(3)));
+    if (out.uniqueFrameSupport < 2 || kept.length < opts.stationSupportMinExtendedFrames) { out.reason = 'insufficientExtendedSupport'; return out; }
+
+    // v2: local same-identity dot-band confirmation. The band is built ONLY from
+    // raw real observation dots of the same identity in a bounded +-R window
+    // (never from the fitted line, restored stations, colour or screen coords).
+    const band = input.localBand || null;
+    out.localBand = band ? {
+      count: band.count,
+      uniqueFrames: band.uniqueFrames,
+      centre: Number(band.centre.toFixed(3)),
+      spread: Number(band.spread.toFixed(3)),
+      maxGap: Number(band.maxGap.toFixed(3)),
+    } : null;
+    if (!band || band.count < 1) { out.reason = 'noLocalBand'; return out; }
+    if (band.uniqueFrames < opts.stationSupportLocalBandMinFrames) { out.reason = 'insufficientLocalBandFrames'; return out; }
+    if (band.spread > opts.stationSupportLocalBandSpreadM) { out.reason = 'localBandTooWide'; return out; }
+    if (band.maxGap > opts.stationSupportLocalBandModeGapM) { out.reason = 'competingLocalBand'; return out; }
+    if (Math.abs(anchorD - band.centre) > opts.stationSupportAnchorBandTolM) { out.reason = 'anchorOutsideLocalBand'; return out; }
+    for (const c of kept) {
+      if (Math.abs(c.v.d - band.centre) > opts.stationSupportExtendedBandTolM) { out.reason = 'extendedOutsideLocalBand'; return out; }
+    }
+    const fittedD = median(allRetained.map((c) => c.v.d));
+    out.fittedD = Number(fittedD.toFixed(3));
+    if (Math.abs(fittedD - band.centre) > opts.stationSupportFittedBandTolM) { out.reason = 'fittedPointOutsideLocalBand'; return out; }
+    const bandFrames = band.frames ? [...band.frames].filter(Number.isFinite).sort((a, b) => a - b) : [];
+    for (let i = 1; i < bandFrames.length; i++) {
+      if (bandFrames[i] - bandFrames[i - 1] > opts.stationSupportRevisitFrameGap) { out.reason = 'localBandTemporalMismatch'; return out; }
+    }
+
+    out.retained = allRetained;
+    out.accepted = true;
+    out.reason = 'localBandConfirmed';
+    out.diagnostics = { extendedUniqueFrames: kept.length, discarded: out.discarded.length };
+    return out;
+  }
+
+  function applyGuardedStationSupport(cluster, stations, eligible, opts, counters) {
+    if (counters) counters.stationSupportEligible = (counters.stationSupportEligible || 0) + eligible.length;
+    const restored = [];
+    for (const e of eligible) {
+      const context = findStationContext(stations, e.s, opts.stationSupportContextMaxGapM);
+      // Interior gap recovery only: the station must lie in an actual gap between
+      // baseline-accepted neighbours (span > maxSupportedGapM). Never touch
+      // stations inside an already-continuous run.
+      if (!context.left || !context.right || (context.right.s - context.left.s) <= opts.maxSupportedGapM) {
+        if (counters) counters.stationSupport_notInteriorGap = (counters.stationSupport_notInteriorGap || 0) + 1;
+        continue;
+      }
+      const curveSamples = [];
+      for (const curve of cluster.curves) {
+        const v = interpCurvePointAtS(curve, e.s);
+        if (!v || !Number.isFinite(v.modelX) || !Number.isFinite(v.d)) continue;
+        if (v.modelX <= opts.trustedModelXM) continue;
+        if (v.modelX > opts.stationSupportMaxRangeM) continue;
+        curveSamples.push({ curve, v });
+      }
+      const res = guardStationExtension({
+        s: e.s, baseSamples: e.baseSamples, context, curveSamples,
+        localBand: localBandForStation(cluster, e.s, opts.stationSupportLocalBandRadiusM),
+        baseRangeM: opts.trustedModelXM, maxRangeM: opts.stationSupportMaxRangeM, opts,
+      });
+      if (counters && !res.accepted) counters[`stationSupport_${res.reason}`] = (counters[`stationSupport_${res.reason}`] || 0) + 1;
+      if (!res.accepted) continue;
+      restored.push(makeStation(e.s, res.retained, opts));
+      if (counters) {
+        counters.stationSupportAccepted = (counters.stationSupportAccepted || 0) + 1;
+        counters.stationSupportAdmitted = (counters.stationSupportAdmitted || 0) + res.extendedCount;
+        counters.stationSupportDiscarded = (counters.stationSupportDiscarded || 0) + res.discarded.length;
+      }
+    }
+    if (!restored.length) return stations;
+    return [...stations, ...restored].sort((a, b) => a.s - b.s);
   }
 
   function pickStationRepresentative(station, opts) {
@@ -892,6 +1203,31 @@
     };
     if (Number.isFinite(station.medianMirrorEast)) v.mirroredLocalEast = station.medianMirrorEast;
     if (Number.isFinite(station.medianMirrorNorth)) v.mirroredLocalNorth = station.medianMirrorNorth;
+    // Carry the combined-placed display coordinate (when the source observations
+    // were transformed into it) so the representative point resolves through the
+    // SAME frame/projection branch as the observation dots.
+    if (Number.isFinite(station.medianPlacedEast) && Number.isFinite(station.medianPlacedNorth)) {
+      v.placedEast = station.medianPlacedEast;
+      v.placedNorth = station.medianPlacedNorth;
+      v.coordinateFrame = 'combinedPlaced';
+    }
+    // Canonical + mirrored source provenance (matched pair with the placed
+    // coordinate) so CVLP.resolveCanonicalCoords can resolve the point.
+    if (Number.isFinite(station.medianSourceCanonicalLocalEast) && Number.isFinite(station.medianSourceCanonicalLocalNorth)) {
+      v.sourceCanonicalLocalEast = station.medianSourceCanonicalLocalEast;
+      v.sourceCanonicalLocalNorth = station.medianSourceCanonicalLocalNorth;
+    }
+    if (Number.isFinite(station.medianSourceMirroredLocalEast) && Number.isFinite(station.medianSourceMirroredLocalNorth)) {
+      v.sourceMirroredLocalEast = station.medianSourceMirroredLocalEast;
+      v.sourceMirroredLocalNorth = station.medianSourceMirroredLocalNorth;
+    }
+    // Provenance needed so the representative point can be routed through the
+    // SAME combined visible-lane projection as its source observation dots.
+    if (station.sourceFile != null) v.sourceFile = station.sourceFile;
+    if (station.frameIdSet && station.frameIdSet.size) {
+      const fids = [...station.frameIdSet].filter(Number.isFinite).sort((a, b) => a - b);
+      if (fids.length) v.frameId = fids[0];
+    }
     v.binMeta = {
       binIndex: Math.round(station.s / opts.stationSpacingM),
       distinctFrameCount: station.distinctFrameCount,
@@ -1093,7 +1429,7 @@
    * into a few logical lanes instead of degrading to ~1 output per source curve.
    */
   function buildRepresentativeLaneLinesFromPerFrame(perFramePolylines, options = {}) {
-    const opts = { ...DEFAULTS, ...CURVE_ASSOC_DEFAULTS, ...options };
+    const opts = { ...DEFAULTS, ...CURVE_ASSOC_DEFAULTS, ...STATION_SUPPORT_DEFAULTS, ...options };
     const source = Array.isArray(perFramePolylines) ? perFramePolylines : [];
     const rejected = [];
     const acceptedCurves = [];
@@ -1898,7 +2234,7 @@
    */
   function buildRepresentativeLaneLinesPurityInternal(perFramePolylines, options, revisitMode) {
     const opts = { ...DEFAULTS, ...CURVE_ASSOC_DEFAULTS, ...PURITY_ASSOC_DEFAULTS,
-      ...(revisitMode ? PURITY_REVISIT_DEFAULTS : {}), ...options, purityRevisit: !!revisitMode };
+      ...(revisitMode ? PURITY_REVISIT_DEFAULTS : {}), ...STATION_SUPPORT_DEFAULTS, ...options, purityRevisit: !!revisitMode };
     const source = Array.isArray(perFramePolylines) ? perFramePolylines : [];
     const rejected = [];
     const acceptedCurves = [];
@@ -2133,6 +2469,11 @@
       purityPairRejectCount: counters.purityPairReject || 0,
       puritySubclusterCount: counters.puritySubcluster || 0,
       purityBimodalSkipped: splitReasons.bimodalStation || 0,
+      stationSupportEligible: splitReasons.stationSupportEligible || 0,
+      stationSupportAccepted: splitReasons.stationSupportAccepted || 0,
+      stationSupportAdmitted: splitReasons.stationSupportAdmitted || 0,
+      stationSupportDiscarded: splitReasons.stationSupportDiscarded || 0,
+      stationSupportReasons: Object.fromEntries(Object.entries(splitReasons).filter(([k]) => k.startsWith('stationSupport_'))),
       purityRejectedFold: counters.purityRejectedFold || 0,
       purityRejectedCorridor: counters.purityRejectedCorridor || 0,
       purityRejectedOverlap: counters.purityRejectedOverlap || 0,
@@ -2848,6 +3189,11 @@
   const api = {
     CONNECTION_IDENTITY,
     DEFAULTS,
+    STATION_SUPPORT_DEFAULTS,
+    STATION_SUPPORT_VERSION,
+    parseRepresentativeStationSupportCandidate,
+    guardStationExtension,
+    localBandForStation,
     buildRawConnectedPolylines,
     buildRobustConnectedPolylines,
     buildPerFrameConnectedPolylines,

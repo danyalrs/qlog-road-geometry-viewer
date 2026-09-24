@@ -1,0 +1,433 @@
+{
+  "radii": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "baselineAcceptedDotDistM": {
+    "n": 15003,
+    "median": 0.744,
+    "p75": 1.313,
+    "p90": 2.222,
+    "p95": 20.668,
+    "max": 217.047
+  },
+  "perRadius": {
+    "1": {
+      "restoredStations": 4001,
+      "withLocalBand_ge2frames": 548,
+      "withoutLocalBand": 3453,
+      "restoredPointWithin_0_2m": 1276,
+      "restoredPointWithin_0_5m": 2061,
+      "restoredPointWithin_1_0m": 2252,
+      "localBandSpreadM": {
+        "n": 4001,
+        "median": 0,
+        "p75": 0,
+        "p90": 0.2,
+        "p95": 0.59,
+        "max": 1.72
+      },
+      "restoredNearestDotDistM": {
+        "n": 2264,
+        "median": 0.55,
+        "p75": 0.77,
+        "p90": 0.91,
+        "p95": 0.98,
+        "max": 2.13
+      },
+      "seg14RestoredDotDistM": {
+        "n": 574,
+        "median": 0.55,
+        "p75": 0.75,
+        "p90": 0.9,
+        "p95": 1,
+        "max": 1.22
+      }
+    },
+    "2": {
+      "restoredStations": 4001,
+      "withLocalBand_ge2frames": 1885,
+      "withoutLocalBand": 2116,
+      "restoredPointWithin_0_2m": 2362,
+      "restoredPointWithin_0_5m": 3209,
+      "restoredPointWithin_1_0m": 3472,
+      "localBandSpreadM": {
+        "n": 4001,
+        "median": 0,
+        "p75": 0.41,
+        "p90": 0.81,
+        "p95": 1,
+        "max": 1.93
+      },
+      "restoredNearestDotDistM": {
+        "n": 3499,
+        "median": 0.78,
+        "p75": 1.29,
+        "p90": 1.7,
+        "p95": 1.82,
+        "max": 2.7
+      },
+      "seg14RestoredDotDistM": {
+        "n": 901,
+        "median": 0.79,
+        "p75": 1.27,
+        "p90": 1.65,
+        "p95": 1.81,
+        "max": 2.07
+      }
+    },
+    "3": {
+      "restoredStations": 4001,
+      "withLocalBand_ge2frames": 3338,
+      "withoutLocalBand": 663,
+      "restoredPointWithin_0_2m": 3006,
+      "restoredPointWithin_0_5m": 3688,
+      "restoredPointWithin_1_0m": 3966,
+      "localBandSpreadM": {
+        "n": 4001,
+        "median": 0.35,
+        "p75": 0.68,
+        "p90": 0.98,
+        "p95": 1.18,
+        "max": 2.3
+      },
+      "restoredNearestDotDistM": {
+        "n": 4001,
+        "median": 0.89,
+        "p75": 1.57,
+        "p90": 2.17,
+        "p95": 2.46,
+        "max": 2.91
+      },
+      "seg14RestoredDotDistM": {
+        "n": 1020,
+        "median": 0.88,
+        "p75": 1.52,
+        "p90": 2.09,
+        "p95": 2.38,
+        "max": 2.76
+      }
+    },
+    "4": {
+      "restoredStations": 4001,
+      "withLocalBand_ge2frames": 3983,
+      "withoutLocalBand": 18,
+      "restoredPointWithin_0_2m": 2637,
+      "restoredPointWithin_0_5m": 3590,
+      "restoredPointWithin_1_0m": 3963,
+      "localBandSpreadM": {
+        "n": 4001,
+        "median": 0.48,
+        "p75": 0.8,
+        "p90": 1.07,
+        "p95": 1.26,
+        "max": 2.32
+      },
+      "restoredNearestDotDistM": {
+        "n": 4001,
+        "median": 0.89,
+        "p75": 1.57,
+        "p90": 2.17,
+        "p95": 2.46,
+        "max": 2.91
+      },
+      "seg14RestoredDotDistM": {
+        "n": 1020,
+        "median": 0.88,
+        "p75": 1.52,
+        "p90": 2.09,
+        "p95": 2.38,
+        "max": 2.76
+      }
+    },
+    "5": {
+      "restoredStations": 4001,
+      "withLocalBand_ge2frames": 4001,
+      "withoutLocalBand": 0,
+      "restoredPointWithin_0_2m": 2252,
+      "restoredPointWithin_0_5m": 3510,
+      "restoredPointWithin_1_0m": 3959,
+      "localBandSpreadM": {
+        "n": 4001,
+        "median": 0.52,
+        "p75": 0.83,
+        "p90": 1.14,
+        "p95": 1.32,
+        "max": 2.32
+      },
+      "restoredNearestDotDistM": {
+        "n": 4001,
+        "median": 0.89,
+        "p75": 1.57,
+        "p90": 2.17,
+        "p95": 2.46,
+        "max": 2.91
+      },
+      "seg14RestoredDotDistM": {
+        "n": 1020,
+        "median": 0.88,
+        "p75": 1.52,
+        "p90": 2.09,
+        "p95": 2.38,
+        "max": 2.76
+      }
+    }
+  },
+  "perSegmentRestored": [
+    {
+      "seg": 14,
+      "restored": 1020,
+      "byRadius": {
+        "1": {
+          "withBand": 148,
+          "noBand": 872,
+          "pointInBand": 533,
+          "nearestDotMedian": null
+        },
+        "2": {
+          "withBand": 496,
+          "noBand": 524,
+          "pointInBand": 837,
+          "nearestDotMedian": null
+        },
+        "3": {
+          "withBand": 863,
+          "noBand": 157,
+          "pointInBand": 936,
+          "nearestDotMedian": null
+        },
+        "4": {
+          "withBand": 1014,
+          "noBand": 6,
+          "pointInBand": 918,
+          "nearestDotMedian": null
+        },
+        "5": {
+          "withBand": 1020,
+          "noBand": 0,
+          "pointInBand": 902,
+          "nearestDotMedian": null
+        }
+      }
+    },
+    {
+      "seg": 16,
+      "restored": 1222,
+      "byRadius": {
+        "1": {
+          "withBand": 167,
+          "noBand": 1055,
+          "pointInBand": 678,
+          "nearestDotMedian": null
+        },
+        "2": {
+          "withBand": 567,
+          "noBand": 655,
+          "pointInBand": 1038,
+          "nearestDotMedian": null
+        },
+        "3": {
+          "withBand": 1003,
+          "noBand": 219,
+          "pointInBand": 1188,
+          "nearestDotMedian": null
+        },
+        "4": {
+          "withBand": 1219,
+          "noBand": 3,
+          "pointInBand": 1178,
+          "nearestDotMedian": null
+        },
+        "5": {
+          "withBand": 1222,
+          "noBand": 0,
+          "pointInBand": 1170,
+          "nearestDotMedian": null
+        }
+      }
+    },
+    {
+      "seg": 18,
+      "restored": 1094,
+      "byRadius": {
+        "1": {
+          "withBand": 156,
+          "noBand": 938,
+          "pointInBand": 562,
+          "nearestDotMedian": null
+        },
+        "2": {
+          "withBand": 500,
+          "noBand": 594,
+          "pointInBand": 872,
+          "nearestDotMedian": null
+        },
+        "3": {
+          "withBand": 886,
+          "noBand": 208,
+          "pointInBand": 1021,
+          "nearestDotMedian": null
+        },
+        "4": {
+          "withBand": 1085,
+          "noBand": 9,
+          "pointInBand": 996,
+          "nearestDotMedian": null
+        },
+        "5": {
+          "withBand": 1094,
+          "noBand": 0,
+          "pointInBand": 981,
+          "nearestDotMedian": null
+        }
+      }
+    },
+    {
+      "seg": 89,
+      "restored": 665,
+      "byRadius": {
+        "1": {
+          "withBand": 77,
+          "noBand": 588,
+          "pointInBand": 288,
+          "nearestDotMedian": null
+        },
+        "2": {
+          "withBand": 322,
+          "noBand": 343,
+          "pointInBand": 462,
+          "nearestDotMedian": null
+        },
+        "3": {
+          "withBand": 586,
+          "noBand": 79,
+          "pointInBand": 543,
+          "nearestDotMedian": null
+        },
+        "4": {
+          "withBand": 665,
+          "noBand": 0,
+          "pointInBand": 498,
+          "nearestDotMedian": null
+        },
+        "5": {
+          "withBand": 665,
+          "noBand": 0,
+          "pointInBand": 457,
+          "nearestDotMedian": null
+        }
+      }
+    },
+    {
+      "seg": 12,
+      "restored": 0,
+      "byRadius": {
+        "1": {
+          "withBand": 0,
+          "noBand": 0,
+          "pointInBand": 0,
+          "nearestDotMedian": null
+        },
+        "2": {
+          "withBand": 0,
+          "noBand": 0,
+          "pointInBand": 0,
+          "nearestDotMedian": null
+        },
+        "3": {
+          "withBand": 0,
+          "noBand": 0,
+          "pointInBand": 0,
+          "nearestDotMedian": null
+        },
+        "4": {
+          "withBand": 0,
+          "noBand": 0,
+          "pointInBand": 0,
+          "nearestDotMedian": null
+        },
+        "5": {
+          "withBand": 0,
+          "noBand": 0,
+          "pointInBand": 0,
+          "nearestDotMedian": null
+        }
+      }
+    },
+    {
+      "seg": 2,
+      "restored": 0,
+      "byRadius": {
+        "1": {
+          "withBand": 0,
+          "noBand": 0,
+          "pointInBand": 0,
+          "nearestDotMedian": null
+        },
+        "2": {
+          "withBand": 0,
+          "noBand": 0,
+          "pointInBand": 0,
+          "nearestDotMedian": null
+        },
+        "3": {
+          "withBand": 0,
+          "noBand": 0,
+          "pointInBand": 0,
+          "nearestDotMedian": null
+        },
+        "4": {
+          "withBand": 0,
+          "noBand": 0,
+          "pointInBand": 0,
+          "nearestDotMedian": null
+        },
+        "5": {
+          "withBand": 0,
+          "noBand": 0,
+          "pointInBand": 0,
+          "nearestDotMedian": null
+        }
+      }
+    },
+    {
+      "seg": 99,
+      "restored": 0,
+      "byRadius": {
+        "1": {
+          "withBand": 0,
+          "noBand": 0,
+          "pointInBand": 0,
+          "nearestDotMedian": null
+        },
+        "2": {
+          "withBand": 0,
+          "noBand": 0,
+          "pointInBand": 0,
+          "nearestDotMedian": null
+        },
+        "3": {
+          "withBand": 0,
+          "noBand": 0,
+          "pointInBand": 0,
+          "nearestDotMedian": null
+        },
+        "4": {
+          "withBand": 0,
+          "noBand": 0,
+          "pointInBand": 0,
+          "nearestDotMedian": null
+        },
+        "5": {
+          "withBand": 0,
+          "noBand": 0,
+          "pointInBand": 0,
+          "nearestDotMedian": null
+        }
+      }
+    }
+  ]
+}

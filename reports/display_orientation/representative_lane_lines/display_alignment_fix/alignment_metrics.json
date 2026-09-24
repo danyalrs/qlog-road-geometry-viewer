@@ -1,0 +1,41 @@
+{
+  "note": "distance = representative point to nearest same-identity dot; mirror=1 uses the mirrored fields (present on both layers).",
+  "seg14": {
+    "baselineRep_to_dot_local": {
+      "n": 2735,
+      "median": 0.601,
+      "p75": 1.015,
+      "p90": 1.467,
+      "p95": 1.667,
+      "max": 2.544,
+      "gt0_5": 0.612,
+      "gt1": 0.26,
+      "gt1_5": 0.087,
+      "gt2": 0.023
+    },
+    "v2_before_fix_local_old": {
+      "n": 3006,
+      "median": 0.588,
+      "p75": 0.998,
+      "p90": 1.395,
+      "p95": 1.629,
+      "max": 2.544,
+      "gt0_5": 0.606,
+      "gt1": 0.248,
+      "gt1_5": 0.079,
+      "gt2": 0.021
+    },
+    "v2_after_fix_placed": {
+      "n": 3006,
+      "median": 0.588,
+      "p75": 0.998,
+      "p90": 1.395,
+      "p95": 1.629,
+      "max": 2.544,
+      "gt0_5": 0.606,
+      "gt1": 0.248,
+      "gt1_5": 0.079,
+      "gt2": 0.021
+    }
+  }
+}

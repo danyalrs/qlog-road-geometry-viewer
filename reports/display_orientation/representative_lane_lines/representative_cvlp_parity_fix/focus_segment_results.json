@@ -1,0 +1,12 @@
+{
+  "note": "Fitting geometry unchanged by this renderer parity fix (OFF/ON counts identical to v2).",
+  "segments": {
+    "14": { "off": {"lines": 82, "gaps": 79, "lanes": 3}, "on": {"lines": 46, "gaps": 23, "lanes": 3} },
+    "16": { "off": {"lines": 82, "gaps": 75, "lanes": 3}, "on": {"lines": 62, "gaps": 26, "lanes": 3} },
+    "18": { "off": {"lines": 79, "gaps": 76, "lanes": 5}, "on": {"lines": 73, "gaps": 39, "lanes": 5} },
+    "89": { "off": {"lines": 77, "gaps": 62, "lanes": 3}, "on": {"lines": 53, "gaps": 28, "lanes": 3} },
+    "2":  { "off": {"lines": 3,  "gaps": 2,  "lanes": 3}, "on": {"lines": 3,  "gaps": 2,  "lanes": 3} },
+    "12": { "off": {"lines": 4,  "gaps": 2,  "lanes": 3}, "on": {"lines": 4,  "gaps": 2,  "lanes": 3} },
+    "99": { "off": {"lines": 13, "gaps": 8,  "lanes": 5}, "on": {"lines": 13, "gaps": 8,  "lanes": 5} }
+  }
+}

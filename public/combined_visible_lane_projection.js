@@ -14,7 +14,7 @@
  */
 
 const QUERY_PARAM = 'combinedVisibleLaneProjectionCandidate';
-const APPROVED_LAYER_KINDS = new Set(['pointAccumulated', 'laneFragments']);
+const APPROVED_LAYER_KINDS = new Set(['pointAccumulated', 'laneFragments', 'representativeLaneLines']);
 
 function getViewerMirrorCoords() {
   if (typeof globalThis !== 'undefined' && globalThis.ViewerMirrorCoords) {

@@ -1,0 +1,12 @@
+{
+  "before": {
+    "dots": "_drawPointAccumulatedGeometry sets _visibleLaneProjectionPass='pointAccumulated' -> CVLP.projectCombinedSourceLanePoint(pt, map, 'pointAccumulated', {mirrorChecked, useVisibleLaneProjection:true})",
+    "representative": "_visibleLaneProjectionPass is null in _drawRepresentativeLaneLines -> CVLP branch skipped -> raw placedEast"
+  },
+  "after": {
+    "dots": "unchanged (CVLP 'pointAccumulated')",
+    "representative": "_drawRepresentativeLaneLines calls CVLP.projectCombinedSourceLanePoint(pt, map, 'representativeLaneLines', {mirrorChecked, search, useVisibleLaneProjection:true}) with an EXPLICIT pass kind; falls back to _projectRoadGeometryToScreen only when CVLP returns null and records missingSource/fallback"
+  },
+  "cvlpChange": "APPROVED_LAYER_KINDS gains 'representativeLaneLines'; the projection math is kind-independent, so parity is exact",
+  "provenanceAdded": "makeStation computes the dominant sourceFile; pickStationRepresentative emits sourceFile + first supporting frameId on the representative point"
+}

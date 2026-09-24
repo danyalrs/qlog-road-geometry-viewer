@@ -1,0 +1,7 @@
+{
+  "dotPath": ["observation -> pa.points", "CST.applySourceTransformsToMap adds placedEast/placedNorth + coordinateFrame", "_projectRoadGeometryToScreen combined branch uses placedEast", "worldToScreen"],
+  "representativePath_BEFORE": ["station s", "medianD + medianEast/localEast only", "no placed field", "_projectRoadGeometryToScreen combined branch falls back to localEast", "worldToScreen (different frame)"],
+  "representativePath_AFTER": ["station s", "medianD + medianEast/localEast + medianPlacedEast/medianPlacedNorth", "coordinateFrame=combinedPlaced", "_projectRoadGeometryToScreen combined branch uses placedEast", "worldToScreen (same frame as dots)"],
+  "reflectionDecision": "exactly one: the CST/buildSourceTransformRegistry mirrorChecked decision, shared by both layers",
+  "owner": "public/connected_accumulated_display.js interpCurvePointAtS / makeStation / pickStationRepresentative"
+}

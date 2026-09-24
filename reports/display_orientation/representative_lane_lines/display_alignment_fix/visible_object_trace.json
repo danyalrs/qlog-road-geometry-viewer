@@ -1,0 +1,21 @@
+{
+  "note": "Owners of the visible Seg14 objects (combined display).",
+  "blue_red_green_dots": {
+    "drawPass": "pointAccumulatedLanes (this._drawPointAccumulatedGeometry.dots)",
+    "rendererFunction": "public/render.js:1989",
+    "collection": "map.pointAccumulated.points",
+    "colour": "_pointTrackColorCache.get(pt.groupTrackId)",
+    "coordinateFields": "combined frame: placedEast/placedNorth (from CST); standalone: localEast/localNorth (+ mirrored when mirror=1)",
+    "projection": "_projectRoadGeometryToScreen:2055 -> worldToScreen"
+  },
+  "solid_representative_lines": {
+    "drawPass": "representativeLaneLines (this._drawRepresentativeLaneLines)",
+    "rendererFunction": "public/render.js:2345",
+    "collection": "buildRepresentativeLaneLinesPurityRevisitFromPerFrame(...).polylines",
+    "colour": "_pointTrackColorCache.get(poly.groupTrackId)  (SAME cache as dots)",
+    "coordinateFields_BEFORE_FIX": "localEast/localNorth only (placed fields dropped in makeStation)",
+    "coordinateFields_AFTER_FIX": "placedEast/placedNorth + coordinateFrame='combinedPlaced' when the source observations carry them",
+    "projection": "_projectRoadGeometryToScreen(pt.localEast, pt.localNorth, pt.mirrored..., pt):2428 -> worldToScreen"
+  },
+  "confirmed": "The solid lines are the representative layer (not another layer); both layers use the same colour cache and the same projection call. The only difference was the coordinate fields carried by the point."
+}

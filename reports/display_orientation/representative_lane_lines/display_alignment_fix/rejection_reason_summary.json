@@ -1,0 +1,6 @@
+{
+  "note": "The alignment fix is a coordinate-frame propagation fix; it does not change fitting thresholds, restorations or rejections. Station-support rejection totals are unchanged from the v2 run.",
+  "alignmentFix": { "changesFitting": false, "changesRestorationCount": false, "changesDisplayFramePropagation": true },
+  "orderInversions": { "before": "present (old rep order reversed vs dots)", "after": 0 },
+  "safetyControls": { "seg2": "no restorations, protections intact", "seg99": "no restorations, fold absent" }
+}

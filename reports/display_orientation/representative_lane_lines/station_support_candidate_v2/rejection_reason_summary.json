@@ -1,0 +1,20 @@
+{
+  "note": "V2 station support rejection/acceptance reasons across all 92 segments (candidate ON).",
+  "candidate": "representativeStationSupportCandidate=1",
+  "version": "stationSupport:1:v2",
+  "acceptedRestorations": 1759,
+  "rejections": {
+    "stationSupport_notInteriorGap": 28167,
+    "stationSupport_insufficientExtendedSupport": 5573,
+    "stationSupport_insufficientLocalBandFrames": 3311,
+    "stationSupport_noLocalBand": 1622,
+    "stationSupport_noBaseAnchor": 152,
+    "stationSupport_localBandTooWide": 104,
+    "stationSupport_extendedOutsideLocalBand": 55,
+    "stationSupport_anchorOutsideLocalBand": 53,
+    "stationSupport_fittedPointOutsideLocalBand": 18,
+    "stationSupport_temporalRevisitRisk": 12
+  },
+  "safetyControls": { "seg2_accepted": 0, "seg12_accepted": 0, "seg99_accepted": 0 },
+  "gates": { "processed92of92": true, "laneChanges": 0, "mutation": 0, "nonFinite": 0, "deterministic": true }
+}

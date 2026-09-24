@@ -1,0 +1,391 @@
+{
+  "generatedAt": "2026-09-23T12:04:45.364Z",
+  "segments": [
+    {
+      "seg": 2,
+      "off": {
+        "lines": 3,
+        "logicalLanes": 3,
+        "groupTrackIds": 3,
+        "alongTrackGap": 2,
+        "spatialStep": 0,
+        "coverageM": 1420,
+        "medianSupport": 4,
+        "nonFinite": 0,
+        "stationSupportAccepted": 0,
+        "stationSupportEligible": 0,
+        "stationSupportAdmitted": 0,
+        "stationSupportDiscarded": 0,
+        "stationSupportReasons": {}
+      },
+      "on": {
+        "lines": 3,
+        "logicalLanes": 3,
+        "groupTrackIds": 3,
+        "alongTrackGap": 2,
+        "spatialStep": 0,
+        "coverageM": 1420,
+        "medianSupport": 4,
+        "nonFinite": 0,
+        "stationSupportAccepted": 0,
+        "stationSupportEligible": 726,
+        "stationSupportAdmitted": 0,
+        "stationSupportDiscarded": 0,
+        "stationSupportReasons": {
+          "stationSupport_notInteriorGap": 726
+        }
+      },
+      "mutation": false,
+      "offHash": "da28870983984b1d",
+      "onHash": "da28870983984b1d",
+      "runtimeMs": 10992
+    },
+    {
+      "seg": 12,
+      "off": {
+        "lines": 4,
+        "logicalLanes": 3,
+        "groupTrackIds": 3,
+        "alongTrackGap": 2,
+        "spatialStep": 0,
+        "coverageM": 1491,
+        "medianSupport": 4,
+        "nonFinite": 0,
+        "stationSupportAccepted": 0,
+        "stationSupportEligible": 0,
+        "stationSupportAdmitted": 0,
+        "stationSupportDiscarded": 0,
+        "stationSupportReasons": {}
+      },
+      "on": {
+        "lines": 4,
+        "logicalLanes": 3,
+        "groupTrackIds": 3,
+        "alongTrackGap": 2,
+        "spatialStep": 0,
+        "coverageM": 1491,
+        "medianSupport": 4,
+        "nonFinite": 0,
+        "stationSupportAccepted": 0,
+        "stationSupportEligible": 313,
+        "stationSupportAdmitted": 0,
+        "stationSupportDiscarded": 0,
+        "stationSupportReasons": {
+          "stationSupport_notInteriorGap": 313
+        }
+      },
+      "mutation": false,
+      "offHash": "5b7543b194b8aafa",
+      "onHash": "5b7543b194b8aafa",
+      "runtimeMs": 25968
+    },
+    {
+      "seg": 14,
+      "off": {
+        "lines": 82,
+        "logicalLanes": 3,
+        "groupTrackIds": 3,
+        "alongTrackGap": 79,
+        "spatialStep": 0,
+        "coverageM": 2653,
+        "medianSupport": 2,
+        "nonFinite": 0,
+        "stationSupportAccepted": 0,
+        "stationSupportEligible": 0,
+        "stationSupportAdmitted": 0,
+        "stationSupportDiscarded": 0,
+        "stationSupportReasons": {}
+      },
+      "on": {
+        "lines": 46,
+        "logicalLanes": 3,
+        "groupTrackIds": 3,
+        "alongTrackGap": 23,
+        "spatialStep": 24,
+        "coverageM": 3385,
+        "medianSupport": 2,
+        "nonFinite": 0,
+        "stationSupportAccepted": 276,
+        "stationSupportEligible": 1303,
+        "stationSupportAdmitted": 276,
+        "stationSupportDiscarded": 0,
+        "stationSupportReasons": {
+          "stationSupport_notInteriorGap": 263,
+          "stationSupport_noLocalBand": 252,
+          "stationSupport_insufficientLocalBandFrames": 474,
+          "stationSupport_insufficientExtendedSupport": 20,
+          "stationSupport_extendedOutsideLocalBand": 15,
+          "stationSupport_anchorOutsideLocalBand": 1,
+          "stationSupport_localBandTooWide": 1,
+          "stationSupport_fittedPointOutsideLocalBand": 1
+        }
+      },
+      "mutation": false,
+      "offHash": "4ae22bd05bb40981",
+      "onHash": "ee626c20c3bc01fe",
+      "runtimeMs": 58753
+    },
+    {
+      "seg": 16,
+      "off": {
+        "lines": 82,
+        "logicalLanes": 3,
+        "groupTrackIds": 3,
+        "alongTrackGap": 75,
+        "spatialStep": 4,
+        "coverageM": 2640,
+        "medianSupport": 2,
+        "nonFinite": 0,
+        "stationSupportAccepted": 0,
+        "stationSupportEligible": 0,
+        "stationSupportAdmitted": 0,
+        "stationSupportDiscarded": 0,
+        "stationSupportReasons": {}
+      },
+      "on": {
+        "lines": 62,
+        "logicalLanes": 3,
+        "groupTrackIds": 3,
+        "alongTrackGap": 26,
+        "spatialStep": 40,
+        "coverageM": 3418,
+        "medianSupport": 2,
+        "nonFinite": 0,
+        "stationSupportAccepted": 327,
+        "stationSupportEligible": 1424,
+        "stationSupportAdmitted": 327,
+        "stationSupportDiscarded": 0,
+        "stationSupportReasons": {
+          "stationSupport_notInteriorGap": 198,
+          "stationSupport_insufficientLocalBandFrames": 583,
+          "stationSupport_noLocalBand": 311,
+          "stationSupport_insufficientExtendedSupport": 4,
+          "stationSupport_extendedOutsideLocalBand": 1
+        }
+      },
+      "mutation": false,
+      "offHash": "2072084474a21782",
+      "onHash": "08ceb9da7337dbc7",
+      "runtimeMs": 82766
+    },
+    {
+      "seg": 18,
+      "off": {
+        "lines": 79,
+        "logicalLanes": 5,
+        "groupTrackIds": 4,
+        "alongTrackGap": 76,
+        "spatialStep": 0,
+        "coverageM": 2369,
+        "medianSupport": 2,
+        "nonFinite": 0,
+        "stationSupportAccepted": 0,
+        "stationSupportEligible": 0,
+        "stationSupportAdmitted": 0,
+        "stationSupportDiscarded": 0,
+        "stationSupportReasons": {}
+      },
+      "on": {
+        "lines": 73,
+        "logicalLanes": 5,
+        "groupTrackIds": 4,
+        "alongTrackGap": 39,
+        "spatialStep": 38,
+        "coverageM": 2993,
+        "medianSupport": 2,
+        "nonFinite": 0,
+        "stationSupportAccepted": 295,
+        "stationSupportEligible": 1787,
+        "stationSupportAdmitted": 295,
+        "stationSupportDiscarded": 0,
+        "stationSupportReasons": {
+          "stationSupport_notInteriorGap": 440,
+          "stationSupport_insufficientLocalBandFrames": 485,
+          "stationSupport_noLocalBand": 299,
+          "stationSupport_extendedOutsideLocalBand": 3,
+          "stationSupport_fittedPointOutsideLocalBand": 2,
+          "stationSupport_anchorOutsideLocalBand": 8,
+          "stationSupport_localBandTooWide": 2,
+          "stationSupport_insufficientExtendedSupport": 253
+        }
+      },
+      "mutation": false,
+      "offHash": "3579e46d8e8da573",
+      "onHash": "4c298a58c39f4686",
+      "runtimeMs": 45005
+    },
+    {
+      "seg": 19,
+      "off": {
+        "lines": 5,
+        "logicalLanes": 3,
+        "groupTrackIds": 3,
+        "alongTrackGap": 2,
+        "spatialStep": 0,
+        "coverageM": 2768,
+        "medianSupport": 3,
+        "nonFinite": 0,
+        "stationSupportAccepted": 0,
+        "stationSupportEligible": 0,
+        "stationSupportAdmitted": 0,
+        "stationSupportDiscarded": 0,
+        "stationSupportReasons": {}
+      },
+      "on": {
+        "lines": 5,
+        "logicalLanes": 3,
+        "groupTrackIds": 3,
+        "alongTrackGap": 2,
+        "spatialStep": 0,
+        "coverageM": 2789,
+        "medianSupport": 3,
+        "nonFinite": 0,
+        "stationSupportAccepted": 9,
+        "stationSupportEligible": 338,
+        "stationSupportAdmitted": 9,
+        "stationSupportDiscarded": 0,
+        "stationSupportReasons": {
+          "stationSupport_notInteriorGap": 303,
+          "stationSupport_insufficientLocalBandFrames": 11,
+          "stationSupport_noLocalBand": 3,
+          "stationSupport_insufficientExtendedSupport": 12
+        }
+      },
+      "mutation": false,
+      "offHash": "ed988a7e02450aaa",
+      "onHash": "287b215234ff1eca",
+      "runtimeMs": 40307
+    },
+    {
+      "seg": 20,
+      "off": {
+        "lines": 8,
+        "logicalLanes": 5,
+        "groupTrackIds": 4,
+        "alongTrackGap": 3,
+        "spatialStep": 0,
+        "coverageM": 2930,
+        "medianSupport": 4,
+        "nonFinite": 0,
+        "stationSupportAccepted": 0,
+        "stationSupportEligible": 0,
+        "stationSupportAdmitted": 0,
+        "stationSupportDiscarded": 0,
+        "stationSupportReasons": {}
+      },
+      "on": {
+        "lines": 9,
+        "logicalLanes": 5,
+        "groupTrackIds": 4,
+        "alongTrackGap": 2,
+        "spatialStep": 2,
+        "coverageM": 2937,
+        "medianSupport": 3,
+        "nonFinite": 0,
+        "stationSupportAccepted": 7,
+        "stationSupportEligible": 350,
+        "stationSupportAdmitted": 7,
+        "stationSupportDiscarded": 1,
+        "stationSupportReasons": {
+          "stationSupport_notInteriorGap": 300,
+          "stationSupport_noBaseAnchor": 15,
+          "stationSupport_noLocalBand": 3,
+          "stationSupport_insufficientLocalBandFrames": 6,
+          "stationSupport_localBandTooWide": 8,
+          "stationSupport_insufficientExtendedSupport": 11
+        }
+      },
+      "mutation": false,
+      "offHash": "0ef2d9cf2161cd20",
+      "onHash": "2ef2e0c121d15abc",
+      "runtimeMs": 69487
+    },
+    {
+      "seg": 89,
+      "off": {
+        "lines": 77,
+        "logicalLanes": 3,
+        "groupTrackIds": 3,
+        "alongTrackGap": 62,
+        "spatialStep": 12,
+        "coverageM": 2704,
+        "medianSupport": 2,
+        "nonFinite": 0,
+        "stationSupportAccepted": 0,
+        "stationSupportEligible": 0,
+        "stationSupportAdmitted": 0,
+        "stationSupportDiscarded": 0,
+        "stationSupportReasons": {}
+      },
+      "on": {
+        "lines": 53,
+        "logicalLanes": 3,
+        "groupTrackIds": 3,
+        "alongTrackGap": 28,
+        "spatialStep": 22,
+        "coverageM": 3244,
+        "medianSupport": 2,
+        "nonFinite": 0,
+        "stationSupportAccepted": 153,
+        "stationSupportEligible": 1266,
+        "stationSupportAdmitted": 153,
+        "stationSupportDiscarded": 0,
+        "stationSupportReasons": {
+          "stationSupport_notInteriorGap": 364,
+          "stationSupport_noBaseAnchor": 2,
+          "stationSupport_insufficientLocalBandFrames": 302,
+          "stationSupport_noLocalBand": 183,
+          "stationSupport_extendedOutsideLocalBand": 10,
+          "stationSupport_anchorOutsideLocalBand": 7,
+          "stationSupport_insufficientExtendedSupport": 235,
+          "stationSupport_localBandTooWide": 7,
+          "stationSupport_fittedPointOutsideLocalBand": 3
+        }
+      },
+      "mutation": false,
+      "offHash": "e14323e816dbc2ca",
+      "onHash": "6456365f195ce70b",
+      "runtimeMs": 16229
+    },
+    {
+      "seg": 99,
+      "off": {
+        "lines": 13,
+        "logicalLanes": 5,
+        "groupTrackIds": 3,
+        "alongTrackGap": 8,
+        "spatialStep": 4,
+        "coverageM": 1018,
+        "medianSupport": 2,
+        "nonFinite": 0,
+        "stationSupportAccepted": 0,
+        "stationSupportEligible": 0,
+        "stationSupportAdmitted": 0,
+        "stationSupportDiscarded": 0,
+        "stationSupportReasons": {}
+      },
+      "on": {
+        "lines": 13,
+        "logicalLanes": 5,
+        "groupTrackIds": 3,
+        "alongTrackGap": 8,
+        "spatialStep": 4,
+        "coverageM": 1018,
+        "medianSupport": 2,
+        "nonFinite": 0,
+        "stationSupportAccepted": 0,
+        "stationSupportEligible": 1106,
+        "stationSupportAdmitted": 0,
+        "stationSupportDiscarded": 0,
+        "stationSupportReasons": {
+          "stationSupport_notInteriorGap": 1104,
+          "stationSupport_insufficientExtendedSupport": 2
+        }
+      },
+      "mutation": false,
+      "offHash": "a79b78fe3afc0983",
+      "onHash": "a79b78fe3afc0983",
+      "runtimeMs": 1391
+    }
+  ]
+}

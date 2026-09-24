@@ -1,0 +1,9 @@
+{
+  "note": "Parity is proven at the projection function: identical (point, map) projected under kind 'pointAccumulated' and 'representativeLaneLines' returns identical east/north (see tests 2-5). The offline identity/coordinate trace showed source gid == metadata gid for every group and matching order; the residual live reversal came from the dots entering CVLP while the representative layer skipped it.",
+  "seg14_identity_coordinate_trace": {
+    "gid0": { "laneIndex": 0, "side": "right", "dot_d_median": -4.62, "line_d_median": -4.50, "dot_north_median": -13.71, "line_north_median": -12.38, "sourceGid": 0, "metadataGid": 0 },
+    "gid1": { "laneIndex": 1, "side": "right", "dot_d_median": -1.56, "line_d_median": -1.43, "dot_north_median": -10.56, "line_north_median": -10.45, "sourceGid": 1, "metadataGid": 1 },
+    "gid2": { "laneIndex": 2, "side": "left", "dot_d_median": 1.38, "line_d_median": 1.50, "dot_north_median": -7.56, "line_north_median": -7.42, "sourceGid": 2, "metadataGid": 2 }
+  },
+  "expected_live_diagnostic": { "repPass": "representativeLaneLines", "cvlpProjected": "total/total", "missingSource": 0, "fallback": 0 }
+}

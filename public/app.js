@@ -1958,6 +1958,12 @@ function updateRepresentativeLaneLinesDiag() {
     `coverage ${d.totalSupportedCoverageM ?? '—'}m`,
     `spread [${d.lateralSpreadRange?.min != null ? Number(d.lateralSpreadRange.min).toFixed(2) : '—'}–${d.lateralSpreadRange?.max != null ? Number(d.lateralSpreadRange.max).toFixed(2) : '—'}]`,
   ].join(' · ');
+  if (d.stationSupportCandidate) {
+    const sr = d.stationSupportReasons || {};
+    el.textContent += ` · Station robust mode: retained ${d.stationSupportAccepted ?? 0} stations · discarded ${d.stationSupportDiscarded ?? 0} isolated observations · genuine bimodal ${sr.competingExtendedMode ?? 0} · unstable ${sr.temporalRevisitRisk ?? 0}`;
+  }
+  // Temporary alignment diagnostics are no longer shown in the normal UI. They
+  // remain available (internal counters) via getRepresentativeLaneLinesDiagnostics().
 }
 
 

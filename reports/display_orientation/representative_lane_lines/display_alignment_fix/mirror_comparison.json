@@ -1,0 +1,104 @@
+{
+  "note": "the placed/combined frame is built with mirrorChecked; the rep layer now carries the same placed coordinate, so there is exactly one lateral reflection decision for both layers",
+  "segOrder": {
+    "2": {
+      "dotOrder": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "repOrderPlaced_fixed": [
+        "2",
+        "0",
+        "1"
+      ],
+      "repOrderLocal_old": [
+        "1",
+        "0",
+        "2"
+      ],
+      "fixedMatches": false,
+      "oldReversed": true
+    },
+    "14": {
+      "dotOrder": [
+        "2",
+        "1",
+        "0"
+      ],
+      "repOrderPlaced_fixed": [
+        "2",
+        "1",
+        "0"
+      ],
+      "repOrderLocal_old": [
+        "0",
+        "1",
+        "2"
+      ],
+      "fixedMatches": true,
+      "oldReversed": true
+    },
+    "16": {
+      "dotOrder": [
+        "2",
+        "1",
+        "0"
+      ],
+      "repOrderPlaced_fixed": [
+        "2",
+        "1",
+        "0"
+      ],
+      "repOrderLocal_old": [
+        "0",
+        "1",
+        "2"
+      ],
+      "fixedMatches": true,
+      "oldReversed": true
+    },
+    "18": {
+      "dotOrder": [
+        "3",
+        "2",
+        "1",
+        "0"
+      ],
+      "repOrderPlaced_fixed": [
+        "3",
+        "2",
+        "1",
+        "0"
+      ],
+      "repOrderLocal_old": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "fixedMatches": true,
+      "oldReversed": true
+    },
+    "99": {
+      "dotOrder": [
+        "2",
+        "0",
+        "1"
+      ],
+      "repOrderPlaced_fixed": [
+        "2",
+        "1",
+        "0"
+      ],
+      "repOrderLocal_old": [
+        "0",
+        "1",
+        "2"
+      ],
+      "fixedMatches": false,
+      "oldReversed": true
+    }
+  }
+}
