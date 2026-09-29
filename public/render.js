@@ -154,8 +154,20 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     this.draw();
   }
 
+  setGeographicMapController(controller) {
+    this._geographicMapController = controller || null;
+  }
+
+  setMapNativeActive(active) {
+    this._mapNativeActive = !!active;
+  }
+
   setPlaybackPose(pose) {
     this.playbackPose = pose;
+    if (this._mapNativeActive && this._geographicMapController) {
+      this._geographicMapController.updateGeographicVehicleMarker?.(pose);
+      return;
+    }
     if (this.displayMode === 'local') this.draw();
   }
 
@@ -290,6 +302,16 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
   }
 
   _projectRoadGeometryToScreen(east, north, mirroredEast = null, mirroredNorth = null, point = null) {
+    if (this._geographicScreenProjectorActive()) {
+      const le = Number.isFinite(point?.localEast) ? point.localEast : east;
+      const ln = Number.isFinite(point?.localNorth) ? point.localNorth : north;
+      if (Number.isFinite(le) && Number.isFinite(ln)) {
+        const p = this._geographicScreenProjector.projectCanonicalLocal(le, ln);
+        if (p) return p;
+      }
+      const g = this._geographicScreenProjector.projectGlobalEn(east, north);
+      if (g) return g;
+    }
     if (this._usesCombinedPlacedFrame(point)) {
       const CVLP = typeof window !== 'undefined' ? window.CombinedVisibleLaneProjection : null;
       const pass = this._visibleLaneProjectionPass;
@@ -838,7 +860,19 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
     return [fittedPolyline];
   }
 
+  setGeographicScreenProjector(projector) {
+    this._geographicScreenProjector = projector || null;
+  }
+
+  _geographicScreenProjectorActive() {
+    return !!(this._geographicScreenProjector?.isActive?.());
+  }
+
   worldToScreen(east, north) {
+    if (this._geographicScreenProjectorActive()) {
+      const p = this._geographicScreenProjector.projectGlobalEn(east, north);
+      if (p) return p;
+    }
     const cx = this.w / 2 + this.offsetX;
     const cy = this.h / 2 + this.offsetY;
     return { x: cx + east * this.scale, y: cy - north * this.scale };
@@ -1020,6 +1054,17 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
   }
 
   fitToLocalView() {
+    if (this._mapNativeActive && this._geographicMapController) {
+      const ok = this._geographicMapController.fitRouteBounds?.(this.stationaryLocalMap);
+      if (ok) return;
+    }
+    if (this._geographicScreenProjectorActive?.()) {
+      const ok = this._geographicScreenProjector.fitRouteBounds?.(this.stationaryLocalMap);
+      if (ok) {
+        this.draw();
+        return;
+      }
+    }
     const LP = window.LocalPlayback;
     if (this.localGeometryMode === 'diagnostic') {
       const display = this.localGeometryDisplay;
@@ -1113,6 +1158,9 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
   }
 
   draw() {
+    if (this._mapNativeActive && this.displayMode === 'local') {
+      return;
+    }
     const ctx = this.ctx;
     const drawStart = typeof performance !== 'undefined' ? performance.now() : 0;
     this._drawStatsCounters = this._progressiveDrawLod ? {
@@ -2339,6 +2387,69 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
   }
 
   /**
+   * Build representative polylines for MapLibre GeoJSON (no canvas draw).
+   */
+  buildRepresentativePolylinesForGeographic(elapsedIdx, visiblePoints) {
+    const CAD = typeof window !== 'undefined' ? window.ConnectedAccumulatedDisplay : null;
+    if (!CAD?.buildRepresentativeLaneLinesFromPerFrame || !CAD?.buildPerFrameConnectedPolylines) {
+      return [];
+    }
+    const map = this.stationaryLocalMap;
+    const pa = map?.pointAccumulated;
+    if (!pa?.points?.length) return [];
+
+    let perFrame = this._connectedAccumulatedPolylines;
+    let perFrameStats = this._connectedAccumulatedStats;
+    const mapKey = map?.cacheKey ?? map?.checksum ?? null;
+    const modeOk = (perFrameStats?.mode === 'perFrame')
+      || this._connectedAccumulatedMode === 'perFrame';
+    const mapKeyStale = mapKey != null && mapKey !== this._representativePerFrameMapKey;
+    if (!perFrame?.length || !modeOk || mapKeyStale || this._pointCausalPlayback || this._obsIsolationActive()) {
+      const sourcePts = this._obsIsolationActive()
+        ? (visiblePoints || [])
+        : (this._pointCausalPlayback
+          ? CAD.filterPointsForCausal(pa.points || [], elapsedIdx)
+          : (pa.points || []));
+      const built = CAD.buildPerFrameConnectedPolylines(sourcePts);
+      perFrame = built.polylines;
+      perFrameStats = built.stats;
+    }
+    this._representativePerFrameMapKey = mapKey;
+
+    const search = typeof window !== 'undefined' ? window.location.search : '';
+    const requested = resolveRepresentativeMethod(search);
+    const stationSupport = CAD.parseRepresentativeStationSupportCandidate
+      ? CAD.parseRepresentativeStationSupportCandidate(search) : false;
+    const repOpts = { representativeStationSupportCandidate: stationSupport };
+    const hasBuilder = {
+      legacy: !!CAD.buildRepresentativeLaneLinesLegacyFromPerFrame,
+      purityRevisit: !!CAD.buildRepresentativeLaneLinesPurityRevisitFromPerFrame,
+      purity: !!CAD.buildRepresentativeLaneLinesPurityFromPerFrame,
+      curveAssociation: !!CAD.buildRepresentativeLaneLinesFromPerFrame,
+    };
+    const method = hasBuilder[requested] ? requested : 'curveAssociation';
+    const built = method === 'legacy'
+      ? CAD.buildRepresentativeLaneLinesLegacyFromPerFrame(perFrame || [])
+      : (method === 'purityRevisit'
+        ? CAD.buildRepresentativeLaneLinesPurityRevisitFromPerFrame(perFrame || [], repOpts)
+        : (method === 'purity'
+          ? CAD.buildRepresentativeLaneLinesPurityFromPerFrame(perFrame || [], repOpts)
+          : CAD.buildRepresentativeLaneLinesFromPerFrame(perFrame || [], repOpts)));
+    this._representativeLaneLines = built.polylines;
+    const stats = built.stats || {};
+    this._representativeLaneLinesDiagnostics = {
+      candidateActive: true,
+      representativeLineCount: stats.representativeLineCount ?? (built.polylines?.length ?? 0),
+      lineSectionCount: stats.representativeLineCount ?? (built.polylines?.length ?? 0),
+      logicalLaneCount: stats.logicalLaneCount ?? stats.laneCount ?? null,
+      laneCount: stats.logicalLaneCount ?? stats.laneCount ?? null,
+      method: built.method ?? method,
+      ...(stats || {}),
+    };
+    return built.polylines || [];
+  }
+
+  /**
    * Representative lane lines candidate — reuses robust bin-median stage on
    * points from accepted All per-frame curves. Thicker than source curves.
    */
@@ -2356,9 +2467,11 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
 
     let perFrame = this._connectedAccumulatedPolylines;
     let perFrameStats = this._connectedAccumulatedStats;
+    const mapKey = map?.cacheKey ?? map?.checksum ?? null;
     const modeOk = (perFrameStats?.mode === 'perFrame')
       || this._connectedAccumulatedMode === 'perFrame';
-    if (!perFrame?.length || !modeOk || this._pointCausalPlayback || this._obsIsolationActive()) {
+    const mapKeyStale = mapKey != null && mapKey !== this._representativePerFrameMapKey;
+    if (!perFrame?.length || !modeOk || mapKeyStale || this._pointCausalPlayback || this._obsIsolationActive()) {
       const sourcePts = this._obsIsolationActive()
         ? (visiblePoints || [])
         : (this._pointCausalPlayback
@@ -2368,6 +2481,7 @@ this._pointReliabilityTint = urlParams?.get('reliabilityTint') === '1';
       perFrame = built.polylines;
       perFrameStats = built.stats;
     }
+    this._representativePerFrameMapKey = mapKey;
 
     const search = typeof window !== 'undefined' ? window.location.search : '';
     const requested = resolveRepresentativeMethod(search);

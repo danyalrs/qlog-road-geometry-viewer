@@ -18,6 +18,7 @@ const { auditQlogFile, buildCacheKey } = require('./lib/qlog_audit');
 const { qualifySegments } = require('./lib/segment_qualify');
 const { buildGeometryProvenance, buildPassProvenance } = require('./lib/geometry_provenance');
 const { createVideoRouter } = require('./lib/video_routes');
+const { getMapConfig } = require('./lib/map_config');
 
 const ROOT = __dirname;
 const PORT = process.env.PORT || 3847;
@@ -293,6 +294,10 @@ function buildLaneTrackList(frames) {
   }
   return [...tracks.values()];
 }
+
+app.get('/api/map-config', (_req, res) => {
+  res.json(getMapConfig());
+});
 
 app.get('/api/segments', (_req, res) => {
   const segments = listSegments();
@@ -608,6 +613,7 @@ app.use((err, req, res, next) => {
 if (require.main === module) {
   app.listen(PORT, () => {
     console.log(`Qlog Road Geometry Viewer: http://localhost:${PORT}`);
+    console.log(`Map config endpoint: http://localhost:${PORT}/api/map-config`);
     console.log(`Processing version: ${PROCESSING_VERSION}`);
   });
 }

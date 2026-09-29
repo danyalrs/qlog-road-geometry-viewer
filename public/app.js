@@ -66,8 +66,413 @@ let progressiveCombinedState = {
 };
 let progressiveViewportFollowArrow = false;
 let progressiveViewportFollowSuspended = false;
+let uiMode = 'review';
+let mapBackgroundMode = 'grey';
+let geographicMap = null;
+let uiPresetApplying = false;
+let primaryActionBusy = false;
 
 const $ = (id) => document.getElementById(id);
+
+function parseUiModeFromLocation() {
+  const Ui = window.UiMode;
+  if (Ui?.parseUiMode) return Ui.parseUiMode(window.location.search);
+  return 'review';
+}
+
+function parseMapBackgroundFromLocation(streetAvailable = true) {
+  const Ui = window.UiMode;
+  if (Ui?.parseMapBackground) return Ui.parseMapBackground(window.location.search, { streetAvailable });
+  return streetAvailable ? 'street' : 'grey';
+}
+
+function replaceUrlParams(updates) {
+  if (typeof window === 'undefined') return;
+  const url = new URL(window.location.href);
+  for (const [key, value] of Object.entries(updates)) {
+    if (value == null || value === '') url.searchParams.delete(key);
+    else url.searchParams.set(key, String(value));
+  }
+  window.history.replaceState({}, '', url);
+}
+
+function setControlChecked(id, checked, { dispatch = true } = {}) {
+  const el = $(id);
+  if (!el || el.type !== 'checkbox') return;
+  if (el.checked === checked) return;
+  el.checked = checked;
+  if (dispatch && !uiPresetApplying) {
+    el.dispatchEvent(new Event('change', { bubbles: true }));
+  }
+}
+
+function setSelectValue(id, value, { dispatch = true } = {}) {
+  const el = $(id);
+  if (!el || el.tagName !== 'SELECT') return;
+  if (el.value === value) return;
+  el.value = value;
+  if (dispatch && !uiPresetApplying) {
+    el.dispatchEvent(new Event('change', { bubbles: true }));
+  }
+}
+
+function applyUiLayerPreset(mode) {
+  const preset = window.UiModePresets?.presetForUiMode?.(mode);
+  if (!preset) return;
+  uiPresetApplying = true;
+  try {
+    for (const [key, value] of Object.entries(preset)) {
+      if (key === 'connectedAccumulatedMode') {
+        setSelectValue('connectedAccumulatedMode', value, { dispatch: false });
+      } else {
+        setControlChecked(key, value === true, { dispatch: false });
+      }
+    }
+    const modeSel = $('connectedAccumulatedMode');
+    if (modeSel) modeSel.dispatchEvent(new Event('change', { bubbles: true }));
+    const layerCb = $('layerConnectedAccumulated');
+    const repCb = $('layerRepresentativeLaneLines');
+    const fusedCb = $('layerFusedLanes');
+    layerCb?.dispatchEvent(new Event('change', { bubbles: true }));
+    repCb?.dispatchEvent(new Event('change', { bubbles: true }));
+    fusedCb?.dispatchEvent(new Event('change', { bubbles: true }));
+    if (getActiveProgressiveDisplayData() && renderer) {
+      applyRendererPlaybackData();
+      const map = renderer.stationaryLocalMap;
+      if (map) refreshConnectedAccumulatedPolylines(map, { timelineIndex: parseInt($('timeline')?.value ?? '0', 10) });
+      syncEvidenceTogglesFromLayers();
+      syncGeographicMapScene();
+      renderer.draw();
+    }
+  } finally {
+    uiPresetApplying = false;
+  }
+}
+
+function syncEvidenceTogglesFromLayers() {
+  const dots = $('evidenceToggleDots');
+  const curves = $('evidenceToggleCurves');
+  const lines = $('evidenceToggleDetectedLines');
+  const fused = $('layerFusedLanes');
+  const conn = $('layerConnectedAccumulated');
+  const rep = $('layerRepresentativeLaneLines');
+  if (dots && fused) dots.checked = fused.checked === true;
+  if (curves && conn) curves.checked = conn.checked === true;
+  if (lines && rep) lines.checked = rep.checked === true;
+}
+
+function updateUiModeDescription(mode) {
+  const el = $('uiModeDescription');
+  if (!el) return;
+  const text = window.UiModePresets?.MODE_DESCRIPTIONS?.[mode] || '';
+  el.textContent = text;
+}
+
+function updateMapBackgroundStatus(_code, detail) {
+  const el = $('mapBackgroundStatus');
+  if (!el) return;
+  el.textContent = detail || '—';
+}
+
+function updateMapDebugDiagnostics() {
+  const el = $('mapDebugDiagnostics');
+  if (!el || uiMode !== 'debug') return;
+  const d = geographicMap?.getDiagnostics?.() ?? {};
+  el.textContent = JSON.stringify(d, null, 2);
+}
+
+function syncGeographicMapContext() {
+  if (!geographicMap) return;
+  const playbackData = getActiveProgressiveDisplayData() || processData;
+  const map = renderer?.stationaryLocalMap;
+  geographicMap.setGeographicContext({
+    processOrigin: playbackData?.origin ?? null,
+    mapReferencePose: map?.referencePose ?? null,
+    stationaryMap: map,
+  });
+  geographicMap.resize?.();
+  syncGeographicMapScene();
+  updateMapDebugDiagnostics();
+}
+
+function buildGeographicMapScenePayload() {
+  const playbackData = getActiveProgressiveDisplayData() || processData;
+  const map = renderer?.stationaryLocalMap;
+  const timelineIdx = parseInt($('timeline')?.value ?? '0', 10);
+  const layers = getLayers();
+  const repPolylines = layers.representativeLaneLines
+    ? (renderer?.buildRepresentativePolylinesForGeographic?.(timelineIdx) || [])
+    : [];
+  return {
+    stationaryMap: map,
+    playbackData,
+    playbackPose: renderer?.playbackPose,
+    uiMode,
+    layerFlags: {
+      representativeLaneLines: layers.representativeLaneLines,
+      observationDots: $('evidenceToggleDots')?.checked === true,
+      sourceCurves: $('evidenceToggleCurves')?.checked === true,
+    },
+    representativePolylines: repPolylines,
+    perFramePolylines: renderer?._connectedAccumulatedPolylines,
+    cacheKey: map?.cacheKey ?? null,
+  };
+}
+
+function syncGeographicMapScene() {
+  if (!geographicMap) return;
+  const native = geographicMap.isNativeActive?.() === true;
+  renderer?.setMapNativeActive?.(native);
+  if (!native) return;
+  geographicMap.refreshGeographicMapData?.(buildGeographicMapScenePayload());
+  updateRepresentativeLaneLinesDiag();
+  updateReviewCompactStatus();
+  updateMapDebugDiagnostics();
+}
+
+function initMapDebugLayerIsolation() {
+  const ids = [
+    ['mapDebugLayerTiles', 'baseTiles'],
+    ['mapDebugLayerRoute', 'gpsRoute'],
+    ['mapDebugLayerVehicle', 'vehicle'],
+    ['mapDebugLayerLanes', 'laneLines'],
+    ['mapDebugLayerDots', 'observationDots'],
+    ['mapDebugLayerCurves', 'sourceCurves'],
+  ];
+  const readFlags = () => {
+    const out = {};
+    for (const [elId, key] of ids) {
+      const el = $(elId);
+      out[key] = el ? el.checked : true;
+    }
+    return out;
+  };
+  const apply = () => {
+    if (uiMode === 'debug') geographicMap?.setDebugLayerIsolation?.(readFlags());
+  };
+  for (const [elId] of ids) {
+    $(elId)?.addEventListener('change', apply);
+  }
+  apply();
+}
+
+async function initGeographicMap() {
+  const container = $('geographicMapContainer');
+  const createMap = window.createGeographicMapNative || window.createGeographicMap;
+  if (!container || !createMap) return;
+  geographicMap = createMap({
+    container,
+    stage: $('geometryStage'),
+    rootStage: $('mapStageRoot') || container?.closest?.('.map-stage'),
+    canvas: $('canvas'),
+    onRedraw: () => syncGeographicMapScene(),
+    onStatus: (code, detail) => {
+      updateMapBackgroundStatus(code, detail);
+      updateMapDebugDiagnostics();
+    },
+    onDiagnostics: () => updateMapDebugDiagnostics(),
+    getUiMode: () => uiMode,
+  });
+  renderer?.setGeographicMapController?.(geographicMap);
+  window.addEventListener('resize', () => geographicMap?.resize?.());
+  let streetAvailable = true;
+  try {
+    const cfg = await geographicMap.loadConfig();
+    streetAvailable = cfg?.street?.available === true;
+    refreshMapBackgroundSelectOptions(cfg);
+  } catch (_) {
+    streetAvailable = false;
+  }
+  mapBackgroundMode = parseMapBackgroundFromLocation(streetAvailable);
+  const sel = $('mapBackgroundMode');
+  if (sel) {
+    sel.disabled = false;
+    sel.removeAttribute('aria-disabled');
+    sel.value = mapBackgroundMode;
+  }
+  await geographicMap.setBackground(mapBackgroundMode);
+  syncGeographicMapContext();
+}
+
+function refreshMapBackgroundSelectOptions(cfg) {
+  const sel = $('mapBackgroundMode');
+  if (!sel || !cfg) return;
+  const streetOpt = sel.querySelector('option[value="street"]');
+  const satOpt = sel.querySelector('option[value="satellite"]');
+  if (streetOpt) {
+    streetOpt.disabled = !cfg.street?.available;
+    streetOpt.textContent = cfg.street?.available ? 'Street' : 'Street — unavailable';
+  }
+  if (satOpt) {
+    satOpt.disabled = !cfg.satellite?.available;
+    satOpt.textContent = cfg.satellite?.available ? 'Satellite' : 'Satellite — not configured';
+  }
+}
+
+function initMapBackgroundControls() {
+  const sel = $('mapBackgroundMode');
+  if (!sel) return;
+  sel.addEventListener('change', async () => {
+    const next = sel.value === 'satellite' || sel.value === 'street' ? sel.value : 'grey';
+    mapBackgroundMode = next;
+    replaceUrlParams({ mapBackground: next });
+    await geographicMap?.setBackground?.(next);
+    syncGeographicMapContext();
+    if (next === 'street' || next === 'satellite') {
+      renderer?.fitToLocalView?.();
+      syncGeographicMapScene();
+    } else {
+      renderer?.setMapNativeActive?.(false);
+      renderer?.draw?.();
+    }
+  });
+}
+
+function formatPlaybackTimeSeconds() {
+  const idx = parseInt($('timeline')?.value ?? '0', 10);
+  const t = getPlaybackTimeline()?.[idx];
+  if (!t) return null;
+  const sec = t.elapsedSec ?? t.elapsedS ?? t.timeSec;
+  if (Number.isFinite(sec)) return `${Number(sec).toFixed(1)} s`;
+  return null;
+}
+
+function segmentLabelFromFile(file) {
+  const m = String(file || '').match(/_(\d+)\./);
+  return m ? m[1] : (file || '—');
+}
+
+function loadedSegmentLabel() {
+  const files = lastProcessedSegmentSelection?.length
+    ? lastProcessedSegmentSelection
+    : getPlaybackSegmentSelection();
+  const last = files?.slice(-1)[0];
+  return segmentLabelFromFile(last);
+}
+
+function selectedSegmentLabel() {
+  const sel = selectedSegments();
+  const last = sel?.slice(-1)[0];
+  return segmentLabelFromFile(last);
+}
+
+function selectionMatchesLoadedSegments() {
+  const a = [...selectedSegments()].sort().join('|');
+  const b = [...(lastProcessedSegmentSelection || [])].sort().join('|');
+  return a.length > 0 && a === b;
+}
+
+function updatePendingSegmentSelectionStatus() {
+  if (!processData) return;
+  if (selectionMatchesLoadedSegments()) return;
+  const pending = selectedSegmentLabel();
+  const loaded = loadedSegmentLabel();
+  setStatus(`Seg${pending} selected — click Load segment (currently showing Seg${loaded})`);
+}
+
+function updateReviewCompactStatus() {
+  if (uiMode !== 'review') return;
+  const el = $('toolbarStatus');
+  if (!el || primaryActionBusy) return;
+  const map = renderer?.stationaryLocalMap;
+  if (!map?.valid) {
+    el.textContent = 'Process a segment to begin';
+    el.dataset.state = 'idle';
+    return;
+  }
+  if (!selectionMatchesLoadedSegments()) {
+    updatePendingSegmentSelectionStatus();
+  }
+  const d = renderer?.getRepresentativeLaneLinesDiagnostics?.();
+  const geo = geographicMap?.getDiagnostics?.();
+  const repLayerOn = $('layerRepresentativeLaneLines')?.checked === true;
+  const lanes = d?.logicalLaneCount ?? d?.laneCount;
+  const sections = d?.representativeLineCount ?? d?.lineSectionCount;
+  const hasRep = repLayerOn && (d?.candidateActive || (geo?.laneLines > 0));
+  const laneText = hasRep && lanes != null ? `${lanes}` : (hasRep && geo?.laneLines > 0 ? `${geo.laneLines}` : null);
+  const sectionText = hasRep && sections != null ? `${sections}` : (hasRep && geo?.laneLines > 0 ? `${geo.laneLines}` : null);
+  const loadedSeg = loadedSegmentLabel();
+  const timeStr = formatPlaybackTimeSeconds();
+  const showingPrefix = selectionMatchesLoadedSegments() ? '' : `Currently showing Seg${loadedSeg} · `;
+  if (repLayerOn && laneText == null && sectionText == null) {
+    el.textContent = `${showingPrefix}Detected lane overlay unavailable · Seg${loadedSeg}${timeStr ? ` · ${timeStr}` : ''}`;
+  } else if (laneText == null || sectionText == null) {
+    if (geographicMap?.isNativeActive?.() && geo?.gpsRoutePoints >= 2) {
+      el.textContent = `${showingPrefix}Route ready · Seg${loadedSeg}${timeStr ? ` · ${timeStr}` : ''}`;
+    } else {
+      el.textContent = `${showingPrefix}Route loading… · Seg${loadedSeg}${timeStr ? ` · ${timeStr}` : ''}`;
+    }
+  } else {
+    el.textContent = `${showingPrefix}${laneText} lanes · ${sectionText} line sections · Seg${loadedSeg}${timeStr ? ` · ${timeStr}` : ''}`;
+  }
+  el.dataset.state = 'ready';
+}
+
+function applyUiMode(mode, { fromUser = false } = {}) {
+  uiMode = mode === 'evidence' || mode === 'debug' ? mode : 'review';
+  document.body.classList.remove('ui-mode-review', 'ui-mode-evidence', 'ui-mode-debug');
+  document.body.classList.add(`ui-mode-${uiMode}`);
+  const sel = $('uiModeSelect');
+  if (sel && sel.value !== uiMode) sel.value = uiMode;
+  const details = $('advancedSettingsPanel');
+  if (details && uiMode === 'debug') details.open = true;
+  updateUiModeDescription(uiMode);
+  if (uiMode !== 'debug') applyUiLayerPreset(uiMode);
+  if (fromUser) replaceUrlParams({ uiMode });
+  syncGeographicMapScene();
+  updateReviewCompactStatus();
+  updateEvidenceCompactCounts();
+  updateMapDebugDiagnostics();
+}
+
+function initUiModeControls() {
+  uiMode = parseUiModeFromLocation();
+  document.body.classList.remove('ui-mode-review', 'ui-mode-evidence', 'ui-mode-debug');
+  document.body.classList.add(`ui-mode-${uiMode}`);
+  const sel = $('uiModeSelect');
+  if (sel) sel.value = uiMode;
+  updateUiModeDescription(uiMode);
+  if (!sel) return;
+  sel.addEventListener('change', () => {
+    applyUiMode(sel.value, { fromUser: true });
+  });
+}
+
+function syncProgressiveViewportBodyClass() {
+  const on = isProgressiveViewportCandidateEnabled();
+  document.body.classList.toggle('progressive-viewport-active', on);
+}
+
+function setPrimaryBusy(busy, shortLabel = null) {
+  primaryActionBusy = !!busy;
+  const ids = ['btnProcess', 'btnReprocess', 'btnProcessAll', 'btnProgressiveAppend', 'btnProgressiveAppendContinue', 'btnProgressiveRemoveLast'];
+  for (const id of ids) {
+    const el = $(id);
+    if (el) el.disabled = primaryActionBusy;
+  }
+  if (shortLabel) setToolbarStatus(shortLabel, busy ? 'processing' : 'ready');
+}
+
+function setToolbarStatus(msg, state = 'ready') {
+  const el = $('toolbarStatus');
+  if (!el) return;
+  el.textContent = msg;
+  el.dataset.state = state;
+}
+
+function updateEvidenceCompactCounts() {
+  const el = $('evidenceCompactCounts');
+  if (!el) return;
+  const map = renderer?.stationaryLocalMap;
+  const playbackData = getActiveProgressiveDisplayData() || processData;
+  const frames = playbackData?.timeline?.length ?? 0;
+  const pts = map?.pointAccumulated?.points?.length ?? 0;
+  const d = renderer?.getRepresentativeLaneLinesDiagnostics?.();
+  const lanes = d?.laneCount ?? d?.representativeLaneCount ?? 0;
+  const sections = d?.representativeLineCount ?? d?.lineSectionCount ?? 0;
+  const rejected = d?.rejectedCurveCount ?? d?.rejectedCurves ?? 0;
+  el.textContent = `frames ${frames} · observations ${pts} · detected lanes ${lanes} · line sections ${sections} · rejected curves ${rejected}`;
+}
 
 function localGeometryUI() {
   return window.LocalGeometryUI || {
@@ -565,7 +970,18 @@ function getOptions() {
   };
 }
 
-function setStatus(msg) { $('status').textContent = msg; }
+function setStatus(msg, state = null) {
+  const statusEl = $('status');
+  if (statusEl) statusEl.textContent = msg;
+  const inferred = state
+    || (/\b(error|failed)\b/i.test(msg) ? 'error'
+      : /\b(processing|loading|adding)\b/i.test(msg) ? 'processing'
+      : /\bplaying\b/i.test(msg) ? 'playing'
+      : /\bpaused\b/i.test(msg) ? 'paused'
+      : 'ready');
+  const short = msg.length > 72 ? `${msg.slice(0, 69)}…` : msg;
+  setToolbarStatus(short, inferred);
+}
 
 function updateGeometryDiagnosticsPanel() {
   const GD = window.GeometryDiagnostics;
@@ -776,8 +1192,13 @@ function applyRendererPlaybackData() {
 
 function applyActiveProgressiveDisplaySnapshot() {
   if (!renderer || !hasActiveProgressiveDisplaySnapshot()) return;
-  renderer.stationaryLocalMap = progressiveCombinedState.displayMap;
+  const map = progressiveCombinedState.displayMap;
+  renderer.setStationaryLocalMap(map, {
+    buildCount: stationaryMapBuildCount,
+    cacheState: map?.cacheState ?? 'progressive',
+  });
   applyRendererPlaybackData();
+  syncGeographicMapContext();
 }
 
 function getPlaybackTimeline() {
@@ -809,7 +1230,9 @@ function resetProgressiveCombinedState() {
 
 async function process(segments, { bustCache = false, label = 'process', progressivePlayback = null } = {}) {
   clearProcessState();
-  setStatus('Processing…');
+  setPrimaryBusy(true, 'Processing');
+  setStatus('Loading segment…');
+  try {
   const PCP = window.ProgressiveCombinedPlayback;
   const progressiveActive = isProgressiveCombinedCandidateEnabled()
     && !progressivePlayback?.skipLookahead
@@ -886,6 +1309,12 @@ async function process(segments, { bustCache = false, label = 'process', progres
     schedulePlaybackStep();
   }
   return data;
+  } catch (err) {
+    setStatus(`Error: ${err.message}`, 'error');
+    throw err;
+  } finally {
+    setPrimaryBusy(false);
+  }
 }
 
 async function reprocessSelected() {
@@ -1617,6 +2046,10 @@ async function updateLocalPlayback(idx, { forceRefit = false, forceMapRebuild = 
   refreshCandidatePolylines(map);
   refreshConnectedAccumulatedPolylines(map, { timelineIndex: idx });
   updateRepresentativeLaneLinesDiag();
+  syncGeographicMapContext();
+  updateReviewCompactStatus();
+  updateEvidenceCompactCounts();
+  renderer.draw();
 }
 
 function getConnectedAccumulatedMode() {
@@ -1866,6 +2299,37 @@ function updatePointOnlyControlVisibility(mode) {
 
 
 
+function initEvidenceLayerToggles() {
+  const dots = $('evidenceToggleDots');
+  const curves = $('evidenceToggleCurves');
+  const lines = $('evidenceToggleDetectedLines');
+  const fused = $('layerFusedLanes');
+  const conn = $('layerConnectedAccumulated');
+  const rep = $('layerRepresentativeLaneLines');
+  if (!dots || !curves || !lines) return;
+
+  const syncFromTargets = () => {
+    if (uiPresetApplying) return;
+    dots.checked = fused?.checked === true;
+    curves.checked = conn?.checked === true;
+    lines.checked = rep?.checked === true;
+  };
+
+  const bind = (toggle, target) => {
+    if (!toggle || !target) return;
+    toggle.addEventListener('change', () => {
+      if (toggle.checked === target.checked) return;
+      target.checked = toggle.checked;
+      target.dispatchEvent(new Event('change', { bubbles: true }));
+    });
+    target.addEventListener('change', syncFromTargets);
+  };
+  bind(dots, fused);
+  bind(curves, conn);
+  bind(lines, rep);
+  syncFromTargets();
+}
+
 function initConnectedAccumulatedControls() {
   const modeSel = $('connectedAccumulatedMode');
   const layerCb = $('layerConnectedAccumulated');
@@ -1927,6 +2391,7 @@ function initConnectedAccumulatedControls() {
     } else {
       renderer?.draw?.();
     }
+    syncGeographicMapScene();
     updateRepresentativeLaneLinesDiag();
   };
   modeSel?.addEventListener('change', refresh);
@@ -1937,8 +2402,19 @@ function initConnectedAccumulatedControls() {
 function updateRepresentativeLaneLinesDiag() {
   const el = $('representativeLaneLinesDiag');
   if (!el) return;
+  const repOn = $('layerRepresentativeLaneLines')?.checked === true
+    || $('evidenceToggleDetectedLines')?.checked === true;
   const d = renderer?.getRepresentativeLaneLinesDiagnostics?.();
+  const geo = geographicMap?.getDiagnostics?.();
   if (!d?.candidateActive) {
+    if (repOn && (geo?.laneLines > 0)) {
+      el.textContent = `Detected lane lines: on (${geo.laneLines} map features)`;
+      return;
+    }
+    if (repOn) {
+      el.textContent = 'Detected lane overlay unavailable';
+      return;
+    }
     el.textContent = 'Representative lines: off';
     return;
   }
@@ -1962,6 +2438,7 @@ function updateRepresentativeLaneLinesDiag() {
     const sr = d.stationSupportReasons || {};
     el.textContent += ` · Station robust mode: retained ${d.stationSupportAccepted ?? 0} stations · discarded ${d.stationSupportDiscarded ?? 0} isolated observations · genuine bimodal ${sr.competingExtendedMode ?? 0} · unstable ${sr.temporalRevisitRisk ?? 0}`;
   }
+  updateEvidenceCompactCounts();
   // Temporary alignment diagnostics are no longer shown in the normal UI. They
   // remain available (internal counters) via getRepresentativeLaneLinesDiagnostics().
 }
@@ -1971,7 +2448,7 @@ function updatePointDisplayModeLabel() {
   const label = $('pointDisplayModeLabel');
   if (!label) return;
   const causal = renderer?.getPointCausalPlayback?.() === true;
-  label.textContent = causal ? 'Causal playback' : 'Complete map';
+  label.textContent = causal ? 'Causal playback' : 'Full route';
 }
 
 function initPointCausalToggle() {
@@ -2061,7 +2538,18 @@ function applyVisualization() {
 
   applyRendererPlaybackData();
   if (hasActiveProgressiveDisplaySnapshot()) {
-    renderer.stationaryLocalMap = progressiveCombinedState.displayMap;
+    const map = progressiveCombinedState.displayMap;
+    renderer.setStationaryLocalMap(map, {
+      buildCount: stationaryMapBuildCount,
+      cacheState: map?.cacheState ?? 'progressive',
+    });
+  }
+  syncGeographicMapContext();
+  if (geographicMap?.isActive?.() && isLocalPlaybackMode()) {
+    requestAnimationFrame(() => {
+      geographicMap.resize?.();
+      renderer.fitToLocalView?.();
+    });
   }
   renderer.setFrameIndex(timelineIdx);
   if (displayMode === 'local') {
@@ -2334,6 +2822,7 @@ function updateTimelineInfo(idx) {
   updateMovementIndicator(idx);
   applyFollowArrowIfNeeded();
   syncPlaybackControlStates(idx);
+  updateReviewCompactStatus();
 }
 
 function logMonoDeltaMs(timeline, fromIdx, toIdx, speed) {
@@ -2636,6 +3125,7 @@ function setupCanvasInteraction() {
   let lastX = 0; let lastY = 0;
 
   canvas.addEventListener('wheel', (e) => {
+    if (geographicMap?.isActive?.()) return;
     e.preventDefault();
     if (isProgressiveViewportCandidateEnabled() && !e.ctrlKey) {
       const hint = $('progressiveViewportHint');
@@ -2647,6 +3137,7 @@ function setupCanvasInteraction() {
   }, { passive: false });
 
   canvas.addEventListener('mousedown', (e) => {
+    if (geographicMap?.isActive?.()) return;
     dragging = true;
     lastX = e.clientX;
     lastY = e.clientY;
@@ -2744,7 +3235,16 @@ function fitProgressiveActiveSegment() {
 function applyFollowArrowIfNeeded() {
   if (!isProgressiveViewportCandidateEnabled() || !progressiveViewportFollowArrow
     || progressiveViewportFollowSuspended || !renderer?.playbackPose) return;
-  renderer.centerOnWorldPoint(renderer.playbackPose.east, renderer.playbackPose.north);
+  const pose = renderer.playbackPose;
+  if (geographicMap?.isActive?.()) {
+    const diag = geographicMap.getDiagnostics?.();
+    const ll = diag?.vehiclePosition;
+    if (ll?.longitude != null && ll?.latitude != null) {
+      geographicMap.followLngLat(ll.longitude, ll.latitude);
+      return;
+    }
+  }
+  renderer.centerOnWorldPoint(pose.east, pose.north);
   renderer.draw();
 }
 
@@ -2780,6 +3280,7 @@ function initProgressiveViewportUI() {
   if (panel) panel.classList.toggle('hidden', !enabled);
   initProgressiveViewportPlaybackUI();
   syncProgressiveViewportRendererFlags();
+  syncProgressiveViewportBodyClass();
   if (!enabled) return;
   const fitVisibleBtn = $('btnProgressiveFitVisibleRoute');
   if (fitVisibleBtn && !fitVisibleBtn.dataset.bound) {
@@ -3045,6 +3546,7 @@ async function progressiveRevealPrepared({ continuePlayback = false } = {}) {
   });
   applyProgressiveTimelineFilter(reveal.visiblePrefix, { timelineIndex });
   applyActiveProgressiveDisplaySnapshot();
+  connectedAccumulatedCache = null;
   syncProgressiveViewportRendererFlags();
   lastLocalPlaybackState = {
     timelineIndex,
@@ -3245,6 +3747,9 @@ function bindEvents() {
     if (isLocalPlaybackMode()) renderer.fitToLocalView();
     else renderer.fitToView();
   };
+  $('btnFitRouteReview')?.addEventListener('click', () => {
+    if (isLocalPlaybackMode()) renderer.fitToLocalView();
+  });
   $('vizMode').onchange = () => {
     persistVizMode($('vizMode').value);
     applyVisualization();
@@ -3295,8 +3800,8 @@ function bindEvents() {
   });
 
   $('segmentSelect').onchange = () => {
-    if (processData) clearProcessState();
-    setStatus('Segment selection changed — click Process or Reprocess');
+    updatePendingSegmentSelectionStatus();
+    updateReviewCompactStatus();
   };
 
   $('timeline').oninput = (e) => {
@@ -3314,6 +3819,7 @@ function bindEvents() {
   $('btnCsv').onclick = () => { window.open('/api/export/csv', '_blank'); };
   $('btnGeoJson').onclick = () => { window.open('/api/export/geojson', '_blank'); };
   initConnectedAccumulatedControls();
+  initEvidenceLayerToggles();
 
   document.addEventListener('keydown', (e) => {
     if (!isProgressiveViewportCandidateEnabled()) return;
@@ -3390,8 +3896,12 @@ async function init() {
   if (initParams.has('boundaryBridgePlaybackCandidate')) {
     window.__boundaryBridgePlaybackCandidate = initParams.get('boundaryBridgePlaybackCandidate') === '1';
   }
+  initUiModeControls();
   renderer = new RoadRenderer($('canvas'));
   window.renderer = renderer;
+  await initGeographicMap();
+  initMapDebugLayerIsolation();
+  initMapBackgroundControls();
   window.updateLocalPlayback = updateLocalPlayback;
   window.switchLocalGeometryLayer = switchLocalGeometryLayer;
   window.__mapAcquisitionDebug = {
@@ -3415,7 +3925,9 @@ async function init() {
   initProgressiveCombinedPlaybackUI();
   await loadSegments();
   await loadStage19Summary();
-  setStatus('Select segments and click Process or Reprocess');
+  syncProgressiveViewportBodyClass();
+  applyUiMode(uiMode);
+  setStatus('Ready — select a segment and click Load segment');
 }
 
 window.getPlaybackVideoDebugState = () => {

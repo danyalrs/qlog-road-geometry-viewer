@@ -1,0 +1,165 @@
+/* Supervisor UI revision 1 — appended via style.css import block at file end */
+
+.app-header {
+  padding: 10px 16px 8px;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+}
+.header-title-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.toolbar-status {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #166534;
+  margin: 0;
+  white-space: nowrap;
+}
+.toolbar-status[data-state="loading"],
+.toolbar-status[data-state="processing"] { color: #b45309; }
+.toolbar-status[data-state="error"] { color: #b91c1c; }
+.top-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 8px 12px;
+  margin-top: 8px;
+}
+.toolbar-field {
+  font-size: 0.8rem;
+  margin: 0;
+}
+.toolbar-segment select {
+  min-width: 140px;
+  max-width: 220px;
+}
+.toolbar-actions {
+  margin: 0;
+}
+.panel-review {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.panel-status {
+  margin: 8px 0 4px;
+  padding: 6px 8px;
+  background: #f8fafc;
+  border-radius: 4px;
+}
+.advanced-settings {
+  margin-top: 8px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 4px 8px;
+  background: #fafafa;
+}
+.advanced-settings-body {
+  max-height: min(50vh, 420px);
+  overflow-y: auto;
+  padding-right: 4px;
+}
+body.ui-mode-review .ui-tier-evidence,
+body.ui-mode-review .ui-tier-debug { display: none !important; }
+body.ui-mode-evidence .ui-tier-debug { display: none !important; }
+body.ui-mode-debug .advanced-settings { border: none; }
+body.ui-mode-debug .advanced-settings > summary { display: none; }
+body.ui-mode-debug .advanced-settings-body { max-height: none; overflow: visible; }
+body.ui-mode-debug details.advanced-settings { display: contents; }
+body.progressive-viewport-active .progressive-playback-duplicate { display: none !important; }
+button:disabled { opacity: 0.55; cursor: not-allowed; }
+@media (max-width: 1400px) {
+  .layout { grid-template-columns: minmax(220px, 260px) minmax(0, 1fr); }
+  .local-video-panel { width: 280px; }
+}
+.geographic-map-container {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+.map-stage.map-background-street .geographic-map-container,
+.map-stage.map-background-satellite .geographic-map-container {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+.map-stage.map-background-street .geometry-stage #canvas,
+.map-stage.map-background-satellite .geometry-stage #canvas,
+body.geographic-renderer-active .geometry-stage #canvas {
+  visibility: hidden !important;
+  background: transparent !important;
+  pointer-events: none !important;
+}
+.map-stage.map-background-street .maplibregl-ctrl-bottom-right,
+.map-stage.map-background-street .maplibregl-ctrl-bottom-left,
+.map-stage.map-background-satellite .maplibregl-ctrl-bottom-right,
+.map-stage.map-background-satellite .maplibregl-ctrl-bottom-left {
+  z-index: 2;
+}
+.hidden-layer-proxy {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+body.ui-mode-review .label-text-evidence { display: none; }
+body.ui-mode-evidence .label-text-review { display: none; }
+.geo-vehicle-marker-root {
+  width: 32px;
+  height: 32px;
+  position: relative;
+  pointer-events: none;
+  z-index: 6;
+}
+.geo-vehicle-pulse {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 28px;
+  height: 28px;
+  margin: -14px 0 0 -14px;
+  border-radius: 50%;
+  background: rgba(37, 99, 235, 0.28);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.65);
+}
+.geo-vehicle-arrow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  margin: -13px 0 0 -11px;
+  border-left: 11px solid transparent;
+  border-right: 11px solid transparent;
+  border-bottom: 22px solid #2563eb;
+  filter: drop-shadow(0 1px 2px rgba(15, 23, 42, 0.75));
+  transform-origin: 50% 65%;
+}
+.map-debug-pre {
+  font-size: 0.72rem;
+  max-height: 220px;
+  overflow: auto;
+  background: #f1f5f9;
+  padding: 8px;
+  border-radius: 4px;
+}
+.section-evidence .evidence-layer-toggle {
+  display: block;
+  margin: 4px 0;
+}
+@media (max-width: 1100px) {
+  .layout { height: calc(100vh - 140px); }
+  .local-video-panel.collapsed,
+  body.ui-mode-review .local-video-panel { width: 48px; min-width: 48px; }
+  body.ui-mode-review .local-video-panel:not(.collapsed) { width: 260px; }
+}

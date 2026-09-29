@@ -70,6 +70,15 @@ deliverables/**/node_modules/
 /reports/road_relative_diagnosis/
 /reports/video_verification/
 
+# --- Local backups / scratch (not for distribution) ---
+.checkpoint_test_backup/
+browser/
+notes.txt
+*.patch
+.road_mirror_checkpoint_staging/
+.segment0_correction_staging/
+.staged_snapshot_verify/
+
 # --- OS / editor ---
 Thumbs.db
 Desktop.ini

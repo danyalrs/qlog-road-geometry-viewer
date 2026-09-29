@@ -4,33 +4,62 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Qlog Road Geometry Viewer</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=20260928d">
+  <link rel="stylesheet" href="style_supervisor_ui.css?v=20260928d">
+  <link rel="stylesheet" href="vendor/maplibre-gl/maplibre-gl.css?v=20260928b">
 </head>
-<body>
-  <header>
-    <h1>Qlog Road Geometry Viewer</h1>
+<body class="ui-mode-review">
+  <header class="app-header">
+    <div class="header-title-row">
+      <h1>Qlog Road Geometry Viewer</h1>
+      <p id="toolbarStatus" class="toolbar-status" aria-live="polite">Ready</p>
+    </div>
     <p id="modeLabel" class="mode-label">Loading…</p>
+    <div class="top-toolbar ui-tier-review">
+      <label class="toolbar-field">Interface
+        <select id="uiModeSelect" aria-label="Interface mode">
+          <option value="review" selected>Review</option>
+          <option value="evidence">Evidence</option>
+          <option value="debug">Debug</option>
+        </select>
+      </label>
+      <p id="uiModeDescription" class="meta-line subtle ui-tier-review" aria-live="polite">Clean lane result</p>
+      <label class="toolbar-field toolbar-segment">Segment(s)
+        <select id="segmentSelect" multiple size="3"></select>
+      </label>
+      <div class="btn-row toolbar-actions">
+        <button id="btnProcess" type="button">Load segment</button>
+        <button id="btnProcessAll" type="button" class="ui-tier-debug">Combine all segments</button>
+        <button id="btnReprocess" type="button" class="ui-tier-debug">Reload segment</button>
+      </div>
+    </div>
   </header>
 
   <div class="layout">
-    <aside class="panel">
-      <section>
-        <h2>Controls</h2>
-        <label>Segment(s)</label>
-        <select id="segmentSelect" multiple size="6"></select>
-        <div class="btn-row">
-          <button id="btnProcess">Process selected</button>
-          <button id="btnProcessAll">Combine all segments</button>
-          <button id="btnReprocess">Reprocess selected</button>
+    <aside class="panel panel-review">
+      <section class="section-playback ui-tier-review">
+        <h2>Playback</h2>
+        <input type="range" id="timeline" min="0" max="0" value="0" disabled>
+        <dl id="timelineInfo"></dl>
+        <div class="btn-row playback-primary">
+          <button id="btnPrevFrame" type="button">◀ Prev frame</button>
+          <button id="btnPlay" type="button">▶ Play</button>
+          <button id="btnNextFrame" type="button">Next frame ▶</button>
         </div>
-        <div id="progressiveCombinedPanel" class="progressive-combined-panel hidden">
+        <p class="meta-line ui-tier-review">Data version: <strong id="procVersion">—</strong></p>
+        <p class="meta-line ui-tier-debug">Processed at: <strong id="procTime">—</strong></p>
+      </section>
+
+      <section class="section-view ui-tier-review">
+        <h2>View</h2>
+        <div id="progressiveCombinedPanel" class="progressive-combined-panel hidden ui-tier-review">
           <p class="meta-line" id="progressiveCombinedStatus">Progressive combined range: (none)</p>
           <div class="btn-row">
-            <button id="btnProgressiveAppend" type="button">Append next segment</button>
-            <button id="btnProgressiveAppendContinue" type="button">Append next and continue</button>
-            <button id="btnProgressiveRemoveLast" type="button">Remove last segment</button>
+            <button id="btnProgressiveAppend" type="button">Add next segment</button>
+            <button id="btnProgressiveAppendContinue" type="button">Add next and play</button>
+            <button id="btnProgressiveRemoveLast" type="button">Remove last</button>
           </div>
-          <div id="progressiveViewportPlaybackPanel" class="progressive-viewport-playback-panel hidden">
+          <div id="progressiveViewportPlaybackPanel" class="progressive-viewport-playback-panel progressive-playback-duplicate hidden">
             <div class="btn-row">
               <button id="btnProgressivePrevFrame" type="button">◀ Prev frame</button>
               <button id="btnProgressivePlay" type="button">▶ Play</button>
@@ -41,16 +70,79 @@
           <div id="progressiveViewportPanel" class="progressive-viewport-panel hidden">
             <p class="meta-line subtle" id="progressiveViewportHint">Ctrl + wheel to zoom</p>
             <div class="btn-row">
-              <button id="btnProgressiveFitVisibleRoute" type="button">Fit visible route</button>
-              <button id="btnProgressiveFitActiveSegment" type="button">Fit active segment</button>
+              <button id="btnProgressiveFitVisibleRoute" type="button">Fit complete route</button>
+              <button id="btnProgressiveFitActiveSegment" type="button">Fit current segment</button>
             </div>
             <label class="meta-line">
-              <input type="checkbox" id="progressiveViewportFollowArrow"> Follow arrow
+              <input type="checkbox" id="progressiveViewportFollowArrow"> Follow vehicle
             </label>
           </div>
         </div>
-        <p class="meta-line">Processing version: <strong id="procVersion">—</strong></p>
-        <p class="meta-line">Processed at: <strong id="procTime">—</strong></p>
+        <div class="btn-row ui-tier-review">
+          <button id="btnFitRouteReview" type="button">Fit route</button>
+        </div>
+        <div class="btn-row ui-tier-debug">
+          <button id="btnReset" type="button">Reset view</button>
+          <button id="btnFit" type="button">Fit to view</button>
+        </div>
+      </section>
+
+      <section class="section-map-debug ui-tier-debug">
+        <h2>Map diagnostics</h2>
+        <p class="meta-line subtle">Layer isolation (diagnostic)</p>
+        <label class="meta-line"><input type="checkbox" id="mapDebugLayerTiles" checked> Base tiles</label>
+        <label class="meta-line"><input type="checkbox" id="mapDebugLayerRoute" checked> GPS route</label>
+        <label class="meta-line"><input type="checkbox" id="mapDebugLayerVehicle" checked> Vehicle</label>
+        <label class="meta-line"><input type="checkbox" id="mapDebugLayerLanes" checked> Lane lines</label>
+        <label class="meta-line"><input type="checkbox" id="mapDebugLayerDots" checked> Observation dots</label>
+        <label class="meta-line"><input type="checkbox" id="mapDebugLayerCurves" checked> Source curves</label>
+        <pre id="mapDebugDiagnostics" class="map-debug-pre">—</pre>
+      </section>
+
+      <section class="section-map-bg ui-tier-review">
+        <h2>Map background</h2>
+        <label>Background
+          <select id="mapBackgroundMode" aria-label="Map background">
+            <option value="grey">Grey</option>
+            <option value="street">Street</option>
+            <option value="satellite">Satellite — not configured</option>
+          </select>
+        </label>
+        <p class="meta-line subtle" id="mapBackgroundStatus">—</p>
+        <p class="meta-line subtle ui-tier-debug">OpenStreetMap street tiles are for development/review only.</p>
+      </section>
+
+      <section class="section-evidence ui-tier-evidence">
+        <h2>Evidence</h2>
+        <label class="local-only-control local-point-only-control evidence-layer-toggle" title="Coloured point-accumulated observations">
+          <input type="checkbox" id="evidenceToggleDots" class="local-point-only-control"> Observation dots
+        </label>
+        <label class="local-only-control local-point-only-control evidence-layer-toggle" title="All per-frame source curves">
+          <input type="checkbox" id="evidenceToggleCurves" class="local-point-only-control"> Source curves
+        </label>
+        <label class="local-only-control local-point-only-control evidence-layer-toggle lane-lines-label">
+          <input type="checkbox" id="evidenceToggleDetectedLines" class="local-point-only-control"> Detected lane lines
+        </label>
+        <label class="local-only-control local-point-only-control connected-accumulated-mode-control ui-tier-debug">
+          Curve display:
+          <select id="connectedAccumulatedMode" class="local-point-only-control connected-accumulated-mode-control">
+            <option value="currentFrame">Current frame</option>
+            <option value="perFrame" selected>All per-frame</option>
+          </select>
+        </label>
+        <input type="checkbox" id="layerConnectedAccumulated" class="hidden-layer-proxy" checked aria-hidden="true" tabindex="-1">
+        <input type="checkbox" id="layerRepresentativeLaneLines" class="hidden-layer-proxy" aria-hidden="true" tabindex="-1">
+        <p class="meta-line local-only-control local-point-only-control" id="representativeLaneLinesDiag">Representative lines: —</p>
+        <p class="meta-line subtle" id="evidenceCompactCounts">Observations: — · Lines: —</p>
+      </section>
+
+      <p id="status" class="status ui-tier-review panel-status">Ready</p>
+
+      <details id="advancedSettingsPanel" class="advanced-settings ui-tier-review">
+        <summary>Advanced settings</summary>
+        <div class="advanced-settings-body">
+      <section class="section-controls ui-tier-debug">
+        <h2>Controls</h2>
         <label>Visualization mode</label>
         <select id="vizMode">
           <option value="global">Global map (GPS + model)</option>
@@ -82,20 +174,6 @@
           <input type="checkbox" id="layerUnconfirmedCandidates" class="local-point-only-control candidate-layer-control"> Unconfirmed per-frame lane evidence
         </label>
         <p class="meta-line subtle local-only-control local-point-only-control candidate-layer-control" id="candidateLayerNotice">Diagnostic only — not a confirmed mapped boundary</p>
-        <label class="local-only-control local-point-only-control" title="Trusted observation layer: All per-frame source curves from point-accumulated dots. Separate frames are never connected. Display only.">
-          <input type="checkbox" id="layerConnectedAccumulated" class="local-point-only-control" checked> All per-frame source curves
-        </label>
-        <label class="local-only-control local-point-only-control connected-accumulated-mode-control" title="Current frame: one modelV2 frame. Road-guided: trajectory-guided connection. All per-frame: every frame overlaid (trusted source for representative lines). Display only.">
-          Display mode:
-          <select id="connectedAccumulatedMode" class="local-point-only-control connected-accumulated-mode-control">
-            <option value="currentFrame">Current frame</option>
-            <option value="perFrame" selected>All per-frame</option>
-          </select>
-        </label>
-        <label class="local-only-control local-point-only-control" title="Default-off candidate: stable representative physical lane lines from All per-frame curves (reuses robust bin-median). Thicker than source. Display only — does not use fused lines.">
-          <input type="checkbox" id="layerRepresentativeLaneLines" class="local-point-only-control"> Representative lane lines (candidate)
-        </label>
-        <p class="meta-line local-only-control local-point-only-control" id="representativeLaneLinesDiag">Representative lines: —</p>
         <label class="local-only-control local-point-only-control" title="Experimental constructed lane-boundary fragments built from the accumulated point dots. Display-only; never modifies stored geometry.">
           <input type="checkbox" id="layerConstructedFragments" class="local-point-only-control"> Constructed fragments (experimental)
         </label>
@@ -123,7 +201,7 @@
         <label class="local-only-control" title="Reversible diagnostic: mirror the road-relative lateral display around the vehicle centreline to compare against the synchronized video. Does not modify stored geometry.">
           <input type="checkbox" id="mirrorRoadLateral" class="local-only-control"> Mirror road lateral display (diagnostic)
         </label>
-        <p class="meta-line local-only-control local-point-only-control" id="pointDisplayModeLabel">Complete map</p>
+        <p class="meta-line local-only-control local-point-only-control" id="pointDisplayModeLabel">Full route</p>
         <div class="local-only-control obs-debug-control">
           <h3>Observation debug (obsDebug)</h3>
           <label>Frame index <input type="number" id="obsDebugFrame" min="0" value="0"></label>
@@ -134,18 +212,13 @@
           </div>
         </div>
         <div class="btn-row">
-          <button id="btnReset">Reset view</button>
-          <button id="btnFit">Fit to view</button>
-        </div>
-        <div class="btn-row">
           <button id="btnPng">Export PNG</button>
           <button id="btnCsv">Export CSV</button>
           <button id="btnGeoJson">Export GeoJSON</button>
         </div>
-        <p id="status" class="status">Ready</p>
       </section>
 
-      <section>
+      <section class="ui-tier-debug">
         <h2>Layers</h2>
         <label><input type="checkbox" id="layerGps" checked> GPS trajectory</label>
         <label><input type="checkbox" id="layerVehicle" checked> Model vehicle path</label>
@@ -176,7 +249,7 @@
         <label class="local-only-control"><input type="checkbox" id="layerDiagInterpolatedBridges"> Interpolated bridge geometry (Stage 8)</label>
       </section>
 
-      <section id="geometryDiagnosticsSection" class="local-only-control">
+      <section id="geometryDiagnosticsSection" class="local-only-control ui-tier-debug">
         <h2>Geometry diagnostics</h2>
         <p class="meta-line">Lane checksum: <strong id="diagLaneChecksum">—</strong></p>
         <p class="meta-line">API lane checksum: <strong id="diagApiLaneChecksum">—</strong></p>
@@ -199,7 +272,7 @@
         <p class="meta-line subtle">API checksums reflect cleaned fused-lane map (Mode 5). Local geometry switches raw observations vs fused lane lines only.</p>
       </section>
 
-      <section>
+      <section class="ui-tier-debug">
         <h2>Chunking settings</h2>
         <label>Max time gap (s) <input type="number" id="maxTimeGap" value="3" min="0.5" step="0.5"></label>
         <label>Max GPS gap (m) <input type="number" id="maxGpsGap" value="30" min="1" step="1"></label>
@@ -208,7 +281,7 @@
         <label>Max road-edge gap (m) <input type="number" id="maxEdgeGap" value="10" min="1" step="1"></label>
       </section>
 
-      <section>
+      <section class="ui-tier-debug">
         <h2>Settings</h2>
         <label>Min lane prob <input type="number" id="minLaneProb" value="0.5" min="0" max="1" step="0.05"></label>
         <label>Max GPS accuracy (m) <input type="number" id="maxGpsAcc" value="50" min="1" step="1"></label>
@@ -226,48 +299,37 @@
         </select></label>
       </section>
 
-      <section>
+      <section class="ui-tier-debug">
         <h2>File identity</h2>
         <div id="fileAuditTable" class="chunk-table"></div>
       </section>
 
-      <section>
+      <section class="ui-tier-debug">
         <h2>Frame counts</h2>
         <div id="frameCountPanel" class="chunk-table"></div>
       </section>
 
-      <section>
+      <section class="ui-tier-debug">
         <h2>Info</h2>
         <dl id="infoPanel"></dl>
       </section>
 
-      <section>
-        <h2>Timeline</h2>
-        <input type="range" id="timeline" min="0" max="0" value="0" disabled>
-        <dl id="timelineInfo"></dl>
-        <div class="btn-row">
-          <button id="btnPrevFrame">◀ Prev frame</button>
-          <button id="btnPlay">▶ Play</button>
-          <button id="btnNextFrame">Next frame ▶</button>
-        </div>
-      </section>
-
-      <section>
+      <section class="ui-tier-debug">
         <h2>Lane tracking diagnostics</h2>
         <div id="trackDiagnostics" class="chunk-table"></div>
       </section>
 
-      <section>
+      <section class="ui-tier-debug">
         <h2>Pass / polygon coverage</h2>
         <div id="passTable" class="chunk-table"></div>
       </section>
 
-      <section>
+      <section class="ui-tier-debug">
         <h2>Chunk diagnostics</h2>
         <div id="chunkTable" class="chunk-table"></div>
       </section>
 
-      <section>
+      <section class="ui-tier-debug">
         <h2>Stage 19 — dataset sensitivity audit</h2>
         <p class="meta-line">Stage 19 version: <strong id="stage19Version">—</strong></p>
         <p class="meta-line">Status: <strong id="stage19Status">—</strong></p>
@@ -275,14 +337,19 @@
         <p class="meta-line subtle">Read-only audit layer. Production lane counting remains disabled.</p>
       </section>
 
-      <section>
+      <section class="ui-tier-debug">
         <h2>Hover</h2>
         <pre id="hoverInfo">—</pre>
       </section>
+        </div>
+      </details>
     </aside>
 
-    <main>
-      <canvas id="canvas"></canvas>
+    <main id="mapStageRoot" class="map-stage map-background-grey">
+      <div id="geometryStage" class="geometry-stage">
+        <div id="geographicMapContainer" class="geographic-map-container" aria-hidden="true"></div>
+        <canvas id="canvas"></canvas>
+      </div>
       <div id="localVideoPanel" class="local-video-panel hidden">
         <div class="local-video-header">
           <span class="local-video-title">Synchronized road video</span>
@@ -328,6 +395,14 @@
   <script src="segment_video_timing.js?v=20260803a"></script>
   <script src="multisegment_video_timeline.js?v=20260828a"></script>
   <script src="local_playback_video.js?v=20260828b"></script>
+  <script src="ui_mode.js?v=20260928b"></script>
+  <script src="ui_mode_presets.js?v=20260928b"></script>
+  <script src="map_status.js?v=20260928c"></script>
+  <script src="vendor/maplibre-gl/maplibre-gl.js?v=20260928b"></script>
+  <script src="geographic_projection.js?v=20260928b"></script>
+  <script src="geographic_geojson.js?v=20260928e"></script>
+  <script src="geographic_vehicle_position.js?v=20260928g"></script>
+  <script src="geographic_map_native.js?v=20260928g"></script>
   <script src="local_geometry_ui.js?v=20260907f"></script>
   <script src="local_trajectory_overlay.js?v=20260805h"></script>
   <script src="local_road_surface_path_filter.js?v=20260805i"></script>
@@ -341,10 +416,10 @@
   <script src="point_accumulated_lane_polylines.js?v=20260907d"></script>
   <script src="canvas_layer_attribution.js?v=20260907a"></script>
   <script src="segment1_lane_order_diagnostic.js?v=20260903f"></script>
-  <script src="render.js?v=20260930g"></script>
+  <script src="render.js?v=20260928g"></script>
   <script src="boundary_bridge_playback.js?v=20260903e"></script>
   <script src="progressive_combined_playback.js?v=20260914c"></script>
   <script src="progressive_viewport_candidate.js?v=20260917a"></script>
-  <script src="app.js?v=20260930g"></script>
+  <script src="app.js?v=20260928g"></script>
 </body>
 </html>
