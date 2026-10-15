@@ -45,8 +45,10 @@ describe('supervisor UI revision 1', () => {
 
   it('plain-language primary labels', () => {
     const html = read(INDEX);
-    assert.match(html, /Load segment/);
+    assert.match(html, /Load recording/);
     assert.match(html, /Reload segment/);
+    assert.match(html, /viewer-intro/);
+    assert.match(html, /map-legend/);
     assert.match(html, /Add next segment/);
     assert.match(html, /Follow vehicle/);
     assert.match(html, /Observation dots/);

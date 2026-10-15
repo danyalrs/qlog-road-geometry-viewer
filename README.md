@@ -1,79 +1,62 @@
-# Qlog Road Geometry Viewer
+# Road Geometry Viewer
 
-Interactive viewer for qlog-derived road geometry: local canvas playback, optional MapLibre street map, synchronized dashcam video, and supervisor Review / Evidence / Debug modes.
+Review lane lines and road shape reconstructed from **vehicle driving logs** (qlog files). Step through a recording on a map or plain canvas, optionally with synchronized dashcam video when matching files are available locally.
 
-**Status:** This viewer build is **frozen** (supervisor-directed preservation snapshot). No further feature development is planned in this repository.
+**Status:** Frozen supervisor review build — no further feature development is planned in this repository. See [docs/CURRENT_VIEWER_STATUS.md](docs/CURRENT_VIEWER_STATUS.md).
+
+![Review view with street map background, GPS route, lane lines, and vehicle marker](docs/images/readme-app-screenshot.png)
+
+*Screenshot (sample drive segment): **teal** lines are representative lane lines; **cyan** is the GPS path on the street map; the **orange arrow** is the vehicle at the current frame; **grey** shading is the estimated road surface on the plain canvas. This tool shows processed geometry for human review — not verified map data or official lane counts.*
+
+## What is a qlog?
+
+A **qlog** is a compressed driving log (`.bz2`) from a test vehicle. It contains lane detections and GPS fixes produced during a drive. This viewer **does not** download logs from the cloud; you place files on the machine running the server.
+
+## What can you do with it?
+
+- Load one or more drive recordings and play them frame by frame
+- See **representative lane lines** and an estimated **road surface** in a simplified **Review** view
+- Switch to **Evidence** to overlay observation dots and per-frame source curves
+- Show a **street map** or **grey canvas** behind the geometry
+- Play **synchronized road video** when a matching `*---qcamera.ts` file is present locally
+- Export PNG / CSV / GeoJSON from **Debug** mode (technical users)
+
+## Quick start (three steps)
+
+1. **Install and start** — Node.js 20+, then `npm install` and `npm start` (or `START_VIEWER.bat` on Windows). Open **http://localhost:3847**.
+2. **Load data** — Copy your `.bz2` qlog files into the project folder (they are not in Git). Choose a recording in the sidebar and click **Load recording**.
+3. **Review** — Use the timeline and **Play** / **Prev frame** / **Next frame**. Use **Fit route** to centre the map. Change **View style** to Evidence if you need underlying observations.
 
 ## Requirements
 
 - **Node.js** 20.x LTS (tested with v20.20.x)
 - **npm** 10.x
-- **Windows:** run `START_VIEWER.bat` or `start.bat` from the repository root
+- **Windows:** `START_VIEWER.bat` or `start.bat` from the repository root
 - **Any OS:** `npm install` then `npm start` or `node server.js`
-- Default URL: **http://localhost:3847**
 
-Place segment qlogs (`.bz2`) and optional `*---qcamera.ts` video files in the project root or paths configured by your deployment. **Raw qlogs and videos are not included in this Git repository.**
+Raw qlogs and videos are **not** included in this repository.
 
-## Basic usage
+## Limitations
 
-1. Start the server (`START_VIEWER.bat` or `npm start`).
-2. Open http://localhost:3847 in a browser.
-3. Select one or more segments in the sidebar, then click **Load segment** (Process).
-4. Use the timeline and **Play** / **Prev** / **Next** for playback.
-5. **Review** — clean lane result on map or grey canvas. **Evidence** — adds observation dots and source curves. **Debug** — full technical controls.
-6. **Map background:** Grey (local canvas only), Street (OpenStreetMap dev tiles), or Satellite (only if `MAP_SATELLITE_TILE_URL` is set — see [MAP_SETUP.md](MAP_SETUP.md)).
-7. **Add next segment** (progressive combined playback) when enabled for your dataset.
+- Shows **processed geometry for review**, not certified lane counts or navigation-ready maps
+- Geographic representative lane lines may be **missing or incomplete** on the street-map view
+- **Satellite** background only works if `MAP_SATELLITE_TILE_URL` is configured ([MAP_SETUP.md](MAP_SETUP.md))
+- Some representative lines remain **fragmented** on the grey canvas in difficult segments
+- **Debug** and experimental URL flags remain for regression; default use is Review / Evidence only
+- Viewer development has **stopped**; this repo documents the frozen supervisor build
 
-## Input data
+## Data and privacy
 
-- Compressed qlogs: `qlog_f449c_*.bz2` (modelV2 lane observations, GPS fixes)
-- Optional front-camera transport streams for video sync (not shipped in Git)
+This repository contains **source code and tests only**. It does not ship raw qlogs, `.bz2` archives, MP4/TS videos, GPS exports, API keys, or private tile tokens.
 
-Processing uses the in-repo pipeline (`lib/process_route.js`, segment-local maps, point accumulation, representative lane lines).
+## Technical documentation
 
-## Architecture (summary)
-
-| Layer | Role |
-|--------|------|
-| `server.js` | Express API: process segments, video range, map config, static UI |
-| `public/render.js` | Local canvas renderer (grey mode) |
-| `public/geographic_map_native.js` | MapLibre geographic mode (street/satellite) |
-| `lib/segment_local_map.js` | Stationary map, trajectory, arrow on path |
-| `public/connected_accumulated_display.js` | Per-frame curves and representative lines |
-
-See [docs/CURRENT_VIEWER_STATUS.md](docs/CURRENT_VIEWER_STATUS.md) for the frozen snapshot details.
-
-## Important paths
-
-- `public/` — browser UI and client modules
-- `lib/` — server-side processing and shared logic
-- `tests/` — Node test suites (`npm test` runs all; use focused files for map/UI)
-- `public/vendor/maplibre-gl/` — bundled MapLibre GL JS (tiles fetched at runtime for Street)
+- [docs/TECHNICAL.md](docs/TECHNICAL.md) — architecture, pipeline, URL parameters, tests
+- [docs/CURRENT_VIEWER_STATUS.md](docs/CURRENT_VIEWER_STATUS.md) — frozen snapshot details
+- [MAP_SETUP.md](MAP_SETUP.md) — optional satellite tiles
 
 ## Tests
 
 ```bash
 npm test
 ```
-
-Focused supervisor / map smoke tests:
-
-```bash
-node --test tests/supervisor_ui_revision.test.js tests/supervisor_ui_revision_2.test.js tests/map_native_geographic.test.js tests/map_native_overlay_visibility.test.js tests/vehicle_marker_and_mode_state.test.js tests/map_container_size.test.js
-```
-
-## Known limitations
-
-- Geographic **representative lane lines** may be missing or incomplete on the map.
-- **Satellite** requires environment configuration (`MAP_SATELLITE_TILE_URL`); not enabled by default.
-- Some **representative lines** remain fragmented in local canvas mode.
-- Experimental URL flags and debug controls remain for regression only.
-- Viewer development has **stopped**; this repo documents the supervisor review build.
-
-## Data and privacy
-
-This repository contains **source code and tests only**. It does **not** include raw qlogs, `.bz2` archives, MP4/TS videos, GPS exports, API keys, or private tile tokens.
-
-## Future direction (not implemented here)
-
-Planned downstream work (separate effort): raw qlogs with modelV2 and `gpsLocation` / `gpsLocationExternal` → raw GeoJSON → miniature Pintaz Map update simulation.

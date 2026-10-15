@@ -367,7 +367,7 @@ function updatePendingSegmentSelectionStatus() {
   if (selectionMatchesLoadedSegments()) return;
   const pending = selectedSegmentLabel();
   const loaded = loadedSegmentLabel();
-  setStatus(`Seg${pending} selected — click Load segment (currently showing Seg${loaded})`);
+  setStatus(`Segment ${pending} selected — click Load recording (currently showing segment ${loaded})`);
 }
 
 function updateReviewCompactStatus() {
@@ -1103,6 +1103,18 @@ function logGeometryDebug(data, label) {
   console.groupEnd();
 }
 
+function formatSegmentListLabel(filename) {
+  const m = /^qlog_f449c_(\d+)\.bz2$/i.exec(String(filename || ''));
+  if (m) return `Segment ${m[1]}`;
+  return String(filename || '').replace(/\.bz2$/i, '') || 'Recording';
+}
+
+function setMapEmptyHelpVisible(visible) {
+  const el = $('mapEmptyHelp');
+  if (!el) return;
+  el.classList.toggle('hidden', !visible);
+}
+
 async function loadSegments() {
   const res = await fetch(`/api/segments?_=${Date.now()}`, { cache: 'no-store' });
   const data = await res.json();
@@ -1111,7 +1123,7 @@ async function loadSegments() {
   for (const s of data.segments) {
     const opt = document.createElement('option');
     opt.value = s;
-    opt.textContent = s;
+    opt.textContent = formatSegmentListLabel(s);
     sel.appendChild(opt);
   }
   progressiveCombinedState.availableSegments = Array.isArray(data.segments) ? [...data.segments] : [];
@@ -1122,6 +1134,13 @@ async function loadSegments() {
     gpsEvents: data.gpsEventCount,
   });
   initProgressiveCombinedPlaybackUI();
+  if (!data.segments?.length) {
+    setMapEmptyHelpVisible(true);
+    setStatus('No qlog files found — add .bz2 recordings to the project folder (see README)', 'error');
+  } else if (!processData) {
+    setMapEmptyHelpVisible(true);
+    setStatus('Ready — choose a drive recording and click Load recording');
+  }
 }
 
 function selectedSegments() {
@@ -1299,6 +1318,7 @@ async function process(segments, { bustCache = false, label = 'process', progres
     applyVisualization();
     updateGeometryDiagnosticsPanel();
   }
+  setMapEmptyHelpVisible(false);
   const fc = data.stats?.frameCounts;
   const frameLabel = fc
     ? `${fc.rawModelV2Messages} raw modelV2 → ${fc.gpsAlignedFrames} GPS-aligned`
@@ -2489,6 +2509,7 @@ function initMirrorRoadLateralDisplay() {
 }
 
 function applyVisualization() {
+  setMapEmptyHelpVisible(!processData);
   const playbackData = getActiveProgressiveDisplayData();
   if (!playbackData) return;
   const displayMode = getDisplayMode();
@@ -3927,7 +3948,8 @@ async function init() {
   await loadStage19Summary();
   syncProgressiveViewportBodyClass();
   applyUiMode(uiMode);
-  setStatus('Ready — select a segment and click Load segment');
+  setMapEmptyHelpVisible(!processData && progressiveCombinedState.availableSegments?.length > 0);
+  setStatus('Ready — choose a drive recording and click Load recording');
 }
 
 window.getPlaybackVideoDebugState = () => {

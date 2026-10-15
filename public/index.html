@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Qlog Road Geometry Viewer</title>
+  <title>Road Geometry Viewer</title>
   <link rel="stylesheet" href="style.css?v=20260928d">
   <link rel="stylesheet" href="style_supervisor_ui.css?v=20260928d">
   <link rel="stylesheet" href="vendor/maplibre-gl/maplibre-gl.css?v=20260928b">
@@ -11,24 +11,26 @@
 <body class="ui-mode-review">
   <header class="app-header">
     <div class="header-title-row">
-      <h1>Qlog Road Geometry Viewer</h1>
+      <h1>Road Geometry Viewer</h1>
       <p id="toolbarStatus" class="toolbar-status" aria-live="polite">Ready</p>
     </div>
+    <p class="app-tagline">Explore lane lines detected during a drive — step through time on a map or grey canvas.</p>
     <p id="modeLabel" class="mode-label">Loading…</p>
     <div class="top-toolbar ui-tier-review">
-      <label class="toolbar-field">Interface
-        <select id="uiModeSelect" aria-label="Interface mode">
-          <option value="review" selected>Review</option>
-          <option value="evidence">Evidence</option>
-          <option value="debug">Debug</option>
+      <label class="toolbar-field">View style
+        <select id="uiModeSelect" aria-label="View style">
+          <option value="review" selected>Review (simple)</option>
+          <option value="evidence">Evidence (with dots)</option>
+          <option value="debug">Debug (all controls)</option>
         </select>
       </label>
-      <p id="uiModeDescription" class="meta-line subtle ui-tier-review" aria-live="polite">Clean lane result</p>
-      <label class="toolbar-field toolbar-segment">Segment(s)
-        <select id="segmentSelect" multiple size="3"></select>
+      <p id="uiModeDescription" class="meta-line subtle ui-tier-review" aria-live="polite">Simplified view — lane lines and road surface only</p>
+      <label class="toolbar-field toolbar-segment">Drive recording
+        <select id="segmentSelect" multiple size="3" aria-describedby="segmentSelectHelp"></select>
       </label>
+      <p id="segmentSelectHelp" class="meta-line subtle toolbar-segment-help">Each item is one compressed <strong>qlog</strong> file (driving log) in the project folder. Hold Ctrl/Cmd to pick more than one.</p>
       <div class="btn-row toolbar-actions">
-        <button id="btnProcess" type="button">Load segment</button>
+        <button id="btnProcess" type="button" class="btn-primary-action">Load recording</button>
         <button id="btnProcessAll" type="button" class="ui-tier-debug">Combine all segments</button>
         <button id="btnReprocess" type="button" class="ui-tier-debug">Reload segment</button>
       </div>
@@ -37,6 +39,25 @@
 
   <div class="layout">
     <aside class="panel panel-review">
+      <section class="viewer-intro ui-tier-review" aria-labelledby="viewerIntroHeading">
+        <h2 id="viewerIntroHeading">What this tool does</h2>
+        <p class="intro-lead">It reads <strong>qlog</strong> driving logs (lane detections and GPS from a test vehicle) and draws the reconstructed road geometry so you can review it frame by frame.</p>
+        <p class="meta-line subtle">It does <strong>not</strong> publish maps, verify official lane counts, or replace human review.</p>
+        <p class="intro-first-step"><strong>Start here:</strong> choose a drive recording above, then click <strong>Load recording</strong>.</p>
+      </section>
+
+      <section class="map-legend ui-tier-review" aria-labelledby="mapLegendHeading">
+        <h2 id="mapLegendHeading">Colours on the map</h2>
+        <ul class="legend-list">
+          <li><span class="legend-swatch legend-swatch-lane" aria-hidden="true"></span> <strong>Teal lines</strong> — representative lane lines (review view)</li>
+          <li><span class="legend-swatch legend-swatch-road" aria-hidden="true"></span> <strong>Grey fill</strong> — estimated road surface under the vehicle path</li>
+          <li><span class="legend-swatch legend-swatch-route" aria-hidden="true"></span> <strong>Cyan line</strong> — GPS route (street map background)</li>
+          <li><span class="legend-swatch legend-swatch-vehicle" aria-hidden="true"></span> <strong>Arrow / marker</strong> — vehicle position and heading for the current frame</li>
+          <li class="ui-tier-evidence"><span class="legend-swatch legend-swatch-dots" aria-hidden="true"></span> <strong>Coloured dots</strong> — individual lane observations (Evidence view)</li>
+          <li class="ui-tier-evidence"><span class="legend-swatch legend-swatch-curves" aria-hidden="true"></span> <strong>Thin curves</strong> — per-frame source curves (Evidence view)</li>
+        </ul>
+      </section>
+
       <section class="section-playback ui-tier-review">
         <h2>Playback</h2>
         <input type="range" id="timeline" min="0" max="0" value="0" disabled>
@@ -103,8 +124,8 @@
         <h2>Map background</h2>
         <label>Background
           <select id="mapBackgroundMode" aria-label="Map background">
-            <option value="grey">Grey</option>
-            <option value="street">Street</option>
+            <option value="grey">Plain grey canvas</option>
+            <option value="street">Street map (OpenStreetMap)</option>
             <option value="satellite">Satellite — not configured</option>
           </select>
         </label>
@@ -139,7 +160,7 @@
       <p id="status" class="status ui-tier-review panel-status">Ready</p>
 
       <details id="advancedSettingsPanel" class="advanced-settings ui-tier-review">
-        <summary>Advanced settings</summary>
+        <summary>Advanced settings (technical controls)</summary>
         <div class="advanced-settings-body">
       <section class="section-controls ui-tier-debug">
         <h2>Controls</h2>
@@ -349,6 +370,16 @@
       <div id="geometryStage" class="geometry-stage">
         <div id="geographicMapContainer" class="geographic-map-container" aria-hidden="true"></div>
         <canvas id="canvas"></canvas>
+        <div id="mapEmptyHelp" class="map-empty-help" role="status">
+          <h2>No recording loaded yet</h2>
+          <p>Place <code>.bz2</code> qlog files next to the server (see README), pick one in the sidebar, then click <strong>Load recording</strong>.</p>
+          <ol>
+            <li>Choose a drive recording</li>
+            <li>Click <strong>Load recording</strong></li>
+            <li>Use the timeline and <strong>Play</strong> to move through the drive</li>
+          </ol>
+          <p class="map-empty-help-note">If the list is empty, the server cannot find any qlog files in the project folder.</p>
+        </div>
       </div>
       <div id="localVideoPanel" class="local-video-panel hidden">
         <div class="local-video-header">

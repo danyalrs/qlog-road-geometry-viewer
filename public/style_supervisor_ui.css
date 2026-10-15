@@ -5,6 +5,116 @@
   background: #fff;
   border-bottom: 1px solid #ddd;
 }
+.app-tagline {
+  margin: 4px 0 0;
+  font-size: 0.95rem;
+  color: #334155;
+  max-width: 52rem;
+}
+.toolbar-segment-help {
+  margin: 2px 0 0;
+  max-width: 280px;
+  line-height: 1.35;
+}
+.btn-primary-action {
+  font-weight: 600;
+}
+.viewer-intro {
+  padding: 8px 10px;
+  margin-bottom: 8px;
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 6px;
+}
+.viewer-intro h2 {
+  margin: 0 0 6px;
+  font-size: 0.95rem;
+}
+.intro-lead {
+  margin: 0 0 6px;
+  font-size: 0.85rem;
+  line-height: 1.45;
+}
+.intro-first-step {
+  margin: 8px 0 0;
+  font-size: 0.85rem;
+}
+.map-legend {
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e2e8f0;
+}
+.map-legend h2 {
+  margin: 0 0 6px;
+  font-size: 0.9rem;
+}
+.legend-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+.legend-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.legend-swatch {
+  flex: 0 0 14px;
+  width: 14px;
+  height: 14px;
+  margin-top: 2px;
+  border-radius: 2px;
+  border: 1px solid rgba(15, 23, 42, 0.2);
+}
+.legend-swatch-lane { background: #0f766e; }
+.legend-swatch-road { background: #cbd5e1; }
+.legend-swatch-route { background: #06b6d4; }
+.legend-swatch-vehicle {
+  background: linear-gradient(135deg, #f59e0b 50%, transparent 50%);
+  border-color: #b45309;
+}
+.legend-swatch-dots {
+  background: radial-gradient(circle at 30% 30%, #3b82f6 35%, transparent 36%),
+    radial-gradient(circle at 70% 60%, #22c55e 35%, transparent 36%), #f8fafc;
+}
+.legend-swatch-curves {
+  background: repeating-linear-gradient(45deg, #94a3b8, #94a3b8 2px, #f1f5f9 2px, #f1f5f9 4px);
+}
+.map-empty-help {
+  position: absolute;
+  inset: 12% 8%;
+  max-width: 420px;
+  margin: auto;
+  padding: 20px 22px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+  pointer-events: none;
+  z-index: 4;
+}
+.map-empty-help.hidden { display: none; }
+.map-empty-help h2 {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+}
+.map-empty-help p,
+.map-empty-help ol {
+  margin: 0 0 10px;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: #334155;
+}
+.map-empty-help-note {
+  font-size: 0.8rem !important;
+  color: #64748b !important;
+}
+.geometry-stage {
+  position: relative;
+}
 .header-title-row {
   display: flex;
   align-items: baseline;

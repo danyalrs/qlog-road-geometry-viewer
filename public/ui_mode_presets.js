@@ -27,9 +27,9 @@
     connectedAccumulatedMode: 'perFrame',
   };
   const MODE_DESCRIPTIONS = {
-    review: 'Clean lane result',
-    evidence: 'Result with supporting observations',
-    debug: 'All technical controls',
+    review: 'Simplified view — lane lines and road surface only',
+    evidence: 'Same result plus observation dots and source curves',
+    debug: 'Full controls for engineers (layers, exports, diagnostics)',
   };
   function presetForUiMode(mode) {
     if (mode === 'evidence') return { ...EVIDENCE_PRESET };
