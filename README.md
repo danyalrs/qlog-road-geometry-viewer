@@ -4,9 +4,13 @@ Review lane lines and road shape reconstructed from **vehicle driving logs** (ql
 
 **Status:** Frozen supervisor review build — no further feature development is planned in this repository. See [docs/CURRENT_VIEWER_STATUS.md](docs/CURRENT_VIEWER_STATUS.md).
 
-![Review view with street map background, GPS route, lane lines, and vehicle marker](docs/images/readme-app-screenshot.png)
+![Grey-canvas Review view showing estimated road surface, lane lines, and vehicle marker](docs/images/readme-app-screenshot.png)
 
-*Screenshot (sample drive segment): **teal** lines are representative lane lines; **cyan** is the GPS path on the street map; the **orange arrow** is the vehicle at the current frame; **grey** shading is the estimated road surface on the plain canvas. This tool shows processed geometry for human review — not verified map data or official lane counts.*
+*Sample drive segment on the **plain grey canvas** (Review view): the **grey shaded ribbon** is the estimated road surface along the path; **solid coloured lines** are representative lane lines; the **green-ringed arrow** marks vehicle position and heading (speed label is playback metadata). Geometry is **model-estimated for human review** — not verified map data or official lane counts.*
+
+![Close-up of lane lines and vehicle marker on the grey canvas](docs/images/readme-geometry-closeup.png)
+
+*Close-up: parallel **coloured lane lines** (blue, red, green) on the grey road-surface ribbon, with **dashed grey centre lines** inside the ribbon.*
 
 ## What is a qlog?
 
