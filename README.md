@@ -4,13 +4,15 @@ Review lane lines and road shape reconstructed from **vehicle driving logs** (ql
 
 **Status:** Frozen supervisor review build — no further feature development is planned in this repository. See [docs/CURRENT_VIEWER_STATUS.md](docs/CURRENT_VIEWER_STATUS.md).
 
-![Grey-canvas Review view showing estimated road surface, lane lines, and vehicle marker](docs/images/readme-app-screenshot.png)
+![Review view with OpenStreetMap street background, reconstructed road overlay, GPS route, and vehicle marker](docs/images/readme-app-screenshot.png)
 
-*Sample drive segment on the **plain grey canvas** (Review view): the **grey shaded ribbon** is the estimated road surface along the path; **solid coloured lines** are representative lane lines; the **green-ringed arrow** marks vehicle position and heading (speed label is playback metadata). Geometry is **model-estimated for human review** — not verified map data or official lane counts.*
+*Sample drive segment in **Review (simple)** with the **street map** background: **OpenStreetMap** tiles under a **salmon-tinted road-surface overlay** along the driven path, a **cyan GPS trace**, and a **blue triangle** vehicle marker. Sidebar controls show **Segment 2** loaded; geometry is **model-estimated for human review** — not verified map data or official lane counts.*
 
-![Close-up of lane lines and vehicle marker on the grey canvas](docs/images/readme-geometry-closeup.png)
+### Grey canvas (separate view)
 
-*Close-up: parallel **coloured lane lines** (blue, red, green) on the grey road-surface ribbon, with **dashed grey centre lines** inside the ribbon.*
+![Close-up of representative lane lines on the plain grey canvas](docs/images/readme-geometry-closeup.png)
+
+*Same segment on the **plain grey canvas** (no map tiles): **grey road-surface ribbon** with **dashed centre guides**, plus **coloured representative lane lines** (blue, green, red) where the review renderer draws them clearly at this zoom.*
 
 ## What is a qlog?
 
